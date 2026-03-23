@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Model cache
+*.safetensors
+*.bin
+
+# FAISS indexes (large binary files)
+indexes/
+
+# Environment variables
+.env
+
+# HuggingFace cache
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter
+*.ipynb_checkpoints
+
+# Data files
+data/
