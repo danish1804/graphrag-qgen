@@ -17,3 +17,15 @@ INDEX_DIR = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\indexes"
 DATA_DIR  = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data"
 
 
+class Pipeline:
+    def __init__(self):
+        self.index        = None
+        self.chunks       = None
+        self.embedder     = None
+        self.model        = None
+        self.tokenizer    = None
+        self.index_name   = None
+        self._models_loaded = False
+
+
+
