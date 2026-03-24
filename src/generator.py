@@ -140,4 +140,12 @@ if __name__ == "__main__":
     # Load Qwen
     model, tokenizer = load_model()
 
+    # Test questions with different objectives
+    test_objectives = [
+        ("What is parameter sharing in CNNs?",    "medium", "conceptual"),
+        ("How does max pooling reduce dimensions?", "medium", "application"),
+        ("What is sparse connectivity?",           "easy",   "recall"),
+    ]
+
+
    
