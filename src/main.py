@@ -46,3 +46,13 @@ class GenerateRequest(BaseModel):
     question_type: str = "conceptual"  # recall / conceptual / application / analytical
     top_k: int = 3
 
+class GenerateResponse(BaseModel):
+    question: str
+    learning_objective: str
+    difficulty: str
+    question_type: str
+    top_chunks_used: int
+    avg_retrieval_score: float
+
+
+
