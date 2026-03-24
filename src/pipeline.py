@@ -159,6 +159,67 @@ class Pipeline:
         }
 
 
+# ============================================================
+# TEST - run directly
+# python src/pipeline.py
+# ============================================================
+if __name__ == "__main__":
+
+    print("=" * 55)
+    print("PIPELINE END-TO-END TEST")
+    print("=" * 55)
+
+    PDF_PATH = os.path.join(DATA_DIR, "source_1.pdf")
+
+    # Create pipeline
+    pipeline = Pipeline()
+
+    # Load models once
+    pipeline.load_models()
+
+    # Ingest document
+    pipeline.ingest(PDF_PATH)
+
+    # Generate questions with different settings
+    test_cases = [
+        {
+            "learning_objective": "Explain how CNNs use "
+                                  "parameter sharing",
+            "difficulty":   "medium",
+            "question_type": "conceptual"
+        },
+        {
+            "learning_objective": "Apply max pooling to "
+                                  "reduce feature map size",
+            "difficulty":   "hard",
+            "question_type": "application"
+        },
+        {
+            "learning_objective": "Define sparse connectivity "
+                                  "in neural networks",
+            "difficulty":   "easy",
+            "question_type": "recall"
+        },
+    ]
+
+    print("\n" + "=" * 55)
+    print("GENERATED QUESTIONS")
+    print("=" * 55)
+
+    for i, tc in enumerate(test_cases, 1):
+        print(f"\nQuestion {i}:")
+        print(f"  Objective : {tc['learning_objective']}")
+        print(f"  Difficulty: {tc['difficulty']}")
+        print(f"  Type      : {tc['question_type']}")
+
+        result = pipeline.generate(**tc)
+
+        print(f"\n  Question  : {result['question']}")
+        print(f"  Retrieval score: {result['avg_retrieval_score']}")
+        print("-" * 55)
+
+    print("\nPipeline test complete.")
+    print("Ready for FastAPI wrapping.")
 
 
 
