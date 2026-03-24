@@ -104,6 +104,38 @@ class Pipeline:
               f"({len(self.chunks)} chunks)")
 
 
+    # ----------------------------------------------------------
+    # STAGE 4 - Generate a question
+    # ----------------------------------------------------------
+    def generate(self, learning_objective: str,
+                 difficulty: str = "medium",
+                 question_type: str = "conceptual",
+                 top_k: int = 3) -> dict:
+        """
+        Full pipeline: objective → retrieve → generate.
+
+        Returns dict with question and metadata.
+        """
+        if self.index is None:
+            raise RuntimeError(
+                "No index loaded. Call ingest() or "
+                "load_existing_index() first.")
+
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() first.")
+
+        # Retrieve relevant chunks
+        results = search(
+            learning_objective,
+            self.index,
+            self.chunks,
+            self.embedder,
+            k=top_k
+        )
+
+
+
 
 
 
