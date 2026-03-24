@@ -106,4 +106,50 @@ def search(query: str, index, chunks: list,
             })
 
     return results
- 
+
+
+# ============================================================
+# TEST — run directly to verify
+# python src/embedder.py
+# ============================================================
+if __name__ == "__main__":
+    import sys
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+    from src.document_loader import load_and_chunk
+
+    print("=" * 50)
+    print("EMBEDDER TEST")
+    print("=" * 50)
+
+    # Use the PDF we already tested
+    pdf_path = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\source_1.pdf"
+    index_dir = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\indexes"
+
+    # Step 1: Load and chunk
+    result = load_and_chunk(pdf_path)
+    chunks = result["chunks"]
+
+    # Step 2: Build index
+    summary = build_index(chunks, index_dir, index_name="cnn_lecture")
+    print(f"\nIndex summary: {summary}")
+
+    # Step 3: Load index back and test search
+    print("\nLoading index and testing search...")
+    index, chunks_loaded = load_index(index_dir, "cnn_lecture")
+    embedder = Embedder()
+
+    # Test queries
+    test_queries = [
+        "What is a convolutional neural network?",
+        "How does pooling work?",
+        "What is parameter sharing in CNNs?"
+    ]
+
+    for query in test_queries:
+        print(f"\nQuery: {query}")
+        print("-" * 40)
+        results = search(query, index, chunks_loaded, embedder, k=2)
+        for i, r in enumerate(results, 1):
+            print(f"Result {i} (score: {r['score']:.4f}):")
+            print(r['chunk'][:200])
+            print() 
