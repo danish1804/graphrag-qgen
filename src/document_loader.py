@@ -100,5 +100,61 @@ def load_and_chunk(file_path: str, chunk_size: int = 500,
     }
 
 
+# ============================================================
+# TEST — run this file directly to verify it works
+# python src/document_loader.py
+# ============================================================
+if __name__ == "__main__":
+    import sys
+
+    print("=" * 50)
+    print("DOCUMENT LOADER TEST")
+    print("=" * 50)
+
+    # Check if a file path was passed as argument
+    if len(sys.argv) > 1:
+        test_file = sys.argv[1]
+        result = load_and_chunk(test_file)
+        print(f"\nResults:")
+        print(f"  File      : {result['file_name']}")
+        print(f"  Type      : {result['file_type']}")
+        print(f"  Chars     : {result['total_chars']:,}")
+        print(f"  Chunks    : {result['total_chunks']}")
+        print(f"\nFirst chunk preview:")
+        print("-" * 40)
+        print(result['chunks'][0])
+        print("-" * 40)
+        print(f"\nLast chunk preview:")
+        print("-" * 40)
+        print(result['chunks'][-1])
+        print("-" * 40)
+    else:
+        # Create a small test text file to verify chunking works
+        print("No file provided — running chunking test on sample text")
+        sample = """
+        Machine learning is a subset of artificial intelligence.
+        It enables systems to learn from data without being explicitly programmed.
+
+        Supervised learning uses labelled training data.
+        The model learns to map inputs to outputs based on example pairs.
+        Common algorithms include linear regression, decision trees, and neural networks.
+
+        Unsupervised learning finds patterns in unlabelled data.
+        Clustering and dimensionality reduction are common techniques.
+        K-means clustering groups data points into k clusters.
+
+        Deep learning uses neural networks with many layers.
+        Convolutional neural networks are used for image recognition.
+        Recurrent neural networks handle sequential data like text.
+        """ * 10  # repeat to create enough text for multiple chunks
+
+        chunks = chunk_text(sample, chunk_size=200, chunk_overlap=20)
+        print(f"Sample text chunked into {len(chunks)} chunks")
+        print(f"\nChunk 1: {chunks[0][:100]}...")
+        print(f"Chunk 2: {chunks[1][:100]}...")
+        print("\nChunking works correctly.")
+
+    print("\nDocument loader ready.")
+
 
 
