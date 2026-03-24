@@ -54,5 +54,10 @@ class GenerateResponse(BaseModel):
     top_chunks_used: int
     avg_retrieval_score: float
 
+class UploadResponse(BaseModel):
+    message: str
+    file_name: str
+    total_chunks: int
+    index_name: str
 
 
