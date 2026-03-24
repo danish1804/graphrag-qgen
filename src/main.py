@@ -30,3 +30,11 @@ async def lifespan(app: FastAPI):
     print("[Server] Models ready. Server is live.\n")
     yield
     print("[Server] Shutting down.")
+
+app = FastAPI(
+    title="Exam Question Generator",
+    description="GraphRAG + Qwen 2.5 — generates exam questions from course material",
+    version="0.1.0",
+    lifespan=lifespan
+)
+
