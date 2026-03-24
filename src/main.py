@@ -113,5 +113,32 @@ async def upload(file: UploadFile = File(...)):
         index_name=result["index_name"]
     )
 
+@app.post("/generate", response_model=GenerateResponse)
+def generate(req: GenerateRequest):
+    """
+    Generate an exam question from a learning objective.
+    Requires a document to be uploaded first.
+    """
+    if pipeline.index is None:
+        raise HTTPException(
+            status_code=400,
+            detail="No document indexed yet. POST to /upload first."
+        )
+
+    try:
+        result = pipeline.generate(
+            learning_objective=req.learning_objective,
+            difficulty=req.difficulty,
+            question_type=req.question_type,
+            top_k=req.top_k
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Generation failed: {str(e)}"
+        )
+
+    return GenerateResponse(**result)
+
 
 
