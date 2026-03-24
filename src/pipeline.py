@@ -45,6 +45,49 @@ class Pipeline:
         self._models_loaded = True
         print("\n[Pipeline] All models ready.")
 
+    # ----------------------------------------------------------
+    # STAGE 2 - Ingest a document
+    # ----------------------------------------------------------
+    def ingest(self, file_path: str) -> dict:
+        """
+        Load a PDF or PPTX, chunk it, embed it,
+        and save a FAISS index.
+
+        Returns ingestion summary.
+        """
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() before ingest()")
+
+        # Derive index name from file name
+        file_name = os.path.basename(file_path)
+        self.index_name = os.path.splitext(file_name)[0]
+
+        print(f"\n[Pipeline] Ingesting: {file_name}")
+
+        # Load and chunk
+        doc_result = load_and_chunk(file_path)
+        chunks = doc_result["chunks"]
+
+        # Build FAISS index
+        index_result = build_index(
+            chunks, INDEX_DIR, self.index_name)
+
+        # Load into memory for immediate use
+        self.index, self.chunks = load_index(
+            INDEX_DIR, self.index_name)
+
+        print(f"[Pipeline] Ingestion complete — "
+              f"{len(self.chunks)} chunks indexed.")
+
+        return {
+            "file_name":    file_name,
+            "total_chunks": len(chunks),
+            "index_name":   self.index_name,
+            "index_path":   index_result["index_path"]
+        }
+
+
 
 
 
