@@ -84,4 +84,26 @@ def load_index(index_dir: str, index_name: str = "index"):
         meta = json.load(f)
 
     return index, meta["chunks"]
+
+
+def search(query: str, index, chunks: list,
+           embedder: Embedder, k: int = 3) -> list:
+    """
+    Search the FAISS index for the top-k most relevant chunks.
+
+    Returns list of dicts with chunk text and score.
+    """
+    query_embedding = embedder.embed([query])
+    distances, indices = index.search(query_embedding, k)
+
+    results = []
+    for score, idx in zip(distances[0], indices[0]):
+        if idx >= 0:
+            results.append({
+                "chunk": chunks[idx],
+                "score": float(score),
+                "index": int(idx)
+            })
+
+    return results
  
