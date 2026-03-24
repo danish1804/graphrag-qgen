@@ -109,7 +109,7 @@ def search(query: str, index, chunks: list,
 
 
 # ============================================================
-# TEST — run directly to verify
+# TEST - run directly to verify
 # python src/embedder.py
 # ============================================================
 if __name__ == "__main__":

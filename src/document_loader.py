@@ -101,7 +101,7 @@ def load_and_chunk(file_path: str, chunk_size: int = 500,
 
 
 # ============================================================
-# TEST — run this file directly to verify it works
+# TEST - run this file directly to verify it works
 # python src/document_loader.py
 # ============================================================
 if __name__ == "__main__":
@@ -130,7 +130,7 @@ if __name__ == "__main__":
         print("-" * 40)
     else:
         # Create a small test text file to verify chunking works
-        print("No file provided — running chunking test on sample text")
+        print("No file provided - running chunking test on sample text")
         sample = """
         Machine learning is a subset of artificial intelligence.
         It enables systems to learn from data without being explicitly programmed.

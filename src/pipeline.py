@@ -112,7 +112,7 @@ class Pipeline:
                  question_type: str = "conceptual",
                  top_k: int = 3) -> dict:
         """
-        Full pipeline: objective → retrieve → generate.
+        Full pipeline: objective -> retrieve -> generate.
 
         Returns dict with question and metadata.
         """
