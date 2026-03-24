@@ -101,3 +101,43 @@ Generate one exam question based strictly on the context above."""
     question = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
 
     return question
+
+
+# ============================================================
+# TEST
+# python src/generator.py
+# ============================================================
+if __name__ == "__main__":
+    import os
+    import sys
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+    from src.document_loader import load_and_chunk
+    from src.embedder import (build_index, load_index,
+                               search, Embedder)
+
+    print("=" * 50)
+    print("GENERATOR TEST")
+    print("=" * 50)
+
+    INDEX_DIR = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\indexes"
+    PDF_PATH  = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\source_1.pdf"
+
+    # Load existing index or build it
+    index_faiss_path = os.path.join(INDEX_DIR, "cnn_lecture.faiss")
+    if os.path.exists(index_faiss_path):
+        print("Loading existing FAISS index...")
+        index, chunks = load_index(INDEX_DIR, "cnn_lecture")
+    else:
+        print("Building FAISS index...")
+        result = load_and_chunk(PDF_PATH)
+        build_index(result["chunks"], INDEX_DIR, "cnn_lecture")
+        index, chunks = load_index(INDEX_DIR, "cnn_lecture")
+
+    # Load embedding model for search
+    embedder = Embedder()
+
+    # Load Qwen
+    model, tokenizer = load_model()
+
+   
