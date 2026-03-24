@@ -21,4 +21,15 @@ class Embedder:
         print(f"Loading embedding model: {MODEL_NAME}")
         self.model = SentenceTransformer(MODEL_NAME)
         print("Embedding model loaded.")
+
+    def embed(self, texts: list) -> np.ndarray:
+        """Convert a list of strings to normalized embeddings."""
+        embeddings = self.model.encode(
+            texts,
+            normalize_embeddings=True,
+            show_progress_bar=True,
+            batch_size=32
+        )
+        return np.array(embeddings, dtype=np.float32)
+
   
