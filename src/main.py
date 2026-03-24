@@ -60,4 +60,17 @@ class UploadResponse(BaseModel):
     total_chunks: int
     index_name: str
 
+# -- Endpoints ------------------------------------------------
+
+@app.get("/health")
+def health():
+    """Check if server and models are ready."""
+    return {
+        "status": "ok",
+        "models_loaded": pipeline._models_loaded,
+        "index_loaded": pipeline.index is not None,
+        "index_name": pipeline.index_name
+    }
+
+
 
