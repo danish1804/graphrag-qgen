@@ -52,4 +52,18 @@ def load_document(file_path: str) -> str:
     else:
         raise ValueError(f"Unsupported file type: {ext}. Use PDF or PPTX.")
 
+def chunk_text(text: str, chunk_size: int = 500,
+               chunk_overlap: int = 50) -> List[str]:
+    """Split text into overlapping chunks."""
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+        separators=["\n\n", "\n", ". ", " ", ""]
+    )
+    chunks = splitter.split_text(text)
+    # Remove empty or very short chunks
+    chunks = [c.strip() for c in chunks if len(c.strip()) > 50]
+    return chunks
+
+
 
