@@ -146,6 +146,26 @@ if __name__ == "__main__":
         ("How does max pooling reduce dimensions?", "medium", "application"),
         ("What is sparse connectivity?",           "easy",   "recall"),
     ]
+    
+    for objective, difficulty, qtype in test_objectives:
+        print(f"\n{'='*50}")
+        print(f"Objective : {objective}")
+        print(f"Difficulty: {difficulty} | Type: {qtype}")
+        print("-" * 50)
 
+        # Retrieve top 3 chunks
+        results = search(objective, index, chunks, embedder, k=3)
+        context = "\n\n".join([r["chunk"] for r in results])
+
+        # Generate question
+        question = generate_question(
+            context, objective, model, tokenizer,
+            difficulty, qtype
+        )
+
+        print(f"Generated question:\n{question}")
+
+    print("\n" + "=" * 50)
+    print("Generator test complete.")
 
    
