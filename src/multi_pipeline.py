@@ -67,3 +67,17 @@ class MultiPipeline:
         print(f"[MultiPipeline] Index loaded — "
               f"{len(self.chunks)} chunks across "
               f"{len(set(m['source'] for m in self.meta))} documents")
+
+    # ----------------------------------------------------------
+    # STAGE 3 — Rebuild index (if new docs added)
+    # ----------------------------------------------------------
+    def rebuild_index(self, docs_dir: str = TESTED_DIR):
+        """Rebuild the combined index from scratch."""
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() before rebuild_index()")
+
+        print("\n[MultiPipeline] Rebuilding combined index...")
+        build_combined_index(docs_dir, INDEX_DIR, INDEX_NAME)
+        self.load_index()
+        print("[MultiPipeline] Index rebuilt and loaded.")
