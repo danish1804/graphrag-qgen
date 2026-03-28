@@ -38,3 +38,11 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+
+# -- Request / Response models -------------------------------
+class GenerateRequest(BaseModel):
+    learning_objective: str
+    difficulty: str = "medium"      # easy / medium / hard
+    question_type: str = "conceptual"  # recall / conceptual / application / analytical
+    top_k: int = 3
+
