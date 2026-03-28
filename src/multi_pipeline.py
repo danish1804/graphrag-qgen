@@ -1,0 +1,34 @@
+# ============================================================
+# src/multi_pipeline.py
+# Multi-document pipeline — retrieves across all indexed PDFs
+# Uses combined FAISS index built by multi_indexer.py
+# ============================================================
+
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+from src.multi_indexer import (
+    build_combined_index,
+    load_combined_index,
+    search_combined
+)
+from src.embedder import Embedder
+from src.generator import load_model, generate_question
+
+
+BASE_DIR   = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen"
+INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
+TESTED_DIR = os.path.join(BASE_DIR, "data", "tested")
+INDEX_NAME = "combined"
+
+
+class MultiPipeline:
+    def __init__(self):
+        self.index        = None
+        self.chunks       = None
+        self.meta         = None
+        self.embedder     = None
+        self.model        = None
+        self.tokenizer    = None
+        self._models_loaded = False
