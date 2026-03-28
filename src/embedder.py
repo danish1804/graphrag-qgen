@@ -32,4 +32,18 @@ class Embedder:
         )
         return np.array(embeddings, dtype=np.float32)
 
-  
+
+def build_index(chunks: list, index_dir: str,
+                index_name: str = "index") -> dict:
+    """
+    Embed chunks and build a FAISS index.
+    Saves index + metadata to disk.
+
+    Returns summary dict.
+    """
+    os.makedirs(index_dir, exist_ok=True)
+
+    embedder = Embedder()
+    print(f"\nEmbedding {len(chunks)} chunks...")
+    embeddings = embedder.embed(chunks)
+    print(f"Embeddings shape: {embeddings.shape}") 
