@@ -87,6 +87,23 @@ class Pipeline:
             "index_path":   index_result["index_path"]
         }
 
+    # ----------------------------------------------------------
+    # STAGE 3 - Load an existing index
+    # ----------------------------------------------------------
+    def load_existing_index(self, index_name: str):
+        """Load a previously built FAISS index."""
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() before loading index.")
+
+        self.index_name = index_name
+        self.index, self.chunks = load_index(
+            INDEX_DIR, index_name)
+
+        print(f"[Pipeline] Loaded index: {index_name} "
+              f"({len(self.chunks)} chunks)")
+
+
 
 
 
