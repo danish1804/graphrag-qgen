@@ -57,4 +57,18 @@ def build_index(chunks: list, index_dir: str,
     # Save FAISS index
     index_path = os.path.join(index_dir, f"{index_name}.faiss")
     faiss.write_index(index, index_path)
-    print(f"Index saved: {index_path}") 
+    print(f"Index saved: {index_path}")
+
+    # Save metadata (chunk text alongside index)
+    meta_path = os.path.join(index_dir, f"{index_name}_meta.json")
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump({"chunks": chunks}, f, ensure_ascii=False, indent=2)
+    print(f"Metadata saved: {meta_path}")
+
+    return {
+        "index_path": index_path,
+        "meta_path": meta_path,
+        "total_chunks": len(chunks),
+        "dimension": DIMENSION
+    }
+ 
