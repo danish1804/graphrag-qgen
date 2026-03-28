@@ -46,4 +46,11 @@ def build_index(chunks: list, index_dir: str,
     embedder = Embedder()
     print(f"\nEmbedding {len(chunks)} chunks...")
     embeddings = embedder.embed(chunks)
-    print(f"Embeddings shape: {embeddings.shape}") 
+    print(f"Embeddings shape: {embeddings.shape}")
+
+    # Build FAISS index - IndexFlatIP = inner product
+    # (cosine similarity for normalized vectors)
+    index = faiss.IndexFlatIP(DIMENSION)
+    index.add(embeddings)
+    print(f"FAISS index built - {index.ntotal} vectors stored")
+ 
