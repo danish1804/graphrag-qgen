@@ -58,3 +58,34 @@ def build_combined_index(
     print(f"Source folder   : {docs_dir}")
     print(f"Index output    : {index_dir}/{index_name}")
     print("=" * 60)
+
+    # ── Step 2: Load and chunk all documents ─────────────
+    all_chunks = []   # raw text
+    all_meta   = []   # metadata per chunk
+
+    failed = []
+
+    for fname in doc_files:
+        fpath = os.path.join(docs_dir, fname)
+        try:
+            result = load_and_chunk(fpath)
+            chunks = result["chunks"]
+
+            for i, chunk in enumerate(chunks):
+                all_chunks.append(chunk)
+                all_meta.append({
+                    "source":      fname,
+                    "chunk_index": i,
+                    "total_chunks": len(chunks)
+                })
+
+            print(f"  OK  {fname:<40} {len(chunks)} chunks")
+
+        except Exception as e:
+            print(f"  FAIL {fname:<40} {str(e)[:50]}")
+            failed.append(fname)
+
+    print(f"\nTotal chunks to embed: {len(all_chunks)}")
+
+    if not all_chunks:
+        raise ValueError("No chunks loaded — cannot build index.")
