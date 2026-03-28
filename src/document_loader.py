@@ -22,4 +22,18 @@ def load_pdf(file_path: str) -> str:
             text += page_text + "\n"
     return text.strip()
 
+def load_pptx(file_path: str) -> str:
+    """Extract raw text from a PPTX file."""
+    prs = Presentation(file_path)
+    text = ""
+    for slide_num, slide in enumerate(prs.slides, 1):
+        slide_text = ""
+        for shape in slide.shapes:
+            if hasattr(shape, "text") and shape.text.strip():
+                slide_text += shape.text.strip() + "\n"
+        if slide_text:
+            text += f"[Slide {slide_num}]\n{slide_text}\n"
+    return text.strip()
+
+
 
