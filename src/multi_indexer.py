@@ -150,3 +150,21 @@ def build_combined_index(
         index.add(embeddings)
 
     print(f"FAISS index built — {index.ntotal} vectors stored")
+
+
+    # ── Step 5: Save everything ───────────────────────────
+    index_path = os.path.join(index_dir, f"{index_name}.faiss")
+    meta_path  = os.path.join(index_dir, f"{index_name}_meta.json")
+
+    faiss.write_index(index, index_path)
+    print(f"Index saved : {index_path}")
+
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "chunks": all_chunks,
+            "metadata": all_meta,
+            "total_documents": len(doc_files),
+            "total_chunks": len(all_chunks),
+            "failed_documents": failed
+        }, f, ensure_ascii=False, indent=2)
+    print(f"Metadata saved: {meta_path}")
