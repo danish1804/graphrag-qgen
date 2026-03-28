@@ -32,3 +32,21 @@ class MultiPipeline:
         self.model        = None
         self.tokenizer    = None
         self._models_loaded = False
+    
+    # ----------------------------------------------------------
+    # STAGE 1 — Load models
+    # ----------------------------------------------------------
+    def load_models(self):
+        """Load embedding model and Qwen 2.5 into memory."""
+        if self._models_loaded:
+            print("Models already loaded.")
+            return
+
+        print("\n[MultiPipeline] Loading embedding model...")
+        self.embedder = Embedder()
+
+        print("\n[MultiPipeline] Loading Qwen 2.5 7B...")
+        self.model, self.tokenizer = load_model()
+
+        self._models_loaded = True
+        print("\n[MultiPipeline] All models ready.")
