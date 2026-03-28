@@ -157,3 +157,55 @@ class MultiPipeline:
             )
         }
 
+
+
+# ============================================================
+# TEST
+# python src/multi_pipeline.py
+# ============================================================
+if __name__ == "__main__":
+
+    print("=" * 60)
+    print("MULTI-PIPELINE TEST")
+    print("=" * 60)
+
+    pipeline = MultiPipeline()
+    pipeline.load_models()
+    pipeline.load_index()
+
+    test_cases = [
+        {
+            "learning_objective": "Explain parameter sharing in CNNs",
+            "difficulty":        "medium",
+            "question_type":     "conceptual"
+        },
+        {
+            "learning_objective": "How does a hash table handle collisions?",
+            "difficulty":        "hard",
+            "question_type":     "application"
+        },
+        {
+            "learning_objective": "Define binary search trees",
+            "difficulty":        "easy",
+            "question_type":     "recall"
+        },
+    ]
+
+    print("\n" + "=" * 60)
+    print("GENERATED QUESTIONS")
+    print("=" * 60)
+
+    for i, tc in enumerate(test_cases, 1):
+        print(f"\nQuestion {i}:")
+        print(f"  Objective : {tc['learning_objective']}")
+        print(f"  Difficulty: {tc['difficulty']}")
+        print(f"  Type      : {tc['question_type']}")
+
+        result = pipeline.generate(**tc)
+
+        print(f"\n  Question  : {result['question']}")
+        print(f"  Sources   : {result['sources_used']}")
+        print(f"  Score     : {result['avg_retrieval_score']}")
+        print("-" * 60)
+
+    print("\nMulti-pipeline test complete.")
