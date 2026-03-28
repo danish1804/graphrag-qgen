@@ -229,3 +229,35 @@ def load_combined_index(
           f"{data['total_documents']} documents")
 
     return index, data["chunks"], data["metadata"]
+
+
+def search_combined(
+        query: str,
+        index,
+        chunks: list,
+        meta: list,
+        embedder,
+        k: int = 3
+) -> list:
+    """
+    Search the combined index.
+    Returns results with source document information.
+    """
+    query_emb = embedder.model.encode(
+        [query],
+        normalize_embeddings=True
+    ).astype(np.float32)
+
+    distances, indices = index.search(query_emb, k)
+
+    results = []
+    for score, idx in zip(distances[0], indices[0]):
+        if idx >= 0:
+            results.append({
+                "chunk":  chunks[idx],
+                "score":  float(score),
+                "source": meta[idx]["source"],
+                "chunk_index": meta[idx]["chunk_index"]
+            })
+
+    return results
