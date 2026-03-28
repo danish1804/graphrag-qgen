@@ -168,3 +168,27 @@ def build_combined_index(
             "failed_documents": failed
         }, f, ensure_ascii=False, indent=2)
     print(f"Metadata saved: {meta_path}")
+
+    # ── Step 6: Summary ───────────────────────────────────
+    print("\n" + "=" * 60)
+    print("INDEXING COMPLETE")
+    print("=" * 60)
+    print(f"Documents indexed : {len(doc_files) - len(failed)}")
+    print(f"Documents failed  : {len(failed)}")
+    print(f"Total chunks      : {len(all_chunks)}")
+    print(f"Embedding dim     : {DIMENSION}")
+    print(f"Index type        : "
+          f"{'IVFFlat' if n_chunks > 1000 else 'FlatIP'}")
+
+    if failed:
+        print(f"\nFailed documents:")
+        for f in failed:
+            print(f"  - {f}")
+
+    return {
+        "index_path":       index_path,
+        "meta_path":        meta_path,
+        "total_documents":  len(doc_files) - len(failed),
+        "total_chunks":     len(all_chunks),
+        "failed":           failed
+    }
