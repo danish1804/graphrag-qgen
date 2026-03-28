@@ -81,3 +81,79 @@ class MultiPipeline:
         build_combined_index(docs_dir, INDEX_DIR, INDEX_NAME)
         self.load_index()
         print("[MultiPipeline] Index rebuilt and loaded.")
+
+
+    # ----------------------------------------------------------
+    # STAGE 4 — Generate a question
+    # ----------------------------------------------------------
+    def generate(self, learning_objective: str,
+                 difficulty: str = "medium",
+                 question_type: str = "conceptual",
+                 top_k: int = 3) -> dict:
+        """
+        Retrieve from combined index and generate question.
+        Returns dict with question and source attribution.
+        """
+        if self.index is None:
+            raise RuntimeError(
+                "No index loaded. Call load_index() first.")
+
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() first.")
+
+        # Retrieve from combined index
+        results = search_combined(
+            learning_objective,
+            self.index,
+            self.chunks,
+            self.meta,
+            self.embedder,
+            k=top_k
+        )
+
+        # Deduplicate — remove near-identical chunks
+        seen = set()
+        unique_results = []
+        for r in results:
+            # Use first 100 chars as dedup key
+            key = r["chunk"][:100].strip()
+            if key not in seen:
+                seen.add(key)
+                unique_results.append(r)
+
+        results = unique_results if unique_results else results
+
+        # Build context with source labels
+        context_parts = []
+        for r in results:
+            context_parts.append(
+                f"[From {r['source']}]\n{r['chunk']}"
+            )
+        context = "\n\n".join(context_parts)
+
+        # Sources used
+        sources = list(set(r["source"] for r in results))
+
+        # Generate question
+        question = generate_question(
+            context,
+            learning_objective,
+            self.model,
+            self.tokenizer,
+            difficulty,
+            question_type
+        )
+
+        return {
+            "question":            question,
+            "learning_objective":  learning_objective,
+            "difficulty":          difficulty,
+            "question_type":       question_type,
+            "sources_used":        sources,
+            "chunks_retrieved":    len(results),
+            "avg_retrieval_score": round(
+                sum(r["score"] for r in results) / len(results), 4
+            )
+        }
+
