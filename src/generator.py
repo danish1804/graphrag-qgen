@@ -61,7 +61,7 @@ Your job is to generate exactly ONE high-quality exam question.
 Rules:
 - The question MUST be answerable using ONLY the provided context
 - Do NOT introduce concepts not present in the context
-- Return ONLY the question — no preamble, no explanation, no answer
+- Return ONLY the question - no preamble, no explanation, no answer
 - The question should be clear and unambiguous"""
 
     user_prompt = f"""Context from course material:
