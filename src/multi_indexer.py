@@ -89,3 +89,28 @@ def build_combined_index(
 
     if not all_chunks:
         raise ValueError("No chunks loaded — cannot build index.")
+    
+    
+    # ── Step 3: Embed all chunks ──────────────────────────
+    print("\nLoading embedding model...")
+    embedder = Embedder()
+
+    print(f"Embedding {len(all_chunks)} chunks...")
+    print("This will take several minutes for large corpora.\n")
+
+    # Embed in batches to show progress
+    batch_size = 64
+    all_embeddings = []
+
+    for i in tqdm(range(0, len(all_chunks), batch_size),
+                  desc="Embedding batches"):
+        batch = all_chunks[i: i + batch_size]
+        emb = embedder.model.encode(
+            batch,
+            normalize_embeddings=True,
+            show_progress_bar=False
+        )
+        all_embeddings.append(emb)
+
+    embeddings = np.vstack(all_embeddings).astype(np.float32)
+    print(f"\nEmbeddings shape: {embeddings.shape}")
