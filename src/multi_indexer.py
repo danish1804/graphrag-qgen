@@ -114,3 +114,39 @@ def build_combined_index(
 
     embeddings = np.vstack(all_embeddings).astype(np.float32)
     print(f"\nEmbeddings shape: {embeddings.shape}")
+
+
+    # ── Step 4: Build FAISS index ─────────────────────────
+    # Use IndexIVFFlat for large corpora (faster search)
+    # Falls back to IndexFlatIP for small corpora
+    n_chunks = len(all_chunks)
+
+    if n_chunks > 1000:
+        # IVF index — faster for large corpora
+        # n_clusters = sqrt(n_chunks) is standard practice
+        n_clusters = min(int(np.sqrt(n_chunks)), 256)
+        print(f"Using IndexIVFFlat "
+              f"(n_clusters={n_clusters}) for large corpus")
+
+        quantizer = faiss.IndexFlatIP(DIMENSION)
+        index = faiss.IndexIVFFlat(
+            quantizer, DIMENSION, n_clusters,
+            faiss.METRIC_INNER_PRODUCT
+        )
+
+        # IVF index must be trained before adding vectors
+        print("Training IVF index...")
+        index.train(embeddings)
+        index.add(embeddings)
+
+        # nprobe: how many clusters to search at query time
+        # Higher = more accurate but slower
+        index.nprobe = min(n_clusters, 32)
+
+    else:
+        # Flat index — exact search for small corpora
+        print("Using IndexFlatIP (exact search) for small corpus")
+        index = faiss.IndexFlatIP(DIMENSION)
+        index.add(embeddings)
+
+    print(f"FAISS index built — {index.ntotal} vectors stored")
