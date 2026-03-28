@@ -192,3 +192,40 @@ def build_combined_index(
         "total_chunks":     len(all_chunks),
         "failed":           failed
     }
+
+
+def load_combined_index(
+        index_dir: str  = INDEX_DIR,
+        index_name: str = INDEX_NAME
+):
+    """
+    Load the combined FAISS index and metadata.
+
+    Returns:
+        index  — FAISS index object
+        chunks — list of chunk text strings
+        meta   — list of metadata dicts per chunk
+    """
+    index_path = os.path.join(index_dir, f"{index_name}.faiss")
+    meta_path  = os.path.join(index_dir, f"{index_name}_meta.json")
+
+    if not os.path.exists(index_path):
+        raise FileNotFoundError(
+            f"Combined index not found at {index_path}. "
+            f"Run build_combined_index() first."
+        )
+
+    index = faiss.read_index(index_path)
+
+    with open(meta_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    # Set nprobe if IVF index
+    if hasattr(index, "nprobe"):
+        index.nprobe = 32
+
+    print(f"Combined index loaded — "
+          f"{index.ntotal} vectors, "
+          f"{data['total_documents']} documents")
+
+    return index, data["chunks"], data["metadata"]
