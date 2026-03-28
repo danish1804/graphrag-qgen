@@ -50,3 +50,20 @@ class MultiPipeline:
 
         self._models_loaded = True
         print("\n[MultiPipeline] All models ready.")
+
+    # ----------------------------------------------------------
+    # STAGE 2 — Load combined index
+    # ----------------------------------------------------------
+    def load_index(self, index_dir: str = INDEX_DIR,
+                   index_name: str = INDEX_NAME):
+        """Load the pre-built combined FAISS index."""
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() before load_index()")
+
+        self.index, self.chunks, self.meta = load_combined_index(
+            index_dir, index_name)
+
+        print(f"[MultiPipeline] Index loaded — "
+              f"{len(self.chunks)} chunks across "
+              f"{len(set(m['source'] for m in self.meta))} documents")
