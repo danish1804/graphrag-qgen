@@ -261,3 +261,42 @@ def search_combined(
             })
 
     return results
+
+
+# ============================================================
+# TEST
+# python src/multi_indexer.py
+# ============================================================
+if __name__ == "__main__":
+
+    # Build the combined index
+    summary = build_combined_index()
+
+    print("\nTesting search on combined index...")
+    print("=" * 60)
+
+    # Load it back
+    from src.embedder import Embedder
+    index, chunks, meta = load_combined_index()
+    embedder = Embedder()
+
+    # Test queries
+    test_queries = [
+        "What is parameter sharing in CNNs?",
+        "How does gradient descent work?",
+        "Explain binary search trees",
+        "What is a hash table?",
+    ]
+
+    for query in test_queries:
+        print(f"\nQuery: {query}")
+        print("-" * 40)
+        results = search_combined(
+            query, index, chunks, meta, embedder, k=3)
+
+        for i, r in enumerate(results, 1):
+            print(f"  Result {i} "
+                  f"(score: {r['score']:.4f}) "
+                  f"[{r['source']}]")
+            print(f"  {r['chunk'][:120]}...")
+            print()
