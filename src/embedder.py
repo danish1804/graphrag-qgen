@@ -53,4 +53,8 @@ def build_index(chunks: list, index_dir: str,
     index = faiss.IndexFlatIP(DIMENSION)
     index.add(embeddings)
     print(f"FAISS index built - {index.ntotal} vectors stored")
- 
+
+    # Save FAISS index
+    index_path = os.path.join(index_dir, f"{index_name}.faiss")
+    faiss.write_index(index, index_path)
+    print(f"Index saved: {index_path}") 
