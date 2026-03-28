@@ -71,4 +71,17 @@ def build_index(chunks: list, index_dir: str,
         "total_chunks": len(chunks),
         "dimension": DIMENSION
     }
+
+
+def load_index(index_dir: str, index_name: str = "index"):
+    """Load a saved FAISS index and its metadata."""
+    index_path = os.path.join(index_dir, f"{index_name}.faiss")
+    meta_path  = os.path.join(index_dir, f"{index_name}_meta.json")
+
+    index = faiss.read_index(index_path)
+
+    with open(meta_path, "r", encoding="utf-8") as f:
+        meta = json.load(f)
+
+    return index, meta["chunks"]
  
