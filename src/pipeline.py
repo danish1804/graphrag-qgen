@@ -27,5 +27,24 @@ class Pipeline:
         self.index_name   = None
         self._models_loaded = False
 
+    # ----------------------------------------------------------
+    # STAGE 1 - Load models into memory (call once at startup)
+    # ----------------------------------------------------------
+    def load_models(self):
+        """Load embedding model and Qwen 2.5 into memory."""
+        if self._models_loaded:
+            print("Models already loaded.")
+            return
+
+        print("\n[Pipeline] Loading embedding model...")
+        self.embedder = Embedder()
+
+        print("\n[Pipeline] Loading Qwen 2.5 7B...")
+        self.model, self.tokenizer = load_model()
+
+        self._models_loaded = True
+        print("\n[Pipeline] All models ready.")
+
+
 
 
