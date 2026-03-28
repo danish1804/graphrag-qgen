@@ -134,6 +134,32 @@ class Pipeline:
             k=top_k
         )
 
+	# Assemble context
+        context = "\n\n".join([r["chunk"] for r in results])
+
+        # Generate question
+        question = generate_question(
+            context,
+            learning_objective,
+            self.model,
+            self.tokenizer,
+            difficulty,
+            question_type
+        )
+
+        return {
+            "question":          question,
+            "learning_objective": learning_objective,
+            "difficulty":        difficulty,
+            "question_type":     question_type,
+            "top_chunks_used":   len(results),
+            "avg_retrieval_score": round(
+                sum(r["score"] for r in results) / len(results), 4
+            )
+        }
+
+
+
 
 
 
