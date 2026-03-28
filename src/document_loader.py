@@ -35,5 +35,21 @@ def load_pptx(file_path: str) -> str:
             text += f"[Slide {slide_num}]\n{slide_text}\n"
     return text.strip()
 
+def load_document(file_path: str) -> str:
+    """Load a document based on its file extension."""
+    path = Path(file_path)
+    ext = path.suffix.lower()
+
+    if not path.exists():
+        raise FileNotFoundError(f"File not found: {file_path}")
+
+    if ext == ".pdf":
+        print(f"  Loading PDF: {path.name}")
+        return load_pdf(file_path)
+    elif ext == ".pptx":
+        print(f"  Loading PPTX: {path.name}")
+        return load_pptx(file_path)
+    else:
+        raise ValueError(f"Unsupported file type: {ext}. Use PDF or PPTX.")
 
 
