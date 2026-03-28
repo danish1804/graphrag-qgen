@@ -65,5 +65,40 @@ def chunk_text(text: str, chunk_size: int = 500,
     chunks = [c.strip() for c in chunks if len(c.strip()) > 50]
     return chunks
 
+def load_and_chunk(file_path: str, chunk_size: int = 500,
+                   chunk_overlap: int = 50) -> Dict:
+    """
+    Full pipeline: load a document and return chunks with metadata.
+
+    Returns:
+        {
+            "file_name": str,
+            "file_type": str,
+            "total_chars": int,
+            "total_chunks": int,
+            "chunks": List[str]
+        }
+    """
+    path = Path(file_path)
+    print(f"\nProcessing: {path.name}")
+
+    # Load raw text
+    raw_text = load_document(file_path)
+    print(f"  Extracted {len(raw_text):,} characters")
+
+    # Chunk it
+    chunks = chunk_text(raw_text, chunk_size, chunk_overlap)
+    print(f"  Created {len(chunks)} chunks "
+          f"(size={chunk_size}, overlap={chunk_overlap})")
+
+    return {
+        "file_name": path.name,
+        "file_type": path.suffix.lower(),
+        "total_chars": len(raw_text),
+        "total_chunks": len(chunks),
+        "chunks": chunks
+    }
+
+
 
 
