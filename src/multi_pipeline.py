@@ -63,6 +63,12 @@ class MultiPipeline:
 
         self.index, self.chunks, self.meta = load_combined_index(
             index_dir, index_name)
+        
+        import json
+        meta_path = os.path.join(index_dir, f"{index_name}_meta.json")
+        with open(meta_path, "r", encoding="utf-8") as f:
+            meta = json.load(f)
+        self.sources = meta.get("sources", [])
 
         print(f"[MultiPipeline] Index loaded — "
               f"{len(self.chunks)} chunks across "
@@ -146,15 +152,22 @@ class MultiPipeline:
         )
 
         return {
-            "question":            question,
-            "learning_objective":  learning_objective,
-            "difficulty":          difficulty,
-            "question_type":       question_type,
-            "sources_used":        sources,
-            "chunks_retrieved":    len(results),
-            "avg_retrieval_score": round(
-                sum(r["score"] for r in results) / len(results), 4
-            )
+            "question": question,
+            "metadata": {
+                "learning_objective":  learning_objective,
+                "difficulty":          difficulty,
+                "question_type":       question_type,
+                "retrieval_method":    "Standard RAG",
+                "sources":             list(set(
+                    r.get("source", "unknown")
+                    for r in results
+                )),
+                "chunks_retrieved":    len(results),
+                "avg_retrieval_score": round(float(
+                    sum(r["score"] for r in results) /
+                    len(results)
+                ), 4) if results else 0
+            }
         }
 
 
