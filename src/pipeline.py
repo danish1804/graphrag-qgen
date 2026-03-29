@@ -148,14 +148,19 @@ class Pipeline:
         )
 
         return {
-            "question":          question,
-            "learning_objective": learning_objective,
-            "difficulty":        difficulty,
-            "question_type":     question_type,
-            "top_chunks_used":   len(results),
-            "avg_retrieval_score": round(
-                sum(r["score"] for r in results) / len(results), 4
-            )
+            "question": question,
+            "metadata": {
+                "learning_objective":  learning_objective,
+                "difficulty":          difficulty,
+                "question_type":       question_type,
+                "retrieval_method":    "Standard RAG (single doc)",
+                "index_name":          self.index_name,
+                "chunks_retrieved":    len(results),
+                "avg_retrieval_score": round(float(
+                    sum(r["score"] for r in results) /
+                    len(results)
+                ), 4) if results else 0
+            }
         }
 
 
