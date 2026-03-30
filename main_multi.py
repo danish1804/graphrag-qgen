@@ -98,4 +98,19 @@ class GenerateResponse(BaseModel):
     top_chunks_used: int
     avg_retrieval_score: float
 
+class MultiGenerateResponse(BaseModel):
+    question: str
+    learning_objective: str
+    difficulty: str
+    question_type: str
+    sources_used: list
+    chunks_retrieved: int
+    avg_retrieval_score: float
+
+class UploadResponse(BaseModel):
+    message: str
+    file_name: str
+    total_chunks: int
+    index_name: str
+
 
