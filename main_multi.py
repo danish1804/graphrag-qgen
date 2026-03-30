@@ -141,3 +141,46 @@ def health():
     }
 
 
+@app.post(
+    "/upload",
+    response_model=UploadResponse,
+    tags=["Single Document"]
+)
+async def upload(file: UploadFile = File(...)):
+    """
+    Upload a PDF or PPTX file.
+    Ingests, chunks, embeds and indexes it for single-doc generation.
+    """
+    allowed = [".pdf", ".pptx"]
+    ext = os.path.splitext(file.filename)[1].lower()
+    if ext not in allowed:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported file type: {ext}. Use PDF or PPTX."
+        )
+
+    os.makedirs(DATA_DIR, exist_ok=True)
+    save_path = os.path.join(DATA_DIR, file.filename)
+
+    with open(save_path, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+
+    print(f"[Server] File saved: {save_path}")
+
+    try:
+        result = single_pipeline.ingest(save_path)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Ingestion failed: {str(e)}"
+        )
+
+    return UploadResponse(
+        message="File ingested successfully",
+        file_name=result["file_name"],
+        total_chunks=result["total_chunks"],
+        index_name=result["index_name"]
+    )
+
+
+
