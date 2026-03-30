@@ -125,3 +125,19 @@ class RebuildResponse(BaseModel):
     total_chunks: int
 
 
+# ── Single Document Endpoints ─────────────────────────────
+
+@app.get("/health", tags=["System"])
+def health():
+    """Check server and model status."""
+    return {
+        "status":               "ok",
+        "models_loaded":        single_pipeline._models_loaded,
+        "single_index_loaded":  single_pipeline.index is not None,
+        "single_index_name":    single_pipeline.index_name,
+        "multi_index_loaded":   multi_pipeline.index is not None,
+        "multi_total_chunks":   len(multi_pipeline.chunks)
+                                if multi_pipeline.chunks else 0,
+    }
+
+
