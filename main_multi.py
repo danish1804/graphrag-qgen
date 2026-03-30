@@ -243,3 +243,35 @@ def generate(req: GenerateRequest):
 
 
 
+# ── Multi Document Endpoints ──────────────────────────────
+
+@app.get(
+    "/multi/status",
+    response_model=MultiStatusResponse,
+    tags=["Multi Document"]
+)
+def multi_status():
+    """
+    Show status of the combined multi-document index.
+    Lists all indexed documents and total chunk count.
+    """
+    if multi_pipeline.index is None:
+        return MultiStatusResponse(
+            index_loaded=False,
+            total_chunks=0,
+            total_documents=0,
+            documents=[]
+        )
+
+    # Get unique source documents from metadata
+    docs = sorted(set(
+        m["source"] for m in multi_pipeline.meta
+    ))
+
+    return MultiStatusResponse(
+        index_loaded=True,
+        total_chunks=len(multi_pipeline.chunks),
+        total_documents=len(docs),
+        documents=docs
+    )
+
