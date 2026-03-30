@@ -113,4 +113,15 @@ class UploadResponse(BaseModel):
     total_chunks: int
     index_name: str
 
+class MultiStatusResponse(BaseModel):
+    index_loaded: bool
+    total_chunks: int
+    total_documents: int
+    documents: list
+
+class RebuildResponse(BaseModel):
+    message: str
+    total_documents: int
+    total_chunks: int
+
 
