@@ -183,4 +183,63 @@ async def upload(file: UploadFile = File(...)):
     )
 
 
+@app.post(
+    "/generate",
+    response_model=GenerateResponse,
+    tags=["Single Document"]
+)
+def generate(req: GenerateRequest):
+    """
+    Generate one exam question from the currently uploaded document.
+    Requires a file to be uploaded via POST /upload first.
+    """
+    if single_pipeline.index is None:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "No document indexed. "
+                "POST a file to /upload first."
+            )
+        )
+
+    # Validate parameters
+    valid_difficulties  = ["easy", "medium", "hard"]
+    valid_types         = ["recall", "conceptual",
+                           "application", "analytical"]
+
+    if req.difficulty not in valid_difficulties:
+        raise HTTPException(
+            status_code=400,
+            detail=f"difficulty must be one of: {valid_difficulties}"
+        )
+
+    if req.question_type not in valid_types:
+        raise HTTPException(
+            status_code=400,
+            detail=f"question_type must be one of: {valid_types}"
+        )
+
+    try:
+        result = single_pipeline.generate(
+            learning_objective=req.learning_objective,
+            difficulty=req.difficulty,
+            question_type=req.question_type,
+            top_k=req.top_k
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Generation failed: {str(e)}"
+        )
+
+    return GenerateResponse(
+        question=result["question"],
+        learning_objective=result["learning_objective"],
+        difficulty=result["difficulty"],
+        question_type=result["question_type"],
+        top_chunks_used=result["top_chunks_used"],
+        avg_retrieval_score=result["avg_retrieval_score"]
+    )
+
+
 
