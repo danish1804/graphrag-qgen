@@ -2,6 +2,7 @@
 # src/pipeline.py
 # Connects document loader + embedder + generator
 # into a single end-to-end pipeline
+# for simple single-document RAG question generation.
 # ============================================================
 
 import os
