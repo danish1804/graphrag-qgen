@@ -70,4 +70,15 @@ async def lifespan(app: FastAPI):
     print("[Server] Shutting down.")
 
 
+app = FastAPI(
+    title="Exam Question Generator — P000233DS",
+    description=(
+        "AI-powered exam question generation using RAG + Qwen 2.5 7B.\n\n"
+        "**Single document:** Upload one PDF and generate questions from it.\n\n"
+        "**Multi document:** Generate questions across all indexed course material."
+    ),
+    version="0.2.0",
+    lifespan=lifespan
+)
+
 
