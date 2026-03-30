@@ -335,3 +335,31 @@ def multi_generate(req: GenerateRequest):
         avg_retrieval_score=result["avg_retrieval_score"]
     )
 
+
+@app.post(
+    "/multi/rebuild",
+    response_model=RebuildResponse,
+    tags=["Multi Document"]
+)
+def multi_rebuild():
+    """
+    Rebuild the combined index from all documents in data/tested/.
+    Run this after adding new documents to the tested folder.
+    Warning: takes 5-10 minutes for large corpora.
+    """
+    try:
+        multi_pipeline.rebuild_index()
+        docs = sorted(set(
+            m["source"] for m in multi_pipeline.meta
+        ))
+        return RebuildResponse(
+            message="Combined index rebuilt successfully",
+            total_documents=len(docs),
+            total_chunks=len(multi_pipeline.chunks)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Rebuild failed: {str(e)}"
+        )
+
