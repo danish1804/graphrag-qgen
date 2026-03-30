@@ -122,7 +122,7 @@ if __name__ == "__main__":
     print("=" * 50)
 
     # Use the PDF we already tested
-    pdf_path = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\source_1.pdf"
+    pdf_path = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\tested\source_1.pdf"
     index_dir = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\indexes"
 
     # Step 1: Load and chunk
