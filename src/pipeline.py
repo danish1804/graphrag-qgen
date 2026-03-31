@@ -15,7 +15,7 @@ from src.generator import load_model, generate_question
 
 
 INDEX_DIR = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\indexes"
-DATA_DIR  = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data"
+DATA_DIR  = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\tested"
 
 
 class Pipeline:
