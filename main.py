@@ -46,13 +46,10 @@ class GenerateRequest(BaseModel):
     question_type: str = "conceptual"  # recall / conceptual / application / analytical
     top_k: int = 3
 
-class GenerateResponse(BaseModel):
+
+class GenerateResponse(BaseModel): 
     question: str
-    learning_objective: str
-    difficulty: str
-    question_type: str
-    top_chunks_used: int
-    avg_retrieval_score: float
+    metadata: dict
 
 class UploadResponse(BaseModel):
     message: str
@@ -138,7 +135,7 @@ def generate(req: GenerateRequest):
             detail=f"Generation failed: {str(e)}"
         )
 
-    return GenerateResponse(**result)
+    return result
 
 
 # -- Run --------------------------------------
