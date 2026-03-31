@@ -221,7 +221,7 @@ if __name__ == "__main__":
         result = pipeline.generate(**tc)
 
         print(f"\n  Question  : {result['question']}")
-        print(f"  Retrieval score: {result['avg_retrieval_score']}")
+        print(f"  Retrieval score: {result['metadata']['avg_retrieval_score']}")
         print("-" * 55)
 
     print("\nPipeline test complete.")
