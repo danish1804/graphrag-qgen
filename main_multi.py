@@ -368,7 +368,7 @@ def multi_rebuild():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
-        "main:app",
+        "main_multi:app",
         host="0.0.0.0",
         port=8000,
         reload=False
