@@ -152,15 +152,22 @@ class MultiPipeline:
         )
 
         return {
-            "question":            question,
-            "learning_objective":  learning_objective,
-            "difficulty":          difficulty,
-            "question_type":       question_type,
-            "sources_used":        list(set(r.get("source", "unknown") for r in results)),
-            "chunks_retrieved":    len(results),
-            "avg_retrieval_score": round(float(
-                sum(r["score"] for r in results) / len(results)
-            ), 4) if results else 0.0
+            "question": question,
+            "metadata": {
+                "learning_objective":  learning_objective,
+                "difficulty":          difficulty,
+                "question_type":       question_type,
+                "retrieval_method":    "Standard RAG (multi doc)",
+                "sources":             list(set(
+                    r.get("source", "unknown")
+                    for r in results
+                )),
+                "chunks_retrieved":    len(results),
+                "avg_retrieval_score": round(float(
+                    sum(r["score"] for r in results) /
+                    len(results)
+                ), 4) if results else 0.0
+            }
         }
 
 
