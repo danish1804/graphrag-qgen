@@ -110,3 +110,19 @@ class GraphRAGPipeline:
             "graph_edges": summary["graph_edges"],
             "chunks":      len(chunks)
         }
+    
+    # ----------------------------------------------------------
+    # STAGE 3 — Load existing index
+    # ----------------------------------------------------------
+    def load_existing_index(self, graph_name: str):
+        """Load a previously built GraphRAG index."""
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() before loading index.")
+
+        self.graph_name = graph_name
+        self.index, self.graph, self.nodes = \
+            load_graphrag_index(INDEX_DIR, graph_name)
+
+        print(f"[GraphRAGPipeline] Loaded: {graph_name}")
+
