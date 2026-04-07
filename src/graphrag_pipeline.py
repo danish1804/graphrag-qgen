@@ -6,8 +6,9 @@
 #   pipeline.py         → flat chunk retrieval (standard RAG)
 #   graphrag_pipeline.py → graph-aware retrieval (GraphRAG)
 #
-# The generator (Qwen 2.5) is identical in both.
-# Only the retrieval layer changes.
+# Scope is set by what index you load:
+#   load_existing_index() → single document graph
+#   load_domain_index()   → domain-specific graph (multi-doc)
 # ============================================================
 
 import os
@@ -111,9 +112,9 @@ class GraphRAGPipeline:
             "chunks":      len(chunks)
         }
     
-    # ----------------------------------------------------------
-    # STAGE 3 — Load existing index
-    # ----------------------------------------------------------
+# ----------------------------------------------------------
+# STAGE 3 — Load existing index
+# ----------------------------------------------------------
     def load_existing_index(self, graph_name: str):
         """Load a previously built GraphRAG index."""
         if not self._models_loaded:
@@ -126,9 +127,9 @@ class GraphRAGPipeline:
 
         print(f"[GraphRAGPipeline] Loaded: {graph_name}")
 
-    # ----------------------------------------------------------
-    # Load domain-specific index (updated method with routing)
-    # ----------------------------------------------------------
+# ----------------------------------------------------------
+# STAGE 3b — Load domain-specific index (updated method with routing)
+# ----------------------------------------------------------
     def load_domain_index(self, domain_name: str):
         """
         Load a domain-specific GraphRAG index.
@@ -152,7 +153,10 @@ class GraphRAGPipeline:
 
         print(f"[GraphRAGPipeline] Domain loaded: {domain_name} "
             f"({len(self.nodes)} nodes)")
-        
+
+# ----------------------------------------------------------
+# STAGE 3c — Generate with automatic domain routing
+# ----------------------------------------------------------      
     def generate_with_routing(self,
                           learning_objective: str,
                           difficulty:   str = "medium",
@@ -206,7 +210,8 @@ class GraphRAGPipeline:
         if self.index is None:
             raise RuntimeError(
                 "No index loaded. Call ingest() or "
-                "load_existing_index() first.")
+                "load_existing_index(), or " 
+                "load_domain_index() first.")
 
         if not self._models_loaded:
             raise RuntimeError("Call load_models() first.")
