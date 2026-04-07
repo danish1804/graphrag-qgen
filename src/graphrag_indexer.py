@@ -61,6 +61,46 @@ MIN_ENTITY_LEN   = 3
 MAX_ENTITY_LEN   = 60
 
 
+# Step 1: Entity normalisation
+def normalize_entity(text: str) -> str:
+    """
+    Normalise entity text for heuristic entity resolution.
+
+    Handles morphological variants:
+      "Neural Networks" -> "neural network"
+      "Hash Tables"     -> "hash table"
+      "CNNs"            -> "cnn"
+
+    Does NOT handle semantic synonyms:
+      "CNN" ≠ "convolutional neural network"
+    This is a known limitation - see report section 4.
+    """
+    text = text.lower().strip()
+
+    # Remove possessives
+    text = re.sub(r"'s$", "", text)
+
+    # Remove leading articles
+    text = re.sub(r"^(the|a|an)\s+", "", text)
+
+    # Strip trailing punctuation
+    text = text.strip(".,;:!?\"'()")
+
+    # Collapse multiple spaces
+    text = re.sub(r"\s+", " ", text)
+
+    # Simple singularisation - handles most IT terms
+    if text.endswith("ies"):
+        text = text[:-3] + "y"       # "trees" -> nope, "communities" -> "community"
+    elif text.endswith("ses"):
+        text = text[:-2]             # "processes" -> "process"
+    elif (text.endswith("s")
+          and not text.endswith("ss")
+          and len(text) > 4):
+        text = text[:-1]             # "networks" -> "network"
+
+    return text.strip()
+
 
 def extract_entities_from_chunk(chunk: str, nlp) -> list:
     """
