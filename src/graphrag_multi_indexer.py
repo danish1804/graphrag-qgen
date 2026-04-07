@@ -71,3 +71,48 @@ def discover_documents(docs_dir: str) -> list:
         if f.lower().endswith(supported)
     ])
     return docs
+
+
+def load_all_chunks(docs_dir: str) -> tuple:
+    """
+    Load and chunk all documents.
+
+    Returns:
+        all_chunks  : flat list of all chunk strings
+        all_sources : source filename per chunk
+        doc_stats   : dict of per-document stats
+    """
+    docs      = discover_documents(docs_dir)
+    all_chunks  = []
+    all_sources = []
+    doc_stats   = {}
+    failed      = []
+
+    print(f"\nLoading {len(docs)} documents...")
+
+    for fname in tqdm(docs, desc="Loading documents"):
+        fpath = os.path.join(docs_dir, fname)
+        try:
+            result  = load_and_chunk(fpath)
+            chunks  = result["chunks"]
+
+            all_chunks.extend(chunks)
+            all_sources.extend([fname] * len(chunks))
+
+            doc_stats[fname] = {
+                "chunks": len(chunks),
+                "chars":  result["total_chars"]
+            }
+
+        except Exception as e:
+            print(f"  FAIL {fname}: {e}")
+            failed.append(fname)
+
+    print(f"\nDocuments loaded  : {len(docs) - len(failed)}")
+    print(f"Documents failed  : {len(failed)}")
+    print(f"Total chunks      : {len(all_chunks)}")
+
+    if failed:
+        print(f"Failed: {failed}")
+
+    return all_chunks, all_sources, doc_stats
