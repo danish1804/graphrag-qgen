@@ -194,3 +194,47 @@ def retrieve_graph_context(
     # Limit chunks
     chunk_pool = chunk_pool[:max_context_chunks]
 
+    # ── Step 5: Assemble context ──────────────────────────
+    context_parts = []
+
+    # Header showing what was found
+    seed_names = [s["entity"] for s in seed_nodes]
+    nb_names   = [n["entity"] for n in neighbour_nodes[:5]]
+
+    context_parts.append(
+        f"[Key concepts identified: "
+        f"{', '.join(seed_names)}]"
+    )
+
+    if nb_names:
+        context_parts.append(
+            f"[Related concepts: "
+            f"{', '.join(nb_names)}]"
+        )
+
+    if relationships:
+        rel_strs = [
+            f"{r[0]} ↔ {r[1]}"
+            for r in relationships[:5]
+        ]
+        context_parts.append(
+            f"[Relationships: {'; '.join(rel_strs)}]"
+        )
+
+    context_parts.append("")  # blank line
+
+    # Add chunks
+    for item in chunk_pool:
+        context_parts.append(item["text"])
+        context_parts.append("")
+
+    context = "\n".join(context_parts).strip()
+
+    return {
+        "context":          context,
+        "seed_nodes":       seed_nodes,
+        "neighbour_nodes":  neighbour_nodes,
+        "relationships":    relationships,
+        "sources":          list(sources),
+        "chunks_used":      len(chunk_pool)
+    }
