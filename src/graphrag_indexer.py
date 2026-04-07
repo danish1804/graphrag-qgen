@@ -349,3 +349,55 @@ def load_graphrag_index(
     return index, graph, meta["nodes"]
 
 
+# ============================================================
+# TEST — run directly on source_1.pdf
+# python src/graphrag_indexer.py
+# ============================================================
+if __name__ == "__main__":
+    import sys
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+    from src.document_loader import load_and_chunk
+
+    print("=" * 60)
+    print("GRAPHRAG INDEXER TEST")
+    print("=" * 60)
+
+    # Test on source_1.pdf first — small and fast
+    PDF_PATH = os.path.join(BASE_DIR, "data", "tested", "source_1.pdf")
+
+    print(f"\nLoading: {PDF_PATH}")
+    result = load_and_chunk(PDF_PATH)
+    chunks = result["chunks"]
+    print(f"Chunks loaded: {len(chunks)}")
+
+    # Build graph index
+    summary = build_graphrag_index(
+        chunks,
+        index_dir=INDEX_DIR,
+        graph_name="graphrag_test"
+    )
+
+    print("\nLoading index back to verify...")
+    index, graph, nodes = load_graphrag_index(
+        INDEX_DIR, "graphrag_test")
+
+    print(f"\nTop 20 entities by degree (most connected):")
+    print("-" * 40)
+    degrees = sorted(
+        graph.degree(),
+        key=lambda x: x[1],
+        reverse=True
+    )[:20]
+    for entity, degree in degrees:
+        freq = graph.nodes[entity].get("frequency", 0)
+        print(f"  {entity:<35} degree={degree}, freq={freq}")
+
+    print("\nSample edges (relationships found):")
+    print("-" * 40)
+    edges = list(graph.edges(data=True))[:15]
+    for e1, e2, data in edges:
+        print(f"  '{e1}' ↔ '{e2}'  "
+              f"(co-occurrences: {data['weight']})")
+
+    print("\nGraphRAG indexer test complete.")
+
