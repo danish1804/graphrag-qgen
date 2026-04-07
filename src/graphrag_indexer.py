@@ -201,4 +201,71 @@ def embed_graph_nodes(
     return node_list, np.array(embeddings, dtype=np.float32)
 
 
+def build_graphrag_index(
+        chunks: list,
+        index_dir: str = INDEX_DIR,
+        graph_name: str = GRAPH_NAME
+) -> dict:
+    """
+    Full GraphRAG indexing pipeline:
+    1. Load spaCy model
+    2. Extract entities and build knowledge graph
+    3. Embed graph nodes
+    4. Build FAISS index over node embeddings
+    5. Save graph + index + metadata to disk
+
+    Returns summary dict.
+    """
+    os.makedirs(index_dir, exist_ok=True)
+
+    print("=" * 60)
+    print("GRAPHRAG INDEXER")
+    print("=" * 60)
+    print(f"Input chunks : {len(chunks)}")
+    print(f"Output dir   : {index_dir}")
+    print("=" * 60)
+
+    # ── Step 1: Load spaCy ────────────────────────────────
+    print("\nLoading spaCy model...")
+    nlp = spacy.load("en_core_web_sm")
+    # Increase max length for large chunks
+    nlp.max_length = 2_000_000
+    print("spaCy loaded.")
+
+    # ── Step 2: Build knowledge graph ─────────────────────
+    graph, entity_chunks = build_knowledge_graph(chunks, nlp)
+
+    if graph.number_of_nodes() == 0:
+        raise ValueError(
+            "No entities extracted. Check your chunks have enough text."
+        )
+
+    # ── Step 3: Embed graph nodes ─────────────────────────
+    print("\nLoading embedding model...")
+    embedder = Embedder()
+    node_list, embeddings = embed_graph_nodes(graph, embedder)
+    print(f"Node embeddings shape: {embeddings.shape}")
+
+    # ── Step 4: Build FAISS index ─────────────────────────
+    print("\nBuilding FAISS index over graph nodes...")
+
+    if len(node_list) > 1000:
+        n_clusters = min(int(np.sqrt(len(node_list))), 128)
+        print(f"Using IndexIVFFlat (n_clusters={n_clusters})")
+        quantizer = faiss.IndexFlatIP(DIMENSION)
+        index = faiss.IndexIVFFlat(
+            quantizer, DIMENSION, n_clusters,
+            faiss.METRIC_INNER_PRODUCT
+        )
+        index.train(embeddings)
+        index.add(embeddings)
+        index.nprobe = min(n_clusters, 16)
+    else:
+        print("Using IndexFlatIP (exact search)")
+        index = faiss.IndexFlatIP(DIMENSION)
+        index.add(embeddings)
+
+    print(f"FAISS index built — {index.ntotal} node vectors")
+
+
 
