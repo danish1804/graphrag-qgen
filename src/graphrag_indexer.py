@@ -172,6 +172,27 @@ def is_valid_entity(text: str) -> bool:
     if re.match(r'^\d+[a-z\s]', text):
         return False
 
+    # Reject diagram node labels — repeated single letters with numbers
+    # Catches: "p1 p2 p3 p4", "h2 h3 h4 h5", "w4,4w 4,5w5,4"
+    if re.search(r'\b[a-z]\d+\b.*\b[a-z]\d+\b', text):
+        return False
+
+    # Reject if contains commas with numbers (matrix notation)
+    # Catches: "w4,4w", "1,1", "2,2"
+    if re.search(r'\d,\d', text):
+        return False
+
+    # Reject if too many words (likely merged entities or sentence fragments)
+    # More than 5 words = not a concept, it's a phrase
+    word_count = len(text.split())
+    if word_count > 5:
+        return False
+
+    # Fix broken singularisation — "hypothesi" should be rejected
+    # (it's not a real word — our singulariser over-fired)
+    if text.endswith("si") or text.endswith("xi"):
+        return False
+    
     return True
     
 
