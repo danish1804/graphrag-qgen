@@ -56,3 +56,57 @@ class GraphRAGPipeline:
 
         self._models_loaded = True
         print("\n[GraphRAGPipeline] All models ready.")
+
+    # ----------------------------------------------------------
+    # STAGE 2 — Ingest a document
+    # ----------------------------------------------------------
+    def ingest(self, file_path: str) -> dict:
+        """
+        Load a PDF/PPTX, build knowledge graph, embed nodes,
+        save GraphRAG index.
+
+        Steps:
+        1. Load and chunk document
+        2. Extract entities + build graph (two-pass)
+        3. Embed graph nodes
+        4. Save FAISS index + graph + metadata
+        """
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() before ingest()")
+
+        file_name = os.path.basename(file_path)
+        self.graph_name = os.path.splitext(file_name)[0] \
+                          + "_graphrag"
+
+        print(f"\n[GraphRAGPipeline] Ingesting: {file_name}")
+
+        # Load and chunk
+        doc_result = load_and_chunk(file_path)
+        chunks     = doc_result["chunks"]
+        sources    = [file_name] * len(chunks)
+
+        print(f"[GraphRAGPipeline] {len(chunks)} chunks loaded")
+
+        # Build GraphRAG index
+        summary = build_graphrag_index(
+            chunks, sources,
+            index_dir  = INDEX_DIR,
+            graph_name = self.graph_name
+        )
+
+        # Load into memory
+        self.index, self.graph, self.nodes = \
+            load_graphrag_index(INDEX_DIR, self.graph_name)
+
+        print(f"[GraphRAGPipeline] Graph ready — "
+              f"{summary['graph_nodes']} nodes, "
+              f"{summary['graph_edges']} edges")
+
+        return {
+            "file_name":   file_name,
+            "graph_name":  self.graph_name,
+            "graph_nodes": summary["graph_nodes"],
+            "graph_edges": summary["graph_edges"],
+            "chunks":      len(chunks)
+        }
