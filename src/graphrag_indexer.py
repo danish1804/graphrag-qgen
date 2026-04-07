@@ -101,6 +101,49 @@ def normalize_entity(text: str) -> str:
 
     return text.strip()
 
+def is_valid_entity(text: str) -> bool:
+    """
+    Rule-based validity check applied BEFORE frequency filtering.
+    Removes obvious non-entities regardless of frequency.
+    """
+    # Length check
+    if not (MIN_ENTITY_LEN <= len(text) <= MAX_ENTITY_LEN):
+        return False
+
+    # Reject if contains newlines (slide outline artifacts)
+    if "\n" in text or "\r" in text:
+        return False
+
+    # Reject pure numbers
+    if re.match(r"^\d+(\.\d+)?$", text):
+        return False
+
+    # Reject if more than 40% digits (page refs, equation labels)
+    digit_ratio = sum(c.isdigit() for c in text) / len(text)
+    if digit_ratio > 0.4:
+        return False
+
+    # Reject typical academic PDF artifacts
+    artifact_patterns = [
+        r"^\d+\s*/\s*\d+$",          # "4 / 42" page numbers
+        r"^lecture\s*\d*$",           # "lecture 4"
+        r"^chapter\s*\d*$",           # "chapter 3"
+        r"^figure\s*\d*$",            # "figure 1"
+        r"^table\s*\d*$",             # "table 2"
+        r"^section\s*\d*$",           # "section 2"
+        r"^part\s*\d*$",              # "part 1"
+        r"^page\s*\d*$",              # "page 5"
+        r"^cosc\d+",                  # "cosc2779"
+        r"^[a-z]\d+[a-z]?\d*$",      # "w11", "h2", "p3"
+        r"^\d+[a-z]+\d*$",            # "2d", "3x3"
+    ]
+    for pattern in artifact_patterns:
+        if re.match(pattern, text, re.IGNORECASE):
+            return False
+
+    return True
+
+
 
 def extract_entities_from_chunk(chunk: str, nlp) -> list:
     """
