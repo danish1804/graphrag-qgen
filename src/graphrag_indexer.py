@@ -145,34 +145,40 @@ def is_valid_entity(text: str) -> bool:
 
 
 
-def extract_entities_from_chunk(chunk: str, nlp) -> list:
+# Step 2: Entity extraction
+def extract_raw_entities(chunk: str, nlp) -> list:
     """
-    Extract meaningful entities from a text chunk.
-
-    Uses two strategies:
-    1. spaCy NER — named entities (proper nouns, products etc.)
-    2. Noun chunks — technical terms not caught by NER
-       e.g. "convolutional layer", "hash table", "binary tree"
-
-    Returns list of entity strings (lowercased, cleaned).
+    Extract candidate entities from one chunk using spaCy.
+    No filtering at this stage — just extraction.
+    Returns normalised entity strings.
     """
-    doc = nlp(chunk)
-    entities = set()
+    # Clean slide/PDF artifacts before NLP
+    cleaned = re.sub(r'\d+\s*/\s*\d+', ' ', chunk)     # "4 / 42"
+    cleaned = re.sub(r'Lecture\s+\d+[^\n]*\n', ' ', cleaned)
+    cleaned = re.sub(r'COSC\d+/\d+', ' ', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'\s+', ' ', cleaned).strip()
 
-    # Strategy 1: Named entities
+    if len(cleaned) < 20:
+        return []
+
+    doc = nlp(cleaned)
+    candidates = set()
+
+    # Named entities from spaCy NER
     for ent in doc.ents:
-        if len(ent.text.strip()) > 2:
-            entities.add(ent.text.strip().lower())
+        norm = normalize_entity(ent.text)
+        if is_valid_entity(norm):
+            candidates.add(norm)
 
-    # Strategy 2: Noun chunks — critical for IT domain
-    # Catches: "convolutional neural network", "parameter sharing"
-    for chunk_np in doc.noun_chunks:
-        text = chunk_np.text.strip().lower()
-        # Filter: must be 2-50 chars, not just stopwords
-        if 2 < len(text) < 50 and not chunk_np.root.is_stop:
-            entities.add(text)
+    # Noun chunks — critical for IT technical terms
+    for np_chunk in doc.noun_chunks:
+        norm = normalize_entity(np_chunk.text)
+        if (is_valid_entity(norm)
+                and not np_chunk.root.is_stop):
+            candidates.add(norm)
 
-    return list(entities)
+    return list(candidates)
+
 
 
 def build_knowledge_graph(
