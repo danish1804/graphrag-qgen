@@ -192,4 +192,63 @@ class GraphRAGPipeline:
             "chunks_used":       retrieval["chunks_used"]
         }
 
+# ============================================================
+# TEST — python src/graphrag_pipeline.py
+# ============================================================
+if __name__ == "__main__":
+
+    print("=" * 60)
+    print("GRAPHRAG PIPELINE TEST")
+    print("=" * 60)
+
+    pipeline = GraphRAGPipeline()
+    pipeline.load_models()
+
+    # Load the test index we already built
+    print("\nLoading existing GraphRAG test index...")
+    pipeline.load_existing_index("graphrag_test")
+
+    # Test questions
+    test_cases = [
+        {
+            "learning_objective": "Explain how parameter sharing "
+                                  "reduces learnable weights in CNNs",
+            "difficulty":    "medium",
+            "question_type": "conceptual"
+        },
+        {
+            "learning_objective": "How does sparse connectivity "
+                                  "differ from fully connected layers?",
+            "difficulty":    "hard",
+            "question_type": "application"
+        },
+        {
+            "learning_objective": "What is the purpose of "
+                                  "pooling in CNNs?",
+            "difficulty":    "easy",
+            "question_type": "recall"
+        },
+    ]
+
+    print("\n" + "=" * 60)
+    print("GENERATED QUESTIONS — GraphRAG vs Standard RAG")
+    print("=" * 60)
+
+    for i, tc in enumerate(test_cases, 1):
+        print(f"\nQuestion {i}:")
+        print(f"  Objective  : {tc['learning_objective']}")
+        print(f"  Difficulty : {tc['difficulty']}")
+        print(f"  Type       : {tc['question_type']}")
+
+        result = pipeline.generate(**tc)
+
+        print(f"\n  Question   : {result['question']}")
+        print(f"  Seed nodes : {result.get('seed_nodes', [])}")
+        print(f"  Neighbours : {result.get('neighbour_nodes', [])}")
+        print(f"  Relations  : {result.get('relationships', [])}")
+        print("-" * 60)
+
+    print("\nGraphRAG pipeline test complete.")
+    print("\nNext step: add GraphRAG endpoints to main.py")
+
 
