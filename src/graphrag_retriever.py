@@ -238,3 +238,64 @@ def retrieve_graph_context(
         "sources":          list(sources),
         "chunks_used":      len(chunk_pool)
     }
+
+
+# ============================================================
+# TEST — python src/graphrag_retriever.py
+# ============================================================
+if __name__ == "__main__":
+    import sys
+    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
+    from src.graphrag_indexer import load_graphrag_index
+    from src.embedder import Embedder
+
+    BASE_DIR   = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen"
+    INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
+
+    print("=" * 60)
+    print("GRAPHRAG RETRIEVER TEST")
+    print("=" * 60)
+
+    # Load the index we just built
+    print("Loading GraphRAG index...")
+    index, graph, nodes = load_graphrag_index(
+        INDEX_DIR, "graphrag_test")
+
+    print("Loading embedding model...")
+    embedder = Embedder()
+
+    # Test queries
+    test_queries = [
+        "What is parameter sharing in CNNs?",
+        "How does sparse connectivity reduce parameters?",
+        "Explain how pooling achieves translation invariance",
+    ]
+
+    for query in test_queries:
+        print(f"\n{'='*60}")
+        print(f"Query: {query}")
+        print("=" * 60)
+
+        result = retrieve_graph_context(
+            query, index, graph, nodes, embedder,
+            top_k_nodes=3,
+            neighbour_depth=1,
+            max_context_chunks=5
+        )
+
+        print(f"Seed nodes     : "
+              f"{[s['entity'] for s in result['seed_nodes']]}")
+        print(f"Neighbours     : "
+              f"{[n['entity'] for n in result['neighbour_nodes'][:5]]}")
+        print(f"Relationships  : "
+              f"{[(r[0], r[1]) for r in result['relationships'][:3]]}")
+        print(f"Chunks used    : {result['chunks_used']}")
+        print(f"Sources        : {result['sources']}")
+        print(f"\nContext preview (first 400 chars):")
+        print("-" * 40)
+        print(result["context"][:400])
+        print("-" * 40)
+
+    print("\nGraphRAG retriever test complete.")
+
