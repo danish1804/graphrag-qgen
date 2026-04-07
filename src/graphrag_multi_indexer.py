@@ -163,3 +163,50 @@ def build_combined_graphrag_index(
         print(f"  {fname:<30} "
               f"{stats['chunks']:>5} chunks  "
               f"{stats['chars']:>10,} chars")
+
+
+# ── Step 2: Build combined knowledge graph ─────────
+    print("\nLoading spaCy model...")
+    nlp = spacy.load("en_core_web_sm")
+    nlp.max_length = 10_000_000
+    print("spaCy loaded.")
+
+    graph, entity_chunks = build_knowledge_graph(
+        all_chunks,
+        all_sources,
+        nlp,
+        max_doc_freq    = MAX_DOC_FREQ,
+        min_entity_freq = MIN_ENTITY_FREQ,
+        min_edge_weight = MIN_EDGE_WEIGHT
+    )
+
+    if graph.number_of_nodes() == 0:
+        raise ValueError("No valid entities found.")
+
+    # ── Cross-document analysis ────────────────────────
+    cross_source_nodes = [
+        n for n, d in graph.nodes(data=True)
+        if d.get("num_sources", 0) > 1
+    ]
+    cross_source_edges = [
+        (u, v) for u, v, d in graph.edges(data=True)
+        if d.get("cross_source", False)
+    ]
+
+    print(f"\nCross-document nodes  : {len(cross_source_nodes)} "
+          f"(concepts appearing in multiple docs)")
+    print(f"Cross-document edges  : {len(cross_source_edges)} "
+          f"(concepts co-occurring across docs)")
+
+    if cross_source_nodes:
+        print(f"\nTop 10 cross-document concepts:")
+        top_cross = sorted(
+            cross_source_nodes,
+            key=lambda n: graph.nodes[n].get("num_sources", 0),
+            reverse=True
+        )[:10]
+        for node in top_cross:
+            d = graph.nodes[node]
+            print(f"  '{node}' — "
+                  f"appears in {d.get('num_sources', 0)} documents: "
+                  f"{d.get('sources', [])}")
