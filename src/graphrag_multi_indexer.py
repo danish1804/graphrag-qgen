@@ -240,3 +240,56 @@ def build_combined_graphrag_index(
         index.add(embeddings)
 
     print(f"FAISS index built — {index.ntotal} vectors")
+
+# ── Step 5: Save everything ────────────────────────
+    index_path = os.path.join(
+        index_dir, f"{graph_name}.faiss")
+    graph_path = os.path.join(
+        index_dir, f"{graph_name}_graph.pkl")
+    meta_path  = os.path.join(
+        index_dir, f"{graph_name}_meta.json")
+
+    faiss.write_index(index, index_path)
+    print(f"FAISS index saved : {index_path}")
+
+    with open(graph_path, "wb") as f:
+        pickle.dump(graph, f)
+    print(f"Graph saved       : {graph_path}")
+
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "nodes":                node_list,
+            "total_nodes":          len(node_list),
+            "total_edges":          graph.number_of_edges(),
+            "cross_source_nodes":   len(cross_source_nodes),
+            "cross_source_edges":   len(cross_source_edges),
+            "total_chunks":         len(all_chunks),
+            "total_documents":      len(unique_docs),
+            "documents":            sorted(unique_docs),
+            "doc_stats":            doc_stats
+        }, f, ensure_ascii=False, indent=2)
+    print(f"Metadata saved    : {meta_path}")
+
+    # ── Summary ────────────────────────────────────────
+    print("\n" + "=" * 60)
+    print("MULTI-DOCUMENT GRAPHRAG INDEX COMPLETE")
+    print("=" * 60)
+    print(f"Documents indexed     : {len(unique_docs)}")
+    print(f"Total chunks          : {len(all_chunks)}")
+    print(f"Graph nodes           : {graph.number_of_nodes()}")
+    print(f"Graph edges           : {graph.number_of_edges()}")
+    print(f"Cross-document nodes  : {len(cross_source_nodes)}")
+    print(f"Cross-document edges  : {len(cross_source_edges)}")
+    print(f"FAISS vectors         : {index.ntotal}")
+
+    return {
+        "total_documents":    len(unique_docs),
+        "total_chunks":       len(all_chunks),
+        "graph_nodes":        graph.number_of_nodes(),
+        "graph_edges":        graph.number_of_edges(),
+        "cross_source_nodes": len(cross_source_nodes),
+        "cross_source_edges": len(cross_source_edges),
+        "index_path":         index_path,
+        "graph_path":         graph_path,
+        "meta_path":          meta_path
+    }
