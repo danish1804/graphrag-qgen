@@ -363,7 +363,7 @@ if __name__ == "__main__":
         d    = graph.nodes[entity]
         nsrc = d.get("num_sources", 0)
         freq = d.get("frequency", 0)
-        cross = "★" if nsrc > 1 else " "
+        cross = "^_^" if nsrc > 1 else " "
         print(f"  {cross} {entity:<38} "
               f"degree={degree:<4} "
               f"freq={freq:<5} "
