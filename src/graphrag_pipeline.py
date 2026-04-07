@@ -126,3 +126,70 @@ class GraphRAGPipeline:
 
         print(f"[GraphRAGPipeline] Loaded: {graph_name}")
 
+    # ----------------------------------------------------------
+    # STAGE 4 — Generate a question
+    # ----------------------------------------------------------
+    def generate(self,
+                 learning_objective: str,
+                 difficulty:   str = "medium",
+                 question_type: str = "conceptual",
+                 top_k_nodes:  int = 3,
+                 neighbour_depth: int = 1) -> dict:
+        """
+        Full GraphRAG pipeline:
+        objective → graph retrieval → enriched context → question
+
+        Returns dict with question + graph metadata.
+        """
+        if self.index is None:
+            raise RuntimeError(
+                "No index loaded. Call ingest() or "
+                "load_existing_index() first.")
+
+        if not self._models_loaded:
+            raise RuntimeError("Call load_models() first.")
+
+        # Graph-aware retrieval
+        retrieval = retrieve_graph_context(
+            query           = learning_objective,
+            index           = self.index,
+            graph           = self.graph,
+            nodes           = self.nodes,
+            embedder        = self.embedder,
+            top_k_nodes     = top_k_nodes,
+            neighbour_depth = neighbour_depth,
+            max_context_chunks = 6
+        )
+
+        if not retrieval["context"]:
+            return {
+                "question": "Could not retrieve relevant context.",
+                "error":    "No matching entities found in graph."
+            }
+
+        # Generate question using enriched context
+        question = generate_question(
+            context            = retrieval["context"],
+            learning_objective = learning_objective,
+            model              = self.model,
+            tokenizer          = self.tokenizer,
+            difficulty         = difficulty,
+            question_type      = question_type
+        )
+
+        return {
+            "question":          question,
+            "learning_objective": learning_objective,
+            "difficulty":        difficulty,
+            "question_type":     question_type,
+            "seed_nodes":        [s["entity"]
+                                  for s in retrieval["seed_nodes"]],
+            "neighbour_nodes":   [n["entity"]
+                                  for n in retrieval["neighbour_nodes"][:5]],
+            "relationships":     [(r[0], r[1])
+                                  for r in retrieval["relationships"][:5]],
+            "sources":           retrieval["sources"],
+            "chunks_used":       retrieval["chunks_used"]
+        }
+
+
