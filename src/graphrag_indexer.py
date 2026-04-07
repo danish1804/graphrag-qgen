@@ -181,86 +181,161 @@ def extract_raw_entities(chunk: str, nlp) -> list:
 
 
 
+# Step 3: Two-pass graph builder
 def build_knowledge_graph(
-        chunks: list,
+        all_chunks: list,
+        chunk_sources: list,
         nlp,
+        max_doc_freq: float  = MAX_DOC_FREQ,
         min_entity_freq: int = MIN_ENTITY_FREQ,
         min_edge_weight: int = MIN_EDGE_WEIGHT
 ) -> tuple:
     """
-    Build a knowledge graph from text chunks.
+    Two-pass knowledge graph construction.
 
-    Algorithm:
-    1. Extract entities from every chunk
-    2. Count entity frequencies
-    3. Filter low-frequency entities (noise)
-    4. Create edges between entities that co-occur
-       in the same chunk (they are related)
-    5. Return NetworkX graph + entity-to-chunks mapping
+    Pass 1 — Global corpus statistics:
+        Extract entities from every chunk
+        Count document frequency (DF) per entity
+        Count total occurrences per entity
+
+    Pass 2 — Filtered graph construction:
+        Remove entities above DF threshold (noise)
+        Remove entities below min frequency (rare)
+        Build edges from co-occurrence within chunks
+        Weight edges by cross-source co-occurrence
+        Track which source documents contribute each edge
+
+    Args:
+        all_chunks   : list of text chunks
+        chunk_sources: list of source filenames per chunk
+        nlp          : spaCy language model
+        ...
 
     Returns:
-        graph        — NetworkX undirected weighted graph
-        entity_chunks — dict: entity → list of chunks it appears in
+        graph        : NetworkX weighted graph
+        entity_chunks: dict mapping entity → example chunks
     """
-    print("Extracting entities from chunks...")
+    total_chunks = len(all_chunks)
+    print(f"\nPASS 1 — Global corpus statistics")
+    print(f"Total chunks to process: {total_chunks}")
 
-    entity_freq     = defaultdict(int)
-    chunk_entities  = []   # entities per chunk
-    entity_chunks   = defaultdict(list)  # entity → chunks
+    # Pass 1 - extract entities and build corpus stats
+    entity_chunk_count  = defaultdict(int)    # DF per entity
+    entity_total_count  = defaultdict(int)    # total occurrences
+    entity_sources      = defaultdict(set)    # which docs
+    chunk_entity_lists  = []                  # entities per chunk
+    entity_example_chunks = defaultdict(list) # for context
 
-    # Pass 1: extract entities from all chunks
-    for i, chunk in enumerate(tqdm(chunks, desc="Entity extraction")):
-        entities = extract_entities_from_chunk(chunk, nlp)
-        chunk_entities.append(entities)
+    for i, (chunk, source) in enumerate(
+            tqdm(zip(all_chunks, chunk_sources),
+                 total=total_chunks,
+                 desc="Pass 1: extracting entities")):
 
+        entities = extract_raw_entities(chunk, nlp)
+        chunk_entity_lists.append((entities, source))
+
+        seen_in_chunk = set()
         for ent in entities:
-            entity_freq[ent] += 1
-            entity_chunks[ent].append(chunk)
+            entity_total_count[ent] += 1
+            entity_sources[ent].add(source)
 
-    # Filter: keep only entities that appear enough times
+            if ent not in seen_in_chunk:
+                entity_chunk_count[ent] += 1
+                seen_in_chunk.add(ent)
+
+            if len(entity_example_chunks[ent]) < 3:
+                entity_example_chunks[ent].append(chunk)
+
+    print(f"Unique entities found    : {len(entity_chunk_count)}")
+
+    # Frequency filtering
+    max_allowed_chunks = max_doc_freq * total_chunks
+
     valid_entities = {
-        e for e, freq in entity_freq.items()
-        if freq >= min_entity_freq
+        ent for ent, count in entity_chunk_count.items()
+        if (count >= min_entity_freq          # appears enough
+            and count <= max_allowed_chunks)  # not too common
     }
-    print(f"Entities before filtering : {len(entity_freq)}")
-    print(f"Entities after filtering  : {len(valid_entities)}")
 
-    # Pass 2: build graph
-    print("Building knowledge graph...")
+    removed_noise = {
+        ent for ent, count in entity_chunk_count.items()
+        if count > max_allowed_chunks
+    }
+    removed_rare = {
+        ent for ent, count in entity_chunk_count.items()
+        if count < min_entity_freq
+    }
+
+    print(f"Removed as noise (>{max_doc_freq*100:.0f}% DF): "
+          f"{len(removed_noise)}")
+    print(f"Removed as rare  (<{min_entity_freq} occurrences): "
+          f"{len(removed_rare)}")
+    print(f"Valid entities remaining : {len(valid_entities)}")
+
+    if len(removed_noise) > 0:
+        top_noise = sorted(
+            removed_noise,
+            key=lambda e: entity_chunk_count[e],
+            reverse=True
+        )[:5]
+        print(f"Top noise entities removed: {top_noise}")
+
+    # Pass 2: Build graph
+    print(f"\nPASS 2 — Building knowledge graph")
     graph = nx.Graph()
 
     # Add nodes
-    for entity in valid_entities:
+    for ent in valid_entities:
         graph.add_node(
-            entity,
-            frequency=entity_freq[entity],
-            chunks=entity_chunks[entity][:5]  # store up to 5 example chunks
+            ent,
+            frequency    = entity_total_count[ent],
+            doc_freq     = entity_chunk_count[ent],
+            sources      = list(entity_sources[ent]),
+            num_sources  = len(entity_sources[ent]),
+            chunks       = entity_example_chunks[ent][:3]
         )
 
-    # Add edges — co-occurrence within same chunk
-    edge_weights = defaultdict(int)
+    # Build edges from co-occurrence
+    edge_weights  = defaultdict(int)
+    edge_sources  = defaultdict(set)
 
-    for entities in tqdm(chunk_entities, desc="Building edges"):
-        # Filter to valid entities only
+    for (entities, source) in tqdm(
+            chunk_entity_lists,
+            desc="Pass 2: building edges"):
+
+        # Filter to valid only
         valid = [e for e in entities if e in valid_entities]
 
-        # Create edges between all pairs in this chunk
+        # All pairs in this chunk co-occur
         for i in range(len(valid)):
             for j in range(i + 1, len(valid)):
                 pair = tuple(sorted([valid[i], valid[j]]))
                 edge_weights[pair] += 1
+                edge_sources[pair].add(source)
 
-    # Add edges that meet minimum weight threshold
+    # Add edges meeting threshold
     edges_added = 0
     for (e1, e2), weight in edge_weights.items():
         if weight >= min_edge_weight:
-            graph.add_edge(e1, e2, weight=weight)
+            graph.add_edge(
+                e1, e2,
+                weight       = weight,
+                sources      = list(edge_sources[(e1, e2)]),
+                cross_source = len(edge_sources[(e1, e2)]) > 1
+            )
             edges_added += 1
 
-    print(f"Graph nodes : {graph.number_of_nodes()}")
-    print(f"Graph edges : {graph.number_of_edges()}")
+    cross_source_edges = sum(
+        1 for _, _, d in graph.edges(data=True)
+        if d.get("cross_source", False)
+    )
 
-    return graph, dict(entity_chunks)
+    print(f"Graph nodes         : {graph.number_of_nodes()}")
+    print(f"Graph edges         : {graph.number_of_edges()}")
+    print(f"Cross-source edges  : {cross_source_edges} "
+          f"(connect concepts across documents)")
+
+    return graph, dict(entity_example_chunks)
 
 
 def embed_graph_nodes(
