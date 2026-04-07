@@ -309,3 +309,43 @@ def build_graphrag_index(
 
 
 
+def load_graphrag_index(
+        index_dir: str = INDEX_DIR,
+        graph_name: str = GRAPH_NAME
+) -> tuple:
+    """
+    Load a saved GraphRAG index from disk.
+
+    Returns:
+        index   — FAISS index
+        graph   — NetworkX graph
+        nodes   — list of node names
+    """
+    index_path = os.path.join(index_dir, f"{graph_name}.faiss")
+    graph_path = os.path.join(index_dir, f"{graph_name}_graph.pkl")
+    meta_path  = os.path.join(index_dir, f"{graph_name}_meta.json")
+
+    if not os.path.exists(index_path):
+        raise FileNotFoundError(
+            f"GraphRAG index not found at {index_path}. "
+            f"Run build_graphrag_index() first."
+        )
+
+    index = faiss.read_index(index_path)
+
+    with open(graph_path, "rb") as f:
+        graph = pickle.load(f)
+
+    with open(meta_path, "r", encoding="utf-8") as f:
+        meta = json.load(f)
+
+    if hasattr(index, "nprobe"):
+        index.nprobe = 16
+
+    print(f"GraphRAG index loaded — "
+          f"{meta['total_nodes']} nodes, "
+          f"{meta['total_edges']} edges")
+
+    return index, graph, meta["nodes"]
+
+
