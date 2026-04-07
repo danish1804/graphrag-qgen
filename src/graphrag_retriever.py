@@ -72,3 +72,28 @@ def retrieve_graph_context(
         [query],
         normalize_embeddings=True
     ).astype(np.float32)
+
+    # ── Step 2: Find seed nodes ───────────────────────────
+    k = min(top_k_nodes, len(nodes))
+    distances, indices = index.search(query_embedding, k)
+
+    seed_nodes = []
+    for score, idx in zip(distances[0], indices[0]):
+        if idx >= 0 and idx < len(nodes):
+            node_name = nodes[idx]
+            if node_name in graph:
+                seed_nodes.append({
+                    "entity": node_name,
+                    "score":  float(score),
+                    "freq":   graph.nodes[node_name].get(
+                                  "frequency", 0)
+                })
+
+    if not seed_nodes:
+        return {
+            "context":          "",
+            "seed_nodes":       [],
+            "neighbour_nodes":  [],
+            "relationships":    [],
+            "sources":          []
+        }
