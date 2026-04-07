@@ -210,3 +210,33 @@ def build_combined_graphrag_index(
             print(f"  '{node}' — "
                   f"appears in {d.get('num_sources', 0)} documents: "
                   f"{d.get('sources', [])}")
+
+
+# ── Step 3: Embed graph nodes ──────────────────────
+    print("\nLoading embedding model...")
+    embedder = Embedder()
+    node_list, embeddings = embed_graph_nodes(graph, embedder)
+    print(f"Node embeddings shape: {embeddings.shape}")
+
+    # ── Step 4: Build FAISS index ──────────────────────
+    print("\nBuilding FAISS index...")
+    n_nodes = len(node_list)
+
+    if n_nodes > 1000:
+        n_clusters = min(int(np.sqrt(n_nodes)), 256)
+        print(f"Using IndexIVFFlat "
+              f"(n_clusters={n_clusters}, {n_nodes} nodes)")
+        quantizer = faiss.IndexFlatIP(DIMENSION)
+        index     = faiss.IndexIVFFlat(
+            quantizer, DIMENSION, n_clusters,
+            faiss.METRIC_INNER_PRODUCT
+        )
+        index.train(embeddings)
+        index.add(embeddings)
+        index.nprobe = min(n_clusters, 32)
+    else:
+        print(f"Using IndexFlatIP ({n_nodes} nodes)")
+        index = faiss.IndexFlatIP(DIMENSION)
+        index.add(embeddings)
+
+    print(f"FAISS index built — {index.ntotal} vectors")
