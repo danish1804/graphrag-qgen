@@ -61,3 +61,13 @@ GRAPH_NAME = "graphrag_combined"
 MAX_DOC_FREQ    = 0.35
 MIN_ENTITY_FREQ = 3      # higher threshold for larger corpus
 MIN_EDGE_WEIGHT = 2
+
+
+def discover_documents(docs_dir: str) -> list:
+    """Find all PDF and PPTX files in the tested folder."""
+    supported = (".pdf", ".pptx")
+    docs = sorted([
+        f for f in os.listdir(docs_dir)
+        if f.lower().endswith(supported)
+    ])
+    return docs
