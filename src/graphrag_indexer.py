@@ -502,7 +502,7 @@ def build_graphrag_index(
 
 
 
-
+# Load Function
 def load_graphrag_index(
         index_dir: str = INDEX_DIR,
         graph_name: str = GRAPH_NAME
@@ -538,7 +538,8 @@ def load_graphrag_index(
 
     print(f"GraphRAG index loaded — "
           f"{meta['total_nodes']} nodes, "
-          f"{meta['total_edges']} edges")
+          f"{meta['total_edges']} edges, "
+          f"{meta['cross_source_edges']} cross-source edges")
 
     return index, graph, meta["nodes"]
 
