@@ -141,7 +141,39 @@ def is_valid_entity(text: str) -> bool:
         if re.match(pattern, text, re.IGNORECASE):
             return False
 
+    # Reject code fragments — contain = or ( or ) characters
+    # These are Keras/Python argument artifacts
+    if any(c in text for c in ['=', '(', ')', '{', '}', '[', ']']):
+        return False
+
+    # Reject strings starting with numbers followed by letters
+    # Catches "22d", "1motivation", "3basic"
+    if re.match(r'^\d+[a-z]', text, re.IGNORECASE):
+        return False
+
+    # Reject very generic single words that aren't IT concepts
+    generic_words = {
+        "zero", "one", "two", "data", "input", "output",
+        "layer", "lets", "example", "result", "value",
+        "weight", "image", "network", "model", "function",
+        "method", "approach", "system", "process", "step",
+        "type", "size", "number", "set", "list", "case",
+        "way", "use", "note", "left", "right", "true", "false",
+        "none", "same", "different", "new", "good", "large",
+        "small", "high", "low", "next", "first", "last",
+    }
+    if text in generic_words:
+        return False
+
+    # Reject if contains " - " (slide artifact like "locally - sparse")
+    # We keep the individual parts but not the joined form
+    # Actually keep "locally - sparse connectivity" as it's meaningful
+    # Just reject slide outline patterns: "1motivation", "2d convolution"
+    if re.match(r'^\d+[a-z\s]', text):
+        return False
+
     return True
+    
 
 
 
