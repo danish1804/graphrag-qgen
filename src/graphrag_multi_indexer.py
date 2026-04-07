@@ -293,3 +293,41 @@ def build_combined_graphrag_index(
         "graph_path":         graph_path,
         "meta_path":          meta_path
     }
+
+def load_combined_graphrag_index(
+        index_dir:  str = INDEX_DIR,
+        graph_name: str = GRAPH_NAME
+) -> tuple:
+    """Load the combined GraphRAG index from disk."""
+    index_path = os.path.join(
+        index_dir, f"{graph_name}.faiss")
+    graph_path = os.path.join(
+        index_dir, f"{graph_name}_graph.pkl")
+    meta_path  = os.path.join(
+        index_dir, f"{graph_name}_meta.json")
+
+    if not os.path.exists(index_path):
+        raise FileNotFoundError(
+            f"Combined GraphRAG index not found: {index_path}\n"
+            f"Run build_combined_graphrag_index() first."
+        )
+
+    index = faiss.read_index(index_path)
+
+    with open(graph_path, "rb") as f:
+        graph = pickle.load(f)
+
+    with open(meta_path, "r", encoding="utf-8") as f:
+        meta = json.load(f)
+
+    if hasattr(index, "nprobe"):
+        index.nprobe = 32
+
+    print(f"Combined GraphRAG index loaded — "
+          f"{meta['total_nodes']} nodes, "
+          f"{meta['total_edges']} edges, "
+          f"{meta['cross_source_nodes']} cross-doc nodes, "
+          f"{meta['total_documents']} documents")
+
+    return index, graph, meta["nodes"]
+
