@@ -152,3 +152,45 @@ def retrieve_graph_context(
                                         "cross_source", False)
                                 })
 
+     # ── Step 4: Collect context chunks ───────────────────
+    chunk_pool  = []
+    seen_chunks = set()
+    sources     = set()
+
+    # Seed node chunks first (highest priority)
+    for seed in seed_nodes:
+        node_data = graph.nodes.get(seed["entity"], {})
+        for chunk in node_data.get("chunks", []):
+            key = chunk[:80].strip()
+            if key not in seen_chunks:
+                seen_chunks.add(key)
+                chunk_pool.append({
+                    "text":   chunk,
+                    "entity": seed["entity"],
+                    "type":   "seed",
+                    "score":  seed["score"]
+                })
+
+    # Neighbour chunks second
+    for nb in neighbour_nodes:
+        node_data = graph.nodes.get(nb["entity"], {})
+        for chunk in node_data.get("chunks", []):
+            key = chunk[:80].strip()
+            if key not in seen_chunks:
+                seen_chunks.add(key)
+                chunk_pool.append({
+                    "text":    chunk,
+                    "entity":  nb["entity"],
+                    "type":    "neighbour",
+                    "score":   nb["weight"] / 10.0
+                })
+
+    # Collect sources
+    for item in chunk_pool:
+        node_data = graph.nodes.get(item["entity"], {})
+        for src in node_data.get("sources", []):
+            sources.add(src)
+
+    # Limit chunks
+    chunk_pool = chunk_pool[:max_context_chunks]
+
