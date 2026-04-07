@@ -4,17 +4,30 @@
 # for entity extraction and NetworkX for graph construction.
 #
 # What it does differently from embedder.py:
-#   embedder.py  → stores flat text chunks in FAISS
-#   this file    → extracts entities + relationships,
+#   embedder.py  - stores flat text chunks in FAISS
+#   this file    - extracts entities + relationships,
 #                  builds a graph, then embeds graph nodes
+# Architecture:
+#   Two-pass frequency-based pruning +
+#   heuristic entity resolution +
+#   canonical multi-document knowledge graph
+#
+# Pass 1: Extract entities from all chunks, build
+#         global corpus statistics (document frequency)
+# Pass 2: Filter noise via DF threshold, normalise
+#         entity names, build weighted graph
 #
 # Graph structure:
 #   Nodes = named entities (CNN, Pooling, Hash Table...)
 #   Edges = co-occurrence relationships between entities
 #           within the same chunk
+# Works across any number of documents without
+# hardcoded noise patterns.
+# ============================================================
 # ============================================================
 
 import os
+import re
 import json
 import pickle
 import numpy as np
@@ -33,21 +46,20 @@ BASE_DIR   = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen"
 INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
 GRAPH_NAME = "graphrag"
 
+# ── Tuning parameters ─────────────────────────────────────
+# Entity appears in more than this fraction of chunks → noise
+MAX_DOC_FREQ     = 0.40
 
-# ── Entity extraction config ───────────────────────────────
-# spaCy entity types we care about for IT domain
-# PERSON, ORG = skip (not useful for exam questions)
-# We keep noun chunks as pseudo-entities for technical terms
-KEEP_ENTITY_TYPES = {
-    "ORG", "PRODUCT", "WORK_OF_ART", "EVENT", "LAW",
-    "LANGUAGE", "GPE", "NORP"
-}
+# Entity must appear in at least this many chunks → signal
+MIN_ENTITY_FREQ  = 2
 
-# Minimum entity frequency to be included in graph
-MIN_ENTITY_FREQ = 2
+# Two entities must co-occur in at least this many chunks
+MIN_EDGE_WEIGHT  = 2
 
-# Minimum co-occurrence count to create an edge
-MIN_EDGE_WEIGHT = 2
+# Entity text length limits
+MIN_ENTITY_LEN   = 3
+MAX_ENTITY_LEN   = 60
+
 
 
 def extract_entities_from_chunk(chunk: str, nlp) -> list:
