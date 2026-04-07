@@ -127,6 +127,33 @@ class GraphRAGPipeline:
         print(f"[GraphRAGPipeline] Loaded: {graph_name}")
 
     # ----------------------------------------------------------
+    # Load domain-specific index (new method)
+    # ----------------------------------------------------------
+    def load_domain_index(self, domain_name: str):
+        """
+        Load a domain-specific GraphRAG index.
+        Uses the domain indexer routing to select the right graph.
+        """
+        if not self._models_loaded:
+            raise RuntimeError(
+                "Call load_models() before loading index.")
+
+        from src.graphrag_domain_indexer import (
+            DOMAIN_MAP, load_domain_graph)
+
+        if domain_name not in DOMAIN_MAP:
+            raise ValueError(
+                f"Unknown domain: {domain_name}. "
+                f"Choose from: {list(DOMAIN_MAP.keys())}")
+
+        self.index, self.graph, self.nodes = \
+            load_domain_graph(domain_name)
+        self.graph_name = f"graphrag_{domain_name}"
+
+        print(f"[GraphRAGPipeline] Domain loaded: {domain_name} "
+            f"({len(self.nodes)} nodes)")
+
+    # ----------------------------------------------------------
     # STAGE 4 — Generate a question
     # ----------------------------------------------------------
     def generate(self,
