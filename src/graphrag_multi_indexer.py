@@ -331,3 +331,60 @@ def load_combined_graphrag_index(
 
     return index, graph, meta["nodes"]
 
+# ============================================================
+# TEST — python src/graphrag_multi_indexer.py
+# ============================================================
+if __name__ == "__main__":
+
+    print("=" * 60)
+    print("MULTI-DOCUMENT GRAPHRAG INDEXER TEST")
+    print("=" * 60)
+
+    # Build the combined index
+    summary = build_combined_graphrag_index()
+
+    # Load back and test
+    print("\nLoading index back to verify...")
+    from src.embedder import Embedder
+    from src.graphrag_retriever import retrieve_graph_context
+
+    index, graph, nodes = load_combined_graphrag_index()
+    embedder = Embedder()
+
+    # Show top entities by degree
+    print(f"\nTop 20 entities by degree:")
+    print("-" * 55)
+    degrees = sorted(
+        graph.degree(),
+        key=lambda x: x[1],
+        reverse=True
+    )[:20]
+    for entity, degree in degrees:
+        d    = graph.nodes[entity]
+        nsrc = d.get("num_sources", 0)
+        freq = d.get("frequency", 0)
+        cross = "★" if nsrc > 1 else " "
+        print(f"  {cross} {entity:<38} "
+              f"degree={degree:<4} "
+              f"freq={freq:<5} "
+              f"docs={nsrc}")
+
+    print(f"\n★ = appears in multiple documents")
+
+    # Test retrieval on previously weak query
+    print(f"\nTesting previously weak query: pooling")
+    print("-" * 55)
+    result = retrieve_graph_context(
+        "What is the purpose of pooling in CNNs?",
+        index, graph, nodes, embedder,
+        top_k_nodes=3,
+        neighbour_depth=1
+    )
+    print(f"Seed nodes   : "
+          f"{[s['entity'] for s in result['seed_nodes']]}")
+    print(f"Neighbours   : "
+          f"{[n['entity'] for n in result['neighbour_nodes'][:5]]}")
+    print(f"Context preview:")
+    print(result["context"][:300])
+
+    print("\nMulti-document GraphRAG indexer test complete.")
