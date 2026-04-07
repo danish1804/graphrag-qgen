@@ -168,3 +168,79 @@ DOMAIN_MAP = {
     }
 
 }
+
+
+def build_domain_graph(
+        domain_name: str,
+        docs_dir:   str = TESTED_DIR,
+        index_dir:  str = INDEX_DIR
+) -> dict:
+    """
+    Build a GraphRAG index for one domain.
+
+    Loads all PDFs for the domain, builds combined graph,
+    saves as graphrag_{domain_name}.
+
+    Returns summary dict.
+    """
+    if domain_name not in DOMAIN_MAP:
+        raise ValueError(
+            f"Unknown domain: {domain_name}. "
+            f"Choose from: {list(DOMAIN_MAP.keys())}"
+        )
+
+    domain = DOMAIN_MAP[domain_name]
+    files  = domain["files"]
+
+    print(f"\n{'='*60}")
+    print(f"Building graph for domain: {domain_name}")
+    print(f"Description: {domain['description']}")
+    print(f"Files: {len(files)}")
+    print(f"{'='*60}")
+
+    all_chunks  = []
+    all_sources = []
+    loaded      = []
+    failed      = []
+
+    for fname in files:
+        fpath = os.path.join(docs_dir, fname)
+        if not os.path.exists(fpath):
+            print(f"  WARNING: {fname} not found — skipping")
+            failed.append(fname)
+            continue
+
+        try:
+            result  = load_and_chunk(fpath)
+            chunks  = result["chunks"]
+            all_chunks.extend(chunks)
+            all_sources.extend([fname] * len(chunks))
+            loaded.append(fname)
+            print(f"  OK  {fname:<30} "
+                  f"{len(chunks):>5} chunks")
+        except Exception as e:
+            print(f"  FAIL {fname}: {e}")
+            failed.append(fname)
+
+    if not all_chunks:
+        raise ValueError(
+            f"No chunks loaded for domain {domain_name}"
+        )
+
+    print(f"\nTotal chunks for {domain_name}: {len(all_chunks)}")
+
+    graph_name = f"graphrag_{domain_name}"
+    summary = build_graphrag_index(
+        all_chunks,
+        all_sources,
+        index_dir  = index_dir,
+        graph_name = graph_name
+    )
+
+    summary["domain"]          = domain_name
+    summary["files_loaded"]    = loaded
+    summary["files_failed"]    = failed
+    summary["graph_name"]      = graph_name
+
+    return summary
+
