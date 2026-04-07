@@ -116,3 +116,50 @@ def load_all_chunks(docs_dir: str) -> tuple:
         print(f"Failed: {failed}")
 
     return all_chunks, all_sources, doc_stats
+
+
+def build_combined_graphrag_index(
+        docs_dir:   str = TESTED_DIR,
+        index_dir:  str = INDEX_DIR,
+        graph_name: str = GRAPH_NAME
+) -> dict:
+    """
+    Full multi-document GraphRAG indexing pipeline.
+
+    Steps:
+    1. Discover and load all documents
+    2. Build combined knowledge graph (two-pass)
+    3. Embed graph nodes
+    4. Build FAISS index
+    5. Save everything to disk
+
+    Returns summary dict.
+    """
+    os.makedirs(index_dir, exist_ok=True)
+
+    print("=" * 60)
+    print("MULTI-DOCUMENT GRAPHRAG INDEXER")
+    print("=" * 60)
+    print(f"Source folder : {docs_dir}")
+    print(f"Output dir    : {index_dir}")
+    print(f"Graph name    : {graph_name}")
+    print("=" * 60)
+
+    # ── Step 1: Load all documents ─────────────────────
+    all_chunks, all_sources, doc_stats = load_all_chunks(
+        docs_dir)
+
+    if not all_chunks:
+        raise ValueError(
+            f"No chunks loaded from {docs_dir}. "
+            f"Run test_document_batch.py first."
+        )
+
+    unique_docs = list(set(all_sources))
+    print(f"\nUnique documents  : {len(unique_docs)}")
+    print(f"Total chunks      : {len(all_chunks)}")
+    print(f"\nPer-document stats:")
+    for fname, stats in sorted(doc_stats.items()):
+        print(f"  {fname:<30} "
+              f"{stats['chunks']:>5} chunks  "
+              f"{stats['chars']:>10,} chars")
