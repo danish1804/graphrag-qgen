@@ -545,54 +545,61 @@ def load_graphrag_index(
 
 
 # ============================================================
-# TEST — run directly on source_1.pdf
-# python src/graphrag_indexer.py
+# TEST — python src/graphrag_indexer.py
 # ============================================================
 if __name__ == "__main__":
-    import sys
-    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
     from src.document_loader import load_and_chunk
 
     print("=" * 60)
-    print("GRAPHRAG INDEXER TEST")
+    print("GRAPHRAG INDEXER TEST — source_1.pdf")
     print("=" * 60)
 
-    # Test on source_1.pdf first — small and fast
-    PDF_PATH = os.path.join(BASE_DIR, "data", "tested", "source_1.pdf")
+    PDF = os.path.join(BASE_DIR, "data", "tested", "source_1.pdf")
+    result = load_and_chunk(PDF)
+    chunks  = result["chunks"]
+    sources = ["source_1.pdf"] * len(chunks)
 
-    print(f"\nLoading: {PDF_PATH}")
-    result = load_and_chunk(PDF_PATH)
-    chunks = result["chunks"]
     print(f"Chunks loaded: {len(chunks)}")
 
-    # Build graph index
     summary = build_graphrag_index(
-        chunks,
-        index_dir=INDEX_DIR,
-        graph_name="graphrag_test"
+        chunks, sources,
+        index_dir  = INDEX_DIR,
+        graph_name = "graphrag_test"
     )
 
+    # Load back and inspect
     print("\nLoading index back to verify...")
     index, graph, nodes = load_graphrag_index(
         INDEX_DIR, "graphrag_test")
 
     print(f"\nTop 20 entities by degree (most connected):")
-    print("-" * 40)
+    print("-" * 50)
     degrees = sorted(
         graph.degree(),
         key=lambda x: x[1],
         reverse=True
     )[:20]
     for entity, degree in degrees:
-        freq = graph.nodes[entity].get("frequency", 0)
-        print(f"  {entity:<35} degree={degree}, freq={freq}")
+        freq    = graph.nodes[entity].get("frequency", 0)
+        n_src   = graph.nodes[entity].get("num_sources", 0)
+        print(f"  {entity:<40} "
+              f"degree={degree:<4} "
+              f"freq={freq:<4} "
+              f"sources={n_src}")
 
-    print("\nSample edges (relationships found):")
-    print("-" * 40)
-    edges = list(graph.edges(data=True))[:15]
-    for e1, e2, data in edges:
-        print(f"  '{e1}' ↔ '{e2}'  "
-              f"(co-occurrences: {data['weight']})")
+    print(f"\nSample meaningful edges:")
+    print("-" * 50)
+    # Show edges with highest weight
+    top_edges = sorted(
+        graph.edges(data=True),
+        key=lambda x: x[2]["weight"],
+        reverse=True
+    )[:15]
+    for e1, e2, data in top_edges:
+        cross = "*" if data.get("cross_source") else " "
+        print(f"  {cross} '{e1}' ↔ '{e2}'  "
+              f"(weight={data['weight']}, "
+              f"sources={data['sources']})")
 
+    print(f"\n* = cross-source edge (connects concepts across documents)")
     print("\nGraphRAG indexer test complete.")
-
