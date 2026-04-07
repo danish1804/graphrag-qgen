@@ -264,3 +264,32 @@ def build_all_domain_graphs(
             results[domain_name] = {"error": str(e)}
 
     return results
+
+def route_query_to_domain(learning_objective: str) -> str:
+    """
+    Route a learning objective to the correct domain graph.
+
+    Uses keyword matching — scores each domain by how many
+    of its keywords appear in the objective.
+
+    Returns domain name with highest score.
+    Falls back to 'database' if no match (largest domain).
+    """
+    obj_lower = learning_objective.lower()
+    scores    = {}
+
+    for domain_name, domain in DOMAIN_MAP.items():
+        score = sum(
+            1 for kw in domain["keywords"]
+            if kw in obj_lower
+        )
+        scores[domain_name] = score
+
+    best_domain = max(scores, key=scores.get)
+    best_score  = scores[best_domain]
+
+    # If no keywords matched fall back to database
+    if best_score == 0:
+        return "database"
+
+    return best_domain
