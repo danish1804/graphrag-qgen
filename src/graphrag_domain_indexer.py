@@ -244,3 +244,23 @@ def build_domain_graph(
 
     return summary
 
+
+def build_all_domain_graphs(
+        docs_dir:  str = TESTED_DIR,
+        index_dir: str = INDEX_DIR
+) -> dict:
+    """Build GraphRAG indexes for all domains."""
+    results = {}
+    for domain_name in DOMAIN_MAP:
+        try:
+            summary = build_domain_graph(
+                domain_name, docs_dir, index_dir)
+            results[domain_name] = summary
+            print(f"\n✓ {domain_name}: "
+                  f"{summary['graph_nodes']} nodes, "
+                  f"{summary['graph_edges']} edges")
+        except Exception as e:
+            print(f"\n✗ {domain_name} FAILED: {e}")
+            results[domain_name] = {"error": str(e)}
+
+    return results
