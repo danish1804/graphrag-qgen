@@ -267,5 +267,45 @@ def build_graphrag_index(
 
     print(f"FAISS index built — {index.ntotal} node vectors")
 
+    
+    # ── Step 5: Save everything ───────────────────────────
+    # Save FAISS index
+    index_path = os.path.join(index_dir, f"{graph_name}.faiss")
+    faiss.write_index(index, index_path)
+    print(f"FAISS index saved : {index_path}")
+
+    # Save NetworkX graph
+    graph_path = os.path.join(index_dir, f"{graph_name}_graph.pkl")
+    with open(graph_path, "wb") as f:
+        pickle.dump(graph, f)
+    print(f"Graph saved       : {graph_path}")
+
+    # Save node list and metadata
+    meta_path = os.path.join(index_dir, f"{graph_name}_meta.json")
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "nodes":        node_list,
+            "total_nodes":  len(node_list),
+            "total_edges":  graph.number_of_edges(),
+            "total_chunks": len(chunks),
+        }, f, ensure_ascii=False, indent=2)
+    print(f"Metadata saved    : {meta_path}")
+
+    # ── Summary ───────────────────────────────────────────
+    print("\n" + "=" * 60)
+    print("GRAPHRAG INDEX COMPLETE")
+    print("=" * 60)
+    print(f"Graph nodes  : {graph.number_of_nodes()}")
+    print(f"Graph edges  : {graph.number_of_edges()}")
+    print(f"FAISS vectors: {index.ntotal}")
+
+    return {
+        "graph_nodes":  graph.number_of_nodes(),
+        "graph_edges":  graph.number_of_edges(),
+        "index_path":   index_path,
+        "graph_path":   graph_path,
+        "meta_path":    meta_path
+    }
+
 
 
