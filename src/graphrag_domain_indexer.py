@@ -302,3 +302,59 @@ def load_domain_graph(
     """Load a domain-specific GraphRAG index."""
     graph_name = f"graphrag_{domain_name}"
     return load_graphrag_index(index_dir, graph_name)
+
+
+# ============================================================
+# TEST — python src/graphrag_domain_indexer.py
+# ============================================================
+if __name__ == "__main__":
+
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--domain",
+        choices=list(DOMAIN_MAP.keys()) + ["all"],
+        default="deep_learning",
+        help="Which domain to build"
+    )
+    args = parser.parse_args()
+
+    print("=" * 60)
+    print("DOMAIN-SPECIFIC GRAPHRAG INDEXER")
+    print("=" * 60)
+
+    if args.domain == "all":
+        results = build_all_domain_graphs()
+        print("\n" + "=" * 60)
+        print("ALL DOMAINS COMPLETE")
+        print("=" * 60)
+        for domain, result in results.items():
+            if "error" in result:
+                print(f"  ✗ {domain}: {result['error']}")
+            else:
+                print(f"  ✓ {domain}: "
+                      f"{result['graph_nodes']} nodes, "
+                      f"{result['graph_edges']} edges")
+    else:
+        summary = build_domain_graph(args.domain)
+        print(f"\nDomain graph built: {args.domain}")
+        print(f"Nodes: {summary['graph_nodes']}")
+        print(f"Edges: {summary['graph_edges']}")
+
+    # Test routing
+    print("\n" + "=" * 60)
+    print("QUERY ROUTING TEST")
+    print("=" * 60)
+    test_queries = [
+        "Explain how pooling works in CNNs",
+        "How does a hash table handle collisions?",
+        "What is the difference between Agile and Waterfall?",
+        "Explain virtual memory management in operating systems",
+        "What is parameter sharing in convolutional networks?",
+        "Describe the ACID properties of database transactions",
+    ]
+    for q in test_queries:
+        domain = route_query_to_domain(q)
+        print(f"  '{q[:55]}...'")
+        print(f"    → routed to: {domain}")
+        print()
