@@ -193,6 +193,18 @@ def is_valid_entity(text: str) -> bool:
     if text.endswith("si") or text.endswith("xi"):
         return False
     
+    # Reject bullet point prefixes
+    if text.startswith("•") or text.startswith("–"):
+        return False
+
+    # Reject concatenated words (no space, mixed case mid-word)
+    if re.search(r'[a-z][A-Z]', text):
+        return False
+
+    # Reject section heading patterns
+    if re.match(r'^\d+\.\d+\s+[a-z]', text):
+        return False
+    
     return True
     
 
