@@ -293,3 +293,12 @@ def route_query_to_domain(learning_objective: str) -> str:
         return "database"
 
     return best_domain
+
+
+def load_domain_graph(
+        domain_name: str,
+        index_dir:   str = INDEX_DIR
+) -> tuple:
+    """Load a domain-specific GraphRAG index."""
+    graph_name = f"graphrag_{domain_name}"
+    return load_graphrag_index(index_dir, graph_name)
