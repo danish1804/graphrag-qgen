@@ -62,7 +62,9 @@ Rules:
 - The question MUST be answerable using ONLY the provided context
 - Do NOT introduce concepts not present in the context
 - Return ONLY the question - no preamble, no explanation, no answer
-- The question should be clear and unambiguous"""
+- The question should be clear and unambiguous
+- Do NOT generate multiple choice questions
+- Do NOT generate A) B) C) D) options"""
 
     user_prompt = f"""Context from course material:
 {context}
