@@ -127,7 +127,7 @@ class GraphRAGPipeline:
         print(f"[GraphRAGPipeline] Loaded: {graph_name}")
 
     # ----------------------------------------------------------
-    # Load domain-specific index (new method)
+    # Load domain-specific index (updated method with routing)
     # ----------------------------------------------------------
     def load_domain_index(self, domain_name: str):
         """
@@ -152,6 +152,41 @@ class GraphRAGPipeline:
 
         print(f"[GraphRAGPipeline] Domain loaded: {domain_name} "
             f"({len(self.nodes)} nodes)")
+        
+    def generate_with_routing(self,
+                          learning_objective: str,
+                          difficulty:   str = "medium",
+                          question_type: str = "conceptual",
+                          top_k_nodes:  int = 3,
+                          neighbour_depth: int = 1) -> dict:
+        """
+        Generate question with automatic domain routing.
+        Selects the correct domain graph based on the
+        learning objective keywords.
+        """
+        from src.graphrag_domain_indexer import (
+            route_query_to_domain, load_domain_graph)
+
+        # Route to correct domain
+        domain = route_query_to_domain(learning_objective)
+        print(f"[GraphRAGPipeline] Routing to domain: {domain}")
+
+        # Load domain graph
+        self.index, self.graph, self.nodes = \
+            load_domain_graph(domain)
+        self.graph_name = f"graphrag_{domain}"
+
+        # Generate
+        result = self.generate(
+            learning_objective = learning_objective,
+            difficulty         = difficulty,
+            question_type      = question_type,
+            top_k_nodes        = top_k_nodes,
+            neighbour_depth    = neighbour_depth
+        )
+
+        result["domain_routed_to"] = domain
+        return result
 
     # ----------------------------------------------------------
     # STAGE 4 — Generate a question
