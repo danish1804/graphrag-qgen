@@ -161,3 +161,44 @@ def build_knowledge_graph(
 
     return graph, dict(entity_chunks)
 
+
+def embed_graph_nodes(
+        graph: nx.Graph,
+        embedder: Embedder
+) -> tuple:
+    """
+    Embed all graph nodes (entity names + their context chunks).
+
+    Each node is embedded as:
+    "entity_name: chunk1_text chunk2_text..."
+    This gives richer embeddings than just the entity name alone.
+
+    Returns:
+        node_list   — ordered list of node names
+        embeddings  — numpy array (N, 1024)
+    """
+    print("Embedding graph nodes...")
+    node_list = list(graph.nodes())
+    node_texts = []
+
+    for node in node_list:
+        # Combine entity name with its context chunks
+        node_data = graph.nodes[node]
+        context_chunks = node_data.get("chunks", [])
+
+        # Build rich text representation
+        context = " ".join(context_chunks[:2])[:500]
+        node_text = f"{node}: {context}"
+        node_texts.append(node_text)
+
+    embeddings = embedder.model.encode(
+        node_texts,
+        normalize_embeddings=True,
+        show_progress_bar=True,
+        batch_size=32
+    )
+
+    return node_list, np.array(embeddings, dtype=np.float32)
+
+
+
