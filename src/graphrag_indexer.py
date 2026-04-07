@@ -185,9 +185,23 @@ def extract_raw_entities(chunk: str, nlp) -> list:
     Returns normalised entity strings.
     """
     # Clean slide/PDF artifacts before NLP
-    cleaned = re.sub(r'\d+\s*/\s*\d+', ' ', chunk)     # "4 / 42"
+    cleaned = re.sub(r'\d+\s*/\s*\d+', ' ', chunk)      # "4 / 42"
     cleaned = re.sub(r'Lecture\s+\d+[^\n]*\n', ' ', cleaned)
     cleaned = re.sub(r'COSC\d+/\d+', ' ', cleaned, flags=re.IGNORECASE)
+    
+    # NEW — Remove Keras/Python code blocks
+    # These appear as inline code in the PDF slides
+    cleaned = re.sub(r'tf\.keras\.\w+[^)]*\)', ' ', cleaned)
+    cleaned = re.sub(r'\w+=\w+', ' ', cleaned)           # key=value pairs
+    cleaned = re.sub(r'\w+=\([\d,\s]+\)', ' ', cleaned)  # key=(1,1)
+    
+    # NEW — Remove slide outline numbering artifacts
+    # "1Motivation 2D Convolution 3Basic..."
+    cleaned = re.sub(r'\d+[A-Z][a-z]', ' ', cleaned)
+    
+    # NEW — Remove diagram labels like "p1 p2 p3 p4 p5"
+    cleaned = re.sub(r'\b[a-z]\d+\s+[a-z]\d+\s+[a-z]\d+\b', ' ', cleaned)
+    
     cleaned = re.sub(r'\s+', ' ', cleaned).strip()
 
     if len(cleaned) < 20:
