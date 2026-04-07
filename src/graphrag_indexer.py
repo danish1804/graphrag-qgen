@@ -48,3 +48,33 @@ MIN_ENTITY_FREQ = 2
 
 # Minimum co-occurrence count to create an edge
 MIN_EDGE_WEIGHT = 2
+
+
+def extract_entities_from_chunk(chunk: str, nlp) -> list:
+    """
+    Extract meaningful entities from a text chunk.
+
+    Uses two strategies:
+    1. spaCy NER — named entities (proper nouns, products etc.)
+    2. Noun chunks — technical terms not caught by NER
+       e.g. "convolutional layer", "hash table", "binary tree"
+
+    Returns list of entity strings (lowercased, cleaned).
+    """
+    doc = nlp(chunk)
+    entities = set()
+
+    # Strategy 1: Named entities
+    for ent in doc.ents:
+        if len(ent.text.strip()) > 2:
+            entities.add(ent.text.strip().lower())
+
+    # Strategy 2: Noun chunks — critical for IT domain
+    # Catches: "convolutional neural network", "parameter sharing"
+    for chunk_np in doc.noun_chunks:
+        text = chunk_np.text.strip().lower()
+        # Filter: must be 2-50 chars, not just stopwords
+        if 2 < len(text) < 50 and not chunk_np.root.is_stop:
+            entities.add(text)
+
+    return list(entities)
