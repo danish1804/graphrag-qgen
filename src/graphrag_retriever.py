@@ -67,13 +67,13 @@ def retrieve_graph_context(
           relationships — list of (entity1, entity2, weight) tuples
           sources       — source documents contributing context
     """
-    # ── Step 1: Embed query ───────────────────────────────
+    # Step 1: Embed query
     query_embedding = embedder.model.encode(
         [query],
         normalize_embeddings=True
     ).astype(np.float32)
 
-    # ── Step 2: Find seed nodes ───────────────────────────
+    # Step 2: Find seed nodes
     k = min(top_k_nodes, len(nodes))
     distances, indices = index.search(query_embedding, k)
 
@@ -97,3 +97,58 @@ def retrieve_graph_context(
             "relationships":    [],
             "sources":          []
         }
+    
+    # ── Step 3: Graph traversal ───────────────────────────
+    visited        = set()
+    neighbour_nodes = []
+    relationships  = []
+
+    for seed in seed_nodes:
+        entity = seed["entity"]
+        visited.add(entity)
+
+        # Get immediate neighbours (depth=1)
+        if entity in graph:
+            neighbours = list(graph.neighbors(entity))
+
+            # Sort neighbours by edge weight
+            # (higher weight = stronger relationship)
+            neighbours_sorted = sorted(
+                neighbours,
+                key=lambda n: graph[entity][n].get("weight", 1),
+                reverse=True
+            )
+
+            for neighbour in neighbours_sorted[:5]:
+                if neighbour not in visited:
+                    visited.add(neighbour)
+                    edge_data = graph[entity][neighbour]
+
+                    neighbour_nodes.append({
+                        "entity":  neighbour,
+                        "related_to": entity,
+                        "weight":  edge_data.get("weight", 1),
+                        "cross_source": edge_data.get(
+                            "cross_source", False)
+                    })
+
+                    relationships.append((
+                        entity,
+                        neighbour,
+                        edge_data.get("weight", 1)
+                    ))
+
+                    # Depth 2 traversal if requested
+                    if neighbour_depth >= 2:
+                        for n2 in graph.neighbors(neighbour):
+                            if n2 not in visited:
+                                visited.add(n2)
+                                e2 = graph[neighbour][n2]
+                                neighbour_nodes.append({
+                                    "entity":     n2,
+                                    "related_to": neighbour,
+                                    "weight":     e2.get("weight", 1),
+                                    "cross_source": e2.get(
+                                        "cross_source", False)
+                                })
+
