@@ -175,3 +175,12 @@ async def health():
     # Standard RAG single doc
     single_loaded = single_pipeline.index is not None
     single_name   = getattr(single_pipeline, "index_name", None)
+
+    # Standard RAG multi doc
+    multi_loaded  = multi_pipeline.index is not None
+    multi_chunks  = 0
+    if multi_loaded:
+        try:
+            multi_chunks = len(multi_pipeline.chunks)
+        except Exception:
+            pass
