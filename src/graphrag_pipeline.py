@@ -157,30 +157,70 @@ class GraphRAGPipeline:
 # ----------------------------------------------------------
 # STAGE 3c — Generate with automatic domain routing
 # ----------------------------------------------------------      
+    # def generate_with_routing(self,
+    #                       learning_objective: str,
+    #                       difficulty:   str = "medium",
+    #                       question_type: str = "conceptual",
+    #                       top_k_nodes:  int = 3,
+    #                       neighbour_depth: int = 1) -> dict:
+    #     """
+    #     Generate question with automatic domain routing.
+    #     Selects the correct domain graph based on the
+    #     learning objective keywords.
+    #     """
+    #     from src.graphrag_domain_indexer import (
+    #         route_query_to_domain, load_domain_graph)
+
+    #     # Route to correct domain
+    #     domain = route_query_to_domain(learning_objective)
+    #     print(f"[GraphRAGPipeline] Routing to domain: {domain}")
+
+    #     # Load domain graph
+    #     self.index, self.graph, self.nodes = \
+    #         load_domain_graph(domain)
+    #     self.graph_name = f"graphrag_{domain}"
+
+    #     # Generate
+    #     result = self.generate(
+    #         learning_objective = learning_objective,
+    #         difficulty         = difficulty,
+    #         question_type      = question_type,
+    #         top_k_nodes        = top_k_nodes,
+    #         neighbour_depth    = neighbour_depth
+    #     )
+
+    #     result["domain_routed_to"] = domain
+    #     return result
+
     def generate_with_routing(self,
-                          learning_objective: str,
-                          difficulty:   str = "medium",
-                          question_type: str = "conceptual",
-                          top_k_nodes:  int = 3,
-                          neighbour_depth: int = 1) -> dict:
+                           learning_objective: str,
+                           difficulty:    str = "medium",
+                           question_type: str = "conceptual",
+                           top_k_nodes:   int = 3,
+                           neighbour_depth: int = 1) -> dict:
         """
-        Generate question with automatic domain routing.
-        Selects the correct domain graph based on the
-        learning objective keywords.
+        Route learning objective to correct domain graph
+        then generate question automatically.
+
+        Uses embedding-based routing if domain profiles are
+        available, falls back to keyword routing otherwise.
         """
+        if not self._models_loaded:
+            raise RuntimeError("Call load_models() first.")
+
         from src.graphrag_domain_indexer import (
-            route_query_to_domain, load_domain_graph)
+            load_domain_graph, route_by_embedding)
 
-        # Route to correct domain
-        domain = route_query_to_domain(learning_objective)
-        print(f"[GraphRAGPipeline] Routing to domain: {domain}")
+        # Use embedding-based routing (smarter than keywords)
+        domain = route_by_embedding(
+            learning_objective, self.embedder)
 
-        # Load domain graph
+        print(f"[GraphRAGPipeline] Routed to: {domain}")
+
         self.index, self.graph, self.nodes = \
             load_domain_graph(domain)
         self.graph_name = f"graphrag_{domain}"
 
-        # Generate
         result = self.generate(
             learning_objective = learning_objective,
             difficulty         = difficulty,
