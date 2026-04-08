@@ -537,9 +537,41 @@ async def graphrag_rebuild(domain_name: str):
 # ============================================================
 if __name__ == "__main__":
     import uvicorn
+    import argparse
+
+    parser = argparse.ArgumentParser(
+        description="AI Exam Question Generator API")
+    parser.add_argument(
+        "--mode",
+        choices=["standard", "full"],
+        default="full",
+        help=(
+            "standard: load Standard RAG only (fast, ~15s). "
+            "full: load Standard RAG + GraphRAG domains (~45s)."
+        )
+    )
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=8000,
+        help="Port to run the server on (default: 8000)"
+    )
+    args = parser.parse_args()
+
+    # Set global mode before lifespan runs
+    SERVER_MODE = args.mode
+
+    print(f"[Server] Starting in {SERVER_MODE.upper()} mode...")
+    if SERVER_MODE == "standard":
+        print("[Server] Standard mode: Standard RAG endpoints only")
+        print("[Server] Endpoints: /health /upload /generate "
+              "/multi/status /multi/generate /multi/rebuild")
+    else:
+        print("[Server] Full mode: Standard RAG + GraphRAG endpoints")
+
     uvicorn.run(
         "main_gr:app",
-        host     = "0.0.0.0",
-        port     = 8000,
-        reload   = False
+        host   = "0.0.0.0",
+        port   = args.port,
+        reload = False
     )
