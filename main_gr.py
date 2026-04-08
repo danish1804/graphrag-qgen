@@ -360,7 +360,7 @@ async def graphrag_status():
             f"graphrag_{domain_name}_meta.json")
 
         if os.path.exists(meta_path):
-            with open(meta_path, "r") as f:
+            with open(meta_path, "r", encoding="utf-8") as f:
                 meta = json.load(f)
             domain_stats[domain_name] = {
                 "available":    True,
