@@ -294,8 +294,13 @@ async def multi_status():
             "message":       "Call POST /multi/rebuild to build index."
         }
 
-    docs = list(set(multi_pipeline.sources)) \
-        if hasattr(multi_pipeline, "sources") else []
+    # Get unique documents from chunk metadata
+    try:
+        docs = sorted(set(
+            m["source"] for m in multi_pipeline.meta
+        ))
+    except Exception:
+        docs = []
 
     return {
         "index_loaded":    True,
