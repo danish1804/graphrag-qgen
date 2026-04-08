@@ -271,3 +271,27 @@ async def generate_question(req: GenerateRequest):
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================================
+# STANDARD RAG — MULTI DOCUMENT
+# ============================================================
+
+@app.get("/multi/status", tags=["Standard RAG — Multi Doc"])
+async def multi_status():
+    """Show combined index stats — all 22 documents."""
+    if multi_pipeline.index is None:
+        return {
+            "index_loaded":  False,
+            "message":       "Call POST /multi/rebuild to build index."
+        }
+
+    docs = list(set(multi_pipeline.sources)) \
+        if hasattr(multi_pipeline, "sources") else []
+
+    return {
+        "index_loaded":    True,
+        "total_chunks":    len(multi_pipeline.chunks),
+        "total_documents": len(docs),
+        "documents":       sorted(docs)
+    }
