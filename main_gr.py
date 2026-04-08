@@ -247,3 +247,27 @@ async def upload_document(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/generate", tags=["Standard RAG — Single Doc"])
+async def generate_question(req: GenerateRequest):
+    """
+    Generate an exam question from the uploaded document.
+    Requires a prior call to POST /upload.
+    """
+    validate_params(req.difficulty, req.question_type)
+
+    if single_pipeline.index is None:
+        raise HTTPException(
+            status_code=400,
+            detail="No document uploaded. Call POST /upload first."
+        )
+
+    try:
+        result = single_pipeline.generate(
+            learning_objective = req.learning_objective,
+            difficulty         = req.difficulty,
+            question_type      = req.question_type,
+            top_k              = req.top_k
+        )
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
