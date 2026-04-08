@@ -184,3 +184,30 @@ async def health():
             multi_chunks = len(multi_pipeline.chunks)
         except Exception:
             pass
+
+    # GraphRAG domain status
+    graph_domains = {}
+    for domain_name in DOMAIN_MAP:
+        graph_path = os.path.join(
+            INDEX_DIR,
+            f"graphrag_{domain_name}_graph.pkl")
+        graph_domains[domain_name] = os.path.exists(graph_path)
+
+    return {
+        "status":              "ok",
+        "models_loaded":       single_pipeline._models_loaded,
+        "standard_rag": {
+            "single_doc": {
+                "loaded":     single_loaded,
+                "index_name": single_name
+            },
+            "multi_doc": {
+                "loaded":       multi_loaded,
+                "total_chunks": multi_chunks
+            }
+        },
+        "graphrag": {
+            "domains_available": graph_domains,
+            "current_index":     graph_pipeline.graph_name
+        }
+    }
