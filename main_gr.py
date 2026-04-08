@@ -430,3 +430,58 @@ async def graphrag_upload(file: UploadFile = File(...)):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/graphrag/generate", tags=["GraphRAG"])
+async def graphrag_generate(req: GraphRAGGenerateRequest):
+    """
+    Generate an exam question using GraphRAG.
+
+    Automatically routes the learning objective to the correct
+    domain graph (deep_learning, database, software_engineering,
+    operating_systems) using keyword matching.
+
+    You can override auto-routing by specifying domain explicitly.
+
+    Returns the question plus graph metadata:
+    - seed_nodes: entities matched to the query
+    - neighbour_nodes: related concepts from graph traversal
+    - relationships: entity connections used for context
+    - domain_routed_to: which domain graph was used
+    """
+    validate_params(req.difficulty, req.question_type)
+
+    # Validate explicit domain if provided
+    if req.domain and req.domain not in VALID_DOMAINS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"domain must be one of {VALID_DOMAINS} "
+                   f"or null for auto-routing."
+        )
+
+    try:
+        if req.domain:
+            # Explicit domain specified — load that graph
+            graph_pipeline.load_domain_index(req.domain)
+            result = graph_pipeline.generate(
+                learning_objective = req.learning_objective,
+                difficulty         = req.difficulty,
+                question_type      = req.question_type,
+                top_k_nodes        = req.top_k_nodes,
+                neighbour_depth    = req.neighbour_depth
+            )
+            result["domain_routed_to"] = req.domain
+        else:
+            # Auto-route to correct domain
+            result = graph_pipeline.generate_with_routing(
+                learning_objective = req.learning_objective,
+                difficulty         = req.difficulty,
+                question_type      = req.question_type,
+                top_k_nodes        = req.top_k_nodes,
+                neighbour_depth    = req.neighbour_depth
+            )
+
+        return result
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
