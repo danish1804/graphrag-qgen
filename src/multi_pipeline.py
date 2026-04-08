@@ -217,8 +217,8 @@ if __name__ == "__main__":
         result = pipeline.generate(**tc)
 
         print(f"\n  Question  : {result['question']}")
-        print(f"  Sources   : {result['sources_used']}")
-        print(f"  Score     : {result['avg_retrieval_score']}")
+        print(f"  Sources   : {result['metadata']['sources']}")
+        print(f"  Score     : {result['metadata']['avg_retrieval_score']}")
         print("-" * 60)
 
     print("\nMulti-pipeline test complete.")
