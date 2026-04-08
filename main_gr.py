@@ -84,6 +84,7 @@ async def lifespan(app: FastAPI):
             try:
                 graph_pipeline.load_domain_index(domain_name)
                 domains_loaded.append(domain_name)
+                print(f"[Server]   {domain_name} loaded.")
             except Exception as e:
                 print(f"[Server] {domain_name} graph failed: {e}")
         else:
@@ -530,7 +531,7 @@ async def graphrag_rebuild(domain_name: str):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
-        "main:app",
+        "main_gr:app",
         host     = "0.0.0.0",
         port     = 8000,
         reload   = False
