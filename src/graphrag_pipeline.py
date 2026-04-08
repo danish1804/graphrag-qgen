@@ -229,7 +229,9 @@ class GraphRAGPipeline:
             neighbour_depth    = neighbour_depth
         )
 
-        result["domain_routed_to"] = domain
+        # Move domain into metadata
+        result["metadata"]["domain"] = domain
+        result["metadata"]["domain_routed_to"] = domain
         return result
 
     # ----------------------------------------------------------
