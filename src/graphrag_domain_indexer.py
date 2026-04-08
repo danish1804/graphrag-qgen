@@ -208,6 +208,58 @@ def build_domain_profiles(embedder) -> dict:
           f"{list(profiles.keys())}")
     return profiles
 
+
+def route_by_embedding(
+        query:    str,
+        embedder,
+        profiles: dict = None
+) -> str:
+    """
+    Route a learning objective to the correct domain graph
+    using embedding cosine similarity.
+
+    More robust than keyword matching:
+    - Works for queries that don't contain exact keywords
+    - Handles paraphrased domain terminology
+    - Scales to new domains without keyword list maintenance
+
+    Falls back to keyword routing if profiles not available.
+    """
+    global _domain_profiles
+
+    # Use cached profiles if available
+    if profiles is None:
+        profiles = _domain_profiles
+
+    if profiles is None:
+        # Fallback to keyword routing
+        print("[Router] Profiles not built — "
+              "falling back to keyword routing")
+        return route_query_to_domain(query)
+
+    # Embed the query
+    query_emb = embedder.model.encode(
+        [query],
+        normalize_embeddings=True
+    )[0]
+
+    # Cosine similarity (vectors are normalised so dot product = cosine)
+    scores = {
+        domain: float(np.dot(query_emb, profile_emb))
+        for domain, profile_emb in profiles.items()
+    }
+
+    best_domain = max(scores, key=scores.get)
+    best_score  = scores[best_domain]
+
+    print(f"[Router] Embedding scores: "
+          f"{ {d: round(s, 3) for d, s in scores.items()} }")
+    print(f"[Router] Routed to: {best_domain} "
+          f"(score={best_score:.3f})")
+
+    return best_domain
+
+
 def build_domain_graph(
         domain_name: str,
         docs_dir:   str = TESTED_DIR,
