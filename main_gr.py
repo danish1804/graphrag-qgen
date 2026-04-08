@@ -94,6 +94,12 @@ async def lifespan(app: FastAPI):
     if domains_loaded:
         print(f"[Server] GraphRAG domains loaded: "
               f"{domains_loaded}")
+        
+    # Build domain profile embeddings for semantic routing
+    print("[Server] Building domain profile embeddings...")
+    from src.graphrag_domain_indexer import build_domain_profiles
+    build_domain_profiles(single_pipeline.embedder)
+    print("[Server] Semantic routing ready.")
 
     print("[Server] Server is live.")
     print("[Server] Endpoints ready:")
