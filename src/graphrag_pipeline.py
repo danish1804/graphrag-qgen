@@ -284,19 +284,38 @@ class GraphRAGPipeline:
             question_type      = question_type
         )
 
+        # Format relationships as readable strings
+        rel_strings = [
+            f"{r[0]} → {r[1]}"
+            for r in retrieval["relationships"][:5]
+        ]
+
+        # Clean key concepts — seed + neighbour nodes combined
+        all_concepts = (
+            [s["entity"] for s in retrieval["seed_nodes"]] +
+            [n["entity"] for n in retrieval["neighbour_nodes"][:3]]
+        )
+        # Remove obvious noise from display
+        clean_concepts = [
+            c for c in all_concepts
+            if len(c) > 3
+            and not any(char in c for char in ['©', '\n', '\r'])
+        ]
+
         return {
-            "question":          question,
-            "learning_objective": learning_objective,
-            "difficulty":        difficulty,
-            "question_type":     question_type,
-            "seed_nodes":        [s["entity"]
-                                  for s in retrieval["seed_nodes"]],
-            "neighbour_nodes":   [n["entity"]
-                                  for n in retrieval["neighbour_nodes"][:5]],
-            "relationships":     [(r[0], r[1])
-                                  for r in retrieval["relationships"][:5]],
-            "sources":           retrieval["sources"],
-            "chunks_used":       retrieval["chunks_used"]
+            "question":  question,
+            "metadata": {
+                "learning_objective":   learning_objective,
+                "difficulty":           difficulty,
+                "question_type":        question_type,
+                "domain":               getattr(
+                    self, "graph_name", "unknown"
+                ).replace("graphrag_", ""),
+                "sources":              retrieval["sources"],
+                "retrieval_method":     "GraphRAG",
+                "key_concepts":         clean_concepts,
+                "concept_relationships": rel_strings,
+            }
         }
 
 # ============================================================
