@@ -40,3 +40,72 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 single_pipeline = Pipeline()
 multi_pipeline  = MultiPipeline()
 graph_pipeline  = GraphRAGPipeline()
+
+
+# ── Startup / shutdown ────────────────────────────────────
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Load all models and indexes at startup."""
+
+    print("[Server] Starting up...")
+
+    # Load models once — shared across all pipelines
+    print("[Server] Loading embedding model and Qwen 2.5...")
+    single_pipeline.load_models()
+
+    # Share models — no double loading
+    multi_pipeline.embedder       = single_pipeline.embedder
+    multi_pipeline.model          = single_pipeline.model
+    multi_pipeline.tokenizer      = single_pipeline.tokenizer
+    multi_pipeline._models_loaded = True
+
+    graph_pipeline.embedder       = single_pipeline.embedder
+    graph_pipeline.model          = single_pipeline.model
+    graph_pipeline.tokenizer      = single_pipeline.tokenizer
+    graph_pipeline._models_loaded = True
+
+    print("[Server] Models shared across all pipelines.")
+
+    # Load combined standard RAG index
+    try:
+        multi_pipeline.load_index()
+        print("[Server] Combined standard RAG index loaded.")
+    except Exception as e:
+        print(f"[Server] Combined index not found: {e}")
+        print("[Server] Call POST /multi/rebuild to build it.")
+
+    # Load all domain GraphRAG indexes
+    print("[Server] Loading domain GraphRAG indexes...")
+    domains_loaded = []
+    for domain_name in DOMAIN_MAP:
+        graph_path = os.path.join(
+            INDEX_DIR, f"graphrag_{domain_name}_graph.pkl")
+        if os.path.exists(graph_path):
+            try:
+                graph_pipeline.load_domain_index(domain_name)
+                domains_loaded.append(domain_name)
+            except Exception as e:
+                print(f"[Server] {domain_name} graph failed: {e}")
+        else:
+            print(f"[Server] {domain_name} graph not found — "
+                  f"call POST /graphrag/rebuild/{domain_name}")
+
+    if domains_loaded:
+        print(f"[Server] GraphRAG domains loaded: "
+              f"{domains_loaded}")
+
+    print("[Server] Server is live.")
+    print("[Server] Endpoints ready:")
+    print("[Server]   GET  /health")
+    print("[Server]   POST /upload")
+    print("[Server]   POST /generate")
+    print("[Server]   GET  /multi/status")
+    print("[Server]   POST /multi/generate")
+    print("[Server]   POST /multi/rebuild")
+    print("[Server]   GET  /graphrag/status")
+    print("[Server]   POST /graphrag/upload")
+    print("[Server]   POST /graphrag/generate")
+
+    yield
+
+    print("[Server] Shutting down.")
