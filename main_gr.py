@@ -295,3 +295,29 @@ async def multi_status():
         "total_documents": len(docs),
         "documents":       sorted(docs)
     }
+
+@app.post("/multi/generate", tags=["Standard RAG — Multi Doc"])
+async def multi_generate(req: GenerateRequest):
+    """
+    Generate question from combined index across all 22 docs.
+    Auto-routes to most relevant documents.
+    """
+    validate_params(req.difficulty, req.question_type)
+
+    if multi_pipeline.index is None:
+        raise HTTPException(
+            status_code=400,
+            detail="Combined index not loaded. "
+                   "Call POST /multi/rebuild first."
+        )
+
+    try:
+        result = multi_pipeline.generate(
+            learning_objective = req.learning_objective,
+            difficulty         = req.difficulty,
+            question_type      = req.question_type,
+            top_k              = req.top_k
+        )
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
