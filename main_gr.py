@@ -485,3 +485,53 @@ async def graphrag_generate(req: GraphRAGGenerateRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/graphrag/rebuild/{domain_name}",
+          tags=["GraphRAG"])
+async def graphrag_rebuild(domain_name: str):
+    """
+    Rebuild the GraphRAG index for a specific domain.
+    Use after adding new documents to a domain.
+
+    domain_name must be one of:
+      deep_learning, database,
+      software_engineering, operating_systems
+    """
+    if domain_name not in VALID_DOMAINS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"domain_name must be one of {VALID_DOMAINS}"
+        )
+
+    try:
+        from src.graphrag_domain_indexer import build_domain_graph
+        summary = build_domain_graph(domain_name)
+
+        # Reload into pipeline
+        graph_pipeline.load_domain_index(domain_name)
+
+        return {
+            "status":       "ok",
+            "domain":       domain_name,
+            "graph_nodes":  summary["graph_nodes"],
+            "graph_edges":  summary["graph_edges"],
+            "files_loaded": summary["files_loaded"],
+            "message":      f"GraphRAG index rebuilt for "
+                            f"{domain_name}."
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================================
+# RUN
+# ============================================================
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        "main:app",
+        host     = "0.0.0.0",
+        port     = 8000,
+        reload   = False
+    )
