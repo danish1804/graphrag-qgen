@@ -3,12 +3,12 @@
 # GraphRAG Pipeline — connects graph retrieval to Qwen 2.5
 #
 # Difference from pipeline.py:
-#   pipeline.py         → flat chunk retrieval (standard RAG)
-#   graphrag_pipeline.py → graph-aware retrieval (GraphRAG)
+#   pipeline.py         -> flat chunk retrieval (standard RAG)
+#   graphrag_pipeline.py -> graph-aware retrieval (GraphRAG)
 #
 # Scope is set by what index you load:
-#   load_existing_index() → single document graph
-#   load_domain_index()   → domain-specific graph (multi-doc)
+#   load_existing_index() -> single document graph
+#   load_domain_index()   -> domain-specific graph (multi-doc)
 # ============================================================
 
 import os
@@ -245,7 +245,7 @@ class GraphRAGPipeline:
                  neighbour_depth: int = 1) -> dict:
         """
         Full GraphRAG pipeline:
-        objective → graph retrieval → enriched context → question
+        objective -> graph retrieval -> enriched context -> question
 
         Returns dict with question + graph metadata.
         """
@@ -288,7 +288,7 @@ class GraphRAGPipeline:
 
         # Format relationships as readable strings
         rel_strings = [
-            f"{r[0]} → {r[1]}"
+            f"{r[0]} -> {r[1]}"
             for r in retrieval["relationships"][:5]
         ]
 
