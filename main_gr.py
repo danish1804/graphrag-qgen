@@ -16,6 +16,7 @@ import sys
 import shutil
 from contextlib import asynccontextmanager
 from typing import Optional
+import argparse
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -40,6 +41,11 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 single_pipeline = Pipeline()
 multi_pipeline  = MultiPipeline()
 graph_pipeline  = GraphRAGPipeline()
+
+# ── Server mode ───────────────────────────────────────────
+# standard : loads standard RAG only (fast startup ~15s)
+# full      : loads standard RAG + all GraphRAG domains (~45s)
+SERVER_MODE = "full"  # overridden by --mode argument at startup
 
 
 # ── Startup / shutdown ────────────────────────────────────
