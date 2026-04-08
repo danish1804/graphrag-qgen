@@ -161,6 +161,10 @@ def is_valid_entity(text: str) -> bool:
         "way", "use", "note", "left", "right", "true", "false",
         "none", "same", "different", "new", "good", "large",
         "small", "high", "low", "next", "first", "last",
+        "addison-wesley", "wiley", "springer", "kluwer",
+        "pearson", "mcgraw", "elsevier", "cambridge",
+        "morgan kaufmann", "prentice hall", "mit press",
+        "academic publisher", "academic press",
     }
     if text in generic_words:
         return False
