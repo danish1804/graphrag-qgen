@@ -211,3 +211,39 @@ async def health():
             "current_index":     graph_pipeline.graph_name
         }
     }
+
+# ============================================================
+# STANDARD RAG — SINGLE DOCUMENT
+# ============================================================
+
+@app.post("/upload", tags=["Standard RAG — Single Doc"])
+async def upload_document(file: UploadFile = File(...)):
+    """
+    Upload a PDF or PPTX.
+    Chunks and indexes it for single-document RAG generation.
+    """
+    filename = file.filename
+    if not filename.lower().endswith((".pdf", ".pptx")):
+        raise HTTPException(
+            status_code=400,
+            detail="Only PDF and PPTX files supported."
+        )
+
+    save_path = os.path.join(UPLOAD_DIR, filename)
+    with open(save_path, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+
+    try:
+        result = single_pipeline.ingest(save_path)
+        return {
+            "status":       "ok",
+            "file_name":    result["file_name"],
+            "total_chunks": result["total_chunks"],
+            "index_name":   result["index_name"],
+            "message":      "Document indexed. "
+                            "Call POST /generate to generate questions."
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
