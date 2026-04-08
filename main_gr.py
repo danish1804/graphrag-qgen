@@ -321,3 +321,19 @@ async def multi_generate(req: GenerateRequest):
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.post("/multi/rebuild", tags=["Standard RAG — Multi Doc"])
+async def multi_rebuild():
+    """
+    Rebuild the combined FAISS index from all documents
+    in data/tested/. Run after adding new documents.
+    """
+    try:
+        multi_pipeline.rebuild_index()
+        return {
+            "status":       "ok",
+            "total_chunks": len(multi_pipeline.chunks),
+            "message":      "Combined index rebuilt successfully."
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
