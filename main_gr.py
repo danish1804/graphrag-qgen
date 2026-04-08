@@ -142,3 +142,22 @@ class GraphRAGGenerateRequest(BaseModel):
     top_k_nodes:    int = 3
     neighbour_depth: int = 1
     domain:         Optional[str] = None  # None = auto-route
+
+# ── Validation helpers ────────────────────────────────────
+VALID_DIFFICULTIES  = {"easy", "medium", "hard"}
+VALID_TYPES         = {"recall", "conceptual", "application"}
+VALID_DOMAINS       = set(DOMAIN_MAP.keys())
+
+def validate_params(difficulty: str, question_type: str):
+    if difficulty not in VALID_DIFFICULTIES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"difficulty must be one of "
+                   f"{VALID_DIFFICULTIES}"
+        )
+    if question_type not in VALID_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"question_type must be one of "
+                   f"{VALID_TYPES}"
+        )
