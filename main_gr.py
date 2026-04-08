@@ -337,3 +337,56 @@ async def multi_rebuild():
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+
+# ============================================================
+# GRAPHRAG ENDPOINTS
+# ============================================================
+
+@app.get("/graphrag/status", tags=["GraphRAG"])
+async def graphrag_status():
+    """
+    Show status of all domain GraphRAG indexes.
+    Includes node/edge counts for each domain.
+    """
+    import json
+
+    domain_stats = {}
+
+    for domain_name in DOMAIN_MAP:
+        meta_path = os.path.join(
+            INDEX_DIR,
+            f"graphrag_{domain_name}_meta.json")
+
+        if os.path.exists(meta_path):
+            with open(meta_path, "r") as f:
+                meta = json.load(f)
+            domain_stats[domain_name] = {
+                "available":    True,
+                "graph_nodes":  meta.get("total_nodes", 0),
+                "graph_edges":  meta.get("total_edges", 0),
+                "cross_source_edges": meta.get(
+                    "cross_source_edges", 0),
+                "total_chunks": meta.get("total_chunks", 0),
+                "documents":    meta.get("documents",
+                    DOMAIN_MAP[domain_name]["files"]),
+                "description":  DOMAIN_MAP[domain_name][
+                    "description"]
+            }
+        else:
+            domain_stats[domain_name] = {
+                "available":   False,
+                "description": DOMAIN_MAP[domain_name][
+                    "description"],
+                "message":     f"Run POST /graphrag/rebuild/"
+                               f"{domain_name} to build."
+            }
+
+    return {
+        "graphrag_available": any(
+            v["available"]
+            for v in domain_stats.values()
+        ),
+        "current_index": graph_pipeline.graph_name,
+        "domains":       domain_stats
+    }
