@@ -174,6 +174,39 @@ DOMAIN_MAP = {
 
 }
 
+# ── Domain profile embeddings (built once at startup) ─────
+_domain_profiles = None  # cached after first build
+
+def build_domain_profiles(embedder) -> dict:
+    """
+    Build one embedding per domain using domain description
+    + representative keywords as profile text.
+
+    Called once at server startup. Cached in _domain_profiles.
+    Much richer than document titles alone — uses the full
+    keyword vocabulary that defines each domain.
+    """
+    global _domain_profiles
+    profiles = {}
+
+    for domain_name, config in DOMAIN_MAP.items():
+        # Combine description + all keywords into profile text
+        keywords   = " ".join(config["keywords"])
+        desc       = config["description"]
+        files_text = " ".join(config["files"])
+
+        profile_text = f"{desc}. {keywords}. {files_text}"
+
+        embedding = embedder.model.encode(
+            [profile_text],
+            normalize_embeddings=True
+        )
+        profiles[domain_name] = embedding[0]
+
+    _domain_profiles = profiles
+    print(f"[Router] Domain profiles built for: "
+          f"{list(profiles.keys())}")
+    return profiles
 
 def build_domain_graph(
         domain_name: str,
