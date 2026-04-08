@@ -390,3 +390,43 @@ async def graphrag_status():
         "current_index": graph_pipeline.graph_name,
         "domains":       domain_stats
     }
+
+
+@app.post("/graphrag/upload", tags=["GraphRAG"])
+async def graphrag_upload(file: UploadFile = File(...)):
+    """
+    Upload a PDF or PPTX and build a GraphRAG index for it.
+    The domain is auto-detected from the filename and content.
+    The document is added to the appropriate domain graph.
+
+    Note: For full domain graph rebuilding use
+    POST /graphrag/rebuild/{domain_name}.
+    This endpoint builds a single-document GraphRAG index
+    for immediate use.
+    """
+    filename = file.filename
+    if not filename.lower().endswith((".pdf", ".pptx")):
+        raise HTTPException(
+            status_code=400,
+            detail="Only PDF and PPTX files supported."
+        )
+
+    save_path = os.path.join(UPLOAD_DIR, filename)
+    with open(save_path, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+
+    try:
+        result = graph_pipeline.ingest(save_path)
+        return {
+            "status":       "ok",
+            "file_name":    result["file_name"],
+            "graph_name":   result["graph_name"],
+            "graph_nodes":  result["graph_nodes"],
+            "graph_edges":  result["graph_edges"],
+            "chunks":       result["chunks"],
+            "message":      "GraphRAG index built. "
+                            "Call POST /graphrag/generate "
+                            "to generate questions."
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
