@@ -78,34 +78,29 @@ async def lifespan(app: FastAPI):
         print("[Server] Combined standard RAG index loaded.")
     except Exception as e:
         print(f"[Server] Combined index not found: {e}")
-        print("[Server] Call POST /multi/rebuild to build it.")
 
-    # Load all domain GraphRAG indexes
-    print("[Server] Loading domain GraphRAG indexes...")
-    domains_loaded = []
-    for domain_name in DOMAIN_MAP:
-        graph_path = os.path.join(
-            INDEX_DIR, f"graphrag_{domain_name}_graph.pkl")
-        if os.path.exists(graph_path):
+    # Load GraphRAG only in full mode
+    if SERVER_MODE == "full":
+        print("[Server] Loading domain GraphRAG indexes...")
+        domains_loaded = []
+        for domain_name in DOMAIN_MAP:
             try:
                 graph_pipeline.load_domain_index(domain_name)
                 domains_loaded.append(domain_name)
                 print(f"[Server]   {domain_name} loaded.")
             except Exception as e:
-                print(f"[Server] {domain_name} graph failed: {e}")
-        else:
-            print(f"[Server] {domain_name} graph not found — "
-                  f"call POST /graphrag/rebuild/{domain_name}")
+                print(f"[Server]   {domain_name} failed: {e}")
 
-    if domains_loaded:
-        print(f"[Server] GraphRAG domains loaded: "
-              f"{domains_loaded}")
-        
-    # Build domain profile embeddings for semantic routing
-    print("[Server] Building domain profile embeddings...")
-    from src.graphrag_domain_indexer import build_domain_profiles
-    build_domain_profiles(single_pipeline.embedder)
-    print("[Server] Semantic routing ready.")
+        print(f"[Server] GraphRAG domains loaded: {domains_loaded}")
+
+        # Build domain profile embeddings for semantic routing
+        print("[Server] Building domain profile embeddings...")
+        from src.graphrag_domain_indexer import build_domain_profiles
+        build_domain_profiles(single_pipeline.embedder)
+        print("[Server] Semantic routing ready.")
+    else:
+        print("[Server] Standard mode — GraphRAG skipped.")
+        print("[Server] /graphrag/* endpoints will return 503.")
 
     print("[Server] Server is live.")
     print("[Server] Endpoints ready:")
