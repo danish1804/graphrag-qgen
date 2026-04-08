@@ -161,3 +161,17 @@ def validate_params(difficulty: str, question_type: str):
             detail=f"question_type must be one of "
                    f"{VALID_TYPES}"
         )
+    
+# ============================================================
+# SYSTEM ENDPOINTS
+# ============================================================
+
+@app.get("/health", tags=["System"])
+async def health():
+    """
+    Server health check.
+    Shows status of all three pipelines.
+    """
+    # Standard RAG single doc
+    single_loaded = single_pipeline.index is not None
+    single_name   = getattr(single_pipeline, "index_name", None)
