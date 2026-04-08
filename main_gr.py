@@ -109,3 +109,21 @@ async def lifespan(app: FastAPI):
     yield
 
     print("[Server] Shutting down.")
+
+
+# ── FastAPI app ───────────────────────────────────────────
+app = FastAPI(
+    title       = "AI Exam Question Generator",
+    description = "GraphRAG-powered exam question generation "
+                  "for EdGenAI Technologies — P000233DS",
+    version     = "2.0.0",
+    lifespan    = lifespan
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins     = ["*"],
+    allow_credentials = True,
+    allow_methods     = ["*"],
+    allow_headers     = ["*"],
+)
