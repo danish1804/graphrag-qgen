@@ -205,6 +205,13 @@ def is_valid_entity(text: str) -> bool:
     if re.match(r'^\d+\.\d+\s+[a-z]', text):
         return False
     
+    # Reject words with spaces inserted mid-token
+    # Catches "becaus e", "your s ystem", "sys- tem"
+    # Pattern: short word fragment + space + short fragment
+    if re.search(r'\b\w{1,4}\s+\w{1,3}\b', text) and len(text.split()) == 2:
+        if all(len(w) <= 4 for w in text.split()):
+            return False
+    
     return True
     
 
