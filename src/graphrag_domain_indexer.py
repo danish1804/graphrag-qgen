@@ -106,8 +106,13 @@ DOMAIN_MAP = {
             "interface", "component", "deployment", "maintenance",
             "build", "version control", "safety", "process",
             "object oriented", "object-oriented", "class",
-            "unit test", "integration test", "software quality",
-            "software safety", "hazard", "reliability"
+            "gang of four", "design patterns", "factory",
+            "singleton", "observer", "mvc", "solid",
+            "unit test", "integration test", "test driven",
+            "continuous integration", "devops", "git",
+            "coupling", "cohesion", "modular", "reuse",
+            "software development", "software process",
+            "software quality", "software safety",
         ]
     },
     "operating_systems": {
