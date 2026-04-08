@@ -127,3 +127,18 @@ app.add_middleware(
     allow_methods     = ["*"],
     allow_headers     = ["*"],
 )
+
+# ── Request / Response models ─────────────────────────────
+class GenerateRequest(BaseModel):
+    learning_objective: str
+    difficulty:    str = "medium"
+    question_type: str = "conceptual"
+    top_k:         int = 3
+
+class GraphRAGGenerateRequest(BaseModel):
+    learning_objective: str
+    difficulty:     str = "medium"
+    question_type:  str = "conceptual"
+    top_k_nodes:    int = 3
+    neighbour_depth: int = 1
+    domain:         Optional[str] = None  # None = auto-route
