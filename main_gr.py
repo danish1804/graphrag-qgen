@@ -24,13 +24,13 @@ from pydantic import BaseModel
 
 sys.path.append(os.path.dirname(__file__))
 
-from src.pipeline              import Pipeline
-from src.multi_pipeline        import MultiPipeline
-from src.graphrag_pipeline     import GraphRAGPipeline
-from src.graphrag_domain_indexer import (
+from standard_rag.pipeline              import Pipeline
+from standard_rag.multi_pipeline        import MultiPipeline
+from graphrag.graphrag_pipeline     import GraphRAGPipeline
+from graphrag.graphrag_domain_indexer import (
     DOMAIN_MAP, route_query_to_domain)
 
-BASE_DIR   = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen"
+BASE_DIR   = os.getenv( "GRAPHRAG_BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
 UPLOAD_DIR = os.path.join(BASE_DIR, "data", "uploads")
 TESTED_DIR = os.path.join(BASE_DIR, "data", "tested")
 INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
@@ -95,7 +95,7 @@ async def lifespan(app: FastAPI):
 
         # Build domain profile embeddings for semantic routing
         print("[Server] Building domain profile embeddings...")
-        from src.graphrag_domain_indexer import build_domain_profiles
+        from graphrag.graphrag_domain_indexer import build_domain_profiles
         build_domain_profiles(single_pipeline.embedder)
         print("[Server] Semantic routing ready.")
     else:
@@ -518,7 +518,7 @@ async def graphrag_rebuild(domain_name: str):
         )
 
     try:
-        from src.graphrag_domain_indexer import build_domain_graph
+        from graphrag.graphrag_domain_indexer import build_domain_graph
         summary = build_domain_graph(domain_name)
 
         # Reload into pipeline
