@@ -45,7 +45,7 @@ DOMAIN_MAP = {
             "source_62.pdf",
 
         ],
-        "description": "Deep Learning — CNNs, pooling, backprop",
+        "description": "Deep Learning - CNNs, pooling, backprop",
         "keywords": [
             "cnn", "convolutional", "neural network", "pooling",
             "backpropagation", "gradient", "deep learning",
@@ -67,7 +67,7 @@ DOMAIN_MAP = {
             "source_36.pdf",
             "source_49.pdf",
         ],
-        "description": "Database Systems — SQL, transactions, indexing, design",
+        "description": "Database Systems - SQL, transactions, indexing, design",
         "keywords": [
             "sql", "database", "query", "transaction", "relation",
             "table", "index", "schema", "normalisation", "join",
@@ -96,7 +96,7 @@ DOMAIN_MAP = {
             "source_48.pdf",
 
         ],
-        "description": "Software Engineering — processes, patterns, testing",
+        "description": "Software Engineering - processes, patterns, testing",
         "keywords": [
             "software", "agile", "design pattern", "testing",
             "requirement", "architecture", "scrum", "sprint",
@@ -129,7 +129,7 @@ DOMAIN_MAP = {
             "source_42.pdf",   
             "source_43.pdf", 
         ],
-        "description": "Operating Systems — processes, memory, scheduling",
+        "description": "Operating Systems - processes, memory, scheduling",
         "keywords": [
             "process", "thread", "scheduler", "memory",
             "virtual memory", "page", "segment", "kernel",
@@ -158,7 +158,7 @@ DOMAIN_MAP = {
             "source_38.pdf",   
             "source_44.pdf",   
         ],
-        "description": "Computer Architecture — CPU, memory hierarchy, instruction sets, pipelining",
+        "description": "Computer Architecture - CPU, memory hierarchy, instruction sets, pipelining",
         "keywords": [
             "cpu", "instruction set", "pipeline", "cache",
             "memory hierarchy", "register", "alu", "risc", "cisc",
@@ -183,7 +183,7 @@ def build_domain_profiles(embedder) -> dict:
     + representative keywords as profile text.
 
     Called once at server startup. Cached in _domain_profiles.
-    Much richer than document titles alone — uses the full
+    Much richer than document titles alone - uses the full
     keyword vocabulary that defines each domain.
     """
     global _domain_profiles
@@ -233,7 +233,7 @@ def route_by_embedding(
 
     if profiles is None:
         # Fallback to keyword routing
-        print("[Router] Profiles not built — "
+        print("[Router] Profiles not built - "
               "falling back to keyword routing")
         return route_query_to_domain(query)
 
@@ -296,7 +296,7 @@ def build_domain_graph(
     for fname in files:
         fpath = os.path.join(docs_dir, fname)
         if not os.path.exists(fpath):
-            print(f"  WARNING: {fname} not found — skipping")
+            print(f"  WARNING: {fname} not found - skipping")
             failed.append(fname)
             continue
 
@@ -359,7 +359,7 @@ def route_query_to_domain(learning_objective: str) -> str:
     """
     Route a learning objective to the correct domain graph.
 
-    Uses keyword matching — scores each domain by how many
+    Uses keyword matching - scores each domain by how many
     of its keywords appear in the objective.
 
     Returns domain name with highest score.
@@ -395,7 +395,7 @@ def load_domain_graph(
 
 
 # ============================================================
-# TEST — python src/graphrag_domain_indexer.py
+# TEST - python src/graphrag_domain_indexer.py
 # ============================================================
 if __name__ == "__main__":
 
