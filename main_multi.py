@@ -24,8 +24,8 @@ from pydantic import BaseModel
 import sys
 sys.path.append(os.path.dirname(__file__))
 
-from src.pipeline       import Pipeline,      DATA_DIR
-from src.multi_pipeline import MultiPipeline, INDEX_DIR, INDEX_NAME
+from standard_rag.pipeline       import Pipeline,      DATA_DIR
+from standard_rag.multi_pipeline import MultiPipeline, INDEX_DIR, INDEX_NAME
 
 
 # ── Global pipeline instances ─────────────────────────────
