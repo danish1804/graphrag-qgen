@@ -165,11 +165,14 @@ def retrieve_graph_context(
             if key not in seen_chunks:
                 seen_chunks.add(key)
                 chunk_pool.append({
-                    "text":   chunk,
-                    "entity": seed["entity"],
-                    "type":   "seed",
-                    "score":  seed["score"]
-                })
+                "text":   chunk,
+                "entity": seed["entity"],
+                "type":   "seed",
+                "score":  seed["score"],
+                "source": list(graph.nodes.get(
+                    seed["entity"], {}
+                ).get("sources", ["unknown"]))[0]  # ← add this
+            })
 
     # Neighbour chunks second
     for nb in neighbour_nodes:
@@ -178,11 +181,15 @@ def retrieve_graph_context(
             key = chunk[:80].strip()
             if key not in seen_chunks:
                 seen_chunks.add(key)
+                # And for neighbour chunks:
                 chunk_pool.append({
                     "text":    chunk,
                     "entity":  nb["entity"],
                     "type":    "neighbour",
-                    "score":   nb["weight"] / 10.0
+                    "score":   nb["weight"] / 10.0,
+                    "source":  list(graph.nodes.get(
+                        nb["entity"], {}
+                    ).get("sources", ["unknown"]))[0]  # ← add this
                 })
 
     # Collect sources

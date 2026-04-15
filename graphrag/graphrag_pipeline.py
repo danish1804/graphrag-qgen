@@ -311,15 +311,15 @@ class GraphRAGPipeline:
         ]
 
         # Format chunks for display — first 200 chars each
-        retrieved_chunks = [
-            {
+        # Replace with:
+        retrieved_chunks = {
+            f"chunk_{i+1}": {
                 "text":   item["text"][:200].strip(),
-                "source": retrieval["sources"][0]
-                        if retrieval["sources"] else "unknown",
+                "source": item.get("source", "unknown"),
                 "type":   item.get("type", "seed")
             }
-            for item in retrieval.get("chunk_pool", [])
-        ]
+            for i, item in enumerate(retrieval.get("chunk_pool", []))
+        }
 
         return {
             "question":  question,
