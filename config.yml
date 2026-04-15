@@ -92,3 +92,17 @@ graph:
   max_doc_freq: 0.40       # Entity in >40% chunks = noise
   min_entity_freq: 2       # Entity must appear ≥2 times
   min_edge_weight: 2       # Edge must have weight ≥2
+
+
+# ── Model Configuration ────────────────────────────────────
+model:
+  llm_name: "Qwen/Qwen2.5-7B-Instruct"
+  embedding_model: "BAAI/bge-large-en-v1.5"
+  max_new_tokens: 512
+  temperature: 0.7
+
+# ── API Server ─────────────────────────────────────────────
+server:
+  host: "0.0.0.0"
+  port: 8000
+  mode: "full"             # standard | full
