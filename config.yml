@@ -24,3 +24,34 @@ retrieval:
   top_k_nodes: 3
   neighbour_depth: 1
   max_context_chunks: 6
+
+# ── Difficulty to Chunks Mapping ──────────────────────────
+# More chunks = richer context = more complex question
+difficulty:
+  easy:
+    max_chunks: 3
+    top_k_nodes: 2
+    neighbour_depth: 1
+    description: "Basic recall and understanding"
+  medium:
+    max_chunks: 5
+    top_k_nodes: 3
+    neighbour_depth: 1
+    description: "Conceptual understanding and explanation"
+  hard:
+    max_chunks: 7
+    top_k_nodes: 5
+    neighbour_depth: 2
+    description: "Application, analysis and evaluation"
+
+# ── Question Types ─────────────────────────────────────────
+question_types:
+  recall:
+    description: "Define, list, state, identify, name"
+    bloom_level: 1
+  conceptual:
+    description: "Explain, describe, compare, discuss"
+    bloom_level: 2
+  application:
+    description: "Design, analyse, evaluate, derive, apply"
+    bloom_level: 3
