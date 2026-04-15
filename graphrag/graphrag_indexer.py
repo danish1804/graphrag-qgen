@@ -36,6 +36,7 @@ import spacy
 import networkx as nx
 from tqdm import tqdm
 from collections import defaultdict
+from utils.config import cfg
 
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
@@ -48,13 +49,13 @@ GRAPH_NAME = "graphrag"
 
 # ── Tuning parameters ─────────────────────────────────────
 # Entity appears in more than this fraction of chunks → noise
-MAX_DOC_FREQ     = 0.40
+MAX_DOC_FREQ    = cfg["graph"]["max_doc_freq"]
 
 # Entity must appear in at least this many chunks → signal
-MIN_ENTITY_FREQ  = 2
+MIN_ENTITY_FREQ = cfg["graph"]["min_entity_freq"]
 
 # Two entities must co-occur in at least this many chunks
-MIN_EDGE_WEIGHT  = 2
+MIN_EDGE_WEIGHT = cfg["graph"]["min_edge_weight"]
 
 # Entity text length limits
 MIN_ENTITY_LEN   = 3
