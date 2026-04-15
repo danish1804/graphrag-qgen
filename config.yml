@@ -14,19 +14,22 @@
 
 # ── Document Processing ────────────────────────────────────
 document:
-  chunk_size: 500
-  chunk_overlap: 50
-  min_chunk_chars: 200
+  chunk_size: 500          # Characters per chunk
+  chunk_overlap: 50        # Overlap between chunks
+  min_chunk_chars: 200     # Minimum chunk length to keep
 
 # ── Retrieval Parameters ───────────────────────────────────
 retrieval:
-  top_k_results: 3
-  top_k_nodes: 3
-  neighbour_depth: 1
-  max_context_chunks: 6
+  top_k_results: 3         # Standard RAG — top K chunks
+  top_k_nodes: 3           # GraphRAG — top K seed nodes
+  neighbour_depth: 1       # GraphRAG — graph traversal depth
+  max_context_chunks: 6    # Max chunks passed to LLM prompt
 
 # ── Difficulty to Chunks Mapping ──────────────────────────
-# More chunks = richer context = more complex question
+# Map the number of chunks to be extracted from
+#         GraphRAG to the complexity of the question.
+#         More concepts drawn = higher complexity.
+# Channel partner can modify these mappings per client.
 difficulty:
   easy:
     max_chunks: 3
@@ -45,6 +48,8 @@ difficulty:
     description: "Application, analysis and evaluation"
 
 # ── Question Types ─────────────────────────────────────────
+# Channel partner can add/remove question types per client.
+
 question_types:
   recall:
     description: "Define, list, state, identify, name"
@@ -57,25 +62,33 @@ question_types:
     bloom_level: 3
 
 # ── Domain Configuration ───────────────────────────────────
+# Channel partner can add new domains or disable existing ones
+# by setting enabled: false
 domains:
   deep_learning:
     enabled: true
     description: "Deep Learning — CNNs, pooling, backprop"
+    rebuild_command: "python graphrag/graphrag_domain_indexer.py --domain deep_learning"
   database:
     enabled: true
     description: "Database Systems — SQL, transactions, indexing"
+    rebuild_command: "python graphrag/graphrag_domain_indexer.py --domain database"
   software_engineering:
     enabled: true
     description: "Software Engineering — processes, patterns, testing"
+    rebuild_command: "python graphrag/graphrag_domain_indexer.py --domain software_engineering"
   operating_systems:
     enabled: true
     description: "Operating Systems — processes, memory, scheduling"
+    rebuild_command: "python graphrag/graphrag_domain_indexer.py --domain operating_systems"
   computer_architecture:
     enabled: true
     description: "Computer Architecture — CPU, memory hierarchy, pipelines"
+    rebuild_command: "python graphrag/graphrag_domain_indexer.py --domain computer_architecture"
 
-# ── Graph Parameters ───────────────────────────────────────
+
+# ── Entity Filtering (GraphRAG) ────────────────────────────
 graph:
-  max_doc_freq: 0.40
-  min_entity_freq: 2
-  min_edge_weight: 2
+  max_doc_freq: 0.40       # Entity in >40% chunks = noise
+  min_entity_freq: 2       # Entity must appear ≥2 times
+  min_edge_weight: 2       # Edge must have weight ≥2
