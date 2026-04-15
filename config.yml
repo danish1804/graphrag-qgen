@@ -1,0 +1,26 @@
+# ============================================================
+# config.yml
+# P000233DS — AI-Powered Automated Assessment System
+# EdGenAI Technologies
+#
+# All system parameters are defined here.
+# No values should be hardcoded in source files.
+#
+# User types:
+#   Channel partner: Modify difficulty mappings, domains,
+#                    question types per client requirement
+#   Developer:       Modify retrieval and model parameters
+# ============================================================
+
+# ── Document Processing ────────────────────────────────────
+document:
+  chunk_size: 500
+  chunk_overlap: 50
+  min_chunk_chars: 200
+
+# ── Retrieval Parameters ───────────────────────────────────
+retrieval:
+  top_k_results: 3
+  top_k_nodes: 3
+  neighbour_depth: 1
+  max_context_chunks: 6
