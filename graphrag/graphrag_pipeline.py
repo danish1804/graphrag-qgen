@@ -273,7 +273,7 @@ class GraphRAGPipeline:
             embedder        = self.embedder,
             top_k_nodes     = top_k_nodes,
             neighbour_depth = neighbour_depth,
-            max_context_chunks = 6
+            max_context_chunks = max_chunks
         )
 
         if not retrieval["context"]:
