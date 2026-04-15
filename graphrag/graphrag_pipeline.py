@@ -21,6 +21,7 @@ from graphrag.graphrag_indexer import (build_graphrag_index,
 from graphrag.graphrag_retriever import retrieve_graph_context
 from utils.embedder          import Embedder
 from utils.generator         import load_model, generate_question
+from utils.config import cfg
 
 
 BASE_DIR   = os.getenv( "GRAPHRAG_BASE_DIR", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -258,6 +259,11 @@ class GraphRAGPipeline:
         if not self._models_loaded:
             raise RuntimeError("Call load_models() first.")
 
+        # Get difficulty-specific parameters from config
+        diff_cfg      = cfg["difficulty"][difficulty]
+        max_chunks    = diff_cfg["max_chunks"]
+        top_k_nodes   = diff_cfg["top_k_nodes"]
+        neighbour_depth = diff_cfg["neighbour_depth"]
         # Graph-aware retrieval
         retrieval = retrieve_graph_context(
             query           = learning_objective,
