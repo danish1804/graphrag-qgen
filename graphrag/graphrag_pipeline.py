@@ -20,7 +20,7 @@ from graphrag.graphrag_indexer import (build_graphrag_index,
                                    load_graphrag_index)
 from graphrag.graphrag_retriever import retrieve_graph_context
 from utils.embedder          import Embedder
-from utils.generator         import load_model, generate_question
+from utils.generator         import load_model, generate_question, generate_answer
 from utils.config import cfg
 
 
@@ -292,6 +292,15 @@ class GraphRAGPipeline:
             question_type      = question_type
         )
 
+        # Generate sample answer using same context
+        sample_answer = generate_answer(
+            context    = retrieval["context"],
+            question   = question,
+            model      = self.model,
+            tokenizer  = self.tokenizer,
+            difficulty = difficulty
+        )
+
         # Format relationships as readable strings
         rel_strings = [
             f"{r[0]} -> {r[1]}"
@@ -335,6 +344,7 @@ class GraphRAGPipeline:
                 "key_concepts":         clean_concepts,
                 "concept_relationships": rel_strings,
                 "retrieved_chunks":      retrieved_chunks,
+                "sample_answer":         sample_answer,
             }
         }
 

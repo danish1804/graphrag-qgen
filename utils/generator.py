@@ -207,9 +207,9 @@ if __name__ == "__main__":
     import sys
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
-    from src.document_loader import load_and_chunk
-    from src.embedder import (build_index, load_index,
-                               search, Embedder)
+    from utils.document_loader import load_and_chunk
+    from utils.embedder import (build_index, load_index,
+                                 search, Embedder)
 
     print("=" * 50)
     print("GENERATOR TEST")
