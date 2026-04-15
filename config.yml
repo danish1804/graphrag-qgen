@@ -55,3 +55,27 @@ question_types:
   application:
     description: "Design, analyse, evaluate, derive, apply"
     bloom_level: 3
+
+# ── Domain Configuration ───────────────────────────────────
+domains:
+  deep_learning:
+    enabled: true
+    description: "Deep Learning — CNNs, pooling, backprop"
+  database:
+    enabled: true
+    description: "Database Systems — SQL, transactions, indexing"
+  software_engineering:
+    enabled: true
+    description: "Software Engineering — processes, patterns, testing"
+  operating_systems:
+    enabled: true
+    description: "Operating Systems — processes, memory, scheduling"
+  computer_architecture:
+    enabled: true
+    description: "Computer Architecture — CPU, memory hierarchy, pipelines"
+
+# ── Graph Parameters ───────────────────────────────────────
+graph:
+  max_doc_freq: 0.40
+  min_entity_freq: 2
+  min_edge_weight: 2
