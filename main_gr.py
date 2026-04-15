@@ -21,6 +21,7 @@ import argparse
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from utils.config import cfg
 
 sys.path.append(os.path.dirname(__file__))
 
@@ -154,7 +155,13 @@ class GraphRAGGenerateRequest(BaseModel):
 # ── Validation helpers ────────────────────────────────────
 VALID_DIFFICULTIES  = {"easy", "medium", "hard"}
 VALID_TYPES         = {"recall", "conceptual", "application"}
-VALID_DOMAINS       = set(DOMAIN_MAP.keys())
+
+
+# Replace hardcoded VALID_DOMAINS with config-driven version
+VALID_DOMAINS = set(
+    domain for domain, settings in cfg["domains"].items()
+    if settings["enabled"]
+)
 
 def validate_params(difficulty: str, question_type: str):
     if difficulty not in VALID_DIFFICULTIES:
