@@ -10,6 +10,7 @@ from typing import List, Dict
 from pypdf import PdfReader
 from pptx import Presentation
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from utils.config import cfg
 
 
 def load_pdf(file_path: str) -> str:
@@ -65,8 +66,8 @@ def chunk_text(text: str, chunk_size: int = 500,
     chunks = [c.strip() for c in chunks if len(c.strip()) > 50]
     return chunks
 
-def load_and_chunk(file_path: str, chunk_size: int = 500,
-                   chunk_overlap: int = 50) -> Dict:
+def load_and_chunk(file_path: str, chunk_size: int = None,
+                   chunk_overlap: int = None) -> Dict:
     """
     Full pipeline: load a document and return chunks with metadata.
 
@@ -79,6 +80,8 @@ def load_and_chunk(file_path: str, chunk_size: int = 500,
             "chunks": List[str]
         }
     """
+    chunk_size    = cfg["document"]["chunk_size"]
+    chunk_overlap = cfg["document"]["chunk_overlap"]
     path = Path(file_path)
     print(f"\nProcessing: {path.name}")
 

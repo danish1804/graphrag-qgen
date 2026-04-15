@@ -242,8 +242,8 @@ class GraphRAGPipeline:
                  learning_objective: str,
                  difficulty:   str = "medium",
                  question_type: str = "conceptual",
-                 top_k_nodes:  int = 3,
-                 neighbour_depth: int = 1) -> dict:
+                 top_k_nodes:  int = None,
+                 neighbour_depth: int = None) -> dict:
         """
         Full GraphRAG pipeline:
         objective -> graph retrieval -> enriched context -> question
