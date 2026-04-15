@@ -236,7 +236,8 @@ def retrieve_graph_context(
         "neighbour_nodes":  neighbour_nodes,
         "relationships":    relationships,
         "sources":          list(sources),
-        "chunks_used":      len(chunk_pool)
+        "chunks_used":      len(chunk_pool),
+        "chunk_pool":       chunk_pool     # for retrieving the chunks used to generate the question (for testing/debugging)
     }
 
 

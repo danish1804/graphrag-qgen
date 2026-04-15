@@ -310,6 +310,17 @@ class GraphRAGPipeline:
             and not any(char in c for char in ['©', '\n', '\r'])
         ]
 
+        # Format chunks for display — first 200 chars each
+        retrieved_chunks = [
+            {
+                "text":   item["text"][:200].strip(),
+                "source": retrieval["sources"][0]
+                        if retrieval["sources"] else "unknown",
+                "type":   item.get("type", "seed")
+            }
+            for item in retrieval.get("chunk_pool", [])
+        ]
+
         return {
             "question":  question,
             "metadata": {
@@ -323,6 +334,7 @@ class GraphRAGPipeline:
                 "retrieval_method":     "GraphRAG",
                 "key_concepts":         clean_concepts,
                 "concept_relationships": rel_strings,
+                "retrieved_chunks":      retrieved_chunks,
             }
         }
 
