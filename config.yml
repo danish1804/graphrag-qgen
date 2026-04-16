@@ -35,16 +35,19 @@ difficulty:
     max_chunks: 3
     top_k_nodes: 2
     neighbour_depth: 1
+    seed_ratio: 0.80     # 80% seed, 20% neighbour
     description: "Basic recall and understanding"
   medium:
     max_chunks: 5
     top_k_nodes: 3
     neighbour_depth: 1
+    seed_ratio: 0.60     # 60% seed, 40% neighbour
     description: "Conceptual understanding and explanation"
   hard:
     max_chunks: 7
     top_k_nodes: 5
     neighbour_depth: 2
+    seed_ratio: 0.40     # 40% seed, 60% neighbour
     description: "Application, analysis and evaluation"
 
 # ── Question Types ─────────────────────────────────────────
