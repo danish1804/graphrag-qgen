@@ -10,7 +10,12 @@ from typing import List, Dict
 from pypdf import PdfReader
 from pptx import Presentation
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from config import cfg
+
+# With this try/except that handles both cases:
+try:
+    from utils.config import cfg      # when imported by main_gr.py
+except ImportError:
+    from config import cfg            # when run directly
 
 
 def load_pdf(file_path: str) -> str:
