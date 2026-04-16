@@ -111,14 +111,6 @@ graph:
     description: "Controls node quality — lower max_doc_freq
                   = stricter noise filtering"
 
-graph:
-  # Alpha parameters (node creation)
-  alpha:
-    max_doc_freq: 0.40      # Remove entities in >40% of chunks
-    min_entity_freq: 2      # Entity must appear at least twice
-    description: "Controls node quality — lower max_doc_freq
-                  = stricter noise filtering"
-
   # Beta parameters (edge creation)
   beta:
     min_edge_weight: 2      # Minimum co-occurrence to create edge
