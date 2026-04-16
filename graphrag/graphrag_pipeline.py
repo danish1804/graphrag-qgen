@@ -45,15 +45,15 @@ class GraphRAGPipeline:
     # STAGE 1 — Load models (call once at startup)
     # ----------------------------------------------------------
     def load_models(self):
-        """Load embedding model and Qwen 2.5 into memory."""
+        """Load embedding model and LLM... into memory."""
         if self._models_loaded:
             print("Models already loaded.")
             return
 
-        print("\n[GraphRAGPipeline] Loading embedding model...")
+        print(f"\n[GraphRAGPipeline] Loading embedding model {cfg['model']['embedding_model']}...")
         self.embedder = Embedder()
 
-        print("\n[GraphRAGPipeline] Loading Qwen 2.5 7B...")
+        print(f"\n[GraphRAGPipeline] Loading {cfg['model']['llm_name']}...")
         self.model, self.tokenizer = load_model()
 
         self._models_loaded = True

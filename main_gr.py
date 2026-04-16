@@ -57,7 +57,7 @@ async def lifespan(app: FastAPI):
     print("[Server] Starting up...")
 
     # Load models once — shared across all pipelines
-    print("[Server] Loading embedding model and Qwen 2.5...")
+    print(f"[Server] Loading embedding model and {cfg['model']['llm_name']}...")
     single_pipeline.load_models()
 
     # Share models — no double loading
