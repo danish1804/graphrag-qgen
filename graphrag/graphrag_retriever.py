@@ -37,7 +37,8 @@ def retrieve_graph_context(
         embedder: Embedder,
         top_k_nodes: int = 3,
         neighbour_depth: int = 1,
-        max_context_chunks: int = 6
+        max_context_chunks: int = 6,
+        seed_ratio: float = 0.6
 ) -> dict:
     """
     GraphRAG retrieval — find seed nodes then traverse graph.
@@ -198,14 +199,30 @@ def retrieve_graph_context(
         for src in node_data.get("sources", []):
             sources.add(src)
 
-    # Add after graph traversal step — after neighbour_nodes is built:
-    print(f"[Retriever] Seed nodes: {[s['entity'] for s in seed_nodes]}")
-    print(f"[Retriever] Neighbour nodes: {[n['entity'] for n in neighbour_nodes[:10]]}")
-    print(f"[Retriever] Chunk pool size before limit: {len(chunk_pool)}")
-    print(f"[Retriever] Seed chunks: {sum(1 for c in chunk_pool if c['type']=='seed')}")
-    print(f"[Retriever] Neighbour chunks: {sum(1 for c in chunk_pool if c['type']=='neighbour')}")
-    # Limit chunks
-    chunk_pool = chunk_pool[:max_context_chunks]
+    # Apply seed ratio from config to limit how many chunks come from seed vs neighbour nodes
+    # Seed chunks are directly relevant to query
+    # Neighbour chunks are related concepts via graph edges
+    seed_chunks      = [c for c in chunk_pool
+                        if c.get("type") == "seed"]
+    neighbour_chunks = [c for c in chunk_pool
+                        if c.get("type") == "neighbour"]
+
+    # Calculate slot allocation from config seed_ratio
+    seed_limit      = max(1, round(max_context_chunks * seed_ratio))
+    neighbour_limit = max_context_chunks - seed_limit
+
+    print(f"[Retriever] Chunk allocation: "
+        f"{seed_limit} seed + {neighbour_limit} neighbour "
+        f"(ratio={seed_ratio}, max={max_context_chunks})")
+
+    chunk_pool = (
+        seed_chunks[:seed_limit] +
+        neighbour_chunks[:neighbour_limit]
+    )
+
+    print(f"[Retriever] Final pool: "
+        f"{len([c for c in chunk_pool if c.get('type')=='seed'])} seed, "
+        f"{len([c for c in chunk_pool if c.get('type')=='neighbour'])} neighbour")
 
     # Step 5: Assemble context
     context_parts = []
