@@ -261,6 +261,7 @@ class GraphRAGPipeline:
 
         # Get difficulty-specific parameters from config
         diff_cfg      = cfg["difficulty"][difficulty]
+        seed_ratio      = diff_cfg.get("seed_ratio", 0.6)
         max_chunks    = diff_cfg["max_chunks"]
         top_k_nodes   = diff_cfg["top_k_nodes"]
         neighbour_depth = diff_cfg["neighbour_depth"]
@@ -273,7 +274,8 @@ class GraphRAGPipeline:
             embedder        = self.embedder,
             top_k_nodes     = top_k_nodes,
             neighbour_depth = neighbour_depth,
-            max_context_chunks = max_chunks
+            max_context_chunks = max_chunks,
+            seed_ratio = seed_ratio
         )
 
         if not retrieval["context"]:
