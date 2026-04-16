@@ -4,21 +4,26 @@
 # from retrieved context
 # ============================================================
 
+from dataclasses_json import cfg
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 import os
 import sys
+from config import cfg
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 
-MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
+
+MODEL_NAME     = cfg["model"]["llm_name"]
+MAX_NEW_TOKENS = cfg["model"]["max_new_tokens"]
+TEMPERATURE    = cfg["model"]["temperature"]
 BASE_DIR = os.getenv(
     "GRAPHRAG_BASE_DIR",
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 )
 
 def load_model():
-    """Load Qwen 2.5 7B in 4-bit quantisation."""
+    """Load Qwen 2.5 in 4-bit quantisation."""
     print(f"Loading model: {MODEL_NAME}")
     print("This will take 2-3 minutes and download ~4GB on first run...")
 
