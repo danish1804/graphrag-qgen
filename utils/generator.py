@@ -81,7 +81,10 @@ Rules:
 - Return ONLY the question - no preamble, no explanation, no answer
 - The question should be clear and unambiguous
 - Do NOT generate multiple choice questions
-- Do NOT generate A) B) C) D) options"""
+- Do NOT generate A) B) C) D) options
+- Do NOT reference 'the context', 'the passage', or 'as described above'
+- The question must be standalone and self-contained
+- Write as if the student has studied the topic, not read this specific text"""
 
     user_prompt = f"""Context from course material:
 {context}
@@ -174,8 +177,9 @@ Sample Answer:"""
             "role": "system",
             "content": (
                 "You are an expert university educator. "
-                "Generate clear, accurate sample answers "
-                "for exam questions based on provided context."
+                "Generate clear, accurate sample answers. "
+                "Do not reference 'the context' or 'as provided'. "  # ← add
+                "Write as if answering from knowledge directly."      # ← add
             )
         },
         {
