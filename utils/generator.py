@@ -9,7 +9,13 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 import os
 import sys
-from config import cfg
+
+# With this try/except that handles both cases:
+try:
+    from utils.config import cfg      # when imported by main_gr.py
+except ImportError:
+    from config import cfg            # when run directly
+
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 
