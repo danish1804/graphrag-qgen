@@ -49,13 +49,13 @@ GRAPH_NAME = "graphrag"
 
 # Tuning parameters
 # Entity appears in more than this fraction of chunks → noise
-MAX_DOC_FREQ    = cfg["graph"]["max_doc_freq"]
+MAX_DOC_FREQ    = cfg["graph"]["alpha"]["max_doc_freq"]
 
 # Entity must appear in at least this many chunks → signal
-MIN_ENTITY_FREQ = cfg["graph"]["min_entity_freq"]
+MIN_ENTITY_FREQ = cfg["graph"]["alpha"]["min_entity_freq"]
 
 # Two entities must co-occur in at least this many chunks
-MIN_EDGE_WEIGHT = cfg["graph"]["min_edge_weight"]
+MIN_EDGE_WEIGHT = cfg["graph"]["beta"]["min_edge_weight"]
 
 # Entity text length limits
 MIN_ENTITY_LEN   = 3
