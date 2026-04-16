@@ -21,12 +21,12 @@ from graphrag.graphrag_indexer import load_graphrag_index
 from utils.document_loader  import load_and_chunk
 import numpy as np
 
-# ── Paths ─────────────────────────────────────────────────
+# Paths 
 BASE_DIR   = os.getenv( "GRAPHRAG_BASE_DIR", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TESTED_DIR = os.path.join(BASE_DIR, "data", "tested")
 INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
 
-# ── Domain definitions ────────────────────────────────────
+# Domain definitions
 DOMAIN_MAP = {
     "deep_learning": {
         "files": [
@@ -174,7 +174,7 @@ DOMAIN_MAP = {
 
 }
 
-# ── Domain profile embeddings (built once at startup) ─────
+# Domain profile embeddings (built once at startup)
 _domain_profiles = None  # cached after first build
 
 def build_domain_profiles(embedder) -> dict:
@@ -420,9 +420,9 @@ if __name__ == "__main__":
         print("=" * 60)
         for domain, result in results.items():
             if "error" in result:
-                print(f"  ✗ {domain}: {result['error']}")
+                print(f"  Wrong {domain}: {result['error']}")
             else:
-                print(f"  ✓ {domain}: "
+                print(f"  Correct {domain}: "
                       f"{result['graph_nodes']} nodes, "
                       f"{result['graph_edges']} edges")
     else:
@@ -446,5 +446,5 @@ if __name__ == "__main__":
     for q in test_queries:
         domain = route_query_to_domain(q)
         print(f"  '{q[:55]}...'")
-        print(f"    → routed to: {domain}")
+        print(f"    -> routed to: {domain}")
         print()

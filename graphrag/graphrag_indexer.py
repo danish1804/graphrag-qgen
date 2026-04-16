@@ -42,12 +42,12 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from utils.embedder import Embedder, DIMENSION
 
-# ── Paths ─────────────────────────────────────────────────
+# Paths 
 BASE_DIR   = os.getenv( "GRAPHRAG_BASE_DIR", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
 GRAPH_NAME = "graphrag"
 
-# ── Tuning parameters ─────────────────────────────────────
+# Tuning parameters
 # Entity appears in more than this fraction of chunks → noise
 MAX_DOC_FREQ    = cfg["graph"]["max_doc_freq"]
 
@@ -468,7 +468,7 @@ def embed_graph_nodes(
     return node_list, np.array(embeddings, dtype=np.float32)
 
 
-# ── Main build function ───────────────────────────────────
+# Main build function 
 def build_graphrag_index(
         chunks: list,
         sources: list = None,

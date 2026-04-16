@@ -2,7 +2,7 @@ import os
 import sys
 import shutil
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-from src.document_loader import load_and_chunk
+from utils.document_loader import load_and_chunk
 
 # -- Paths --------------------------------------------------------
 BASE_DATA_DIR = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data"

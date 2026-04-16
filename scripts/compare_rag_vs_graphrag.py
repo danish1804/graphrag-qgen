@@ -14,7 +14,7 @@ from graphrag.graphrag_pipeline import GraphRAGPipeline
 BASE_DIR   = os.getenv( "GRAPHRAG_BASE_DIR", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
 
-# ── Test objectives ───────────────────────────────────────
+# Test objectives
 # Same objectives passed to BOTH pipelines
 TEST_CASES = [
     {
@@ -47,7 +47,7 @@ def run_comparison():
     print("Model:    Qwen 2.5 7B Instruct (4-bit)")
     print("=" * 70)
 
-    # ── Load Standard RAG pipeline ────────────────────────
+    # Load Standard RAG pipeline 
     print("\n[1/2] Loading Standard RAG pipeline...")
     std_pipeline = Pipeline()
     std_pipeline.load_models()
@@ -56,7 +56,7 @@ def run_comparison():
     std_pipeline.load_existing_index("source_1")
     print("Standard RAG ready.")
 
-    # ── Load GraphRAG pipeline ────────────────────────────
+    # Load GraphRAG pipeline 
     print("\n[2/2] Loading GraphRAG pipeline...")
     graph_pipeline = GraphRAGPipeline()
 
@@ -70,7 +70,7 @@ def run_comparison():
     graph_pipeline.load_existing_index("graphrag_test")
     print("GraphRAG ready.")
 
-    # ── Run comparison ────────────────────────────────────
+    # Run comparison
     results = []
 
     for i, tc in enumerate(TEST_CASES, 1):
@@ -124,7 +124,7 @@ def run_comparison():
             "relationships": graph_result.get("relationships", [])
         })
 
-    # ── Summary ───────────────────────────────────────────
+    # Summary
     print(f"\n{'='*70}")
     print("COMPARISON SUMMARY")
     print("=" * 70)

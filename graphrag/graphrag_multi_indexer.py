@@ -5,15 +5,15 @@
 # Builds ONE combined knowledge graph from all 22 PDFs.
 #
 # Key differences from graphrag_indexer.py:
-#   graphrag_indexer.py      → one document at a time
-#   graphrag_multi_indexer.py → all documents → one graph
+#   graphrag_indexer.py      -> one document at a time
+#   graphrag_multi_indexer.py -> all documents -> one graph
 #
 # Architecture:
 #   1. Load all PDFs from data/tested/
 #   2. Chunk each document (reuse document_loader)
 #   3. Two-pass entity extraction across ALL chunks
 #      - Global DF calculated across entire corpus
-#      - Same entity from different docs → ONE node
+#      - Same entity from different docs -> ONE node
 #   4. Build combined weighted graph
 #      - Cross-document edges tagged and weighted
 #   5. Embed graph nodes
@@ -22,7 +22,7 @@
 # Why this fixes the pooling weakness:
 #   Single doc graph: 'pooling' had 2 neighbours
 #   Combined graph:   'pooling' has neighbours from
-#   multiple textbooks → FAISS finds it reliably
+#   multiple textbooks -> FAISS finds it reliably
 # ============================================================
 
 import os
@@ -49,13 +49,13 @@ from graphrag.graphrag_indexer import (
     embed_graph_nodes
 )
 
-# ── Paths ─────────────────────────────────────────────────
+# Paths 
 BASE_DIR   = os.getenv( "GRAPHRAG_BASE_DIR", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 TESTED_DIR = os.path.join(BASE_DIR, "data", "tested")
 INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
 GRAPH_NAME = "graphrag_combined"
 
-# ── Config ─────────────────────────────────────────────────
+#  Config 
 # Slightly lower DF threshold for multi-doc
 # because course codes appear in fewer total chunks
 MAX_DOC_FREQ    = 0.35
@@ -145,7 +145,7 @@ def build_combined_graphrag_index(
     print(f"Graph name    : {graph_name}")
     print("=" * 60)
 
-    # ── Step 1: Load all documents ─────────────────────
+    #  Step 1: Load all documents 
     all_chunks, all_sources, doc_stats = load_all_chunks(
         docs_dir)
 
@@ -165,7 +165,7 @@ def build_combined_graphrag_index(
               f"{stats['chars']:>10,} chars")
 
 
-# ── Step 2: Build combined knowledge graph ─────────
+#  Step 2: Build combined knowledge graph
     print("\nLoading spaCy model...")
     nlp = spacy.load("en_core_web_sm")
     nlp.max_length = 10_000_000
@@ -183,7 +183,7 @@ def build_combined_graphrag_index(
     if graph.number_of_nodes() == 0:
         raise ValueError("No valid entities found.")
 
-    # ── Cross-document analysis ────────────────────────
+    #  Cross-document analysis
     cross_source_nodes = [
         n for n, d in graph.nodes(data=True)
         if d.get("num_sources", 0) > 1
@@ -212,13 +212,13 @@ def build_combined_graphrag_index(
                   f"{d.get('sources', [])}")
 
 
-# ── Step 3: Embed graph nodes ──────────────────────
+# Step 3: Embed graph nodes 
     print("\nLoading embedding model...")
     embedder = Embedder()
     node_list, embeddings = embed_graph_nodes(graph, embedder)
     print(f"Node embeddings shape: {embeddings.shape}")
 
-    # ── Step 4: Build FAISS index ──────────────────────
+    #  Step 4: Build FAISS index 
     print("\nBuilding FAISS index...")
     n_nodes = len(node_list)
 
@@ -241,7 +241,7 @@ def build_combined_graphrag_index(
 
     print(f"FAISS index built — {index.ntotal} vectors")
 
-# ── Step 5: Save everything ────────────────────────
+# Step 5: Save everything 
     index_path = os.path.join(
         index_dir, f"{graph_name}.faiss")
     graph_path = os.path.join(
@@ -270,7 +270,7 @@ def build_combined_graphrag_index(
         }, f, ensure_ascii=False, indent=2)
     print(f"Metadata saved    : {meta_path}")
 
-    # ── Summary ────────────────────────────────────────
+    # Summary 
     print("\n" + "=" * 60)
     print("MULTI-DOCUMENT GRAPHRAG INDEX COMPLETE")
     print("=" * 60)

@@ -5,18 +5,18 @@
 # How it differs from standard FAISS retrieval:
 #
 # Standard RAG:
-#   query → embed → find similar chunks → return chunks
+#   query -> embed -> find similar chunks -> return chunks
 #
 # GraphRAG:
-#   query → embed → find similar NODES (entities)
-#          → traverse graph to get neighbours
-#          → collect context chunks from node + neighbours
-#          → return enriched context with relationships
+#   query -> embed -> find similar NODES (entities)
+#          -> traverse graph to get neighbours
+#          -> collect context chunks from node + neighbours
+#          -> return enriched context with relationships
 #
 # This enables multi-hop retrieval:
-#   "parameter sharing" → neighbours include
+#   "parameter sharing" -> neighbours include
 #   "sparse connectivity", "weight filter", "feature extraction"
-#   → question can reference ALL these related concepts
+#   -> question can reference ALL these related concepts
 # ============================================================
 
 import numpy as np
@@ -98,7 +98,7 @@ def retrieve_graph_context(
             "sources":          []
         }
     
-    # ── Step 3: Graph traversal ───────────────────────────
+    # Step 3: Graph traversal
     visited        = set()
     neighbour_nodes = []
     relationships  = []
@@ -152,7 +152,7 @@ def retrieve_graph_context(
                                         "cross_source", False)
                                 })
 
-     # ── Step 4: Collect context chunks ───────────────────
+     # Step 4: Collect context chunks
     chunk_pool  = []
     seen_chunks = set()
     sources     = set()
@@ -198,10 +198,16 @@ def retrieve_graph_context(
         for src in node_data.get("sources", []):
             sources.add(src)
 
+    # Add after graph traversal step — after neighbour_nodes is built:
+    print(f"[Retriever] Seed nodes: {[s['entity'] for s in seed_nodes]}")
+    print(f"[Retriever] Neighbour nodes: {[n['entity'] for n in neighbour_nodes[:10]]}")
+    print(f"[Retriever] Chunk pool size before limit: {len(chunk_pool)}")
+    print(f"[Retriever] Seed chunks: {sum(1 for c in chunk_pool if c['type']=='seed')}")
+    print(f"[Retriever] Neighbour chunks: {sum(1 for c in chunk_pool if c['type']=='neighbour')}")
     # Limit chunks
     chunk_pool = chunk_pool[:max_context_chunks]
 
-    # ── Step 5: Assemble context ──────────────────────────
+    # Step 5: Assemble context
     context_parts = []
 
     # Header showing what was found

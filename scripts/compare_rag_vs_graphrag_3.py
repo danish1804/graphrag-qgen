@@ -6,8 +6,8 @@
 #   C) Domain GraphRAG — graph retrieval on domain docs
 #
 # This isolates TWO separate improvements:
-#   A→B: benefit of domain filtering alone
-#   B→C: benefit of graph structure on top of filtering
+#   A->B: benefit of domain filtering alone
+#   B->C: benefit of graph structure on top of filtering
 # ============================================================
 
 import os
@@ -26,7 +26,7 @@ BASE_DIR   = os.getenv("GRAPHRAG_BASE_DIR", os.path.dirname(os.path.dirname(os.p
 TESTED_DIR = os.path.join(BASE_DIR, "data", "tested")
 INDEX_DIR  = os.path.join(BASE_DIR, "indexes")
 
-# ── Test cases — one per domain ───────────────────────────
+# Test cases — one per domain
 TEST_CASES = [
     {
         "domain":    "deep_learning",
@@ -122,11 +122,11 @@ def run_three_way_comparison():
     print("C) Domain GraphRAG — graph on domain docs")
     print("=" * 70)
     print("\nIsolates:")
-    print("  A→B : benefit of domain filtering alone")
-    print("  B→C : benefit of graph structure on top of filtering")
+    print("  A->B : benefit of domain filtering alone")
+    print("  B->C : benefit of graph structure on top of filtering")
     print("=" * 70)
 
-    # ── Load models once ───────────────────────────────────
+    # Load models once
     print("\nLoading models...")
     base_pipeline = Pipeline()
     base_pipeline.load_models()
@@ -135,7 +135,7 @@ def run_three_way_comparison():
     tokenizer  = base_pipeline.tokenizer
     print("Models ready.\n")
 
-    # ── Pipeline A: Standard RAG all docs ─────────────────
+    # Pipeline A: Standard RAG all docs
     print("Loading Pipeline A: Multi-document standard RAG...")
     multi_pipe = MultiPipeline()
     multi_pipe.embedder     = embedder
@@ -144,14 +144,14 @@ def run_three_way_comparison():
     multi_pipe._models_loaded = True
     multi_pipe.load_index()
 
-    # ── Pipeline C: Domain GraphRAG ────────────────────────
+    # Pipeline C: Domain GraphRAG
     graph_pipe = GraphRAGPipeline()
     graph_pipe.embedder     = embedder
     graph_pipe.model        = model
     graph_pipe.tokenizer    = tokenizer
     graph_pipe._models_loaded = True
 
-    # ── Run comparison for each test case ─────────────────
+    # Run comparison for each test case
     all_results = []
 
     for tc in TEST_CASES:
@@ -166,7 +166,7 @@ def run_three_way_comparison():
         print(f"DIFFICULTY: {diff} | TYPE: {qtype}")
         print("=" * 70)
 
-        # ── A: Standard RAG all docs ──────────────────────
+        # A: Standard RAG all docs
         print("\n[A] Standard RAG — all 22 docs...")
         result_a = multi_pipe.generate(
             learning_objective = obj,
@@ -175,7 +175,7 @@ def run_three_way_comparison():
             top_k              = 3
         )
 
-        # ── B: Standard RAG domain only ───────────────────
+        # B: Standard RAG domain only
         print(f"[B] Standard RAG — {domain} docs only...")
         try:
             index_name, domain_chunks = \
@@ -202,7 +202,7 @@ def run_three_way_comparison():
                 "avg_retrieval_score": 0
             }
 
-        # ── C: Domain GraphRAG ────────────────────────────
+        # C: Domain GraphRAG
         print(f"[C] Domain GraphRAG — {domain} graph...")
         try:
             g_index, g_graph, g_nodes = \
@@ -227,7 +227,7 @@ def run_three_way_comparison():
                 "relationships": []
             }
 
-        # ── Display results ───────────────────────────────
+        # Display results
         print(f"\n{'─'*70}")
         print(f"[A] STANDARD RAG — ALL DOCS:")
         print(f"    Sources : {result_a.get('sources_used', [])[:3]}")
@@ -261,19 +261,19 @@ def run_three_way_comparison():
             "relations_c":   result_c.get("relationships", [])
         })
 
-    # ── Summary ───────────────────────────────────────────
+    # Summary
     print(f"\n{'='*70}")
     print("SUMMARY — SCORE COMPARISON (retrieval score)")
     print("Higher = more relevant context retrieved")
     print("=" * 70)
     print(f"{'Domain':<22} {'A: All docs':<14} "
-          f"{'B: Domain only':<16} {'Improvement A→B'}")
+          f"{'B: Domain only':<16} {'Improvement A->B'}")
     print("-" * 70)
     for r in all_results:
         sa   = r["score_a"]
         sb   = r["score_b"]
         diff = sb - sa if isinstance(sb, float) else 0
-        arrow = "↑" if diff > 0 else ("↓" if diff < 0 else "→")
+        arrow = "↑" if diff > 0 else ("↓" if diff < 0 else "->")
         print(f"  {r['domain']:<20} "
               f"{str(round(sa,4)):<14} "
               f"{str(round(sb,4)):<16} "
@@ -282,8 +282,8 @@ def run_three_way_comparison():
     print(f"\n{'='*70}")
     print("KEY FINDINGS")
     print("=" * 70)
-    print("A→B: Does domain filtering improve retrieval score?")
-    print("B→C: Does graph structure produce richer questions?")
+    print("A->B: Does domain filtering improve retrieval score?")
+    print("B->C: Does graph structure produce richer questions?")
     print("     (Cannot measure with score — requires human eval)")
     print("     Compare question complexity in output above.")
 

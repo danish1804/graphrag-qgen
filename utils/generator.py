@@ -6,10 +6,16 @@
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
 
 MODEL_NAME = "Qwen/Qwen2.5-7B-Instruct"
-
+BASE_DIR = os.getenv(
+    "GRAPHRAG_BASE_DIR",
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
 
 def load_model():
     """Load Qwen 2.5 7B in 4-bit quantisation."""
@@ -181,7 +187,8 @@ Sample Answer:"""
         generated_ids = model.generate(
             **model_inputs,
             max_new_tokens=max_new_tokens,
-            do_sample=False,
+            do_sample=True,
+            temperature=0.7,
             pad_token_id=tokenizer.eos_token_id
         )
 
@@ -203,9 +210,6 @@ Sample Answer:"""
 # python src/generator.py
 # ============================================================
 if __name__ == "__main__":
-    import os
-    import sys
-    sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 
     from utils.document_loader import load_and_chunk
     from utils.embedder import (build_index, load_index,
@@ -215,8 +219,8 @@ if __name__ == "__main__":
     print("GENERATOR TEST")
     print("=" * 50)
 
-    INDEX_DIR = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\indexes"
-    PDF_PATH  = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\source_1.pdf"
+    INDEX_DIR = os.path.join(BASE_DIR, "indexes")
+    PDF_PATH  = os.path.join(BASE_DIR, "data", "tested", "source_1.pdf")
 
     # Load existing index or build it
     index_faiss_path = os.path.join(INDEX_DIR, "cnn_lecture.faiss")

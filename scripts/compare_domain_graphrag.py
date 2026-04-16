@@ -81,7 +81,7 @@ def run_domain_comparison():
               f"TYPE: {tc['question_type']}")
         print("=" * 70)
 
-        # ── Standard RAG ──────────────────────────────────
+        # Standard RAG
         # For domains without a single-doc index
         # use the multi-document index
         from standard_rag.multi_pipeline import MultiPipeline
@@ -100,7 +100,7 @@ def run_domain_comparison():
             top_k              = 3
         )
 
-        # ── Domain GraphRAG ────────────────────────────────
+        # Domain GraphRAG
         print(f"Generating with GraphRAG ({domain} domain)...")
         index, graph, nodes = load_domain_graph(domain)
         graph_pipeline.index  = index
@@ -115,7 +115,7 @@ def run_domain_comparison():
             neighbour_depth    = 1
         )
 
-        # ── Display ────────────────────────────────────────
+        # Display 
         print(f"\n{'─'*70}")
         print(f"STANDARD RAG:")
         print(f"  Sources  : {std_result.get('sources_used', [])}")

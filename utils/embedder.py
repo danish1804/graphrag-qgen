@@ -11,7 +11,10 @@ import faiss
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 
-
+BASE_DIR = os.getenv(
+    "GRAPHRAG_BASE_DIR",
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # two dirnames
+)
 MODEL_NAME = "BAAI/bge-large-en-v1.5"
 DIMENSION  = 1024  # bge-large output dimension
 
@@ -115,15 +118,15 @@ def search(query: str, index, chunks: list,
 if __name__ == "__main__":
     import sys
     sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-    from src.document_loader import load_and_chunk
+    from utils.document_loader import load_and_chunk
 
     print("=" * 50)
     print("EMBEDDER TEST")
     print("=" * 50)
 
     # Use the PDF we already tested
-    pdf_path = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\tested\source_1.pdf"
-    index_dir = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\indexes"
+    pdf_path = os.path.join(BASE_DIR, "data", "tested", "source_1.pdf")
+    index_dir = os.path.join(BASE_DIR, "indexes")
 
     # Step 1: Load and chunk
     result = load_and_chunk(pdf_path)
