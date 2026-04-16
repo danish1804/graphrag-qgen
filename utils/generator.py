@@ -130,7 +130,7 @@ def generate_answer(
         model,
         tokenizer,
         difficulty:         str = "medium",
-        max_new_tokens:     int = 256
+        max_new_tokens:     int = cfg["model"].get("max_new_tokens_answer", 512)
 ) -> str:
     """
     Generate a sample answer for a given question and context.
