@@ -87,11 +87,27 @@ domains:
     rebuild_command: "python graphrag/graphrag_domain_indexer.py --domain computer_architecture"
 
 
-# ── Entity Filtering (GraphRAG) ────────────────────────────
+# Entity Filtering (GraphRAG)
+# Alpha controls node creation quality threshold
+# Beta controls edge creation strength threshold
+#
+# Alpha — Node filtering:
+#   max_doc_freq:    entity in >X% of docs = too generic = removed
+#   min_entity_freq: entity must appear ≥X times to be a node
+#
+# Beta — Edge filtering:
+#   min_edge_weight: co-occurrence must be ≥X to create edge
+#                    lower = denser graph = more connections
+#                    higher = sparser graph = only strong links
+#                    0 = no edges = GraphRAG degrades to RAG
 graph:
-  max_doc_freq: 0.40       # Entity in >40% chunks = noise
-  min_entity_freq: 2       # Entity must appear ≥2 times
-  min_edge_weight: 2       # Edge must have weight ≥2
+  # Alpha parameters (node creation)
+  alpha:
+    max_doc_freq: 0.40      # Remove entities in >40% of chunks
+    min_entity_freq: 2      # Entity must appear at least twice
+    description: "Controls node quality — lower max_doc_freq
+                  = stricter noise filtering"
+
 
 
 # ── Model Configuration ────────────────────────────────────
