@@ -10,7 +10,7 @@ from typing import List, Dict
 from pypdf import PdfReader
 from pptx import Presentation
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from utils.config import cfg
+from config import cfg
 
 
 def load_pdf(file_path: str) -> str:
