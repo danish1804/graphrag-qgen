@@ -15,7 +15,9 @@ BASE_DIR = os.getenv(
     "GRAPHRAG_BASE_DIR",
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # two dirnames
 )
-MODEL_NAME = "BAAI/bge-large-en-v1.5"
+from config import cfg
+
+MODEL_NAME = cfg["model"]["embedding_model"]
 DIMENSION  = 1024  # bge-large output dimension
 
 
