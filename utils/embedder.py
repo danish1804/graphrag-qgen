@@ -11,11 +11,16 @@ import faiss
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 
+# With this try/except that handles both cases:
+try:
+    from utils.config import cfg      # when imported by main_gr.py
+except ImportError:
+    from config import cfg            # when run directly
+
 BASE_DIR = os.getenv(
     "GRAPHRAG_BASE_DIR",
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # two dirnames
 )
-from config import cfg
 
 MODEL_NAME = cfg["model"]["embedding_model"]
 DIMENSION  = 1024  # bge-large output dimension
