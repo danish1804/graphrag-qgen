@@ -365,6 +365,48 @@ class GraphRAGPipeline:
             difficulty = difficulty
         )
 
+        # Step 8 — Format retrieved chunks for metadata
+        retrieved_chunks = {
+            f"chunk_{i+1}": {
+                "text":   item["text"][:200].strip(),
+                "source": item.get("source", "unknown"),
+                "type":   item.get("type", "seed"),
+                "domain": domains_used[
+                    min(i // chunks_per_domain, len(domains_used)-1)
+                ]
+            }
+            for i, item in enumerate(
+                retrieval.get("chunk_pool", [])
+            )
+        }
+
+        # Format concepts
+        clean_concepts = [
+            c for c in combined_concepts
+            if len(c) > 3
+            and not any(
+                char in c for char in ['©', '\n', '\r'])
+        ]
+
+        return {
+            "question": question,
+            "metadata": {
+                "learning_objective":    learning_objective,
+                "difficulty":            difficulty,
+                "question_type":         question_type,
+                "domain":                "multi_domain",
+                "domains_used":          domains_used,
+                "domain_scores":         qualifying,
+                "sources":               list(set(combined_sources)),
+                "retrieval_method":      "GraphRAG-MultiDomain",
+                "key_concepts":          clean_concepts[:8],
+                "concept_relationships": combined_relations[:5],
+                "retrieved_chunks":      retrieved_chunks,
+                "sample_answer":         sample_answer,
+                "domain_score_threshold": threshold,
+            }
+        }
+
     # ----------------------------------------------------------
     # STAGE 4 — Generate a question
     # ----------------------------------------------------------
