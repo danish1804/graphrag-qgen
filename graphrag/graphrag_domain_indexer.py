@@ -209,54 +209,100 @@ def build_domain_profiles(embedder) -> dict:
     return profiles
 
 
+# def route_by_embedding(
+#         query:    str,
+#         embedder,
+#         profiles: dict = None
+# ) -> str:
+#     """
+#     Route a learning objective to the correct domain graph
+#     using embedding cosine similarity.
+
+#     More robust than keyword matching:
+#     - Works for queries that don't contain exact keywords
+#     - Handles paraphrased domain terminology
+#     - Scales to new domains without keyword list maintenance
+
+#     Falls back to keyword routing if profiles not available.
+#     """
+#     global _domain_profiles
+
+#     # Use cached profiles if available
+#     if profiles is None:
+#         profiles = _domain_profiles
+
+#     if profiles is None:
+#         # Fallback to keyword routing
+#         print("[Router] Profiles not built - "
+#               "falling back to keyword routing")
+#         return route_query_to_domain(query)
+
+#     # Embed the query
+#     query_emb = embedder.model.encode(
+#         [query],
+#         normalize_embeddings=True
+#     )[0]
+
+#     # Cosine similarity (vectors are normalised so dot product = cosine)
+#     scores = {
+#         domain: float(np.dot(query_emb, profile_emb))
+#         for domain, profile_emb in profiles.items()
+#     }
+
+#     best_domain = max(scores, key=scores.get)
+#     best_score  = scores[best_domain]
+
+#     print(f"[Router] Embedding scores: "
+#           f"{ {d: round(s, 3) for d, s in scores.items()} }")
+#     print(f"[Router] Routed to: {best_domain} "
+#           f"(score={best_score:.3f})")
+
+#     return best_domain
+
 def route_by_embedding(
-        query:    str,
-        embedder,
-        profiles: dict = None
-) -> str:
+    query:        str,
+    embedder,
+    return_all_scores: bool = False   # ← NEW parameter
+) -> str | dict:
     """
-    Route a learning objective to the correct domain graph
-    using embedding cosine similarity.
+    Route query to correct domain using embedding similarity.
 
-    More robust than keyword matching:
-    - Works for queries that don't contain exact keywords
-    - Handles paraphrased domain terminology
-    - Scales to new domains without keyword list maintenance
+    Args:
+        query:             Learning objective text
+        embedder:          BAAI embedder instance
+        return_all_scores: If True returns all domain scores dict
+                           If False returns winning domain string
 
-    Falls back to keyword routing if profiles not available.
+    Returns:
+        If return_all_scores=False: domain name string
+        If return_all_scores=True:  dict of {domain: score}
     """
     global _domain_profiles
 
-    # Use cached profiles if available
-    if profiles is None:
-        profiles = _domain_profiles
+    if _domain_profiles is None:
+        build_domain_profiles(embedder)
 
-    if profiles is None:
-        # Fallback to keyword routing
-        print("[Router] Profiles not built - "
-              "falling back to keyword routing")
-        return route_query_to_domain(query)
+    # Embed query
+    query_embedding = embedder.embed([query])[0]
+    query_embedding = query_embedding / (
+        np.linalg.norm(query_embedding) + 1e-10
+    )
 
-    # Embed the query
-    query_emb = embedder.model.encode(
-        [query],
-        normalize_embeddings=True
-    )[0]
+    # Score all domains
+    scores = {}
+    for domain, profile_embedding in _domain_profiles.items():
+        score = float(np.dot(query_embedding, profile_embedding))
+        scores[domain] = round(score, 3)
 
-    # Cosine similarity (vectors are normalised so dot product = cosine)
-    scores = {
-        domain: float(np.dot(query_emb, profile_emb))
-        for domain, profile_emb in profiles.items()
-    }
+    print(f"[Router] Embedding scores: {scores}")
+
+    # Return all scores or just winner
+    if return_all_scores:
+        return scores
 
     best_domain = max(scores, key=scores.get)
-    best_score  = scores[best_domain]
-
-    print(f"[Router] Embedding scores: "
-          f"{ {d: round(s, 3) for d, s in scores.items()} }")
     print(f"[Router] Routed to: {best_domain} "
-          f"(score={best_score:.3f})")
-
+          f"(score={scores[best_domain]})")
     return best_domain
 
 
