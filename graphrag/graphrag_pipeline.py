@@ -193,34 +193,95 @@ class GraphRAGPipeline:
     #     result["domain_routed_to"] = domain
     #     return result
 
-    def generate_with_routing(self,
-                           learning_objective: str,
-                           difficulty:    str = "medium",
-                           question_type: str = "conceptual",
-                           top_k_nodes:   int = 3,
-                           neighbour_depth: int = 1) -> dict:
-        """
-        Route learning objective to correct domain graph
-        then generate question automatically.
+    # def generate_with_routing(self,
+    #                        learning_objective: str,
+    #                        difficulty:    str = "medium",
+    #                        question_type: str = "conceptual",
+    #                        top_k_nodes:   int = 3,
+    #                        neighbour_depth: int = 1) -> dict:
+    #     """
+    #     Route learning objective to correct domain graph
+    #     then generate question automatically.
 
-        Uses embedding-based routing if domain profiles are
-        available, falls back to keyword routing otherwise.
-        """
+    #     Uses embedding-based routing if domain profiles are
+    #     available, falls back to keyword routing otherwise.
+    #     """
+    #     if not self._models_loaded:
+    #         raise RuntimeError("Call load_models() first.")
+
+    #     from graphrag.graphrag_domain_indexer import (
+    #         load_domain_graph, route_by_embedding)
+
+    #     # Use embedding-based routing (smarter than keywords)
+    #     domain = route_by_embedding(
+    #         learning_objective, self.embedder)
+
+    #     print(f"[GraphRAGPipeline] Routed to: {domain}")
+
+    #     self.index, self.graph, self.nodes = \
+    #         load_domain_graph(domain)
+    #     self.graph_name = f"graphrag_{domain}"
+
+    #     result = self.generate(
+    #         learning_objective = learning_objective,
+    #         difficulty         = difficulty,
+    #         question_type      = question_type,
+    #         top_k_nodes        = top_k_nodes,
+    #         neighbour_depth    = neighbour_depth
+    #     )
+
+    #     # Move domain into metadata
+    #     result["metadata"]["domain"] = domain
+    #     result["metadata"]["domain_routed_to"] = domain
+    #     return result
+    
+    def generate_with_routing(self,
+                          learning_objective: str,
+                          difficulty:    str = "medium",
+                          question_type: str = "conceptual",
+                          domain:        str = None,
+                          top_k_nodes:   int = None,
+                          neighbour_depth: int = None) -> dict:
+
         if not self._models_loaded:
             raise RuntimeError("Call load_models() first.")
 
         from graphrag.graphrag_domain_indexer import (
-            load_domain_graph, route_by_embedding)
+            load_domain_graph, route_by_embedding, DOMAIN_MAP)
 
-        # Use embedding-based routing (smarter than keywords)
-        domain = route_by_embedding(
-            learning_objective, self.embedder)
+        diff_cfg = cfg["difficulty"][difficulty]
 
-        print(f"[GraphRAGPipeline] Routed to: {domain}")
+        # ── Domain selection logic ─────────────────────────────
+        # Samar: "If user specifies domain → use it directly.
+        #         If domain wrong/missing → fall back to router."
+
+        if domain and domain in DOMAIN_MAP:
+            # User specified valid domain → use directly
+            print(f"[GraphRAGPipeline] Using specified domain: {domain}")
+            selected_domain = domain
+
+        elif difficulty == "hard" and diff_cfg.get("multi_domain", False):
+            # Hard question + no domain specified → multi-domain
+            print(f"[GraphRAGPipeline] Hard question → "
+                f"attempting multi-domain retrieval")
+            return self.generate_with_multi_domain(
+                learning_objective = learning_objective,
+                difficulty         = difficulty,
+                question_type      = question_type
+            )
+
+        else:
+            # Easy/medium or domain not specified → best match
+            selected_domain = route_by_embedding(
+                learning_objective, self.embedder
+            )
+
+        # Single domain retrieval (easy/medium/explicit domain)
+        print(f"[GraphRAGPipeline] Routed to: {selected_domain}")
 
         self.index, self.graph, self.nodes = \
-            load_domain_graph(domain)
-        self.graph_name = f"graphrag_{domain}"
+            load_domain_graph(selected_domain)
+        self.graph_name = f"graphrag_{selected_domain}"
 
         result = self.generate(
             learning_objective = learning_objective,
@@ -230,9 +291,8 @@ class GraphRAGPipeline:
             neighbour_depth    = neighbour_depth
         )
 
-        # Move domain into metadata
-        result["metadata"]["domain"] = domain
-        result["metadata"]["domain_routed_to"] = domain
+        result["metadata"]["domain"]          = selected_domain
+        result["metadata"]["domain_routed_to"] = selected_domain
         return result
 
 
