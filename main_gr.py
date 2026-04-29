@@ -668,7 +668,63 @@ async def admin_upload_document(
         "saved_to": save_path
     }
 
+@app.post("/admin/rebuild-domain", tags=["Admin"])
+async def admin_rebuild_domain(req: AdminRebuildRequest):
+    """
+    Admin endpoint — rebuild knowledge graph for a domain.
 
+    Will not build from scratch, will
+            just update it.
+
+    Rebuilds the domain graph using all PDFs currently
+    in the domain's data folder including any newly
+    uploaded documents. Automatically reloads into
+    the running pipeline — no server restart needed.
+
+    Args:
+        domain: domain to rebuild
+    """
+    if req.domain not in VALID_DOMAINS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid domain '{req.domain}'. "
+                   f"Valid domains: {VALID_DOMAINS}"
+        )
+
+    try:
+        print(f"[Admin] Rebuilding domain: {req.domain}")
+
+        from graphrag.graphrag_domain_indexer import (
+            build_domain_graph)
+
+        # Rebuild graph
+        summary = build_domain_graph(req.domain)
+
+        # Reload into running pipeline — no restart needed
+        graph_pipeline.load_domain_index(req.domain)
+
+        # Rebuild domain profiles for routing
+        from graphrag.graphrag_domain_indexer import (
+            build_domain_profiles)
+        build_domain_profiles(graph_pipeline.embedder)
+
+        print(f"[Admin] Domain {req.domain} rebuilt "
+              f"and reloaded successfully.")
+
+        return {
+            "status":       "ok",
+            "domain":       req.domain,
+            "graph_nodes":  summary["graph_nodes"],
+            "graph_edges":  summary["graph_edges"],
+            "files_loaded": summary["files_loaded"],
+            "message":      f"Domain '{req.domain}' graph "
+                            f"rebuilt and reloaded. "
+                            f"New documents are now "
+                            f"searchable."
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 # ============================================================
