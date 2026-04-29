@@ -452,61 +452,113 @@ async def graphrag_upload(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+# @app.post("/graphrag/generate", tags=["GraphRAG"])
+# async def graphrag_generate(req: GraphRAGGenerateRequest):
+#     """
+#     Generate an exam question using GraphRAG.
+
+#     Automatically routes the learning objective to the correct
+#     domain graph (deep_learning, database, software_engineering,
+#     operating_systems) using keyword matching.
+
+#     You can override auto-routing by specifying domain explicitly.
+
+#     Returns the question plus graph metadata:
+#     - seed_nodes: entities matched to the query
+#     - neighbour_nodes: related concepts from graph traversal
+#     - relationships: entity connections used for context
+#     - domain_routed_to: which domain graph was used
+#     """
+#     validate_params(req.difficulty, req.question_type)
+
+#     # Validate explicit domain if provided
+#     if req.domain and req.domain not in VALID_DOMAINS:
+#         raise HTTPException(
+#             status_code=400,
+#             detail=f"domain must be one of {VALID_DOMAINS} "
+#                    f"or null for auto-routing."
+#         )
+
+#     try:
+#         if req.domain:
+#             # Explicit domain specified — load that graph
+#             graph_pipeline.load_domain_index(req.domain)
+#             result = graph_pipeline.generate(
+#                 learning_objective = req.learning_objective,
+#                 difficulty         = req.difficulty,
+#                 question_type      = req.question_type,
+#                 top_k_nodes        = req.top_k_nodes,
+#                 neighbour_depth    = req.neighbour_depth
+#             )
+#             result["domain_routed_to"] = req.domain
+#         else:
+#             # Auto-route to correct domain
+#             result = graph_pipeline.generate_with_routing(
+#                 learning_objective = req.learning_objective,
+#                 difficulty         = req.difficulty,
+#                 question_type      = req.question_type,
+#                 top_k_nodes        = req.top_k_nodes,
+#                 neighbour_depth    = req.neighbour_depth
+#             )
+
+#         return result
+
+#     except Exception as e:
+#         raise HTTPException(status_code=500, detail=str(e))
+
 @app.post("/graphrag/generate", tags=["GraphRAG"])
 async def graphrag_generate(req: GraphRAGGenerateRequest):
     """
     Generate an exam question using GraphRAG.
 
-    Automatically routes the learning objective to the correct
-    domain graph (deep_learning, database, software_engineering,
-    operating_systems) using keyword matching.
+    Domain routing logic:
+      - Valid domain specified → use that domain directly
+      - Invalid domain specified → warn and fall back to auto-routing
+      - No domain + hard difficulty → multi-domain retrieval
+        (combines context from all domains above score threshold)
+      - No domain + easy/medium → embedding-based auto-routing
+        (picks single best matching domain)
 
-    You can override auto-routing by specifying domain explicitly.
-
-    Returns the question plus graph metadata:
-    - seed_nodes: entities matched to the query
-    - neighbour_nodes: related concepts from graph traversal
-    - relationships: entity connections used for context
-    - domain_routed_to: which domain graph was used
+    Returns question + full metadata including:
+      - retrieved_chunks: text chunks passed to LLM
+      - sample_answer: reference answer for educators
+      - domain_routed_to / domains_used: routing decision
+      - concept_relationships: graph edges used for context
     """
     validate_params(req.difficulty, req.question_type)
 
-    # Validate explicit domain if provided
-    if req.domain and req.domain not in VALID_DOMAINS:
-        raise HTTPException(
-            status_code=400,
-            detail=f"domain must be one of {VALID_DOMAINS} "
-                   f"or null for auto-routing."
-        )
+    # Handle domain validation — warn and fallback instead of error
+    # Samar: "If domain not available, default to best match"
+    domain = req.domain
+    if domain and domain not in VALID_DOMAINS:
+        print(f"[Warning] Invalid domain '{domain}' specified "
+              f"— falling back to auto-routing. "
+              f"Valid domains: {VALID_DOMAINS}")
+        domain = None  # treat as not specified → auto-route
 
     try:
-        if req.domain:
-            # Explicit domain specified — load that graph
-            graph_pipeline.load_domain_index(req.domain)
-            result = graph_pipeline.generate(
-                learning_objective = req.learning_objective,
-                difficulty         = req.difficulty,
-                question_type      = req.question_type,
-                top_k_nodes        = req.top_k_nodes,
-                neighbour_depth    = req.neighbour_depth
-            )
-            result["domain_routed_to"] = req.domain
-        else:
-            # Auto-route to correct domain
-            result = graph_pipeline.generate_with_routing(
-                learning_objective = req.learning_objective,
-                difficulty         = req.difficulty,
-                question_type      = req.question_type,
-                top_k_nodes        = req.top_k_nodes,
-                neighbour_depth    = req.neighbour_depth
-            )
+        # All cases handled by generate_with_routing():
+        #   Case 1: valid domain + any difficulty → use directly
+        #   Case 2: invalid domain → domain=None → auto-route
+        #   Case 3: no domain + hard → multi-domain retrieval
+        #   Case 4: no domain + easy/medium → embedding router
+        #   Case 5: valid domain + easy/medium → use directly
+        result = graph_pipeline.generate_with_routing(
+            learning_objective = req.learning_objective,
+            difficulty         = req.difficulty,
+            question_type      = req.question_type,
+            domain             = domain,
+            top_k_nodes        = req.top_k_nodes,
+            neighbour_depth    = req.neighbour_depth
+        )
 
         return result
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
 
-
+    
 @app.post("/graphrag/rebuild/{domain_name}",
           tags=["GraphRAG"])
 async def graphrag_rebuild(domain_name: str):
