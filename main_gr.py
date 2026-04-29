@@ -152,6 +152,19 @@ class GraphRAGGenerateRequest(BaseModel):
     neighbour_depth: int = 1
     domain:         Optional[str] = None  # None = auto-route
 
+# Add after existing request models:
+
+class AdminUploadRequest(BaseModel):
+    domain: str  # which domain to add document to
+
+class AdminRebuildRequest(BaseModel):
+    domain: str  # which domain to rebuild
+
+class AdminAddDomainRequest(BaseModel):
+    domain_name:  str  # new domain identifier
+    description:  str  # human readable description
+    keywords:     list[str] = []  # routing keywords
+
 # ── Validation helpers ────────────────────────────────────
 VALID_DIFFICULTIES  = {"easy", "medium", "hard"}
 VALID_TYPES         = {"recall", "conceptual", "application"}
@@ -558,7 +571,7 @@ async def graphrag_generate(req: GraphRAGGenerateRequest):
         raise HTTPException(status_code=500, detail=str(e))
     
 
-    
+
 @app.post("/graphrag/rebuild/{domain_name}",
           tags=["GraphRAG"])
 async def graphrag_rebuild(domain_name: str):
