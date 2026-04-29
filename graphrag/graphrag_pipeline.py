@@ -291,6 +291,54 @@ class GraphRAGPipeline:
                 difficulty         = difficulty,
                 question_type      = question_type
             )
+        
+        # Step 4 — Retrieve chunks from each qualifying domain
+        combined_chunks   = []
+        combined_sources  = []
+        combined_concepts = []
+        combined_relations = []
+        domains_used      = []
+
+        for domain in qualifying:
+            print(f"[MultiDomain] Retrieving from: {domain}")
+
+            # Load domain graph
+            index, graph, nodes = load_domain_graph(domain)
+
+            # Retrieve context
+            retrieval = retrieve_graph_context(
+                query              = learning_objective,
+                index              = index,
+                graph              = graph,
+                nodes              = nodes,
+                embedder           = self.embedder,
+                top_k_nodes        = diff_cfg["top_k_nodes"],
+                neighbour_depth    = diff_cfg["neighbour_depth"],
+                max_context_chunks = chunks_per_domain,
+                seed_ratio         = seed_ratio
+            )
+
+            if retrieval["context"]:
+                combined_chunks.append(
+                    f"[{domain.upper()} DOMAIN]\n"
+                    f"{retrieval['context']}"
+                )
+                combined_sources.extend(retrieval["sources"])
+                combined_concepts.extend(
+                    [s["entity"] for s in retrieval["seed_nodes"]]
+                )
+                combined_relations.extend(
+                    [f"{r[0]} -> {r[1]}"
+                    for r in retrieval["relationships"][:3]]
+                )
+                domains_used.append(domain)
+
+        if not combined_chunks:
+            return {
+                "question": "Could not retrieve context "
+                            "from any domain.",
+                "error": "No matching entities found."
+            }
     # ----------------------------------------------------------
     # STAGE 4 — Generate a question
     # ----------------------------------------------------------
