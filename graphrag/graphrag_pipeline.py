@@ -270,6 +270,27 @@ class GraphRAGPipeline:
             self.embedder,
             return_all_scores=True
         )
+
+        # Step 2 — Filter qualifying domains above threshold
+        qualifying = {
+            domain: score
+            for domain, score in all_scores.items()
+            if score >= threshold
+        }
+
+        print(f"[MultiDomain] Qualifying domains "
+            f"(threshold={threshold}): {qualifying}")
+
+        # Step 3 — If only one domain qualifies, fall back
+        # to standard single-domain routing
+        if len(qualifying) <= 1:
+            print(f"[MultiDomain] Only one domain qualifies "
+                f"— falling back to single domain routing")
+            return self.generate_with_routing(
+                learning_objective = learning_objective,
+                difficulty         = difficulty,
+                question_type      = question_type
+            )
     # ----------------------------------------------------------
     # STAGE 4 — Generate a question
     # ----------------------------------------------------------
