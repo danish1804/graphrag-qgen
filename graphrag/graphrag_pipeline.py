@@ -339,6 +339,32 @@ class GraphRAGPipeline:
                             "from any domain.",
                 "error": "No matching entities found."
             }
+        
+        # Step 5 — Combine all domain contexts
+        full_context = "\n\n---\n\n".join(combined_chunks)
+
+        print(f"[MultiDomain] Combined context from "
+            f"{len(domains_used)} domains: {domains_used}")
+
+        # Step 6 — Generate question from combined context
+        question = generate_question(
+            context            = full_context,
+            learning_objective = learning_objective,
+            model              = self.model,
+            tokenizer          = self.tokenizer,
+            difficulty         = difficulty,
+            question_type      = question_type
+        )
+
+        # Step 7 — Generate sample answer
+        sample_answer = generate_answer(
+            context    = full_context,
+            question   = question,
+            model      = self.model,
+            tokenizer  = self.tokenizer,
+            difficulty = difficulty
+        )
+
     # ----------------------------------------------------------
     # STAGE 4 — Generate a question
     # ----------------------------------------------------------
