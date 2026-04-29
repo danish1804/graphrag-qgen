@@ -727,6 +727,72 @@ async def admin_rebuild_domain(req: AdminRebuildRequest):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.post("/admin/add-domain", tags=["Admin"])
+async def admin_add_domain(req: AdminAddDomainRequest):
+    """
+    Admin endpoint — register a new subject domain.
+
+    Suppose we want to add Information Systems.
+            Just add the name here and write a build command.
+
+    Adds domain to config and builds its knowledge graph
+    from PDFs in the data/tested folder matching the
+    domain name pattern.
+
+    Note: Upload PDFs to data/tested/ first, then call
+    this endpoint to register and build the domain.
+
+    Args:
+        domain_name:  identifier e.g. "information_systems"
+        description:  human readable e.g. "Information Systems"
+        keywords:     routing keywords for embedding profile
+    """
+    # Check domain doesn't already exist
+    if req.domain_name in VALID_DOMAINS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Domain '{req.domain_name}' already exists."
+        )
+
+    try:
+        import yaml
+
+        # Load current config
+        config_path = os.path.join(BASE_DIR, "config.yml")
+        with open(config_path, "r", encoding="utf-8") as f:
+            config = yaml.safe_load(f)
+
+        # Add new domain to config
+        config["domains"][req.domain_name] = {
+            "enabled":     True,
+            "description": req.description,
+            "keywords":    req.keywords
+        }
+
+        # Save updated config
+        with open(config_path, "w", encoding="utf-8") as f:
+            yaml.dump(config, f, default_flow_style=False)
+
+        # Update VALID_DOMAINS in memory
+        VALID_DOMAINS.add(req.domain_name)
+
+        print(f"[Admin] New domain registered: "
+              f"{req.domain_name}")
+
+        return {
+            "status":      "ok",
+            "domain":      req.domain_name,
+            "description": req.description,
+            "message":     f"Domain '{req.domain_name}' "
+                           f"registered. Upload PDFs to "
+                           f"data/tested/ then call "
+                           f"POST /admin/rebuild-domain "
+                           f"to build the knowledge graph."
+        }
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 # ============================================================
 # RUN
 # ============================================================
