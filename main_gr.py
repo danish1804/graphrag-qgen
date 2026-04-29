@@ -114,6 +114,9 @@ async def lifespan(app: FastAPI):
     print("[Server]   GET  /graphrag/status")
     print("[Server]   POST /graphrag/upload")
     print("[Server]   POST /graphrag/generate")
+    print("[Server]   POST /admin/upload-document")
+    print("[Server]   POST /admin/rebuild-domain")
+    print("[Server]   POST /admin/add-domain")
 
     yield
 
