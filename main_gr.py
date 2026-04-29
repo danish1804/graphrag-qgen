@@ -610,6 +610,68 @@ async def graphrag_rebuild(domain_name: str):
 
 
 # ============================================================
+# ADMIN ENDPOINTS
+# Think of two types of users — end user and admin.
+#         Admin has more access. Anything exposed to users
+#         should be in the form of an API.
+# ============================================================
+
+@app.post("/admin/upload-document", tags=["Admin"])
+async def admin_upload_document(
+    domain: str,
+    file:   UploadFile = File(...)
+):
+    """
+    Admin endpoint — upload a new PDF/PPTX to a domain.
+
+    Adds the document to the domain's data folder.
+    Call POST /admin/rebuild-domain after uploading
+    to update the knowledge graph.
+
+    Args:
+        domain: target domain (database, deep_learning, etc.)
+        file:   PDF or PPTX file to upload
+    """
+    # Validate domain
+    if domain not in VALID_DOMAINS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid domain '{domain}'. "
+                   f"Valid domains: {VALID_DOMAINS}"
+        )
+
+    # Validate file type
+    filename = file.filename
+    if not filename.lower().endswith((".pdf", ".pptx")):
+        raise HTTPException(
+            status_code=400,
+            detail="Only PDF and PPTX files supported."
+        )
+
+    # Save to domain tested folder
+    domain_dir = os.path.join(TESTED_DIR)
+    os.makedirs(domain_dir, exist_ok=True)
+    save_path  = os.path.join(domain_dir, filename)
+
+    with open(save_path, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+
+    print(f"[Admin] Uploaded {filename} -> domain: {domain}")
+
+    return {
+        "status":   "ok",
+        "message":  f"Document uploaded successfully. "
+                    f"Call POST /admin/rebuild-domain to "
+                    f"update the {domain} knowledge graph.",
+        "file":     filename,
+        "domain":   domain,
+        "saved_to": save_path
+    }
+
+
+
+
+# ============================================================
 # RUN
 # ============================================================
 if __name__ == "__main__":
