@@ -36,18 +36,23 @@ difficulty:
     top_k_nodes: 2
     neighbour_depth: 1
     seed_ratio: 0.80     # 80% seed, 20% neighbour
+    multi_domain: false
     description: "Basic recall and understanding"
   medium:
     max_chunks: 5
     top_k_nodes: 3
     neighbour_depth: 1
     seed_ratio: 0.60     # 60% seed, 40% neighbour
+    multi_domain: false
     description: "Conceptual understanding and explanation"
   hard:
     max_chunks: 7
     top_k_nodes: 5
     neighbour_depth: 2
     seed_ratio: 0.40     # 40% seed, 60% neighbour
+    multi_domain: true
+    domain_score_threshold: 0.5  # Include neighbour nodes from other domains if score ≥0.5
+    chunks_per_domain: 3          # Max chunks to take from each domain in multi-domain retrieval
     description: "Application, analysis and evaluation"
 
 # ── Question Types ─────────────────────────────────────────
