@@ -309,7 +309,8 @@ def route_by_embedding(
 def build_domain_graph(
         domain_name: str,
         docs_dir:   str = TESTED_DIR,
-        index_dir:  str = INDEX_DIR
+        index_dir:  str = INDEX_DIR,
+        embedder = None  # Pass existing embedder to avoid reload
 ) -> dict:
     """
     Build a GraphRAG index for one domain.
@@ -370,7 +371,8 @@ def build_domain_graph(
         all_chunks,
         all_sources,
         index_dir  = index_dir,
-        graph_name = graph_name
+        graph_name = graph_name,
+        embedder   = embedder  # Pass existing embedder to avoid reload
     )
 
     summary["domain"]          = domain_name
