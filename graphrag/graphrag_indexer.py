@@ -655,6 +655,42 @@ def incremental_update_graph(
     existing_nodes = set(meta["nodes"])
     existing_node_list = meta["nodes"]
 
+    # ── NEW: Check which sources already indexed ───────────
+    already_indexed = set(meta.get("unique_sources", []))
+    print(f"Already indexed sources: {already_indexed}")
+
+    # Filter out already-indexed sources from new_sources
+    truly_new_sources = set(new_sources) - already_indexed
+
+    if not truly_new_sources:
+        print("\n[Incremental] All uploaded files already "
+            "indexed. No update needed.")
+        return {
+            "new_nodes_added":   0,
+            "nodes_updated":     0,
+            "new_edges_added":   0,
+            "graph_nodes":       graph.number_of_nodes(),
+            "graph_edges":       graph.number_of_edges(),
+            "cross_source_edges": 0,
+            "files_loaded":      [],
+            "message":           "All files already indexed."
+        }
+
+    # Filter chunks to only process new sources
+    filtered_chunks  = []
+    filtered_sources = []
+    for chunk, source in zip(new_chunks, new_sources):
+        if source in truly_new_sources:
+            filtered_chunks.append(chunk)
+            filtered_sources.append(source)
+
+    print(f"New sources to index: {truly_new_sources}")
+    print(f"Chunks to process: {len(filtered_chunks)}")
+
+    # Use filtered lists for rest of function
+    new_chunks  = filtered_chunks
+    new_sources = filtered_sources
+
     print(f"Existing graph: {graph.number_of_nodes()} nodes, "
           f"{graph.number_of_edges()} edges")
 
@@ -685,7 +721,7 @@ def incremental_update_graph(
 
     print(f"Unique entities in new PDF: "
           f"{len(new_entity_chunks)}")
-    
+
     # ── Step 4: Identify truly new nodes ───────────────────
     new_nodes = []
     updated_nodes = []
@@ -856,6 +892,7 @@ def incremental_update_graph(
         "cross_source_edges": cross_source,
         "files_loaded":      list(set(new_sources))
     }
+
 
 # Load Function
 def load_graphrag_index(
