@@ -725,6 +725,46 @@ def incremental_update_graph(
     print(f"Truly new nodes to add: {len(new_nodes)}")
     print(f"Existing nodes updated: {len(updated_nodes)}")
 
+    # ── Step 5: Add new edges ──────────────────────────────
+    print("\nBuilding new edges...")
+    new_edges_added = 0
+
+    for chunk_entities in new_chunk_entities:
+        # All pairs of entities in this chunk
+        for i in range(len(chunk_entities)):
+            for j in range(i + 1, len(chunk_entities)):
+                e1 = chunk_entities[i]
+                e2 = chunk_entities[j]
+
+                # Skip if both not in graph
+                if not graph.has_node(e1) or \
+                   not graph.has_node(e2):
+                    continue
+
+                if graph.has_edge(e1, e2):
+                    # Update existing edge weight
+                    graph[e1][e2]["weight"] += 1
+                else:
+                    # Add new edge
+                    # Check if cross-source
+                    e1_sources = set(
+                        graph.nodes[e1].get("sources", []))
+                    e2_sources = set(
+                        graph.nodes[e2].get("sources", []))
+                    cross = len(
+                        e1_sources & e2_sources) == 0
+
+                    graph.add_edge(
+                        e1, e2,
+                        weight       = 1,
+                        cross_source = cross,
+                        sources      = list(
+                            e1_sources | e2_sources)
+                    )
+                    new_edges_added += 1
+
+    print(f"New edges added: {new_edges_added}")
+
 
 
 # Load Function
