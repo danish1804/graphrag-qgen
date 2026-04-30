@@ -526,7 +526,7 @@ def build_graphrag_index(
         embedder = Embedder()
     else:
         print("\nUsing existing embedding model from server (GPU)...")
-        
+
     node_list, embeddings = embed_graph_nodes(graph, embedder)
     print(f"Node embeddings shape: {embeddings.shape}")
 
@@ -597,6 +597,71 @@ def build_graphrag_index(
         "meta_path":           meta_path
     }
 
+def incremental_update_graph(
+        new_chunks:   list,
+        new_sources:  list,
+        index_dir:    str,
+        graph_name:   str,
+        embedder      = None
+) -> dict:
+    """
+    Incrementally update an existing GraphRAG index
+    with new document chunks.
+
+    Instead of rebuilding from scratch:
+    1. Load existing graph
+    2. Extract entities from NEW chunks only
+    3. Add new nodes + edges to existing graph
+    4. Embed ONLY new nodes
+    5. Add new embeddings to existing FAISS index
+    6. Save updated graph
+
+    Args:
+        new_chunks:  chunks from new PDF only
+        new_sources: source filenames for new chunks
+        index_dir:   where graph is saved
+        graph_name:  name of existing graph to update
+        embedder:    pre-loaded embedder (GPU) or None
+
+    Returns:
+        summary dict with update stats
+    """
+    import pickle
+    import faiss
+
+    print(f"\n{'='*60}")
+    print(f"INCREMENTAL GRAPH UPDATE")
+    print(f"New chunks: {len(new_chunks)}")
+    print(f"{'='*60}")
+
+    # ── Step 1: Load existing graph ────────────────────────
+    print("\nLoading existing graph...")
+    index_path = os.path.join(index_dir, f"{graph_name}.faiss")
+    graph_path = os.path.join(index_dir, f"{graph_name}_graph.pkl")
+    meta_path  = os.path.join(index_dir, f"{graph_name}_meta.json")
+
+    if not os.path.exists(graph_path):
+        raise FileNotFoundError(
+            f"No existing graph found at {graph_path}. "
+            f"Run full build first."
+        )
+
+    with open(graph_path, "rb") as f:
+        graph = pickle.load(f)
+
+    with open(meta_path, "r", encoding="utf-8") as f:
+        meta = json.load(f)
+
+    existing_nodes = set(meta["nodes"])
+    existing_node_list = meta["nodes"]
+
+    print(f"Existing graph: {graph.number_of_nodes()} nodes, "
+          f"{graph.number_of_edges()} edges")
+
+    # ── Step 2: Load spaCy ─────────────────────────────────
+    print("\nLoading spaCy...")
+    nlp = spacy.load("en_core_web_sm")
+    nlp.max_length = 2_000_000
 
 
 # Load Function
