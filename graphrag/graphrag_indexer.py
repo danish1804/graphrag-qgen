@@ -765,6 +765,33 @@ def incremental_update_graph(
 
     print(f"New edges added: {new_edges_added}")
 
+    # ── Step 6: Embed ONLY new nodes ───────────────────────
+    if new_nodes:
+        print(f"\nEmbedding {len(new_nodes)} new nodes...")
+
+        if embedder is None:
+            print("Loading new embedder instance...")
+            embedder = Embedder()
+        else:
+            print("Using existing GPU embedder ✅")
+
+        # Get text for each new node
+        new_node_texts = []
+        for node in new_nodes:
+            node_data  = graph.nodes.get(node, {})
+            chunks_for = node_data.get("chunks", [node])
+            context    = " ".join(chunks_for[:2])
+            node_text  = f"{node}. {context}"[:512]
+            new_node_texts.append(node_text)
+
+        new_embeddings = embedder.model.encode(
+            new_node_texts,
+            normalize_embeddings=True,
+            show_progress_bar=True,
+            batch_size=32
+        )
+        new_embeddings = np.array(
+            new_embeddings, dtype=np.float32)
 
 
 # Load Function
