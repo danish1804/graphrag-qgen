@@ -685,6 +685,46 @@ def incremental_update_graph(
 
     print(f"Unique entities in new PDF: "
           f"{len(new_entity_chunks)}")
+    
+    # ── Step 4: Identify truly new nodes ───────────────────
+    new_nodes = []
+    updated_nodes = []
+
+    for entity, chunk_ids in new_entity_chunks.items():
+        if entity in existing_nodes:
+            # Entity exists — update its frequency and sources
+            if graph.has_node(entity):
+                old_freq = graph.nodes[entity].get(
+                    "frequency", 0)
+                graph.nodes[entity]["frequency"] = (
+                    old_freq + len(chunk_ids))
+
+                old_sources = set(graph.nodes[entity].get(
+                    "sources", []))
+                new_srcs = set(
+                    new_sources[i] for i in chunk_ids
+                    if i < len(new_sources))
+                graph.nodes[entity]["sources"] = list(
+                    old_sources | new_srcs)
+                updated_nodes.append(entity)
+        else:
+            # Truly new entity — add as new node
+            sources_for_entity = set(
+                new_sources[i] for i in chunk_ids
+                if i < len(new_sources))
+            graph.add_node(
+                entity,
+                frequency  = len(chunk_ids),
+                sources    = list(sources_for_entity),
+                num_sources = len(sources_for_entity),
+                chunks     = [new_chunks[i]
+                              for i in list(chunk_ids)[:3]]
+            )
+            new_nodes.append(entity)
+
+    print(f"Truly new nodes to add: {len(new_nodes)}")
+    print(f"Existing nodes updated: {len(updated_nodes)}")
+
 
 
 # Load Function
