@@ -674,60 +674,81 @@ async def admin_upload_document(
 @app.post("/admin/rebuild-domain", tags=["Admin"])
 async def admin_rebuild_domain(req: AdminRebuildRequest):
     """
-    Admin endpoint — rebuild knowledge graph for a domain.
-
-    Will not build from scratch, will
-            just update it.
-
-    Rebuilds the domain graph using all PDFs currently
-    in the domain's data folder including any newly
-    uploaded documents. Automatically reloads into
-    the running pipeline — no server restart needed.
-
-    Args:
-        domain: domain to rebuild
+    Update domain knowledge graph incrementally.
+    Only processes new/changed documents.
+    Use force_full=true to rebuild from scratch.
     """
     if req.domain not in VALID_DOMAINS:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid domain '{req.domain}'. "
-                   f"Valid domains: {VALID_DOMAINS}"
+            detail=f"Invalid domain. "
+                   f"Valid: {VALID_DOMAINS}"
         )
 
     try:
-        print(f"[Admin] Rebuilding domain: {req.domain}")
+        from graphrag.graphrag_indexer import (
+            incremental_update_graph)
+        from utils.document_loader import load_and_chunk
 
-        from graphrag.graphrag_domain_indexer import (
-            build_domain_graph)
+        # Find new PDF in uploads folder
+        # (just uploaded via /admin/upload-document)
+        upload_files = os.listdir(UPLOAD_DIR)
+        pdf_files    = [f for f in upload_files
+                       if f.endswith((".pdf", ".pptx"))]
 
-        # Rebuild graph
-        # Pass existing embedder — avoids reloading on CPU
-        summary = build_domain_graph(
-            req.domain,
-            embedder=graph_pipeline.embedder  # ← pass existing
+        if not pdf_files:
+            raise HTTPException(
+                status_code=400,
+                detail="No uploaded documents found. "
+                       "Call /admin/upload-document first."
+            )
+
+        # Process each uploaded PDF
+        all_new_chunks  = []
+        all_new_sources = []
+
+        for pdf_file in pdf_files:
+            pdf_path = os.path.join(UPLOAD_DIR, pdf_file)
+            result   = load_and_chunk(pdf_path)
+            all_new_chunks.extend(result["chunks"])
+            all_new_sources.extend(
+                [pdf_file] * len(result["chunks"]))
+
+            # Move to tested folder after processing
+            dest = os.path.join(TESTED_DIR, pdf_file)
+            shutil.move(pdf_path, dest)
+
+        # Incremental update
+        graph_name = f"graphrag_{req.domain}"
+        summary = incremental_update_graph(
+            new_chunks  = all_new_chunks,
+            new_sources = all_new_sources,
+            index_dir   = INDEX_DIR,
+            graph_name  = graph_name,
+            embedder    = graph_pipeline.embedder
         )
 
-        # Reload into running pipeline — no restart needed
+        # Reload into pipeline
         graph_pipeline.load_domain_index(req.domain)
 
-        # Rebuild domain profiles for routing
+        # Rebuild routing profiles
         from graphrag.graphrag_domain_indexer import (
             build_domain_profiles)
         build_domain_profiles(graph_pipeline.embedder)
 
-        print(f"[Admin] Domain {req.domain} rebuilt "
-              f"and reloaded successfully.")
-
         return {
-            "status":       "ok",
-            "domain":       req.domain,
-            "graph_nodes":  summary["graph_nodes"],
-            "graph_edges":  summary["graph_edges"],
-            "files_loaded": summary["files_loaded"],
-            "message":      f"Domain '{req.domain}' graph "
-                            f"rebuilt and reloaded. "
-                            f"New documents are now "
-                            f"searchable."
+            "status":          "ok",
+            "domain":          req.domain,
+            "update_type":     "incremental",
+            "new_nodes_added": summary["new_nodes_added"],
+            "nodes_updated":   summary["nodes_updated"],
+            "new_edges_added": summary["new_edges_added"],
+            "graph_nodes":     summary["graph_nodes"],
+            "graph_edges":     summary["graph_edges"],
+            "message":         f"Domain '{req.domain}' "
+                               f"updated incrementally. "
+                               f"{summary['new_nodes_added']}"
+                               f" new concepts added."
         }
 
     except Exception as e:
