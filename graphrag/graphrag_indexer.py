@@ -809,6 +809,54 @@ def incremental_update_graph(
         existing_index   = faiss.read_index(index_path)
         updated_node_list = existing_node_list
 
+    # ── Step 8: Save everything ────────────────────────────
+    print("\nSaving updated graph...")
+
+    faiss.write_index(existing_index, index_path)
+
+    with open(graph_path, "wb") as f:
+        pickle.dump(graph, f)
+
+    # Update metadata
+    cross_source = sum(
+        1 for _, _, d in graph.edges(data=True)
+        if d.get("cross_source", False)
+    )
+
+    updated_sources = list(set(meta.get(
+        "unique_sources", [])) | set(new_sources))
+
+    with open(meta_path, "w", encoding="utf-8") as f:
+        json.dump({
+            "nodes":              updated_node_list,
+            "total_nodes":        graph.number_of_nodes(),
+            "total_edges":        graph.number_of_edges(),
+            "cross_source_edges": cross_source,
+            "total_chunks":       meta.get(
+                "total_chunks", 0) + len(new_chunks),
+            "unique_sources":     updated_sources,
+            "documents":          updated_sources,
+        }, f, ensure_ascii=False, indent=2)
+
+    print(f"\n{'='*60}")
+    print("INCREMENTAL UPDATE COMPLETE")
+    print(f"{'='*60}")
+    print(f"New nodes added:    {len(new_nodes)}")
+    print(f"Nodes updated:      {len(updated_nodes)}")
+    print(f"New edges added:    {new_edges_added}")
+    print(f"Total nodes now:    {graph.number_of_nodes()}")
+    print(f"Total edges now:    {graph.number_of_edges()}")
+
+    return {
+        "new_nodes_added":   len(new_nodes),
+        "nodes_updated":     len(updated_nodes),
+        "new_edges_added":   new_edges_added,
+        "graph_nodes":       graph.number_of_nodes(),
+        "graph_edges":       graph.number_of_edges(),
+        "cross_source_edges": cross_source,
+        "files_loaded":      list(set(new_sources))
+    }
+
 # Load Function
 def load_graphrag_index(
         index_dir: str = INDEX_DIR,
