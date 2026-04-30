@@ -565,7 +565,9 @@ async def graphrag_generate(req: GraphRAGGenerateRequest):
             question_type      = req.question_type,
             domain             = domain,
             top_k_nodes        = req.top_k_nodes,
-            neighbour_depth    = req.neighbour_depth
+            neighbour_depth    = req.neighbour_depth,
+            force_single       = (req.domain is not None
+                          and domain is None)  # ← NEW flag
         )
 
         return result
