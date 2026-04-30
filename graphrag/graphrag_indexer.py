@@ -473,7 +473,8 @@ def build_graphrag_index(
         chunks: list,
         sources: list = None,
         index_dir: str  = INDEX_DIR,
-        graph_name: str = GRAPH_NAME
+        graph_name: str = GRAPH_NAME,
+        embedder = None  # Pass existing embedder to avoid reload
 ) -> dict:
     """
     Full GraphRAG indexing pipeline.
@@ -520,7 +521,12 @@ def build_graphrag_index(
 
     # Embed nodes
     print("\nLoading embedding model...")
-    embedder = Embedder()
+    if embedder is None:
+        print("\nLoading embedding model (new instance)...")
+        embedder = Embedder()
+    else:
+        print("\nUsing existing embedding model from server (GPU)...")
+        
     node_list, embeddings = embed_graph_nodes(graph, embedder)
     print(f"Node embeddings shape: {embeddings.shape}")
 
