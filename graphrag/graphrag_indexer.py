@@ -663,6 +663,29 @@ def incremental_update_graph(
     nlp = spacy.load("en_core_web_sm")
     nlp.max_length = 2_000_000
 
+    # ── Step 3: Extract entities from new chunks only ──────
+    print("\nExtracting entities from new chunks...")
+    total_chunks = graph.number_of_nodes()  # use existing
+                                             # as reference
+
+    # Count entity frequencies in new chunks
+    new_entity_chunks = defaultdict(set)  # entity → chunk ids
+    new_chunk_entities = []               # entities per chunk
+
+    for i, chunk in enumerate(tqdm(new_chunks,
+                                   desc="Extracting")):
+        raw_entities = extract_raw_entities(chunk, nlp)
+        normalised   = []
+        for ent in raw_entities:
+            norm = normalize_entity(ent)
+            if is_valid_entity(norm):
+                new_entity_chunks[norm].add(i)
+                normalised.append(norm)
+        new_chunk_entities.append(normalised)
+
+    print(f"Unique entities in new PDF: "
+          f"{len(new_entity_chunks)}")
+
 
 # Load Function
 def load_graphrag_index(
