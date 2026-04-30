@@ -701,7 +701,11 @@ async def admin_rebuild_domain(req: AdminRebuildRequest):
             build_domain_graph)
 
         # Rebuild graph
-        summary = build_domain_graph(req.domain)
+        # Pass existing embedder — avoids reloading on CPU
+        summary = build_domain_graph(
+            req.domain,
+            embedder=graph_pipeline.embedder  # ← pass existing
+        )
 
         # Reload into running pipeline — no restart needed
         graph_pipeline.load_domain_index(req.domain)
