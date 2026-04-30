@@ -793,6 +793,21 @@ def incremental_update_graph(
         new_embeddings = np.array(
             new_embeddings, dtype=np.float32)
 
+        # ── Step 7: Add to existing FAISS index ───────────
+        print("Adding new embeddings to FAISS index...")
+        existing_index = faiss.read_index(index_path)
+        existing_index.add(new_embeddings)
+
+        # Update node list
+        updated_node_list = existing_node_list + new_nodes
+
+        print(f"FAISS index updated: "
+              f"{existing_index.ntotal} total vectors")
+    else:
+        print("\nNo new nodes to embed — "
+              "only existing nodes updated.")
+        existing_index   = faiss.read_index(index_path)
+        updated_node_list = existing_node_list
 
 # Load Function
 def load_graphrag_index(
