@@ -737,19 +737,20 @@ async def admin_rebuild_domain(req: AdminRebuildRequest):
         build_domain_profiles(graph_pipeline.embedder)
 
         return {
-            "status":          "ok",
-            "domain":          req.domain,
-            "update_type":     "incremental",
-            "new_nodes_added": summary["new_nodes_added"],
-            "nodes_updated":   summary["nodes_updated"],
-            "new_edges_added": summary["new_edges_added"],
-            "graph_nodes":     summary["graph_nodes"],
-            "graph_edges":     summary["graph_edges"],
-            "message":         f"Domain '{req.domain}' "
-                               f"updated incrementally. "
-                               f"{summary['new_nodes_added']}"
-                               f" new concepts added."
-        }
+        "status":          "ok",
+        "domain":          req.domain,
+        "update_type":     "incremental",
+        "new_nodes_added": summary["new_nodes_added"],
+        "nodes_updated":   summary["nodes_updated"],
+        "new_edges_added": summary["new_edges_added"],
+        "graph_nodes":     summary["graph_nodes"],
+        "graph_edges":     summary["graph_edges"],
+        "message":         summary.get(
+            "message",
+            f"Domain '{req.domain}' updated incrementally. "
+            f"{summary['new_nodes_added']} new concepts added."
+        )
+    }
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
