@@ -24,7 +24,21 @@ page = st.sidebar.radio(
 
 if page == "Dashboard":
     st.header("Dashboard")
-    st.info("Backend status will appear here.")
+
+    try:
+        health = client.health()
+
+        col1, col2 = st.columns(2)
+        col1.metric("Backend", "Online" if health.get("status") == "ok" else "Unknown")
+        col2.metric("Models Loaded", "Yes" if health.get("models_loaded") else "No")
+
+        with st.expander("Raw Health Response", expanded=True):
+            st.json(health)
+
+    except Exception as exc:
+        st.error(f"Could not reach backend: {exc}")
+        st.warning("Start the backend first, for example: python main_gr.py --mode standard")
+
 
 elif page == "Upload Document":
     st.header("Upload Document")
