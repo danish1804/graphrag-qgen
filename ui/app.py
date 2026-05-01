@@ -38,6 +38,19 @@ if page == "Dashboard":
     except Exception as exc:
         st.error(f"Could not reach backend: {exc}")
         st.warning("Start the backend first, for example: python main_gr.py --mode standard")
+    
+    st.subheader("Multi-document RAG")
+    try:
+        st.json(client.multi_status())
+    except Exception as exc:
+        st.info(f"Multi-document status unavailable: {exc}")
+
+    st.subheader("GraphRAG")
+    try:
+        st.json(client.graphrag_status())
+    except Exception as exc:
+        st.info(f"GraphRAG status unavailable: {exc}")
+
 
 
 elif page == "Upload Document":

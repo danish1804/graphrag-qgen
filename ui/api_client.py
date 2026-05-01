@@ -24,3 +24,10 @@ class ApiClient:
 
     def health(self):
         return self._get("/health", timeout=10)
+    
+    def multi_status(self):
+        return self._get("/multi/status", timeout=10)
+
+    def graphrag_status(self):
+        return self._get("/graphrag/status", timeout=10)
+
