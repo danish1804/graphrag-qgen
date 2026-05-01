@@ -40,5 +40,16 @@ class ApiClient:
             )
         }
         return self._post("/upload", files=files, timeout=300)
+    
+    def upload_graphrag_document(self, uploaded_file):
+        files = {
+            "file": (
+                uploaded_file.name,
+                uploaded_file.getvalue(),
+                uploaded_file.type,
+            )
+        }
+        return self._post("/graphrag/upload", files=files, timeout=600)
+
 
 

@@ -54,22 +54,30 @@ if page == "Dashboard":
 elif page == "Upload Document":
     st.header("Upload Document")
 
+    upload_mode = st.radio(
+        "Upload target",
+        ["Standard RAG", "GraphRAG"],
+        horizontal=True,
+    )
+
     uploaded_file = st.file_uploader(
         "Upload course material",
         type=["pdf", "pptx"],
     )
 
-    if uploaded_file and st.button("Upload to Standard RAG", type="primary"):
+    if uploaded_file and st.button("Upload and Index", type="primary"):
         try:
             with st.spinner("Uploading and indexing document..."):
-                result = client.upload_standard_document(uploaded_file)
+                if upload_mode == "Standard RAG":
+                    result = client.upload_standard_document(uploaded_file)
+                else:
+                    result = client.upload_graphrag_document(uploaded_file)
 
             st.success("Document indexed successfully.")
             st.json(result)
 
         except Exception as exc:
             st.error(f"Upload failed: {exc}")
-
 
 elif page == "Generate Question":
     st.header("Generate Question")
