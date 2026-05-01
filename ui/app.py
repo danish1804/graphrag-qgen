@@ -81,7 +81,61 @@ elif page == "Upload Document":
 
 elif page == "Generate Question":
     st.header("Generate Question")
-    st.info("Question generation will appear here.")
+
+    retrieval_mode = st.selectbox(
+        "Retrieval mode",
+        [
+            "Single-document Standard RAG",
+            "Multi-document Standard RAG",
+            "GraphRAG",
+        ],
+    )
+
+    learning_objective = st.text_area(
+        "Learning objective",
+        placeholder="Explain how parameter sharing reduces learnable weights in CNNs.",
+        height=120,
+    )
+
+    col1, col2, col3 = st.columns(3)
+    difficulty = col1.selectbox("Difficulty", ["easy", "medium", "hard"], index=1)
+    question_type = col2.selectbox("Question type", ["recall", "conceptual", "application"], index=1)
+    top_k = col3.number_input("Top K", min_value=1, max_value=10, value=3)
+
+    if st.button("Generate Question", type="primary"):
+        if not learning_objective.strip():
+            st.warning("Please enter a learning objective.")
+        else:
+            payload = {
+                "learning_objective": learning_objective.strip(),
+                "difficulty": difficulty,
+                "question_type": question_type,
+                "top_k": int(top_k),
+            }
+
+            try:
+                with st.spinner("Generating question..."):
+                    if retrieval_mode == "Single-document Standard RAG":
+                        result = client.generate_single(payload)
+                    elif retrieval_mode == "Multi-document Standard RAG":
+                        result = client.generate_multi(payload)
+                    else:
+                        graph_payload = {
+                            "learning_objective": learning_objective.strip(),
+                            "difficulty": difficulty,
+                            "question_type": question_type,
+                            "top_k_nodes": int(top_k),
+                            "neighbour_depth": 1,
+                            "domain": None,
+                        }
+                        result = client.generate_graphrag(graph_payload)
+
+                st.session_state["last_result"] = result
+                st.success("Question generated.")
+
+            except Exception as exc:
+                st.error(f"Generation failed: {exc}")
+
 
 elif page == "Admin":
     st.header("Admin")
