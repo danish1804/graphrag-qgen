@@ -101,6 +101,22 @@ elif page == "Generate Question":
     difficulty = col1.selectbox("Difficulty", ["easy", "medium", "hard"], index=1)
     question_type = col2.selectbox("Question type", ["recall", "conceptual", "application"], index=1)
     top_k = col3.number_input("Top K", min_value=1, max_value=10, value=3)
+    selected_domain = None
+
+    if retrieval_mode == "GraphRAG":
+        domain_options = ["Auto route"]
+
+        try:
+            graph_status = client.graphrag_status()
+            domain_options.extend(list(graph_status.get("domains", {}).keys()))
+        except Exception:
+            pass
+
+        domain_choice = st.selectbox("GraphRAG domain", domain_options)
+
+        if domain_choice != "Auto route":
+            selected_domain = domain_choice
+
 
     if st.button("Generate Question", type="primary"):
         if not learning_objective.strip():
@@ -126,7 +142,7 @@ elif page == "Generate Question":
                             "question_type": question_type,
                             "top_k_nodes": int(top_k),
                             "neighbour_depth": 1,
-                            "domain": None,
+                            "domain": selected_domain,
                         }
                         result = client.generate_graphrag(graph_payload)
 
