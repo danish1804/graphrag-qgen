@@ -151,6 +151,22 @@ elif page == "Generate Question":
 
             except Exception as exc:
                 st.error(f"Generation failed: {exc}")
+                
+    if "last_result" in st.session_state:
+        result = st.session_state["last_result"]
+        metadata = result.get("metadata", {})
+
+        st.subheader("Generated Question")
+        st.markdown(result.get("question", "No question returned."))
+
+        if metadata:
+            st.subheader("Metadata")
+            st.json(metadata)
+
+        with st.expander("Raw API Response"):
+            st.json(result)
+
+
 
 
 elif page == "Admin":
