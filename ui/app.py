@@ -151,7 +151,7 @@ elif page == "Generate Question":
 
             except Exception as exc:
                 st.error(f"Generation failed: {exc}")
-                
+
     if "last_result" in st.session_state:
         result = st.session_state["last_result"]
         metadata = result.get("metadata", {})
@@ -159,14 +159,35 @@ elif page == "Generate Question":
         st.subheader("Generated Question")
         st.markdown(result.get("question", "No question returned."))
 
-        if metadata:
-            st.subheader("Metadata")
-            st.json(metadata)
+        sample_answer = metadata.get("sample_answer")
+        if sample_answer:
+            st.subheader("Sample Answer")
+            st.markdown(sample_answer)
+
+        sources = metadata.get("sources")
+        if sources:
+            st.subheader("Sources Used")
+            st.write(sources)
+
+        key_concepts = metadata.get("key_concepts")
+        if key_concepts:
+            st.subheader("Key Concepts")
+            st.write(key_concepts)
+
+        relationships = metadata.get("concept_relationships")
+        if relationships:
+            st.subheader("Concept Relationships")
+            st.write(relationships)
+
+        retrieved_chunks = metadata.get("retrieved_chunks")
+        if retrieved_chunks:
+            st.subheader("Retrieved Chunks")
+            for chunk_name, chunk in retrieved_chunks.items():
+                with st.expander(chunk_name):
+                    st.json(chunk)
 
         with st.expander("Raw API Response"):
             st.json(result)
-
-
 
 
 elif page == "Admin":
