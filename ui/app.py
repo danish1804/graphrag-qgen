@@ -51,11 +51,25 @@ if page == "Dashboard":
     except Exception as exc:
         st.info(f"GraphRAG status unavailable: {exc}")
 
-
-
 elif page == "Upload Document":
     st.header("Upload Document")
-    st.info("Document upload will appear here.")
+
+    uploaded_file = st.file_uploader(
+        "Upload course material",
+        type=["pdf", "pptx"],
+    )
+
+    if uploaded_file and st.button("Upload to Standard RAG", type="primary"):
+        try:
+            with st.spinner("Uploading and indexing document..."):
+                result = client.upload_standard_document(uploaded_file)
+
+            st.success("Document indexed successfully.")
+            st.json(result)
+
+        except Exception as exc:
+            st.error(f"Upload failed: {exc}")
+
 
 elif page == "Generate Question":
     st.header("Generate Question")

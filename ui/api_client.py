@@ -30,4 +30,15 @@ class ApiClient:
 
     def graphrag_status(self):
         return self._get("/graphrag/status", timeout=10)
+    
+    def upload_standard_document(self, uploaded_file):
+        files = {
+            "file": (
+                uploaded_file.name,
+                uploaded_file.getvalue(),
+                uploaded_file.type,
+            )
+        }
+        return self._post("/upload", files=files, timeout=300)
+
 
