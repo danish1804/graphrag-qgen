@@ -1,4 +1,5 @@
 import streamlit as st
+from api_client import ApiClient, DEFAULT_API_BASE_URL
 
 st.set_page_config(
     page_title="EdGenAI Question Generator",
@@ -8,6 +9,13 @@ st.set_page_config(
 
 st.title("EdGenAI Question Generator")
 st.caption("UI for Standard RAG, Multi-document RAG, and GraphRAG workflows.")
+api_base_url = st.sidebar.text_input(
+    "Backend API URL",
+    value=DEFAULT_API_BASE_URL,
+)
+
+client = ApiClient(api_base_url)
+
 
 page = st.sidebar.radio(
     "Navigation",
