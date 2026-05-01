@@ -59,6 +59,13 @@ class ApiClient:
 
     def generate_graphrag(self, payload: dict):
         return self._post("/graphrag/generate", json=payload, timeout=300)
+    
+    def rebuild_multi_index(self):
+        return self._post("/multi/rebuild", timeout=900)
+
+    def rebuild_graphrag_domain(self, domain_name: str):
+        return self._post(f"/graphrag/rebuild/{domain_name}", timeout=900)
+
 
 
 

@@ -192,4 +192,42 @@ elif page == "Generate Question":
 
 elif page == "Admin":
     st.header("Admin")
-    st.info("Index management controls will appear here.")
+
+    st.subheader("Multi-document Standard RAG")
+
+    if st.button("Rebuild Multi-document Index"):
+        try:
+            with st.spinner("Rebuilding combined index..."):
+                result = client.rebuild_multi_index()
+
+            st.success("Multi-document index rebuilt.")
+            st.json(result)
+
+        except Exception as exc:
+            st.error(f"Multi-document rebuild failed: {exc}")
+
+    st.divider()
+
+    st.subheader("GraphRAG Domain Rebuild")
+
+    try:
+        graph_status = client.graphrag_status()
+        domains = graph_status.get("domains", {})
+        domain_names = list(domains.keys())
+
+        if domain_names:
+            selected_domain = st.selectbox("Domain", domain_names)
+            st.json(domains[selected_domain])
+
+            if st.button("Rebuild Selected GraphRAG Domain"):
+                with st.spinner(f"Rebuilding {selected_domain}..."):
+                    result = client.rebuild_graphrag_domain(selected_domain)
+
+                st.success("GraphRAG domain rebuilt.")
+                st.json(result)
+        else:
+            st.info("No GraphRAG domains found.")
+
+    except Exception as exc:
+        st.error(f"Could not load GraphRAG domains: {exc}")
+
