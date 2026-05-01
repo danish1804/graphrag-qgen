@@ -50,6 +50,16 @@ class ApiClient:
             )
         }
         return self._post("/graphrag/upload", files=files, timeout=600)
+    
+    def generate_single(self, payload: dict):
+        return self._post("/generate", json=payload, timeout=300)
+
+    def generate_multi(self, payload: dict):
+        return self._post("/multi/generate", json=payload, timeout=300)
+
+    def generate_graphrag(self, payload: dict):
+        return self._post("/graphrag/generate", json=payload, timeout=300)
+
 
 
 
