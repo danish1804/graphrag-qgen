@@ -1,5 +1,5 @@
 # P000233DS — AI-Powered Automated Assessment System
-**EdGenAI Technologies (Spectrum Tuition) × RMIT University**
+**EdGenAI Technologies × RMIT University**
 
 An AI-powered exam question generation system using GraphRAG (Graph-based Retrieval Augmented Generation) and large language models. Generates pedagogically grounded exam questions from university-level IT course material across 5 subject domains.
 
@@ -391,7 +391,7 @@ See [scripts/README.md](scripts/README.md) for details.
 | MCQ format in some questions | Known | Fine-tuning planned |
 | Low retrieval quality scores | Known | OCR artifacts in PDFs |
 | Judge runs on CPU if VRAM < 1.5GB | Known | Reuse generator as judge |
-| Multi-domain only for hard difficulty | By design | Samar's requirement |
+| Multi-domain only for hard difficulty | By design | Requirement |
 | No per-educator isolated indexes | Planned | Educator copy API |
 
 ---
@@ -407,20 +407,6 @@ See [scripts/README.md](scripts/README.md) for details.
 | Knowledge Graph | NetworkX + spaCy NER |
 | API Framework | FastAPI + Uvicorn |
 | Entity Extraction | spaCy en_core_web_sm |
-
----
-
-## Team
-
-| Member | Role |
-|--------|------|
-| Mohammed Danish Alam | GraphRAG pipeline, FastAPI, domain routing, admin API |
-| Aiswarya Sudhir | LLM-as-Judge, evaluation framework |
-| Shrinidhi Sushil Kukde | Frontend UI, backlog management |
-| Arun Attri | Data preprocessing, testing |
-| Dharshini Arunraj | Data preprocessing, testing |
-
-**Supervisor:** Ke Deng (RMIT) | **Industry:** Samar Shailendra (EdGenAI Technologies)
 
 ---
 
