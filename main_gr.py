@@ -679,50 +679,63 @@ async def admin_upload_document(
 
 @app.post("/admin/rebuild-domain", tags=["Admin"])
 async def admin_rebuild_domain(req: AdminRebuildRequest):
-    """
-    Update domain knowledge graph incrementally.
-    Only processes new/changed documents.
-    Use force_full=true to rebuild from scratch.
-    """
     if req.domain not in VALID_DOMAINS:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid domain. "
-                   f"Valid: {VALID_DOMAINS}"
+            detail=f"Invalid domain. Valid: {VALID_DOMAINS}"
         )
 
     try:
         from graphrag.graphrag_indexer import (
             incremental_update_graph)
         from utils.document_loader import load_and_chunk
+        from utils.registry import (
+            load_registry, mark_as_indexed)
 
-        # Find new PDF in uploads folder
-        # (just uploaded via /admin/upload-document)
-        upload_files = os.listdir(UPLOAD_DIR)
-        pdf_files    = [f for f in upload_files
-                       if f.endswith((".pdf", ".pptx"))]
+        # Get unindexed files for this domain from registry
+        registry = load_registry()
+        domain_files = registry["domains"].get(
+            req.domain, {}).get("files", {})
 
-        if not pdf_files:
-            raise HTTPException(
-                status_code=400,
-                detail="No uploaded documents found. "
-                       "Call /admin/upload-document first."
-            )
+        # Find files registered but not yet indexed
+        new_files = [
+            filename
+            for filename, info in domain_files.items()
+            if not info["indexed"]
+        ]
 
-        # Process each uploaded PDF
+        if not new_files:
+            return {
+                "status":          "ok",
+                "domain":          req.domain,
+                "update_type":     "incremental",
+                "message":         "No new documents found. "
+                                   "All files already indexed.",
+                "new_nodes_added": 0,
+                "new_edges_added": 0
+            }
+
+        print(f"[Admin] New files to index: {new_files}")
+
+        # Process new files from tested/ folder
         all_new_chunks  = []
         all_new_sources = []
 
-        for pdf_file in pdf_files:
-            pdf_path = os.path.join(UPLOAD_DIR, pdf_file)
-            result   = load_and_chunk(pdf_path)
+        for pdf_file in new_files:
+            pdf_path = os.path.join(TESTED_DIR, pdf_file)
+            if not os.path.exists(pdf_path):
+                print(f"[Admin] Warning: {pdf_file} "
+                      f"not found in tested/")
+                continue
+            result = load_and_chunk(pdf_path)
             all_new_chunks.extend(result["chunks"])
             all_new_sources.extend(
                 [pdf_file] * len(result["chunks"]))
 
-            # Move to tested folder after processing
-            dest = os.path.join(TESTED_DIR, pdf_file)
-            shutil.move(pdf_path, dest)
+        if not all_new_chunks:
+            raise HTTPException(
+                status_code=400,
+                detail="No chunks loaded from new files.")
 
         # Incremental update
         graph_name = f"graphrag_{req.domain}"
@@ -734,8 +747,10 @@ async def admin_rebuild_domain(req: AdminRebuildRequest):
             embedder    = graph_pipeline.embedder
         )
 
-        for pdf_file in pdf_files:
+        # Mark files as indexed in registry
+        for pdf_file in new_files:
             mark_as_indexed(pdf_file, domain=req.domain)
+
         # Reload into pipeline
         graph_pipeline.load_domain_index(req.domain)
 
@@ -745,24 +760,25 @@ async def admin_rebuild_domain(req: AdminRebuildRequest):
         build_domain_profiles(graph_pipeline.embedder)
 
         return {
-        "status":          "ok",
-        "domain":          req.domain,
-        "update_type":     "incremental",
-        "new_nodes_added": summary["new_nodes_added"],
-        "nodes_updated":   summary["nodes_updated"],
-        "new_edges_added": summary["new_edges_added"],
-        "graph_nodes":     summary["graph_nodes"],
-        "graph_edges":     summary["graph_edges"],
-        "message":         summary.get(
-            "message",
-            f"Domain '{req.domain}' updated incrementally. "
-            f"{summary['new_nodes_added']} new concepts added."
-        )
-    }
+            "status":          "ok",
+            "domain":          req.domain,
+            "update_type":     "incremental",
+            "new_files":       new_files,
+            "new_nodes_added": summary["new_nodes_added"],
+            "nodes_updated":   summary["nodes_updated"],
+            "new_edges_added": summary["new_edges_added"],
+            "graph_nodes":     summary["graph_nodes"],
+            "graph_edges":     summary["graph_edges"],
+            "message":         f"Domain '{req.domain}' "
+                               f"updated. "
+                               f"{summary['new_nodes_added']}"
+                               f" new concepts added from "
+                               f"{len(new_files)} new files."
+        }
 
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
+        raise HTTPException(
+            status_code=500, detail=str(e))
 
 @app.post("/admin/add-domain", tags=["Admin"])
 async def admin_add_domain(req: AdminAddDomainRequest):
