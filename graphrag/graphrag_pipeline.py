@@ -62,6 +62,19 @@ class GraphRAGPipeline:
         self._models_loaded = True
         print("\n[GraphRAGPipeline] All models ready.")
 
+    def load_judge_model(self):
+        """Load judge model — called once at server startup."""
+        if self._judge_loaded:
+            print("[GraphRAGPipeline] Judge already loaded.")
+            return
+
+        from utils.judge import load_judge
+        print("\n[GraphRAGPipeline] Loading judge model...")
+        self.judge_model, self.judge_tokenizer, device = \
+            load_judge()
+        self._judge_loaded = True
+        print(f"[GraphRAGPipeline] Judge ready on {device}.")
+
     # ----------------------------------------------------------
     # STAGE 2 — Ingest a document
     # ----------------------------------------------------------
