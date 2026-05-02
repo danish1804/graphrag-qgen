@@ -40,6 +40,9 @@ class GraphRAGPipeline:
         self.tokenizer    = None
         self.graph_name   = None
         self._models_loaded = False
+        self.judge_model      = None
+        self.judge_tokenizer  = None
+        self._judge_loaded    = False
 
     # ----------------------------------------------------------
     # STAGE 1 — Load models (call once at startup)
