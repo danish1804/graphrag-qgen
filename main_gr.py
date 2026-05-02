@@ -106,6 +106,17 @@ async def lifespan(app: FastAPI):
         print("[Server] Standard mode — GraphRAG skipped.")
         print("[Server] /graphrag/* endpoints will return 503.")
 
+    # ── Load judge model ──────────────────────────────────
+    print("[Server] Loading judge model...")
+    try:
+        graph_pipeline.load_judge_model()
+        print("[Server] Judge model ready.")
+    except Exception as e:
+        print(f"[Server] Judge model failed to load: {e}")
+        print("[Server] Evaluations will be skipped.")
+
+    print("[Server] Server is live.")
+
     print("[Server] Server is live.")
     print("[Server] Endpoints ready:")
     print("[Server]   GET  /health")
