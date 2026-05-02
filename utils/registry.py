@@ -1,17 +1,14 @@
-# utils/registry.py
 # ============================================================
-# Document Registry — single source of truth for all PDFs
+# utils/registry.py
+# Document Registry Helper
 #
-# Tracks:
-#   - Which PDFs exist in the system
-#   - Which domain each PDF belongs to
-#   - Whether each PDF has been indexed
-#   - Last source number for auto-naming
+# Single source of truth for all PDF tracking.
+# Tracks which PDFs exist, their domain, and index status.
 #
 # Used by:
-#   - Admin API (upload, rebuild)
-#   - Domain indexer (build_domain_graph)
-#   - rename_docs.py (get next number)
+#   - Admin API (upload, rebuild endpoints)
+#   - graphrag_domain_indexer.py (full rebuilds)
+#   - rename_docs.py (auto-registration)
 # ============================================================
 
 import os
@@ -20,13 +17,12 @@ from datetime import date
 from typing import Optional
 
 try:
-    from utils.config import cfg
     BASE_DIR = os.getenv(
         "GRAPHRAG_BASE_DIR",
         os.path.dirname(os.path.dirname(
             os.path.abspath(__file__)))
     )
-except ImportError:
+except Exception:
     BASE_DIR = os.path.dirname(
         os.path.dirname(os.path.abspath(__file__)))
 
@@ -54,109 +50,166 @@ def save_registry(registry: dict) -> None:
 
 def get_next_source_number() -> int:
     """
-    Get next available source number for renaming.
-    Increments last_source_number in registry.
+    Get next available source number.
+    Used by rename_docs.py for consistent naming.
     """
     registry = load_registry()
-    next_num = registry["last_source_number"] + 1
+    next_num  = registry["last_source_number"] + 1
     registry["last_source_number"] = next_num
     save_registry(registry)
+    print(f"[Registry] Next source number: {next_num}")
     return next_num
 
 
-def register_document(filename:   str,
-                      domain:     Optional[str] = None,
-                      indexed:    bool = False) -> None:
+def register_document(filename:  str,
+                      domain:    Optional[str] = None,
+                      indexed:   bool = False) -> None:
     """
-    Register a new document in the registry.
+    Register a new document or update existing entry.
+
     Called when:
+      - Admin uploads via /admin/upload-document
       - rename_docs.py renames a new file
-      - admin uploads a document via API
     """
     registry = load_registry()
 
-    if filename in registry["documents"]:
-        # Update existing entry
-        if domain:
-            registry["documents"][filename]["domain"] = domain
-        print(f"[Registry] Updated: {filename} "
-              f"→ domain={domain}")
-    else:
-        # New entry
-        registry["documents"][filename] = {
-            "domain":  domain,
-            "indexed": indexed,
-            "added":   str(date.today())
+    # Ensure domain exists in registry
+    if domain and domain not in registry["domains"]:
+        registry["domains"][domain] = {
+            "description": domain,
+            "files": {}
         }
-        print(f"[Registry] Registered: {filename} "
-              f"→ domain={domain}")
+        print(f"[Registry] New domain created: {domain}")
+
+    if domain:
+        # Add to domain-specific files
+        if filename not in registry["domains"][domain]["files"]:
+            registry["domains"][domain]["files"][filename] = {
+                "indexed": indexed,
+                "added":   str(date.today())
+            }
+            print(f"[Registry] Registered: {filename} "
+                  f"→ {domain} (indexed={indexed})")
+        else:
+            # Update existing entry
+            registry["domains"][domain]["files"][filename][
+                "indexed"] = indexed
+            print(f"[Registry] Updated: {filename} "
+                  f"→ indexed={indexed}")
+    else:
+        print(f"[Registry] Warning: no domain specified "
+              f"for {filename} — not registered")
+        return
 
     save_registry(registry)
 
 
-def mark_as_indexed(filename: str) -> None:
+def mark_as_indexed(filename: str,
+                    domain:   str) -> None:
     """
     Mark a document as indexed after
     incremental update completes.
     """
     registry = load_registry()
 
-    if filename not in registry["documents"]:
-        print(f"[Registry] Warning: {filename} "
-              f"not in registry — adding now")
-        registry["documents"][filename] = {
-            "domain":  None,
+    if domain not in registry["domains"]:
+        print(f"[Registry] Warning: domain '{domain}' "
+              f"not found")
+        return
+
+    if filename not in registry["domains"][domain]["files"]:
+        print(f"[Registry] Warning: {filename} not in "
+              f"{domain} — adding now")
+        registry["domains"][domain]["files"][filename] = {
             "indexed": True,
             "added":   str(date.today())
         }
     else:
-        registry["documents"][filename]["indexed"] = True
+        registry["domains"][domain]["files"][filename][
+            "indexed"] = True
 
     save_registry(registry)
-    print(f"[Registry] Marked indexed: {filename}")
+    print(f"[Registry] Marked indexed: {filename} "
+          f"in {domain}")
 
 
-def get_domain_files(domain: str) -> list:
+def get_domain_files(domain:         str,
+                     indexed_only:   bool = True) -> list:
     """
-    Get all indexed files for a specific domain.
+    Get all files for a specific domain.
     Replaces hardcoded DOMAIN_MAP file lists.
-    Used by build_domain_graph() for full rebuilds.
+
+    Args:
+        domain:       domain name
+        indexed_only: if True returns only indexed files
+                      if False returns all registered files
     """
     registry = load_registry()
-    return [
-        filename
-        for filename, info in registry["documents"].items()
-        if info["domain"] == domain
-        and info["indexed"]
-    ]
+
+    if domain not in registry["domains"]:
+        print(f"[Registry] Domain '{domain}' not found")
+        return []
+
+    files = registry["domains"][domain]["files"]
+
+    if indexed_only:
+        return [
+            filename for filename, info in files.items()
+            if info["indexed"]
+        ]
+    return list(files.keys())
 
 
 def get_unindexed_files(domain: Optional[str] = None
                         ) -> list:
     """
-    Get files not yet indexed.
+    Get all files not yet indexed.
     Used by /admin/new-documents endpoint.
+
+    Args:
+        domain: if specified filter by domain
+                if None returns all unindexed files
     """
     registry = load_registry()
-    return [
-        {"filename": filename, "domain": info["domain"]}
-        for filename, info in registry["documents"].items()
-        if not info["indexed"]
-        and (domain is None or info["domain"] == domain)
-    ]
+    unindexed = []
+
+    for dom, info in registry["domains"].items():
+        if domain and dom != domain:
+            continue
+        for filename, finfo in info["files"].items():
+            if not finfo["indexed"]:
+                unindexed.append({
+                    "filename": filename,
+                    "domain":   dom,
+                    "added":    finfo["added"]
+                })
+
+    return unindexed
 
 
-def get_all_domains() -> dict:
+def get_registry_summary() -> dict:
     """
-    Get summary of all domains and their file counts.
+    Get summary of all domains and file counts.
+    Used by /health and /graphrag/status endpoints.
     """
     registry = load_registry()
-    domains = {}
-    for filename, info in registry["documents"].items():
-        domain = info["domain"] or "unassigned"
-        if domain not in domains:
-            domains[domain] = {"total": 0, "indexed": 0}
-        domains[domain]["total"] += 1
-        if info["indexed"]:
-            domains[domain]["indexed"] += 1
-    return domains
+    summary  = {}
+
+    for domain, info in registry["domains"].items():
+        files   = info["files"]
+        indexed = sum(
+            1 for f in files.values() if f["indexed"])
+        summary[domain] = {
+            "total_files":   len(files),
+            "indexed_files": indexed,
+            "pending_files": len(files) - indexed
+        }
+
+    return {
+        "last_source_number": registry["last_source_number"],
+        "domains": summary,
+        "total_files": sum(
+            d["total_files"] for d in summary.values()),
+        "total_indexed": sum(
+            d["indexed_files"] for d in summary.values())
+    }
