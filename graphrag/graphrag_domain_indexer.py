@@ -81,7 +81,7 @@ DOMAIN_MAP = {
     "software_engineering": {
         "files": [
             "source_1.pdf",
-            "source_2pdf",
+            "source_2.pdf",
             "source_3.pdf",
             "source_4.pdf",
             "source_11.pdf",
