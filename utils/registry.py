@@ -213,3 +213,88 @@ def get_registry_summary() -> dict:
         "total_indexed": sum(
             d["indexed_files"] for d in summary.values())
     }
+
+# ============================================================
+# TEST — python utils/registry.py
+# ============================================================
+if __name__ == "__main__":
+
+    print("=" * 50)
+    print("REGISTRY TEST")
+    print("=" * 50)
+
+    # Test 1 — Load registry
+    print("\n1. Loading registry...")
+    registry = load_registry()
+    print(f"   last_source_number: "
+          f"{registry['last_source_number']}")
+    print(f"   domains found: "
+          f"{list(registry['domains'].keys())}")
+
+    # Test 2 — Summary
+    print("\n2. Registry summary...")
+    summary = get_registry_summary()
+    print(f"   Total files:   {summary['total_files']}")
+    print(f"   Total indexed: {summary['total_indexed']}")
+    for domain, info in summary["domains"].items():
+        print(f"   {domain}: "
+              f"{info['indexed_files']} indexed, "
+              f"{info['pending_files']} pending")
+
+    # Test 3 — Get domain files
+    print("\n3. Get deep_learning files...")
+    files = get_domain_files("deep_learning")
+    print(f"   Files found: {len(files)}")
+    print(f"   First 3: {files[:3]}")
+
+    # Test 4 — Get unindexed files
+    print("\n4. Check unindexed files...")
+    unindexed = get_unindexed_files()
+    print(f"   Unindexed: {len(unindexed)}")
+    if unindexed:
+        print(f"   First: {unindexed[0]}")
+    else:
+        print("   All files indexed")
+
+    # Test 5 — Register new document
+    print("\n5. Test register_document...")
+    register_document(
+        "test_document.pdf",
+        domain  = "database",
+        indexed = False
+    )
+
+    # Test 6 — Verify it appears in unindexed
+    print("\n6. Verify test doc is unindexed...")
+    unindexed = get_unindexed_files(domain="database")
+    found = any(
+        f["filename"] == "test_document.pdf"
+        for f in unindexed
+    )
+    print(f"   test_document.pdf found in unindexed: "
+          f"{found} test_document" if found else f"{found} test_document")
+
+    # Test 7 — Mark as indexed
+    print("\n7. Mark test doc as indexed...")
+    mark_as_indexed("test_document.pdf", domain="database")
+
+    # Test 8 — Verify it is now indexed
+    print("\n8. Verify test doc is now indexed...")
+    files = get_domain_files("database")
+    found = "test_document.pdf" in files
+    print(f"   test_document.pdf in indexed files: "
+          f"{found} indexed document" if found else f"{found} indexed document")
+
+    # Cleanup — remove test document from registry
+    print("\n9. Cleaning up test document...")
+    registry = load_registry()
+    if "test_document.pdf" in \
+            registry["domains"]["database"]["files"]:
+        del registry["domains"]["database"]["files"][
+            "test_document.pdf"]
+        save_registry(registry)
+        print("   test_document.pdf removed from registry")
+
+    print("\n" + "=" * 50)
+    print("REGISTRY TEST COMPLETE")
+    print("=" * 50)
