@@ -132,6 +132,23 @@ model:
   max_new_tokens: 512
   temperature: 0.7
 
+# ── LLM as Judge ──────────────────────────────────────────
+# Evaluates generated questions and answers for quality.
+# Uses a smaller model than the generator to save VRAM.
+# Qwen2.5-3B-Instruct chosen because:
+#   - Same family as generator (Qwen 2.5 7B)
+#   - Same tokenizer — no extra loading
+#   - ~2GB in 4-bit — fits in remaining RTX 4060 VRAM
+judge:
+  judge_name: "Qwen/Qwen2.5-3B-Instruct"
+  max_new_tokens: 512
+  temperature: 0.1          # low temp for consistent scoring
+  load_in_4bit: true
+  min_gpu_free_gb: 1.5      # lowered for RTX 4060
+  eval_output_dir: "outputs/evaluations"
+  score_threshold: 3.5      # below this -> regenerate
+  max_regenerations: 2      # max retry attempts
+
 # ── API Server ─────────────────────────────────────────────
 server:
   host: "0.0.0.0"
