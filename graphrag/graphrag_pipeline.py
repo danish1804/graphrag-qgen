@@ -666,6 +666,7 @@ class GraphRAGPipeline:
                 "concept_relationships": rel_strings,
                 "retrieved_chunks":      retrieved_chunks,
                 "sample_answer":         sample_answer,
+                "judge_scores":          judge_scores,
             }
         }
 
