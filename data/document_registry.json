@@ -1,0 +1,274 @@
+{
+  "last_source_number": 62,
+  "domains": {
+    "deep_learning": {
+      "description": "Deep Learning - CNNs, pooling, backprop",
+      "files": {
+        "source_50.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_51.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_52.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_53.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_54.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_55.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_56.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_57.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_58.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_59.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_60.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_61.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_62.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        }
+      }
+    },
+    "database": {
+      "description": "Database Systems - SQL, transactions, indexing, design",
+      "files": {
+        "source_7.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_8.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_13.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_14.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_17.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_18.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_31.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_36.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_49.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        }
+      }
+    },
+    "software_engineering": {
+      "description": "Software Engineering - processes, patterns, testing",
+      "files": {
+        "source_1.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_2.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_3.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_4.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_11.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_15.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_16.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_21.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_22.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_37.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_45.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_46.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_47.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_48.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        }
+      }
+    },
+    "operating_systems": {
+      "description": "Operating Systems - processes, memory, scheduling",
+      "files": {
+        "source_5.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_10.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_19.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_20.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_33.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_35.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_39.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_40.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_41.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_42.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_43.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        }
+      }
+    },
+    "computer_architecture": {
+      "description": "Computer Architecture - CPU, memory hierarchy, instruction sets, pipelining",
+      "files": {
+        "source_6.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_9.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_12.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_23.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_24.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_25.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_26.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_27.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_28.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_29.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_30.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_32.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_38.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        },
+        "source_44.pdf": {
+          "indexed": true,
+          "added": "2026-05-02"
+        }
+      }
+    }
+  }
+}
