@@ -241,7 +241,8 @@ class GraphRAGPipeline:
                           question_type: str = "conceptual",
                           domain:        str = None,
                           top_k_nodes:   int = None,
-                          neighbour_depth: int = None) -> dict:
+                          neighbour_depth: int = None,
+                          force_single: bool = False) -> dict:
 
         if not self._models_loaded:
             raise RuntimeError("Call load_models() first.")
@@ -260,7 +261,7 @@ class GraphRAGPipeline:
             print(f"[GraphRAGPipeline] Using specified domain: {domain}")
             selected_domain = domain
 
-        elif difficulty == "hard" and diff_cfg.get("multi_domain", False):
+        elif difficulty == "hard" and diff_cfg.get("multi_domain", False) and not force_single:
             # Hard question + no domain specified → multi-domain
             print(f"[GraphRAGPipeline] Hard question → "
                 f"attempting multi-domain retrieval")
