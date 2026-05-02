@@ -1,4 +1,4 @@
-# P000233DS — AI-Powered Automated Assessment System
+# P000233DS : AI-Powered Automated Assessment System
 **EdGenAI Technologies × RMIT University**
 
 An AI-powered exam question generation system using GraphRAG (Graph-based Retrieval Augmented Generation) and large language models. Generates pedagogically grounded exam questions from university-level IT course material across 5 subject domains.
@@ -50,14 +50,14 @@ Educators provide a **learning objective**, **difficulty level**, and **question
 
 ## Quick Start
 
-### Step 1 — Clone the repository
+### Step 1 : Clone the repository
 ```bash
 git clone https://github.com/danish1804/graphrag-qgen.git
 cd graphrag-qgen
 git checkout danish-develop
 ```
 
-### Step 2 — Create virtual environment
+### Step 2 : Create virtual environment
 ```bash
 python -m venv venv
 
@@ -68,13 +68,13 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-### Step 3 — Install dependencies
+### Step 3 : Install dependencies
 ```bash
 pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
-### Step 4 — Configure environment
+### Step 4 : Configure environment
 ```bash
 cp .env.example .env
 # Edit .env and set GRAPHRAG_BASE_DIR to your project path
@@ -90,12 +90,12 @@ Linux/Mac example:
 GRAPHRAG_BASE_DIR=/home/user/graphrag_qgen
 ```
 
-### Step 5 — Start the server
+### Step 5 : Start the server
 ```bash
-# Full mode — loads all 5 domain GraphRAG indexes (recommended)
+# Full mode : loads all 5 domain GraphRAG indexes (recommended)
 python main_gr.py --mode full
 
-# Standard mode — loads only Standard RAG (faster startup ~15s)
+# Standard mode : loads only Standard RAG (faster startup ~15s)
 python main_gr.py --mode standard
 ```
 
@@ -105,14 +105,14 @@ Wait for:
 [Server] Server is live.
 ```
 
-### Step 6 — Test with health check
+### Step 6 : Test with health check
 ```bash
 curl http://localhost:8000/health | python -m json.tool
 ```
 
 Expected: `"status": "ok"` with all 5 domains `true`.
 
-### Step 7 — Generate your first question
+### Step 7 : Generate your first question
 ```bash
 curl -X POST http://localhost:8000/graphrag/generate \
   -H "Content-Type: application/json" \
@@ -129,7 +129,7 @@ curl -X POST http://localhost:8000/graphrag/generate \
 
 ```
 graphrag_qgen/
-├── main_gr.py                  # FastAPI server — primary entry point
+├── main_gr.py                  # FastAPI server : primary entry point
 ├── main.py                     # Legacy single-doc server
 ├── main_multi.py               # Legacy multi-doc server
 ├── config.yml                  # All system parameters (edit here)
@@ -237,7 +237,7 @@ Domain Router (embedding-based)
 | POST | `/admin/add-domain` | Register new subject domain |
 | GET | `/admin/new-documents` | Show unindexed documents |
 
-### Request Body — `/graphrag/generate`
+### Request Body : `/graphrag/generate`
 ```json
 {
   "learning_objective": "Explain how CNNs use parameter sharing",
@@ -247,8 +247,8 @@ Domain Router (embedding-based)
 }
 ```
 
-> If `domain` is omitted — auto-routed by embedding similarity.
-> If `difficulty` is `hard` and `domain` is omitted — multi-domain retrieval activated.
+> If `domain` is omitted : auto-routed by embedding similarity.
+> If `difficulty` is `hard` and `domain` is omitted : multi-domain retrieval activated.
 
 ### Response Structure
 ```json
@@ -315,7 +315,7 @@ graph:
     min_edge_weight: 2      # minimum co-occurrence for edge
 ```
 
-Full reference: see `config.yml` — every parameter is documented inline.
+Full reference: see `config.yml` : every parameter is documented inline.
 
 ---
 
@@ -412,9 +412,9 @@ See [scripts/README.md](scripts/README.md) for details.
 
 ## Related Documentation
 
-- [graphrag/README.md](graphrag/README.md) — GraphRAG pipeline internals
-- [standard_rag/README.md](standard_rag/README.md) — Standard RAG pipeline
-- [utils/README.md](utils/README.md) — Shared utilities
-- [evaluation/README.md](evaluation/README.md) — LLM-as-Judge system
-- [scripts/README.md](scripts/README.md) — Utility scripts
-- [data/README.md](data/README.md) — Data structure and PDF management
+- [graphrag/README.md](graphrag/README.md) : GraphRAG pipeline internals
+- [standard_rag/README.md](standard_rag/README.md) : Standard RAG pipeline
+- [utils/README.md](utils/README.md) : Shared utilities
+- [evaluation/README.md](evaluation/README.md) : LLM-as-Judge system
+- [scripts/README.md](scripts/README.md) : Utility scripts
+- [data/README.md](data/README.md) : Data structure and PDF management
