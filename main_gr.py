@@ -131,6 +131,8 @@ async def lifespan(app: FastAPI):
     print("[Server]   POST /admin/upload-document")
     print("[Server]   POST /admin/rebuild-domain")
     print("[Server]   POST /admin/add-domain")
+    print("[Server]   POST /admin/new-documents")
+    print("[Server]   GET  /evaluate") 
 
     yield
 
