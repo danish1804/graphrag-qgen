@@ -62,44 +62,37 @@ def get_next_source_number() -> int:
 
 
 def register_document(filename:  str,
-                      domain:    Optional[str] = None,
+                      domain:    str,
                       indexed:   bool = False) -> None:
     """
-    Register a new document or update existing entry.
-
-    Called when:
-      - Admin uploads via /admin/upload-document
-      - rename_docs.py renames a new file
+    Register a document under a specific domain.
+    Called by admin upload endpoint only.
+    Domain must be specified — use /admin/upload-document
+    to assign domain before calling this.
     """
     registry = load_registry()
 
-    # Ensure domain exists in registry
-    if domain and domain not in registry["domains"]:
-        registry["domains"][domain] = {
-            "description": domain,
-            "files": {}
-        }
-        print(f"[Registry] New domain created: {domain}")
+    if domain not in registry["domains"]:
+        raise ValueError(
+            f"Domain '{domain}' not found in registry. "
+            f"Valid: {list(registry['domains'].keys())}"
+        )
 
-    if domain:
-        # Add to domain-specific files
-        if filename not in registry["domains"][domain]["files"]:
-            registry["domains"][domain]["files"][filename] = {
-                "indexed": indexed,
-                "added":   str(date.today())
-            }
-            print(f"[Registry] Registered: {filename} "
-                  f"→ {domain} (indexed={indexed})")
-        else:
-            # Update existing entry
-            registry["domains"][domain]["files"][filename][
-                "indexed"] = indexed
-            print(f"[Registry] Updated: {filename} "
-                  f"→ indexed={indexed}")
+    files = registry["domains"][domain]["files"]
+
+    if filename in files:
+        # Update existing
+        files[filename]["indexed"] = indexed
+        print(f"[Registry] Updated: {filename} "
+              f"→ {domain} indexed={indexed}")
     else:
-        print(f"[Registry] Warning: no domain specified "
-              f"for {filename} — not registered")
-        return
+        # New entry
+        files[filename] = {
+            "indexed": indexed,
+            "added":   str(date.today())
+        }
+        print(f"[Registry] Registered: {filename} "
+              f"→ {domain} indexed={indexed}")
 
     save_registry(registry)
 
