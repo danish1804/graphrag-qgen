@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-03_035342_c7b503",
+  "timestamp": "2026-05-03T03:53:42",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Explain how CNNs use parameter sharing",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_62.pdf]\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 10 / 42\nApply Neural Networks to Images\nIn our ML model we would like to have these two properties.\nFeature extraction usually happens locally - sparse",
+      "[SEED from source_62.pdf]\nIn feature extraction the same operation is applied at different locations - parameter sharing.\np1 p2 p3 p4 p5h1 h2 h3 h4 h5\nFully Connectedp1 p2 p3 p4 p5h1 h2 h3 h4 h5\nSparse connected\nLecture 4 (Par",
+      "[SEED from source_62.pdf]\nFully Connected\np1 p2 p3 p4 p5h1 h2 h3 h4 h5\nSparse connected\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 12 / 42\nParameter Sharing\nFeature extraction usually happens locally - sparse connectivit",
+      "[NEIGHBOUR from source_50.pdf]\nUnsupervised midTraditional\nDeep Learning\nHandcrafted features are time consuming, brittle and not scalable in\npractice. DL learn underlying features directly from data.\nLecture 4 (Part 1) Deep Learni",
+      "[NEIGHBOUR from source_50.pdf]\napplied across different locations.\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 9 / 42\nSpacial Relationship\nNatural language Processing (NLP):\nImage: The Unreasonable Effectiveness of Recurrent N"
+    ],
+    "scores": {
+      "relevance": 2,
+      "sufficiency": 2,
+      "noise": 5
+    },
+    "overall": 3.0,
+    "reasoning": "- Chunk 1 does not mention CNNs or parameter sharing, so it is not relevant to the learning objective.\n- Chunk 2 provides information about parameter sharing in feature extraction but lacks context about CNNs, making it partially relevant.\n- Chunk 3 also discusses parameter sharing but again lacks context about CNNs, making it partially relevant.\n- Chunk 4 is completely unrelated to the learning objective as it talks about unsupervised learning and handcrafted features.\n- Chunk 5 is also unrelated as it discusses natural language processing and recurrent neural networks, which are not related to CNNs and parameter sharing.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how parameter sharing in convolutional neural networks (CNNs) enables efficient feature extraction across different locations in an image.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- **Faithfulness**: The question can be fully answered using the provided context. It asks about parameter sharing in CNNs and how it enables efficient feature extraction across different locations in an image, which is directly addressed in the lecture notes.\n- **Clarity**: The question is clear and unambiguous. It specifies that the answer should come from the given context, making it easy to understand.\n- **Difficulty_Alignment**: The question is appropriately calibrated as medium difficulty. It requires understanding the concept of parameter sharing and its role in feature extraction, which aligns with the medium difficulty level.\n- **Type_Alignment**: The question fits the conceptual type, asking for an explanation of a concept rather than a recall or application task.\n- **Standalone_Quality**: The question does not explicitly reference the context but is self-contained and clear enough for a student to understand without additional context.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Parameter sharing in convolutional neural networks (CNNs) allows for efficient feature extraction across different locations in an image by applying the same set of parameters (weights) to multiple regions of the input image. This mechanism, known as local receptive fields, ensures that the same operation is performed at every spatial location, thus enabling the network to detect features regardless of their position within the image. By reusing the same parameters across various parts of the image, CNNs significantly reduce the number of parameters needed compared to fully connected layers, making the model more computationally efficient while still maintaining the ability to identify consistent features across different locations.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- The answer correctly explains how parameter sharing in CNNs enables efficient feature extraction across different locations in an image by using the concept of local receptive fields and shared weights.\n- It accurately describes the mechanism of applying the same set of parameters to multiple regions of the input image, which is consistent with the source context.\n- The answer covers the key points needed to fully address the question, including the concept of local receptive fields and the reduction in the number of parameters due to shared weights.\n- The answer is grounded in the source context, using specific terminology and concepts such as \"local receptive fields\" and \"shared weights,\" which are clearly derived from the provided lecture notes.\n- The language used is precise and appropriate for a university-level setting, avoiding casual or inappropriate tones and using appropriate academic vocabulary.",
+    "parse_status": "ok"
+  }
+}

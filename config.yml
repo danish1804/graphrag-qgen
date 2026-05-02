@@ -144,7 +144,7 @@ judge:
   max_new_tokens: 512
   temperature: 0.1          # low temp for consistent scoring
   load_in_4bit: true
-  min_gpu_free_gb: 1.5      # lowered for RTX 4060
+  min_gpu_free_gb: 0.3      # lowered for RTX 4060
   eval_output_dir: "outputs/evaluations"
   score_threshold: 3.5      # below this -> regenerate
   max_regenerations: 2      # max retry attempts

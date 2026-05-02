@@ -588,7 +588,6 @@ class GraphRAGPipeline:
 
         if self._judge_loaded:
             from evaluation.evaluator import evaluate_generation
-            from utils.config import cfg
 
             threshold  = cfg["judge"].get("score_threshold", 3.5)
             max_regen  = cfg["judge"].get("max_regenerations", 2)
