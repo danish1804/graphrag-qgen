@@ -28,6 +28,9 @@ sys.path.append(os.path.dirname(__file__))
 from standard_rag.pipeline              import Pipeline
 from standard_rag.multi_pipeline        import MultiPipeline
 from graphrag.graphrag_pipeline     import GraphRAGPipeline
+from utils.registry import (
+    register_document, mark_as_indexed,
+    get_unindexed_files, get_registry_summary)
 from graphrag.graphrag_domain_indexer import (
     DOMAIN_MAP, route_query_to_domain)
 
@@ -662,6 +665,7 @@ async def admin_upload_document(
         shutil.copyfileobj(file.file, f)
 
     print(f"[Admin] Uploaded {filename} -> domain: {domain}")
+    register_document(filename, domain=domain, indexed=False)
 
     return {
         "status":   "ok",
@@ -730,6 +734,8 @@ async def admin_rebuild_domain(req: AdminRebuildRequest):
             embedder    = graph_pipeline.embedder
         )
 
+        for pdf_file in pdf_files:
+            mark_as_indexed(pdf_file, domain=req.domain)
         # Reload into pipeline
         graph_pipeline.load_domain_index(req.domain)
 
@@ -823,6 +829,55 @@ async def admin_add_domain(req: AdminAddDomainRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+@app.get("/admin/new-documents", tags=["Admin"])
+async def get_new_documents():
+    """
+    Show documents in tested/ folder not yet
+    assigned to any domain in the registry.
+    Admin should call POST /admin/upload-document
+    to assign domain and trigger indexing.
+    """
+    try:
+        from utils.registry import load_registry
+
+        registry = load_registry()
+
+        # All files registered in any domain
+        registered_files = set()
+        for domain, info in registry["domains"].items():
+            registered_files.update(
+                info["files"].keys())
+
+        # All PDFs in tested/ folder
+        tested_files = set(
+            f for f in os.listdir(TESTED_DIR)
+            if f.endswith((".pdf", ".pptx"))
+        )
+
+        # Files in tested/ but not in any domain
+        unregistered = sorted(
+            tested_files - registered_files)
+
+        return {
+            "status":             "ok",
+            "total_unregistered": len(unregistered),
+            "unregistered_files": unregistered,
+            "total_in_tested":    len(tested_files),
+            "total_registered":   len(registered_files),
+            "message":
+                "All documents registered. "
+                "No pending files."
+                if not unregistered else
+                f"{len(unregistered)} file(s) in tested/ "
+                f"not yet assigned to a domain. "
+                f"Call POST /admin/upload-document "
+                f"?domain=<domain>&file=<filename>"
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500, detail=str(e))
 
 # ============================================================
 # RUN
