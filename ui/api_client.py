@@ -68,6 +68,13 @@ class ApiClient:
     
     def new_documents(self):
         return self._get("/admin/new-documents", timeout=30)
+    
+    def admin_rebuild_domain(self, domain: str):
+        return self._post(
+            "/admin/rebuild-domain",
+            json={"domain": domain},
+            timeout=600,
+        )
 
     def admin_upload_document(self, domain: str, uploaded_file):
         files = {
