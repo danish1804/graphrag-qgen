@@ -65,6 +65,25 @@ class ApiClient:
 
     def rebuild_graphrag_domain(self, domain_name: str):
         return self._post(f"/graphrag/rebuild/{domain_name}", timeout=900)
+    
+    def new_documents(self):
+        return self._get("/admin/new-documents", timeout=30)
+
+    def admin_upload_document(self, domain: str, uploaded_file):
+        files = {
+            "file": (
+                uploaded_file.name,
+                uploaded_file.getvalue(),
+                uploaded_file.type,
+            )
+        }
+        return self._post(
+            f"/admin/upload-document?domain={domain}",
+            files=files,
+            timeout=600,
+        )
+
+
 
 
 
