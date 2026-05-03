@@ -215,85 +215,96 @@ elif page == "Generate Question":
 elif page == "Admin":
     st.header("Admin")
 
+    # ── Document Registry ─────────────────────────────────
     st.subheader("Document Registry")
-
-    if st.button("Check Unregistered Documents"):
+    if st.button("Check Unregistered Documents",
+                 key="check_registry_btn"):
         try:
             result = client.new_documents()
             st.json(result)
         except Exception as exc:
-            st.error(f"Could not load unregistered documents: {exc}")
-
-
-    st.subheader("Multi-document Standard RAG")
-
-    if st.button("Rebuild Multi-document Index"):
-        try:
-            with st.spinner("Rebuilding combined index..."):
-                result = client.rebuild_multi_index()
-
-            st.success("Multi-document index rebuilt.")
-            st.json(result)
-
-        except Exception as exc:
-            st.error(f"Multi-document rebuild failed: {exc}")
+            st.error(f"Could not load registry: {exc}")
 
     st.divider()
-    
-    st.subheader("Upload Document To Domain")
 
+    # ── Upload Document To Domain ─────────────────────────
+    st.subheader("Upload Document To Domain")
     try:
         graph_status = client.graphrag_status()
-        domains = graph_status.get("domains", {})
+        domains      = graph_status.get("domains", {})
         domain_names = list(domains.keys())
 
         if domain_names:
             upload_domain = st.selectbox(
                 "Upload target domain",
                 domain_names,
-                key="admin_upload_domain",
+                key="admin_upload_domain"
             )
-
             admin_file = st.file_uploader(
-                "Upload PDF/PPTX for domain registry",
+                "Upload PDF or PPTX",
                 type=["pdf", "pptx"],
-                key="admin_domain_upload",
+                key="admin_domain_upload"
             )
-
-            if st.button("Rebuild Selected GraphRAG Domain"):
-                with st.spinner(f"Rebuilding {upload_domain} "
-                                f"(incremental)..."):
-                    result = client.admin_rebuild_domain(upload_domain)
-
-                st.success("Document uploaded and registered.")
+            if admin_file and st.button(
+                    "Upload To Selected Domain",
+                    key="upload_domain_btn"):
+                with st.spinner(
+                        f"Uploading to {upload_domain}..."):
+                    result = client.admin_upload_document(
+                        upload_domain, admin_file)
+                st.success("Document uploaded. "
+                           "Now trigger rebuild below.")
                 st.json(result)
         else:
-            st.info("No GraphRAG domains available for upload.")
+            st.info("No GraphRAG domains available.")
 
     except Exception as exc:
-        st.error(f"Could not load domains for upload: {exc}")
+        st.error(f"Could not load domains: {exc}")
 
+    st.divider()
 
-    st.subheader("GraphRAG Domain Rebuild")
-
+    # ── Incremental Domain Rebuild ────────────────────────
+    st.subheader("Rebuild Domain Graph (Incremental)")
     try:
         graph_status = client.graphrag_status()
-        domains = graph_status.get("domains", {})
+        domains      = graph_status.get("domains", {})
         domain_names = list(domains.keys())
 
         if domain_names:
-            selected_domain = st.selectbox("Domain", domain_names)
-            st.json(domains[selected_domain])
+            rebuild_domain = st.selectbox(
+                "Select domain to rebuild",
+                domain_names,
+                key="rebuild_domain_select"
+            )
+            st.json(domains[rebuild_domain])
 
-            if st.button("Rebuild Selected GraphRAG Domain"):
-                with st.spinner(f"Rebuilding {selected_domain}..."):
-                    result = client.rebuild_graphrag_domain(selected_domain)
-
-                st.success("GraphRAG domain rebuilt.")
+            if st.button(
+                    "Rebuild Domain (Incremental)",
+                    key="rebuild_domain_btn"):
+                with st.spinner(
+                        f"Rebuilding {rebuild_domain} "
+                        f"incrementally..."):
+                    result = client.admin_rebuild_domain(
+                        rebuild_domain)
+                st.success(result.get(
+                    "message", "Rebuild complete."))
                 st.json(result)
         else:
             st.info("No GraphRAG domains found.")
 
     except Exception as exc:
-        st.error(f"Could not load GraphRAG domains: {exc}")
+        st.error(f"Could not load domains: {exc}")
 
+    st.divider()
+
+    # ── Multi-doc Rebuild ─────────────────────────────────
+    st.subheader("Rebuild Multi-document Index")
+    if st.button("Rebuild Multi-document Index",
+                 key="rebuild_multi_btn"):
+        try:
+            with st.spinner("Rebuilding combined index..."):
+                result = client.rebuild_multi_index()
+            st.success("Multi-document index rebuilt.")
+            st.json(result)
+        except Exception as exc:
+            st.error(f"Multi-document rebuild failed: {exc}")
