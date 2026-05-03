@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-04_022133_a924a6",
+  "timestamp": "2026-05-04T02:21:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Explain the difference between unit testing and integration testing",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nand maintaining detailed records of test results.\nDuring development, testing may be carried out at t hree levels of granularity:\n1. Unit testing, where individual program units or o bject classes are",
+      "[SEED from source_22.pdf]\n8.1.4 System testing\nSystem testing during development involves integrat ing components to create a ver-\nsion of the system and then testing the integrated system. System testing checks that\ncomponent",
+      "[SEED from source_22.pdf]\nno remaining faults.\nIDevelopment testing is the responsibility of the so ftware development team. A separate team\nshould be responsible for testing a system before i t is released to customers. In th",
+      "[NEIGHBOUR from source_46.pdf]\n10.3.1 Revisions . . . . . . . . . . . . . . . . . . . . . . . . . 61\n10.3.2 Variations . . . . . . . . . . . . . . . . . . . . . . . . . 62\n10.3.3 Moral . . . . . . . . . . . . . . . . . . . . . . .",
+      "[NEIGHBOUR from source_46.pdf]\nAnswers to the Questions for Discussion\n1. How would each group below react to the introduction of the Waterfall\nlife-cycle model?\n(a) IT Team\ni. initial resistance to change\nii. We do not like the ex"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not directly address the learning objective of explaining the difference between unit testing and integration testing. Chunk 1 mentions unit testing but does not contrast it with integration testing. The other chunks discuss testing in general terms without focusing on the specific distinction required by the learning objective. Therefore, the chunks are only partially relevant.\n\nThere is insufficient information to generate a good exam question about the difference between unit testing and integration testing. While chunk 1 touches on unit testing, it does not provide any information on integration testing or how they differ. The other chunks are not relevant to the learning objective at all. Thus, the sufficiency score is low.\n\nThe chunks contain some useful information but are also filled with irrelevant details such as testing levels, system testing, and unrelated topics. This makes them moderately noisy.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary focus of component testing compared to unit testing, and how does it differ from system testing in terms of granularity?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context. It asks about component testing, unit testing, and system testing, which are all discussed in the given text.\n- CLARITY: The question is clear and unambiguous. It asks for a comparison between different types of testing, which is straightforward and well-phrased.\n- DIFFICULTY_ALIGNMENT: The question is appropriate for a medium difficulty level as it requires understanding and comparing concepts rather than just recalling them.\n- TYPE_ALIGNMENT: The question is clearly a conceptual one, asking for an explanation of the differences between testing types, which fits the requested type.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Component testing focuses on integrating several individual units to create composite components, with a primary emphasis on testing the interfaces between these components. This differs from unit testing, which concentrates on testing individual program units or object classes for their functionality. In contrast, system testing involves testing the integrated components to ensure they are compatible, interact correctly, and transfer data accurately, thus operating at a higher level of granularity than both unit and component testing.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.5,
+    "reasoning": "The answer correctly identifies the focus of component testing as integrating individual units and testing interfaces, distinguishing it from unit testing which tests individual units or classes. It also correctly states that system testing involves testing integrated components for compatibility and interaction. However, the answer slightly misrepresents the context by conflating component testing with integration testing, which is not explicitly mentioned in the source material. The answer is generally complete, covering the key points needed to address the question. It is grounded in the provided context without introducing any unsupported information. The language used is academic and precise, though it could be more concise.",
+    "parse_status": "ok"
+  }
+}
