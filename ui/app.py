@@ -164,6 +164,12 @@ elif page == "Generate Question":
             st.subheader("Sample Answer")
             st.markdown(sample_answer)
 
+        judge_scores = metadata.get("judge_scores")
+        if judge_scores:
+            st.subheader("Judge Evaluation Scores")
+            st.json(judge_scores)
+
+
         sources = metadata.get("sources")
         if sources:
             st.subheader("Sources Used")
@@ -193,6 +199,16 @@ elif page == "Generate Question":
 elif page == "Admin":
     st.header("Admin")
 
+    st.subheader("Document Registry")
+
+    if st.button("Check Unregistered Documents"):
+        try:
+            result = client.new_documents()
+            st.json(result)
+        except Exception as exc:
+            st.error(f"Could not load unregistered documents: {exc}")
+
+
     st.subheader("Multi-document Standard RAG")
 
     if st.button("Rebuild Multi-document Index"):
@@ -207,6 +223,39 @@ elif page == "Admin":
             st.error(f"Multi-document rebuild failed: {exc}")
 
     st.divider()
+    
+    st.subheader("Upload Document To Domain")
+
+    try:
+        graph_status = client.graphrag_status()
+        domains = graph_status.get("domains", {})
+        domain_names = list(domains.keys())
+
+        if domain_names:
+            upload_domain = st.selectbox(
+                "Upload target domain",
+                domain_names,
+                key="admin_upload_domain",
+            )
+
+            admin_file = st.file_uploader(
+                "Upload PDF/PPTX for domain registry",
+                type=["pdf", "pptx"],
+                key="admin_domain_upload",
+            )
+
+            if admin_file and st.button("Upload To Selected Domain"):
+                with st.spinner(f"Uploading document to {upload_domain}..."):
+                    result = client.admin_upload_document(upload_domain, admin_file)
+
+                st.success("Document uploaded and registered.")
+                st.json(result)
+        else:
+            st.info("No GraphRAG domains available for upload.")
+
+    except Exception as exc:
+        st.error(f"Could not load domains for upload: {exc}")
+
 
     st.subheader("GraphRAG Domain Rebuild")
 
