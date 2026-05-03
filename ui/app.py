@@ -164,6 +164,28 @@ elif page == "Generate Question":
             st.subheader("Sample Answer")
             st.markdown(sample_answer)
 
+        judge_scores = metadata.get("judge_scores")
+        if judge_scores:
+            st.subheader("LLM Judge Scores")
+            col1, col2, col3 = st.columns(3)
+            col1.metric(
+                "Question Quality",
+                f"{judge_scores.get('question_overall', 'N/A')}/5"
+            )
+            col2.metric(
+                "Answer Quality",
+                f"{judge_scores.get('answer_overall', 'N/A')}/5"
+            )
+            col3.metric(
+                "Retrieval Quality",
+                f"{judge_scores.get('retrieval_overall', 'N/A')}/5"
+            )
+            st.caption(
+                f"Attempts: {judge_scores.get('attempts', 1)} | "
+                f"Eval ID: {judge_scores.get('eval_id', '')}"
+            )
+
+
         sources = metadata.get("sources")
         if sources:
             st.subheader("Sources Used")
@@ -193,6 +215,16 @@ elif page == "Generate Question":
 elif page == "Admin":
     st.header("Admin")
 
+    st.subheader("Document Registry")
+
+    if st.button("Check Unregistered Documents"):
+        try:
+            result = client.new_documents()
+            st.json(result)
+        except Exception as exc:
+            st.error(f"Could not load unregistered documents: {exc}")
+
+
     st.subheader("Multi-document Standard RAG")
 
     if st.button("Rebuild Multi-document Index"):
@@ -207,6 +239,40 @@ elif page == "Admin":
             st.error(f"Multi-document rebuild failed: {exc}")
 
     st.divider()
+    
+    st.subheader("Upload Document To Domain")
+
+    try:
+        graph_status = client.graphrag_status()
+        domains = graph_status.get("domains", {})
+        domain_names = list(domains.keys())
+
+        if domain_names:
+            upload_domain = st.selectbox(
+                "Upload target domain",
+                domain_names,
+                key="admin_upload_domain",
+            )
+
+            admin_file = st.file_uploader(
+                "Upload PDF/PPTX for domain registry",
+                type=["pdf", "pptx"],
+                key="admin_domain_upload",
+            )
+
+            if st.button("Rebuild Selected GraphRAG Domain"):
+                with st.spinner(f"Rebuilding {upload_domain} "
+                                f"(incremental)..."):
+                    result = client.admin_rebuild_domain(upload_domain)
+
+                st.success("Document uploaded and registered.")
+                st.json(result)
+        else:
+            st.info("No GraphRAG domains available for upload.")
+
+    except Exception as exc:
+        st.error(f"Could not load domains for upload: {exc}")
+
 
     st.subheader("GraphRAG Domain Rebuild")
 
@@ -220,9 +286,8 @@ elif page == "Admin":
             st.json(domains[selected_domain])
 
             if st.button("Rebuild Selected GraphRAG Domain"):
-                with st.spinner(f"Rebuilding {selected_domain} "
-                                f"(incremental)..."):
-                    result = client.admin_rebuild_domain(selected_domain)
+                with st.spinner(f"Rebuilding {selected_domain}..."):
+                    result = client.rebuild_graphrag_domain(selected_domain)
 
                 st.success("GraphRAG domain rebuilt.")
                 st.json(result)
@@ -231,3 +296,4 @@ elif page == "Admin":
 
     except Exception as exc:
         st.error(f"Could not load GraphRAG domains: {exc}")
+
