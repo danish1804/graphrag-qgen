@@ -40,6 +40,9 @@ class GraphRAGPipeline:
         self.tokenizer    = None
         self.graph_name   = None
         self._models_loaded = False
+        self.judge_model      = None
+        self.judge_tokenizer  = None
+        self._judge_loaded    = False
 
     # ----------------------------------------------------------
     # STAGE 1 — Load models (call once at startup)
@@ -58,6 +61,41 @@ class GraphRAGPipeline:
 
         self._models_loaded = True
         print("\n[GraphRAGPipeline] All models ready.")
+
+    # def load_judge_model(self):
+    #     """Load judge model — called once at server startup."""
+    #     if self._judge_loaded:
+    #         print("[GraphRAGPipeline] Judge already loaded.")
+    #         return
+
+    #     from utils.judge import load_judge
+    #     print("\n[GraphRAGPipeline] Loading judge model...")
+    #     self.judge_model, self.judge_tokenizer, device = \
+    #         load_judge()
+    #     self._judge_loaded = True
+    #     print(f"[GraphRAGPipeline] Judge ready on {device}.")
+
+    def load_judge_model(self):
+        """
+        Reuse generator model as judge.
+        Saves VRAM — runs on GPU.
+        """
+        if self._judge_loaded:
+            return
+
+        if self._models_loaded and self.model is not None:
+            print("[GraphRAGPipeline] Reusing Qwen 7B "
+                "as judge — GPU ready.")
+            self.judge_model     = self.model
+            self.judge_tokenizer = self.tokenizer
+            self._judge_loaded   = True
+            print("[GraphRAGPipeline] Judge ready on GPU.")
+        else:
+            from utils.judge import load_judge
+            self.judge_model, self.judge_tokenizer, device = \
+                load_judge()
+            self._judge_loaded = True
+            print(f"[GraphRAGPipeline] Judge ready on {device}.")
 
     # ----------------------------------------------------------
     # STAGE 2 — Ingest a document
@@ -241,7 +279,8 @@ class GraphRAGPipeline:
                           question_type: str = "conceptual",
                           domain:        str = None,
                           top_k_nodes:   int = None,
-                          neighbour_depth: int = None) -> dict:
+                          neighbour_depth: int = None,
+                          force_single: bool = False) -> dict:
 
         if not self._models_loaded:
             raise RuntimeError("Call load_models() first.")
@@ -260,7 +299,7 @@ class GraphRAGPipeline:
             print(f"[GraphRAGPipeline] Using specified domain: {domain}")
             selected_domain = domain
 
-        elif difficulty == "hard" and diff_cfg.get("multi_domain", False):
+        elif difficulty == "hard" and diff_cfg.get("multi_domain", False) and not force_single:
             # Hard question + no domain specified → multi-domain
             print(f"[GraphRAGPipeline] Hard question → "
                 f"attempting multi-domain retrieval")
@@ -345,12 +384,24 @@ class GraphRAGPipeline:
         # to standard single-domain routing
         if len(qualifying) <= 1:
             print(f"[MultiDomain] Only one domain qualifies "
-                f"— falling back to single domain routing")
-            return self.generate_with_routing(
+                f"— using top scoring domain directly")
+
+            best_domain = max(all_scores, key=all_scores.get)
+            print(f"[MultiDomain] Falling back to: {best_domain}")
+
+            self.index, self.graph, self.nodes = \
+                load_domain_graph(best_domain)
+            self.graph_name = f"graphrag_{best_domain}"
+
+            result = self.generate(
                 learning_objective = learning_objective,
                 difficulty         = difficulty,
                 question_type      = question_type
             )
+
+            result["metadata"]["domain"]           = best_domain
+            result["metadata"]["domain_routed_to"] = best_domain
+            return result
         
         # Step 4 — Retrieve chunks from each qualifying domain
         combined_chunks   = []
@@ -448,6 +499,76 @@ class GraphRAGPipeline:
                 char in c for char in ['©', '\n', '\r'])
         ]
 
+        # ── LLM as Judge evaluation ────────────────────────
+        judge_scores = None
+
+        if self._judge_loaded:
+            from evaluation.evaluator import evaluate_generation
+
+            threshold = cfg["judge"].get("score_threshold", 3.5)
+            max_regen = cfg["judge"].get("max_regenerations", 2)
+            attempts  = 1
+
+            # Convert combined chunks to list for judge
+            chunks_for_judge = [
+                f"[{info.get('type', 'chunk').upper()} "
+                f"from {info.get('source', 'unknown')} "
+                f"domain={info.get('domain', 'unknown')}]\n"
+                f"{info['text']}"
+                for info in retrieved_chunks.values()
+            ] if retrieved_chunks else [full_context]
+
+            while attempts <= max_regen + 1:
+                eval_result = evaluate_generation(
+                    learning_objective = learning_objective,
+                    retrieved_chunks   = chunks_for_judge,
+                    question           = question,
+                    answer             = sample_answer,
+                    difficulty         = difficulty,
+                    question_type      = question_type,
+                    judge_model        = self.judge_model,
+                    judge_tokenizer    = self.judge_tokenizer,
+                    save               = True
+                )
+
+                q_score = eval_result["question"]["overall"]
+                print(f"[Judge] MultiDomain question score: "
+                      f"{q_score} (threshold={threshold}, "
+                      f"attempt={attempts})")
+
+                if q_score >= threshold or \
+                        attempts > max_regen:
+                    judge_scores = {
+                        "question_overall":
+                            q_score,
+                        "answer_overall":
+                            eval_result["answer"]["overall"],
+                        "retrieval_overall":
+                            eval_result["retrieval"]["overall"],
+                        "attempts":  attempts,
+                        "eval_id":   eval_result["eval_id"]
+                    }
+                    break
+
+                print(f"[Judge] Score below threshold "
+                      f"— regenerating...")
+                question = generate_question(
+                    context            = full_context,
+                    learning_objective = learning_objective,
+                    model              = self.model,
+                    tokenizer          = self.tokenizer,
+                    difficulty         = difficulty,
+                    question_type      = question_type
+                )
+                sample_answer = generate_answer(
+                    context    = full_context,
+                    question   = question,
+                    model      = self.model,
+                    tokenizer  = self.tokenizer,
+                    difficulty = difficulty
+                )
+                attempts += 1
+
         return {
             "question": question,
             "metadata": {
@@ -464,6 +585,7 @@ class GraphRAGPipeline:
                 "retrieved_chunks":      retrieved_chunks,
                 "sample_answer":         sample_answer,
                 "domain_score_threshold": threshold,
+                "judge_scores":          judge_scores,
             }
         }
 
@@ -564,6 +686,75 @@ class GraphRAGPipeline:
             for i, item in enumerate(retrieval.get("chunk_pool", []))
         }
 
+        # After generating question and answer, perform LLM-based evaluation with judge (if loaded)
+        # ── LLM as Judge evaluation ────────────────────────────
+        judge_scores = None
+        attempts     = 1
+
+        if self._judge_loaded:
+            from evaluation.evaluator import evaluate_generation
+
+            threshold  = cfg["judge"].get("score_threshold", 3.5)
+            max_regen  = cfg["judge"].get("max_regenerations", 2)
+
+            # Convert chunks to list of strings for judge
+            chunks_for_judge = [
+                f"[{info.get('type', 'chunk').upper()} "
+                f"from {info.get('source', 'unknown')}]\n"
+                f"{info['text']}"
+                for info in retrieved_chunks.values()
+            ] if retrieved_chunks else [retrieval["context"]]
+
+            while attempts <= max_regen + 1:
+                eval_result = evaluate_generation(
+                    learning_objective = learning_objective,
+                    retrieved_chunks   = chunks_for_judge,
+                    question           = question,
+                    answer             = sample_answer,
+                    difficulty         = difficulty,
+                    question_type      = question_type,
+                    judge_model        = self.judge_model,
+                    judge_tokenizer    = self.judge_tokenizer,
+                    save               = True
+                )
+
+                q_score = eval_result["question"]["overall"]
+                print(f"[Judge] Question score: {q_score} "
+                    f"(threshold={threshold}, "
+                    f"attempt={attempts})")
+
+                if q_score >= threshold or attempts > max_regen:
+                    judge_scores = {
+                        "question_overall":  q_score,
+                        "answer_overall":
+                            eval_result["answer"]["overall"],
+                        "retrieval_overall":
+                            eval_result["retrieval"]["overall"],
+                        "attempts":          attempts,
+                        "eval_id":
+                            eval_result["eval_id"]
+                    }
+                    break
+
+                print(f"[Judge] Score {q_score} below threshold "
+                    f"{threshold} — regenerating...")
+                question = generate_question(
+                    context            = retrieval["context"],
+                    learning_objective = learning_objective,
+                    model              = self.model,
+                    tokenizer          = self.tokenizer,
+                    difficulty         = difficulty,
+                    question_type      = question_type
+                )
+                sample_answer = generate_answer(
+                    context    = retrieval["context"],
+                    question   = question,
+                    model      = self.model,
+                    tokenizer  = self.tokenizer,
+                    difficulty = difficulty
+                )
+                attempts += 1
+
         return {
             "question":  question,
             "metadata": {
@@ -579,6 +770,7 @@ class GraphRAGPipeline:
                 "concept_relationships": rel_strings,
                 "retrieved_chunks":      retrieved_chunks,
                 "sample_answer":         sample_answer,
+                "judge_scores":          judge_scores,
             }
         }
 

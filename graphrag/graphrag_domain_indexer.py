@@ -81,7 +81,7 @@ DOMAIN_MAP = {
     "software_engineering": {
         "files": [
             "source_1.pdf",
-            "source_2pdf",
+            "source_2.pdf",
             "source_3.pdf",
             "source_4.pdf",
             "source_11.pdf",
@@ -320,6 +320,16 @@ def build_domain_graph(
 
     Returns summary dict.
     """
+    # if domain_name not in DOMAIN_MAP:
+    #     raise ValueError(
+    #         f"Unknown domain: {domain_name}. "
+    #         f"Choose from: {list(DOMAIN_MAP.keys())}"
+    #     )
+
+    # domain = DOMAIN_MAP[domain_name]
+    # files  = domain["files"]
+
+    # Replace with:
     if domain_name not in DOMAIN_MAP:
         raise ValueError(
             f"Unknown domain: {domain_name}. "
@@ -327,8 +337,24 @@ def build_domain_graph(
         )
 
     domain = DOMAIN_MAP[domain_name]
-    files  = domain["files"]
 
+    # Try registry first — more up to date than DOMAIN_MAP
+    try:
+        from utils.registry import get_domain_files
+        files = get_domain_files(domain_name)
+        if files:
+            print(f"[Registry] Using registry: "
+                f"{len(files)} files for {domain_name}")
+        else:
+            # Fallback to DOMAIN_MAP if registry empty
+            files = domain["files"]
+            print(f"[Registry] Empty — falling back "
+                f"to DOMAIN_MAP: {len(files)} files")
+    except Exception as e:
+        # Fallback to DOMAIN_MAP if registry unavailable
+        files = domain["files"]
+        print(f"[Registry] Unavailable ({e}) — "
+            f"using DOMAIN_MAP: {len(files)} files")
     print(f"\n{'='*60}")
     print(f"Building graph for domain: {domain_name}")
     print(f"Description: {domain['description']}")
@@ -388,17 +414,31 @@ def build_all_domain_graphs(
         index_dir: str = INDEX_DIR
 ) -> dict:
     """Build GraphRAG indexes for all domains."""
+
+    # Get domains from registry if available
+    # otherwise fall back to DOMAIN_MAP
+    try:
+        from utils.registry import load_registry
+        registry = load_registry()
+        domains_to_build = list(
+            registry["domains"].keys())
+        print(f"[Registry] Building domains: "
+              f"{domains_to_build}")
+    except Exception:
+        domains_to_build = list(DOMAIN_MAP.keys())
+        print(f"[Registry] Unavailable — using DOMAIN_MAP")
+
     results = {}
-    for domain_name in DOMAIN_MAP:
+    for domain_name in domains_to_build:
         try:
             summary = build_domain_graph(
                 domain_name, docs_dir, index_dir)
             results[domain_name] = summary
-            print(f"\n✓ {domain_name}: "
+            print(f"\n {domain_name}: "
                   f"{summary['graph_nodes']} nodes, "
                   f"{summary['graph_edges']} edges")
         except Exception as e:
-            print(f"\n✗ {domain_name} FAILED: {e}")
+            print(f"\n {domain_name} FAILED: {e}")
             results[domain_name] = {"error": str(e)}
 
     return results
@@ -468,9 +508,9 @@ if __name__ == "__main__":
         print("=" * 60)
         for domain, result in results.items():
             if "error" in result:
-                print(f"  Wrong {domain}: {result['error']}")
+                print(f"  {domain}: {result['error']}")
             else:
-                print(f"  Correct {domain}: "
+                print(f"  {domain}: "
                       f"{result['graph_nodes']} nodes, "
                       f"{result['graph_edges']} edges")
     else:

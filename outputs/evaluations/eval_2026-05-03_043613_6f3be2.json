@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-05-03_043613_6f3be2",
+  "timestamp": "2026-05-03T04:36:13",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Explain SQL joins",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_14.pdf]\nInner join \nAn inner join  conne cts two tables  on a c olumn wi th the same da ta type. Onl y the r ows wher e the c olumn v alues ma tch \nare returne d; unma tche d rows ar e disc arded. \nExam ple #",
+      "[SEED from source_14.pdf]\nINNER J OIN books  ON titleauthor .title_id=books. title_id \nGRO UP B Y authors.a u_lname, a uthors.a u_fname, ti tle, ti tle.royalty \nORDER B Y authors.a u_lname \nLeft outer join \nA left outer join",
+      "[SEED from source_14.pdf]\nRight outer join \nA right outer join  includes, in i ts result se t, all r ows fr om the rig ht table tha t did not me et the c ondi tion spe cified. Output \ncolumns tha t correspond to the other tabl",
+      "[NEIGHBOUR from source_14.pdf]\nmathema tical function : performs oper ations on numeric da ta \nright outer join : includes all r ows fr om the rig ht table tha t did not me et the c ondi tion spe cified \nSELECT sta temen t: use d t",
+      "[NEIGHBOUR from source_14.pdf]\nLongString , deﬁned as\nchar(100). If LongString  is eliminated (by means of the command drop domain\nLongString cascade ) all the attributes deﬁned on that domain will directly\nassume the domain char(1",
+      "[NEIGHBOUR from source_14.pdf]\nare generally a subset of the rows of each table. It can happen that some rowsare not included because there exists no corresponding row in the other tablefor which the condition is satisﬁed. This pro",
+      "[NEIGHBOUR from source_14.pdf]\nspeciﬁed, the command removes all the rows from the table, otherwise onlythe rows that satisfy the condition are deleted. In case there is a referentialintegrity constraint with a \ncascade  policy in"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "For RELEVANCE, Chunk 1 directly addresses the concept of an inner join, which is a core part of the learning objective. However, the spelling errors and lack of clarity reduce its effectiveness. Chunk 2 introduces an example of an inner join but also includes a left outer join, which is beyond the scope of the learning objective. Chunks 3, 4, 5, 6, and 7 are either unrelated or contain irrelevant information about other database concepts, such as mathematical functions, domains, and cascading policies.\n\nFor SUFFICIENCY, Chunk 1 provides a basic definition of an inner join, which is a starting point. However, it lacks details on the other types of joins (left outer, right outer) that are essential for a comprehensive understanding of SQL joins. The other chunks are either irrelevant or contain too much extraneous information, making them insufficient for generating a good exam question.\n\nFor NOISE, most chunks contain significant amounts of irrelevant or distracting content. Chunk 1 has minor spelling issues but is relatively clean compared to the others. Chunks 2 through 7 are mostly filled with unrelated information, making them highly noisy.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Given the context of the `authors` and `titleauthor` tables, write an SQL query to retrieve the last name (`u_lname`), first name (`u_fname`), and title of all authors who have written a book, along with the royalty rate for each book. Include all authors, even those who have not written any books, and list them in alphabetical order by last name. For authors who have not written any books, set the title and royalty to NULL.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided context about inner joins and the `authors` and `titleauthor` tables. The context provides enough information to understand the relationship between these tables and how to include all authors, even those without books.\n- CLARITY: The question is clear and unambiguous. It specifies the columns to retrieve, the requirement to include all authors, and the need to set NULL values for authors without books. The instructions are straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires applying the concept of a left outer join to include all authors, even those without books, and setting NULL values for missing data. This aligns well with the \"hard\" difficulty level, as it involves both understanding and applying the concept.\n- TYPE_ALIGNMENT: The question asks to write an SQL query, which is an application task. It fits the \"application\" type well, as it requires designing and writing a query based on the given context.\n- STANDALONE_QUALITY: The question does not reference the context explicitly. It can stand alone as a typical exam question without needing to refer back to the provided context.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "To achieve the desired outcome, we utilize a left outer join between the `authors` and `titleauthor` tables. This ensures that all authors are included in the result set, regardless of whether they have written any books. The join condition is based on matching author IDs (`au_id`). We then select the `u_lname`, `u_fname`, and `title` columns from the `authors` table, and the `royalty` column from the `titleauthor` table. Since we want to include authors who have not written any books, we set the `title` and `royalty` fields to NULL for these cases. To order the results alphabetically by the author's last name, we use the `ORDER BY` clause with `u_lname`. The SQL query thus appears as follows:\n\n```sql\nSELECT a.u_lname, a.u_fname, ta.title, ta.royalty\nFROM authors a\nLEFT OUTER JOIN titleauthor ta ON a.au_id = ta.au_id\nORDER BY a.u_lname;\n```\n\nThis query effectively combines all authors, including those without any associated titles, while setting the non-matching columns to NULL for those authors who have not written any books. The left outer join guarantees that every author is represented in the result set, adhering to the requirement of including all authors in the final output.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- **Correctness**: The answer is factually correct. It correctly identifies the use of a left outer join to include all authors, even those without any books, and sets the non-matching columns to NULL. The query structure and the selection of columns match the requirements of the question.\n- **Completeness**: The answer covers all key points needed to fully address the question. It includes the use of a left outer join, the correct join condition, the selection of the required columns, and the ordering by last name.\n- **Groundedness**: The answer is entirely grounded in the provided context. It does not introduce any information not present in the source material, such as specific column names or table structures.\n- **Academic Tone**: The language used is precise and appropriate for a university-level writing, using proper SQL syntax and academic prose.",
+    "parse_status": "ok"
+  }
+}

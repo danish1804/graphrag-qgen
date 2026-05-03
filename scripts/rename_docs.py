@@ -21,12 +21,27 @@ import re
 import shutil
 from datetime import datetime
 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# -- Config -------------------------------------------------------
-DATA_DIR      = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\raw"
-LOG_FILE      = r"D:\Semester 4\AI_Postr_Graduate_Project\graphrag_qgen\data\rename_log.txt"
+BASE_DIR      = os.getenv(
+    "GRAPHRAG_BASE_DIR",
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+)
+DATA_DIR      = os.path.join(BASE_DIR, "data", "raw")
+TESTED_DIR    = os.path.join(BASE_DIR, "data", "tested")
+LOG_FILE      = os.path.join(BASE_DIR, "data", "rename_log.txt")
 ALLOWED_EXTS  = {".pdf", ".pptx"}
 PREFIX        = "source"
+
+# Registry integration
+try:
+    from utils.registry import (
+        load_registry,
+        save_registry)
+    REGISTRY_AVAILABLE = True
+except ImportError:
+    REGISTRY_AVAILABLE = False
+    print("[Registry] Not available — using folder scan")
 
 
 def get_existing_counter(folder: str) -> int:
@@ -105,10 +120,22 @@ def rename_documents(dry_run: bool = False):
         print("Create the folder and add your documents first.")
         return
 
-    # Find highest existing source_N counter
-    existing_max = get_existing_counter(DATA_DIR)
-    print(f"\nExisting source_N files found: {existing_max}")
-    print(f"New files will start from    : source_{existing_max + 1}")
+    # # Find highest existing source_N counter
+    # existing_max = get_existing_counter(DATA_DIR)
+    # print(f"\nExisting source_N files found: {existing_max}")
+    # print(f"New files will start from    : source_{existing_max + 1}")
+
+    # Replace with:
+    if REGISTRY_AVAILABLE:
+        from utils.registry import load_registry
+        registry     = load_registry()
+        existing_max = registry["last_source_number"]
+        print(f"\n[Registry] Last source number: {existing_max}")
+        print(f"New files will start from: source_{existing_max + 1}")
+    else:
+        existing_max = get_existing_counter(DATA_DIR)
+        print(f"\nExisting source_N files found: {existing_max}")
+        print(f"New files will start from    : source_{existing_max + 1}")
 
     # Get files that need renaming
     to_rename = get_files_to_rename(DATA_DIR)
@@ -138,9 +165,35 @@ def rename_documents(dry_run: bool = False):
 
         log_entry = f"[{counter:>3}] {old_name} -> {new_name}"
 
+        # if not dry_run:
+        #     os.rename(old_path, new_path)
+        #     log_entry += " [RENAMED]"
+        # else:
+        #     log_entry += " [DRY RUN]"
+
+        # log_lines.append(log_entry)
+        # counter += 1
+
+        # Replace with:
         if not dry_run:
+            # Step 1 — Rename in raw/
             os.rename(old_path, new_path)
             log_entry += " [RENAMED]"
+
+            # Step 2 — Move to tested/ folder
+            tested_path = os.path.join(TESTED_DIR, new_name)
+            shutil.move(new_path, tested_path)
+            log_entry += " [MOVED TO TESTED]"
+            print(f"        -> moved to tested/")
+
+            # Step 3 — Update registry counter only
+            if REGISTRY_AVAILABLE:
+                from utils.registry import load_registry, save_registry
+                registry = load_registry()
+                registry["last_source_number"] = counter
+                save_registry(registry)
+                log_entry += " [REGISTRY UPDATED]"
+                print(f"        -> registry counter: {counter}")
         else:
             log_entry += " [DRY RUN]"
 

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-03_031659_24f1a8",
+  "timestamp": "2026-05-03T03:16:59",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "What is parameter sharing in CNNs?",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "Parameter sharing is a key idea behind convolutional neural networks. Instead of learning a separate weight for every pixel, a single filter is applied across all spatial locations of the input. This drastically reduces the number of parameters compared to a fully connected layer.",
+      "Convolution uses the same set of weights (the kernel) at every position in the input. Because the kernel is much smaller than the input image, and the same kernel is reused everywhere, CNNs have far fewer parameters than densely connected networks for image data.",
+      "Another consequence of parameter sharing is translation equivariance: if a feature appears in one part of the image, the same filter will detect it in any other location as well."
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "- Chunk 1 directly explains parameter sharing in the context of CNNs and how it reduces the number of parameters. It also mentions that this concept is crucial for understanding CNNs.\n- Chunk 2 further elaborates on parameter sharing by explaining how the same kernel is used across different positions in the input image, which is a key aspect of CNNs. However, it does not explicitly mention the reduction in parameters.\n- Chunk 3 discusses the translation equivariance resulting from parameter sharing, which is another important concept related to CNNs.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how parameter sharing in convolutional neural networks reduces the number of trainable parameters compared to fully connected networks.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- The question can be fully answered using only the source context provided. It does not require any additional knowledge beyond what is given in the passage.\n- The question is clear and unambiguous, focusing on explaining how parameter sharing reduces the number of trainable parameters compared to fully connected networks.\n- The question aligns with the requested difficulty level of medium, as it requires understanding and explaining a concept rather than just recalling facts.\n- The question type is correctly identified as conceptual, as it asks for an explanation of a concept.\n- The question is self-contained and does not explicitly reference the context or passage.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In convolutional neural networks, parameter sharing means that a single filter's weights are reused across every spatial location of the input, rather than learning separate weights for each input position. In a fully connected layer, every input unit connects to every output unit with its own weight, producing a parameter count proportional to the product of the two layer sizes. By contrast, a convolutional filter has a fixed, small number of weights determined only by the kernel size and channel count, regardless of the spatial size of the input. This weight reuse dramatically lowers the total parameter count and also provides translation equivariance for the detected features.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The generated answer is correct and covers the key points needed to address the question. It accurately explains how parameter sharing reduces the number of trainable parameters in convolutional neural networks compared to fully connected layers. The answer is grounded in the source context without introducing any hallucinations. The language used is appropriate for university-level writing, avoiding casual or inappropriate tones.",
+    "parse_status": "ok"
+  }
+}

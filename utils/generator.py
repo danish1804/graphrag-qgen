@@ -81,10 +81,7 @@ Rules:
 - Return ONLY the question - no preamble, no explanation, no answer
 - The question should be clear and unambiguous
 - Do NOT generate multiple choice questions
-- Do NOT generate A) B) C) D) options
-- Do NOT reference 'the context', 'the passage', or 'as described above'
-- The question must be standalone and self-contained
-- Write as if the student has studied the topic, not read this specific text"""
+- Do NOT generate A) B) C) D) options"""
 
     user_prompt = f"""Context from course material:
 {context}

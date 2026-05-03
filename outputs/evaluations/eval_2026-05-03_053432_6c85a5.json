@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-03_053432_6c85a5",
+  "timestamp": "2026-05-03T05:34:32",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Explain CNN parameter sharing",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_62.pdf]\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 10 / 42\nApply Neural Networks to Images\nIn our ML model we would like to have these two properties.\nFeature extraction usually happens locally - sparse",
+      "[SEED from source_62.pdf]\nIn feature extraction the same operation is applied at different locations - parameter sharing.\np1 p2 p3 p4 p5h1 h2 h3 h4 h5\nFully Connectedp1 p2 p3 p4 p5h1 h2 h3 h4 h5\nSparse connected\nLecture 4 (Par",
+      "[SEED from source_62.pdf]\nFully Connected\np1 p2 p3 p4 p5h1 h2 h3 h4 h5\nSparse connected\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 12 / 42\nParameter Sharing\nFeature extraction usually happens locally - sparse connectivit",
+      "[NEIGHBOUR from source_50.pdf]\nUnsupervised midTraditional\nDeep Learning\nHandcrafted features are time consuming, brittle and not scalable in\npractice. DL learn underlying features directly from data.\nLecture 4 (Part 1) Deep Learni",
+      "[NEIGHBOUR from source_50.pdf]\napplied across different locations.\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 9 / 42\nSpacial Relationship\nNatural language Processing (NLP):\nImage: The Unreasonable Effectiveness of Recurrent N"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address the concept of parameter sharing in Convolutional Neural Networks (CNNs). While they mention related ideas such as feature extraction and local operations, none of them explicitly discuss parameter sharing or its importance in CNNs. Therefore, the relevance score is low.\n\nThe chunks provide some context about feature extraction and local operations, which are tangentially related to the concept of parameter sharing. However, they lack specific details about how parameter sharing works and why it is important in CNNs. This makes the information insufficient to generate a comprehensive exam question. Thus, the sufficiency score is also low.\n\nThe chunks are mostly focused on the topic of deep learning and neural networks, with only minor mentions of parameter sharing. There is no significant irrelevant or distracting content, making the noise score moderate.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain the concept of parameter sharing in the context of convolutional neural networks and how it relates to feature extraction, locality, and sparse connectivity.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context. The concepts of parameter sharing, feature extraction, locality, and sparse connectivity are all discussed in the given text.\n- CLARITY: The question is clear and unambiguous. It asks for an explanation of a specific concept and its relation to other concepts, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept and its relationships, which aligns with the medium difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for an explanation, which fits the conceptual type requested.\n- STANDALONE_QUALITY: The question does not reference the context explicitly and can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Parameter sharing in convolutional neural networks refers to the reuse of the same set of weights across different spatial locations within the image, which aligns with the principle of feature extraction being local and sparse. This mechanism allows the network to detect the same features regardless of their position in the image, thereby reducing the number of parameters and improving computational efficiency. By applying the same operation across different locations, the network can maintain a consistent representation of features, thus enhancing its ability to generalize across various spatial configurations within the input image.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "Correctness: The answer is largely correct, explaining that parameter sharing in CNNs involves reusing the same weights across different spatial locations, which supports local and sparse feature extraction. However, it does not explicitly mention the connection to sparse connectivity, which is a key aspect of the context provided.\n\nCompleteness: The answer covers the main ideas of parameter sharing, feature extraction locality, and the reduction of parameters. It could be more comprehensive by elaborating on how this mechanism enhances generalization and the specific benefits of sparse connectivity.\n\nGroundedness: The answer is mostly grounded in the context provided, focusing on the principles of parameter sharing and feature extraction locality. It does not introduce any new concepts not aligned with the given context.\n\nAcademic Tone: The language used is appropriate for a university-level answer, using precise terms and maintaining a formal tone throughout.",
+    "parse_status": "ok"
+  }
+}

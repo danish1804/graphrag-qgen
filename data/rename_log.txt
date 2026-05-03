@@ -108,3 +108,18 @@ Rename session: 2026-03-31 18:10:24
 [ 60] lecturenotes.pdf -> source_60.pdf [RENAMED]
 [ 61] main_notes.pdf -> source_61.pdf [RENAMED]
 [ 62] notesML_carnegiemelon.pdf -> source_62.pdf [RENAMED]
+
+============================================================
+Rename session: 2026-05-03 00:28:19
+============================================================
+[ 64] DeepLearninig_Lecture9 (1).pdf -> source_64.pdf [RENAMED] [MOVED TO TESTED] [REGISTERED]
+
+============================================================
+Rename session: 2026-05-03 01:02:24
+============================================================
+[ 64] testing.pdf -> source_64.pdf [RENAMED] [MOVED TO TESTED] [REGISTRY UPDATED]
+
+============================================================
+Rename session: 2026-05-03 01:34:03
+============================================================
+[ 65] testing.pdf -> source_65.pdf [RENAMED] [MOVED TO TESTED] [REGISTRY UPDATED]
