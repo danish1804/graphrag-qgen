@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-05-04_080322_173cc8",
+  "timestamp": "2026-05-04T08:03:22",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "multi layer perceptron and activation functions",
+    "difficulty": "hard",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_51.pdf]\nlearning to reduce the search space within the hypothesis space. (A neural network with a\nsingle hidden layer, a ﬁnite number of neurons, and non-linear activation functions such as\nsigmoid units, was",
+      "[SEED from source_51.pdf]\nsize 2.\n12.2.4Nonlinear Convolution\nFor each location in the image (original or padded) and a single\nconvolution filter, we can apply a nonlinear activation function after\nthe convolution\nyi,j=g \n∑\n−k",
+      "[SEED from source_51.pdf]\nof the neural network as often times the output we are trying to predict\nhas a non-linear relationship with the inputs. Without non-linear activation\nfunctions, the neural network will simply perform",
+      "[NEIGHBOUR from source_61.pdf]\nUnsupervised midTraditional\nDeep Learning\nHandcrafted features are time consuming, brittle and not scalable in\npractice. DL learn underlying features directly from data.\nLecture 4 (Part 1) Deep Learni",
+      "[NEIGHBOUR from source_61.pdf]\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 10 / 42\nApply Neural Networks to Images\nIn our ML model we would like to have these two properties.\nFeature extraction usually happens locally - sparse",
+      "[NEIGHBOUR from source_50.pdf]\napplied across different locations.\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 9 / 42\nSpacial Relationship\nNatural language Processing (NLP):\nImage: The Unreasonable Effectiveness of Recurrent N",
+      "[NEIGHBOUR from source_62.pdf]\nFigure 10.3: A sample neural network\ndesign. Each circle represents one\nartificial neuron. Two nodes being\nconnected by an edge means that the\noutput of the node on the left is being\nused as one of th"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are somewhat relevant to the learning objective of \"multi layer perceptron and activation functions.\" Chunk 1 mentions non-linear activation functions, which is directly related. Chunk 3 also discusses the importance of non-linear activation functions. However, the other chunks discuss topics such as feature extraction, unsupervised learning, and neural network design, which are not directly about multi-layer perceptrons and activation functions. Therefore, the relevance score is 3.\n\nThe chunks provide some useful information but are incomplete. Chunk 1 hints at the use of non-linear activation functions in neural networks, while Chunk 3 explains why non-linear functions are necessary. However, they do not provide a comprehensive explanation of multi-layer perceptrons or specific activation functions. Thus, the sufficiency score is 3.\n\nThe chunks contain a mix of relevant and irrelevant content. While the relevant parts are useful, the inclusion of unrelated topics such as feature extraction and unsupervised learning adds noise. Therefore, the noise score is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes why non-linear activation functions are essential in neural networks, especially when dealing with complex, non-linear relationships in data?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the importance of non-linear activation functions in neural networks, which is directly related to the content provided in the source context. The source mentions non-linear activation functions as crucial for capturing non-linear relationships in data, which aligns with the question's focus. Therefore, the question is completely answerable from the context alone, making it highly faithful.\n\nThe question is clear and unambiguous, asking for a description of why non-linear activation functions are essential. It is phrased precisely and does not contain any awkwardness or vagueness, earning a high clarity score.\n\nGiven the source context discusses the necessity of non-linear activation functions for handling complex, non-linear relationships, this question requires more than basic understanding and involves explaining the concept, thus matching the 'hard' difficulty level.\n\nThe question clearly asks for an explanation of why non-linear activation functions are important, which fits the conceptual type perfectly.\n\nThe question stands alone and does not reference the context explicitly, making it self-contained and suitable for an exam setting.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Non-linear activation functions are essential in neural networks because they enable the model to approximate complex, non-linear relationships in data, which linear models cannot achieve. This capability stems from the universal function approximation property of neural networks with non-linear activation functions, as demonstrated by George Cybenko's work. Specifically, the introduction of non-linear activation functions, such as the ReLU, sigmoid, or tanh, into the hidden layers of a neural network allows it to transcend the limitations of linear models. Without these non-linearities, even a multi-layered neural network would reduce to a linear model, effectively performing linear regression, which is insufficient for capturing intricate patterns in the data. For instance, in image processing, convolutional neural networks (CNNs) utilize non-linear activation functions to extract features from images through localized operations, allowing them to capture spatial hierarchies and patterns that would be otherwise missed by linear models. Similarly, in natural language processing, recurrent neural networks (RNNs) use non-linear activation functions to model the sequential nature of language, enabling them to understand the complex temporal dynamics inherent in text. Therefore, non-linear activation functions are crucial for neural networks to perform well on tasks where the relationships between inputs and outputs are inherently non-linear, ensuring that the model can learn and generalize from the data effectively.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.5,
+    "reasoning": "Correctness: The answer is largely correct, aligning with the source context which emphasizes the importance of non-linear activation functions in neural networks for approximating complex, non-linear relationships. It correctly mentions the universal function approximation property and provides relevant examples from image processing and natural language processing. However, it incorrectly attributes this property to George Cybenko's work without referencing a specific theorem or paper, which is not mentioned in the given context.\n\nCompleteness: The answer covers the key points needed to address the question, including the role of non-linear activation functions in approximating non-linear relationships, their necessity for multi-layered networks, and examples from image and text processing. It provides a comprehensive explanation without omitting important details.\n\nGroundedness: The answer is mostly grounded in the provided context, focusing on the importance of non-linear activation functions. However, it introduces the concept of George Cybenko's work, which is not explicitly mentioned in the given context, thus slightly deviating from the source material.\n\nAcademic Tone: The language used is precise and academic, suitable for a university-level setting. The answer is written in prose without any bullet points, maintaining an appropriate tone throughout.",
+    "parse_status": "ok"
+  }
+}

@@ -637,57 +637,159 @@ async def graphrag_rebuild(domain_name: str):
 #         should be in the form of an API.
 # ============================================================
 
+# @app.post("/admin/upload-document", tags=["Admin"])
+# async def admin_upload_document(
+#     domain: str,
+#     file:   UploadFile = File(...)
+# ):
+#     """
+#     Admin endpoint — upload a new PDF/PPTX to a domain.
+
+#     Adds the document to the domain's data folder.
+#     Call POST /admin/rebuild-domain after uploading
+#     to update the knowledge graph.
+
+#     Args:
+#         domain: target domain (database, deep_learning, etc.)
+#         file:   PDF or PPTX file to upload
+#     """
+#     # Validate domain
+#     if domain not in VALID_DOMAINS:
+#         raise HTTPException(
+#             status_code=400,
+#             detail=f"Invalid domain '{domain}'. "
+#                    f"Valid domains: {VALID_DOMAINS}"
+#         )
+
+#     # Validate file type
+#     filename = file.filename
+#     if not filename.lower().endswith((".pdf", ".pptx")):
+#         raise HTTPException(
+#             status_code=400,
+#             detail="Only PDF and PPTX files supported."
+#         )
+
+#     # Save to domain tested folder
+#     domain_dir = os.path.join(TESTED_DIR)
+#     os.makedirs(domain_dir, exist_ok=True)
+#     save_path  = os.path.join(domain_dir, filename)
+
+#     with open(save_path, "wb") as f:
+#         shutil.copyfileobj(file.file, f)
+
+#     print(f"[Admin] Uploaded {filename} -> domain: {domain}")
+#     register_document(filename, domain=domain, indexed=False)
+
+#     return {
+#         "status":   "ok",
+#         "message":  f"Document uploaded successfully. "
+#                     f"Call POST /admin/rebuild-domain to "
+#                     f"update the {domain} knowledge graph.",
+#         "file":     filename,
+#         "domain":   domain,
+#         "saved_to": save_path
+#     }
+
 @app.post("/admin/upload-document", tags=["Admin"])
 async def admin_upload_document(
     domain: str,
     file:   UploadFile = File(...)
 ):
-    """
-    Admin endpoint — upload a new PDF/PPTX to a domain.
+    from utils.registry import (
+        load_registry, save_registry,
+        register_document)
 
-    Adds the document to the domain's data folder.
-    Call POST /admin/rebuild-domain after uploading
-    to update the knowledge graph.
-
-    Args:
-        domain: target domain (database, deep_learning, etc.)
-        file:   PDF or PPTX file to upload
-    """
     # Validate domain
     if domain not in VALID_DOMAINS:
         raise HTTPException(
             status_code=400,
             detail=f"Invalid domain '{domain}'. "
-                   f"Valid domains: {VALID_DOMAINS}"
+                   f"Valid: {VALID_DOMAINS}"
         )
 
     # Validate file type
-    filename = file.filename
-    if not filename.lower().endswith((".pdf", ".pptx")):
+    original_filename = file.filename
+    if not original_filename.lower().endswith(
+            (".pdf", ".pptx")):
         raise HTTPException(
             status_code=400,
             detail="Only PDF and PPTX files supported."
         )
 
-    # Save to domain tested folder
-    domain_dir = os.path.join(TESTED_DIR)
-    os.makedirs(domain_dir, exist_ok=True)
-    save_path  = os.path.join(domain_dir, filename)
+    # Check if file already in tested/
+    tested_path = os.path.join(TESTED_DIR, original_filename)
 
-    with open(save_path, "wb") as f:
-        shutil.copyfileobj(file.file, f)
+    if os.path.exists(tested_path):
+        # Case 1 — already renamed and in tested/
+        # just register, no file copy needed
+        final_filename = original_filename
+        print(f"[Admin] File already in tested/: "
+              f"{final_filename} — registering only")
+    else:
+        # Case 2 — new file, auto-rename to source_N.pdf
+        registry = load_registry()
+        next_num  = registry["last_source_number"] + 1
+        ext       = os.path.splitext(original_filename)[1]
+        final_filename = f"source_{next_num}{ext}"
 
-    print(f"[Admin] Uploaded {filename} -> domain: {domain}")
-    register_document(filename, domain=domain, indexed=False)
+        # Check no collision with existing file
+        final_path = os.path.join(TESTED_DIR, final_filename)
+        while os.path.exists(final_path):
+            next_num  += 1
+            final_filename = f"source_{next_num}{ext}"
+            final_path = os.path.join(
+                TESTED_DIR, final_filename)
+
+        # Update counter in registry
+        registry["last_source_number"] = next_num
+        save_registry(registry)
+
+        # Save with new name to tested/
+        tested_path = os.path.join(TESTED_DIR, final_filename)
+        content = await file.read()
+        with open(tested_path, "wb") as f:
+            f.write(content)
+
+        print(f"[Admin] New file auto-renamed: "
+              f"{original_filename} → {final_filename}")
+
+    # Check if already indexed — do not reset
+    registry   = load_registry()
+    domain_files = registry["domains"].get(
+        domain, {}).get("files", {})
+
+    if final_filename in domain_files and \
+            domain_files[final_filename].get("indexed"):
+        print(f"[Admin] {final_filename} already indexed "
+              f"in {domain} — no action needed")
+        return {
+            "status":            "ok",
+            "original_filename": original_filename,
+            "saved_as":          final_filename,
+            "domain":            domain,
+            "already_indexed":   True,
+            "message":           f"{final_filename} is already "
+                                 f"indexed in {domain}. "
+                                 f"No rebuild needed."
+        }
+
+    # Register in registry under domain
+    register_document(
+        final_filename,
+        domain  = domain,
+        indexed = False
+    )
 
     return {
-        "status":   "ok",
-        "message":  f"Document uploaded successfully. "
-                    f"Call POST /admin/rebuild-domain to "
-                    f"update the {domain} knowledge graph.",
-        "file":     filename,
-        "domain":   domain,
-        "saved_to": save_path
+        "status":            "ok",
+        "original_filename": original_filename,
+        "saved_as":          final_filename,
+        "domain":            domain,
+        "already_indexed":   False,
+        "message":           f"Registered as {final_filename} "
+                             f"in {domain} domain. "
+                             f"Call POST /admin/rebuild-domain "
+                             f"to index."
     }
 
 @app.post("/admin/rebuild-domain", tags=["Admin"])
