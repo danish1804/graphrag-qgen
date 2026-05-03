@@ -384,12 +384,24 @@ class GraphRAGPipeline:
         # to standard single-domain routing
         if len(qualifying) <= 1:
             print(f"[MultiDomain] Only one domain qualifies "
-                f"— falling back to single domain routing")
-            return self.generate_with_routing(
+                f"— using top scoring domain directly")
+
+            best_domain = max(all_scores, key=all_scores.get)
+            print(f"[MultiDomain] Falling back to: {best_domain}")
+
+            self.index, self.graph, self.nodes = \
+                load_domain_graph(best_domain)
+            self.graph_name = f"graphrag_{best_domain}"
+
+            result = self.generate(
                 learning_objective = learning_objective,
                 difficulty         = difficulty,
                 question_type      = question_type
             )
+
+            result["metadata"]["domain"]           = best_domain
+            result["metadata"]["domain_routed_to"] = best_domain
+            return result
         
         # Step 4 — Retrieve chunks from each qualifying domain
         combined_chunks   = []

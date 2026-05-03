@@ -24,16 +24,209 @@ page = st.sidebar.radio(
 
 if page == "Dashboard":
     st.header("Dashboard")
-    st.info("Backend status will appear here.")
+
+    try:
+        health = client.health()
+
+        col1, col2 = st.columns(2)
+        col1.metric("Backend", "Online" if health.get("status") == "ok" else "Unknown")
+        col2.metric("Models Loaded", "Yes" if health.get("models_loaded") else "No")
+
+        with st.expander("Raw Health Response", expanded=True):
+            st.json(health)
+
+    except Exception as exc:
+        st.error(f"Could not reach backend: {exc}")
+        st.warning("Start the backend first, for example: python main_gr.py --mode standard")
+    
+    st.subheader("Multi-document RAG")
+    try:
+        st.json(client.multi_status())
+    except Exception as exc:
+        st.info(f"Multi-document status unavailable: {exc}")
+
+    st.subheader("GraphRAG")
+    try:
+        st.json(client.graphrag_status())
+    except Exception as exc:
+        st.info(f"GraphRAG status unavailable: {exc}")
 
 elif page == "Upload Document":
     st.header("Upload Document")
-    st.info("Document upload will appear here.")
+
+    upload_mode = st.radio(
+        "Upload target",
+        ["Standard RAG", "GraphRAG"],
+        horizontal=True,
+    )
+
+    uploaded_file = st.file_uploader(
+        "Upload course material",
+        type=["pdf", "pptx"],
+    )
+
+    if uploaded_file and st.button("Upload and Index", type="primary"):
+        try:
+            with st.spinner("Uploading and indexing document..."):
+                if upload_mode == "Standard RAG":
+                    result = client.upload_standard_document(uploaded_file)
+                else:
+                    result = client.upload_graphrag_document(uploaded_file)
+
+            st.success("Document indexed successfully.")
+            st.json(result)
+
+        except Exception as exc:
+            st.error(f"Upload failed: {exc}")
 
 elif page == "Generate Question":
     st.header("Generate Question")
-    st.info("Question generation will appear here.")
+
+    retrieval_mode = st.selectbox(
+        "Retrieval mode",
+        [
+            "Single-document Standard RAG",
+            "Multi-document Standard RAG",
+            "GraphRAG",
+        ],
+    )
+
+    learning_objective = st.text_area(
+        "Learning objective",
+        placeholder="Explain how parameter sharing reduces learnable weights in CNNs.",
+        height=120,
+    )
+
+    col1, col2, col3 = st.columns(3)
+    difficulty = col1.selectbox("Difficulty", ["easy", "medium", "hard"], index=1)
+    question_type = col2.selectbox("Question type", ["recall", "conceptual", "application"], index=1)
+    top_k = col3.number_input("Top K", min_value=1, max_value=10, value=3)
+    selected_domain = None
+
+    if retrieval_mode == "GraphRAG":
+        domain_options = ["Auto route"]
+
+        try:
+            graph_status = client.graphrag_status()
+            domain_options.extend(list(graph_status.get("domains", {}).keys()))
+        except Exception:
+            pass
+
+        domain_choice = st.selectbox("GraphRAG domain", domain_options)
+
+        if domain_choice != "Auto route":
+            selected_domain = domain_choice
+
+
+    if st.button("Generate Question", type="primary"):
+        if not learning_objective.strip():
+            st.warning("Please enter a learning objective.")
+        else:
+            payload = {
+                "learning_objective": learning_objective.strip(),
+                "difficulty": difficulty,
+                "question_type": question_type,
+                "top_k": int(top_k),
+            }
+
+            try:
+                with st.spinner("Generating question..."):
+                    if retrieval_mode == "Single-document Standard RAG":
+                        result = client.generate_single(payload)
+                    elif retrieval_mode == "Multi-document Standard RAG":
+                        result = client.generate_multi(payload)
+                    else:
+                        graph_payload = {
+                            "learning_objective": learning_objective.strip(),
+                            "difficulty": difficulty,
+                            "question_type": question_type,
+                            "top_k_nodes": int(top_k),
+                            "neighbour_depth": 1,
+                            "domain": selected_domain,
+                        }
+                        result = client.generate_graphrag(graph_payload)
+
+                st.session_state["last_result"] = result
+                st.success("Question generated.")
+
+            except Exception as exc:
+                st.error(f"Generation failed: {exc}")
+
+    if "last_result" in st.session_state:
+        result = st.session_state["last_result"]
+        metadata = result.get("metadata", {})
+
+        st.subheader("Generated Question")
+        st.markdown(result.get("question", "No question returned."))
+
+        sample_answer = metadata.get("sample_answer")
+        if sample_answer:
+            st.subheader("Sample Answer")
+            st.markdown(sample_answer)
+
+        sources = metadata.get("sources")
+        if sources:
+            st.subheader("Sources Used")
+            st.write(sources)
+
+        key_concepts = metadata.get("key_concepts")
+        if key_concepts:
+            st.subheader("Key Concepts")
+            st.write(key_concepts)
+
+        relationships = metadata.get("concept_relationships")
+        if relationships:
+            st.subheader("Concept Relationships")
+            st.write(relationships)
+
+        retrieved_chunks = metadata.get("retrieved_chunks")
+        if retrieved_chunks:
+            st.subheader("Retrieved Chunks")
+            for chunk_name, chunk in retrieved_chunks.items():
+                with st.expander(chunk_name):
+                    st.json(chunk)
+
+        with st.expander("Raw API Response"):
+            st.json(result)
+
 
 elif page == "Admin":
     st.header("Admin")
-    st.info("Index management controls will appear here.")
+
+    st.subheader("Multi-document Standard RAG")
+
+    if st.button("Rebuild Multi-document Index"):
+        try:
+            with st.spinner("Rebuilding combined index..."):
+                result = client.rebuild_multi_index()
+
+            st.success("Multi-document index rebuilt.")
+            st.json(result)
+
+        except Exception as exc:
+            st.error(f"Multi-document rebuild failed: {exc}")
+
+    st.divider()
+
+    st.subheader("GraphRAG Domain Rebuild")
+
+    try:
+        graph_status = client.graphrag_status()
+        domains = graph_status.get("domains", {})
+        domain_names = list(domains.keys())
+
+        if domain_names:
+            selected_domain = st.selectbox("Domain", domain_names)
+            st.json(domains[selected_domain])
+
+            if st.button("Rebuild Selected GraphRAG Domain"):
+                with st.spinner(f"Rebuilding {selected_domain}..."):
+                    result = client.rebuild_graphrag_domain(selected_domain)
+
+                st.success("GraphRAG domain rebuilt.")
+                st.json(result)
+        else:
+            st.info("No GraphRAG domains found.")
+
+    except Exception as exc:
+        st.error(f"Could not load GraphRAG domains: {exc}")

@@ -24,3 +24,48 @@ class ApiClient:
 
     def health(self):
         return self._get("/health", timeout=10)
+    
+    def multi_status(self):
+        return self._get("/multi/status", timeout=10)
+
+    def graphrag_status(self):
+        return self._get("/graphrag/status", timeout=10)
+    
+    def upload_standard_document(self, uploaded_file):
+        files = {
+            "file": (
+                uploaded_file.name,
+                uploaded_file.getvalue(),
+                uploaded_file.type,
+            )
+        }
+        return self._post("/upload", files=files, timeout=300)
+    
+    def upload_graphrag_document(self, uploaded_file):
+        files = {
+            "file": (
+                uploaded_file.name,
+                uploaded_file.getvalue(),
+                uploaded_file.type,
+            )
+        }
+        return self._post("/graphrag/upload", files=files, timeout=600)
+    
+    def generate_single(self, payload: dict):
+        return self._post("/generate", json=payload, timeout=300)
+
+    def generate_multi(self, payload: dict):
+        return self._post("/multi/generate", json=payload, timeout=300)
+
+    def generate_graphrag(self, payload: dict):
+        return self._post("/graphrag/generate", json=payload, timeout=300)
+    
+    def rebuild_multi_index(self):
+        return self._post("/multi/rebuild", timeout=900)
+
+    def rebuild_graphrag_domain(self, domain_name: str):
+        return self._post(f"/graphrag/rebuild/{domain_name}", timeout=900)
+
+
+
+

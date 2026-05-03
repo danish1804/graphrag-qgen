@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-04_002615_7cbaeb",
+  "timestamp": "2026-05-04T00:26:15",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Explain how CNNs use parameter sharing",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_62.pdf]\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 10 / 42\nApply Neural Networks to Images\nIn our ML model we would like to have these two properties.\nFeature extraction usually happens locally - sparse",
+      "[SEED from source_62.pdf]\nIn feature extraction the same operation is applied at different locations - parameter sharing.\np1 p2 p3 p4 p5h1 h2 h3 h4 h5\nFully Connectedp1 p2 p3 p4 p5h1 h2 h3 h4 h5\nSparse connected\nLecture 4 (Par",
+      "[SEED from source_62.pdf]\nFully Connected\np1 p2 p3 p4 p5h1 h2 h3 h4 h5\nSparse connected\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 12 / 42\nParameter Sharing\nFeature extraction usually happens locally - sparse connectivit",
+      "[NEIGHBOUR from source_50.pdf]\nUnsupervised midTraditional\nDeep Learning\nHandcrafted features are time consuming, brittle and not scalable in\npractice. DL learn underlying features directly from data.\nLecture 4 (Part 1) Deep Learni",
+      "[NEIGHBOUR from source_50.pdf]\napplied across different locations.\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 9 / 42\nSpacial Relationship\nNatural language Processing (NLP):\nImage: The Unreasonable Effectiveness of Recurrent N"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 2.67,
+    "reasoning": "The chunks provided are somewhat relevant to the learning objective of explaining how CNNs use parameter sharing. Chunk 2 and Chunk 3 both mention parameter sharing in the context of feature extraction, which is related to the concept of parameter sharing in CNNs. However, they do not provide a clear explanation or definition of parameter sharing. Chunk 1 mentions feature extraction locally and sparsely, which is tangentially related but does not directly address parameter sharing. The other chunks are not relevant to the learning objective as they discuss unsupervised learning and natural language processing.\n\nThe chunks contain some useful information but lack the necessary details to fully explain parameter sharing in CNNs. They do not provide a comprehensive understanding of the concept, leaving gaps in the explanation.\n\nThere is some noise in the chunks, particularly in Chunk 1 and Chunk 4, where the content is not directly related to the learning objective. Chunk 2 and Chunk 3 are cleaner but still contain some irrelevant information about fully connected and sparse connections.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how parameter sharing in convolutional neural networks (CNNs) enables efficient feature extraction for images, and why this property is beneficial compared to fully connected layers.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided context, which discusses parameter sharing and its benefits in CNNs. The context mentions that parameter sharing allows the same operation to be applied at different locations, which is a key aspect of the question.\n- CLARITY: The question is clear and unambiguous. It asks for an explanation of how parameter sharing works in CNNs and why it is beneficial compared to fully connected layers. The phrasing is straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept (parameter sharing in CNNs) and comparing it to another concept (fully connected layers), which aligns with the medium difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for an explanation and comparison, which fits the conceptual type perfectly.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context and can stand alone as a typical exam question. It does not require students to recall specific passages or details from the text.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Parameter sharing in convolutional neural networks (CNNs) allows the same set of weights to be applied across different spatial locations within an image, which facilitates efficient feature extraction. This property enables the network to recognize features such as edges and textures regardless of their position in the image, thus reducing the number of parameters needed and improving generalization. In contrast, fully connected layers require separate weights for every input feature, making them less efficient and scalable for high-dimensional data like images.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 3.75,
+    "reasoning": "Correctness: The answer is largely correct, explaining that parameter sharing in CNNs allows the same weights to be applied across different spatial locations, which reduces the number of parameters and improves efficiency. However, it does not explicitly mention the local connectivity aspect of CNNs, which is a key feature enabling efficient feature extraction. This minor omission reduces the score to 4 out of 5.\n\nCompleteness: The answer covers the main idea of parameter sharing and its benefits but could be more detailed by including examples of features that can be extracted efficiently or discussing the reduction in parameters. It also does not mention the comparison with fully connected layers in depth, which is a crucial part of the question. Thus, the completeness score is 3 out of 5.\n\nGroundedness: The answer is mostly grounded in the context provided, focusing on the concept of parameter sharing and its benefits. However, it does not reference specific terms or concepts from the context, such as \"sparse connectivity\" or \"fully connected layers,\" which could have been used to strengthen the answer. Therefore, the groundedness score is 3 out of 5.\n\nAcademic Tone: The answer is written in a clear and concise manner, using proper academic language and structure. There are no bullet points or casual language, which is appropriate for a university-level response. Hence, the academic tone score is 5 out of 5.",
+    "parse_status": "ok"
+  }
+}
