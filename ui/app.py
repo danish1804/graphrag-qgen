@@ -93,7 +93,8 @@ elif page == "Generate Question":
 
     learning_objective = st.text_area(
         "Learning objective",
-        placeholder="Explain how parameter sharing reduces learnable weights in CNNs.",
+        placeholder="e.g. SQL joins and query optimisation, "
+            "or: backpropagation in neural networks",
         height=120,
     )
 
