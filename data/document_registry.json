@@ -1,5 +1,5 @@
 {
-  "last_source_number": 65,
+  "last_source_number": 69,
   "domains": {
     "deep_learning": {
       "description": "Deep Learning - CNNs, pooling, backprop",
@@ -65,6 +65,22 @@
           "added": "2026-05-03"
         },
         "source_65.pdf": {
+          "indexed": true,
+          "added": "2026-05-04"
+        },
+        "source_66.pdf": {
+          "indexed": true,
+          "added": "2026-05-04"
+        },
+        "source_67.pdf": {
+          "indexed": true,
+          "added": "2026-05-04"
+        },
+        "source_68.pdf": {
+          "indexed": true,
+          "added": "2026-05-04"
+        },
+        "source_69.pdf": {
           "indexed": true,
           "added": "2026-05-04"
         }

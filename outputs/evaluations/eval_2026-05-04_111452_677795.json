@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-04_111452_677795",
+  "timestamp": "2026-05-04T11:14:52",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "explain deadlock using database",
+    "difficulty": "hard",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf domain=database]\ndeadlock (1) An impasse that occurs when\nmultiple processes are waiting for theavailability of a resource that will notbecome available because it is beingheld by another process that is in asimilar w",
+      "[NEIGHBOUR from source_5.pdf domain=database]\n5.6 Readers/Writers Problem 245\n5.7 Summary 249\n5.8 Recommended Reading 250\n5.9 Key T erms, Review Questions, and Problems 251\nChapter 6 Concurrency: Deadlock and Starvation 262\n6.1 Principles of Dead",
+      "[NEIGHBOUR from source_5.pdf domain=database]\nthe key aspects of concurrency on a single system, with emphasis on issues ofmutual exclusion and deadlock.\nPart Three. Memory: Provides a comprehensive survey of techniques for\nmemory management, inc"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "For relevance, Chunk 1 directly addresses the concept of deadlock, which is central to the learning objective. However, it does not provide a complete definition or explanation. Chunk 2 and Chunk 3 are not directly related to the concept of deadlock and instead discuss other topics such as the readers/writers problem and memory management. Therefore, the chunks are only partially relevant to the learning objective.\n\nFor sufficiency, Chunk 1 provides a basic definition of deadlock, which is a start but lacks depth and detail necessary for a comprehensive understanding. The other chunks do not contribute any relevant information about deadlock. Thus, the information is insufficient to fully support generating a good exam question.\n\nFor noise, Chunk 1 is relatively clean, focusing on the core concept of deadlock. However, the other chunks contain irrelevant information that does not pertain to the learning objective, increasing the noise level.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how a deadlock can occur in a database system when multiple transactions are accessing shared resources, and describe the difference between shared (r_lock) and exclusive (w_lock) locks in this context.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, which discusses deadlocks and shared/exclusive locks. The context provides enough information to explain how deadlocks can occur and the differences between r_locks and w_locks.\n- CLARITY: The question is clear and unambiguous. It asks for an explanation of how deadlocks occur and the distinction between shared and exclusive locks, which are both concepts directly related to the given context.\n- DIFFICULTY_ALIGNMENT: The question requires students to apply their understanding of the concepts rather than just recalling them. It involves explaining a concept (deadlock) and comparing two types of locks, making it suitable for a higher-level understanding, thus aligning with the \"hard\" difficulty level.\n- TYPE_ALIGNMENT: The question asks for an explanation and comparison, which fits the \"conceptual\" type perfectly.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but instead uses general terms like \"shared resources,\" \"transactions,\" and \"locks,\" making it a standalone question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A deadlock can occur in a database system when multiple transactions simultaneously hold locks on different resources and attempt to acquire additional locks that are currently held by other transactions, leading to an impasse where each transaction waits indefinitely for the others to release their locks. This situation arises when two or more transactions are waiting for each other to unlock data, creating a circular wait condition. In the context of database transactions, shared (r_lock) locks allow multiple transactions to read the same data simultaneously without conflict, as more than one lock of this type can be active on one piece of data at one time. Conversely, exclusive (w_lock) locks are required before a transaction can write to a piece of data, ensuring that no other transaction can concurrently read or write to the same data until the lock is released, thus preventing conflicts during write operations. For example, if Transaction A acquires an r_lock on data X and then Transaction B attempts to acquire an r_lock on the same data X while holding an r_lock on another piece of data Y, and Transaction A subsequently tries to obtain an w_lock on data Y while holding an r_lock on data X, both transactions will be unable to proceed, resulting in a deadlock due to the circular wait condition.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer is largely correct, explaining how deadlocks can occur in a database system and distinguishing between shared (r_lock) and exclusive (w_lock) locks. However, it does not explicitly mention the circular wait condition, which is a key aspect of deadlocks. The description of r_locks allowing simultaneous reads is accurate, but the explanation of w_locks could be more precise by mentioning that they prevent any other transaction from acquiring either an r_lock or w_lock on the same data until the w_lock is released.\n- COMPLETENESS: The answer covers the key points of how deadlocks can occur and the differences between r_locks and w_locks. However, it could be more detailed about the specific conditions under which a deadlock might form, such as the necessity of a circular wait condition involving at least two transactions.\n- GROUNDEDNESS: The answer is generally grounded in the provided context, discussing concepts like r_locks and w_locks, which are relevant to database systems. There are no significant additions that are not supported by the context.\n- ACADEMIC_TONE: The language used is mostly appropriate for university-level writing, using technical terms correctly and providing a clear explanation. However, the use of \"For example\" in the middle of the sentence could be improved for a more formal tone.",
+    "parse_status": "ok"
+  }
+}
