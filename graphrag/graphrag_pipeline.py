@@ -531,13 +531,25 @@ class GraphRAGPipeline:
                     save               = True
                 )
 
+                # Replace with:
                 q_score = eval_result["question"]["overall"]
-                print(f"[Judge] MultiDomain question score: "
-                      f"{q_score} (threshold={threshold}, "
-                      f"attempt={attempts})")
 
-                if q_score >= threshold or \
-                        attempts > max_regen:
+                # Guard against None score (parse failure)
+                if q_score is None:
+                    print(f"[Judge] Score parse failed — "
+                        f"skipping regeneration")
+                    judge_scores = {
+                        "question_overall":  None,
+                        "answer_overall":
+                            eval_result["answer"]["overall"],
+                        "retrieval_overall":
+                            eval_result["retrieval"]["overall"],
+                        "attempts":  attempts,
+                        "eval_id":   eval_result["eval_id"]
+                    }
+                    break
+
+                if q_score >= threshold or attempts > max_regen:
                     judge_scores = {
                         "question_overall":
                             q_score,
@@ -722,6 +734,21 @@ class GraphRAGPipeline:
                 print(f"[Judge] Question score: {q_score} "
                     f"(threshold={threshold}, "
                     f"attempt={attempts})")
+
+                # Guard against None score (parse failure)
+                if q_score is None:
+                    print(f"[Judge] Score parse failed — "
+                        f"skipping regeneration")
+                    judge_scores = {
+                        "question_overall":  None,
+                        "answer_overall":
+                            eval_result["answer"]["overall"],
+                        "retrieval_overall":
+                            eval_result["retrieval"]["overall"],
+                        "attempts":  attempts,
+                        "eval_id":   eval_result["eval_id"]
+                    }
+                    break
 
                 if q_score >= threshold or attempts > max_regen:
                     judge_scores = {
