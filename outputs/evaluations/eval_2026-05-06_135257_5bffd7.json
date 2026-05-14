@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-06_135257_5bffd7",
+  "timestamp": "2026-05-06T13:52:57",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Database normalisation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt",
+      "[SEED from source_7.pdf]\nstudents who are already writing their theses. Thus, for each of them, wehave a degree programme and a professor who is supervising his or herthesis.\n8.6.4 Further restructurings of conceptual schemas",
+      "[NEIGHBOUR from source_14.pdf]\n6.1 Requirements collection and analysis 189\n6.2 General criteria for data representation 194\n6.3 Design strategies 196\n6.3.1 Top-down strategy 196\n6.3.2 Bottom-up strategy 198\n6.3.3 Inside-out strate"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly address database normalization. They instead discuss related topics such as normalization techniques, verification methods, and other database design aspects. While these may be tangentially related, they do not specifically cover the core concepts of database normalization.\n\nFor sufficiency, the chunks lack specific details about the process of normalizing databases, which would be necessary to generate a meaningful exam question. The information provided is too general and does not provide the depth required to assess understanding of database normalization.\n\nNoise is high because the chunks contain information that is not directly related to the learning objective, making it difficult to extract the relevant content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the term \"further restructurings of conceptual schemas\" refer to in the context of database design, and how might it be applied to the schema described in Section 8.17?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The term \"further restructurings of conceptual schemas\" is directly mentioned in the source context, so the question can be fully answered using only this context. However, the reference to Section 8.17 is not present in the given context, which makes the question slightly ambiguous.\n- CLARITY: The question is clear and unambiguous, asking about a specific term and its application. It is well-phrased and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question asks for a definition or description of a term, which aligns with the \"recall\" difficulty level.\n- TYPE_ALIGNMENT: The question fits the \"recall\" type, asking students to state or list the meaning of a term.\n- STANDALONE_QUALITY: The question does not explicitly refer to the passage or context but implicitly depends on the provided context for full understanding.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Further restructurings of conceptual schemas involve modifications to the initial design to ensure better adherence to normalization principles and to eliminate anomalies in data manipulation. In the context of Section 8.17, these restructurings may address issues such as partial dependencies or transitive dependencies within the schema, thereby facilitating a more robust and efficient database structure.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies that further restructurings of conceptual schemas involve modifications to ensure better adherence to normalization principles and to eliminate data anomalies. This aligns with the context provided, which discusses normalization techniques and schema restructuring. However, the term \"Section 8.17\" is not mentioned in the given context, so the answer cannot be fully evaluated on this point. The answer does not contain any factual errors and is consistent with the context, thus scoring well on correctness. It covers the key points needed to address the question by discussing the purpose of restructurings and potential issues they might address. The answer is grounded in the provided context without introducing unsupported information. The language used is precise and academic, appropriate for a university setting.",
+    "parse_status": "ok"
+  }
+}

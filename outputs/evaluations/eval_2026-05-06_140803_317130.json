@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-05-06_140803_317130",
+  "timestamp": "2026-05-06T14:08:03",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Test planning for safety critical systems",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nscenario testing’. Software Testing and Quality Engineering , 5(5), 16–22.\nLutz, R. R. (1993). ‘Analyzing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE’93, San Diego, Calif.:",
+      "[SEED from source_22.pdf]\nP . (ed.). Amsterdam: Elsevier. 401–412.\nLutz, R. R. (1993). ‘Analysing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE'93, San Diego, Calif: IEEE. \nMills, H. D., Dyer, M. and L",
+      "[SEED from source_47.pdf]\nIncident and accident analysisPeriodic audits\nPerformance MonitoringChange AnalysisPeriodic auditsPreliminary Hazard Analysis\nSystem Hazard Analysis\nSafety Verification\nOperational AnalysisOperational",
+      "[NEIGHBOUR from source_22.pdf]\nreusable components have this form of interface.\n4.Message passing interfaces These are interfaces in which one component\nrequests a service from another component by passin g a message to it. A retur",
+      "[NEIGHBOUR from source_22.pdf]\n2. The specification may be incomplete in that it do es not describe the required\nbehavior of the system in some critical situations.  A high percentage of system\nmalfunctions (Boehm et al., 1975; End",
+      "[NEIGHBOUR from source_22.pdf]\n(2004). ‘Agile Software Development in Large Organi zations’. IEEE Computer, 37(12), 26–34.\nMartin, J. (1981). Application Development Without Programmers. Englewood Cliffs, NJ: \nPrentice-Hall.\nMassol",
+      "[NEIGHBOUR from source_22.pdf]\nProwell, S. J., Trammell, C. J., Linger, R. C. and Poore, J. H. (1999). Cleanroom Software Engineering:\nTechnology and Process . Reading, Mass.: Addison-Wesley.\nWhittaker, J. W. (2002). How to Break S"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Test planning for safety critical systems.\" Instead, they discuss software testing, requirements errors, and other related topics but do not specifically mention test planning or safety-critical systems. Therefore, the relevance score is low.\n\nWhile the chunks contain some useful information about software testing and requirements, they lack specific details on test planning for safety-critical systems. This means there is insufficient information to generate a good exam question directly related to the learning objective. Hence, the sufficiency score is also low.\n\nThe chunks are mostly focused on technical aspects of software development and testing, with only a few irrelevant or tangential statements. Thus, the noise score is moderate.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "According to Lutz (1993), what are the three classes of interface errors commonly found in complex systems?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 3
+    },
+    "overall": 3.0,
+    "reasoning": "- FAITHFULNESS: The question asks about interface errors in complex systems, which is not directly addressed in the provided sources. The sources discuss software requirements and testing, but not specifically interface errors. Therefore, this question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous, asking for specific types of errors. It is precisely phrased and easy to understand.\n- DIFFICULTY_ALIGNMENT: The difficulty level is set to 'hard', which suggests the question requires deeper analysis or application of concepts. However, the question is more about recalling specific details rather than applying them, making it closer to 'medium'.\n- TYPE_ALIGNMENT: The question is asking for a list of errors, which aligns with the 'recall' type rather than 'application'. It does not require designing, analyzing, or applying concepts in a new way.\n- STANDALONE_QUALITY: The question does not reference the passage or context explicitly but implies that the answer should come from the context provided, which is not ideal for a standalone exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "According to Lutz (1993), interface errors in complex systems are categorized into three primary classes. First, specifications may be incomplete, failing to describe the necessary behavior of the system in certain critical scenarios. This incompleteness can lead to significant malfunctions, as highlighted in studies by Lutz and others. Second, there can be contradictions within the interface specifications, where the descriptions provided conflict with each other or are ambiguous, leading to misinterpretation and potential failures. Lastly, interface errors may arise due to oversights, where critical aspects of the system's behavior are simply omitted from the specifications altogether. These three classes of interface errors highlight the importance of thorough and comprehensive interface design in ensuring the reliability and safety of complex systems.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.25,
+    "reasoning": "Correctness: The answer is mostly correct but contains a minor inaccuracy. The source does not explicitly mention contradictions within interface specifications as a separate class of errors. Instead, it discusses incompleteness and oversights. The answer also includes additional information about malfunctions, which is not directly stated in the given context.\n\nCompleteness: The answer covers the main ideas of interface errors but omits the specific term \"interface errors\" and does not provide the exact wording used in the source. It also includes additional information about malfunctions, which is not directly related to the question.\n\nGroundedness: The answer is largely grounded in the source context but introduces the concept of contradictions, which is not mentioned in the given context. Additionally, the answer includes information about malfunctions, which is not directly supported by the provided sources.\n\nAcademic Tone: The language used in the answer is appropriate for university-level writing, using precise and academic prose. However, the inclusion of additional information not directly from the sources slightly detracts from its academic tone.",
+    "parse_status": "ok"
+  }
+}
