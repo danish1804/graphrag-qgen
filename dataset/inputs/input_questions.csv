@@ -1,64 +1,64 @@
 q_id,category,domain,difficulty,question_type,learning_objective,routing_method,top_k,seed_ratio,status,generated_at
-E-DE-001,easy_deep_learning,deep_learning,easy,recall,Convolutional neural networks,explicit,3,0.8,done,2026-05-15 04:48
-E-DE-002,easy_deep_learning,deep_learning,easy,recall,Dropout regularisation,explicit,3,0.8,done,2026-05-15 04:49
-E-DE-003,easy_deep_learning,deep_learning,easy,recall,Backpropagation and gradient descent,explicit,3,0.8,done,2026-05-15 04:49
-E-DE-004,easy_deep_learning,deep_learning,easy,recall,Recurrent neural networks and sequence modelling,explicit,3,0.8,done,2026-05-15 04:50
-E-DE-005,easy_deep_learning,deep_learning,easy,recall,Transformer architecture and attention mechanism,explicit,3,0.8,done,2026-05-15 04:51
-E-DE-006,easy_deep_learning,deep_learning,easy,recall,Batch normalisation,explicit,3,0.8,done,2026-05-15 04:51
-E-DE-007,easy_deep_learning,deep_learning,easy,recall,Activation functions in neural networks,explicit,3,0.8,done,2026-05-15 04:52
-E-DE-008,easy_deep_learning,deep_learning,easy,recall,Transfer learning and fine-tuning,explicit,3,0.8,done,2026-05-15 04:52
-E-DE-009,easy_deep_learning,deep_learning,easy,recall,Pooling layers and spatial downsampling,explicit,3,0.8,done,2026-05-15 04:53
-E-DE-010,easy_deep_learning,deep_learning,easy,recall,Loss functions and optimisation,explicit,3,0.8,done,2026-05-16 12:55
-E-DE-011,easy_deep_learning,deep_learning,easy,recall,Overfitting and regularisation techniques,explicit,3,0.8,done,2026-05-16 12:55
-E-DE-012,easy_deep_learning,deep_learning,easy,recall,Vanishing and exploding gradient problem,explicit,3,0.8,done,2026-05-15 04:54
-E-DE-013,easy_deep_learning,deep_learning,easy,recall,Autoencoders and representation learning,explicit,3,0.8,done,2026-05-16 12:56
-E-DE-014,easy_deep_learning,deep_learning,easy,recall,Generative adversarial networks,explicit,3,0.8,done,2026-05-15 04:56
-E-DE-015,easy_deep_learning,deep_learning,easy,recall,Neural network weight initialisation,explicit,3,0.8,done,2026-05-15 04:56
-E-DA-016,easy_database,database,easy,recall,Database normalisation,explicit,3,0.8,pending,
-E-DA-017,easy_database,database,easy,recall,SQL joins — inner and outer,explicit,3,0.8,pending,
-E-DA-018,easy_database,database,easy,recall,ACID properties in database transactions,explicit,3,0.8,pending,
-E-DA-019,easy_database,database,easy,recall,Transaction management and concurrency,explicit,3,0.8,pending,
-E-DA-020,easy_database,database,easy,recall,Indexing and query optimisation,explicit,3,0.8,pending,
-E-DA-021,easy_database,database,easy,recall,Two phase locking and deadlock prevention,explicit,3,0.8,pending,
-E-DA-022,easy_database,database,easy,recall,Entity relationship modelling,explicit,3,0.8,pending,
-E-DA-023,easy_database,database,easy,recall,Relational algebra and calculus,explicit,3,0.8,pending,
-E-DA-024,easy_database,database,easy,recall,Stored procedures and triggers,explicit,3,0.8,pending,
-E-DA-025,easy_database,database,easy,recall,Database recovery and logging,explicit,3,0.8,pending,
-E-DA-026,easy_database,database,easy,recall,NoSQL vs relational databases,explicit,3,0.8,pending,
-E-DA-027,easy_database,database,easy,recall,B-tree and hash indexing,explicit,3,0.8,pending,
-E-DA-028,easy_database,database,easy,recall,Query execution plans and optimiser,explicit,3,0.8,pending,
-E-DA-029,easy_database,database,easy,recall,Database security and access control,explicit,3,0.8,pending,
-E-DA-030,easy_database,database,easy,recall,Data warehousing and OLAP,explicit,3,0.8,pending,
-E-SO-031,easy_software_engineering,software_engineering,easy,recall,Software development lifecycle models,explicit,3,0.8,pending,
-E-SO-032,easy_software_engineering,software_engineering,easy,recall,Agile methodology and requirements management,explicit,3,0.8,pending,
-E-SO-033,easy_software_engineering,software_engineering,easy,recall,Verification and validation in software testing,explicit,3,0.8,pending,
-E-SO-034,easy_software_engineering,software_engineering,easy,recall,Unit testing and integration testing,explicit,3,0.8,pending,
-E-SO-035,easy_software_engineering,software_engineering,easy,recall,Test driven development,explicit,3,0.8,pending,
-E-SO-036,easy_software_engineering,software_engineering,easy,recall,Design patterns in object oriented programming,explicit,3,0.8,pending,
-E-SO-037,easy_software_engineering,software_engineering,easy,recall,Software architecture and modularity,explicit,3,0.8,pending,
-E-SO-038,easy_software_engineering,software_engineering,easy,recall,Version control and configuration management,explicit,3,0.8,pending,
-E-SO-039,easy_software_engineering,software_engineering,easy,recall,Code review and static analysis,explicit,3,0.8,pending,
-E-SO-040,easy_software_engineering,software_engineering,easy,recall,Risk management in software projects,explicit,3,0.8,pending,
-E-SO-041,easy_software_engineering,software_engineering,easy,recall,Requirements engineering and specification,explicit,3,0.8,pending,
-E-SO-042,easy_software_engineering,software_engineering,easy,recall,Software metrics and quality assurance,explicit,3,0.8,pending,
-E-SO-043,easy_software_engineering,software_engineering,easy,recall,Refactoring and technical debt,explicit,3,0.8,pending,
-E-SO-044,easy_software_engineering,software_engineering,easy,recall,Continuous integration and deployment,explicit,3,0.8,pending,
-E-SO-045,easy_software_engineering,software_engineering,easy,recall,Safety critical software testing,explicit,3,0.8,pending,
-E-OP-046,easy_operating_systems,operating_systems,easy,recall,Processes and threads,explicit,3,0.8,pending,
-E-OP-047,easy_operating_systems,operating_systems,easy,recall,CPU scheduling algorithms,explicit,3,0.8,pending,
-E-OP-048,easy_operating_systems,operating_systems,easy,recall,Virtual memory and paging,explicit,3,0.8,pending,
-E-OP-049,easy_operating_systems,operating_systems,easy,recall,Deadlock detection and prevention,explicit,3,0.8,pending,
-E-OP-050,easy_operating_systems,operating_systems,easy,recall,Banker algorithm and resource allocation,explicit,3,0.8,pending,
-E-OP-051,easy_operating_systems,operating_systems,easy,recall,Memory management and segmentation,explicit,3,0.8,pending,
-E-OP-052,easy_operating_systems,operating_systems,easy,recall,File systems and directory structures,explicit,3,0.8,pending,
-E-OP-053,easy_operating_systems,operating_systems,easy,recall,Interprocess communication,explicit,3,0.8,pending,
-E-OP-054,easy_operating_systems,operating_systems,easy,recall,Semaphores and mutual exclusion,explicit,3,0.8,pending,
-E-OP-055,easy_operating_systems,operating_systems,easy,recall,Disk scheduling algorithms,explicit,3,0.8,pending,
-E-OP-056,easy_operating_systems,operating_systems,easy,recall,Page replacement algorithms,explicit,3,0.8,pending,
-E-OP-057,easy_operating_systems,operating_systems,easy,recall,System calls and kernel mode,explicit,3,0.8,pending,
-E-OP-058,easy_operating_systems,operating_systems,easy,recall,Context switching and process states,explicit,3,0.8,pending,
-E-OP-059,easy_operating_systems,operating_systems,easy,recall,Real time operating systems,explicit,3,0.8,pending,
-E-OP-060,easy_operating_systems,operating_systems,easy,recall,Input output management,explicit,3,0.8,pending,
+E-DE-001,easy_deep_learning,deep_learning,easy,recall,Convolutional neural networks,explicit,3,0.8,done,15-05-2026 04:48
+E-DE-002,easy_deep_learning,deep_learning,easy,recall,Dropout regularisation,explicit,3,0.8,done,15-05-2026 04:49
+E-DE-003,easy_deep_learning,deep_learning,easy,recall,Backpropagation and gradient descent,explicit,3,0.8,done,15-05-2026 04:49
+E-DE-004,easy_deep_learning,deep_learning,easy,recall,Recurrent neural networks and sequence modelling,explicit,3,0.8,done,15-05-2026 04:50
+E-DE-005,easy_deep_learning,deep_learning,easy,recall,Transformer architecture and attention mechanism,explicit,3,0.8,done,15-05-2026 04:51
+E-DE-006,easy_deep_learning,deep_learning,easy,recall,Batch normalisation,explicit,3,0.8,done,15-05-2026 04:51
+E-DE-007,easy_deep_learning,deep_learning,easy,recall,Activation functions in neural networks,explicit,3,0.8,done,15-05-2026 04:52
+E-DE-008,easy_deep_learning,deep_learning,easy,recall,Transfer learning and fine-tuning,explicit,3,0.8,done,15-05-2026 04:52
+E-DE-009,easy_deep_learning,deep_learning,easy,recall,Pooling layers and spatial downsampling,explicit,3,0.8,done,15-05-2026 04:53
+E-DE-010,easy_deep_learning,deep_learning,easy,recall,Loss functions and optimisation,explicit,3,0.8,done,16-05-2026 12:55
+E-DE-011,easy_deep_learning,deep_learning,easy,recall,Overfitting and regularisation techniques,explicit,3,0.8,done,16-05-2026 12:55
+E-DE-012,easy_deep_learning,deep_learning,easy,recall,Vanishing and exploding gradient problem,explicit,3,0.8,done,15-05-2026 04:54
+E-DE-013,easy_deep_learning,deep_learning,easy,recall,Autoencoders and representation learning,explicit,3,0.8,done,16-05-2026 12:56
+E-DE-014,easy_deep_learning,deep_learning,easy,recall,Generative adversarial networks,explicit,3,0.8,done,15-05-2026 04:56
+E-DE-015,easy_deep_learning,deep_learning,easy,recall,Neural network weight initialisation,explicit,3,0.8,done,15-05-2026 04:56
+E-DA-016,easy_database,database,easy,recall,Database normalisation,explicit,3,0.8,done,16-05-2026 13:09
+E-DA-017,easy_database,database,easy,recall,SQL joins — inner and outer,explicit,3,0.8,done,16-05-2026 13:09
+E-DA-018,easy_database,database,easy,recall,ACID properties in database transactions,explicit,3,0.8,done,16-05-2026 13:10
+E-DA-019,easy_database,database,easy,recall,Transaction management and concurrency,explicit,3,0.8,done,16-05-2026 13:12
+E-DA-020,easy_database,database,easy,recall,Indexing and query optimisation,explicit,3,0.8,done,16-05-2026 13:12
+E-DA-021,easy_database,database,easy,recall,Two phase locking and deadlock prevention,explicit,3,0.8,done,16-05-2026 13:13
+E-DA-022,easy_database,database,easy,recall,Entity relationship modelling,explicit,3,0.8,done,16-05-2026 13:14
+E-DA-023,easy_database,database,easy,recall,Relational algebra and calculus,explicit,3,0.8,done,16-05-2026 13:14
+E-DA-024,easy_database,database,easy,recall,Stored procedures and triggers,explicit,3,0.8,done,16-05-2026 13:15
+E-DA-025,easy_database,database,easy,recall,Database recovery and logging,explicit,3,0.8,done,16-05-2026 13:15
+E-DA-026,easy_database,database,easy,recall,NoSQL vs relational databases,explicit,3,0.8,done,16-05-2026 13:16
+E-DA-027,easy_database,database,easy,recall,B-tree and hash indexing,explicit,3,0.8,done,16-05-2026 13:17
+E-DA-028,easy_database,database,easy,recall,Query execution plans and optimiser,explicit,3,0.8,done,16-05-2026 13:17
+E-DA-029,easy_database,database,easy,recall,Database security and access control,explicit,3,0.8,done,16-05-2026 13:18
+E-DA-030,easy_database,database,easy,recall,Data warehousing and OLAP,explicit,3,0.8,done,16-05-2026 13:18
+E-SO-031,easy_software_engineering,software_engineering,easy,recall,Software development lifecycle models,explicit,3,0.8,done,2026-05-16 13:37
+E-SO-032,easy_software_engineering,software_engineering,easy,recall,Agile methodology and requirements management,explicit,3,0.8,done,2026-05-16 13:38
+E-SO-033,easy_software_engineering,software_engineering,easy,recall,Verification and validation in software testing,explicit,3,0.8,done,2026-05-16 13:40
+E-SO-034,easy_software_engineering,software_engineering,easy,recall,Unit testing and integration testing,explicit,3,0.8,done,2026-05-16 13:41
+E-SO-035,easy_software_engineering,software_engineering,easy,recall,Test driven development,explicit,3,0.8,done,2026-05-16 13:42
+E-SO-036,easy_software_engineering,software_engineering,easy,recall,Design patterns in object oriented programming,explicit,3,0.8,done,2026-05-16 13:43
+E-SO-037,easy_software_engineering,software_engineering,easy,recall,Software architecture and modularity,explicit,3,0.8,done,2026-05-16 13:44
+E-SO-038,easy_software_engineering,software_engineering,easy,recall,Version control and configuration management,explicit,3,0.8,done,2026-05-16 13:45
+E-SO-039,easy_software_engineering,software_engineering,easy,recall,Code review and static analysis,explicit,3,0.8,done,2026-05-16 13:46
+E-SO-040,easy_software_engineering,software_engineering,easy,recall,Risk management in software projects,explicit,3,0.8,done,2026-05-16 13:48
+E-SO-041,easy_software_engineering,software_engineering,easy,recall,Requirements engineering and specification,explicit,3,0.8,done,2026-05-16 13:49
+E-SO-042,easy_software_engineering,software_engineering,easy,recall,Software metrics and quality assurance,explicit,3,0.8,done,2026-05-16 13:51
+E-SO-043,easy_software_engineering,software_engineering,easy,recall,Refactoring and technical debt,explicit,3,0.8,done,2026-05-16 13:52
+E-SO-044,easy_software_engineering,software_engineering,easy,recall,Continuous integration and deployment,explicit,3,0.8,done,2026-05-16 13:53
+E-SO-045,easy_software_engineering,software_engineering,easy,recall,Safety critical software testing,explicit,3,0.8,done,2026-05-16 13:54
+E-OP-046,easy_operating_systems,operating_systems,easy,recall,Processes and threads,explicit,3,0.8,done,2026-05-16 14:01
+E-OP-047,easy_operating_systems,operating_systems,easy,recall,CPU scheduling algorithms,explicit,3,0.8,done,2026-05-16 14:02
+E-OP-048,easy_operating_systems,operating_systems,easy,recall,Virtual memory and paging,explicit,3,0.8,done,2026-05-16 14:02
+E-OP-049,easy_operating_systems,operating_systems,easy,recall,Deadlock detection and prevention,explicit,3,0.8,done,2026-05-16 14:03
+E-OP-050,easy_operating_systems,operating_systems,easy,recall,Banker algorithm and resource allocation,explicit,3,0.8,done,2026-05-16 14:03
+E-OP-051,easy_operating_systems,operating_systems,easy,recall,Memory management and segmentation,explicit,3,0.8,done,2026-05-16 14:04
+E-OP-052,easy_operating_systems,operating_systems,easy,recall,File systems and directory structures,explicit,3,0.8,done,2026-05-16 14:05
+E-OP-053,easy_operating_systems,operating_systems,easy,recall,Interprocess communication,explicit,3,0.8,done,2026-05-16 14:06
+E-OP-054,easy_operating_systems,operating_systems,easy,recall,Semaphores and mutual exclusion,explicit,3,0.8,done,2026-05-16 14:06
+E-OP-055,easy_operating_systems,operating_systems,easy,recall,Disk scheduling algorithms,explicit,3,0.8,done,2026-05-16 14:07
+E-OP-056,easy_operating_systems,operating_systems,easy,recall,Page replacement algorithms,explicit,3,0.8,done,2026-05-16 14:07
+E-OP-057,easy_operating_systems,operating_systems,easy,recall,System calls and kernel mode,explicit,3,0.8,done,2026-05-16 14:08
+E-OP-058,easy_operating_systems,operating_systems,easy,recall,Context switching and process states,explicit,3,0.8,done,2026-05-16 14:09
+E-OP-059,easy_operating_systems,operating_systems,easy,recall,Real time operating systems,explicit,3,0.8,done,2026-05-16 14:09
+E-OP-060,easy_operating_systems,operating_systems,easy,recall,Input output management,explicit,3,0.8,done,2026-05-16 14:10
 E-CO-061,easy_computer_architecture,computer_architecture,easy,recall,Instruction pipelining,explicit,3,0.8,pending,
 E-CO-062,easy_computer_architecture,computer_architecture,easy,recall,Cache memory hierarchy,explicit,3,0.8,pending,
 E-CO-063,easy_computer_architecture,computer_architecture,easy,recall,Pipeline hazards and resolution techniques,explicit,3,0.8,pending,
