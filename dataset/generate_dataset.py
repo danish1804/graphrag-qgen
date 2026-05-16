@@ -460,6 +460,11 @@ if __name__ == "__main__":
         "--dry-run", action="store_true",
         help="Preview what would be generated without calling API"
     )
+
+    parser.add_argument(
+    "--reset-failed", action="store_true",
+    help="Reset failed rows to pending before running"
+    )
     args = parser.parse_args()
 
     run(
