@@ -66,6 +66,40 @@ The script saves progress every 5 questions — safe to stop and resume.
 
 ---
 
+## Step 3 — Maintenance and Fixes
+ 
+Use `maintain_dataset.py` to fix inconsistencies between CSV and Excel:
+ 
+```bash
+# Check current status — shows pending/done/failed counts
+# and any inconsistencies between CSV and Excel:
+python dataset/maintain_dataset.py --status
+ 
+# Fix all failed rows — resets in CSV and deletes from Excel:
+python dataset/maintain_dataset.py --fix-failed
+ 
+# Reset specific Q_IDs — useful after manual inspection:
+python dataset/maintain_dataset.py --reset E-DE-010 E-DE-011 E-DE-013
+ 
+# Reset entire category — regenerate from scratch:
+python dataset/maintain_dataset.py --reset-category easy_deep_learning
+ 
+# Sync CSV with Excel — marks done in CSV if row exists in Excel:
+python dataset/maintain_dataset.py --sync
+```
+ 
+### When to Use Each Command
+ 
+| Situation | Command |
+|-----------|---------|
+| Some questions failed with 500 error | `--fix-failed` |
+| Want to regenerate specific questions | `--reset E-DE-001 E-DE-002` |
+| Want to regenerate entire category | `--reset-category easy_database` |
+| CSV and Excel out of sync | `--sync` |
+| Not sure what state things are in | `--status` |
+ 
+---
+
 ## Resuming After Stop
 
 The script tracks progress in `input_questions.csv`:
