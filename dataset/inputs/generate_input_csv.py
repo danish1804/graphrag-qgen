@@ -212,7 +212,7 @@ if __name__ == "__main__":
         for q_id, orig_id, obj in dupes:
             print(f"  {q_id} duplicates {orig_id}: '{obj[:60]}'")
     else:
-        print("[CSV Generator] No duplicate objectives found ✅")
+        print("[CSV Generator] No duplicate objectives found")
 
     # Save
     save_csv(rows)

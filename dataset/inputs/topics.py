@@ -5,17 +5,8 @@
 # Each domain has a list of topics used to generate learning
 # objectives for the input CSV.
 #
-# To add new topics: append to the relevant domain list.
-# To add a new domain: add a new key to DOMAIN_TOPICS.
-#
 # Author: Mohammed Danish Alam
 # Project: P000233DS — EdGenAI Technologies Capstone
-# ============================================================
-
-# ── Domain Topics ─────────────────────────────────────────
-# Each topic is a short noun-phrase (NOT a question).
-# These are used as learning objectives passed to the
-# GraphRAG generation system.
 # ============================================================
 
 DOMAIN_TOPICS = {
@@ -111,9 +102,8 @@ DOMAIN_TOPICS = {
     ],
 }
 
-# ── Cross-domain topics for medium/hard questions ─────────
-# These are used when generating multi-domain questions.
-# The objective spans multiple domains naturally.
+# ── Cross-domain topics for medium questions ──────────────
+# 15 topics per domain pair — no duplicates across pairs
 
 CROSS_DOMAIN_TOPICS = {
 
@@ -121,60 +111,180 @@ CROSS_DOMAIN_TOPICS = {
         "Machine learning model storage and retrieval",
         "Feature engineering and data preprocessing",
         "Training data management at scale",
+        "Vector databases for embedding storage",
+        "Data versioning for machine learning pipelines",
+        "Query optimisation for training data retrieval",
+        "Database indexing for large scale datasets",
+        "Transaction management in ML feature stores",
+        "Schema design for machine learning metadata",
+        "Caching strategies for training data pipelines",
+        "Data normalisation for neural network inputs",
+        "Distributed storage for deep learning datasets",
+        "SQL vs NoSQL for machine learning applications",
+        "Database backup and recovery for model checkpoints",
+        "Concurrency control in data preprocessing pipelines",
     ],
 
     ("deep_learning", "software_engineering"): [
         "MLOps and model deployment pipelines",
         "Testing strategies for machine learning systems",
         "Version control for machine learning experiments",
+        "Continuous integration for deep learning projects",
+        "Software design patterns for neural network systems",
+        "Code modularity in deep learning frameworks",
+        "Debugging and validation of neural network training",
+        "Requirements engineering for AI systems",
+        "Technical debt in machine learning codebases",
+        "Refactoring deep learning pipelines",
+        "Agile development for machine learning projects",
+        "Documentation standards for AI model code",
+        "Risk management in machine learning deployments",
+        "Software metrics for evaluating ML system quality",
+        "Safety critical considerations in AI software",
     ],
 
     ("deep_learning", "operating_systems"): [
         "GPU memory management for deep learning",
         "Parallel processing in neural network training",
         "Resource scheduling for machine learning workloads",
+        "Process management for distributed training jobs",
+        "Virtual memory constraints in large model training",
+        "CPU and GPU synchronisation in deep learning",
+        "File system optimisation for dataset loading",
+        "Thread management in data loading pipelines",
+        "Deadlock prevention in parallel training systems",
+        "Memory mapped files for large dataset access",
+        "OS scheduling impact on neural network training",
+        "Inter-process communication in distributed training",
+        "System calls used in deep learning frameworks",
+        "Context switching overhead in model training",
+        "Real time constraints in neural network inference",
     ],
 
     ("deep_learning", "computer_architecture"): [
         "Hardware acceleration for neural networks",
         "Memory bandwidth constraints in deep learning",
         "Parallelism in convolutional neural network computation",
+        "Cache efficiency in matrix multiplication operations",
+        "Instruction pipelining for neural network inference",
+        "SIMD instructions for deep learning operations",
+        "Memory hierarchy optimisation for model training",
+        "Branch prediction impact on neural network code",
+        "Floating point precision in neural network training",
+        "GPU architecture and its suitability for deep learning",
+        "Amdahl's law applied to neural network parallelisation",
+        "DMA transfers in deep learning data pipelines",
+        "RISC architecture advantages for inference workloads",
+        "Out of order execution in neural network computations",
+        "Power consumption considerations in AI hardware",
     ],
 
     ("database", "software_engineering"): [
         "Object relational mapping and database abstraction",
         "Database driven application architecture",
         "Testing database dependent systems",
+        "Database schema migration in agile projects",
+        "Version control strategies for database schemas",
+        "Design patterns for database access layers",
+        "Requirements engineering for database systems",
+        "Continuous integration with database testing",
+        "Refactoring database interactions in legacy systems",
+        "Software metrics for database application quality",
+        "Risk management in database migration projects",
+        "Transaction handling in object oriented applications",
+        "Unit testing strategies for database operations",
+        "Configuration management for database environments",
+        "Code review practices for SQL and database code",
     ],
 
     ("database", "operating_systems"): [
         "Transaction management and process synchronisation",
         "Deadlock prevention in database and OS contexts",
         "File system and database storage management",
+        "Buffer pool management in database systems",
+        "OS level locking vs database level locking",
+        "Virtual memory impact on database performance",
+        "Process scheduling for database query execution",
+        "Semaphores in database concurrency control",
+        "File system choice for database storage",
+        "Memory management for database buffer pools",
+        "Inter-process communication in database servers",
+        "Page replacement algorithms in database systems",
+        "Disk scheduling impact on database I/O performance",
+        "System calls used in database management systems",
+        "Real time database systems and OS scheduling",
     ],
 
     ("database", "computer_architecture"): [
         "Database query performance and memory hierarchy",
         "Disk storage architecture and database indexing",
         "Cache efficiency in database systems",
+        "B-tree indexing and memory access patterns",
+        "Instruction pipelining in database query engines",
+        "RISC architecture benefits for database workloads",
+        "DMA transfers in database I/O operations",
+        "Multicore processors for parallel query execution",
+        "Floating point arithmetic in database aggregations",
+        "Bus architecture impact on database throughput",
+        "Memory bandwidth and database join operations",
+        "Cache coherence in shared memory database systems",
+        "Out of order execution in database query processing",
+        "Virtual memory and database buffer management",
+        "Amdahl's law applied to parallel database queries",
     ],
 
     ("software_engineering", "operating_systems"): [
         "Concurrent programming and thread safety",
         "System software design and OS interfaces",
         "Process management in software applications",
+        "Synchronisation mechanisms in concurrent software",
+        "Deadlock avoidance in multi-threaded applications",
+        "File system APIs in software engineering",
+        "Memory management in application development",
+        "Inter-process communication in software design",
+        "Real time software development for OS environments",
+        "System call design and software architecture",
+        "Testing concurrent and parallel software systems",
+        "Agile development for system software projects",
+        "Configuration management for OS dependent software",
+        "Risk management in concurrent system development",
+        "Performance engineering for OS interfacing code",
     ],
 
     ("software_engineering", "computer_architecture"): [
         "Low level optimisation and compiler design",
         "Embedded systems software development",
         "Performance engineering and profiling",
+        "Software design for cache friendly data structures",
+        "Assembly language integration in software projects",
+        "Branch prediction impact on software performance",
+        "RISC architecture considerations in software design",
+        "Memory layout optimisation in software engineering",
+        "Instruction set architecture and compiler design",
+        "Testing strategies for hardware software interfaces",
+        "Agile development for embedded systems",
+        "Requirements engineering for hardware constrained systems",
+        "Version control for firmware and embedded code",
+        "Technical debt in low level software systems",
+        "Code review for performance critical software",
     ],
 
     ("operating_systems", "computer_architecture"): [
         "Virtual memory implementation and hardware support",
         "Interrupt handling and processor architecture",
         "Cache coherence in multiprocessor systems",
+        "TLB management and address translation hardware",
+        "DMA controller interaction with OS drivers",
+        "Instruction pipelining and OS context switching",
+        "Memory management unit design and OS support",
+        "Multicore scheduling and hardware thread management",
+        "Bus arbitration and OS I/O management",
+        "Floating point exceptions and OS signal handling",
+        "Branch prediction and OS kernel performance",
+        "RISC architecture benefits for OS kernel design",
+        "Out of order execution and OS memory consistency",
+        "Hardware interrupts and OS interrupt service routines",
+        "Power management in OS and hardware co-design",
     ],
 }
 
@@ -226,5 +336,7 @@ if __name__ == "__main__":
         total += len(topics)
     print(f"\nTotal single-domain topics: {total}")
     print(f"Cross-domain pairs: {len(CROSS_DOMAIN_TOPICS)}")
+    total_cross = sum(len(t) for t in CROSS_DOMAIN_TOPICS.values())
+    print(f"Total cross-domain topics: {total_cross}")
     print(f"Hard multi-domain topics: {len(HARD_MULTI_DOMAIN_TOPICS)}")
     print(f"Case study topics: {len(CASE_STUDY_TOPICS)}")
