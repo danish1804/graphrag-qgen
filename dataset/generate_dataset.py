@@ -171,9 +171,9 @@ def parse_response(response: dict) -> dict:
         "question": response.get("question", ""),
         "answer":   meta.get("sample_answer", ""),
         "sources":  ", ".join(sources) if sources else "",
-        "q_score":  judge.get("question_overall", ""),
-        "a_score":  judge.get("answer_overall", ""),
-        "r_score":  judge.get("retrieval_overall", ""),
+        "q_score":  judge.get("question_overall", "N/A") or "N/A",
+        "a_score":  judge.get("answer_overall", "N/A") or "N/A",
+        "r_score":  judge.get("retrieval_overall", "N/A") or "N/A",
         "attempts": judge.get("attempts", 1),
         "status":   "done",
     }
@@ -337,14 +337,43 @@ def mark_done_in_csv(q_id: str, status: str = "done"):
 # Main
 # ════════════════════════════════════════════════════════════
 
+def _reset_failed_rows(category: str = None):
+    """Reset failed rows to pending for retry."""
+    rows = []
+    reset_count = 0
+
+    with open(INPUT_CSV, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        for row in reader:
+            if row["status"] == "failed":
+                if category is None or \
+                        row["category"] == category:
+                    row["status"]       = "pending"
+                    row["generated_at"] = ""
+                    reset_count += 1
+            rows.append(row)
+
+    with open(INPUT_CSV, "w", newline="",
+              encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+
+    print(f"[Generator] Reset {reset_count} "
+          f"failed rows to pending")
+    
 def run(batch_size: int = 15,
         category: str = None,
-        dry_run: bool = False):
+        dry_run: bool = False,
+        reset_failed: bool = False):
 
     print("\n" + "=" * 55)
     print("P000233DS — Question Dataset Generator")
     print("=" * 55)
 
+    if reset_failed:
+        _reset_failed_rows(category)
     # Load pending rows
     pending = load_csv(category)
     print(f"[Generator] Pending rows: {len(pending)}")
@@ -471,4 +500,5 @@ if __name__ == "__main__":
         batch_size = args.batch,
         category   = args.category,
         dry_run    = args.dry_run,
+        reset_failed = args.reset_failed,
     )
