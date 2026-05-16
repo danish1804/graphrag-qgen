@@ -235,12 +235,13 @@ def init_excel() -> openpyxl.Workbook:
 
 
 def get_existing_ids(wb: openpyxl.Workbook) -> set:
-    """Return set of Q_IDs already in the workbook."""
-    ws   = wb.active
-    ids  = set()
+    """Return Q_IDs already successfully generated."""
+    ws  = wb.active
+    ids = set()
     for row in ws.iter_rows(min_row=3, values_only=True):
-        if row[0]:
-            ids.add(str(row[0]))
+        if row[0] and row[19]:  # has Q_ID and status
+            if "FAILED" not in str(row[19]):
+                ids.add(str(row[0]))
     return ids
 
 
