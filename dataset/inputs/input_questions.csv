@@ -59,21 +59,21 @@ E-OP-057,easy_operating_systems,operating_systems,easy,recall,System calls and k
 E-OP-058,easy_operating_systems,operating_systems,easy,recall,Context switching and process states,explicit,3,0.8,done,2026-05-16 14:09
 E-OP-059,easy_operating_systems,operating_systems,easy,recall,Real time operating systems,explicit,3,0.8,done,2026-05-16 14:09
 E-OP-060,easy_operating_systems,operating_systems,easy,recall,Input output management,explicit,3,0.8,done,2026-05-16 14:10
-E-CO-061,easy_computer_architecture,computer_architecture,easy,recall,Instruction pipelining,explicit,3,0.8,pending,
-E-CO-062,easy_computer_architecture,computer_architecture,easy,recall,Cache memory hierarchy,explicit,3,0.8,pending,
-E-CO-063,easy_computer_architecture,computer_architecture,easy,recall,Pipeline hazards and resolution techniques,explicit,3,0.8,pending,
-E-CO-064,easy_computer_architecture,computer_architecture,easy,recall,Memory hierarchy and locality,explicit,3,0.8,pending,
-E-CO-065,easy_computer_architecture,computer_architecture,easy,recall,Instruction set architecture,explicit,3,0.8,pending,
-E-CO-066,easy_computer_architecture,computer_architecture,easy,recall,Superscalar and out of order execution,explicit,3,0.8,pending,
-E-CO-067,easy_computer_architecture,computer_architecture,easy,recall,Branch prediction,explicit,3,0.8,pending,
-E-CO-068,easy_computer_architecture,computer_architecture,easy,recall,RISC vs CISC architecture,explicit,3,0.8,pending,
-E-CO-069,easy_computer_architecture,computer_architecture,easy,recall,Virtual memory and address translation,explicit,3,0.8,pending,
-E-CO-070,easy_computer_architecture,computer_architecture,easy,recall,Multicore processors and parallelism,explicit,3,0.8,pending,
-E-CO-071,easy_computer_architecture,computer_architecture,easy,recall,Amdahl's law and performance limits,explicit,3,0.8,pending,
-E-CO-072,easy_computer_architecture,computer_architecture,easy,recall,Direct memory access,explicit,3,0.8,pending,
-E-CO-073,easy_computer_architecture,computer_architecture,easy,recall,Bus architecture and interconnects,explicit,3,0.8,pending,
-E-CO-074,easy_computer_architecture,computer_architecture,easy,recall,Floating point representation,explicit,3,0.8,pending,
-E-CO-075,easy_computer_architecture,computer_architecture,easy,recall,Assembly language and low level programming,explicit,3,0.8,pending,
+E-CO-061,easy_computer_architecture,computer_architecture,easy,recall,Instruction pipelining,explicit,3,0.8,done,2026-05-16 14:26
+E-CO-062,easy_computer_architecture,computer_architecture,easy,recall,Cache memory hierarchy,explicit,3,0.8,done,2026-05-16 14:27
+E-CO-063,easy_computer_architecture,computer_architecture,easy,recall,Pipeline hazards and resolution techniques,explicit,3,0.8,done,2026-05-16 14:27
+E-CO-064,easy_computer_architecture,computer_architecture,easy,recall,Memory hierarchy and locality,explicit,3,0.8,done,2026-05-16 14:28
+E-CO-065,easy_computer_architecture,computer_architecture,easy,recall,Instruction set architecture,explicit,3,0.8,done,2026-05-16 14:28
+E-CO-066,easy_computer_architecture,computer_architecture,easy,recall,Superscalar and out of order execution,explicit,3,0.8,done,2026-05-16 14:30
+E-CO-067,easy_computer_architecture,computer_architecture,easy,recall,Branch prediction,explicit,3,0.8,done,2026-05-16 14:30
+E-CO-068,easy_computer_architecture,computer_architecture,easy,recall,RISC vs CISC architecture,explicit,3,0.8,done,2026-05-16 14:31
+E-CO-069,easy_computer_architecture,computer_architecture,easy,recall,Virtual memory and address translation,explicit,3,0.8,done,2026-05-16 14:31
+E-CO-070,easy_computer_architecture,computer_architecture,easy,recall,Multicore processors and parallelism,explicit,3,0.8,done,2026-05-16 14:32
+E-CO-071,easy_computer_architecture,computer_architecture,easy,recall,Amdahl's law and performance limits,explicit,3,0.8,done,2026-05-16 14:32
+E-CO-072,easy_computer_architecture,computer_architecture,easy,recall,Direct memory access,explicit,3,0.8,done,2026-05-16 14:33
+E-CO-073,easy_computer_architecture,computer_architecture,easy,recall,Bus architecture and interconnects,explicit,3,0.8,done,2026-05-16 14:33
+E-CO-074,easy_computer_architecture,computer_architecture,easy,recall,Floating point representation,explicit,3,0.8,done,2026-05-16 14:34
+E-CO-075,easy_computer_architecture,computer_architecture,easy,recall,Assembly language and low level programming,explicit,3,0.8,done,2026-05-16 14:35
 M-DEDA-076,medium_deep_learning_database,deep_learning+database,medium,conceptual,Machine learning model storage and retrieval,auto,5,0.6,pending,
 M-DEDA-077,medium_deep_learning_database,deep_learning+database,medium,conceptual,Feature engineering and data preprocessing,auto,5,0.6,pending,
 M-DEDA-078,medium_deep_learning_database,deep_learning+database,medium,conceptual,Training data management at scale,auto,5,0.6,pending,
