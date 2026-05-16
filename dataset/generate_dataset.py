@@ -233,7 +233,6 @@ def init_excel() -> openpyxl.Workbook:
     wb.save(OUTPUT_XLSX)
     return wb
 
-
 def get_existing_ids(wb: openpyxl.Workbook) -> set:
     """Return Q_IDs already successfully generated."""
     ws  = wb.active
