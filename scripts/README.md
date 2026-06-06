@@ -17,7 +17,9 @@ scripts/
 ├── get_sample_chunks.py        # Preview chunks from a PDF
 ├── rename_docs.py              # Rename PDFs to source_N format
 ├── test_chunk_filter.py        # Test quality chunk filter
-└── test_document_batch.py      # Batch test document loading
+├── test_document_batch.py      # Batch test document loading
+├── test_new_features.py        # case_study + dedup smoke (offline + --live API)
+└── verify_refactor_changes.py  # Post-refactor API verification script
 ```
 
 ---
@@ -344,6 +346,20 @@ python graphrag/graphrag_domain_indexer.py --domain all
 
 # 6. Start the server
 python main_gr.py --mode full
+```
+
+---
+
+## test_new_features.py : Feature smoke tests
+
+Runs unit tests for dedup hashing, static checks for `case_study` in config/prompts, and optional live API tests.
+
+```bash
+# Offline only
+python scripts/test_new_features.py
+
+# With API on port 8000
+python scripts/test_new_features.py --live --generate
 ```
 
 ---

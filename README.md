@@ -164,6 +164,18 @@ graphrag_qgen/
 ├── evaluation/                 # LLM-as-Judge evaluation
 │   └── README.md              → See evaluation/README.md
 │
+├── services/                   # API handlers (admin, dedup, generation)
+│
+├── ui/                         # Streamlit demo UI
+│   └── README.md              → See ui/README.md
+│
+├── docs/                       # Demo scripts, diagrams, deduplication guide
+│   ├── demo_script.md
+│   ├── demo_presenter_script.md
+│   └── deduplication.md
+│
+├── tests/                      # Unit tests (e.g. document dedup)
+│
 ├── scripts/                    # Utility and maintenance scripts
 │   └── README.md              → See scripts/README.md
 │
