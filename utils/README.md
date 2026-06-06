@@ -9,13 +9,35 @@ Shared utility modules used across all pipelines. No pipeline-specific logic liv
 ```
 utils/
 ├── __init__.py
-├── config.py           # YAML config loader
-├── document_loader.py  # PDF/PPTX -> text chunks
-├── embedder.py         # BAAI embeddings + FAISS index
-├── generator.py        # Qwen 2.5 7B inference
-├── judge.py            # LLM-as-Judge model loader
-└── registry.py         # Document registry (PDF tracking)
+├── config.py                 # YAML config loader
+├── document_loader.py        # PDF/PPTX -> text chunks
+├── embedder.py               # BAAI embeddings + FAISS index
+├── generator.py              # Qwen 2.5 7B inference
+├── judge.py                  # LLM-as-Judge model loader
+├── registry.py               # Document registry (PDF tracking)
+├── prompts.py                # Question/answer prompt templates
+├── question_type_prompts.py  # Per-type instructions (incl. case_study)
+├── question_types.py         # Valid types from config
+├── retrieval_config.py       # top_k_nodes / max_chunks per difficulty
+├── multi_domain_retrieval.py # Multi-domain chunk budget (aligns with max_chunks)
+├── content_hash.py           # Dedup byte/text hashing
+├── text_normalization.py     # Text normalisation for similarity
+├── text_similarity.py        # Near-duplicate detection
+└── registry_content.py       # Registry fingerprints for dedup
 ```
+
+---
+
+## Difficulty vs question type
+
+| Module | Role |
+|--------|------|
+| `retrieval_config.py` | Maps **difficulty** → `top_k_nodes`, `neighbour_depth`, `max_chunks` |
+| `multi_domain_retrieval.py` | Ensures multi-domain hard uses same per-domain budget as single-domain hard |
+| `question_type_prompts.py` | Maps **question_type** → extra LLM instructions (case_study = SCENARIO + QUESTION) |
+| `generator.py` | Uses `question_type` for prompts; per-type `max_new_tokens` from config |
+
+**Question type does not affect retrieval.** Only `cfg["difficulty"][difficulty]` drives chunk counts and routing (see `graphrag/graphrag_pipeline.py`).
 
 ---
 
@@ -215,6 +237,26 @@ BitsAndBytesConfig(
 ```
 
 #### generate_question(context, learning_objective, model, tokenizer, difficulty, question_type) -> str
+
+Generates one exam question. **Retrieval is already done** — this only formats the LLM call.
+
+- **difficulty** — passed to prompt; answer depth for `generate_answer()` uses this.
+- **question_type** — selects prompt template via `question_type_prompts.py`:
+  - `recall`, `conceptual`, `application` — standard single question
+  - `case_study` — requires **SCENARIO:** block + **QUESTION:** line; uses `max_new_tokens: 280` from config
+
+```python
+from utils.generator import generate_question
+
+question = generate_question(
+    context            = retrieval["context"],
+    learning_objective = "Explain deadlocks",
+    model              = model,
+    tokenizer          = tokenizer,
+    difficulty         = "hard",
+    question_type      = "case_study"   # retrieval unchanged vs "application"
+)
+```
 
 Generates one exam question from retrieved context.
 

@@ -13,6 +13,8 @@
 #   produces more reliable evaluations (Zheng et al., 2023).
 # ============================================================
 
+RUBRIC_VERSION = "1.0.0"
+
 
 # ------------------------------------------------------------
 # 1. RETRIEVAL QUALITY
@@ -215,9 +217,15 @@ def build_retrieval_prompt(learning_objective: str, chunks: list) -> str:
 
 def build_question_prompt(context: str, question: str,
                           difficulty: str, question_type: str) -> str:
+    extra = ""
+    if question_type == "case_study":
+        extra = (
+            "\nNote: case_study output should include a SCENARIO block "
+            "and a QUESTION line grounded in that scenario.\n"
+        )
     return QUESTION_USER_TEMPLATE.format(
         context=context,
-        question=question,
+        question=question + extra,
         difficulty=difficulty,
         question_type=question_type,
     )

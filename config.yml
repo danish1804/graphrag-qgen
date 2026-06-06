@@ -51,8 +51,8 @@ difficulty:
     neighbour_depth: 2
     seed_ratio: 0.40     # 40% seed, 60% neighbour
     multi_domain: true
-    domain_score_threshold: 0.5  # Include neighbour nodes from other domains if score ≥0.5
-    chunks_per_domain: 3          # Max chunks to take from each domain in multi-domain retrieval
+    domain_score_threshold: 0.5  # Include domains if embedding score >= threshold
+    chunks_per_domain: 7          # Per-domain chunk budget (defaults to max_chunks)
     description: "Application, analysis and evaluation"
 
 # ── Question Types ─────────────────────────────────────────
@@ -68,6 +68,25 @@ question_types:
   application:
     description: "Design, analyse, evaluate, derive, apply"
     bloom_level: 3
+  case_study:
+    description: "Realistic scenario then question grounded in that scenario"
+    bloom_level: 4
+    max_new_tokens: 280
+
+# ── Document deduplication (admin upload / rebuild) ─────────
+# Prevents re-processing PDFs that add zero nodes/edges to the graph.
+#   1) Byte hash — identical files skipped immediately
+#   2) Normalised text hash — same extracted text, different file bytes
+#   3) Text similarity — near-duplicates (e.g. different publisher, minor header edits)
+# Comparisons are scoped to the target domain only (see compare_scope).
+deduplication:
+  enabled: true
+  similarity_threshold: 0.95
+  on_exact_hash: skip
+  on_high_similarity: skip
+  compare_scope: domain
+  max_similarity_comparisons: 25
+  similarity_sample_chars: 15000
 
 # ── Domain Configuration ───────────────────────────────────
 # Channel partner can add new domains or disable existing ones
@@ -129,8 +148,15 @@ graph:
 model:
   llm_name: "Qwen/Qwen2.5-7B-Instruct"
   embedding_model: "BAAI/bge-large-en-v1.5"
-  max_new_tokens: 512
+  max_new_tokens: 512              # legacy fallback
+  max_new_tokens_question: 150
+  max_new_tokens_answer: 512
   temperature: 0.7
+  do_sample: true
+
+# ── Prompt versioning ──────────────────────────────────────
+prompts:
+  version: "1.1.0"
 
 # ── LLM as Judge ──────────────────────────────────────────
 # Evaluates generated questions and answers for quality.
