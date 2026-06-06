@@ -120,17 +120,23 @@ admin rebuild endpoint -> reads new PDFs after upload
 ```
 Admin calls POST /admin/upload-document
     ↓
-File saved to data/uploads/new_file.pdf
+File written to temp path; dedup assessed (byte + text hash + similarity)
+    ↓
+Duplicate? → rejected — NOT saved to tested/, NOT registered
+    ↓
+New file → saved as source_N.pdf in data/tested/
+Registered in document_registry.json (indexed: false)
     ↓
 Admin calls POST /admin/rebuild-domain
     ↓
-System reads new_file.pdf from uploads/
-Processes it (chunking + entity extraction + graph update)
-Moves new_file.pdf to data/tested/
-Marks as indexed in document_registry.json
+Incremental graph merge; fingerprints stored; indexed: true
     ↓
 uploads/ is empty again
 ```
+
+**Deduplication (Samar requirement):** See [../docs/deduplication.md](../docs/deduplication.md). Comparisons are scoped to **indexed files in the same domain** only. Near-duplicates at similarity ≥ `0.95` are skipped before any graph work.
+
+**Legacy note:** Older docs described saving directly to `uploads/`; the current path uses **temp → dedup → `tested/`** via `services/admin_upload_handler.py`.
 
 **When uploads/ has files but rebuild has not run:**
 ```bash
@@ -266,10 +272,10 @@ Publisher / Educator
   (shows source_N.pdf as unregistered)
         ↓
   POST /admin/upload-document?domain=database
-  (registers in document_registry.json)
-        ↓
+  (dedup check → register in document_registry.json if new)
+  ↓
   POST /admin/rebuild-domain {"domain": "database"}
-  (incremental graph update ~2-5 mins)
+  (incremental graph update ~2-5 mins; pre-rebuild dedup filter)
   (marks as indexed in registry)
         ↓
   Knowledge graph updated
@@ -315,6 +321,8 @@ Keep `document_registry.json` and `rename_log.txt` committed : they are small an
 ## Related
 
 - [../scripts/README.md](../scripts/README.md) : rename_docs.py, validate_docs.py
+- [../services/README.md](../services/README.md) : admin upload/rebuild handlers
+- [../docs/deduplication.md](../docs/deduplication.md) : dedup rules and config
 - [../utils/README.md](../utils/README.md) : registry.py, document_loader.py
 - [../graphrag/README.md](../graphrag/README.md) : how PDFs become knowledge graphs
 - [../README.md](../README.md) : Main project README

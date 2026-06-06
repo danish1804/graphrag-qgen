@@ -382,5 +382,6 @@ python graphrag/graphrag_retriever.py
 ## Related
 
 - [../utils/README.md](../utils/README.md) - document_loader, embedder, generator, judge
+- [../services/README.md](../services/README.md) - generation service wrapper
 - [../evaluation/README.md](../evaluation/README.md) - LLM-as-Judge system
 - [../README.md](../README.md) - Main project README

@@ -387,4 +387,6 @@ judge:
 
 - [../utils/judge.py](../utils/README.md) : judge model loader
 - [../graphrag/README.md](../graphrag/README.md) : where evaluate_generation() is called
+- [../outputs/README.md](../outputs/README.md) : evaluation JSON output location
+- [../README.md](../README.md) : Main project README
 - [../README.md](../README.md) : Main project README

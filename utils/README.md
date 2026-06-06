@@ -23,7 +23,9 @@ utils/
 ├── content_hash.py           # Dedup byte/text hashing
 ├── text_normalization.py     # Text normalisation for similarity
 ├── text_similarity.py        # Near-duplicate detection
-└── registry_content.py       # Registry fingerprints for dedup
+├── registry_content.py       # Registry fingerprints for dedup
+├── atomic_io.py              # Atomic JSON write (registry, runtime state)
+└── runtime_state.py          # Server runtime flags (e.g. rebuild in progress)
 ```
 
 ---
@@ -35,6 +37,9 @@ utils/
 | `retrieval_config.py` | Maps **difficulty** → `top_k_nodes`, `neighbour_depth`, `max_chunks` |
 | `multi_domain_retrieval.py` | Ensures multi-domain hard uses same per-domain budget as single-domain hard |
 | `question_type_prompts.py` | Maps **question_type** → extra LLM instructions (case_study = SCENARIO + QUESTION) |
+| `registry_content.py` | Store content hashes / duplicate flags in `document_registry.json` |
+| `atomic_io.py` | Safe atomic writes for JSON state files |
+| `runtime_state.py` | Lightweight server state (avoid concurrent rebuild conflicts) |
 | `generator.py` | Uses `question_type` for prompts; per-type `max_new_tokens` from config |
 
 **Question type does not affect retrieval.** Only `cfg["difficulty"][difficulty]` drives chunk counts and routing (see `graphrag/graphrag_pipeline.py`).

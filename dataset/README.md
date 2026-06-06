@@ -117,13 +117,15 @@ Running the script again skips `done` rows automatically.
 
 ```
 Column A-D:   Input parameters (Q_ID, Domain, Difficulty, Type)
-Column E-H:   RAG configuration (Objective, Routing, Top K, Seed Ratio)
+Column E-H:   RAG configuration (Objective, Routing, retrieval params, Seed Ratio)
 Column I-K:   Generated output (Question, Answer, Sources)
 Column L-O:   LLM Judge scores (Q/A/R scores, Attempts)
 Column P-Q:   Human review (Rating, Reviewer name)
 Column R:     Remarks
 Column S-T:   Meta (Generated at, Status)
 ```
+
+Legacy spreadsheets may label a column "Top K"; in the current system retrieval depth is driven by **difficulty** in `config.yml` (`top_k_nodes`, `max_chunks`), not a separate tutor-editable K field.
 
 ---
 
@@ -165,8 +167,8 @@ FAIL:       Wrong topic, MCQ format, citation dependent, not standalone
 | medium_SE_OS | software_engineering+operating_systems | medium | 15 |
 | medium_SE_CA | software_engineering+computer_architecture | medium | 15 |
 | medium_OS_CA | operating_systems+computer_architecture | medium | 15 |
-| hard_multi_domain | auto route | hard | 15 |
-| case_study | auto route | case_study | 15 |
+| hard_multi_domain | auto route | hard (application typical) | 15 |
+| case_study | auto route or single domain | **question_type** case_study | 15 |
 
 **Total target: 255+ questions**
 
@@ -192,4 +194,5 @@ Phase 2: GraphRAG + Qwen 2.5 7B (fine-tuned)
 
 - [../graphrag/README.md](../graphrag/README.md) — GraphRAG pipeline
 - [../utils/README.md](../utils/README.md) — Generator and judge
+- [../scripts/README.md](../scripts/README.md) — `generate_dataset.py`, maintenance
 - [../README.md](../README.md) — Main project README
