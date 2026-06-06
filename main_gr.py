@@ -15,24 +15,27 @@ import os
 import sys
 import shutil
 from contextlib import asynccontextmanager
-from typing import Optional
+from typing import Optional, Literal, Any
 import argparse
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from utils.config import cfg
+from utils.question_types import valid_question_types
 
 sys.path.append(os.path.dirname(__file__))
 
 from standard_rag.pipeline              import Pipeline
 from standard_rag.multi_pipeline        import MultiPipeline
 from graphrag.graphrag_pipeline     import GraphRAGPipeline
-from utils.registry import (
-    register_document, mark_as_indexed,
-    get_unindexed_files, get_registry_summary)
-from graphrag.graphrag_domain_indexer import (
-    DOMAIN_MAP, route_query_to_domain)
+from graphrag.graphrag_domain_indexer import DOMAIN_MAP
+from utils import runtime_state
+from services.domain_catalog_service import DomainCatalogService
+from services.graphrag_generation_service import GraphRAGGenerationService
+from services.status_service import StatusService
+from services.admin_domain_service import AdminDomainService
+from services.index_repository import IndexRepository
 
 BASE_DIR   = os.getenv( "GRAPHRAG_BASE_DIR", os.path.dirname(os.path.abspath(__file__)))
 UPLOAD_DIR = os.path.join(BASE_DIR, "data", "uploads")
@@ -45,11 +48,45 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 single_pipeline = Pipeline()
 multi_pipeline  = MultiPipeline()
 graph_pipeline  = GraphRAGPipeline()
+domain_catalog_service = DomainCatalogService(
+    cfg=cfg,
+    domain_map=DOMAIN_MAP,
+    runtime_state_module=runtime_state,
+)
+graphrag_generation_service = GraphRAGGenerationService(graph_pipeline)
+status_service = None
+admin_domain_service = None
 
 # ── Server mode ───────────────────────────────────────────
 # standard : loads standard RAG only (fast startup ~15s)
 # full      : loads standard RAG + all GraphRAG domains (~45s)
 SERVER_MODE = "full"  # overridden by --mode argument at startup
+
+
+# ── Domain catalog sync ─────────────────────────────────────
+def _sync_runtime_domains() -> set[str]:
+    """Backwards-compatible wrapper around the domain catalog service."""
+    return domain_catalog_service.sync_domains()
+
+
+status_service = StatusService(
+    index_dir=INDEX_DIR,
+    domain_map=DOMAIN_MAP,
+    single_pipeline=single_pipeline,
+    multi_pipeline=multi_pipeline,
+    graph_pipeline=graph_pipeline,
+)
+index_repository = IndexRepository(
+    index_dir=INDEX_DIR,
+    graph_pipeline=graph_pipeline,
+)
+admin_domain_service = AdminDomainService(
+    tested_dir=TESTED_DIR,
+    graph_pipeline=graph_pipeline,
+    index_repository=index_repository,
+    runtime_state_module=runtime_state,
+    sync_domains_callable=_sync_runtime_domains,
+)
 
 
 # ── Startup / shutdown ────────────────────────────────────
@@ -85,9 +122,11 @@ async def lifespan(app: FastAPI):
 
     # Load GraphRAG only in full mode
     if SERVER_MODE == "full":
+        global VALID_DOMAINS
+        VALID_DOMAINS = _sync_runtime_domains()
         print("[Server] Loading domain GraphRAG indexes...")
         domains_loaded = []
-        for domain_name in DOMAIN_MAP:
+        for domain_name in sorted(VALID_DOMAINS):
             try:
                 graph_pipeline.load_domain_index(domain_name)
                 domains_loaded.append(domain_name)
@@ -131,7 +170,7 @@ async def lifespan(app: FastAPI):
     print("[Server]   POST /admin/upload-document")
     print("[Server]   POST /admin/rebuild-domain")
     print("[Server]   POST /admin/add-domain")
-    print("[Server]   POST /admin/new-documents")
+    print("[Server]   GET  /admin/new-documents")
     print("[Server]   GET  /evaluate") 
 
     yield
@@ -158,18 +197,22 @@ app.add_middleware(
 
 # ── Request / Response models ─────────────────────────────
 class GenerateRequest(BaseModel):
-    learning_objective: str
-    difficulty:    str = "medium"
-    question_type: str = "conceptual"
-    top_k:         int = 3
+    learning_objective: str = Field(..., min_length=3)
+    difficulty: Literal["easy", "medium", "hard"] = "medium"
+    question_type: Literal[
+        "recall", "conceptual", "application", "case_study"
+    ] = "conceptual"
+    top_k: int = Field(default=3, ge=1, le=10)
 
 class GraphRAGGenerateRequest(BaseModel):
-    learning_objective: str
-    difficulty:     str = "medium"
-    question_type:  str = "conceptual"
-    top_k_nodes:    int = 3
-    neighbour_depth: int = 1
-    domain:         Optional[str] = None  # None = auto-route
+    learning_objective: str = Field(..., min_length=3)
+    difficulty: Literal["easy", "medium", "hard"] = "medium"
+    question_type: Literal[
+        "recall", "conceptual", "application", "case_study"
+    ] = "conceptual"
+    top_k_nodes: int = Field(default=3, ge=1, le=20)
+    neighbour_depth: int = Field(default=1, ge=1, le=3)
+    domain: Optional[str] = None  # None = auto-route
 
 # Add after existing request models:
 
@@ -177,23 +220,64 @@ class AdminUploadRequest(BaseModel):
     domain: str  # which domain to add document to
 
 class AdminRebuildRequest(BaseModel):
-    domain: str  # which domain to rebuild
+    domain: str = Field(..., min_length=2)  # which domain to rebuild
 
 class AdminAddDomainRequest(BaseModel):
-    domain_name:  str  # new domain identifier
-    description:  str  # human readable description
-    keywords:     list[str] = []  # routing keywords
+    domain_name: str = Field(..., min_length=2)  # new domain identifier
+    description: str = Field(..., min_length=3)  # human readable description
+    keywords: list[str] = Field(default_factory=list)  # routing keywords
+
+
+class HealthResponse(BaseModel):
+    status: str
+    models_loaded: bool
+    standard_rag: dict[str, Any]
+    graphrag: dict[str, Any]
+
+
+class StandardUploadResponse(BaseModel):
+    status: Literal["ok"]
+    file_name: str
+    total_chunks: int
+    index_name: str
+    message: str
+
+
+class RebuildResponse(BaseModel):
+    status: Literal["ok"]
+    total_chunks: int
+    message: str
+
+
+class GraphRAGGenerateResponse(BaseModel):
+    question: str
+    metadata: dict[str, Any]
+
+    class Config:
+        extra = "allow"
+
+
+class AdminRebuildResponse(BaseModel):
+    status: Literal["ok"]
+    domain: str
+    update_type: str
+    message: str
+    new_nodes_added: int
+    new_edges_added: int
+    nodes_updated: int = 0
+    graph_nodes: int = 0
+    graph_edges: int = 0
+    elapsed_seconds: float = 0.0
+    new_files: list[str] = Field(default_factory=list)
+    skipped_duplicates: list[dict[str, Any]] = Field(default_factory=list)
 
 # ── Validation helpers ────────────────────────────────────
 VALID_DIFFICULTIES  = {"easy", "medium", "hard"}
-VALID_TYPES         = {"recall", "conceptual", "application"}
+VALID_TYPES         = valid_question_types()
 
 
 # Replace hardcoded VALID_DOMAINS with config-driven version
-VALID_DOMAINS = set(
-    domain for domain, settings in cfg["domains"].items()
-    if settings["enabled"]
-)
+VALID_DOMAINS = _sync_runtime_domains()
 
 def validate_params(difficulty: str, question_type: str):
     if difficulty not in VALID_DIFFICULTIES:
@@ -213,57 +297,25 @@ def validate_params(difficulty: str, question_type: str):
 # SYSTEM ENDPOINTS
 # ============================================================
 
-@app.get("/health", tags=["System"])
+@app.get("/health", tags=["System"], response_model=HealthResponse)
 async def health():
     """
     Server health check.
     Shows status of all three pipelines.
     """
-    # Standard RAG single doc
-    single_loaded = single_pipeline.index is not None
-    single_name   = getattr(single_pipeline, "index_name", None)
-
-    # Standard RAG multi doc
-    multi_loaded  = multi_pipeline.index is not None
-    multi_chunks  = 0
-    if multi_loaded:
-        try:
-            multi_chunks = len(multi_pipeline.chunks)
-        except Exception:
-            pass
-
-    # GraphRAG domain status
-    graph_domains = {}
-    for domain_name in DOMAIN_MAP:
-        graph_path = os.path.join(
-            INDEX_DIR,
-            f"graphrag_{domain_name}_graph.pkl")
-        graph_domains[domain_name] = os.path.exists(graph_path)
-
-    return {
-        "status":              "ok",
-        "models_loaded":       single_pipeline._models_loaded,
-        "standard_rag": {
-            "single_doc": {
-                "loaded":     single_loaded,
-                "index_name": single_name
-            },
-            "multi_doc": {
-                "loaded":       multi_loaded,
-                "total_chunks": multi_chunks
-            }
-        },
-        "graphrag": {
-            "domains_available": graph_domains,
-            "current_index":     graph_pipeline.graph_name
-        }
-    }
+    global VALID_DOMAINS
+    VALID_DOMAINS = _sync_runtime_domains()
+    return status_service.build_health(VALID_DOMAINS)
 
 # ============================================================
 # STANDARD RAG — SINGLE DOCUMENT
 # ============================================================
 
-@app.post("/upload", tags=["Standard RAG — Single Doc"])
+@app.post(
+    "/upload",
+    tags=["Standard RAG — Single Doc"],
+    response_model=StandardUploadResponse
+)
 async def upload_document(file: UploadFile = File(...)):
     """
     Upload a PDF or PPTX.
@@ -374,7 +426,11 @@ async def multi_generate(req: GenerateRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-@app.post("/multi/rebuild", tags=["Standard RAG — Multi Doc"])
+@app.post(
+    "/multi/rebuild",
+    tags=["Standard RAG — Multi Doc"],
+    response_model=RebuildResponse
+)
 async def multi_rebuild():
     """
     Rebuild the combined FAISS index from all documents
@@ -401,47 +457,9 @@ async def graphrag_status():
     Show status of all domain GraphRAG indexes.
     Includes node/edge counts for each domain.
     """
-    import json
-
-    domain_stats = {}
-
-    for domain_name in DOMAIN_MAP:
-        meta_path = os.path.join(
-            INDEX_DIR,
-            f"graphrag_{domain_name}_meta.json")
-
-        if os.path.exists(meta_path):
-            with open(meta_path, "r", encoding="utf-8") as f:
-                meta = json.load(f)
-            domain_stats[domain_name] = {
-                "available":    True,
-                "graph_nodes":  meta.get("total_nodes", 0),
-                "graph_edges":  meta.get("total_edges", 0),
-                "cross_source_edges": meta.get(
-                    "cross_source_edges", 0),
-                "total_chunks": meta.get("total_chunks", 0),
-                "documents":    meta.get("documents",
-                    DOMAIN_MAP[domain_name]["files"]),
-                "description":  DOMAIN_MAP[domain_name][
-                    "description"]
-            }
-        else:
-            domain_stats[domain_name] = {
-                "available":   False,
-                "description": DOMAIN_MAP[domain_name][
-                    "description"],
-                "message":     f"Run POST /graphrag/rebuild/"
-                               f"{domain_name} to build."
-            }
-
-    return {
-        "graphrag_available": any(
-            v["available"]
-            for v in domain_stats.values()
-        ),
-        "current_index": graph_pipeline.graph_name,
-        "domains":       domain_stats
-    }
+    global VALID_DOMAINS
+    VALID_DOMAINS = _sync_runtime_domains()
+    return status_service.build_graphrag_status(VALID_DOMAINS)
 
 
 @app.post("/graphrag/upload", tags=["GraphRAG"])
@@ -538,7 +556,11 @@ async def graphrag_upload(file: UploadFile = File(...)):
 #     except Exception as e:
 #         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/graphrag/generate", tags=["GraphRAG"])
+@app.post(
+    "/graphrag/generate",
+    tags=["GraphRAG"],
+    response_model=GraphRAGGenerateResponse
+)
 async def graphrag_generate(req: GraphRAGGenerateRequest):
     """
     Generate an exam question using GraphRAG.
@@ -559,33 +581,19 @@ async def graphrag_generate(req: GraphRAGGenerateRequest):
     """
     validate_params(req.difficulty, req.question_type)
 
-    # Handle domain validation — warn and fallback instead of error
-    # Samar: "If domain not available, default to best match"
-    domain = req.domain
-    if domain and domain not in VALID_DOMAINS:
-        print(f"[Warning] Invalid domain '{domain}' specified "
-              f"— falling back to auto-routing. "
-              f"Valid domains: {VALID_DOMAINS}")
-        domain = None  # treat as not specified → auto-route
+    global VALID_DOMAINS
+    VALID_DOMAINS = _sync_runtime_domains()
 
     try:
-        # All cases handled by generate_with_routing():
-        #   Case 1: valid domain + any difficulty → use directly
-        #   Case 2: invalid domain → domain=None → auto-route
-        #   Case 3: no domain + hard → multi-domain retrieval
-        #   Case 4: no domain + easy/medium → embedding router
-        #   Case 5: valid domain + easy/medium → use directly
-        result = graph_pipeline.generate_with_routing(
-            learning_objective = req.learning_objective,
-            difficulty         = req.difficulty,
-            question_type      = req.question_type,
-            domain             = domain,
-            top_k_nodes        = req.top_k_nodes,
-            neighbour_depth    = req.neighbour_depth,
-            force_single       = (req.domain is not None
-                          and domain is None)  # ← NEW flag
+        result = graphrag_generation_service.generate_with_domain_fallback(
+            learning_objective=req.learning_objective,
+            difficulty=req.difficulty,
+            question_type=req.question_type,
+            domain=req.domain,
+            top_k_nodes=req.top_k_nodes,
+            neighbour_depth=req.neighbour_depth,
+            valid_domains=VALID_DOMAINS,
         )
-
         return result
 
     except Exception as e:
@@ -604,6 +612,8 @@ async def graphrag_rebuild(domain_name: str):
       deep_learning, database,
       software_engineering, operating_systems
     """
+    global VALID_DOMAINS
+    VALID_DOMAINS = _sync_runtime_domains()
     if domain_name not in VALID_DOMAINS:
         raise HTTPException(
             status_code=400,
@@ -695,205 +705,36 @@ async def admin_upload_document(
     domain: str,
     file:   UploadFile = File(...)
 ):
-    from utils.registry import (
-        load_registry, save_registry,
-        register_document)
-
-    # Validate domain
-    if domain not in VALID_DOMAINS:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Invalid domain '{domain}'. "
-                   f"Valid: {VALID_DOMAINS}"
-        )
-
-    # Validate file type
-    original_filename = file.filename
-    if not original_filename.lower().endswith(
-            (".pdf", ".pptx")):
-        raise HTTPException(
-            status_code=400,
-            detail="Only PDF and PPTX files supported."
-        )
-
-    # Check if file already in tested/
-    tested_path = os.path.join(TESTED_DIR, original_filename)
-
-    if os.path.exists(tested_path):
-        # Case 1 — already renamed and in tested/
-        # just register, no file copy needed
-        final_filename = original_filename
-        print(f"[Admin] File already in tested/: "
-              f"{final_filename} — registering only")
-    else:
-        # Case 2 — new file, auto-rename to source_N.pdf
-        registry = load_registry()
-        next_num  = registry["last_source_number"] + 1
-        ext       = os.path.splitext(original_filename)[1]
-        final_filename = f"source_{next_num}{ext}"
-
-        # Check no collision with existing file
-        final_path = os.path.join(TESTED_DIR, final_filename)
-        while os.path.exists(final_path):
-            next_num  += 1
-            final_filename = f"source_{next_num}{ext}"
-            final_path = os.path.join(
-                TESTED_DIR, final_filename)
-
-        # Update counter in registry
-        registry["last_source_number"] = next_num
-        save_registry(registry)
-
-        # Save with new name to tested/
-        tested_path = os.path.join(TESTED_DIR, final_filename)
-        content = await file.read()
-        with open(tested_path, "wb") as f:
-            f.write(content)
-
-        print(f"[Admin] New file auto-renamed: "
-              f"{original_filename} → {final_filename}")
-
-    # Check if already indexed — do not reset
-    registry   = load_registry()
-    domain_files = registry["domains"].get(
-        domain, {}).get("files", {})
-
-    if final_filename in domain_files and \
-            domain_files[final_filename].get("indexed"):
-        print(f"[Admin] {final_filename} already indexed "
-              f"in {domain} — no action needed")
-        return {
-            "status":            "ok",
-            "original_filename": original_filename,
-            "saved_as":          final_filename,
-            "domain":            domain,
-            "already_indexed":   True,
-            "message":           f"{final_filename} is already "
-                                 f"indexed in {domain}. "
-                                 f"No rebuild needed."
-        }
-
-    # Register in registry under domain
-    register_document(
-        final_filename,
-        domain  = domain,
-        indexed = False
-    )
-
-    return {
-        "status":            "ok",
-        "original_filename": original_filename,
-        "saved_as":          final_filename,
-        "domain":            domain,
-        "already_indexed":   False,
-        "message":           f"Registered as {final_filename} "
-                             f"in {domain} domain. "
-                             f"Call POST /admin/rebuild-domain "
-                             f"to index."
-    }
-
-@app.post("/admin/rebuild-domain", tags=["Admin"])
-async def admin_rebuild_domain(req: AdminRebuildRequest):
-    if req.domain not in VALID_DOMAINS:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Invalid domain. Valid: {VALID_DOMAINS}"
-        )
-
+    global VALID_DOMAINS
+    VALID_DOMAINS = _sync_runtime_domains()
     try:
-        from graphrag.graphrag_indexer import (
-            incremental_update_graph)
-        from utils.document_loader import load_and_chunk
-        from utils.registry import (
-            load_registry, mark_as_indexed)
-
-        # Get unindexed files for this domain from registry
-        registry = load_registry()
-        domain_files = registry["domains"].get(
-            req.domain, {}).get("files", {})
-
-        # Find files registered but not yet indexed
-        new_files = [
-            filename
-            for filename, info in domain_files.items()
-            if not info["indexed"]
-        ]
-
-        if not new_files:
-            return {
-                "status":          "ok",
-                "domain":          req.domain,
-                "update_type":     "incremental",
-                "message":         "No new documents found. "
-                                   "All files already indexed.",
-                "new_nodes_added": 0,
-                "new_edges_added": 0
-            }
-
-        print(f"[Admin] New files to index: {new_files}")
-
-        # Process new files from tested/ folder
-        all_new_chunks  = []
-        all_new_sources = []
-
-        for pdf_file in new_files:
-            pdf_path = os.path.join(TESTED_DIR, pdf_file)
-            if not os.path.exists(pdf_path):
-                print(f"[Admin] Warning: {pdf_file} "
-                      f"not found in tested/")
-                continue
-            result = load_and_chunk(pdf_path)
-            all_new_chunks.extend(result["chunks"])
-            all_new_sources.extend(
-                [pdf_file] * len(result["chunks"]))
-
-        if not all_new_chunks:
-            raise HTTPException(
-                status_code=400,
-                detail="No chunks loaded from new files.")
-
-        # Incremental update
-        graph_name = f"graphrag_{req.domain}"
-        summary = incremental_update_graph(
-            new_chunks  = all_new_chunks,
-            new_sources = all_new_sources,
-            index_dir   = INDEX_DIR,
-            graph_name  = graph_name,
-            embedder    = graph_pipeline.embedder
+        return await admin_domain_service.upload_document(
+            domain=domain,
+            file=file,
+            valid_domains=VALID_DOMAINS,
         )
-
-        # Mark files as indexed in registry
-        for pdf_file in new_files:
-            mark_as_indexed(pdf_file, domain=req.domain)
-
-        # Reload into pipeline
-        graph_pipeline.load_domain_index(req.domain)
-
-        # Rebuild routing profiles
-        from graphrag.graphrag_domain_indexer import (
-            build_domain_profiles)
-        build_domain_profiles(graph_pipeline.embedder)
-
-        return {
-            "status":          "ok",
-            "domain":          req.domain,
-            "update_type":     "incremental",
-            "new_files":       new_files,
-            "new_nodes_added": summary["new_nodes_added"],
-            "nodes_updated":   summary["nodes_updated"],
-            "new_edges_added": summary["new_edges_added"],
-            "graph_nodes":     summary["graph_nodes"],
-            "graph_edges":     summary["graph_edges"],
-            "message":         f"Domain '{req.domain}' "
-                               f"updated. "
-                               f"{summary['new_nodes_added']}"
-                               f" new concepts added from "
-                               f"{len(new_files)} new files."
-        }
-
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
-        raise HTTPException(
-            status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post(
+    "/admin/rebuild-domain",
+    tags=["Admin"],
+    response_model=AdminRebuildResponse
+)
+async def admin_rebuild_domain(req: AdminRebuildRequest):
+    global VALID_DOMAINS
+    VALID_DOMAINS = _sync_runtime_domains()
+    try:
+        return admin_domain_service.rebuild_domain(
+            req.domain,
+            VALID_DOMAINS,
+        )
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/admin/add-domain", tags=["Admin"])
 async def admin_add_domain(req: AdminAddDomainRequest):
@@ -903,9 +744,8 @@ async def admin_add_domain(req: AdminAddDomainRequest):
     Suppose we want to add Information Systems.
             Just add the name here and write a build command.
 
-    Adds domain to config and builds its knowledge graph
-    from PDFs in the data/tested folder matching the
-    domain name pattern.
+    Adds domain to runtime state (not config.yml) and
+    updates domain catalog for routing/rebuild operations.
 
     Note: Upload PDFs to data/tested/ first, then call
     this endpoint to register and build the domain.
@@ -915,49 +755,17 @@ async def admin_add_domain(req: AdminAddDomainRequest):
         description:  human readable e.g. "Information Systems"
         keywords:     routing keywords for embedding profile
     """
-    # Check domain doesn't already exist
-    if req.domain_name in VALID_DOMAINS:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Domain '{req.domain_name}' already exists."
-        )
-
     try:
-        import yaml
-
-        # Load current config
-        config_path = os.path.join(BASE_DIR, "config.yml")
-        with open(config_path, "r", encoding="utf-8") as f:
-            config = yaml.safe_load(f)
-
-        # Add new domain to config
-        config["domains"][req.domain_name] = {
-            "enabled":     True,
-            "description": req.description,
-            "keywords":    req.keywords
-        }
-
-        # Save updated config
-        with open(config_path, "w", encoding="utf-8") as f:
-            yaml.dump(config, f, default_flow_style=False)
-
-        # Update VALID_DOMAINS in memory
-        VALID_DOMAINS.add(req.domain_name)
-
-        print(f"[Admin] New domain registered: "
-              f"{req.domain_name}")
-
-        return {
-            "status":      "ok",
-            "domain":      req.domain_name,
-            "description": req.description,
-            "message":     f"Domain '{req.domain_name}' "
-                           f"registered. Upload PDFs to "
-                           f"data/tested/ then call "
-                           f"POST /admin/rebuild-domain "
-                           f"to build the knowledge graph."
-        }
-
+        result = admin_domain_service.add_domain(
+            domain_name=req.domain_name,
+            description=req.description,
+            keywords=req.keywords,
+        )
+        global VALID_DOMAINS
+        VALID_DOMAINS = _sync_runtime_domains()
+        return result
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
