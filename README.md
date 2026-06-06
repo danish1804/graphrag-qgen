@@ -127,15 +127,12 @@ curl -X POST http://localhost:8000/graphrag/generate \
   }' | python -m json.tool
 ```
 
-### Demo Script (industry presentation)
-
-For a guided UI demo (clicks, talking points), see **[docs/demo_script.md](docs/demo_script.md)**.  
-For the **full presenter script** (timing, spoken narration, block diagram, flowcharts), see **[docs/demo_presenter_script.md](docs/demo_presenter_script.md)**.
-
 ```bash
 cd ui
 streamlit run app.py
 ```
+
+See [ui/README.md](ui/README.md) for Streamlit demo controls (difficulty, question type, routing).
 
 ---
 
@@ -169,9 +166,8 @@ graphrag_qgen/
 ├── ui/                         # Streamlit demo UI
 │   └── README.md              → See ui/README.md
 │
-├── docs/                       # Demo scripts, diagrams, deduplication guide
-│   ├── demo_script.md
-│   ├── demo_presenter_script.md
+├── docs/                       # Baseline gap register, deduplication guide
+│   ├── baseline.md
 │   └── deduplication.md
 │
 ├── tests/                      # Unit tests (e.g. document dedup)

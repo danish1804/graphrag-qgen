@@ -2,9 +2,9 @@
 
 Streamlit frontend for the EdGenAI FastAPI backend.
 
-## Demo (Monday presentation)
+## Demo (Streamlit)
 
-Step-by-step clicks and talking points: [docs/demo_script.md](../docs/demo_script.md)
+Use sidebar **Demo presets** on the Generate page, then follow controls documented below.
 
 ```bash
 # Terminal 1
