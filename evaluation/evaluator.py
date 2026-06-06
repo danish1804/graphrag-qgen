@@ -26,10 +26,12 @@ from utils.config import cfg
 from utils.judge import load_judge, unload_model, run_judge
 
 from evaluation.rubrics import (
+    RUBRIC_VERSION,
     RETRIEVAL_SYSTEM_PROMPT, build_retrieval_prompt, RETRIEVAL_SCORE_KEYS,
     QUESTION_SYSTEM_PROMPT,  build_question_prompt,  QUESTION_SCORE_KEYS,
     ANSWER_SYSTEM_PROMPT,    build_answer_prompt,    ANSWER_SCORE_KEYS,
 )
+from utils.prompts import PROMPT_VERSION
 from evaluation.storage import (
     parse_judge_output,
     save_evaluation,
@@ -118,6 +120,8 @@ def evaluate_generation(
         "timestamp":       started,
         "generator_model": cfg["model"]["llm_name"],
         "judge_model":     cfg["judge"]["judge_name"],
+        "prompt_version":  PROMPT_VERSION,
+        "rubric_version":  RUBRIC_VERSION,
         "input": {
             "learning_objective": learning_objective,
             "difficulty":         difficulty,

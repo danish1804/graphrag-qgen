@@ -164,7 +164,10 @@ hard   = application/analysis
 recall      = define/list/state
 conceptual  = explain/compare
 application = design/analyse/apply
+case_study  = realistic scenario + follow-up question (SCENARIO + QUESTION format)
 ```
+
+**Note:** `question_type` affects judge **TYPE_ALIGNMENT** only. Retrieval depth is controlled by **difficulty** (see root [README.md](../README.md#difficulty-vs-question-type-important)).
 
 ### Rubric 3 : Answer Quality
 

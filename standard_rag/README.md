@@ -103,6 +103,8 @@ medium: 5 chunks
 hard:   7 chunks
 ```
 
+**Question type** (`recall`, `conceptual`, `application`, `case_study`) changes the LLM prompt only — not chunk counts. Same as GraphRAG; see [README.md](../README.md#difficulty-vs-question-type-important).
+
 > **Note:** Single-doc RAG does NOT run LLM judge evaluation. Judge only runs in the GraphRAG pipeline.
 
 ---

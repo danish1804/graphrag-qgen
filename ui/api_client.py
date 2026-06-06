@@ -1,6 +1,8 @@
 import requests
 
 DEFAULT_API_BASE_URL = "http://localhost:8000"
+# Hard multi-domain + LLM judge can exceed 5 min on RTX 4060 (regeneration loop).
+GRAPH_RAG_GENERATE_TIMEOUT = 900
 
 
 class ApiClient:
@@ -58,7 +60,11 @@ class ApiClient:
         return self._post("/multi/generate", json=payload, timeout=300)
 
     def generate_graphrag(self, payload: dict):
-        return self._post("/graphrag/generate", json=payload, timeout=300)
+        return self._post(
+            "/graphrag/generate",
+            json=payload,
+            timeout=GRAPH_RAG_GENERATE_TIMEOUT,
+        )
     
     def rebuild_multi_index(self):
         return self._post("/multi/rebuild", timeout=900)
