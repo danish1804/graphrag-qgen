@@ -248,11 +248,18 @@ Hard difficulty multi-domain retrieval:
 ```
 1. Get embedding scores for ALL domains
 2. Filter domains above domain_score_threshold (0.5)
-3. Retrieve chunks_per_domain chunks from each qualifying domain
+3. For EACH qualifying domain, retrieve with the SAME params as single-domain hard:
+   top_k_nodes, neighbour_depth, max_chunks (via utils/multi_domain_retrieval.py)
+   Default: 7 chunks per domain (chunks_per_domain aligns with max_chunks)
 4. Combine contexts: [DEEP_LEARNING DOMAIN]\n...\n---\n[DATABASE DOMAIN]\n...
 5. Single LLM call with combined context
 6. LLM judge evaluation
+7. metadata.retrieval_params documents top_k_nodes, max_chunks_per_domain, domains_count
 ```
+
+**Consistency:** Single-domain hard and multi-domain hard use the same `max_chunks` / `top_k_nodes` from config. Multi-domain total context scales with the number of qualifying domains (e.g. 3 domains × 7 chunks).
+
+**Question type (including case_study):** Passed to `generate_question()` only. Does not change steps 1–4. Use `hard + case_study + Auto route` for cross-domain scenario questions.
 
 #### generate(learning_objective, difficulty, question_type, ...)
 

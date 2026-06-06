@@ -20,7 +20,8 @@ from graphrag.graphrag_indexer import (build_graphrag_index,
                                    load_graphrag_index)
 from graphrag.graphrag_retriever import retrieve_graph_context
 from utils.embedder          import Embedder
-from utils.generator         import load_model, generate_question, generate_answer
+from utils.generator         import (
+    load_model, generate_question, generate_answer, get_generation_trace)
 from utils.config import cfg
 
 
@@ -360,8 +361,10 @@ class GraphRAGPipeline:
 
         diff_cfg   = cfg["difficulty"][difficulty]
         threshold  = diff_cfg.get("domain_score_threshold", 0.5)
-        chunks_per_domain = diff_cfg.get("chunks_per_domain", 3)
-        seed_ratio = diff_cfg.get("seed_ratio", 0.4)
+
+        from utils.multi_domain_retrieval import multi_domain_retrieval_params
+        retrieval_params = multi_domain_retrieval_params(diff_cfg)
+        chunks_per_domain = retrieval_params["max_context_chunks"]
 
         # Step 1 — Get all domain scores
         all_scores = route_by_embedding(
@@ -409,6 +412,7 @@ class GraphRAGPipeline:
         combined_concepts = []
         combined_relations = []
         domains_used      = []
+        all_chunk_pool    = []
 
         for domain in qualifying:
             print(f"[MultiDomain] Retrieving from: {domain}")
@@ -416,18 +420,21 @@ class GraphRAGPipeline:
             # Load domain graph
             index, graph, nodes = load_domain_graph(domain)
 
-            # Retrieve context
+            # Same per-domain budget as single-domain hard (max_chunks)
             retrieval = retrieve_graph_context(
                 query              = learning_objective,
                 index              = index,
                 graph              = graph,
                 nodes              = nodes,
                 embedder           = self.embedder,
-                top_k_nodes        = diff_cfg["top_k_nodes"],
-                neighbour_depth    = diff_cfg["neighbour_depth"],
-                max_context_chunks = chunks_per_domain,
-                seed_ratio         = seed_ratio
+                top_k_nodes        = retrieval_params["top_k_nodes"],
+                neighbour_depth    = retrieval_params["neighbour_depth"],
+                max_context_chunks = retrieval_params["max_context_chunks"],
+                seed_ratio         = retrieval_params["seed_ratio"],
             )
+
+            for item in retrieval.get("chunk_pool", []):
+                all_chunk_pool.append({**item, "domain": domain})
 
             if retrieval["context"]:
                 combined_chunks.append(
@@ -476,19 +483,15 @@ class GraphRAGPipeline:
             difficulty = difficulty
         )
 
-        # Step 8 — Format retrieved chunks for metadata
+        # Step 8 — Format retrieved chunks for metadata (all domains)
         retrieved_chunks = {
             f"chunk_{i+1}": {
                 "text":   item["text"][:200].strip(),
                 "source": item.get("source", "unknown"),
                 "type":   item.get("type", "seed"),
-                "domain": domains_used[
-                    min(i // chunks_per_domain, len(domains_used)-1)
-                ]
+                "domain": item.get("domain", "unknown"),
             }
-            for i, item in enumerate(
-                retrieval.get("chunk_pool", [])
-            )
+            for i, item in enumerate(all_chunk_pool)
         }
 
         # Format concepts
@@ -584,6 +587,7 @@ class GraphRAGPipeline:
         return {
             "question": question,
             "metadata": {
+                **get_generation_trace(),
                 "learning_objective":    learning_objective,
                 "difficulty":            difficulty,
                 "question_type":         question_type,
@@ -592,6 +596,13 @@ class GraphRAGPipeline:
                 "domain_scores":         qualifying,
                 "sources":               list(set(combined_sources)),
                 "retrieval_method":      "GraphRAG-MultiDomain",
+                "retrieval_params": {
+                    "top_k_nodes":         retrieval_params["top_k_nodes"],
+                    "neighbour_depth":     retrieval_params["neighbour_depth"],
+                    "max_chunks_per_domain": chunks_per_domain,
+                    "max_chunks_single_domain": int(diff_cfg["max_chunks"]),
+                    "domains_count":       len(domains_used),
+                },
                 "key_concepts":          clean_concepts[:8],
                 "concept_relationships": combined_relations[:5],
                 "retrieved_chunks":      retrieved_chunks,
@@ -785,6 +796,7 @@ class GraphRAGPipeline:
         return {
             "question":  question,
             "metadata": {
+                **get_generation_trace(),
                 "learning_objective":   learning_objective,
                 "difficulty":           difficulty,
                 "question_type":        question_type,
