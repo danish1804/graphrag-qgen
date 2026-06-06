@@ -1,0 +1,140 @@
+{
+  "info": {
+    "name": "P000233DS — GraphRAG Question Generator",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/health"
+          }
+        },
+        {
+          "name": "GraphRAG Status",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/graphrag/status"
+          }
+        },
+        {
+          "name": "Multi Doc Status",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/multi/status"
+          }
+        }
+      ]
+    },
+    {
+      "name": "GraphRAG",
+      "item": [
+        {
+          "name": "Generate — Deep Learning",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{base_url}}/graphrag/generate",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"learning_objective\": \"Explain how CNNs use parameter sharing to reduce learnable weights\",\n  \"difficulty\": \"medium\",\n  \"question_type\": \"conceptual\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Generate — Database",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{base_url}}/graphrag/generate",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"learning_objective\": \"How does two phase locking prevent deadlocks in database transactions\",\n  \"difficulty\": \"hard\",\n  \"question_type\": \"application\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Generate — Operating Systems",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{base_url}}/graphrag/generate",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"learning_objective\": \"How does virtual memory allow processes to use more memory than physically available\",\n  \"difficulty\": \"medium\",\n  \"question_type\": \"conceptual\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Generate — Computer Architecture",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{base_url}}/graphrag/generate",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"learning_objective\": \"Explain pipeline hazards and how forwarding resolves them\",\n  \"difficulty\": \"hard\",\n  \"question_type\": \"application\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Generate — Explicit Domain",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{base_url}}/graphrag/generate",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"learning_objective\": \"Explain SQL joins\",\n  \"difficulty\": \"hard\",\n  \"question_type\": \"application\",\n  \"domain\": \"database\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Rebuild Domain — Deep Learning",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/graphrag/rebuild/deep_learning"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Standard RAG",
+      "item": [
+        {
+          "name": "Multi Doc Generate",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": "{{base_url}}/multi/generate",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"learning_objective\": \"Explain virtual memory management\",\n  \"difficulty\": \"medium\",\n  \"question_type\": \"conceptual\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Upload Document",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/upload",
+            "body": {
+              "mode": "formdata",
+              "formdata": [{"key": "file", "type": "file"}]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000"
+    }
+  ]
+}
