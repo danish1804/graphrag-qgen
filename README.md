@@ -9,6 +9,7 @@ An AI-powered exam question generation system using GraphRAG (Graph-based Retrie
 - [What This System Does](#what-this-system-does)
 - [System Requirements](#system-requirements)
 - [Quick Start](#quick-start)
+- [Demo Script (industry presentation)](#demo-script-industry-presentation)
 - [Project Structure](#project-structure)
 - [Architecture Overview](#architecture-overview)
 - [API Endpoints](#api-endpoints)
@@ -99,6 +100,9 @@ python main_gr.py --mode full
 python main_gr.py --mode standard
 ```
 
+> Canonical runtime entrypoint: `main_gr.py`.
+> `main.py` and `main_multi.py` are deprecated compatibility wrappers.
+
 Wait for:
 ```
 [Server] Judge model ready.
@@ -123,6 +127,16 @@ curl -X POST http://localhost:8000/graphrag/generate \
   }' | python -m json.tool
 ```
 
+### Demo Script (industry presentation)
+
+For a guided UI demo (clicks, talking points), see **[docs/demo_script.md](docs/demo_script.md)**.  
+For the **full presenter script** (timing, spoken narration, block diagram, flowcharts), see **[docs/demo_presenter_script.md](docs/demo_presenter_script.md)**.
+
+```bash
+cd ui
+streamlit run app.py
+```
+
 ---
 
 ## Project Structure
@@ -130,8 +144,8 @@ curl -X POST http://localhost:8000/graphrag/generate \
 ```
 graphrag_qgen/
 ├── main_gr.py                  # FastAPI server : primary entry point
-├── main.py                     # Legacy single-doc server
-├── main_multi.py               # Legacy multi-doc server
+├── main.py                     # Compatibility wrapper -> main_gr.py
+├── main_multi.py               # Compatibility wrapper -> main_gr.py
 ├── config.yml                  # All system parameters (edit here)
 ├── prepare_finetune_data.py    # Fine-tuning data pipeline
 ├── requirements.txt
@@ -242,7 +256,7 @@ Domain Router (embedding-based)
 {
   "learning_objective": "Explain how CNNs use parameter sharing",
   "difficulty": "easy | medium | hard",
-  "question_type": "recall | conceptual | application",
+  "question_type": "recall | conceptual | application | case_study",
   "domain": "deep_learning | database | software_engineering | operating_systems | computer_architecture | null"
 }
 ```
@@ -304,6 +318,69 @@ judge:
   score_threshold: 3.5      # below this → regenerate
   max_regenerations: 2      # max retry attempts
 ```
+
+**Question types (including case study)**
+```yaml
+question_types:
+  case_study:
+    bloom_level: 4
+    max_new_tokens: 280   # scenario + question
+```
+`case_study` prompts the model to output a **SCENARIO** block then a **QUESTION** line (see `utils/question_type_prompts.py`).
+
+### Difficulty vs question type (important)
+
+These are **independent** controls:
+
+| Control | Values | Controls |
+|---------|--------|----------|
+| **Difficulty** | easy, medium, hard | Retrieval depth, routing, chunk counts |
+| **Question type** | recall, conceptual, application, case_study | LLM prompt style and Bloom level only |
+
+**Difficulty** (from `config.yml` → `difficulty.*`):
+
+| | easy | medium | hard |
+|---|------|--------|------|
+| max_chunks | 3 | 5 | 7 |
+| top_k_nodes | 2 | 3 | 5 |
+| neighbour_depth | 1 | 1 | 2 |
+| seed_ratio | 0.80 | 0.60 | 0.40 |
+| Multi-domain (Auto route only) | off | off | on |
+
+**Question type** does **not** change routing or chunk counts. Example: `hard + case_study` uses the same retrieval as `hard + application`, but the model outputs a **SCENARIO** + **QUESTION** instead of a single direct question.
+
+**Routing (GraphRAG):**
+
+- Valid **domain** selected → that domain only (multi-domain skipped even for hard).
+- **Hard + Auto route** → domains with embedding score ≥ `domain_score_threshold` (0.5); each domain uses the same per-domain chunk budget as single-domain hard (`max_chunks`, default 7).
+- **Easy/medium + Auto route** → single best-matching domain.
+
+**What “K” means:**
+
+| Parameter | GraphRAG meaning |
+|-----------|------------------|
+| `top_k_nodes` | Seed nodes — FAISS entry points into the knowledge graph |
+| `neighbour_depth` | Graph hops from each seed to related concepts |
+| `max_chunks` | Text chunks passed to the LLM after seed/neighbour mix |
+| `top_k_results` | Standard RAG only — similar chunks from FAISS |
+
+Tutors do not set K in the UI; values come from `config.yml` per difficulty.
+
+| Topic | Where documented |
+|-------|------------------|
+| UI controls (difficulty, type, K info box) | [ui/README.md](ui/README.md) |
+| GraphRAG routing + multi-domain chunks | [graphrag/README.md](graphrag/README.md) |
+| Prompt templates + retrieval config modules | [utils/README.md](utils/README.md) |
+| Judge type/difficulty alignment | [evaluation/README.md](evaluation/README.md) |
+| Standard RAG chunk counts | [standard_rag/README.md](standard_rag/README.md) |
+
+**Document deduplication (admin upload/rebuild)**
+```yaml
+deduplication:
+  similarity_threshold: 0.95
+  max_similarity_comparisons: 25   # per domain
+```
+See [docs/deduplication.md](docs/deduplication.md).
 
 **Graph Construction**
 ```yaml
