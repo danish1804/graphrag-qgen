@@ -15,6 +15,7 @@ import os
 import json
 from datetime import date
 from typing import Optional
+from utils.atomic_io import atomic_write_json
 
 try:
     BASE_DIR = os.getenv(
@@ -43,9 +44,7 @@ def load_registry() -> dict:
 
 def save_registry(registry: dict) -> None:
     """Save registry to disk."""
-    with open(REGISTRY_PATH, "w", encoding="utf-8") as f:
-        json.dump(registry, f, indent=2,
-                  ensure_ascii=False)
+    atomic_write_json(REGISTRY_PATH, registry)
 
 
 def get_next_source_number() -> int:
@@ -84,7 +83,7 @@ def register_document(filename:  str,
         # Update existing
         files[filename]["indexed"] = indexed
         print(f"[Registry] Updated: {filename} "
-              f"→ {domain} indexed={indexed}")
+              f"-> {domain} indexed={indexed}")
     else:
         # New entry
         files[filename] = {
@@ -92,9 +91,30 @@ def register_document(filename:  str,
             "added":   str(date.today())
         }
         print(f"[Registry] Registered: {filename} "
-              f"→ {domain} indexed={indexed}")
+              f"-> {domain} indexed={indexed}")
 
     save_registry(registry)
+
+
+def ensure_domain(domain: str, description: str = "") -> None:
+    """
+    Ensure a domain key exists in the registry.
+    Safe no-op if the domain already exists.
+    """
+    registry = load_registry()
+    domains = registry.get("domains", {})
+    if domain in domains:
+        if description and not domains[domain].get("description"):
+            domains[domain]["description"] = description
+            save_registry(registry)
+        return
+
+    domains[domain] = {
+        "description": description or f"{domain} (runtime-added domain)",
+        "files": {}
+    }
+    save_registry(registry)
+    print(f"[Registry] Added domain: {domain}")
 
 
 def mark_as_indexed(filename: str,
