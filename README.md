@@ -162,16 +162,18 @@ graphrag_qgen/
 │   └── README.md              → See evaluation/README.md
 │
 ├── services/                   # API handlers (admin, dedup, generation)
+│   └── README.md              → See services/README.md
 │
 ├── ui/                         # Streamlit demo UI
 │   └── README.md              → See ui/README.md
 │
 ├── docs/                       # Baseline gap register, deduplication guide
+│   ├── README.md              → See docs/README.md
 │   ├── baseline.md
 │   └── deduplication.md
 │
 ├── tests/                      # Unit tests (e.g. document dedup)
-│
+│   └── README.md              → See tests/README.md
 ├── scripts/                    # Utility and maintenance scripts
 │   └── README.md              → See scripts/README.md
 │
@@ -189,9 +191,11 @@ graphrag_qgen/
 │   └── graphrag_computer_architecture.*
 │
 ├── outputs/
+│   ├── README.md              → See outputs/README.md
 │   └── evaluations/            # LLM judge evaluation JSON records
 │
 └── postman/                    # Postman collection for API testing
+    ├── README.md              → See postman/README.md
     └── P000233DS_GraphRAG.postman_collection.json
 ```
 
@@ -207,7 +211,7 @@ FastAPI Server (main_gr.py)
 Domain Router (embedding-based)
       ↓
       ├── Easy/Medium → Single Domain GraphRAG
-      └── Hard → Multi-Domain GraphRAG (3+ domains combined)
+      └── Hard → Multi-Domain GraphRAG (2+ domains above threshold combined)
             ↓
       Knowledge Graph Retrieval
       (seed nodes + neighbour traversal)
@@ -379,8 +383,13 @@ Tutors do not set K in the UI; values come from `config.yml` per difficulty.
 | UI controls (difficulty, type, K info box) | [ui/README.md](ui/README.md) |
 | GraphRAG routing + multi-domain chunks | [graphrag/README.md](graphrag/README.md) |
 | Prompt templates + retrieval config modules | [utils/README.md](utils/README.md) |
+| Admin services + dedup handlers | [services/README.md](services/README.md) |
+| Data folders + registry | [data/README.md](data/README.md) |
 | Judge type/difficulty alignment | [evaluation/README.md](evaluation/README.md) |
 | Standard RAG chunk counts | [standard_rag/README.md](standard_rag/README.md) |
+| Unit tests + smoke scripts | [tests/README.md](tests/README.md), [scripts/README.md](scripts/README.md) |
+| Postman backup | [postman/README.md](postman/README.md) |
+| Baseline + dedup design docs | [docs/README.md](docs/README.md) |
 
 **Document deduplication (admin upload/rebuild)**
 ```yaml

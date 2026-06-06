@@ -84,6 +84,16 @@ For Standard RAG modes, the box shows **top_k_results** instead (flat chunk retr
 - Admin document registry view using `/admin/new-documents`
 - Admin upload-to-domain workflow using `/admin/upload-document`
 
+## Files
+
+| File | Role |
+|------|------|
+| `app.py` | Streamlit pages: Generate, Dashboard, Admin |
+| `api_client.py` | HTTP client; GraphRAG generate timeout **900s** (hard multi-domain + judge) |
+| `config_loader.py` | Reads `config.yml` retrieval params for the info box |
+
+Hard + Auto route can take **5–15 minutes** on GPU; leave the tab open until the spinner completes.
+
 ## Install UI Dependencies
 
 ```bash
