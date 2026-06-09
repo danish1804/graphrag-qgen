@@ -33,3 +33,28 @@ Thumbs.db
 finetune_data/bulk_cache.jsonl
 finetune_data/question_lora/
 *.safetensors
+
+# Fine-tune cache and tokenizer artifacts (generated, not source)
+finetune_data/bulk_cache.jsonl
+finetune_data/teacher_cache.jsonl
+finetune_data/added_tokens.json
+finetune_data/merges.txt
+finetune_data/special_tokens_map.json
+finetune_data/tokenizer.json
+finetune_data/tokenizer_config.json
+finetune_data/vocab.json
+
+# Fine-tune tokenizer artifacts and cache (generated, not source)
+finetune_data/bulk_cache.jsonl
+finetune_data/teacher_cache.jsonl
+finetune_data/added_tokens.json
+finetune_data/merges.txt
+finetune_data/special_tokens_map.json
+finetune_data/tokenizer.json
+finetune_data/tokenizer_config.json
+finetune_data/vocab.json
+
+# Fine-tune temp cache
+finetune_data/bulk_cache.jsonl
+finetune_data/question_lora/
+*.safetensors
