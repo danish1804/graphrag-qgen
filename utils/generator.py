@@ -6,6 +6,7 @@
 
 import os
 import sys
+from pathlib import Path
 
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -41,9 +42,51 @@ BASE_DIR = os.getenv(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
 )
 
+FINETUNE_CFG = cfg.get("finetune", {})
+
+
+def _resolve_lora_path(relative_or_abs: str | None) -> str | None:
+    if not relative_or_abs:
+        return None
+    path = Path(relative_or_abs)
+    if not path.is_absolute():
+        path = Path(BASE_DIR) / path
+    if (path / "adapter_config.json").is_file():
+        return str(path)
+    return None
+
+
+def _active_adapters(model) -> set[str]:
+    peft_cfg = getattr(model, "peft_config", None)
+    if not peft_cfg:
+        return set()
+    return set(peft_cfg.keys())
+
+
+def _set_lora_mode(model, mode: str) -> None:
+    """
+    mode: 'question' | 'answer' | 'base'
+    Uses named adapters when loaded; falls back to 'default' for single-adapter exports.
+    """
+    adapters = _active_adapters(model)
+    if not adapters:
+        return
+
+    if mode == "base":
+        if hasattr(model, "disable_adapter_layers"):
+            model.disable_adapter_layers()
+        return
+
+    if hasattr(model, "enable_adapter_layers"):
+        model.enable_adapter_layers()
+
+    target = mode if mode in adapters else "default"
+    if target in adapters and hasattr(model, "set_adapter"):
+        model.set_adapter(target)
+
 
 def load_model():
-    """Load Qwen 2.5 in 4-bit quantisation."""
+    """Load Qwen 2.5 in 4-bit quantisation, optionally with LoRA adapters."""
     print(f"Loading model: {MODEL_NAME}")
     print("This will take 2-3 minutes and download ~4GB on first run...")
 
@@ -54,7 +97,9 @@ def load_model():
         bnb_4bit_use_double_quant=True,
     )
 
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
+    if tokenizer.pad_token is None:
+        tokenizer.pad_token = tokenizer.eos_token
 
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
@@ -62,6 +107,26 @@ def load_model():
         device_map="auto",
         trust_remote_code=True,
     )
+
+    question_path = _resolve_lora_path(FINETUNE_CFG.get("question_lora_path"))
+    answer_path = _resolve_lora_path(FINETUNE_CFG.get("answer_lora_path"))
+
+    if question_path or answer_path:
+        from peft import PeftModel
+
+        first_path = question_path or answer_path
+        first_name = "question" if question_path else "answer"
+        model = PeftModel.from_pretrained(
+            model,
+            first_path,
+            adapter_name=first_name,
+            is_trainable=False,
+        )
+        print(f"Loaded LoRA adapter '{first_name}' from {first_path}")
+
+        if question_path and answer_path:
+            model.load_adapter(answer_path, adapter_name="answer")
+            print(f"Loaded LoRA adapter 'answer' from {answer_path}")
 
     print("Model loaded successfully.")
     return model, tokenizer
@@ -114,6 +179,11 @@ def generate_question(
     question_type: str = "conceptual",
 ) -> str:
     """Generate an exam question from retrieved context."""
+    if FINETUNE_CFG.get("use_question_lora", False):
+        _set_lora_mode(model, "question")
+    else:
+        _set_lora_mode(model, "base")
+
     messages = build_question_messages(
         context=context,
         learning_objective=learning_objective,
@@ -137,6 +207,11 @@ def generate_answer(
     max_new_tokens: int | None = None,
 ) -> str:
     """Generate a sample answer for a given question and context."""
+    if FINETUNE_CFG.get("use_answer_lora", False):
+        _set_lora_mode(model, "answer")
+    else:
+        _set_lora_mode(model, "base")
+
     messages = build_answer_messages(
         context=context,
         question=question,
@@ -152,10 +227,17 @@ def generate_answer(
 
 def get_generation_trace() -> dict:
     """Metadata fields to attach to generation responses/eval records."""
-    return {
+    trace = {
         "prompt_version": PROMPT_VERSION,
         "generation_model": MODEL_NAME,
         "generation_temperature": TEMPERATURE,
         "max_new_tokens_question": MAX_NEW_TOKENS_QUESTION,
         "max_new_tokens_answer": MAX_NEW_TOKENS_ANSWER,
+        "use_question_lora": FINETUNE_CFG.get("use_question_lora", False),
+        "use_answer_lora": FINETUNE_CFG.get("use_answer_lora", False),
     }
+    if FINETUNE_CFG.get("use_question_lora"):
+        trace["question_lora_path"] = FINETUNE_CFG.get("question_lora_path")
+    if FINETUNE_CFG.get("use_answer_lora"):
+        trace["answer_lora_path"] = FINETUNE_CFG.get("answer_lora_path")
+    return trace
