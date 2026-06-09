@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_133316_fe77e7",
+  "timestamp": "2026-05-16T13:33:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Unit testing and integration testing",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_46.pdf]\n14\n(b) Unit test each individual component\n(c) Integration (system) testing - combine components, test interfaces\namong components\n(d) Acceptance testing - use live data in client’s test environment.",
+      "[SEED from source_46.pdf]\nalways kept in mind.\nAccording to the Scrum Method , we iterate through the following two\nphases until the backlog of tasks is empty.\nRequirements Sprints\nUser Stories Daily Meetings\nPrioritization Ev",
+      "[NEIGHBOUR from source_47.pdf]\n●4 sub-stages:\n–Preprocessing\n–Compilation\n–Assembly\n–Linking (static/dynamic)\n16/01/21 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 5\nPreface: from code to binary (2"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks provided are somewhat relevant to the learning objective of unit testing and integration testing. Chunk 1 directly mentions these terms and describes their processes, which aligns well with the learning objective. However, the other chunks discuss topics that are not related to unit or integration testing, such as the Scrum method and software development phases. Therefore, the relevance score is 3.\n\nThe sufficiency score is also 3 because while Chunk 1 provides a good description of unit and integration testing, it does not go into detail about how to perform these tests or provide examples, which would be necessary for a comprehensive exam question.\n\nNoise is moderate since only one chunk (Chunk 1) is directly related to the learning objective, while the others contain irrelevant information. Thus, the noise score is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes the process of unit testing in the context of software development?\n\n- Testing each individual component\n- Combining components to test interfaces\n- Using live data in a client's test environment for final verification\n- Deploying the software to the production environment",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, specifically the first two points which describe unit testing as \"Unit test each individual component\" and \"Integration (system) testing - combine components, test interfaces among components.\" This makes it a direct recall of the given information.\n- CLARITY: The question is clear and unambiguous, asking for a specific definition of unit testing. It is well-phrased and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question is straightforward and requires only basic recall, making it appropriate for an easy difficulty level.\n- TYPE_ALIGNMENT: The question asks for a definition, which fits perfectly with the recall type.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but rather asks about a general concept that can be understood independently of the context.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Testing each individual component best describes the process of unit testing in the context of software development, as specified in the provided context. This involves verifying the functionality of each component independently before integrating them into a larger system.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that \"Testing each individual component\" best describes the process of unit testing, which aligns with the source context provided. It accurately reflects the definition of unit testing as described in the given text. However, the answer could be more precise by directly quoting the phrase \"unit test each individual component\" from the source material, which would further enhance its groundedness.\n\nThe answer is complete as it covers the key point of unit testing without including any extraneous information. It does not need to include other types of testing mentioned in the context since the question specifically asks about unit testing.\n\nThe answer is entirely grounded in the provided context, as it does not introduce any new information or concepts that are not present in the source material.\n\nThe language used in the answer is appropriate for a university-level writing, though it could benefit from a slightly more formal tone to match the academic style of the source material.",
+    "parse_status": "ok"
+  }
+}

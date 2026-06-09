@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_143332_c2c399",
+  "timestamp": "2026-05-16T14:33:32",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Bus architecture and interconnects",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\nexplanations of key concepts and ideas, presents architectural implications of inter-\nconnection network technology and techniques, and provides useful references tomore detailed descriptions. It also",
+      "[SEED from source_12.pdf]\nThe address (i.e., memory or operand location) allows the receiver to identifywhere to find the information being requested. After processing the request, each\ndevice then composes and sends another t",
+      "[NEIGHBOUR from source_44.pdf]\n6. Processor can not share the memory.  \n7. Called as message passing multi computers  \n8. Cost is more  1. A computer that has more than one CPU on \nits motherboard.  \n2. Multiprocessing is the use o"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "For RELEVANCE, Chunk 1 mentions bus architecture and interconnects, which aligns with the learning objective. However, it does not provide specific details about these concepts. Chunk 2 discusses addresses and memory locations, which are tangentially related but do not directly address bus architecture or interconnects. Chunk 3 is completely unrelated to the learning objective, discussing multiprocessing and other concepts not aligned with bus architecture.\n\nFor SUFFICIENCY, Chunk 1 offers some relevant information but lacks specific details about bus architecture and interconnects. Chunk 2 provides minimal information about memory addressing, which is somewhat related but insufficient for a comprehensive exam question. Chunk 3 is entirely irrelevant, so it contributes nothing to the sufficiency score.\n\nFor NOISE, Chunk 1 and Chunk 2 contain some useful information but are marred by vague statements and incomplete sentences, indicating moderate noise. Chunk 3 is highly noisy due to its complete irrelevance to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What term describes the process where a device identifies the location of requested information using an address?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, which explains that the address allows the receiver to identify where to find the requested information. Therefore, it is completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous, asking for a specific term that describes the process of identifying the location of requested information using an address. It is precisely phrased and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question is straightforward and requires only basic understanding, fitting the \"easy\" category well. It does not require any complex analysis or application of concepts beyond simple recall.\n- TYPE_ALIGNMENT: The question asks for a term to describe a process, which aligns with the \"recall\" type requested. It does not require explaining, comparing, designing, analyzing, or applying any concepts.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The term that describes the process where a device identifies the location of requested information using an address is simply referred to as addressing. This mechanism allows the receiver to pinpoint the exact location of the sought-after data within the interconnection network.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.25,
+    "reasoning": "- CORRECTNESS: The answer is factually correct. Addressing is indeed the term used to describe the process where a device identifies the location of requested information using an address. This aligns with the source context which mentions that the address allows the receiver to identify where to find the information being requested.\n- COMPLETENESS: The answer covers the key point by defining the term \"addressing\" and explaining its function. However, it could be more comprehensive by including additional relevant details such as how addressing works in the context of interconnection networks.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context without introducing any unsupported information. It directly relates to the source material without adding extraneous details.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, though it could benefit from a slightly more formal tone to match the academic style of the source material.",
+    "parse_status": "ok"
+  }
+}

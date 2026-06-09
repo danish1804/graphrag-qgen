@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_150419_9d7de2",
+  "timestamp": "2026-05-16T15:04:19",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Schema design for machine learning metadata",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\n6.9 Exercises 211\n7 Logical design 217\n7.1 Performance analysis on e-r schemas 218\nxContents\n7.2 Restructuring of e-r schemas 222\n7.2.1 Analysis of redundancies 223\n7.2.2 Removing generalizations 226",
+      "[SEED from source_49.pdf]\nChapter 5 introduces the design methodology and describes the \ne-r\nconceptual model, with the classical notions of entity, relationship, attribute,\nidentiﬁer and generalization. Business rules are als",
+      "[SEED from source_49.pdf]\nGeneralizations These represent logical links between an entity E,\nknown as parent  entity, and one or more entities E\n1 ,…, En, called child\nentities, of which E is more general, in the sense that it",
+      "[NEIGHBOUR from source_14.pdf]\nThe structure of the relational model \n15\n2.1.1 \nLogical models in database systems \n15\n2.1.2 \nRelations and tables \n16\n2.1.3 \nRelations with attributes \n18\n2.1.4 \nRelations and databases \n20\n2.1.5 \nI",
+      "[NEIGHBOUR from source_14.pdf]\nChapter 2 describes the relational model, by introducing the basic notions\nof domain, attribute, relation schema and database schema, with the variousintegrity constraints: primary key and referential"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Schema design for machine learning metadata.\" They discuss general database concepts such as entity-relationship (e-r) models, generalizations, and relational models, but do not specifically mention machine learning metadata or schema design for it. Therefore, they are largely unrelated to the objective.\n\nThere is insufficient information to generate a good exam question on schema design for machine learning metadata. The chunks provide some related concepts but lack specific details about machine learning metadata schema design, which would be necessary for crafting a relevant exam question.\n\nThe chunks contain a mix of relevant and irrelevant content. While some parts discuss database concepts that could be tangentially related, much of the content is not directly about machine learning metadata schema design, making it somewhat noisy.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the term \"generalization\" represent in the context of entity-relationship (ER) modeling, and how does it relate to the concept of specialization?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided, specifically the part discussing generalizations in ER modeling. It does not require any additional knowledge beyond what is given.\n- CLARITY: The question is clear and unambiguous. It asks for a definition and explanation of a term, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept, which aligns with the medium difficulty level requested. It goes beyond simple recall and requires some understanding of the concept.\n- TYPE_ALIGNMENT: The question asks for an explanation of a term and its relation to another concept, which fits the conceptual type perfectly.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the context of entity-relationship (ER) modeling, generalization represents a logical link between an entity known as the parent entity and one or more entities referred to as child entities. The parent entity is considered more general since it encompasses the child entities as specific cases. This relationship indicates that the child entities are specializations of the parent entity, meaning they represent particular instances or subsets of the broader category defined by the parent entity. Thus, generalization and specialization are complementary concepts where generalization captures the overarching category, while specialization delineates its specific subcategories.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is factually correct. It accurately describes generalization in ER modeling and its relationship with specialization. There are no clear factual errors.\n- COMPLETENESS: The answer covers the key points needed to fully address the question. It mentions the parent-child relationship, the generality of the parent entity, and the specialization of child entities. All these points are relevant and necessary to explain the concept of generalization.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It directly references the concept of generalization as described in the source material without adding any unsupported information.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing. The answer is written in a formal, academic style without any casual elements or bullet points.",
+    "parse_status": "ok"
+  }
+}

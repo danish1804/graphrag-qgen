@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_140243_53e623",
+  "timestamp": "2026-05-16T14:02:43",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Deadlock detection and prevention",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nANDSTARVATION\n6.1 Principles of Deadlock\nReusable Resources\nConsumable ResourcesResource Allocation\nGraphs\nThe Conditions for \nDeadlock\n6.2 Deadlock Prevention\nMutual ExclusionHold and WaitNo Preempti",
+      "[SEED from source_5.pdf]\nSolution Using SemaphoresSolution Using a Monitor\n6.7 UNIX Concurrency Mechanisms\nPipesMessagesShared MemorySemaphoresSignals\n6.8 Linux Kernel ConcurrencyMechanisms\nAtomic OperationsSpinlocksSemaphore",
+      "[NEIGHBOUR from source_5.pdf]\n5.6 Readers/Writers Problem 245\n5.7 Summary 249\n5.8 Recommended Reading 250\n5.9 Key T erms, Review Questions, and Problems 251\nChapter 6 Concurrency: Deadlock and Starvation 262\n6.1 Principles of Dead"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "For relevance, Chunk 1 mentions \"Principles of Deadlock\" and \"Conditions for Deadlock,\" which are directly related to the learning objective. However, it does not provide specific details about deadlock detection or prevention methods. Chunk 2 focuses on solutions using semaphores and other concurrency mechanisms, which are tangentially related but do not directly address the core concepts of deadlock detection and prevention. Chunk 3 starts with \"Concurrency: Deadlock and Starvation,\" indicating relevance, but then shifts to other topics like the Readers/Writers problem without providing specific information on the learning objective.\n\nFor sufficiency, none of the chunks provide detailed explanations of deadlock detection or prevention techniques, which are essential for generating a good exam question. They only touch upon the general concepts without delving into specific methods or conditions.\n\nFor noise, both Chunk 1 and Chunk 2 contain a mix of relevant and irrelevant content, such as other concurrency mechanisms and unrelated topics. Chunk 3 is mostly noise, starting with relevant terms but quickly moving to other subjects.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What condition must be avoided in order to prevent deadlock according to the principles discussed in Chapter 6?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about a condition that must be avoided to prevent deadlock, which can be directly answered using the content provided in the source context. The source mentions \"Conditions for Deadlock\" in Chapter 6, indicating that the conditions related to deadlock prevention are discussed there. This makes the question completely answerable from the context alone, hence it scores high on faithfulness.\n\nThe question is clear and unambiguous, asking for a specific condition that needs to be avoided to prevent deadlock. It is phrased precisely and does not require any additional context beyond the given material, thus scoring highly on clarity.\n\nGiven that the question asks for a condition to be avoided, it aligns with the recall difficulty level, as it requires basic understanding rather than deeper analysis or application. Therefore, it is appropriately calibrated to the requested difficulty level.\n\nThe question type is clearly a recall question, asking to state a condition, which fits perfectly with the requested type.\n\nThe question stands alone and does not reference the context or passage explicitly, making it a genuine exam question a student could see.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "To prevent deadlock, the condition of circular wait must be avoided, as it is one of the necessary conditions for deadlock according to the principles discussed in Chapter 6. This involves ensuring that no set of processes can mutually hold at least one resource while waiting for another resource held by a process in the set, thus breaking the circular dependency that can lead to deadlock.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is correct. The condition of circular wait (also known as cyclic wait) is indeed one of the necessary conditions for deadlock, as discussed in Chapter 6.\n- COMPLETENESS: The answer is complete. It covers the key point about avoiding circular wait to prevent deadlock without omitting any important details.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. There are no additional facts or assumptions beyond what is given in the source material.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing. The answer is presented in a precise and academic manner, using proper sentence structure and terminology.",
+    "parse_status": "ok"
+  }
+}

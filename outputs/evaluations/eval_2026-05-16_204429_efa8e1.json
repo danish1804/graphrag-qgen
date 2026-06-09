@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_204429_efa8e1",
+  "timestamp": "2026-05-16T20:44:29",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Concurrency control in operating systems databases and multi-threaded applications",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=database]\nA wide variety of synchronization primitives have been proposed for shared-memory multiprocessors. Mellor-Crummey and Scott [1991] provided an over-view of the issues as well as efficient implementati",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nprocessors, or multiprocessors. Instead of using parallelism to overlap individualinstructions, multiprocessing uses parallelism to allow multiple instruction streamsto be executed simultaneously on d",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nClusters are collections of independent computers that are connected together usinglocal area networks (LANs) and switches. For workloads that did not requireintensive communication, clusters offered"
+    ],
+    "scores": {
+      "relevance": 2,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks discuss various aspects of concurrency and parallelism in computing, which tangentially relate to the learning objective about concurrency control in databases and multi-threaded applications. However, they do not specifically address the core concepts of concurrency control mechanisms or their application in databases and multi-threaded environments. Therefore, the relevance score is low.\n\nWhile the chunks provide some context about parallelism and multiprocessing, they lack specific details about concurrency control techniques, which are essential for generating a good exam question on this topic. Thus, the sufficiency score is also low.\n\nThe chunks are somewhat clean but contain a significant amount of information that does not directly pertain to the learning objective, such as discussions on synchronization primitives and multiprocessing. This results in a moderate level of noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how concurrency control mechanisms in a main-memory database system differ from those in a traditional disk-based database system, considering the implications of using locks and multiversion concurrency control techniques.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The generated question does not directly relate to the source context provided, which discusses synchronization primitives and multiprocessing. It introduces concepts of concurrency control mechanisms in database systems, which are not mentioned in the given context. Therefore, this question cannot be fully answered using only the source context.\n- CLARITY: The question is clear and unambiguous. It asks for a comparison between two types of database systems and specifies the use of locks and multiversion concurrency control techniques, making it easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires the application of knowledge about different database systems and their concurrency control mechanisms, which aligns with the \"hard\" difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for an explanation and comparison, which fits the \"application\" type requested.\n- STANDALONE_QUALITY: The question stands alone and does not reference the specific context provided. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In a main-memory database system, concurrency control mechanisms primarily rely on locks to manage concurrent access, contrasting with traditional disk-based systems that often employ multiversion concurrency control (MVCC). Locks in main-memory systems ensure mutual exclusion by preventing simultaneous updates to the same data, whereas MVCC avoids lock contention through versioning, allowing multiple transactions to read different versions of data concurrently. This difference highlights the trade-offs between these two approaches: while locks in main-memory systems offer simpler implementation and direct control over data access, they can lead to increased overhead due to lock contention, especially during high concurrency. Conversely, MVCC in disk-based systems reduces lock overhead by enabling parallel reads but introduces complexity in managing transactional dependencies and ensuring data consistency across versions. These mechanisms underscore the need for careful design choices based on the specific requirements and constraints of the database environment.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "- CORRECTNESS: The answer is mostly correct. It accurately contrasts locks in main-memory systems with MVCC in disk-based systems and discusses the trade-offs between them. However, it does not mention the specific implications of using locks and MVCC, such as the impact on performance and the need for careful design choices based on the environment.\n- COMPLETENESS: The answer covers the main ideas but lacks some details. It does not explicitly mention the specific implications of using locks and MVCC, which would have provided a more comprehensive explanation.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It does not introduce any information not present in the context.\n- ACADEMIC_TONE: The language used is precise and academic, suitable for a university setting. There are no casual or inappropriate tones, and the prose is consistent throughout.",
+    "parse_status": "ok"
+  }
+}

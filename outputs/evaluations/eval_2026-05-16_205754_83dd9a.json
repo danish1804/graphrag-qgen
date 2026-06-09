@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_205754_83dd9a",
+  "timestamp": "2026-05-16T20:57:54",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Real time constraints across hardware scheduling and software design",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_38.pdf domain=software_engineering]\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Prediction 182\n3.4 Overcoming Data Haza",
+      "[NEIGHBOUR from source_38.pdf domain=software_engineering]\ncomputer architecture as did the switch to multicore. We retain the focus on theextremes in size of computing, with personal mobile devices (PMDs) such as cellphones and tablets as the clients and war",
+      "[NEIGHBOUR from source_38.pdf domain=software_engineering]\nusing a multiple issue, dynamically scheduled, 16-stage pipeline, which wedescribe in detail in Chapter 3 . The i7 can also support up to two simultaneous\nthreads per processor, using a technique call"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address real-time constraints across hardware scheduling and software design. Instead, they discuss topics like instruction-level parallelism, compiler techniques, branch prediction, and computer architecture, which are tangential to the learning objective. Therefore, the relevance score is 1.\n\nWhile the chunks contain some technical details about hardware and software, they lack specific information about real-time constraints, which is crucial for understanding the learning objective. Thus, the sufficiency score is 1.\n\nThe chunks are somewhat clean but contain many technical terms and concepts that are not directly related to the learning objective, making them moderately noisy. Hence, the noise score is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the significance of static scheduling and dynamic scheduling in the context of instruction-level parallelism (ILP) for real-time systems, and how do they overcome data hazards differently?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The question does not directly reference the provided source context, which focuses on instruction-level parallelism, branch prediction, and pipelines. It instead asks about static and dynamic scheduling in the context of real-time systems and data hazards, which is not covered in the given context. Therefore, this question requires knowledge beyond the provided context, making it a 1.\n- CLARITY: The question is clear and unambiguous, asking about the significance of static and dynamic scheduling in real-time systems and how they address data hazards. It is well-phrased and easy to understand, earning a 5.\n- DIFFICULTY_ALIGNMENT: The question asks for an application of concepts related to scheduling and data hazards, which aligns with the \"hard\" difficulty level requested. It requires students to apply their understanding rather than just recall facts, so it is appropriately challenging, earning a 5.\n- TYPE_ALIGNMENT: The question is asking students to apply their knowledge of scheduling techniques and their impact on real-time systems, which fits the \"application\" type requested. It is not a simple recall or conceptual explanation but requires analysis, earning a 5.\n- STANDALONE_QUALITY: The question stands on its own and does not reference the specific context provided. It can be understood and answered without needing to refer back to the source material, earning a 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Static scheduling and dynamic scheduling play crucial roles in instruction-level parallelism (ILP) within real-time systems, particularly in managing and exploiting parallelism at the instruction level. Static scheduling, a fundamental approach in computer architecture, assigns execution order to instructions before runtime, facilitating the exploitation of ILP by optimizing the sequence of operations. This method is effective in reducing branch costs and improving overall efficiency, as seen in advanced branch prediction techniques. However, static scheduling can struggle with data hazards, which occur when dependencies between instructions cause potential stalls. To address these data hazards, dynamic scheduling offers a more flexible alternative. By dynamically reordering instructions during execution based on actual runtime conditions, dynamic scheduling can adapt to data dependencies, thereby overcoming them more effectively. An example of dynamic scheduling in action is the Intel i7 processor's 16-stage pipeline, which allows for concurrent execution and reordering of instructions to maximize throughput while mitigating data hazards. Thus, while static scheduling provides a fixed, pre-computed schedule beneficial for predictable tasks, dynamic scheduling enhances ILP in real-time systems by dynamically adapting to runtime conditions, ensuring efficient and timely execution even in the presence of complex data dependencies.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.5,
+    "reasoning": "Correctness: The answer is largely correct, discussing both static and dynamic scheduling in the context of ILP and their role in real-time systems. It accurately mentions that static scheduling assigns execution order before runtime and that dynamic scheduling adapts to runtime conditions. However, it incorrectly states that the Intel i7 processor uses a 16-stage pipeline, which is not mentioned in the source context. This is a factual error, reducing the score to 3.\n\nCompleteness: The answer covers the key points of static and dynamic scheduling and their relevance to ILP in real-time systems. It discusses how static scheduling reduces branch costs and how dynamic scheduling adapts to data dependencies. The inclusion of examples like the Intel i7 processor adds depth, though the specific number of stages in the pipeline is incorrect. The score is 4.\n\nGroundedness: The answer is mostly grounded in the provided context, discussing concepts like ILP, branch prediction, and data hazards. However, the mention of the 16-stage pipeline from the Intel i7 processor is not supported by the given context, which focuses on other aspects of computer architecture. This introduces an unsupported addition, lowering the score to 3.\n\nAcademic Tone: The language used is generally precise and academic, suitable for a university-level discussion. The answer is written in prose without any bullet points, maintaining an appropriate tone. The score is 4.",
+    "parse_status": "ok"
+  }
+}

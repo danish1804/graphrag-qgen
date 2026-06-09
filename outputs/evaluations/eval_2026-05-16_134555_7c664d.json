@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_134555_7c664d",
+  "timestamp": "2026-05-16T13:45:55",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Code review and static analysis",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_45.pdf]\napplications. (M. Andrews and J. A. Whittaker, Addi son-Wesley, 2006.)\n‘Using static analysis to find bugs’. This paper de scribes Findbugs, a Java static analyzer that uses\nsimple techniques to find",
+      "[SEED from source_45.pdf]\nthe tip of the iceberg.\n\u000f \u0010 \u0012 \u0010 \u0015 \u0016 \u0017 \u0019 \u0010 \u001b \u001c\n\u001d \u001e  ! # $ %' % ) + - \u001e. / 1%2 % ) 45  + \u001e 4  + \u001eUnderstanding the Problem\n1/3 planning\ncCopyright Nancy Leveson, Sept. 1999Development Costs\nCoding\nTestP",
+      "[NEIGHBOUR from source_22.pdf]\nHofmeister, C., Nord, R. and Soni, D. (2000). Appli ed Software Architecture. Boston: Addison-\nWesley.\nHunter, D., Rafter, J., Fawcett, J. and Van Der Vli st, E. (2007). Beginning XML, 4th ed. Indiana"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 3.0,
+    "reasoning": "The first chunk mentions static analysis and a tool called Findbugs, which is relevant to the learning objective of code review and static analysis. However, it does not provide much detail or context about the process or benefits of using static analysis. The second chunk appears to be a series of symbols and characters with no discernible meaning, making it completely unrelated to the learning objective. The third chunk discusses software architecture and XML, which are not directly related to code review and static analysis.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "In which year was the paper \"Using static analysis to find bugs\" published?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The question asks about the publication year of the paper \"Using static analysis to find bugs\". However, the source context does not provide any information about the year of publication. Therefore, this question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous. It directly asks for a specific piece of information (the year of publication) without any ambiguity.\n- DIFFICULTY_ALIGNMENT: The difficulty level requested is \"easy\", which aligns with the type of question being asked. Recalling the year of publication is a straightforward task that does not require complex reasoning.\n- TYPE_ALIGNMENT: The question type requested is \"recall\", which perfectly matches the nature of the question asking for the year of publication.\n- STANDALONE_QUALITY: The question can stand alone without referencing the context or passage. It does not depend on any external information provided in the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The paper \"Using static analysis to find bugs\" was published in 2008, as indicated by the citation (N. Ayewah et al., IEEE Software, 25(5), Sept/Oct 2008.).",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 5
+    },
+    "overall": 2.0,
+    "reasoning": "- CORRECTNESS: The answer states the paper was published in 2008, but this is incorrect based on the given context. The context does not provide any publication date for the paper \"Using static analysis to find bugs.\" Therefore, the answer contains a clear factual error.\n- COMPLETENESS: The answer attempts to provide a specific year of publication, but it fails to do so accurately. It also does not address other potential aspects of the question such as the authors or the journal, which could be relevant if more context were provided.\n- GROUNDEDNESS: The answer introduces the publication year of 2008, which is not mentioned in the given context. This information is not grounded in the provided sources and appears to be an invention.\n- ACADEMIC_TONE: The answer uses a sentence structure that is appropriate for academic writing, but the content is not accurate or grounded in the provided context. The use of a period at the end of the sentence is correct for academic writing.",
+    "parse_status": "ok"
+  }
+}

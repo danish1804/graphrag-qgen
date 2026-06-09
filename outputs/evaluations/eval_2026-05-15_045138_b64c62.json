@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-15_045138_b64c62",
+  "timestamp": "2026-05-15T04:51:38",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Activation functions in neural networks",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_51.pdf]\nlearning to reduce the search space within the hypothesis space. (A neural network with a\nsingle hidden layer, a ﬁnite number of neurons, and non-linear activation functions such as\nsigmoid units, was",
+      "[SEED from source_51.pdf]\nsize 2.\n12.2.4Nonlinear Convolution\nFor each location in the image (original or padded) and a single\nconvolution filter, we can apply a nonlinear activation function after\nthe convolution\nyi,j=g \n∑\n−k",
+      "[NEIGHBOUR from source_64.pdf]\nUnsupervised midTraditional\nDeep Learning\nHandcrafted features are time consuming, brittle and not scalable in\npractice. DL learn underlying features directly from data.\nLecture 4 (Part 1) Deep Learni"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Activation functions in neural networks.\" Chunk 1 mentions non-linear activation functions briefly but does not provide specific details about them. Chunk 2 talks about nonlinear activation functions in the context of convolutional filters, which is not directly related to neural networks with hidden layers. Chunk 3 is completely unrelated to the learning objective, discussing deep learning and feature learning in unsupervised settings.\n\nThe chunks are insufficient to generate a good exam question on the learning objective because they lack specific information about activation functions, their types, and their role in neural networks. There are significant gaps in the information provided.\n\nThe chunks contain a moderate amount of noise, with some irrelevant content like discussions on feature learning and convolutional filters that do not contribute to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What role does a non-linear activation function play in a neural network with a single hidden layer, according to the given context?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the role of a non-linear activation function in a neural network with a single hidden layer. This can be fully answered using the provided context, which discusses the use of non-linear activation functions in neural networks. Therefore, the question is faithful to the source material. The question is clear and unambiguous, asking for a specific piece of information that can be directly stated from the context. It aligns with the requested difficulty level of 'easy' as it simply requires recalling a definition. The question type is a straightforward recall, matching the request. The question stands alone and does not reference the context explicitly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A non-linear activation function, such as the sigmoid unit, plays a crucial role in enabling a neural network with a single hidden layer to serve as a universal function approximator, as proven by George Cybenko. Without these non-linear functions, even a multi-layered network could be reduced to a linear model, thus limiting its expressive power and ability to capture complex patterns in data.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 3,
+      "groundedness": 2,
+      "academic_tone": 4
+    },
+    "overall": 3.0,
+    "reasoning": "Correctness: The answer mentions that non-linear activation functions enable a neural network to act as a universal function approximator, which aligns with the context provided about sigmoid units. However, it incorrectly attributes this to George Cybenko without any reference to the given context, which does not mention him. This introduces a factual error, reducing the score to 3.\n\nCompleteness: The answer covers the key point about non-linear functions enabling universal approximation but lacks specific details about how they work within the context of a single hidden layer network. It also does not mention the role of non-linear functions in reducing the search space, which is implied in the source context. Thus, the score is 3.\n\nGroundedness: The answer introduces the concept of universal function approximation, which is not explicitly mentioned in the given context. While the idea of non-linear functions being crucial is correct, the attribution to George Cybenko is not supported by the context. Therefore, the score is 2.\n\nAcademic Tone: The answer is written in a formal tone and uses appropriate academic language, though it could be more precise and grounded in the context. The use of prose is consistent, and there are no bullet points or casual language. Hence, the score is 4.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_203434_e821b8",
+  "timestamp": "2026-05-16T20:34:34",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Concurrency control in operating systems databases and multi-threaded applications",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=database]\nA wide variety of synchronization primitives have been proposed for shared-memory multiprocessors. Mellor-Crummey and Scott [1991] provided an over-view of the issues as well as efficient implementati",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nprocessors, or multiprocessors. Instead of using parallelism to overlap individualinstructions, multiprocessing uses parallelism to allow multiple instruction streamsto be executed simultaneously on d",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nClusters are collections of independent computers that are connected together usinglocal area networks (LANs) and switches. For workloads that did not requireintensive communication, clusters offered"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks discuss synchronization primitives and multiprocessing, which are related to concurrency control but do not directly address the specific learning objective of concurrency control in operating systems databases and multi-threaded applications. Therefore, they are only partially relevant.\n\nWhile the chunks provide some context about concurrency-related topics, they lack specific details about how concurrency control works in databases and multi-threaded applications, which are essential for generating a good exam question. Thus, the information is insufficient.\n\nThe chunks contain technical terms and concepts related to concurrency, but they also include discussions on broader topics like clusters and local area networks, which are not directly relevant to the learning objective. This introduces some noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how a main-memory database system ensures transactional integrity during long-duration transactions using multiversion concurrency control (MVCC) technique, and discuss how this differs from traditional locking mechanisms.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The generated question does not align with the source context provided. The source context discusses synchronization primitives, multiprocessing, and clusters, but does not mention transactional integrity, MVCC, or locking mechanisms. Therefore, the question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous. It asks for an explanation of how a main-memory database system ensures transactional integrity using MVCC and how it differs from traditional locking mechanisms. The phrasing is precise and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires applying concepts of MVCC and comparing it with traditional locking mechanisms, which involves deeper understanding and analysis. This aligns well with the \"hard\" difficulty level.\n- TYPE_ALIGNMENT: The question asks for an explanation and comparison, which fits the \"application\" type well. It requires students to apply their knowledge rather than just recall or state facts.\n- STANDALONE_QUALITY: The question stands independently and does not reference the specific context provided. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Main-memory database systems ensure transactional integrity during long-duration transactions through multiversion concurrency control (MVCC), which contrasts fundamentally with traditional locking mechanisms. MVCC allows transactions to read a snapshot of the database state as it existed at the start of the transaction, thus enabling concurrent access without blocking other transactions. This approach avoids the overhead and contention associated with traditional locking, where transactions must wait for locks to be released before proceeding. In contrast, locking mechanisms typically employ row-level or table-level locks to manage access, which can lead to significant blocking and serialization of transactions, especially in scenarios with high concurrency. MVCC achieves this by maintaining multiple versions of data items, each visible to transactions based on their start time. For example, a transaction initiated at time t1 can read a version of data from time t0, while another transaction starting at t2 can read a different version of the same data from time t1. This method ensures that long-duration transactions do not impede short transactions and maintains a consistent view of the database across all concurrently running transactions, thereby enhancing both performance and scalability in main-memory environments.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.5,
+    "reasoning": "- **Correctness**: The answer is largely correct, explaining MVCC and its benefits compared to traditional locking mechanisms. However, it does not explicitly mention the role of transactional integrity in MVCC, which is a key aspect of the question. The answer could be more precise by mentioning that MVCC ensures transactional integrity by providing a consistent snapshot of the database state.\n- **Completeness**: The answer covers the main ideas of MVCC and its advantages over traditional locking, but it could be more detailed. For instance, it does not discuss how MVCC handles updates during long-duration transactions or the concept of \"versioning\" in more depth.\n- **Groundedness**: The answer is generally grounded in the provided context, discussing concepts like MVCC and locking mechanisms. However, it introduces the term \"main-memory database systems\" which is not directly mentioned in the source context. The context focuses on shared-memory multiprocessors and clusters, so this term might be slightly out of context.\n- **Academic Tone**: The language used is mostly appropriate for a university-level writing, but it could be more formal and precise. The use of examples like \"For example, a transaction initiated at time t1 can read a version of the database from time t0\" is acceptable but could be more concise and direct.",
+    "parse_status": "ok"
+  }
+}

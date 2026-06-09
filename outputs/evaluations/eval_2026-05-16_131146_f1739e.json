@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131146_f1739e",
+  "timestamp": "2026-05-16T13:11:46",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Transaction management and concurrency",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_13.pdf]\nChapter 5:  Advanced Data Modeling  161\nChapter 6:  Normalization of Database Tables  190\nPART III:  Advanced Design and Implementation\nChapter 7:  Introduction to Structured Query Language (SQL)  236",
+      "[SEED from source_13.pdf]\n15DATABASE \nADMINISTRATIONVIPARTBecause \tdatabase \tdesign\tis\taffected\tby\treal-world \ttransactions, \tthe\tway\tdata\tare\tdistributed, \tand\tever-increasing \tinfor-\nmation requirements, we examine major dat",
+      "[NEIGHBOUR from source_49.pdf]\nproducts specializing in transaction management, such as Encina  (a product\nof the Transarc company) and Tuxedo  (from Unix Systems, originally at&t ),\nwhich provide the tm component.\nThe main charact"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss transaction management or concurrency, which are central to the learning objective. Chunk 1 only lists chapter titles without any content related to transaction management or concurrency. Chunk 2 starts to touch on the topic by mentioning real-world transactions and data distribution, but it does not explicitly cover transaction management or concurrency. Chunk 3 briefly mentions products related to transaction management but does not provide any substantive information about the concept itself. Therefore, the chunks are not directly relevant to the learning objective.\n\nFor SUFFICIENCY, the chunks lack specific details about transaction management and concurrency. They do not provide enough information to generate a meaningful exam question. Chunk 2 hints at the importance of transactions but does not explain the concept in detail. Chunk 3 mentions transaction management products but does not elaborate on the concept. Thus, the information is insufficient to fully support a good exam question.\n\nFor NOISE, all chunks contain some relevant content but are mostly filled with general information that does not directly address the learning objective. Chunk 1 is purely a list of chapter titles, while Chunk 2 and Chunk 3 contain some relevant terms but also include a lot of general information that is not directly related to transaction management or concurrency.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the x-open dtp standard allow for in terms of resource managers (rms)?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 3,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.4,
+    "reasoning": "- FAITHFULNESS: The generated question does not align with the provided source context. The source context discusses database administration, real-world transactions, data distribution, and increasing information requirements. It does not mention any x-open dtp standard or resource managers (rms). Therefore, this question cannot be answered using only the given context.\n- CLARITY: The question is clear and unambiguous, asking about the capabilities of the x-open dtp standard regarding resource managers. However, it is poorly phrased because the term \"x-open dtp\" is not defined in the context, making it unclear to students who might not be familiar with this specific standard.\n- DIFFICULTY_ALIGNMENT: The difficulty level requested is \"easy,\" which would typically involve basic recall or understanding. However, the question requires knowledge of a specific standard that is not present in the context, making it difficult to calibrate as \"easy.\"\n- TYPE_ALIGNMENT: The question type requested is \"recall,\" which involves defining or stating something directly. However, the question asks about a specific standard not mentioned in the context, making it more of a conceptual or application-based question rather than a simple recall question.\n- STANDALONE_QUALITY: The question references \"the x-open dtp standard\" and \"resource managers (rms),\" which are not defined within the provided context. This makes the question dependent on external knowledge, thus not self-contained.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The X/Open DTP standard allows for totally passive resource managers (RMs), where all protocol control is centralized within the transaction manager (TM), which activates RM functions through a library of remotely callable primitives.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 5
+    },
+    "overall": 2.0,
+    "reasoning": "- CORRECTNESS: The generated answer is not factually correct according to the source context. The provided context does not discuss the X/Open DTP standard or resource managers (RMs). Therefore, it contains clear factual errors.\n- COMPLETENESS: The answer cannot be complete since it addresses a topic not mentioned in the source context. It fails to cover the key points needed to fully address the question.\n- GROUNDEDNESS: The answer is not grounded in the source context because it introduces information that is not present in the given text. The context discusses database administration and transaction management products, not the X/Open DTP standard.\n- ACADEMIC_TONE: The language used in the answer is appropriate for university-level writing, though it is not related to the actual content of the source context. The tone is precise and academic, but the content is incorrect.",
+    "parse_status": "ok"
+  }
+}

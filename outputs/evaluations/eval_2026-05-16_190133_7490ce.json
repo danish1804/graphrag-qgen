@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_190133_7490ce",
+  "timestamp": "2026-05-16T19:01:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "RISC architecture benefits for database workloads",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\ncovers computer arithmetic.\nAppendix K provides a survey of instruction architectures, including the\n80x86, the IBM 360, the VAX, and many RISC architectures, including ARM,MIPS, Power, RISC-V, and SP",
+      "[SEED from source_12.pdf]\nmakes real memory a separate, intermediate level between virtual memory andphysical memory. (Some use the terms virtual memory, physical memory , and\nmachine memory to name the same three levels.) The",
+      "[SEED from source_12.pdf]\nA Instruction Set Principles\nB Review of Memory HierarchiesC Pipelining: Basic and Intermediate ConceptsD Storage SystemsE Embedded SystemsF Interconnection NetworksG Vector Processors in More DepthH",
+      "[NEIGHBOUR from source_23.pdf]\n Huge size  \n Need of A.C.  \n Non -portable  \n Consumed lot of electricity  \nSome computers of this generation were:  \n ENIAC  \n EDVAC  \n UNIVAC  \n IBM -701  \n IBM -650",
+      "[NEIGHBOUR from source_23.pdf]\n Consumed less electricity as compared to first generation computers  \n Faster than first generation computers  \n Still very costly  \n A.C. needed  \n Supported machine and assembly languages  \nSo"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss RISC architecture benefits for database workloads. Chunk 1 mentions RISC architectures but in a general context without focusing on their benefits for databases. The other chunks are completely unrelated to the learning objective.\n\nFor SUFFICIENCY, the chunks fail to provide any specific information about RISC architecture benefits for database workloads. There is no mention of performance improvements, power efficiency, or any other benefits that might be relevant to database workloads.\n\nFor NOISE, the chunks are highly noisy. They contain information about computer arithmetic, memory hierarchies, and early computer generations, which are not relevant to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following RISC architectures is mentioned in the course material as part of a survey of instruction set architectures, alongside ARM, MIPS, Power, RISC-V, and SPARC?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided, which mentions a survey of instruction set architectures that includes RISC architectures such as ARM, MIPS, Power, RISC-V, and SPARC. Therefore, it is completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks for a specific piece of information that can be directly identified from the given context, making it easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires understanding the content of the source material and identifying the correct term among the options, which aligns with the medium difficulty level as it involves conceptual understanding rather than simple recall.\n- TYPE_ALIGNMENT: The question is asking for a specific term from a list, which fits the conceptual type as it requires explaining or comparing the terms within the context of instruction set architectures.\n- STANDALONE_QUALITY: The question does not reference any external context or passage and can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The course material mentions the SPARC architecture as part of a survey of instruction set architectures, alongside ARM, MIPS, Power, RISC-V, and many other RISC architectures. This survey is found in Appendix K, which provides an overview of various instruction architectures including modern RISC designs such as SPARC.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is correct. The SPARC architecture is indeed mentioned in the course material alongside ARM, MIPS, Power, and RISC-V in Appendix K. The answer does not contain any factual errors.\n- COMPLETENESS: The answer is complete. It covers the key point that SPARC is one of the RISC architectures surveyed in the course material, and it also mentions the other architectures listed in the question.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. There are no additional facts or assumptions made beyond what is stated in the source material.\n- ACADEMIC_TONE: The answer uses appropriate academic prose and does not use bullet points, making it suitable for a university-level writing style.",
+    "parse_status": "ok"
+  }
+}

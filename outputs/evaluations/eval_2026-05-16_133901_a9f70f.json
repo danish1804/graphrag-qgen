@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_133901_a9f70f",
+  "timestamp": "2026-05-16T13:39:01",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Verification and validation in software testing",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\non software testing in which the author presents a set of experience-based guidelines on designing\ntests that are likely to be effective in discoverin g system faults. (J. A. Whittaker, Addison-Wesley",
+      "[SEED from source_22.pdf]\napplications. (M. Andrews and J. A. Whittaker, Addi son-Wesley, 2006.)\n‘Using static analysis to find bugs’. This paper de scribes Findbugs, a Java static analyzer that uses\nsimple techniques to find",
+      "[NEIGHBOUR from source_21.pdf]\n14\n(b) Unit test each individual component\n(c) Integration (system) testing - combine components, test interfaces\namong components\n(d) Acceptance testing - use live data in client’s test environment."
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address verification and validation in software testing, which is the core of the learning objective. Chunk 1 mentions guidelines for effective testing but does not specifically discuss verification and validation. Chunk 2 talks about static analysis tools like Findbugs, which is tangential to the objective. Chunk 3 lists types of testing but does not focus on verification and validation processes. Therefore, the chunks are not directly relevant to the learning objective.\n\nFor sufficiency, none of the chunks provide specific information about verification and validation processes or their importance in software testing. They only touch upon related topics such as testing types and tools, which are insufficient to generate a comprehensive exam question on verification and validation.\n\nNoise is moderate as the chunks contain some relevant content but are mostly off-topic. The presence of unrelated information about testing types and tools adds some noise to the chunks.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes the difference between verification and testing as discussed in the context provided?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The generated question asks about the difference between verification and testing, which is not addressed in the provided source context. The context discusses software testing guidelines, static analysis tools, and testing phases like unit testing, integration testing, and acceptance testing. Therefore, the question cannot be fully answered using only the given context, making it a 1 on faithfulness.\n\nThe question is clear and unambiguous, asking for a distinction between two concepts. It is phrased precisely, so it scores a 5 on clarity.\n\nThe difficulty level requested is \"easy,\" which aligns with the type of question being asked. Recalling the difference between verification and testing is a basic understanding task, so the difficulty alignment is appropriate, scoring a 5.\n\nThe question type requested is \"recall,\" which fits well since the task is to state the difference between verification and testing. Thus, the type alignment scores a 5.\n\nThe question does not reference the context explicitly but rather asks about general concepts in software testing, making it a genuine exam question. Hence, it scores a 5 on standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Verification and testing, as discussed in the context, differ in their objectives and scope. Verification focuses on ensuring that the product of development meets its specified requirements, often through static analysis or formal specification methods, whereas testing aims to discover faults by executing the software and observing its behavior under various conditions, including unit testing, integration testing, acceptance testing, and post-delivery maintenance.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.5,
+    "reasoning": "The answer correctly distinguishes between verification and testing, mentioning that verification ensures the product meets its requirements while testing discovers faults. It also accurately lists the types of testing mentioned in the context (unit, integration, acceptance). However, it incorrectly attributes static analysis to verification rather than testing, which is a factual error. The answer is comprehensive, covering both objectives and the types of testing. It is grounded in the provided context without introducing any unsupported information. The language used is academic and appropriate for a university setting.",
+    "parse_status": "ok"
+  }
+}

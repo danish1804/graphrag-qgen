@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_180442_3608f7",
+  "timestamp": "2026-05-16T18:04:42",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "MLOps and model deployment pipelines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nPractice and Promise . Boston: Addison-Wesley.\nKruchten, P . (1995). ‘The 4 + 1 view model of archi tecture’. IEEE Software , 11(6), 42–50.\nMellor, S. J. and Balcer, M. J. (2002). Executable UML . Bos",
+      "[SEED from source_22.pdf]\nComputer , 33(7), 66–71.\nSousa, M. J. (1998). ‘A Survey on the Software Main tenance Process’. 14th IEEE International\nConference on Software Maintenance (ICSM ’98), Wash ington, D.C.: 265–74.\nUlrich,",
+      "[SEED from source_22.pdf]\nAnderson, R., 367, 391, 392, 404, 420\nAnderson, R. J., 269, 288\nAndrea, J., 223, 232\nAndrews, M., 418\nAndrews, T., 533, 536\nAppleton, B., 156, 174, 702\nArisholm, E., 72, 80\nArlow, J., 50, 55\nArmour, P",
+      "[NEIGHBOUR from source_22.pdf]\nand permission should be obtained from the publishe r prior to any prohibited reproduction, storage in a\nretrieval system, or transmission in any form or by  any means, electronic, mechanical, photoco",
+      "[NEIGHBOUR from source_22.pdf]\nengineers affected to passively or actively resist the introduction of this technology?Chapter 2IReferences 55\nR E F E R E N C E S\nArlow, J. and Neustadt, I. (2005). UML 2 and the Unified Process: Pra"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not contain any direct information about MLOps or model deployment pipelines. Instead, they reference various books, articles, and authors related to software architecture, maintenance, and UML, which are tangentially related but not directly addressing the learning objective. Therefore, the chunks are largely unrelated to the specified learning objective.\n\nThere is insufficient information to generate a meaningful exam question on MLOps and model deployment pipelines. The chunks do not provide any specific details about these topics, making it impossible to craft a relevant question.\n\nThe chunks are filled with references to books and articles, which can be considered noise since they do not contribute to understanding MLOps or model deployment pipelines. There is a significant amount of irrelevant content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which author co-wrote \"Executable UML\" with S. J. Mellor and what is the title of their book?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using only the source context, which mentions that S. J. Mellor co-wrote \"Executable UML\" with M. J. Balcer. This meets the criteria for being completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks for specific information that can be directly identified from the text, making it easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires identifying a co-author and recalling the title of a book, which is a straightforward task. This aligns well with the medium difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for a specific piece of information about the authors of a book, which fits well with the conceptual type, as it involves understanding and recalling details from the text.\n- STANDALONE_QUALITY: The question does not reference the context or passage explicitly and can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "S. J. Mellor co-wrote \"Executable UML\" with M. J. Balcer. The title of their book is \"Executable UML\", published by Addison-Wesley in Boston.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 1,
+      "groundedness": 3,
+      "academic_tone": 1
+    },
+    "overall": 2.0,
+    "reasoning": "- CORRECTNESS: The answer is incorrect because it states that M. J. Balcer co-wrote \"Executable UML\" with S. J. Mellor, which contradicts the source context. The correct co-author is M. J. Balcer, not M. J. Balcer again. The title of the book is also correctly identified as \"Executable UML\".\n- COMPLETENESS: The answer is incomplete because it does not mention the co-author's name, which is a key part of the question. It only provides the co-author's initials.\n- GROUNDEDNESS: The answer is not entirely grounded in the context. While the title and publisher are correct, the statement about the co-author is not supported by the given sources.\n- ACADEMIC_TONE: The answer is presented in a straightforward manner without any academic formalities such as citations or proper referencing, which would be expected in a university-level answer.",
+    "parse_status": "ok"
+  }
+}

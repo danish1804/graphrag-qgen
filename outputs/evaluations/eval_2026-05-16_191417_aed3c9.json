@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_191417_aed3c9",
+  "timestamp": "2026-05-16T19:14:17",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Configuration management for OS dependent software",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nChapter 25 discusses configuration management. This  is an issue that is\nimportant for all large systems, which are develope d by teams.\nHowever, the need for configuration management is n ot always o",
+      "[SEED from source_22.pdf]\nmanagement processes and tools. When you have read the chapter,\nyou will:\nIunderstand the processes and procedures involved in  software change\nmanagement;\nIknow the essential functionality that must",
+      "[SEED from source_22.pdf]\navailable on an embedded system. However, it is ver y difficult to simulate the behav-\nior of an embedded system in every respect. You the refore have to run system tests on\nthe actual platform where",
+      "[NEIGHBOUR from source_21.pdf]\n2. The Unified Process\n3. Iteration and Incrementation Within the Object-Oriented Paradigm\n32\n4. Requirements Workflow\n5. Analysis Workflow\n6. Design Workflow\n7. Implementation Workflow\n8. Test Workfl",
+      "[NEIGHBOUR from source_21.pdf]\nniques and tools used to produce S/W.\nRemarks:\n1. With Definition 5.1.1, we could have defined the software crisis (Defi-\nnition 1.3.1) as our inability to manage the software process effectively.\n2."
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address configuration management for OS-dependent software. Chunk 1 mentions configuration management but does not specify its relevance to OS-dependent software. Chunk 2 focuses on software change management and processes, which is somewhat related but not specifically about configuration management for OS-dependent software. Chunk 3 talks about embedded systems and testing, which is not relevant to the learning objective. Chunk 4 and 5 are about software development processes and workflows, which are not directly related to configuration management for OS-dependent software either.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of configuration management in the context of developing large systems, and how does it relate to system building?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context. It asks about the primary purpose of configuration management and its relation to system building, which are directly discussed in the context.\n- CLARITY: The question is clear and unambiguous. It asks for a specific concept related to configuration management and its role in system development, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question is at a medium difficulty level as it requires understanding and explaining a concept rather than just recalling a definition.\n- TYPE_ALIGNMENT: The question is clearly asking for an explanation or conceptual understanding, which aligns with the \"conceptual\" type.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage\" explicitly. It can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The primary purpose of configuration management in the context of developing large systems is to ensure that changes to the software and its environment are tracked, controlled, and coordinated effectively. It relates closely to system building by providing a framework for managing the various components and versions throughout the development lifecycle. Effective configuration management supports system building by ensuring that the correct versions of software and related artifacts are used, thus maintaining the integrity and consistency of the final product.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "- CORRECTNESS: The answer is largely correct, aligning with the context provided about tracking, controlling, and coordinating changes in software and its environment. It also correctly mentions the importance of configuration management in maintaining the integrity and consistency of the final product during system building. However, the answer could be more specific by mentioning the role of configuration management in version control and change management processes, which are directly related to the context given.\n- COMPLETENESS: The answer covers the primary purpose of configuration management and its relation to system building, but it could be more detailed by including specific aspects such as version control, change management, and the coordination of different components and versions throughout the development lifecycle.\n- GROUNDEDNESS: The answer is grounded in the provided context, discussing the tracking, controlling, and coordinating of changes, which are directly mentioned in the source material. There are no significant additions that are not supported by the context.\n- ACADEMIC_TONE: The language used in the answer is appropriate for a university-level writing, using precise and academic prose without any casual or inappropriate elements. However, the use of bullet points in the rubric might suggest a more structured approach, which is not present in the answer itself.",
+    "parse_status": "ok"
+  }
+}

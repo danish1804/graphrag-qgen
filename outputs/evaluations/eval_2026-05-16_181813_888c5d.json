@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_181813_888c5d",
+  "timestamp": "2026-05-16T18:18:13",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Parallel processing in neural network training",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_65.pdf]\nRMIT Classification: TrustedRMIT Classification: Trusted\nSummaryPerceptronsProcessing & TrainingMultiple perceptrons for classificationMulti-Layer Perceptrons (MLP)Feed-Forward processingTraining via",
+      "[SEED from source_53.pdf]\nParallel processing capability:  \nArtificial neural networks have a numerical value that can perform more than one task simultaneously.  \n \nStoring data on the entire  network:  \nData that is used in",
+      "[SEED from source_53.pdf]\nCapability to work with incomplete knowledge:  \nAfter ANN training, the information may produce output even with inadequate data. The loss of",
+      "[NEIGHBOUR from source_52.pdf]\n4\n4.3Support Vector Machines 53\n4.4Multi-class Classification (Multinomial Regression) 55\n4.5Regularization with SVM 55\n4.6Linear Classification in Python Programming 56\n5 Exploring “Data Science” via",
+      "[NEIGHBOUR from source_52.pdf]\nunsupervised, deep learning, and reinforcement learning as a foun-\ndation for further study or independent work in ML, AI, and data\nscience. Topics include linear models for classification and regress"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are somewhat relevant to the learning objective of parallel processing in neural network training. Chunk 2 mentions parallel processing capability, which is tangentially related, but does not specifically discuss parallel processing in neural networks. Chunk 5 is completely unrelated, discussing unsupervised learning and other topics. Chunk 1 briefly mentions neural networks and training but does not focus on parallel processing. Therefore, the chunks are only partially relevant.\n\nThe chunks provide some useful information about neural networks and training but lack specific details on parallel processing. Chunk 2 hints at parallel processing but does not explain how it applies to neural networks. There is insufficient detail to generate a comprehensive exam question. Thus, the sufficiency score is low.\n\nNoise is moderate. Chunk 2 and 5 contain irrelevant information, while Chunk 1 has some useful content but also includes general information about neural networks that is not directly related to parallel processing.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "How does the parallel processing capability of artificial neural networks contribute to their ability to handle incomplete data during training?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be answered using the provided context, specifically the part about parallel processing and handling incomplete data. It does not require any additional knowledge beyond what is given.\n- CLARITY: The question is clear and unambiguous. It asks for a specific aspect of artificial neural networks' capabilities, which can be understood without confusion.\n- DIFFICULTY_ALIGNMENT: The question requires explaining how parallel processing relates to handling incomplete data, which involves a conceptual understanding rather than just recalling facts. This aligns well with the medium difficulty level.\n- TYPE_ALIGNMENT: The question asks for an explanation of how parallel processing contributes to handling incomplete data, which fits the conceptual type perfectly.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The parallel processing capability of artificial neural networks allows them to distribute computational tasks across multiple nodes, which enhances their robustness against missing data during training. This distributed processing means that if some parts of the network fail or lose data, the overall system can still function effectively, as it relies on the collective input from all nodes. Consequently, this architecture enables ANNs to produce meaningful outputs even when trained on incomplete datasets, making them particularly suitable for scenarios where data integrity cannot be guaranteed.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "Correctness: The answer is largely correct, aligning with the idea that parallel processing in ANNs can enhance robustness against missing data. However, it slightly overstates the role of parallel processing by suggesting it directly handles incomplete data, which is more about the network's architecture and training process rather than the parallel processing itself.\n\nCompleteness: The answer covers the key points needed to address the question, including the concept of parallel processing and its impact on handling incomplete data. It could be more detailed by explaining how the distributed nature of the network contributes to this capability.\n\nGroundedness: The answer is mostly grounded in the provided context, focusing on the parallel processing aspect of ANNs. It does not introduce any significant information not present in the context, though it does not explicitly reference the specific source material.\n\nAcademic Tone: The language used is appropriate for university-level writing, using precise and academic prose. The answer is well-structured and avoids casual language or bullet points.",
+    "parse_status": "ok"
+  }
+}

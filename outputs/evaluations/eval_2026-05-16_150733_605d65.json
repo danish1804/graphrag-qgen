@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_150733_605d65",
+  "timestamp": "2026-05-16T15:07:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Database backup and recovery for model checkpoints",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nof the logging and recovery technology.\n[2] is an earlier, more concise description of transaction-processing technol­\nogy. [7] is a recent treatment of recovery.\nTwo early surveys, [1] and [6] both r",
+      "[SEED from source_49.pdf]\nterdam, pp. 799-807.\n2. P. A. Bernstein, V. Hadzilacos, and N. Goodman, Concurrency Control  \nand Recovery in Database Systems,  Addison-Wesley, Reading MA, 1987.\n3. J. N. Gray, “Notes on database ope",
+      "[SEED from source_49.pdf]\nitriou, “Analysis of serializability in SDD-1: a system of distributed data­\nbases (the fully redundant case),” IEEE Trans, on Software Engineering  \nSE-4:3 (1978), pp. 154-168.\n3. P. A. Bernstein, V.",
+      "[NEIGHBOUR from source_49.pdf]\ninformation about database research. Database vendor web sites (see the Tools section\nabove) provide details about their respective products.\nBibliography\n[Abadi et al. (2016)] D. Abadi, R. Agrawal, A",
+      "[NEIGHBOUR from source_49.pdf]\nBibliography\n[Bernstein and Newcomer (2009)] P. A. Bernstein and E. Newcomer, Principles of Transaction\nProcessing , 2nd edition, Morgan Kaufmann (2009).\n[Eswaran et al. (1976)] K. P. Eswaran, J. N. G"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not contain any direct information about database backup and recovery for model checkpoints. Instead, they discuss general database technologies, references, and bibliographies. This makes the chunks largely unrelated to the specific learning objective.\n\nThere is insufficient information to generate a good exam question on database backup and recovery for model checkpoints. The chunks do not mention any relevant concepts such as backup strategies, recovery processes, or model checkpoints.\n\nThe chunks are filled with references and bibliographic information, which can be considered noise when trying to assess the relevance to the learning objective. There is no clear, direct, or useful content related to the objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following references provides a more comprehensive and detailed description of recovery and concurrency control compared to the earlier work by P. A. Bernstein, N. Goodman, and V. Hadzilacos?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, which includes references to works by P. A. Bernstein, N. Goodman, and V. Hadzilacos, as well as other relevant works. Therefore, it is completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks for a comparison between a specific reference and earlier work, which is straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires an understanding of the content of the references and the ability to compare them, which aligns with the medium difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for a comparison between two sets of work, which fits well with the conceptual type requested.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage\" explicitly and can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The reference by P. A. Bernstein, V. Hadzilacos, and N. Goodman, \"Concurrency Control and Recovery in Database Systems\" (1987), offers a more comprehensive and detailed description of recovery and concurrency control compared to the earlier work by P. A. Bernstein, N. Goodman, and V. Hadzilacos. This later publication, published by Addison-Wesley in Reading, MA, builds upon and expands the foundational work laid out in the 1983 IFIP Congress proceedings by the same authors. The 1987 book provides a deeper exploration of the subject matter, likely incorporating advancements and further research that occurred between these two works, thus offering a more extensive treatment of the topics.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "- CORRECTNESS: The answer is mostly correct. It identifies the 1987 book by Bernstein, Hadzilacos, and Goodman as providing a more comprehensive and detailed description of recovery and concurrency control compared to their earlier work. However, it incorrectly states that the earlier work was from the 1983 IFIP Congress proceedings, which is not mentioned in the context. The context only mentions an earlier survey by the same authors, not a specific conference paper.\n- COMPLETENESS: The answer covers the key points needed to address the question, identifying the more recent and comprehensive work. It does not, however, mention the earlier work by the same authors, which would have been relevant to the comparison.\n- GROUNDEDNESS: The answer is largely grounded in the source context, mentioning the 1987 book by Bernstein, Hadzilacos, and Goodman. However, it introduces the incorrect detail about the earlier work being from the 1983 IFIP Congress proceedings, which is not supported by the given context.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing, presenting the information in a precise and academic manner without any casual elements.",
+    "parse_status": "ok"
+  }
+}

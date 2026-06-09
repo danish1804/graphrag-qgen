@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_192509_aea1e5",
+  "timestamp": "2026-05-16T19:25:09",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Code review for performance critical software",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nSystems J., 15(3), 182–211.\nFagan, M. E. (1986). ‘Advances in Software Inspecti ons’. IEEE Trans. on Software Eng., SE-12 (7),\n744–51.\nGilb, T. and Graham, D. (1993). Software Inspection . Wokingham:",
+      "[SEED from source_22.pdf]\nFitzpatrick, B. W., 204, 704\nFogel, K., 202\nFowler, M., 251, 259\nG\nGalin, D., 678\nGamma, E., 155, 175, 190, 191, 202, 204, 432, 433, 450\nGarfinkel, S., 382, 392\nGarlan, D., 152, 156, 171, 173, 175, 44",
+      "[SEED from source_22.pdf]\nR E F E R E N C E S\nAdams, E. N. (1984). ‘Optimizing preventative servi ce of software products’. IBM J. Res & Dev.,\n28(1), 2–14.\nBerghel, H. (2001). ‘The Code Red Worm’. Comm. ACM, 44(12), 15–19.\nBoe",
+      "[NEIGHBOUR from source_22.pdf]\nto objectively demonstrate that this is the case. T o test this hypothesis, you need fail-\nure data for a large number of components and acces s to the component source code\nfor analysis. Very few com",
+      "[NEIGHBOUR from source_22.pdf]\n4.Computer misuse You should not use your technical skills to misuse other\npeople’s computers. Computer misuse ranges from rel atively trivial (game playing\non an employer’s machine, say) to extremely"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Code review for performance critical software.\" Instead, they contain references to various authors and publications related to software inspections, computer misuse, and other topics. While these may be tangentially related, they do not provide specific information about code review processes or techniques for performance-critical software.\n\nThere is insufficient information in the chunks to generate a good exam question on the given learning objective. The references and names mentioned do not offer concrete details about code review practices or performance optimization strategies.\n\nThe chunks are filled with references to authors and publications, which can be considered noise. There is very little usable content directly related to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following references discusses the Code Red Worm in detail, and what is the main focus of the article according to the provided context?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using only the source context, which provides a reference to Berghel's article on the Code Red Worm. This meets the criteria for being completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks for a specific reference and the main focus of the article, which are both straightforward and easily understood.\n- DIFFICULTY_ALIGNMENT: The question is appropriate for a medium difficulty level as it requires understanding the context and identifying the relevant information, but does not require deep analysis or synthesis of concepts.\n- TYPE_ALIGNMENT: The question is clearly a conceptual one, asking for an explanation of the main focus of the article, which aligns with the request for a conceptual question.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage\" explicitly and can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The reference that discusses the Code Red Worm in detail is Berghel (2001). According to the provided context, Berghel's article focuses on analyzing the Code Red Worm, providing insights into its nature, impact, and the broader implications for cybersecurity and software engineering practices.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer correctly identifies Berghel (2001) as the reference discussing the Code Red Worm. However, it incorrectly states that the article provides insights into the nature, impact, and broader implications for cybersecurity and software engineering practices based on the given context. The context only mentions the title and does not provide such detailed information about the content of the article.\n- COMPLETENESS: The answer covers the main point by identifying the correct reference and mentioning the focus of the article. It could be more detailed by specifying the exact focus (e.g., analyzing the Code Red Worm).\n- GROUNDEDNESS: The answer is entirely grounded in the provided context, as it does not introduce any additional information not present in the sources.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing, though it could be more precise and formal. The use of periods instead of commas in some places is slightly informal but does not significantly impact the academic tone.",
+    "parse_status": "ok"
+  }
+}

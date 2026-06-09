@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131111_5c6c79",
+  "timestamp": "2026-05-16T13:11:11",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Transaction management and concurrency",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_13.pdf]\nChapter 5:  Advanced Data Modeling  161\nChapter 6:  Normalization of Database Tables  190\nPART III:  Advanced Design and Implementation\nChapter 7:  Introduction to Structured Query Language (SQL)  236",
+      "[SEED from source_13.pdf]\n15DATABASE \nADMINISTRATIONVIPARTBecause \tdatabase \tdesign\tis\taffected\tby\treal-world \ttransactions, \tthe\tway\tdata\tare\tdistributed, \tand\tever-increasing \tinfor-\nmation requirements, we examine major dat",
+      "[NEIGHBOUR from source_49.pdf]\nproducts specializing in transaction management, such as Encina  (a product\nof the Transarc company) and Tuxedo  (from Unix Systems, originally at&t ),\nwhich provide the tm component.\nThe main charact"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss transaction management or concurrency, which are central to the learning objective. Chunk 1 only lists chapter titles without any content related to transaction management or concurrency. Chunk 2 starts to touch on the topic by mentioning real-world transactions and data distribution, but it does not explicitly cover transaction management or concurrency. Chunk 3 briefly mentions products related to transaction management but does not provide any substantive information about the concept itself. Therefore, the chunks are not directly relevant to the learning objective.\n\nFor SUFFICIENCY, the chunks lack specific details about transaction management and concurrency. They do not provide enough information to generate a meaningful exam question. Chunk 2 hints at the importance of transactions but does not explain the concept in detail. Chunk 3 mentions transaction management products but does not offer any explanation or examples that would be necessary for a good exam question. Thus, the chunks are insufficient for the purpose.\n\nFor NOISE, all chunks contain some relevant content, but they are mostly filled with general information or tangential details that do not directly address the learning objective. Chunk 1 is purely a list of chapter titles, while Chunk 2 and Chunk 3 contain some useful information but also include a lot of extraneous details. Therefore, the chunks have moderate noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the X/Open DTP standard specify about the role of the transaction manager (TM) in a distributed transaction processing system?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The generated question does not align with the provided source context. The source context discusses database administration, data distribution, and information requirements, but does not mention the X/Open DTP standard or transaction managers. Therefore, this question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous. It asks specifically about the role of the transaction manager in a distributed transaction processing system according to the X/Open DTP standard.\n- DIFFICULTY_ALIGNMENT: The difficulty level requested is \"easy,\" which aligns with the type of question that would require basic recall or understanding of a specific term or concept. However, the question itself introduces a term (X/Open DTP standard) that may not be familiar to students, making it slightly more challenging than purely recall-based questions.\n- TYPE_ALIGNMENT: The question type requested is \"recall,\" which fits well with the nature of the question asking to state the role of the transaction manager. However, the introduction of the X/Open DTP standard might imply a need for a bit more conceptual understanding.\n- STANDALONE_QUALITY: The question stands on its own and does not reference any specific part of the provided context, making it a genuine exam question a student could see.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The X/Open DTP standard specifies that the transaction manager (TM) plays a central role by concentrating all protocol control functions, while passively activating remote resource managers (RMs) through a library of remotely callable primitives, thereby facilitating distributed transaction processing.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 1.5,
+    "reasoning": "- CORRECTNESS: The answer is incorrect because it does not mention the X/Open DTP standard or any specific role of the transaction manager (TM) related to this standard. The generated answer seems to describe a general function of a transaction manager in distributed systems, which is not aligned with the question asked.\n- COMPLETENESS: The answer is incomplete as it does not address the specific role of the transaction manager in the context of the X/Open DTP standard. It lacks the necessary information to fully answer the question.\n- GROUNDEDNESS: The answer is not grounded in the source context provided. There is no reference to the X/Open DTP standard or any specific role of the transaction manager within this standard.\n- ACADEMIC_TONE: The language used in the answer is appropriate for university-level writing, though it could be more precise and directly related to the question. The answer is presented in a coherent manner without bullet points or casual language.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_192323_bd7e72",
+  "timestamp": "2026-05-16T19:23:23",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Version control for firmware and embedded code",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\n8(3), 231–74.\nKircher, M. and Jain, P . (2004). Pattern-Oriented Software Architecture Volume 3: Pa tterns for\nResource Management . New York: John Wiley & Sons.\nMassol, V. (2003). JUnit in Action . G",
+      "[SEED from source_22.pdf]\nPfleeger, S. L., 303, 308, 367, 371, 392, 406, 421\nPilato, C., 196, 204, 691, 704\nPlakosh, D., 257\nPoole, C., 61, 81, 240, 259\nPooley, R., 107, 117, 143\nPope, A., 454, 478, 483, 507\nPrice, A., 670, 67",
+      "[SEED from source_22.pdf]\nPeach, R. W. (1996). The ISO 9000 Handbook, 3rd edition . New York: Irwin Professional Pub.\nPilato, C. M., Collins-Sussman, B. and Fitzpatrick,  B. W. (2004). Version Control with Subversion .\nSebasto",
+      "[NEIGHBOUR from source_22.pdf]\nsource code of a software system is published and v olunteers are invited to partici-\npate in the development process (Raymond, 2001). It s roots are in the Free Software\nFoundation (http://www.fsf.or",
+      "[NEIGHBOUR from source_22.pdf]\nSOFTWARE ENGINEERING\nNinth Edition\nIan Sommerville\nAddison-Wesley\nBoston Columbus Indianapolis New York San Francisco Uppe r Saddle River\nAmsterdam Cape Town Dubai London Madrid Milan Munich Paris Mon"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly address version control for firmware and embedded code. Instead, they contain references to various authors and books that discuss software architecture, testing, and general software engineering practices. While these topics might be related to broader software development, they do not specifically cover version control for firmware and embedded code.\n\nThere is insufficient information in the chunks to generate a good exam question on the given learning objective. The chunks lack specific details about version control systems, workflows, or best practices for managing firmware and embedded code versions.\n\nThe chunks are mostly noise, containing many references to authors and book titles without providing any substantive information about version control for firmware and embedded code.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which author is associated with both \"Version Control with Subversion\" and the concept of the \"Cathedral and the Bazaar\"?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The question cannot be fully answered using only the provided source context. While \"Version Control with Subversion\" is mentioned in the generated text, the reference to \"Cathedral and the Bazaar\" is not present in the given sources. This requires additional knowledge about the concept of \"Cathedral and the Bazaar,\" which is typically attributed to Eric S. Raymond.\n- CLARITY: The question is clear and unambiguous. It asks for specific authors associated with two distinct concepts, which can be understood without confusion.\n- DIFFICULTY_ALIGNMENT: The difficulty level is medium because it requires understanding and linking two concepts from different sources, which involves a moderate level of conceptual understanding rather than simple recall.\n- TYPE_ALIGNMENT: The question is conceptual as it requires explaining the association between authors and concepts, which involves understanding and comparing the roles of different authors in software development practices.\n- STANDALONE_QUALITY: The question is self-contained and does not reference the context or passage directly. However, it implicitly depends on external knowledge that is not provided in the given sources.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The concept of the \"Cathedral and the Bazaar\" is associated with Eric S. Raymond, as evidenced by his publication in 2001. Additionally, Brian W. Fitzpatrick is linked to the book \"Version Control with Subversion,\" co-authored with Collins-Sussman and Pilato. Therefore, Eric S. Raymond is the author associated with both the concept of the \"Cathedral and the Bazaar\" and the book \"Version Control with Subversion.\"",
+    "scores": {
+      "correctness": 3,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 3.5,
+    "reasoning": "- CORRECTNESS: The answer correctly identifies Eric S. Raymond as the author of the concept \"Cathedral and the Bazaar.\" However, it incorrectly states that Brian W. Fitzpatrick is the author of \"Version Control with Subversion.\" The correct authors are Pilato, Collins-Sussman, and Fitzpatrick.\n- COMPLETENESS: The answer covers the key points of the question but fails to mention that Eric S. Raymond is also the author of \"Version Control with Subversion,\" which would have been a relevant detail.\n- GROUNDEDNESS: The answer is mostly grounded in the provided context but contains an error regarding the authorship of \"Version Control with Subversion.\"\n- ACADEMIC_TONE: The answer is presented in a straightforward manner without any bullet points, which is appropriate for university-level writing.",
+    "parse_status": "ok"
+  }
+}

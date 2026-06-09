@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_192136_a7fecd",
+  "timestamp": "2026-05-16T19:21:36",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Testing strategies for hardware software interfaces",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nComputer ,21(5), 61–72.\nBudgen, D. (2003). Software Design (2nd Edition) . Harlow, UK.: Addison-Wesley.\nKrutchen, P . (2003). The Rational Unified Process—An Introduction (3rd E dition) . Reading, MA:",
+      "[SEED from source_22.pdf]\n(2004). ‘Agile Software Development in Large Organi zations’. IEEE Computer, 37(12), 26–34.\nMartin, J. (1981). Application Development Without Programmers. Englewood Cliffs, NJ: \nPrentice-Hall.\nMassol",
+      "[SEED from source_22.pdf]\nscenario testing’. Software Testing and Quality Engineering , 5(5), 16–22.\nLutz, R. R. (1993). ‘Analyzing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE’93, San Diego, Calif.:",
+      "[NEIGHBOUR from source_22.pdf]\n8(3), 231–74.\nKircher, M. and Jain, P . (2004). Pattern-Oriented Software Architecture Volume 3: Pa tterns for\nResource Management . New York: John Wiley & Sons.\nMassol, V. (2003). JUnit in Action . G",
+      "[NEIGHBOUR from source_47.pdf]\nones.\n(c) No editing in the first round(s), when ideas are being suggested.\nEditing happens after all ideas have been suggested.\n(d)Student Question: Is brainstorming always top-down then?\nInstructor"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not contain any direct references to testing strategies for hardware-software interfaces. Instead, they discuss various aspects of software development, design, and testing methodologies that are tangentially related but not directly focused on the specific learning objective. Therefore, the chunks are largely unrelated to the objective.\n\nFor sufficiency, the chunks provide information on software development practices, but none of them specifically address testing strategies for hardware-software interfaces. Thus, there is insufficient information to generate a good exam question on the given learning objective.\n\nNoise is high because the chunks contain information on software development books, articles, and patterns that are not directly related to the testing strategies for hardware-software interfaces. There is a lot of extraneous information that does not contribute to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which book, published in 2003, focuses on the use of JUnit in software development and is associated with the locations Greenwich, Connecticut?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "- FAITHFULNESS: The question can be answered using only the source context provided. The book \"JUnit in Action\" by Massol, published in 2003, fits the criteria of focusing on JUnit usage and being published in 2003. However, the location \"Greenwich, Connecticut\" is not mentioned in the given context, making this part of the question incorrect based on the provided sources.\n- CLARITY: The question is clear and unambiguous. It asks for a specific book that meets certain criteria, which can be understood without confusion.\n- DIFFICULTY_ALIGNMENT: The question is at a medium difficulty level as it requires understanding the context and identifying the correct book, but it does not require deep analysis or application beyond basic comprehension.\n- TYPE_ALIGNMENT: The question is conceptual as it requires explaining which book fits the given criteria rather than applying the concepts in a new scenario.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage directly. It can be understood and answered without needing to refer back to the provided sources.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The book published in 2003 that focuses on the use of JUnit in software development and is associated with the location Greenwich, Connecticut, is \"JUnit in Action\" by Massol and Husted. This work provides detailed guidance on utilizing JUnit, a popular framework for writing repeatable tests, to enhance the quality and reliability of software applications.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.5,
+    "reasoning": "- CORRECTNESS: The answer states that the book \"JUnit in Action\" was published in 2003 and focuses on the use of JUnit in software development. However, the author's name is incorrectly given as Massol and Husted instead of just Massol. This is a factual error since the source context does not mention Husted. Therefore, the score is 3.\n- COMPLETENESS: The answer covers the key points of the publication year (2003), the focus on JUnit, and the location (Greenwich, Connecticut). It also provides additional context about JUnit, which is relevant. Thus, the score is 5.\n- GROUNDEDNESS: The answer includes information about the book title, publication year, and location, which are all directly taken from the source context. There are no hallucinations or unsupported additions. Hence, the score is 5.\n- ACADEMIC_TONE: The answer is written in a precise and academic tone, using proper sentence structure and avoiding casual language. The inclusion of additional context about JUnit is appropriate for an academic discussion. Therefore, the score is 5.",
+    "parse_status": "ok"
+  }
+}

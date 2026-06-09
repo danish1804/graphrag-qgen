@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_193144_5ade1f",
+  "timestamp": "2026-05-16T19:31:44",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Branch prediction and OS kernel performance",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Prediction 182\n3.4 Overcoming Data Haza",
+      "[SEED from source_12.pdf]\nThis page intentionally left blank\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Pred",
+      "[SEED from source_12.pdf]\nLoop unrolling is a simple but useful method for increasing the size of straight-\nline code fragments that can be scheduled effectively. This transformation is useful\nin a variety of processors, from",
+      "[NEIGHBOUR from source_38.pdf]\ncomputer architecture as did the switch to multicore. We retain the focus on theextremes in size of computing, with personal mobile devices (PMDs) such as cellphones and tablets as the clients and war",
+      "[NEIGHBOUR from source_38.pdf]\nChapter 3 covers the exploitation of instruction-level parallelism in high-\nperformance processors, including superscalar execution, branch prediction\n(including the new tagged hybrid predictors), spe"
+    ],
+    "scores": {
+      "relevance": 2,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.33,
+    "reasoning": "The chunks provided do not contain any direct information about branch prediction or OS kernel performance, which are the core elements of the learning objective. They instead discuss general topics related to computer architecture and instruction-level parallelism. While they touch on branch prediction, it is not in the context of the learning objective and is not detailed enough to form a meaningful exam question.\n\nThe chunks are somewhat relevant as they mention branch prediction, but they lack specific details necessary for a good exam question. There is insufficient information to generate a comprehensive exam question on branch prediction and OS kernel performance.\n\nThe chunks are mostly noise, as they contain many irrelevant sections such as page numbers and titles that do not contribute to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following techniques is NOT directly discussed in the context for reducing branch costs in Chapter 3?\n\nA) Advanced branch prediction\nB) Speculation\nC) Loop unrolling\nD) Dynamic scheduling",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be answered using only the information provided in the source context. The context mentions advanced branch prediction and loop unrolling as techniques related to branch costs and instruction-level parallelism. Speculation and dynamic scheduling are not mentioned in the given context, making them the correct answers.\n- CLARITY: The question is clear and unambiguous. It asks which technique is NOT discussed, and the options are straightforward.\n- DIFFICULTY_ALIGNMENT: The question requires understanding the context and identifying which technique is not mentioned, which aligns with the medium difficulty level as it involves comprehension rather than simple recall.\n- TYPE_ALIGNMENT: The question is conceptual as it requires explaining which technique is not discussed in the context, matching the requested type.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The context explicitly discusses advanced branch prediction, speculation, and dynamic scheduling as techniques for reducing branch costs in Chapter 3. Loop unrolling, while mentioned as a useful method for increasing straight-line code and improving scheduling efficiency, is not directly discussed in the context of reducing branch costs. Therefore, the correct answer is C) Loop unrolling.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer correctly identifies loop unrolling as the technique not directly discussed in the context of reducing branch costs. The source mentions advanced branch prediction and branch prediction techniques, but does not specifically discuss speculation or dynamic scheduling in the context of reducing branch costs.\n- COMPLETENESS: The answer provides a clear and concise response, covering the key point that loop unrolling is not discussed in the context of reducing branch costs. It does not need to elaborate further since the question asks for a single technique.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context, referencing the discussion on branch prediction and loop unrolling without introducing any unsupported information.\n- ACADEMIC_TONE: The answer is presented in a precise and academic manner, using appropriate language for a university-level examination.",
+    "parse_status": "ok"
+  }
+}

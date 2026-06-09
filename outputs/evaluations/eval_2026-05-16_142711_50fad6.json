@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_142711_50fad6",
+  "timestamp": "2026-05-16T14:27:11",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Pipeline hazards and resolution techniques",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_38.pdf]\nB.1 Introduction B-2\nB.2 Cache Performance B-15\nB.3 Six Basic Cache Optimizations B-22\nB.4 Virtual Memory B-40\nB.5 Protection and Examples of Virtual Memory B-49\nB.6 Fallacies and Pitfalls B-57\nB.7 Co",
+      "[SEED from source_38.pdf]\n. It was a simple matter to control pipeline hazards with five-stagepipelines, but a challenge for processors with longer pipelines that issue multipleinstructions per clock cycle. In addition, almost",
+      "[NEIGHBOUR from source_9.pdf]\nPipelining and super scalar operation: - \nWe assume that instructions are executed one after the other. Hence the value of S is \nthe total number of basic steps, or clock cycles, required t o execute"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 1
+    },
+    "overall": 2.33,
+    "reasoning": "The first chunk is completely unrelated to the learning objective of pipeline hazards and resolution techniques. It appears to be an index or table of contents from a document, which does not provide any specific information about pipeline hazards or their resolution.\n\nThe second chunk is more relevant as it discusses the challenges in controlling pipeline hazards in processors with longer pipelines. This directly relates to the learning objective by addressing the concept of pipeline hazards and the difficulties in managing them.\n\nThe third chunk is also somewhat relevant as it mentions pipelining, which is related to the broader context of pipeline operations. However, it does not specifically discuss pipeline hazards or their resolution techniques.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the \"major hurdle\" of pipelining mentioned in the context, and why is it particularly challenging for processors with longer pipelines that issue multiple instructions per clock cycle?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context. The phrase \"major hurdle\" is directly related to the statement about controlling pipeline hazards, which is present in the context.\n- CLARITY: The question is clear and unambiguous. It asks for a specific term (\"major hurdle\") and provides context for its meaning.\n- DIFFICULTY_ALIGNMENT: The question is asking for a recall of a specific term and concept, which aligns with the \"easy\" difficulty level requested.\n- TYPE_ALIGNMENT: The question is asking to recall a term, which fits the \"recall\" type perfectly.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage\" explicitly and can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The major hurdle of pipelining, as mentioned in the context, refers to pipeline hazards. These hazards become particularly challenging for processors with longer pipelines that issue multiple instructions per clock cycle because the complex interactions between instructions can lead to stalls and misalignments, thereby reducing the efficiency gains intended by pipelining.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "Correctness: The answer correctly identifies pipeline hazards as the major hurdle of pipelining and explains why longer pipelines with multiple instructions per clock cycle face more challenges. This aligns with the context provided, which mentions that controlling pipeline hazards becomes more difficult with longer pipelines. Therefore, the answer is fully correct.\n\nCompleteness: The answer covers the key points needed to address the question by identifying pipeline hazards as the major hurdle and explaining the additional challenges faced by longer pipelines. However, it could be more detailed by mentioning specific types of pipeline hazards such as data hazards, control hazards, and structural hazards, which are common issues in pipelined processors.\n\nGroundedness: The answer is entirely grounded in the provided context, which discusses the challenges of controlling pipeline hazards in pipelined processors. There are no unsupported additions or information not present in the context.\n\nAcademic Tone: The language used in the answer is precise and academic, suitable for a university-level setting. The answer is written in prose without any bullet points, maintaining an appropriate academic tone.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-15_044804_464381",
+  "timestamp": "2026-05-15T04:48:04",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Convolutional neural networks",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\nunsupervised, deep learning, and reinforcement learning as a foun-\ndation for further study or independent work in ML, AI, and data\nscience. Topics include linear models for classification and regress",
+      "[SEED from source_52.pdf]\nEx: in handwritten digit images, nearby pixels are correlat ed and give rise to local features such as edges, corners or T- junctions.\nA stroke or a digit can be seen as a combination of such primiti",
+      "[NEIGHBOUR from source_52.pdf]\n6.4Clustering in Programming 76\n7 Low-Dimensional Representation 81\n7.1Low-Dimensional Representation with Error 82\n7.2Application 1: Stylometry 84\n7.3Application 2: Eigenfaces 87\n8 n-Gram Language Mo"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 3,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "The first chunk discusses unsupervised learning, deep learning, and reinforcement learning, which are not directly related to convolutional neural networks. While these topics might be foundational for understanding machine learning, they do not specifically address CNNs. Therefore, this chunk is not relevant to the learning objective.\n\nThe second chunk provides an example of how nearby pixels in images are correlated and contribute to local features like edges and corners. This is a fundamental concept in convolutional neural networks, as it explains why local feature detection is important. However, the chunk does not provide a comprehensive overview of CNNs and lacks other important aspects such as architecture, training, and applications. Thus, while partially relevant, it is not fully sufficient.\n\nThe third chunk appears to be a table of contents or index from another document, which is completely unrelated to the learning objective of convolutional neural networks. It contains no relevant information and is highly noisy.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the advantage of weight sharing in convolutional neural networks, and how does it help in detecting features?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The question about weight sharing in convolutional neural networks and its role in feature detection is not directly addressed in the provided source context. The context discusses pixel correlation in images and local features but does not mention convolutional neural networks or weight sharing. Therefore, this question requires knowledge beyond the given context.\n- CLARITY: The question is clear and unambiguous. It asks about a specific concept (weight sharing) and its purpose (feature detection), which are common terms in machine learning.\n- DIFFICULTY_ALIGNMENT: The question is asking for a basic understanding of a concept, which aligns with the \"easy\" difficulty level. However, the concept of weight sharing in neural networks might be slightly advanced for a very basic level, making it more of a medium difficulty.\n- TYPE_ALIGNMENT: The question is asking to recall a definition or state a fact, which fits the \"recall\" type requested.\n- STANDALONE_QUALITY: The question does not reference the context explicitly but assumes the reader has some prior knowledge of neural networks, which makes it slightly dependent on the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Weight sharing in convolutional neural networks enhances feature detection by applying the same set of filters across the entire input space, which exploits the spatial redundancy in the data. This mechanism allows the network to identify consistent features such as edges or corners invariantly across different positions in the image, thereby improving the model's ability to generalize and recognize patterns effectively.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly explains that weight sharing in convolutional neural networks helps detect features by applying the same set of filters across the entire input space, which is consistent with the source context mentioning that nearby pixels are correlated and give rise to local features like edges or corners. However, the answer could be more specific about the spatial redundancy and generalization benefits, which are key aspects of weight sharing. The answer is mostly grounded in the context but does not directly reference the concept of spatial redundancy or generalization. The language used is formal and appropriate for a university setting, though it could be slightly more detailed to fully address the question.",
+    "parse_status": "ok"
+  }
+}

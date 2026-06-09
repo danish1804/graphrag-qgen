@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_191643_bc8456",
+  "timestamp": "2026-05-16T19:16:43",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Embedded systems software development",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nF U RT H E R  R E A D I N G\nSoftware Engineering for Real-Time Systems . Written from an engineering rather than a compute r\nscience perspective, this book is a good practical guide to real-time syste",
+      "[SEED from source_22.pdf]\nInInformation Processing . Ritter, G. (ed.). Amsterdam: Elsevier Science Pub lishers, 11–17.\nBrinch-Hansen, P . (1973). Operating System Principles . Englewood Cliffs, NJ: Prentice-Hall.\nBurns, A. and",
+      "[SEED from source_22.pdf]\nChapter 20 Embedded software 537\n20.1 Embedded systems design 540\n20.2 Architectural patterns 547\n20.3 Timing analysis 554\n20.4 Real-time operating systems 558\nChapter 21 Aspect-oriented software engi",
+      "[NEIGHBOUR from source_22.pdf]\neven if the code is perfect.\n3. What do we mean by selected inputs ?With a real-time system, no\ncontrol over the inputs is possible, e.g.\n(a) an avionics system in an aircraft, for which the inputs de",
+      "[NEIGHBOUR from source_22.pdf]\nThe activities in the design process vary, dependin g on the type of system being\ndeveloped. For example, real-time systems require t iming design but may not\ninclude a database so there is no databas"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Embedded systems software development.\" Instead, they discuss general software engineering topics, operating systems principles, and aspects of software engineering that are not specifically focused on embedded systems. Therefore, the relevance score is 1.\n\nWhile the chunks contain some tangentially related information, such as operating systems and real-time systems, they lack specific details about embedded systems software development. This makes it insufficient to generate a good exam question directly related to the learning objective. Hence, the sufficiency score is 1.\n\nThe chunks are mostly about general software engineering and operating systems, with only a few mentions of embedded systems-related topics. There is a significant amount of noise and irrelevant content, making the noise score 1.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is meant by \"selected inputs\" in the context of a real-time system, and provide examples from the given context to illustrate this concept.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided. The term \"selected inputs\" is directly related to real-time systems and is discussed in the given context, specifically in the neighboring text that mentions \"real-time systems require timing design but may not include a database.\"\n- CLARITY: The question is clear and unambiguous. It asks for a definition of \"selected inputs\" in the context of real-time systems and provides a straightforward request for examples.\n- DIFFICULTY_ALIGNMENT: The difficulty level is medium, as it requires understanding the concept of \"selected inputs\" and providing examples, which involves a bit of comprehension but not deep analysis.\n- TYPE_ALIGNMENT: The question is clearly a conceptual one, asking for an explanation of a term and providing examples, which fits the \"conceptual\" category well.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage\" explicitly and can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the context of a real-time system, \"selected inputs\" refers to external stimuli or data that the system must process within strict time constraints, despite having no control over when or how frequently these inputs occur. This concept is exemplified in the given context through the example of an avionics system in an aircraft, where the system must respond to the aircraft's current state, such as altitude and speed, without being able to influence these parameters. Another illustration is a system controlling trains, which must react to real-world events like sensor readings or signals, again without the ability to dictate when these events happen. These scenarios highlight the challenge of designing real-time systems to meet stringent timing requirements while accommodating unpredictable input occurrences.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "Correctness: The answer is largely correct, explaining that \"selected inputs\" refer to external stimuli that must be processed within time constraints, and it correctly identifies the lack of control over these inputs. It also provides accurate examples from the context, such as an avionics system and train control systems. However, the term \"selected inputs\" is not explicitly defined in the context, which slightly reduces its accuracy.\n\nCompleteness: The answer covers the key points needed to address the question, including the definition of \"selected inputs,\" the lack of control over them, and relevant examples. It provides two good illustrations, which are sufficient to explain the concept.\n\nGroundedness: The answer is entirely grounded in the provided context, using the exact terminology and examples given in the source material. There are no additional unsupported claims or information.\n\nAcademic Tone: The language used is precise and academic, suitable for a university-level writing. The answer is presented in a coherent paragraph without any bullet points or casual language.",
+    "parse_status": "ok"
+  }
+}

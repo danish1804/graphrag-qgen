@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_185320_4546a6",
+  "timestamp": "2026-05-16T18:53:20",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "File system choice for database storage",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_14.pdf]\ndata in a v ariety of ways \nfile-based system : an applic ation pr ogram designe d to manipula te da ta files \nExercises \n1. Discuss e ach o f the f ollowing terms: \n1. data \n2. field \n3. record \n4. f",
+      "[SEED from source_14.pdf]\n• Customer( Cust ID, CustN ame) \n• Order(OrderID, CustID , Date) \nA str ong, or iden tifying, r elationship e xists when the primar y key of the r elated en tity contains the primar y key \ncomponen t",
+      "[SEED from source_14.pdf]\nno repeating gr oups. \nTo normaliz e a r elation tha t contains a r epeating gr oup, r emo ve the r epeating gr oup and f orm t wo ne w relations. \nThe P K of the ne w relation is a c ombina tion o f",
+      "[NEIGHBOUR from source_14.pdf]\nChapter 14 D atabase U sers \nAdrienne W att 91 \nChapter 15 SQ L Structured Quer y Languag e \nAdrienne W att & N elson Eng 93 \nChapter 16 SQ L Data Manipula tion L anguag e \nAdrienne W att & N elson En",
+      "[NEIGHBOUR from source_14.pdf]\nGRO UP B Y  field( s) \nORDER B Y fields \nWe can use the SELECT  statemen t to g ener ate an emplo yee phone list fr om the Emplo yees table as f ollows: \nSELECT  FirstN ame, L astN ame, phone \nFROM Em"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss file system choices for database storage. Chunk 1 mentions data files and application programs but does not relate to file systems for databases. The other chunks are about database entities, relationships, and SQL commands, which are tangential but not directly related to the learning objective.\n\nFor SUFFICIENCY, the chunks provide minimal information that could be used to form a basic question, but they lack the necessary details about file systems and their selection criteria for database storage. Therefore, the information is insufficient to generate a comprehensive exam question.\n\nFor NOISE, most of the chunks contain irrelevant or unrelated content such as database entity definitions, SQL commands, and chapter listings. There is significant noise in the chunks.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "In the given relational schema, how many records does the file contain if each customer can have multiple orders?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 3,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 1
+    },
+    "overall": 2.2,
+    "reasoning": "- FAITHFULNESS: The question cannot be fully answered using only the provided source context. It requires additional information about the specific schema and the number of customers and their orders, which is not present in the given context.\n- CLARITY: The question is somewhat ambiguous because it does not specify the exact schema or the number of records. However, it is understandable with some clarification.\n- DIFFICULTY_ALIGNMENT: The difficulty level is slightly off target. While the concept of relationships and records is fundamental, the question itself is more about applying that knowledge rather than just recalling it.\n- TYPE_ALIGNMENT: The question is conceptual in nature, asking for an explanation of how the relationship between customers and orders affects the number of records. However, it is not a perfect fit for the \"conceptual\" category since it involves a bit of application.\n- STANDALONE_QUALITY: The question references the \"given relational schema,\" which implies that there is a context outside the provided text. Therefore, it is not entirely self-contained.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the given relational schema, the file would contain multiple records since each customer can have multiple orders. Specifically, for each customer ID, there could be one or more corresponding order records, indicating that the relationship between customers and orders is one-to-many (1:M). Therefore, the total number of records in the file would be the sum of all individual customer records along with their associated order records, reflecting the many orders that can exist for any given customer.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer is mostly correct. It correctly identifies the one-to-many relationship between customers and orders and explains that the file would contain multiple records. However, it does not explicitly mention the primary keys or the structure of the schema, which are important details for a database context.\n- COMPLETENESS: The answer covers the main idea of the relationship type but lacks specific details such as the primary keys and the structure of the schema. It does not provide a full explanation of how the records are structured.\n- GROUNDEDNESS: The answer is generally grounded in the context provided, discussing the relationship between customers and orders. However, it introduces some concepts (like the number of records) that are not directly stated in the source material.\n- ACADEMIC_TONE: The language used is appropriate for a university-level answer, using precise and formal language. The answer is presented in a coherent paragraph rather than bullet points, which is suitable for this context.",
+    "parse_status": "ok"
+  }
+}

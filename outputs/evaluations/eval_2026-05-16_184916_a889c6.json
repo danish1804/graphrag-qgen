@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_184916_a889c6",
+  "timestamp": "2026-05-16T18:49:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "File system and database storage management",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_14.pdf]\ndata in a v ariety of ways \nfile-based system : an applic ation pr ogram designe d to manipula te da ta files \nExercises \n1. Discuss e ach o f the f ollowing terms: \n1. data \n2. field \n3. record \n4. f",
+      "[SEED from source_14.pdf]\n• Customer( Cust ID, CustN ame) \n• Order(OrderID, CustID , Date) \nA str ong, or iden tifying, r elationship e xists when the primar y key of the r elated en tity contains the primar y key \ncomponen t",
+      "[SEED from source_14.pdf]\nno repeating gr oups. \nTo normaliz e a r elation tha t contains a r epeating gr oup, r emo ve the r epeating gr oup and f orm t wo ne w relations. \nThe P K of the ne w relation is a c ombina tion o f",
+      "[NEIGHBOUR from source_14.pdf]\nChapter 14 D atabase U sers \nAdrienne W att 91 \nChapter 15 SQ L Structured Quer y Languag e \nAdrienne W att & N elson Eng 93 \nChapter 16 SQ L Data Manipula tion L anguag e \nAdrienne W att & N elson En",
+      "[NEIGHBOUR from source_14.pdf]\nGRO UP B Y  field( s) \nORDER B Y fields \nWe can use the SELECT  statemen t to g ener ate an emplo yee phone list fr om the Emplo yees table as f ollows: \nSELECT  FirstN ame, L astN ame, phone \nFROM Em"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss file system or database storage management. Chunk 1 mentions data files and application programs, which are tangentially related but not specific to storage management. The other chunks are about database normalization and relationships, which are more specific to database management rather than file system management.\n\nFor SUFFICIENCY, the chunks provide minimal information that could be used to generate a question, but they lack the necessary details. There is no discussion of file systems, storage mechanisms, or management practices that would be expected in a question about file system and database storage management.\n\nFor NOISE, the chunks contain significant irrelevant content. Chunk 1 includes exercises and definitions that are not directly related to the learning objective. The other chunks are about database normalization and relationships, which are somewhat related but not directly about file system management.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "In the given relational schema, how many records does the file contain if we consider the `Customer` and `Order` entities together?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The question cannot be fully answered using only the provided context. It requires additional information about the actual data contained within the `Customer` and `Order` entities, which is not present in the given context. Therefore, it scores 1.\n- CLARITY: The question is clear and unambiguous, asking for the number of records in the combined `Customer` and `Order` entities. It is well-phrased and easy to understand. Thus, it scores 5.\n- DIFFICULTY_ALIGNMENT: The question asks for a simple count of records, which is a basic understanding task rather than requiring deeper conceptual knowledge or analysis. However, since the difficulty level requested is medium, this question slightly undermatches the requested difficulty. It scores 3.\n- TYPE_ALIGNMENT: The question asks for a straightforward count of records, which aligns with a recall/basic understanding type rather than a conceptual or application type. Given the request for a conceptual question, this score is 3.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context and can stand alone as a typical exam question. It scores 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the given relational schema, the file contains two records when considering both the `Customer` and `Order` entities together. The `Customer` entity has one record with attributes `Cust ID` and `CustName`, while the `Order` entity also has one record with attributes `OrderID`, `CustID`, and `Date`. Since each entity represents a separate record, the total number of records in the file is two.",
+    "scores": {
+      "correctness": 2,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 3.25,
+    "reasoning": "- CORRECTNESS: The answer suggests there are two records, which is incorrect based on the given context. The `Customer` entity has one record, and the `Order` entity also has one record, but they are separate entities, not combined into one record. Therefore, the answer should state that there are two separate records, not two combined records.\n- COMPLETENESS: The answer covers the main idea by stating there are two records, but it does not explain why these are considered separate records. It could be more complete by explaining that the `Customer` and `Order` entities are distinct and thus count as separate records.\n- GROUNDEDNESS: The answer does not introduce any new information not present in the context. However, it does not directly reference the context to explain why the `Customer` and `Order` entities are separate records.\n- ACADEMIC_TONE: The answer is presented in a straightforward manner without using bullet points or informal language, which is appropriate for university-level writing.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_184736_728e36",
+  "timestamp": "2026-05-16T18:47:36",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Transaction management and process synchronisation",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\ncontrol and recovery issues. [Bernstein and Newcomer (2009)] provides textbook cov-\nerage of various aspects of transaction processing.\nThe concept of serializability was formalized by [Eswaran et al.",
+      "[SEED from source_8.pdf]\nBibliography\n[Bernstein and Newcomer (2009)] P. A. Bernstein and E. Newcomer, Principles of Transaction\nProcessing , 2nd edition, Morgan Kaufmann (2009).\n[Eswaran et al. (1976)] K. P. Eswaran, J. N. G",
+      "[SEED from source_8.pdf]\nprotocol does not guarantee serializability.\nFurther Reading\n[Gray and Reuter (1993)] provides detailed textbook coverage of transaction-\nprocessing concepts, including concurrenc y-control concepts a",
+      "[NEIGHBOUR from source_36.pdf]\n344 Chapter 9\nT echnology of a database server\nthe presentation of concurrency control we have followed an organization\nvery close to that of Vossen [ 90]. Concurrency control and reliability are\nhand",
+      "[NEIGHBOUR from source_36.pdf]\nstudied more widely in the texts by Brodie and Stonebraker [ 11] and Kim [ 52]\nand in the articles by Bernstein [ 9] and Sheth and Larson [ 76].\n10.10 Exercises\nExercise 10.1 Consider the database:\nPR"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss transaction management or process synchronization. They instead focus on related topics such as serializability, concurrency control, and bibliographic references. This makes the chunks only partially relevant to the learning objective.\n\nFor SUFFICIENCY, while the chunks mention concepts like serializability and concurrency control, they do not provide specific details about transaction management or process synchronization. Therefore, there is insufficient information to generate a good exam question on the learning objective.\n\nFor NOISE, the chunks contain mostly relevant content but are heavily laden with bibliographic references and general information about textbooks and authors. This adds significant noise to the chunks, reducing their clarity and usefulness.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following protocols does not guarantee serializability according to the context provided? Explain your answer.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the context provided, specifically the statement that \"the protocol does not guarantee serializability.\" This information is directly from the source material, so it meets the criteria for being completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks which protocol does not guarantee serializability and requests an explanation, which is straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The difficulty level is set to medium, which aligns with the requirement to explain the concept rather than just recalling it. The question involves understanding the concept of serializability and identifying the relevant protocol, which fits the medium difficulty level.\n- TYPE_ALIGNMENT: The question type is conceptual, asking for an explanation of why a specific protocol does not guarantee serializability. This matches the request for a conceptual question.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage,\" making it a standalone exam question that a student could see without needing to refer back to the original text.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The two-phase locking protocol does not guarantee serializability according to the context provided. This conclusion is drawn from the statement that \"the two-phase locking protocol was introduced by [Eswaran et al. (1976)]\" alongside the information that \"[a] protocol does not guarantee serializability,\" which directly links the two-phase locking protocol to this lack of guarantee.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 1.5,
+    "reasoning": "- CORRECTNESS: The answer is incorrect because the context does not mention the two-phase locking protocol. It only mentions [Eswaran et al. (1976)] without specifying the protocol. The context also states that \"a protocol does not guarantee serializability,\" but it does not specify which protocol. Therefore, the answer cannot be fully correct based on the given information.\n- COMPLETENESS: The answer is incomplete because it does not provide any specific protocol that does not guarantee serializability. The context suggests that some protocol does not guarantee serializability, but it does not name it.\n- GROUNDEDNESS: The answer is not grounded in the source context because it introduces the two-phase locking protocol, which is not mentioned in the provided context. The context does not provide enough information to identify a specific protocol that does not guarantee serializability.\n- ACADEMIC_TONE: The answer is acceptable but inconsistent. It uses a sentence structure appropriate for academic writing but could be more precise and formal.",
+    "parse_status": "ok"
+  }
+}

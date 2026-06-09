@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_180848_94fd6e",
+  "timestamp": "2026-05-16T18:08:48",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Software design patterns for neural network systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nBuschmann, F., Meunier, R., Rohnert, H. and Sommerl ad, P . (1996). Pattern-oriented Software\nArchitecture Volume 1: A System of Patterns. New Yo rk: John Wiley & Sons.\nChapter 6IExercises 175\nClement",
+      "[SEED from source_22.pdf]\nProwell, S. J., Trammell, C. J., Linger, R. C. and Poore, J. H. (1999). Cleanroom Software Engineering:\nTechnology and Process . Reading, Mass.: Addison-Wesley.\nWhittaker, J. W. (2002). How to Break S",
+      "[SEED from source_22.pdf]\nby static analysis methods’. Proc. IEEE Conf. on Dependable Systems and Networks  (DSN’2003) , \nSan Francisco, Calif.: IEEE Computer Society, 75–9.\nPfleeger, C. P . and Pfleeger, S. L. (2007). Securit",
+      "[NEIGHBOUR from source_22.pdf]\nrequired.\n6.3 Architectural patterns\nThe idea of patterns as a way of presenting, sharin g, and reusing knowledge about\nsoftware systems is now widely used. The trigger fo r this was the publication o",
+      "[NEIGHBOUR from source_22.pdf]\nCohn, M., 59, 80, 631, 647\nColeman, A., 24\nColeman, D., 247, 259\nCollins-Sussman, B., 204, 704\nColyer, A., 566, 567, 584, 589Connaughton, C., 678\nConradi, R., 729\nConstantinos, C., 586, 589\nCooling, J"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided are primarily bibliographic references and do not contain any substantive information about software design patterns for neural network systems. They are mostly unrelated to the learning objective, with only one chunk (Chunk 4) hinting at the concept of architectural patterns, which is tangentially related but does not provide specific details about neural network systems.\n\nFor relevance, the chunks score very low as they do not contain any direct information about software design patterns for neural networks. For sufficiency, the chunks are insufficient as they lack any specific details or examples that would be necessary to generate a meaningful exam question. Finally, the chunks have high noise as they are filled with bibliographic information and do not contain any relevant content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which book, published in 2004, focuses on organizational patterns in agile software development?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The question asks about a book published in 2004 that focuses on organizational patterns in agile software development. However, none of the provided sources mention any books published in 2004 or focus on organizational patterns in agile software development. Therefore, the question cannot be fully answered using only the given context, making it a 1 out of 5.\n- CLARITY: The question is clear and unambiguous, asking for a specific book with defined criteria. It is phrased precisely, making it a 5 out of 5.\n- DIFFICULTY_ALIGNMENT: The difficulty level requested is medium, which would require explaining or comparing concepts. However, the question is more about recalling specific details rather than explaining or comparing them. This makes it slightly off-target, earning a 3 out of 5.\n- TYPE_ALIGNMENT: The question type requested is conceptual, which would involve explaining or comparing concepts. However, the question is more about recalling specific details, making it an ambiguous fit, thus earning a 3 out of 5.\n- STANDALONE_QUALITY: The question does not reference the context or passage directly but can stand alone as a genuine exam question. This earns a 5 out of 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The book published in 2004 that focuses on organizational patterns in agile software development is \"Organizational Patterns of Agile Software Development\" by Coplien and Harrison. This work delves into the organizational aspects of agile software development, providing patterns that can be applied to improve the structure and efficiency of software development teams and processes.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 1.5,
+    "reasoning": "- CORRECTNESS: The generated answer incorrectly identifies the book \"Organizational Patterns of Agile Software Development\" by Coplien and Harrison as being published in 2004. However, there is no mention of this specific book in the provided context. The closest reference is to Buschmann et al.'s book on software architecture patterns, which does not match the criteria of focusing on organizational patterns in agile software development. Therefore, the answer is incorrect.\n- COMPLETENESS: The answer attempts to address the question but fails to provide the title of the book, authors, or year of publication, which are essential details. It also introduces information not related to the question, such as the names of authors and their contributions, which are not relevant to answering the specific question asked.\n- GROUNDEDNESS: The answer contains significant information not present in the context, specifically the title and authors of the book it mentions. Additionally, it introduces the names of authors and their contributions, which are not mentioned in the given context.\n- ACADEMIC_TONE: The answer uses a formal tone appropriate for university-level writing, but it includes unnecessary details and introduces information not found in the context, which detracts from its academic quality.",
+    "parse_status": "ok"
+  }
+}

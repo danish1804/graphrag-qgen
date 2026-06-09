@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_205433_76d7fb",
+  "timestamp": "2026-05-16T20:54:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Testing strategies from unit tests to system integration and hardware validation",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=software_engineering]\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Prediction 182\n3.4 Overcoming Data Haza",
+      "[NEIGHBOUR from source_38.pdf domain=software_engineering]\nChapter 3 covers the exploitation of instruction-level parallelism in high-\nperformance processors, including superscalar execution, branch prediction\n(including the new tagged hybrid predictors), spe",
+      "[NEIGHBOUR from source_38.pdf domain=software_engineering]\ncomputer architecture as did the switch to multicore. We retain the focus on theextremes in size of computing, with personal mobile devices (PMDs) such as cellphones and tablets as the clients and war"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly relate to testing strategies from unit tests to system integration and hardware validation. Instead, they discuss concepts related to instruction-level parallelism and compiler techniques, which are more aligned with software and computer architecture topics. Therefore, the chunks are largely unrelated to the learning objective.\n\nThere is insufficient information to generate a good exam question on testing strategies. The chunks contain technical details about processor architectures and compiler techniques that do not provide the necessary context or specific testing methodologies required for the learning objective.\n\nThe chunks are moderately noisy, containing some relevant technical terms but also including unrelated information such as the switch to multicore and the focus on computing extremes, which do not contribute to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes the purpose of verification in software testing according to the provided context?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The generated question asks about the purpose of verification in software testing, which is not related to the provided context that discusses instruction-level parallelism, branch prediction, and other computer architecture concepts. Therefore, the question cannot be fully answered using only the given context, making it unfaithful to the source material.\n\nThe question is also unclear because it introduces a concept (verification in software testing) that is not present in the provided context. This ambiguity makes it difficult for students to understand what is being asked without additional information.\n\nThe difficulty level requested is \"hard,\" but the question does not require any application or analysis of the provided content. Instead, it requires knowledge of software testing concepts, which is not aligned with the context provided.\n\nThe question type requested is \"application,\" but the question is more of a recall or conceptual type since it asks for a definition rather than an application or analysis of the provided information.\n\nThe question references the context by mentioning \"the context\" or \"the passage,\" which makes it dependent on the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The purpose of verification in software testing, according to the provided context, is to ensure that the software correctly implements a specific function. This aligns with the definition given that verification refers to the set of activities aimed at ensuring that software correctly implements a specific function, exemplified by the statement \"Are we building the product right?\" Verification activities typically occur during the development process and involve checking the correctness of individual units or components against the specified requirements. For instance, during the early stages of software development, developers might verify that each unit of code functions as intended before integrating them into the larger system. This ensures that the final product meets the technical specifications and functions without errors, laying a solid foundation for further testing phases such as integration and acceptance testing.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 5
+    },
+    "overall": 2.0,
+    "reasoning": "- CORRECTNESS: The answer is incorrect because it does not relate to the provided context. The context discusses instruction-level parallelism, branch prediction, and computer architecture, not software testing or verification. There is no mention of verification in the given text.\n- COMPLETENESS: The answer is incomplete as it does not address the actual content of the context provided. It fails to discuss any of the topics related to instruction-level parallelism or branch prediction, which are the main subjects of the context.\n- GROUNDEDNESS: The answer is not grounded in the source context as it introduces concepts unrelated to the provided material. The context does not contain any information about verification in software testing.\n- ACADEMIC_TONE: The language used in the answer is appropriate for university-level writing, with proper sentence structure and formal tone. However, the content is irrelevant to the context provided.",
+    "parse_status": "ok"
+  }
+}

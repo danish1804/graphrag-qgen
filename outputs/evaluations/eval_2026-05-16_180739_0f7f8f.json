@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_180739_0f7f8f",
+  "timestamp": "2026-05-16T18:07:39",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Version control for machine learning experiments",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\n8(3), 231–74.\nKircher, M. and Jain, P . (2004). Pattern-Oriented Software Architecture Volume 3: Pa tterns for\nResource Management . New York: John Wiley & Sons.\nMassol, V. (2003). JUnit in Action . G",
+      "[SEED from source_22.pdf]\nPfleeger, S. L., 303, 308, 367, 371, 392, 406, 421\nPilato, C., 196, 204, 691, 704\nPlakosh, D., 257\nPoole, C., 61, 81, 240, 259\nPooley, R., 107, 117, 143\nPope, A., 454, 478, 483, 507\nPrice, A., 670, 67",
+      "[SEED from source_22.pdf]\nPeach, R. W. (1996). The ISO 9000 Handbook, 3rd edition . New York: Irwin Professional Pub.\nPilato, C. M., Collins-Sussman, B. and Fitzpatrick,  B. W. (2004). Version Control with Subversion .\nSebasto",
+      "[NEIGHBOUR from source_22.pdf]\nsource code of a software system is published and v olunteers are invited to partici-\npate in the development process (Raymond, 2001). It s roots are in the Free Software\nFoundation (http://www.fsf.or",
+      "[NEIGHBOUR from source_22.pdf]\nSOFTWARE ENGINEERING\nNinth Edition\nIan Sommerville\nAddison-Wesley\nBoston Columbus Indianapolis New York San Francisco Uppe r Saddle River\nAmsterdam Cape Town Dubai London Madrid Milan Munich Paris Mon"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not contain any direct information about version control for machine learning experiments. Instead, they discuss various topics such as software architecture, testing frameworks, and software engineering books. This makes them largely unrelated to the learning objective.\n\nFor sufficiency, the chunks lack any specific details about version control practices or tools that would be necessary to formulate a meaningful exam question on this topic. They provide no context or information related to the learning objective.\n\nNoise-wise, the chunks are filled with references to books and authors, which are not relevant to the learning objective. There is no content that could be considered noise-free.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which author co-wrote \"Version Control with Subversion\" along with Collins-Sussman and Pilato?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided. The relevant information is directly stated in the source context, making it completely answerable from the given context alone.\n- CLARITY: The question is clear and unambiguous. It asks for specific information that can be directly identified from the text, which makes it easy to understand.\n- DIFFICULTY_ALIGNMENT: The question is straightforward and requires no deeper understanding or analysis, making it appropriate for a medium difficulty level. It tests basic recall rather than conceptual understanding.\n- TYPE_ALIGNMENT: The question is asking for a specific piece of information (an author's name) and does not require explaining, comparing, or applying concepts, thus fitting the conceptual type well.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Brett Fitzpatrick co-wrote \"Version Control with Subversion\" alongside Brian W. Collins-Sussman and Carl Pilato, as indicated in the provided references. This collaborative work was published by O'Reilly Media Inc. in Sebastopol, California.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 3,
+      "groundedness": 1,
+      "academic_tone": 4
+    },
+    "overall": 2.25,
+    "reasoning": "- CORRECTNESS: The answer is incorrect because it includes information about the publisher and location which are not mentioned in the source context. The correct authors are Carl Pilato, Brian W. Collins-Sussman, and Brett W. Fitzpatrick, but the publisher and location are not provided in the given context.\n- COMPLETENESS: The answer covers the main point of identifying the co-authors but fails to mention that the information about the publisher and location is not available in the given context.\n- GROUNDEDNESS: The answer is not entirely grounded in the provided context since it includes information about the publisher and location, which are not present in the sources.\n- ACADEMIC_TONE: The answer is presented in a clear and concise manner, which is appropriate for university-level writing, but it includes additional information not found in the context, which slightly detracts from its academic tone.",
+    "parse_status": "ok"
+  }
+}

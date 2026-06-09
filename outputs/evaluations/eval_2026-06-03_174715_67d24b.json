@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-03_174715_67d24b",
+  "timestamp": "2026-06-03T17:47:15",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Explain SQL joins",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_14.pdf]\nInner join \nAn inner join  conne cts two tables  on a c olumn wi th the same da ta type. Onl y the r ows wher e the c olumn v alues ma tch \nare returne d; unma tche d rows ar e disc arded. \nExam ple #",
+      "[SEED from source_14.pdf]\nINNER J OIN books  ON titleauthor .title_id=books. title_id \nGRO UP B Y authors.a u_lname, a uthors.a u_fname, ti tle, ti tle.royalty \nORDER B Y authors.a u_lname \nLeft outer join \nA left outer join",
+      "[SEED from source_14.pdf]\nRight outer join \nA right outer join  includes, in i ts result se t, all r ows fr om the rig ht table tha t did not me et the c ondi tion spe cified. Output \ncolumns tha t correspond to the other tabl",
+      "[NEIGHBOUR from source_14.pdf]\nmathema tical function : performs oper ations on numeric da ta \nright outer join : includes all r ows fr om the rig ht table tha t did not me et the c ondi tion spe cified \nSELECT sta temen t: use d t",
+      "[NEIGHBOUR from source_14.pdf]\nLongString , deﬁned as\nchar(100). If LongString  is eliminated (by means of the command drop domain\nLongString cascade ) all the attributes deﬁned on that domain will directly\nassume the domain char(1"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 3,
+      "noise": 2
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are directly related to the learning objective of explaining SQL joins. Chunk 1 provides a clear definition of an inner join and gives an example, which is highly relevant. Chunk 2 introduces an inner join in a query context but also mentions a left outer join, which is tangential to the main objective. Chunk 3 discusses a right outer join, which is relevant but not as central to the core concept of SQL joins. Chunk 4 and 5 contain information about mathematical functions, SELECT statements, and domain definitions, which are not directly related to SQL joins and thus introduce noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which SQL query below correctly demonstrates an inner join, and what tables does it connect? \n\nSELECT a.authors.a_fname, a.authors.a_lname, b.books.title, b.books.roalty \nFROM authors a \nINNER JOIN titleauthor ta ON a.authors.a_id = ta.au_id \nINNER JOIN books b ON ta.title_id = b.title_id \nGROUP BY a.authors.a_lname, a.authors.a_fname, b.books.title, b.books.roalty \nORDER BY a.authors.a_lname",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context. It asks about an inner join, which is directly discussed in the source material.\n- CLARITY: The question is clear and unambiguous. It specifies the type of join and asks for both the correct query and the tables involved, making it straightforward to understand.\n- DIFFICULTY_ALIGNMENT: The question is asking for a conceptual understanding of an inner join, which aligns with the medium difficulty level requested.\n- TYPE_ALIGNMENT: The question is asking for an explanation of the query and the tables involved, which fits the conceptual type.\n- STANDALONE_QUALITY: The question does not reference the context explicitly and can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The provided SQL query correctly demonstrates an inner join by connecting three tables: authors, titleauthor, and books. The query joins the authors table with the titleauthor table based on the common author ID (authors.a_id = ta.au_id), then joins the resulting table with the books table based on the common title ID (ta.title_id = b.title_id). This connection ensures that only rows where there is a match in all specified columns across the joined tables are included in the final result set, adhering to the definition of an inner join.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is fully correct. It accurately describes the inner join operation and correctly identifies the tables involved (authors, titleauthor, and books) and the join conditions.\n- COMPLETENESS: The answer covers all key points needed to fully address the question. It mentions the tables being joined, the join conditions, and the purpose of an inner join.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It does not introduce any additional information not present in the source material.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, using proper sentence structure and terminology without any casual elements.",
+    "parse_status": "ok"
+  }
+}

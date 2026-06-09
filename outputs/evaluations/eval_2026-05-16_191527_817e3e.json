@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_191527_817e3e",
+  "timestamp": "2026-05-16T19:15:27",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Performance engineering for OS interfacing code",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\noperating systems. Embedded systems far outnumber general-purpose computing sys-tems and present of number of unique OS challenges\n. The chapter includes a discus-\nsion of common principles plus cover",
+      "[SEED from source_5.pdf]\nFundamental to all of these areas, and fundamental to OS design, is concurrency.Concurrency encompasses a host of design issues, including communication amongprocesses, sharing of and competing for re",
+      "[SEED from source_5.pdf]\nprocess designated by a destination.A process receives information by executing the\nreceive primitive, indicating the source and the message.\nA number of design issues relating to message-passing syst",
+      "[NEIGHBOUR from source_41.pdf]\n12.8 UNIX File Management 580\n12.9 Linux File Management 587\n12.10 Windows Vista File System 591\n12.11 Summary 597\n12.12 Recommended Reading 597\n12.13 Key T erms, Review Questions, and Problems 598\nPA",
+      "[NEIGHBOUR from source_41.pdf]\nof the I/O function. Special attention is devoted to disk I/O, which is the key to\nsystem performance. Also provides an overview of file management.\nPart Six. Embedded Systems: Embedded systems far ou"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not directly address performance engineering for OS interfacing code. Instead, they discuss operating systems in general, concurrency, and file management. While these topics are related to OS design, they do not specifically cover performance engineering or interfacing code, which is the core of the learning objective. Therefore, the relevance score is 1.\n\nThe chunks contain some useful information about operating systems, but they lack specific details on performance engineering and interfacing code. For instance, they mention concurrency and I/O functions, but do not provide enough context or detail to generate a comprehensive exam question. Thus, the sufficiency score is 3.\n\nThe chunks are mostly focused on relevant topics, but they include some unrelated information such as file management and system performance aspects that are not directly related to the learning objective. This introduces some noise, making the score 3 for noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the key design issues related to concurrency in embedded operating systems that are highlighted in the text?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "- FAITHFULNESS: The question can be answered using the provided context, specifically the part discussing concurrency in embedded systems. While it does not explicitly mention \"embedded systems,\" the context implies this through the discussion of concurrency challenges. Thus, it is mostly answerable from the context alone, making it a 3.\n- CLARITY: The question is clear and unambiguous, asking about key design issues related to concurrency in embedded operating systems. It is phrased precisely, making it a 5.\n- DIFFICULTY_ALIGNMENT: The question requires understanding and explaining concepts rather than simple recall, aligning with the medium difficulty level. It asks for an explanation of design issues, which fits the conceptual requirement. Thus, it is a 5.\n- TYPE_ALIGNMENT: The question asks to explain key design issues, which is a conceptual task. It does not require applying the concepts to a specific scenario or designing something new, so it perfectly matches the conceptual type. Therefore, it is a 5.\n- STANDALONE_QUALITY: The question does not reference the context directly but instead uses terms like \"concurrency\" and \"embedded operating systems\" which are common in the field of operating systems. It reads as a genuine exam question a student could see, making it a 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Concurrency in embedded operating systems presents several key design issues, primarily revolving around the efficient management of shared resources and the synchronization of multiple processes. These challenges are compounded by the need for effective communication among processes, often achieved through message-passing primitives such as receive and send operations. Additionally, the allocation of processor time to different processes must be carefully managed to ensure timely and reliable execution, further complicating the design of embedded systems.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer is largely correct, mentioning key issues like resource management, synchronization, and communication through message-passing primitives. However, it does not directly reference the specific context of embedded systems, which is a minor inaccuracy.\n- COMPLETENESS: The answer covers the main ideas of concurrency design issues but could be more detailed. It mentions resource management, synchronization, and communication, but does not explicitly mention the need for efficient use of limited resources, which is a key challenge in embedded systems.\n- GROUNDEDNESS: The answer is mostly grounded in the provided context, discussing concurrency and message-passing. However, it does not directly reference the specific challenges of embedded systems, which is a slight departure from the given context.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing, using precise terms and a formal tone. There are no bullet points or casual language, though it could be more concise and direct.",
+    "parse_status": "ok"
+  }
+}

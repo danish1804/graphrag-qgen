@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_134246_a850fb",
+  "timestamp": "2026-05-16T13:42:46",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Design patterns in object oriented programming",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nstate diagrams for modeling a software system. Chap ter 6 introduces\narchitectural design and I discuss the importance o f architecture and the\nuse of architectural patterns in software design.\nChapte",
+      "[SEED from source_22.pdf]\nhttp://www.it.bton.ac.uk/cil/usability/patterns/.\nDesign and\nimplementation7\nObjectives\nThe objectives of this chapter are to introduce obj ect-oriented software\ndesign using the UML and highlight imp",
+      "[NEIGHBOUR from source_11.pdf]\n–“The system shall conform to ISO Standard XYZ.”\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 11\nSoftware Design & Implementation\n●Conversion from system spe"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Design patterns in object oriented programming.\" Instead, they discuss general software design principles and UML, which are tangential rather than central to the specific topic of design patterns in OOP. Therefore, the relevance score is low.\n\nWhile the chunks touch on related topics such as software design and UML, they lack specific information about design patterns in object-oriented programming. This makes it insufficient to generate a good exam question on the given learning objective. Hence, the sufficiency score is also low.\n\nThe chunks contain some technical terms and concepts that are somewhat relevant to software design, but they are interspersed with other content that does not contribute to the learning objective. Thus, the noise level is moderate.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the main objectives discussed in Chapter 7 of the course material regarding object-oriented design?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the information provided in the source context. It does not require any external knowledge beyond what is given about Chapter 7's objectives.\n- CLARITY: The question is clear and unambiguous. It asks specifically about the main objectives of Chapter 7 regarding object-oriented design, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question is asking for recall of specific information, which aligns with the requested difficulty level of \"easy.\"\n- TYPE_ALIGNMENT: The question fits the requested type of \"recall\" as it asks students to state or list the objectives without needing to explain or apply them.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage\" explicitly. It can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The main objectives discussed in Chapter 7 of the course material regarding object-oriented design are to introduce the fundamental activities involved in a general object-oriented design process and to highlight key implementation concerns such as reuse, configuration management, host-target development, and open-source development.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 1.5,
+    "reasoning": "Correctness: The generated answer does not align with the provided source context. The context mentions objectives related to UML and implementation concerns, not the general object-oriented design process or specific implementation concerns like reuse and open-source development. Therefore, it scores 1.\n\nCompleteness: The answer attempts to cover the main ideas of object-oriented design but does not reflect the actual content of the source context. It misses the focus on UML and implementation concerns mentioned in the context. Thus, it scores 1.\n\nGroundedness: The answer contains significant information not present in the context, such as the concepts of reuse, configuration management, host-target development, and open-source development. These are not mentioned in the given context. Hence, it scores 1.\n\nAcademic Tone: The answer is written in a prose style and does not reference the UML or implementation concerns as per the context. While the language is not entirely inappropriate, it lacks the precision and direct references to the source material that would be expected in an academic context. Therefore, it scores 3.",
+    "parse_status": "ok"
+  }
+}

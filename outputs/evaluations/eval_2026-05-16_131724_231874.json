@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131724_231874",
+  "timestamp": "2026-05-16T13:17:24",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Query execution plans and optimiser",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nindex and materialized view selection, parametric query optimization, and multiquery\noptimization.\nBibliography\n[Graefe (1995)] G. Graefe, “The Cascades Framework for Query Optimization”, Data Engi-\nn",
+      "[SEED from source_8.pdf]\nSystem”, In Proc. of the ACM SIGMOD Conf. on Management of Data (1990), pages 102–111.\n[Graefe (1993)] G. Graefe, “Query Evaluation Techniques for Large Databases”, ACM Com-\nputing Surveys , Volume 25",
+      "[NEIGHBOUR from source_49.pdf]\ndocuments, and eﬃciently computing ranked answers to keyword queries may be found\nin [Manning et al. (2008)].\nBibliography\n[Faerber et al. (2017)] F. Faerber, A. Kemper, P.-A. Larson, J. Levandoski, T"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks discuss various aspects of query optimization, including index and materialized view selection, parametric query optimization, and multiquery optimization. These topics are directly related to the learning objective of understanding query execution plans and optimizers. However, the chunks do not provide specific details about how these optimizations work or their implementation, which would be necessary for a comprehensive exam question.\n\nThe chunks are moderately relevant as they touch upon important concepts but lack detailed explanations that would be needed for a thorough exam question. There is also some noise in the form of bibliographic references and unrelated content, such as the mention of ranked answers to keyword queries in Chunk 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the title of the paper by G. Graefe and W. McKenna that discusses the Volcano Optimizer Generator?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 3.8,
+    "reasoning": "- FAITHFULNESS: The question asks about a specific paper by G. Graefe and W. McKenna, which is not mentioned in the provided source context. Therefore, this question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous. It asks for the title of a specific paper, which is a straightforward request.\n- DIFFICULTY_ALIGNMENT: The difficulty level requested is \"easy,\" which aligns with the type of question being asked. Recalling the title of a paper is a basic understanding task.\n- TYPE_ALIGNMENT: The question type requested is \"recall,\" which fits perfectly as it asks for the title of a paper, requiring only the ability to recall information.\n- STANDALONE_QUALITY: The question does not reference the context or passage directly but assumes the reader has knowledge of the papers discussed. However, it can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The title of the paper by G. Graefe and W. McKenna that discusses the Volcano Optimizer Generator is \"The Volcano Optimizer Generator\", which was presented at the International Conference on Data Engineering in 1993.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 1.5,
+    "reasoning": "- CORRECTNESS: The answer states that the paper by G. Graefe and W. McKenna titled \"The Volcano Optimizer Generator\" was presented at the International Conference on Data Engineering in 1993. However, there is no mention of this specific paper or conference in the provided context. The context only mentions papers by G. Graefe but does not include any reference to a paper with the title \"The Volcano Optimizer Generator\" or the International Conference on Data Engineering. Therefore, the answer contains clear factual errors.\n- COMPLETENESS: The answer attempts to provide the title and conference details of a paper, but it fails to do so accurately based on the given context. It also omits the names of the authors, which are necessary to identify the specific paper.\n- GROUNDEDNESS: The answer introduces information not present in the context, such as the title \"The Volcano Optimizer Generator\" and the International Conference on Data Engineering. This information is not grounded in the provided sources.\n- ACADEMIC_TONE: The answer is written in a straightforward manner and uses proper sentence structure, which is appropriate for university-level writing. However, the content is not accurate, which affects its academic quality.",
+    "parse_status": "ok"
+  }
+}

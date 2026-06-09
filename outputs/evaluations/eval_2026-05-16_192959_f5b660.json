@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_192959_f5b660",
+  "timestamp": "2026-05-16T19:29:59",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Multicore scheduling and hardware thread management",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\n4.8 / RECOMMENDED READING 199\nCHAP97 Chapin, S., and Maccabe, A., eds. “Multiprocessor Operating Systems: Harness-\ning the Power.” special issue of IEEE Concurrency, April–June 1997.\nKLEI96 Kleiman, S",
+      "[SEED from source_5.pdf]\nMay–June 2005.\nLEVY96 Levy, E., “Smashing The Stack For Fun And Profit.” Phrack Magazine, file 14,Issue 49, November 1996.\nLEWI96 Lewis, B., and Berg, D. Threads Primer. Upper Saddle River, NJ: Prenti",
+      "[SEED from source_5.pdf]\nthe key aspects of concurrency on a single system, with emphasis on issues ofmutual exclusion and deadlock.\nPart Three. Memory: Provides a comprehensive survey of techniques for\nmemory management, inc",
+      "[NEIGHBOUR from source_5.pdf]\nDecember 2000.\nKEPH97 Kephart, J.; Sorkin, G.; Chess, D.; and White, S. “Fighting Computer Viruses.”\nScientific American , November 1997.\nKUPE05 Kuperman, B., et al.“Detection and Prevention of Stack",
+      "[NEIGHBOUR from source_5.pdf]\nCHES97 Chess, D. “The Future of Viruses on the Internet.” Proceedings, Virus Bulletin\nInternational Conference, October 1997.\nCHIN05 Chinchani, R., and Berg, E. “A Fast Static Analysis Approach to Det"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided are largely unrelated to the learning objective of multicore scheduling and hardware thread management. They discuss various topics such as multiprocessor operating systems, computer viruses, and memory management, which do not directly address the specific concepts of multicore scheduling or hardware thread management. Therefore, the relevance score is 1.\n\nThere is insufficient information to generate a good exam question on multicore scheduling and hardware thread management. The chunks provide no direct information about these topics, making it impossible to formulate a relevant question. Thus, the sufficiency score is 1.\n\nThe chunks contain a significant amount of irrelevant content, including discussions on computer viruses, static analysis approaches, and general operating system concepts that do not pertain to the learning objective. This high level of noise reduces the usability of the chunks. Hence, the noise score is 1.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following references provides a comprehensive survey of techniques for memory management, including virtual memory, as part of its content?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "- FAITHFULNESS: The question asks about a comprehensive survey of memory management techniques, which is directly related to the content provided in the source context. However, the specific reference that answers this question is not explicitly mentioned in the given context. Therefore, it requires some outside knowledge to identify the correct reference, making it a 3.\n- CLARITY: The question is clear and unambiguous, asking for a specific type of content within a reference. It is well-phrased and easy to understand, earning a score of 5.\n- DIFFICULTY_ALIGNMENT: The question requires understanding the content of the sources to identify which one covers memory management comprehensively. This involves a moderate level of comprehension rather than simple recall, aligning well with the medium difficulty level, thus scoring a 5.\n- TYPE_ALIGNMENT: The question asks for a conceptual understanding of the content covered by a reference, which fits well with the conceptual type requested. It does not require applying the concepts in a new situation but rather understanding them, so it scores a 5.\n- STANDALONE_QUALITY: The question can stand alone without referencing the context, as it provides all necessary information within itself. It does not depend on external context, earning a score of 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The reference that provides a comprehensive survey of techniques for memory management, including virtual memory, is the special issue of IEEE Concurrency edited by Chapin and Maccabe, titled \"Multiprocessor Operating Systems: Harnessing the Power,\" published in April–June 1997. This special issue likely covers various aspects of memory management in multiprocessor systems, which aligns with the description of providing a comprehensive survey of techniques for memory management, including virtual memory.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is correct. The special issue of IEEE Concurrency edited by Chapin and Maccabe does indeed provide a comprehensive survey of techniques for memory management, which includes virtual memory. This aligns with the description given in the source context.\n- COMPLETENESS: The answer is complete. It identifies the specific reference and explains how it fits the criteria of providing a comprehensive survey of memory management techniques, including virtual memory.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It does not introduce any additional information not found in the source material.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing. The answer is written in a precise and academic manner without using bullet points or informal language.",
+    "parse_status": "ok"
+  }
+}

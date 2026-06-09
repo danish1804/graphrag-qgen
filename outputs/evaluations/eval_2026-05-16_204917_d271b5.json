@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_204917_d271b5",
+  "timestamp": "2026-05-16T20:49:17",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Fault tolerance and recovery across system layers",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=software_engineering]\navailability, a tutorial on RAID with a description of RAID 6 schemes, and rarelyfound failure statistics of real systems. It continues to provide an introduction toqueuing theory and I/O performance",
+      "[NEIGHBOUR from source_9.pdf domain=software_engineering]\nPUSH        D          TOS ® D  \nADD                       TOS ® (C + D)  \nComputer Organization and Architectu re \n \n Page 71 \n MUL                       TOS ® (C + D) * (A + B)  \nPOP            X",
+      "[NEIGHBOUR from source_9.pdf domain=software_engineering]\nrunning at 400 MHz and a two-lane vector unit running at 800 MHz. When fourSSP chips are ganged together to form an MSP, the resulting peak vector perfor-mance of 12.8 GFLOPS is competitive with the c"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "Chunk 1 discusses availability and RAID, which are related to fault tolerance but does not explicitly mention recovery or system layers. The chunk also introduces queuing theory and I/O performance, which are tangential to the learning objective. Therefore, it is only partially relevant.\n\nChunk 2 and Chunk 3 are both about computer organization and architecture, specifically focusing on instructions and performance metrics. These chunks do not address fault tolerance or recovery in any way and are thus completely unrelated to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "How can a multi-core operating system ensure fault tolerance and graceful degradation in the face of processor failure, and what mechanisms can be implemented at the system bus level to support this?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 3,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The question does not directly relate to the provided source context, which focuses on software engineering topics such as RAID, queuing theory, and I/O performance. There is no mention of fault tolerance, processor failures, or system buses in the given context. Therefore, the question cannot be fully answered using only the source context.\n- CLARITY: The question is clear and unambiguous. It asks about ensuring fault tolerance and graceful degradation in the face of processor failure and the mechanisms that can be implemented at the system bus level. However, it could be more specific by mentioning the context of a multi-core operating system.\n- DIFFICULTY_ALIGNMENT: The difficulty level requested is \"hard,\" which aligns with the need to apply concepts of fault tolerance and system-level design. However, the question might be too advanced for a \"hard\" difficulty if the context were more aligned with the provided sources.\n- TYPE_ALIGNMENT: The question type requested is \"application,\" which fits well with the requirement to design or analyze mechanisms for fault tolerance and graceful degradation. This type of question requires applying theoretical knowledge to practical scenarios.\n- STANDALONE_QUALITY: The question is self-contained and does not reference the context or passage. It can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A multi-core operating system ensures fault tolerance and graceful degradation through several mechanisms. First, the scheduler and other critical components must recognize the loss of a processor and dynamically restructure management tables to maintain system stability. This involves monitoring the health and performance of each core, and reallocating tasks to remaining cores without significant disruption. At the system bus level, the bus architecture plays a crucial role in supporting these mechanisms by facilitating efficient communication among processors, main memory, and input/output modules. Specifically, the system bus must be designed to handle failures gracefully by ensuring robust data transfer and error detection. For instance, incorporating redundancy in the bus design can help in maintaining reliable data communication even when one part of the bus fails. Additionally, implementing advanced protocols for error correction and recovery at the bus level can further enhance fault tolerance. An example of such a protocol is the use of parity bits or more sophisticated error-checking codes to detect and correct errors in bus transactions. These strategies collectively contribute to the overall fault tolerance and graceful degradation of the multi-core system in the face of processor failures.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.25,
+    "reasoning": "- CORRECTNESS: The answer is mostly correct but contains some minor inaccuracies. It does not mention the specific mechanisms related to the system bus level, which are not directly addressed in the source context. However, it correctly describes the role of the scheduler and management tables in ensuring fault tolerance and graceful degradation.\n- COMPLETENESS: The answer covers the key points of fault tolerance and graceful degradation but lacks specific details about the system bus level mechanisms. It does not discuss the bus architecture or protocols mentioned in the source context.\n- GROUNDEDNESS: The answer is generally grounded in the source context but introduces concepts not explicitly mentioned, such as the use of parity bits or error-checking codes, which are not referenced in the given context.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing, though it could be more precise and formal. The answer is presented in prose rather than bullet points, which is acceptable but not ideal for a formal academic response.",
+    "parse_status": "ok"
+  }
+}

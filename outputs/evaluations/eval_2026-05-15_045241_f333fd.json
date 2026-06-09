@@ -1,0 +1,50 @@
+{
+  "eval_id": "eval_2026-05-15_045241_f333fd",
+  "timestamp": "2026-05-15T04:52:41",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Pooling layers and spatial downsampling",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\nconvolutional layer. In contrast to stride, which applies convolution\noperation every spixels, pooling partitions each image (channel) to\npatches of size ∆×∆and performs a reduction operation on each",
+      "[SEED from source_52.pdf]\nyi,j=max\n1≤r,s≤∆X(i−1)·∆+r,(j−1)·∆+s\nor taking the average of all the values in the patch (“mean-pooling”):\nyi,j=1\n∆2∆\n∑\nr,s=1X(i−1)·∆+r,(j−1)·∆+s\nThe pooling operation can reduce the image size by a"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The first chunk discusses pooling in contrast to stride, which is related to the learning objective but does not directly mention pooling layers or spatial downsampling. It provides context but lacks direct relevance to the specific concepts of interest.\n\nThe second chunk explicitly describes max-pooling and mean-pooling, directly addressing the concepts of pooling layers and spatial downsampling. However, it does not provide a comprehensive explanation of these concepts, focusing only on the operations involved.\n\nBoth chunks contain relevant information but fall short in providing a full picture of pooling layers and spatial downsampling.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the output size of an input image with dimensions 8x8 after applying max-pooling with a patch size of 2x2?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question directly relates to the concept of max-pooling and can be answered using the provided context about max-pooling with a 2x2 patch size. Therefore, it is completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks for a specific calculation based on given parameters, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question involves a simple calculation based on the given dimensions and patch size, making it an easy recall task.\n- TYPE_ALIGNMENT: The question fits the \"recall\" type as it requires stating the output size based on the given parameters without needing to explain or apply concepts.\n- STANDALONE_QUALITY: The question does not reference the context explicitly and can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Given an input image of dimensions 8x8 and applying max-pooling with a patch size of 2x2, the output image size will be 4x4, as the pooling operation reduces the image size by a factor of 2x2, resulting in dimensions ⌊8/2⌋×⌊8/2⌋ = 4x4.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is fully correct. It correctly states that the output image size will be 4x4 when applying max-pooling with a patch size of 2x2 to an 8x8 image. This aligns with the source context which mentions the pooling operation reduces the image size by a factor of the patch size.\n- COMPLETENESS: The answer covers the key points needed to fully address the question. It provides the correct output size and explains the reduction factor, which are the essential elements of the answer.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It does not introduce any additional information not present in the source material.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, using formal prose without any casual or inappropriate elements.",
+    "parse_status": "ok"
+  }
+}
