@@ -28,3 +28,8 @@ Thumbs.db
 *.ipynb_checkpoints
 
 # Data files
+
+# Fine-tune temp cache
+finetune_data/bulk_cache.jsonl
+finetune_data/question_lora/
+*.safetensors
