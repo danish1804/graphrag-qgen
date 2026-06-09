@@ -180,3 +180,12 @@ server:
   host: "0.0.0.0"
   port: 8000
   mode: "full"             # standard | full
+
+# ── Fine-tuning (LoRA adapters) ────────────────────────────
+# answer_lora  = friend QA fine-tune (question -> answer), folder at finetune_data/
+# question_lora = GraphRAG prompt fine-tune (context+LO -> question), after train_question_lora.py
+finetune:
+  answer_lora_path: "finetune_data"
+  question_lora_path: "finetune_data/question_lora"
+  use_answer_lora: true
+  use_question_lora: true   # set true after: python finetune_data/train_question_lora.py
