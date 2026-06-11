@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_125931_b0087a",
+  "timestamp": "2026-06-10T12:59:31",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Memory management unit design and OS support",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nconcurrency mechanisms, 286–288file management, 580–587history of, 90–91I/O devices, 526–529inodes, 581–583kernel memory allocator, 387–389kernel, 91–93messages, 286–287modern systems, 93–94paging sys",
+      "[SEED from source_5.pdf]\ncontext, 149–150virtual memory management, 383–389volume structure, 584–585",
+      "[SEED from source_5.pdf]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[NEIGHBOUR from source_5.pdf]\nIn processors with multiple types of interrupts, a set of interrupt registers\nmay be provided, with one pointer to each interrupt-handling routine. If a stack isused to implement certain functions (e.",
+      "[NEIGHBOUR from source_5.pdf]\nmemory to relieve the processor of the I/O task. In such a case, the processor grantsto an I/O module the authority to read from or write to memory, so that the I/O-memory transfer can occur without t"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks cover topics like concurrency, file management, kernel memory allocation, and virtual memory, which are related to memory management unit design and OS support. However, they do not specifically mention paging, which is a core concept for memory management units. Chunk 3 is a table of contents and does not contain relevant content. Chunk 4 discusses interrupt handling, which is tangential. Chunk 5 discusses I/O communication, which is somewhat relevant but not directly about memory management. Overall, the chunks are partially relevant but lack key concepts like paging. They also include some noise, such as interrupt handling details and I/O communication, which are not directly about memory management units. There is insufficient information to generate a good exam question because key concepts are missing. Noise is moderate due to the inclusion of irrelevant sections.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how DMA (Direct Memory Access) differs from traditional I/O operations in terms of processor involvement during data transfers between I/O modules and memory.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about DMA vs traditional I/O, which is directly covered in the source context under I/O communication. It is clear and unambiguous, asking for a comparison. The difficulty is medium because it requires explaining a concept rather than recalling facts. The type is conceptual, matching the request. The question is self-contained, not referring to any external context. Thus, all scores are 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "DMA (Direct Memory Access) differs from traditional I/O operations by transferring data directly between I/O modules and memory without the processor's intervention. Unlike conventional I/O where the processor must repeatedly issue read or write commands and manage the exchange, DMA allows the I/O module to take over the memory communication, freeing the processor from the repetitive task. The processor grants the I/O module permission to access memory, enabling efficient bulk data transfers that reduce CPU overhead.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies that DMA transfers data directly between I/O modules and memory without processor involvement, contrasting with traditional I/O where the processor issues commands. It also notes that the processor grants the I/O module memory access rights. However, it does not mention that DMA typically uses a dedicated hardware controller to manage the transfer, which is a key aspect of DMA. The answer is mostly grounded in the context, as it does not introduce unsupported concepts like stack usage or interrupt handling routines. The language is academic and precise, though it could be more concise. Overall, the answer is largely correct and complete, but lacks some technical detail about DMA controllers.",
+    "parse_status": "ok"
+  }
+}

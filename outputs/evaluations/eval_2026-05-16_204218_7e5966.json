@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_204218_7e5966",
+  "timestamp": "2026-05-16T20:42:18",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Deadlock prevention across OS databases and distributed systems",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf domain=database]\nANDSTARVATION\n6.1 Principles of Deadlock\nReusable Resources\nConsumable ResourcesResource Allocation\nGraphs\nThe Conditions for \nDeadlock\n6.2 Deadlock Prevention\nMutual ExclusionHold and WaitNo Preempti",
+      "[NEIGHBOUR from source_5.pdf domain=database]\n•Background\n•Processes\n•Memory\n•Scheduling\n•Input/output and files\n•Embedded systems\n•Security\n•Distributed systems\nThe book includes a number of pedagogic features, including the use of animation and",
+      "[NEIGHBOUR from source_5.pdf domain=database]\nauxiliary memory. These are used to store program and data files and are usuallyvisible to the programmer only in terms of files and records, as opposed to individ-ual bytes or words.A hard disk is al"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 2.67,
+    "reasoning": "For relevance, Chunk 1 mentions \"Deadlock Prevention\" which is directly related to the learning objective. However, it does not provide specific details about preventing deadlock across OS databases and distributed systems. The other chunks are not relevant as they discuss general database topics without focusing on deadlock prevention.\n\nFor sufficiency, Chunk 1 provides some foundational concepts like the conditions for deadlock and methods of prevention, but it lacks specific strategies or examples that would be necessary to generate a comprehensive exam question on the topic.\n\nFor noise, all chunks contain a mix of relevant and irrelevant information. Chunk 1 has some useful content but also includes broader database concepts that are not directly related to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain the conditions for deadlock and describe how mutual exclusion, hold and wait, no preemption, and circular wait contribute to these conditions in a distributed database system.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, which mentions the conditions for deadlock and the related concepts of mutual exclusion, hold and wait, no preemption, and circular wait. Therefore, it is 5 out of 5.\n- CLARITY: The question is clear and unambiguous, asking for an explanation of the conditions for deadlock and how specific concepts contribute to them. It is phrased precisely and is easy to understand. Thus, it scores 5 out of 5.\n- DIFFICULTY_ALIGNMENT: The question requires the application of concepts to a specific scenario (distributed database system), which aligns with the \"application\" difficulty level. Hence, it is 5 out of 5.\n- TYPE_ALIGNMENT: The question asks for an explanation of how certain concepts contribute to the conditions for deadlock, which fits the \"application\" type perfectly. Therefore, it scores 5 out of 5.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but rather focuses on general concepts that can be understood independently. It reads as a genuine exam question a student could see. Thus, it scores 5 out of 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In a distributed database system, deadlock arises when multiple transactions or processes are blocked indefinitely because each holds resources necessary for another and waits for those resources to become available. The conditions for deadlock consist of four fundamental criteria: mutual exclusion, hold and wait, no preemption, and circular wait. Mutual exclusion occurs when at least one resource must be exclusively held by a process during its usage, preventing concurrent access. Hold and wait means that processes holding resources also request additional resources while waiting for others, causing potential deadlocks. No preemption refers to the inability to forcibly reclaim resources from a process holding them, thus resolving the deadlock. Lastly, circular wait happens when a set of processes form a cycle where each process holds at least one resource and waits for another resource held by the next process in the sequence, creating a deadlock condition. For example, consider two distributed transactions T1 and T2 where T1 holds resource A and waits for B, while T2 holds resource B and waits for A, forming a circular wait and leading to a deadlock situation.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "- **Correctness**: The answer is mostly correct, accurately describing the four conditions for deadlock (mutual exclusion, hold and wait, no preemption, and circular wait) and providing a clear example of how they can lead to a deadlock in a distributed database system. However, it does not mention the last condition, which is \"no preemption,\" which is a critical part of the definition of deadlock. This omission slightly reduces the score.\n- **Completeness**: The answer covers the key points needed to fully address the question, including the four conditions and a clear example of how they can lead to a deadlock. It provides a comprehensive explanation without missing any crucial details.\n- **Groundedness**: The answer is entirely grounded in the provided context, using terminology and concepts relevant to the field of distributed databases and deadlocks. There are no significant additions that are not supported by the context.\n- **Academic Tone**: The language used is precise and academic, suitable for a university-level writing. The answer is written in prose rather than bullet points, which is appropriate for this type of question.",
+    "parse_status": "ok"
+  }
+}

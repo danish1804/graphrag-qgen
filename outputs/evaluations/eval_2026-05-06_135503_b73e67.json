@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-06_135503_b73e67",
+  "timestamp": "2026-05-06T13:55:03",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "SQL joins inner and outer",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_13.pdf]\nouter join  has precisely the task of executing a join\nwhile maintaining all the rows that appear in one or both the tables involved.\nThere are three di Verent types of outer join: left, right  and fu",
+      "[SEED from source_13.pdf]\nSELECT  column-list\nFROM  table1  RIGHT [OUTER] JOIN table2 ON join-condition\nFor example, the following query lists the product code, vendor code, and vendor name for all products and includes \nprodu",
+      "[SEED from source_13.pdf]\nSELECT  column-list\nFROM  table1 FULL [OUTER] JOIN table2 ON join-condition\nFor example, the following query lists the product code, vendor code, and vendor name for all products and includes \nall pro",
+      "[NEIGHBOUR from source_14.pdf]\n4.4.4 Views in queries 135\n4.5 Access control 136\n4.5.1 Resources and privileges 136\n4.5.2 Commands for granting and revoking privileges 137\n4.6 Use of sql in programming languages 138\n4.6.1 Integrati",
+      "[NEIGHBOUR from source_14.pdf]\nB.2.1 Interactive tools 546\nB.2.2 Application programs 551\nContents  xv\nB.3 Advanced features of db2 554\nB.3.1 Extension of sql for queries 554\nB.3.2 Object-oriented features of db2 558\nAppendix C Ora"
+    ],
+    "scores": {
+      "relevance": 5,
+      "sufficiency": 4,
+      "noise": 1
+    },
+    "overall": 3.33,
+    "reasoning": "The chunks are directly related to the learning objective of SQL joins, specifically inner and outer joins. Chunk 1 provides a clear definition of outer joins and mentions the different types of outer joins. Chunk 2 and Chunk 3 provide examples of SQL syntax for right and full outer joins, which are directly relevant to the learning objective. However, Chunks 4 and 5 are completely unrelated to the topic of SQL joins and are therefore considered noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following SQL statements would correctly use a right join to list all products along with their vendors, including products without a matching vendor?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, which explicitly mentions right join and provides examples of how to use it. Therefore, it is 5 out of 5.\n- CLARITY: The question is clear and unambiguous, asking about a specific SQL statement to perform a right join. It is phrased precisely and does not contain any vague terms. Thus, it scores 5 out of 5.\n- DIFFICULTY_ALIGNMENT: The question requires understanding the concept of a right join and how to implement it in SQL, which aligns with the medium difficulty level. Hence, it scores 5 out of 5.\n- TYPE_ALIGNMENT: The question asks for a conceptual understanding of how to use a right join, which fits the conceptual type perfectly. Therefore, it scores 5 out of 5.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage directly. It can be understood and answered without needing to refer back to the source material. Thus, it scores 5 out of 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A correct SQL statement using a right join to list all products along with their vendors, including products without a matching vendor, is:\n\nSELECT P_CODE, VENDOR.V_CODE, V_NAME\nFROM PRODUCT RIGHT JOIN VENDOR ON VENDOR.V_CODE = PRODUCT.V_CODE;\nThis query ensures that all records from the PRODUCT table are included, even if there is no matching record in the VENDOR table, thereby listing all products and their associated vendors where available.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer is correct in identifying the use of a right join and providing an accurate SQL statement that includes all products, even those without a matching vendor. It aligns with the source context which explains the purpose of right joins and provides examples of how they are used in SQL queries. The answer is also complete, covering all necessary points to address the question effectively. It is grounded in the source material, as it does not introduce any additional information not found in the given context. The academic tone is appropriate for a university-level answer, using precise and formal language without any casual elements.",
+    "parse_status": "ok"
+  }
+}

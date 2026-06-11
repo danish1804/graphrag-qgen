@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_121536_7ed893",
+  "timestamp": "2026-06-10T12:15:36",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Configuration management for OS dependent software",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nChapter 25 discusses configuration management. This  is an issue that is\nimportant for all large systems, which are develope d by teams.\nHowever, the need for configuration management is n ot always o",
+      "[SEED from source_22.pdf]\nmanagement processes and tools. When you have read the chapter,\nyou will:\nIunderstand the processes and procedures involved in  software change\nmanagement;\nIknow the essential functionality that must",
+      "[SEED from source_22.pdf]\navailable on an embedded system. However, it is ver y difficult to simulate the behav-\nior of an embedded system in every respect. You the refore have to run system tests on\nthe actual platform where",
+      "[NEIGHBOUR from source_21.pdf]\n2. The Unified Process\n3. Iteration and Incrementation Within the Object-Oriented Paradigm\n32\n4. Requirements Workflow\n5. Analysis Workflow\n6. Design Workflow\n7. Implementation Workflow\n8. Test Workfl",
+      "[NEIGHBOUR from source_21.pdf]\nniques and tools used to produce S/W.\nRemarks:\n1. With Definition 5.1.1, we could have defined the software crisis (Defi-\nnition 1.3.1) as our inability to manage the software process effectively.\n2."
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant to configuration management for OS-dependent software. Chunk 1 mentions configuration management but does not specify OS dependence or software changes. Chunk 2 focuses on software change management but lacks details about OS-specific issues. Chunk 3 discusses simulation of embedded systems, which is not directly related. Chunk 4 lists process workflows without mentioning configuration management. Chunk 5 is about software process definitions, not configuration management. Thus, relevance is low. Sufficiency is also low because none of the chunks provide specific information about OS-dependent configuration management. Noise is moderate since some chunks contain tangential material like software workflows.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary purpose of configuration management in the context of system building for large software projects developed by teams?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the primary purpose of configuration management, which is directly stated in the source: \"This is an issue that is important for all large systems, which are developed by teams.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a definition, so clarity is 5. The difficulty is medium because it requires understanding the concept rather than simple recall, matching the requested difficulty. The question type is conceptual, asking for an explanation of the purpose, which aligns with the request. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Configuration management ensures that changes to software are tracked and controlled, especially during system building when multiple team members contribute. It includes planning, version management, and change management to maintain consistency across system components. Without proper configuration management, errors and inconsistencies can arise, making it essential for large-scale team development.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies configuration management as tracking and controlling changes, which aligns with the source's emphasis on managing software processes. It covers the key idea of change management and consistency, though it does not explicitly mention version control or planning, which are implied. The answer is grounded in the context because it references the need for configuration management in large systems developed by teams. The language is academic and uses prose rather than bullet points, though it could be more precise. Overall, the answer is mostly correct and grounded but lacks some completeness and precision.",
+    "parse_status": "ok"
+  }
+}

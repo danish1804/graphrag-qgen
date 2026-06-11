@@ -1,0 +1,48 @@
+{
+  "eval_id": "eval_2026-06-10_082006_12d79f",
+  "timestamp": "2026-06-10T08:20:06",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Instruction pipelining",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\nA Instruction Set Principles\nB Review of Memory HierarchiesC Pipelining: Basic and Intermediate ConceptsD Storage SystemsE Embedded SystemsF Interconnection NetworksG Vector Processors in More DepthH",
+      "[SEED from source_12.pdf]\n. The narrow instructions supportfewer operations, smaller address and immediate fields, fewer registers, and thetwo-address format rather than the classic three-address format of RISC computers.RISC-"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant because they list chapter titles without any content about instruction pipelining. The only potentially relevant chunk is the title 'Pipelining: Basic and Intermediate Concepts', but it does not contain actual material. Therefore, relevance is 1. Sufficiency is also 1 because no information is provided to generate a question. Noise is 5 because the chunks are entirely empty or just titles, with no distracting content.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What does the acronym RISC stand for in the context of instruction set architecture?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for the meaning of RISC, which is directly stated in the source: RISC stands for Reduced Instruction Set Computer. This is a straightforward recall question that can be answered solely from the context, so it is completely answerable from the source alone. The question is clear and unambiguous, asking for a definition. It matches the easy difficulty level because it requires only basic understanding. The question is a recall type, which aligns with the request. The question is self-contained and does not reference the source, making it a genuine exam question. Overall, all criteria are met perfectly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "RISC stands for Reduced Instruction Set Computing. In the context of the passage, it refers to instruction sets that have fewer operations, smaller address and immediate fields, and a two-address format compared to traditional RISC computers.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly states that RISC stands for Reduced Instruction Set Computing, which is accurate based on the source context. It also provides additional details about the characteristics of RISC instruction sets, such as fewer operations, smaller fields, and a two-address format, which are consistent with the passage. However, the answer is not entirely grounded because it includes the phrase \"rather than the classic three-address format of RISC computers,\" which is not directly supported by the source material; the passage only mentions RISC computers generally without specifying their addressing formats. The language is academic and precise, using proper terminology like \"instruction set\" and \"addressing format.\" Overall, the answer is mostly correct and grounded, but the additional detail about three-address formats introduces an unsupported claim.",
+    "parse_status": "ok"
+  }
+}

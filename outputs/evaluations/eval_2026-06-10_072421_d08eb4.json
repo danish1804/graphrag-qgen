@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_072421_d08eb4",
+  "timestamp": "2026-06-10T07:24:21",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Database normalisation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt",
+      "[SEED from source_7.pdf]\nstudents who are already writing their theses. Thus, for each of them, wehave a degree programme and a professor who is supervising his or herthesis.\n8.6.4 Further restructurings of conceptual schemas",
+      "[NEIGHBOUR from source_14.pdf]\n6.1 Requirements collection and analysis 189\n6.2 General criteria for data representation 194\n6.3 Design strategies 196\n6.3.1 Top-down strategy 196\n6.3.2 Bottom-up strategy 198\n6.3.3 Inside-out strate"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks are mostly about database design and normalization, which is directly related to the learning objective. However, they do not provide specific details on normalization techniques or verification methods, so relevance is only 3. The chunks contain some useful information but lack concrete examples or steps, making sufficiency 3. Noise is low because the chunks are focused on the topic without extraneous material, so noise is 5.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the further restructuring of conceptual schemas involve according to the textbook?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about further restructuring of conceptual schemas, which is directly stated in the source context. It can be answered using only the provided material, so faithfulness is 5. The question is clear and unambiguous, asking for a specific concept, so clarity is 5. The difficulty is easy because it requires only recall of a defined term, matching the easy label. The question type is recall, which exactly matches the requested type. The question is self-contained and does not reference the source, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Further restructuring of conceptual schemas involves examining schemas that cannot be decomposed into Boyce–Codd normal form, as seen in Section 8.4. This process may include additional transformations beyond standard normalization techniques to achieve a more appropriate schema structure.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that further restructuring involves examining schemas that cannot be decomposed into BCNF, which aligns with the source's focus on normalization techniques. It also mentions additional transformations beyond standard normalization, which is accurate. However, it does not explicitly reference the specific section (8.4) or the concept of Boyce–Codd normal form, so completeness is slightly lower. The answer is entirely based on the provided context without hallucinations, so groundedness is high. The language is academic and uses prose, though it could be more precise. Overall, correctness and groundedness are strong, but completeness and academic tone have room for improvement.",
+    "parse_status": "ok"
+  }
+}

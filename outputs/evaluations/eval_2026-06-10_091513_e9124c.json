@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_091513_e9124c",
+  "timestamp": "2026-06-10T09:15:13",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Code modularity in deep learning frameworks",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\n9.3Implementation of Matrix Factorization 110\n5\nIII Deep Learning 113\n10 Introduction to Deep Learning 115\n10.1A Brief History 116\n10.2Anatomy of a Neural Network 116\n10.3Why Deep Learning? 119\n10.4Mu",
+      "[SEED from source_52.pdf]\n9.3Implementation of Matrix Factorization\nIn this section, we look more deeply into implementing matrix fac-\ntorization in an ML setting. As suggested in Definition 9.2.2, we can\nconsider the process",
+      "[SEED from source_52.pdf]\n11.4Backpropagation: The General Case 136\n11.5Feedforward Neural Network in Python Programming 142\n12 Convolutional Neural Network 145\n12.1Introduction to Convolution 145\n12.2Convolution in Computer V",
+      "[NEIGHBOUR from source_52.pdf]\n6.4Clustering in Programming 76\n7 Low-Dimensional Representation 81\n7.1Low-Dimensional Representation with Error 82\n7.2Application 1: Stylometry 84\n7.3Application 2: Eigenfaces 87\n8 n-Gram Language Mo",
+      "[NEIGHBOUR from source_52.pdf]\nunsupervised, deep learning, and reinforcement learning as a foun-\ndation for further study or independent work in ML, AI, and data\nscience. Topics include linear models for classification and regress"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about general machine learning topics like clustering, low-dimensional representation, and unsupervised learning, which are not directly related to code modularity in deep learning frameworks. Only Chunk 2 briefly mentions matrix factorization, but it does not discuss modularity. There is insufficient information to generate a meaningful exam question on the learning objective. The chunks contain some useful content but also include unrelated material, so they have moderate noise.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the relationship between backpropagation and matrix factorization in the context of optimizing approximate matrix factorizations, and how does gradient descent play a role in this process?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 3,
+      "standalone_quality": 1
+    },
+    "overall": 1.4,
+    "reasoning": "The question asks about the relationship between backpropagation and matrix factorization, which is not directly stated in the source context. The passage discusses matrix factorization but does not mention backpropagation. Therefore, the question requires knowledge beyond the given material, making it impossible to answer solely from the context. The question is also unclear because it conflates two distinct topics without providing a clear connection. It is too difficult for a medium-level question, as it demands a deeper understanding of both concepts. The question type is conceptual, which fits the request, but the phrasing is awkward. Finally, the question references \"the context\" explicitly, so it is not standalone.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Backpropagation is used to compute gradients for optimizing approximate matrix factorizations, similar to how gradient descent is applied in optimization problems. Specifically, the gradient of the full loss is calculated during backpropagation, enabling iterative updates via gradient descent to refine the approximation. This approach mirrors the application of gradient descent in matrix factorization, where backpropagation provides the necessary gradient computations for efficient parameter updates.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies that backpropagation computes gradients for optimizing matrix factorizations, and gradient descent uses these gradients to update parameters. It also notes that this mirrors the use of gradient descent in matrix factorization. However, it does not explicitly state that backpropagation is used during training to compute gradients, which is a key point. The answer is mostly grounded but includes the phrase \"during backpropagation\" which is not directly stated in the source. The tone is academic but uses a mix of prose and technical terms without bullet points, which is acceptable. Overall, the answer is largely correct and grounded, but lacks precision on the exact role of backpropagation.",
+    "parse_status": "ok"
+  }
+}

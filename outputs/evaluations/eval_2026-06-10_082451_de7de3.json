@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_082451_de7de3",
+  "timestamp": "2026-06-10T08:24:51",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Instruction set architecture",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\ncovers computer arithmetic.\nAppendix K provides a survey of instruction architectures, including the\n80x86, the IBM 360, the VAX, and many RISC architectures, including ARM,MIPS, Power, RISC-V, and SP",
+      "[SEED from source_12.pdf]\nmakes real memory a separate, intermediate level between virtual memory andphysical memory. (Some use the terms virtual memory, physical memory , and\nmachine memory to name the same three levels.) The",
+      "[NEIGHBOUR from source_23.pdf]\n Huge size  \n Need of A.C.  \n Non -portable  \n Consumed lot of electricity  \nSome computers of this generation were:  \n ENIAC  \n EDVAC  \n UNIVAC  \n IBM -701  \n IBM -650"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are mostly about instruction sets and architectures, which directly relates to the learning objective. However, Chunk 2 is about memory hierarchy, which is only tangentially related. Chunk 3 is about early computers, which is not relevant at all. Thus, relevance is 3. For sufficiency, Chunk 1 provides a brief overview of instruction sets, but lacks specific details like register names or addressing modes. Chunk 2 is irrelevant. Chunk 3 has no content about instruction sets. Sufficiency is 1. Noise is low because only Chunk 2 contains irrelevant content, so noise is 5.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following architectures is mentioned in Appendix L as part of the survey of instruction sets?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about architectures mentioned in Appendix L, which is not in the provided source context. The passage only mentions Appendix K, so the question cannot be answered solely from the given material. This violates faithfulness (1). The question is clear and unambiguous (5), asking for a specific list item. It is easy because it tests recall of a simple fact (5). It is a recall question (5) matching the requested type. The question does not reference the passage explicitly (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The survey of instruction sets in Appendix L includes the IBM 360. This survey covers various architectures such as the IBM 360, along with other notable examples like the 80x86, VAX, ARM, MIPS, Power, RISC-V, and SPARC.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer states that the IBM 360 is included in the survey of instruction sets, which is accurate based on the source context. It also mentions other architectures like 80x86, VAX, ARM, MIPS, Power, RISC-V, and SPARC, which are indeed covered in the survey. However, the passage does not explicitly mention Appendix L, so the reference to Appendix L is an unsupported assumption. The answer is concise and uses academic prose, though it could be more precise by omitting the unsupported reference. Overall, it is mostly correct and grounded but contains a minor hallucination.",
+    "parse_status": "ok"
+  }
+}

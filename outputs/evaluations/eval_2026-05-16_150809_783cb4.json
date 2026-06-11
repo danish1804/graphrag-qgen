@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_150809_783cb4",
+  "timestamp": "2026-05-16T15:08:09",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Concurrency control in data preprocessing pipelines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nconcurrency control and ( see\nconcurrency control)\ndeﬁned, 1\ndesign of ( seedatabase\ndesign)\ndocument, 3\ndumping and, 930–931\ne ﬃ c i e n c yo f ,1 ,2 ,5 ,9\nembedded, 198, 962\nas ﬁle-processing system",
+      "[SEED from source_8.pdf]\nand, 71–79\ncombination of, 270–271\ncomposite attributes in, 250\nconcurrency control and ( see\nconcurrency control)\ncreation of, 24\ndata mining, 540–549\ndata warehousing, 523–525\ndeﬁned, 12\nentity-rela",
+      "[SEED from source_8.pdf]\nlocal, 1076\nlocks and ( seelocks)\nlogical, 12–13, 1223–1224\nperformance tuning of,\n1214–1218, 1223–1224\nphysical, 12, 13\nphysical-organization\nmodiﬁcation of, 25\nP + Q redundancy, 573, 574\nrecovery sy",
+      "[NEIGHBOUR from source_36.pdf]\n(transactions, concurrency control, reliability, recovery) ﬁrst on a single-server architecture and then on a multi-server architecture with emphasison distribution, replication and parallelism.\n•We e",
+      "[NEIGHBOUR from source_36.pdf]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks discuss various aspects of concurrency control, such as its definition, design, and related concepts like locks and performance tuning. However, they do not specifically focus on concurrency control in the context of data preprocessing pipelines, which is the core of the learning objective. While the chunks provide some relevant information, they are not directly addressing the specific application of concurrency control in data preprocessing pipelines. Therefore, the relevance score is 3.\n\nThe chunks contain useful information about concurrency control, including definitions, types of locks, and performance tuning. However, they lack specific details about how concurrency control applies to data preprocessing pipelines, which would be necessary to generate a comprehensive exam question. Thus, the sufficiency score is 3.\n\nThe chunks are generally clean and focused on the topic of concurrency control, with minimal irrelevant or distracting content. The only noise comes from occasional references to other topics that are not directly related to the learning objective. Hence, the noise score is 5.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "How does concurrency control differ between a single-server architecture and a multi-server architecture, specifically focusing on distribution, replication, and parallelism?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be answered using the provided context, which discusses concurrency control in both single-server and multi-server architectures, as well as related concepts like distribution, replication, and parallelism. Therefore, it is completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks about the differences in concurrency control between two types of architectures, which is straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires explaining the differences between two scenarios, which involves conceptual understanding rather than just recalling facts. This aligns well with the medium difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for an explanation of the differences, which fits the conceptual type perfectly.\n- STANDALONE_QUALITY: The question stands alone and does not reference any specific part of the context. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Concurrency control in a single-server architecture primarily manages concurrent access through local locking mechanisms, ensuring data integrity within the confines of a single machine. In contrast, a multi-server architecture introduces additional challenges and solutions, such as distributed locking and replication to handle concurrent transactions across multiple servers. Distribution requires coordination among servers to maintain consistency, while replication ensures data availability and fault tolerance. Parallelism further enhances performance by allowing concurrent execution of tasks across servers, but it necessitates sophisticated scheduling and coordination to manage the complexity of distributed transactions effectively.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "Correctness: The answer provides a generally accurate description of concurrency control differences between single-server and multi-server architectures. It correctly mentions local locking, distributed locking, replication, and parallelism. However, it slightly overstates the role of physical organization modification, which is not directly related to concurrency control in this context. This earns a score of 4 out of 5.\n\nCompleteness: The answer covers the key points of distribution, replication, and parallelism, which are essential for addressing the question. It also touches on local locking, which is a fundamental aspect of concurrency control. Therefore, it scores a 5 out of 5.\n\nGroundedness: The answer is largely consistent with the provided context, mentioning local locking, distributed locking, and replication. However, the mention of physical organization modification is not directly related to concurrency control and appears to be an unsupported addition. This results in a score of 3 out of 5.\n\nAcademic Tone: The answer is written in a formal, academic style without using bullet points, which is appropriate for university-level writing. The language is precise and suitable for the context. Thus, it scores a 5 out of 5.",
+    "parse_status": "ok"
+  }
+}

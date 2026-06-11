@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-15_045613_a13ea5",
+  "timestamp": "2026-05-15T04:56:13",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Neural network weight initialisation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\nimport numpy as np\nimport torch\nimport torch.nn as nn\n# define the neural network\nclass Net(nn.Module):\ndef __init __(self, input _size=2, hidden _dim1=2, hidden _dim2=3,\nhidden _dim3=2):\nsuper (Net,",
+      "[SEED from source_52.pdf]\nwork by defining the corresponding class .\nclass Net(nn.Module):\ndef __init __(self, input _size=2, hidden _dim1=2, hidden _dim2=3,\nhidden _dim3=2):\nsuper (Net, self). __init __()\nself.hidden1 = nn.Li",
+      "[NEIGHBOUR from source_52.pdf]\ntransform=transform)\n# helps iterate through the train/test data in batches\ntrain _loader = DataLoader(dataset=train _data, batch _size=8, shuffle=True,\nnum_workers=0)\ntest _loader = DataLoader(datase"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 2,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks provided are primarily focused on the structure and initialization of a neural network class using PyTorch, which directly relates to the learning objective of neural network weight initialization. However, they do not provide any specific details about how weights are initialized or the methods used for initialization, which are crucial aspects of the learning objective.\n\nThe chunks contain some useful information such as the class definition and initialization parameters, but they lack the specifics about the actual initialization process or methods, which would be necessary to generate a comprehensive exam question.\n\nThe chunks are relatively clean, with no obvious irrelevant content, though they could be more concise to remove any unnecessary parts like the incomplete line in Chunk 2.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the values of the weights for `self.hidden1` in the `Net` class defined in the code snippet?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 3.8,
+    "reasoning": "The question asks about the values of the weights for `self.hidden1` in the `Net` class. However, the provided code snippet does not actually define the weights for `self.hidden1`. It only initializes the layer with `nn.Linear`, which would require further code to define the weights. Therefore, this question cannot be fully answered using only the given context, requiring additional information that is not present.\n\nThe question is clear and unambiguous, asking for specific details about the weights of a neural network layer. It is phrased precisely and can be understood easily.\n\nThe difficulty level requested is \"easy,\" which aligns with the type of question since it involves recalling basic information about the structure of a neural network class. However, the question cannot be answered based solely on the provided context, making it slightly off target.\n\nThe question is a recall-based question, asking for specific details about the weights of a neural network layer. This matches the requested type of \"recall.\"\n\nThe question is self-contained and does not reference any external context, making it a genuine exam question a student could see.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The weights for `self.hidden1` in the `Net` class are initialized with the tensor [[-2., 1.], [3., -1.]]. This is explicitly set during the instantiation of the `Net` class, where `self.hidden1.weight` is assigned a specific parameter tensor.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 1.5,
+    "reasoning": "Correctness: The answer suggests that the weights for `self.hidden1` are initialized with a specific tensor, but this is not supported by the given code snippet. The code only defines the class structure without any initialization of weights. Therefore, the answer contains a clear factual error, making it incorrect.\n\nCompleteness: The answer does not cover the key point of how the weights are initialized, which is not provided in the given context. It only speculates on the initial values without any basis in the source material.\n\nGroundedness: The answer introduces information about the initialization of weights, which is not present in the source context. The context only provides the class definition without any weight initialization, so the answer is not grounded in the provided context.\n\nAcademic Tone: The answer is presented in a straightforward manner without using academic language or formal prose, which is appropriate for the level of detail expected in a university-level response.",
+    "parse_status": "ok"
+  }
+}

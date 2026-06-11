@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_084632_b109b3",
+  "timestamp": "2026-06-10T08:46:32",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Data versioning for machine learning pipelines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_65.pdf]\n7.4.3 Backward functions for basic modules . . . . . . . . . . 105\n7.4.4 Back-propagation for MLPs . . . . . . . . . . . . . . . 107\n7.5 Vectorization over training examples . . . . . . . . . . . . .",
+      "[SEED from source_65.pdf]\n104\n𝑥...𝑀!𝐽...𝑀\"\n𝑢[!]𝑢[\"%!]𝜕𝐽𝜕𝐽ℬ[𝑀\",𝑢[\"%!]]𝜕𝐽𝜕𝑢!\"#𝑢[&]𝑀&𝑢[&%!]ℬ[𝑀&,𝑢[&%!]]𝜕𝐽𝜕𝑢$\"#𝜕𝐽𝜕𝑢$...\n𝜕𝐽𝜕𝑢#...\nForward passBackward passℬ[𝑀!,𝜃!]𝜕𝐽𝜕𝜃#ℬ[𝑀&,𝜃&]𝜕𝐽𝜕𝜃$ℬ[𝑀\",𝜃\"]𝜕𝐽𝜕𝜃!\nFigure 7.5: Back-propagation.\nRemark",
+      "[SEED from source_68.pdf]\nimportance).\nDefault Baseline Model : Identify the components of end- to-end pipeline including -\nBaseline Models, cost functions, optimization.\nMake incremental changes: Repeatedly make incremental",
+      "[NEIGHBOUR from source_65.pdf]\nBack-Propagation\n𝜕ℒ𝜕𝑧𝑧𝜕𝑧𝜕𝑥𝜕𝑧𝜕𝑦𝜕ℒ𝜕𝑥=𝜕ℒ𝜕𝑧×𝜕𝑧𝜕𝑥𝜕ℒ𝜕𝑦=𝜕ℒ𝜕𝑧×𝜕𝑧𝜕𝑦𝑥𝑦\nCOSC2673 | COSC2793Week 9: Neural Networks34\nRMIT Classification: TrustedRMIT Classification: Trusted\nBack-Propagation via the Chain Rule\n∑",
+      "[NEIGHBOUR from source_52.pdf]\n9.3Implementation of Matrix Factorization 110\n5\nIII Deep Learning 113\n10 Introduction to Deep Learning 115\n10.1A Brief History 116\n10.2Anatomy of a Neural Network 116\n10.3Why Deep Learning? 119\n10.4Mu"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant to data versioning for machine learning pipelines. Chunk 1 mentions backpropagation and vectorization, which are related to neural networks but not directly to versioning. Chunk 2 shows a backpropagation diagram, which is tangential. Chunk 3 discusses baseline models and optimization, which are somewhat relevant but not specific to versioning. Chunk 4 is about backpropagation, which is indirectly related. Chunk 5 is about deep learning and matrix factorization, completely unrelated. Thus, relevance is low. Sufficiency is also low because none of the chunks provide clear information on how to implement or use data versioning in ML pipelines. Noise is moderate because some chunks contain useful diagrams but are otherwise irrelevant.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how the back-propagation algorithm uses the chain rule to compute gradients during the backward pass through a neural network, and describe the relationship between the partial derivatives of the loss function with respect to intermediate variables and output variables.",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 3
+    },
+    "overall": 3.4,
+    "reasoning": "The question asks about back-propagation using the chain rule, which is directly covered in the source material. It requires explaining the relationship between partial derivatives, so it is conceptual rather than recall. The question is clear and unambiguous, asking for an explanation of how gradients are computed. It is perfectly medium difficulty because it involves reasoning about a core concept. The question is self-contained and does not reference the passage, making it a genuine exam question. However, it is slightly ambiguous because it asks for a relationship that is not explicitly stated in the source, requiring some inference. Thus, it is mostly answerable from context but requires some outside knowledge to fully explain the relationship.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Back-propagation applies the chain rule to compute gradients by propagating errors backwards from the output layer to the input layer. Specifically, the gradient of the loss function with respect to an intermediate variable z is given by the product of the derivative of the loss with respect to the next variable in the forward pass and the derivative of that variable with respect to z. This allows efficient computation of gradients for each parameter, enabling optimization of the entire network.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 2
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly states that back-propagation uses the chain rule to compute gradients by propagating errors backwards, which is accurate based on the source material. It covers the key idea of computing gradients via products of partial derivatives, addressing the question's requirement. The answer is entirely grounded in the provided context, as it does not introduce any unsupported information. However, the language is somewhat informal, using bullet points and abbreviations like 'z' without full explanation, which detracts from academic tone. Overall, the answer is mostly correct and grounded but lacks some completeness and academic polish.",
+    "parse_status": "ok"
+  }
+}

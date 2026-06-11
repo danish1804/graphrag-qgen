@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_085937_306c87",
+  "timestamp": "2026-06-10T08:59:37",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Distributed storage for deep learning datasets",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\nmodel and set new standards for performance on the ImageNet\ndataset.6Deep learning has since begun a resurgence throughout6Paper: https:\n//papers.nips.cc/paper/2012/file/\nc399862d3b9d6b76c8436e924a68c",
+      "[SEED from source_52.pdf]\nnumber of validation examples is decent. For example, for the ImageNet\ndataset that has about 1M training images, the validation set is sometimes\nset to be 50K images, which is only about 5% of the to",
+      "[SEED from source_52.pdf]\n9.3Implementation of Matrix Factorization 110\n5\nIII Deep Learning 113\n10 Introduction to Deep Learning 115\n10.1A Brief History 116\n10.2Anatomy of a Neural Network 116\n10.3Why Deep Learning? 119\n10.4Mu",
+      "[NEIGHBOUR from source_68.pdf]\nHinge (1·(−1.4, 3.075, 0.1 )·(1, 0.75, 1 )) = 0\nwhich is now lower than the SVM loss before the update.\n4.4Multi-class Classification (Multinomial Regression)\nSo far, we have only seen problems where",
+      "[NEIGHBOUR from source_68.pdf]\nin the famous ImageNet challenge, each\nimage belongs to one of 1000 classes.conceptual framework is similar to logistic regression, except the\nmodel defines a nonzero probability for each label as fol"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to distributed storage for deep learning datasets. Chunk 1 mentions ImageNet and performance, but does not discuss storage. Chunk 2 discusses validation sets, which is tangential. Chunk 3 is a table of chapter titles, none of which mention distributed storage. Chunk 4 and 5 are about SVM and multinomial regression, also unrelated. Thus, relevance is 1. There is insufficient information to generate a good exam question because no chunk covers distributed storage or its role in deep learning. Noise is moderate; some chunks contain useful information (e.g., ImageNet) but are not directly relevant.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What was the significance of the ImageNet dataset in the resurgence of deep learning, and how did it contribute to the development of modern neural network architectures?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the significance of ImageNet in deep learning resurgence, which is directly stated in the source: \"Deep learning has since begun a resurgence throughout.\" The passage also mentions ImageNet's large scale, so the answer can be derived from the context. The question is clear and unambiguous, asking for a conceptual explanation rather than a specific fact. It is a medium-level conceptual question, matching the requested difficulty. The question is self-contained and does not reference the passage explicitly. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The ImageNet dataset played a pivotal role in the resurgence of deep learning by providing a large-scale benchmark that pushed researchers to develop more powerful models. It offered a vast collection of labeled images, enabling the training of deeper networks with better generalization. This led to the creation of novel architectures like convolutional neural networks, which were essential for achieving state-of-the-art performance on ImageNet and other vision tasks.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 3,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 2.0,
+    "reasoning": "The answer correctly identifies ImageNet as a large-scale benchmark that spurred deep learning research, but it does not mention the specific contribution of convolutional neural networks or the concept of a large validation set. It also conflates the ImageNet challenge with the hinge loss, which is unrelated. The tone is academic but the structure is informal, using a single sentence without proper punctuation. Thus, correctness is low due to factual errors, completeness is moderate, groundedness is poor, and academic tone is acceptable but inconsistent.",
+    "parse_status": "ok"
+  }
+}

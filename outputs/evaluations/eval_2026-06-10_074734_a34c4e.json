@@ -1,0 +1,48 @@
+{
+  "eval_id": "eval_2026-06-10_074734_a34c4e",
+  "timestamp": "2026-06-10T07:47:34",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Verification and validation in software testing",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\non software testing in which the author presents a set of experience-based guidelines on designing\ntests that are likely to be effective in discoverin g system faults. (J. A. Whittaker, Addison-Wesley",
+      "[SEED from source_22.pdf]\napplications. (M. Andrews and J. A. Whittaker, Addi son-Wesley, 2006.)\n‘Using static analysis to find bugs’. This paper de scribes Findbugs, a Java static analyzer that uses\nsimple techniques to find",
+      "[NEIGHBOUR from source_21.pdf]\n14\n(b) Unit test each individual component\n(c) Integration (system) testing - combine components, test interfaces\namong components\n(d) Acceptance testing - use live data in client’s test environment."
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are partially relevant because they discuss testing techniques and tools, but the first chunk focuses on experience-based guidelines rather than verification and validation specifically. The second chunk mentions static analysis, which is tangential. The third chunk lists testing phases, which are related but not directly about verification and validation. Overall, the chunks touch on testing but lack direct coverage of verification and validation processes.\n\nThe sufficiency score is low because the chunks provide only general testing information without specific details on verification and validation methods. For example, the third chunk lists testing phases but does not explain how they relate to verification and validation.\n\nNoise is moderate because the chunks include technical descriptions that are somewhat relevant but also contain tangential material like static analysis and testing phases that are not directly about verification and validation.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of verification in the software development process?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the primary purpose of verification, which is not directly stated in the source context. The passage discusses testing guidelines and static analysis, but does not define verification. Therefore, the question cannot be fully answered using only the given context, so it scores 1 for faithfulness. The question is clear and unambiguous, scoring 5 for clarity. It asks for a definition, which is a recall task, matching the easy difficulty level, so it scores 5 for difficulty alignment. The question is a straightforward recall of a term, so it scores 5 for type alignment. The question does not reference the passage explicitly, so it scores 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Verification ensures that the software product satisfies its specification, confirming that the implemented solution meets the required functional and non-functional requirements. It typically involves formal methods such as mathematical proofs or model checking to demonstrate correctness, rather than relying solely on testing.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly states that verification ensures the software satisfies its specification, which aligns with the source's focus on testing effectiveness. However, it incorrectly claims verification uses formal methods like mathematical proofs, whereas the source emphasizes testing techniques. The answer is incomplete because it does not mention the role of testing in verification. It is grounded in the context since the source discusses testing guidelines, but the formal methods claim is not supported by the passage. The tone is academic but the structure uses a list instead of prose, which is acceptable for a short answer but not ideal for a full explanation.",
+    "parse_status": "failed"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_074158_fffbd2",
+  "timestamp": "2026-06-10T07:41:58",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Software development lifecycle models",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ntive component reuse. I also discuss the general pr ocess of component-\nbased software engineering and the problems of comp onent composition. \nThe majority of large systems are now distributed s yste",
+      "[SEED from source_22.pdf]\naccount by the system designer.\nSome of the most important design issues that have to be considered in distributed\nsystems engineering are:\n1.Transparency To what extent should the distributed system",
+      "[NEIGHBOUR from source_22.pdf]\n17.1 Components and component models 455\n17.2 CBSE processes 461\n17.3 Component composition 468\nChapter 18 Distributed software engineering 479\n18.1 Distributed systems issues 481\n18.2 Client–server c"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about distributed systems and component-based software engineering, which are tangential to the core learning objective of software development lifecycle models. Only Chunk 3 lists chapter titles related to lifecycle models, but it does not provide specific content. The other chunks discuss transparency and client-server issues, which are not directly about lifecycle models. Thus, relevance is low. Sufficiency is poor because none of the chunks contain detailed descriptions of lifecycle models or their components. Noise is moderate since some chunks include relevant titles, but the content is not focused on the objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What are the two fundamental paradigms discussed in distributed systems engineering, and how do they relate to the transparency issue?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 3.8,
+    "reasoning": "The question asks about two fundamental paradigms and their relation to transparency, which can be answered directly from the source context. It is clear and unambiguous, matching the recall type. The difficulty is easy because it requires only basic understanding of the concepts. The question is self-contained and does not reference the passage explicitly. However, it is slightly off target because the source material does not list specific paradigms; it mentions component-based software engineering and distributed systems issues. Thus, it is a good easy recall question but not perfectly aligned with the source.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The two fundamental paradigms in distributed systems engineering are client–server computing and software as a service (SaaS). The transparency issue concerns how much the distributed system should appear as a single system to users; client–server computing often provides high transparency by hiding the underlying distribution, while SaaS may reduce transparency through abstraction layers.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies client–server computing and SaaS as the two fundamental paradigms, which aligns with the source's discussion of distributed systems issues. It also accurately describes transparency as a key concern, though it does not explicitly mention the client–server model's transparency properties. The answer is grounded in the source material, as it references concepts like client–server and SaaS without introducing unsupported ideas. The language is academic and uses prose rather than bullet points, though it could be more precise. Overall, the answer is mostly correct and grounded but lacks some completeness and precision.",
+    "parse_status": "ok"
+  }
+}

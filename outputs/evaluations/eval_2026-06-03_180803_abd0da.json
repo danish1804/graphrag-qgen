@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-03_180803_abd0da",
+  "timestamp": "2026-06-03T18:08:03",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Explain SQL joins and their use in relational databases",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nimportant. This is because most current database systems do not takeadvantage of attribute names in order to combine relations, and thus use theequi-join and theta-join rather than the natural join. W",
+      "[SEED from source_49.pdf]\nfrom student\n grades\norder by GPA desc\nlimit 10;\nInIBM DB2 and the most recent versions of Oracle, the equivalent of the limit\nclause is fetch ﬁrst 10rows only .M i c r o s o f t SQL S erver places it",
+      "[SEED from source_49.pdf]\n>R-timestamp( Qk)), it creates a new version of Q.\nThe justiﬁcation for rule 1 is clear. A transaction reads the most recent version\nthat comes before it in time. The second rule forces a transaction",
+      "[NEIGHBOUR from source_14.pdf]\n9.3.3 Buffer management policies 310\n9.3.4 Relationship between buffer manager and ﬁle system 310\n9.4 Reliability control system 311\n9.4.1 Architecture of the reliability control system 312\n9.4.2 Log",
+      "[NEIGHBOUR from source_14.pdf]\nmodel. First we describe relational algebra, a simple and importantprocedural language; then we introduce declarative languages like relationalcalculus (on domains and on tuples with range restriction"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss SQL joins or their use in relational databases. Chunk 1 mentions equi-joins and theta-joins, which are related to SQL joins, but does not explain them or their use. The other chunks are completely unrelated to the learning objective.\n\nFor SUFFICIENCY, the chunks fail to provide any substantial information about SQL joins or their application in relational databases. There is no explanation of what joins are, how they work, or examples of their usage, which are necessary to generate a good exam question on this topic.\n\nFor NOISE, all chunks contain irrelevant content. Chunk 1 introduces some relevant terms but does not explain them in the context of SQL joins. The other chunks are entirely unrelated to the learning objective and contain no useful information.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes why most recent versions of SQL primarily support equi-joins over natural joins?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question asks about why most recent versions of SQL support equi-joins over natural joins. This can be directly answered using the provided context, which mentions that current database systems do not take advantage of attribute names to combine relations and thus use equi-joins and theta-joins instead of natural joins. Therefore, the question is completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous, asking for a specific reason related to SQL join types. It is precisely phrased and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept related to SQL join types, which aligns with the medium difficulty level requested. It involves understanding the rationale behind the choice of join types in SQL, making it neither too trivial nor too complex.\n- TYPE_ALIGNMENT: The question asks for an explanation of why one type of join is preferred over another, which fits well with the conceptual type requested.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but can stand alone as a typical exam question. It does not require students to recall specific passages or details from the text.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Most recent versions of SQL primarily support equi-joins over natural joins because attribute names are not utilized by modern database systems to combine relations, necessitating the use of equi-joins and theta-joins. Natural joins were introduced later in the development of SQL, making them available only in the most recent versions of the language. This shift reflects the evolution of SQL to better accommodate advanced join operations that do not rely on explicit attribute references, thereby enhancing flexibility and functionality in database querying.",
+    "scores": {
+      "correctness": 2,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.0,
+    "reasoning": "- CORRECTNESS: The answer contains a factual error. The statement that \"Natural joins were introduced later in the development of SQL\" is incorrect. Natural joins have been part of SQL since its inception, and the primary reason for using equi-joins and theta-joins is related to how modern database systems handle attribute names and join conditions, not the age of the SQL standard.\n- COMPLETENESS: The answer covers the main idea that attribute names are not used for combining relations, which leads to the use of equi-joins and theta-joins. However, it does not mention the specific issue with attribute names in modern database systems, which is the key point for this question.\n- GROUNDEDNESS: The answer introduces the concept of attribute names and their usage in modern database systems, which is not directly mentioned in the provided context. While the idea is related to the topic, it is not explicitly stated in the given context.\n- ACADEMIC_TONE: The answer is written in a somewhat formal tone but uses a sentence structure that could be more precise and academic. It also includes a period at the end, which is appropriate for academic writing.",
+    "parse_status": "ok"
+  }
+}

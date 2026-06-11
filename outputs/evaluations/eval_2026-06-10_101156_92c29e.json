@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_101156_92c29e",
+  "timestamp": "2026-06-10T10:11:56",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Memory hierarchy optimisation for model training",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_53.pdf]\nUNIT III:  \nEnsemble and Probabilistic Learning  \nModel Combination Schemes, Voting, Error -Correcting Output Codes, B agging: Random  Forest Trees, \nBoosting: Adaboost, Stacking . \nGaussian mixture m",
+      "[SEED from source_53.pdf]\n59 \n  \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nUnit III  \nEnsemble and Probabilistic Learning  \n \nEnsemble   Learning:  Model Combination Schemes, Voting, Error -Correcting",
+      "[SEED from source_53.pdf]\ncorrection” predictions that can result in better predictive performance.  \n \nIn error -correcting output codes (ECOC), the main cla ssification task is defined in terms of a \nnumber of subtasks that",
+      "[NEIGHBOUR from source_54.pdf]\nvariables. This might seem to be making a problem much more complicated than it needs to be, but it \nturns out for many pro blems that it makes finding the solution significantly easier.  \nIn order to",
+      "[NEIGHBOUR from source_53.pdf]\nalso unlikely to know all the moves, you might decide to look at a few more people and do what most of \nthem are doing. This is pretty much exactly the idea behind nearest neighbour methods: if we don"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to memory hierarchy optimization for model training. They discuss ensemble learning techniques like bagging, boosting, and ECOC, which are not directly related to memory hierarchy. The only somewhat relevant chunk mentions error-correcting output codes, but it does not explain how they optimize memory usage. There is insufficient information to generate a meaningful exam question on the learning objective. The chunks contain moderate noise, with some irrelevant passages about classification tasks and nearest neighbor methods.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "In the context of error-correcting output codes (ECOC), explain how the approach of breaking down the main classification task into a set of simpler subtasks contributes to improving predictive performance compared to attempting to solve the original classification problem directly.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about ECOC's approach of breaking down the main classification task into subtasks, which is directly stated in the source context. It does not require any external knowledge beyond what is provided. The question is clear and unambiguous, asking for an explanation of how this approach improves performance. It matches the medium difficulty level because it requires understanding the concept rather than simple recall. The question is conceptual, asking for an explanation, which aligns with the requested type. It is self-contained, as it does not reference the passage or context explicitly. Thus, all criteria score 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Error-correcting output codes (ECOC) improves predictive performance by decomposing the original complex classification task into a series of simpler subtasks, each handled by a distinct base learner. This reduction in complexity often leads to easier learning, allowing each subtask to be addressed more effectively. By combining the outputs of these learners through majority voting or other strategies, the final prediction becomes more robust and accurate, even when the individual subtasks are imperfect. Thus, ECOC transforms a potentially intractable problem into a set of manageable pieces, enabling better overall classification outcomes.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that ECOC decomposes the main classification task into simpler subtasks, which is accurate based on the source. It also explains that this decomposition leads to improved performance through combination, which is a key point. However, the explanation could be more precise about how the subtasks relate to the original problem, so completeness is slightly lower. The answer is entirely grounded in the provided context without any hallucinations. The tone is academic but uses some bullet points, which is acceptable but not ideal for full prose. Overall, correctness and groundedness are high, but completeness and tone could be improved.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_111549_d3c0dc",
+  "timestamp": "2026-06-10T11:15:49",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Inter-process communication in database servers",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n10.2.2 Local independence and co-operation 355\n10.2.3 Data fragmentation and allocation 356\n10.2.4 Transparency levels 358\n10.2.5 Classiﬁcation of transactions 360\n10.3 Technology of distributed datab",
+      "[SEED from source_36.pdf]\nhand, vertical partitioning generates entities with fewer attributes. They cantherefore be translated into physical structures from which we can retrieve agreat deal of data with a single access. Part",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly unrelated to inter-process communication in database servers. Chunk 1 lists chapter titles that do not mention IPC, while Chunk 2 covers distributed database topics. Chunk 3 discusses vertical partitioning, which is tangential. Chunk 4 and 5 are from a different book about database management systems, so they contain no relevant content. Thus, relevance is very low.\nSufficiency is also low because none of the chunks provide any information about IPC mechanisms or protocols used in database servers. The material is completely insufficient for generating a good exam question.\nNoise is moderate because the chunks include chapter titles and other metadata that are not directly relevant to the learning objective, but the actual content is minimal and irrelevant.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of vertical partitioning in distributed databases, and how does it differ from horizontal partitioning in terms of data retrieval efficiency?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about vertical partitioning's purpose and comparison to horizontal partitioning, which is directly covered in the source context. It is clear and unambiguous, asking for a conceptual explanation. The difficulty is medium because it requires understanding the concept rather than simple recall. The question is conceptual, matching the request. It is self-contained, as no external reference is needed. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Vertical partitioning distributes attributes across different entities, allowing efficient retrieval of large datasets with a single access by concentrating related information. In contrast, horizontal partitioning splits tuples among entities, which may require multiple accesses to gather all relevant data. This approach reduces the number of separate database accesses needed for complex queries, improving performance in distributed systems where data is spread across nodes.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.25,
+    "reasoning": "The answer correctly identifies that vertical partitioning concentrates related attributes to reduce access times, while horizontal partitioning spreads tuples across entities requiring more accesses. However, it incorrectly states that vertical partitioning generates fewer attributes per entity, which is not accurate based on the source. The answer is incomplete because it does not mention the trade-off between reduced access time and increased storage overhead. It is grounded in the context, as the passage discusses both types of partitioning. The tone is academic but uses a mix of prose and bullet points, which is acceptable for this format.",
+    "parse_status": "ok"
+  }
+}

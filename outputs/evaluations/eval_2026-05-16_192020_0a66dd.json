@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_192020_0a66dd",
+  "timestamp": "2026-05-16T19:20:20",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Memory layout optimisation in software engineering",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ncase study’. Proc. 24th Int. Conf. on Software Eng . (ICSE 2002), Orland, Fla.: IEEE Computer Society,\n431–41.\nCroxford, M. and Sutton, J. (2006). ‘Breaking Throu gh the V and V Bottleneck’. Proc. 2nd",
+      "[SEED from source_22.pdf]\non COTS-based Software Systems ), Orlando, Fla:: Springer, 21–30.\nBalk, L. D. and Kedia, A. (2000). ‘PPT: A COTS Inte gration Case Study’. Proc. Int. Conf. on Software\nEng., Limerick, Ireland: ACM Pre",
+      "[SEED from source_22.pdf]\nGarmisch, Germany: Springer-Verlag. \nNuseibeh, B. (1997). ‘Ariane 5: Who Dunnit?’ IEEE Software , 14(3), 15–6.\nO’Leary, D. E. (2000). Enterprise Resource Planning Systems: Systems, Life  Cycle, Electr",
+      "[NEIGHBOUR from source_22.pdf]\nethics. (F. Bott, A. Coleman, J. Eaton and D. Rowla nd, 3rd edition, 2000, Taylor and Francis.)\nChapter 1IExercises 25\nIEEE Software, March/April 2002 . This is a special issue of the magazine devoted",
+      "[NEIGHBOUR from source_22.pdf]\nACM, 51(12), 29–31.\nDrobna, J., Noftz, D. and Raghu, R. (2004). ‘Piloti ng XP on Four Mission-Critical Projects’. IEEE\nSoftware, 21(6), 70–5.\nHighsmith, J. A. (2000). Adaptive Software Development: A"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided are primarily about software engineering case studies and conferences rather than memory layout optimization. They discuss various software engineering topics such as conference proceedings, case studies, and software systems but do not specifically address memory layout optimization. Therefore, they are largely unrelated to the learning objective.\n\nThere is insufficient information to generate a meaningful exam question on memory layout optimization. The chunks contain general software engineering information but lack specific details about memory layout optimization techniques or principles.\n\nThe chunks are filled with references to conferences, case studies, and software systems, which can be considered noise as they do not directly pertain to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which conference paper discusses COTS integration in the context of the Hubble Space Telescope command and control system?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 3.8,
+    "reasoning": "The question asks about a conference paper discussing COTS integration in the context of the Hubble Space Telescope command and control system. However, none of the provided references mention the Hubble Space Telescope or COTS integration in that specific context. Therefore, this question cannot be fully answered using only the given source context, making it unfaithful to the source material.\n\nThe question is clear and unambiguous, asking for a specific piece of information that can be directly identified from the references. It is phrased precisely and does not require any additional context beyond the provided references.\n\nThe difficulty level of the question is medium because it requires understanding the context of the papers and identifying the relevant one, which involves some conceptual understanding rather than just basic recall.\n\nThe question type is conceptual as it requires explaining or comparing the relevance of the papers to the Hubble Space Telescope command and control system, rather than just recalling a fact.\n\nThe question is self-contained and does not reference the context or passage explicitly, making it standalone.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The paper by Baumer et al. titled \"Framework Development for Large Systems\" published in Communications of the ACM in October 1997 discusses aspects of COTS integration, which includes considerations for the Hubble Space Telescope command and control system. While the paper does not specifically focus on the Hubble Space Telescope, it provides insights into the broader context of integrating COTS components in large-scale systems, which can be applied to the command and control infrastructure of the Hubble Space Telescope.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 2
+    },
+    "overall": 1.25,
+    "reasoning": "- CORRECTNESS: The answer incorrectly identifies \"Baumer et al.\" and their paper \"Framework Development for Large Systems\" as discussing COTS integration in the context of the Hubble Space Telescope command and control system. There is no such paper in the given context. The closest related papers are about COTS integration generally, but none specifically mention the Hubble Space Telescope. Thus, this answer contains clear factual errors.\n- COMPLETENESS: The answer attempts to address the question by mentioning COTS integration and its relevance to the Hubble Space Telescope, but it fails to correctly identify any of the papers that actually discuss COTS integration in the context of the Hubble Space Telescope. It also does not provide the title or authors of the correct paper, if one exists in the given context.\n- GROUNDEDNESS: The answer introduces \"Baumer et al.\" and their paper, which are not mentioned in the provided sources. This information is not grounded in the source context and thus is an hallucination.\n- ACADEMIC_TONE: The answer is written in a somewhat casual tone, using sentence structures that are more conversational than academic. It also includes unnecessary details like the publication date of the ACM issue, which is not relevant to answering the question.",
+    "parse_status": "ok"
+  }
+}

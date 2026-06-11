@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_103451_afde31",
+  "timestamp": "2026-06-10T10:34:51",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Version control strategies for database schemas",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt",
+      "[SEED from source_7.pdf]\nstudents who are already writing their theses. Thus, for each of them, wehave a degree programme and a professor who is supervising his or herthesis.\n8.6.4 Further restructurings of conceptual schemas",
+      "[SEED from source_8.pdf]\nrency control in distributed databases, are new but almost everything else in\nthis chapter is new.\nAs in the sixth edition, we facilitate the following of our running example by listing\nthe database s",
+      "[NEIGHBOUR from source_14.pdf]\n6.1 Requirements collection and analysis 189\n6.2 General criteria for data representation 194\n6.3 Design strategies 196\n6.3.1 Top-down strategy 196\n6.3.2 Bottom-up strategy 198\n6.3.3 Inside-out strate",
+      "[NEIGHBOUR from source_14.pdf]\nschema starting from the conceptual schema. We discuss the various designoptions and provide guidelines that the designer should follow in this phase.\nChapter 8 discusses schema normalization and the"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to version control strategies for database schemas. They cover topics like normalization, verification, and design strategies, which are tangential rather than directly addressing the objective. There is insufficient information to generate a good exam question because the chunks lack specific details about versioning or schema evolution. The noise level is moderate, with some irrelevant content like requirements collection and distributed databases.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary purpose of further restructurings of conceptual schemas, and how do they relate to the verification of normalization on entities and relationships?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about further restructurings of conceptual schemas, which is directly covered in the source context. It also references verification of normalization on entities and relationships, which is discussed in the same section. The question is clear and unambiguous, asking for a conceptual explanation. It is at a medium difficulty level because it requires understanding of normalization concepts rather than simple recall. The question is conceptual in nature, matching the requested type. It is self-contained, as it does not reference the passage explicitly. Overall, the question is well-designed for an exam.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Further restructurings of conceptual schemas are designed to address cases where normalization into Boyce-Codd normal form is not possible, allowing for alternative decompositions that still ensure correctness. These restructurings complement the verification of normalization on entities and relationships by providing additional methods to eliminate anomalies and redundancies when standard decomposition fails. By considering such alternatives, designers can adapt their schemas to meet specific requirements while maintaining data integrity.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that further restructurings of conceptual schemas are used when normalization into BCNF is not possible, and it explains how they complement verification of normalization on entities and relationships. It is mostly grounded in the context, as the passage does mention restructurings and normalization, though it does not explicitly state that restructurings are for BCNF failure. The language is academic and precise, using appropriate terminology like 'Boyce-Codd normal form' and 'eliminate anomalies'. However, the answer could be more detailed about the specific restructurings mentioned in the source, which are not fully covered here.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_205323_9df765",
+  "timestamp": "2026-05-16T20:53:23",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Pipeline optimisation across CPU instruction pipelines and software processing",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=software_engineering]\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Prediction 182\n3.4 Overcoming Data Haza",
+      "[NEIGHBOUR from source_12.pdf domain=software_engineering]\nAdvanced branch prediction Control stalls 3.3\nDynamic scheduling with renaming Stalls from data hazards, output dependences, and\nantidependences3.4\nHardware speculation Data hazard and control hazard",
+      "[NEIGHBOUR from source_38.pdf domain=software_engineering]\nusing a multiple issue, dynamically scheduled, 16-stage pipeline, which wedescribe in detail in Chapter 3 . The i7 can also support up to two simultaneous\nthreads per processor, using a technique call"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.33,
+    "reasoning": "The chunks discuss various aspects of instruction-level parallelism, branch prediction, and pipeline stages, which are closely related to the learning objective of pipeline optimization. However, they do not explicitly mention CPU instruction pipelines or software processing, which are key components of the learning objective. Therefore, while the content is relevant, it is not as direct as it could be.\n\nFor sufficiency, the chunks provide information about advanced branch prediction, dynamic scheduling, and hardware speculation, which are important concepts for pipeline optimization. However, they lack specific details about CPU instruction pipelines and how software processing interacts with them, making it somewhat challenging to generate a comprehensive exam question.\n\nThe noise level is moderate as the chunks contain technical terms and concepts that are relevant to the field but may be distracting for someone unfamiliar with the subject matter.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes the impact of advanced branch prediction on reducing branch costs in modern CPUs?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided, specifically the section on \"Reducing Branch Costs With Advanced Branch Prediction.\" It does not require any additional knowledge beyond what is given.\n- CLARITY: The question is clear and unambiguous. It asks for a specific description of how advanced branch prediction impacts branch costs, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question requires the examinee to apply their understanding of branch prediction to reduce costs, which aligns with the \"application\" difficulty level.\n- TYPE_ALIGNMENT: The question asks for a description of the impact of advanced branch prediction, fitting well into the \"application\" category as it requires the examinee to apply their knowledge rather than just recall facts.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage directly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Advanced branch prediction significantly reduces branch costs in modern CPUs by mitigating the negative impact of control flow divergence, which is a primary contributor to pipeline stalls and wasted cycles. The relationship between advanced branch prediction and branch cost is direct; as the accuracy of branch prediction improves, the number of mispredicted branches decreases, thereby reducing the associated overhead. For instance, a CPU employing advanced branch prediction techniques such as history-based prediction can accurately guess the outcome of conditional branches, thus minimizing the penalty of mispredictions. This leads to higher instruction-level parallelism (ILP) and more efficient use of the CPU's resources. As a result, modern processors like the Intel i7 can achieve higher instruction execution rates, as evidenced by the example given where a 4.0 GHz clock rate in Turbo Boost mode enables a peak instruction execution rate of 16 billion instructions per second. The effectiveness of advanced branch prediction is further highlighted by its ability to overcome data hazards and control hazards, contributing to smoother and more efficient instruction scheduling within the CPU pipeline.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.75,
+    "reasoning": "Correctness: The answer is largely correct, aligning with the concepts discussed in the source context about branch prediction and its impact on reducing branch costs. However, it incorrectly mentions the Intel i7 as an example, which is not directly related to the branch prediction discussion in the context. This introduces a minor factual error.\n\nCompleteness: The answer covers the key points of how advanced branch prediction reduces branch costs and its impact on instruction-level parallelism. It also touches on the relationship between branch prediction accuracy and mispredictions, which are crucial aspects of the topic. However, it could have included more specific examples or techniques mentioned in the context, such as history-based prediction.\n\nGroundedness: The answer is mostly grounded in the provided context, discussing branch prediction and its benefits. However, the mention of the Intel i7 as an example is not supported by the context and introduces an unsupported addition.\n\nAcademic Tone: The language used is generally precise and academic, suitable for a university-level paper. The prose is well-structured and avoids casual language, though there is a slight inconsistency in the use of technical terms and the inclusion of the Intel i7 example, which breaks the academic tone.",
+    "parse_status": "ok"
+  }
+}

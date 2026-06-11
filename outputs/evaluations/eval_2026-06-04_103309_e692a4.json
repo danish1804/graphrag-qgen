@@ -1,0 +1,57 @@
+{
+  "eval_id": "eval_2026-06-04_103309_e692a4",
+  "timestamp": "2026-06-04T10:33:09",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Apply process synchronisation concepts to prevent deadlock when multiple processes share resources",
+    "difficulty": "hard",
+    "question_type": "case_study"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nANDSTARVATION\n6.1 Principles of Deadlock\nReusable Resources\nConsumable ResourcesResource Allocation\nGraphs\nThe Conditions for \nDeadlock\n6.2 Deadlock Prevention\nMutual ExclusionHold and WaitNo Preempti",
+      "[SEED from source_5.pdf]\nSolution Using SemaphoresSolution Using a Monitor\n6.7 UNIX Concurrency Mechanisms\nPipesMessagesShared MemorySemaphoresSignals\n6.8 Linux Kernel ConcurrencyMechanisms\nAtomic OperationsSpinlocksSemaphore",
+      "[SEED from source_5.pdf]\nplague all efforts to support concurrent processing: deadlock and starvation. We beginwith a discussion of the underlying principles of deadlock and the related problem ofstarvation. Then we examine t",
+      "[NEIGHBOUR from source_5.pdf]\n5.6 Readers/Writers Problem 245\n5.7 Summary 249\n5.8 Recommended Reading 250\n5.9 Key T erms, Review Questions, and Problems 251\nChapter 6 Concurrency: Deadlock and Starvation 262\n6.1 Principles of Dead",
+      "[NEIGHBOUR from source_5.pdf]\nChapter 6  Concurrency: Deadlock and Starvation\nChapter 6 looks at two additional aspects of concurrency control. Deadlock refers to",
+      "[NEIGHBOUR from source_5.pdf]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[NEIGHBOUR from source_5.pdf]\n2.1 Operating System Objectives and Functions 51\n2.2 The Evolution of Operating Systems 55\n2.3 Major Achievements 64\n2.4 Developments Leading to Modern Operating Systems 77\n2.5 Microsoft Windows Overv"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address the learning objective of applying process synchronization concepts to prevent deadlock. Instead, they discuss general principles of deadlock, starvation, and related topics such as operating system functions and concurrency mechanisms. While these concepts are foundational, they do not provide specific information on how to apply synchronization techniques to prevent deadlock, which is required by the learning objective.\n\nThere is insufficient information in the chunks to generate a good exam question. The chunks mention concepts like mutual exclusion, hold and wait, and semaphore-based solutions, but they lack detailed explanations or examples that would be necessary to create a comprehensive exam question.\n\nThe chunks contain a mix of relevant and irrelevant content. The sections on operating system objectives, functions, and general computer system overview are not directly related to the learning objective and thus introduce noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "SCENARIO: Two processes, P1 and P2, are running on a system where each process needs to access a shared resource. P1 holds a lock on Resource A and waits for a lock on Resource B, while P2 holds a lock on Resource B and waits for a lock on Resource A. Both processes have the same priority and are spinning on the same spinlock.\n\nQUESTION: How can you modify the current situation to avoid deadlock between P1 and P2?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided context, which discusses deadlock and the conditions under which it occurs. The scenario described fits within the context of the principles of deadlock and the specific example given about processes waiting for resources.\n- CLARITY: The question is clear and unambiguous. It asks how to modify the current situation to avoid deadlock, which is a straightforward request. The scenario is well-defined and the terms used are appropriate for the context.\n- DIFFICULTY_ALIGNMENT: The question requires the student to apply their understanding of deadlock to a specific scenario, which involves analyzing the situation and proposing a solution. This aligns with the \"hard\" difficulty level as it involves deeper analysis rather than simple recall.\n- TYPE_ALIGNMENT: The question is asking for a modification to avoid deadlock, which is an application-type question. It does not simply recall definitions or concepts but requires the student to apply their knowledge to a specific scenario.\n- STANDALONE_QUALITY: The question stands alone and does not reference any external context. It provides all necessary information within the question itself, making it a self-contained exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "To avoid deadlock between P1 and P2, it is essential to break the circular wait condition, which is a fundamental requirement for deadlock to occur. One effective method is to implement a resource allocation order discipline, where processes must request resources in a predetermined order. For instance, both P1 and P2 could be required to first request Resource A before attempting to acquire Resource B. This ensures that if P1 already holds Resource A and is waiting for Resource B, and P2 holds Resource B and is waiting for Resource A, neither will be able to proceed because they are requesting resources out of order. Additionally, since both processes have the same priority and are spinning on the same spinlock, it is crucial to introduce a mechanism to prevent indefinite waiting, such as a timeout or a preemption strategy. By ensuring that processes do not endlessly spin without making progress, the risk of deadlock can be significantly reduced. Implementing these measures aligns with the principles of deadlock prevention discussed in Chapter 6, specifically the hold and wait condition and the circular wait condition.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "Correctness: The answer correctly identifies the need to break the circular wait condition and mentions implementing a resource allocation order discipline. It also appropriately notes the importance of preventing indefinite waiting through timeouts or preemption strategies. These points are consistent with the principles of deadlock prevention discussed in the context. Therefore, the answer is fully correct.\n\nCompleteness: The answer covers the key points needed to address the question by mentioning both the resource allocation order discipline and the prevention of indefinite waiting. It addresses the core issue of avoiding deadlock effectively.\n\nGroundedness: The answer is entirely grounded in the provided context, discussing the principles of deadlock and the specific conditions necessary for deadlock to occur. There are no unsupported additions or information not present in the context.\n\nAcademic Tone: The language used is precise and academic, suitable for a university-level writing. The answer is written in prose without any bullet points, maintaining an appropriate academic tone.",
+    "parse_status": "ok"
+  }
+}

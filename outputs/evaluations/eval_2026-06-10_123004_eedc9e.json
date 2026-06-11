@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_123004_eedc9e",
+  "timestamp": "2026-06-10T12:30:04",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Memory layout optimisation in software engineering",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ncase study’. Proc. 24th Int. Conf. on Software Eng . (ICSE 2002), Orland, Fla.: IEEE Computer Society,\n431–41.\nCroxford, M. and Sutton, J. (2006). ‘Breaking Throu gh the V and V Bottleneck’. Proc. 2nd",
+      "[SEED from source_22.pdf]\non COTS-based Software Systems ), Orlando, Fla:: Springer, 21–30.\nBalk, L. D. and Kedia, A. (2000). ‘PPT: A COTS Inte gration Case Study’. Proc. Int. Conf. on Software\nEng., Limerick, Ireland: ACM Pre",
+      "[SEED from source_22.pdf]\nGarmisch, Germany: Springer-Verlag. \nNuseibeh, B. (1997). ‘Ariane 5: Who Dunnit?’ IEEE Software , 14(3), 15–6.\nO’Leary, D. E. (2000). Enterprise Resource Planning Systems: Systems, Life  Cycle, Electr",
+      "[NEIGHBOUR from source_22.pdf]\nethics. (F. Bott, A. Coleman, J. Eaton and D. Rowla nd, 3rd edition, 2000, Taylor and Francis.)\nChapter 1IExercises 25\nIEEE Software, March/April 2002 . This is a special issue of the magazine devoted",
+      "[NEIGHBOUR from source_22.pdf]\nACM, 51(12), 29–31.\nDrobna, J., Noftz, D. and Raghu, R. (2004). ‘Piloti ng XP on Four Mission-Critical Projects’. IEEE\nSoftware, 21(6), 70–5.\nHighsmith, J. A. (2000). Adaptive Software Development: A"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are primarily about software engineering case studies and conferences, with no direct mention of memory layout optimization. They are mostly irrelevant to the learning objective, so relevance scores 1. There is insufficient information to generate a meaningful exam question, scoring 1 for sufficiency. The chunks contain many conference titles and author names, which are distracting and not directly related to the topic, so noise scores 1.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the given context, here is an exam question:\n\nWhat was the primary focus of the \"COTS Integration: Plug and Play?\" article published in IEEE Computer in 1999 by Boehm and Abts, and what does this title suggest about their perspective on integrating Commercial Off-The-Shelf (COTS) components?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about a specific article's focus and title interpretation, which can be answered directly from the context. The title suggests a focus on integrating COTS components, implying a perspective on ease of integration. The question is clear and unambiguous, asking for a straightforward explanation. It is medium difficulty because it requires understanding the title and its implications rather than simple recall. The question is conceptual, asking for an explanation of the title's meaning. It is self-contained, not referring to the passage. Overall, it meets all criteria well.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The article by Boehm and Abts in IEEE Computer in 1999 titled \"COTS Integration: Plug and Play?\" examines the challenges and feasibility of integrating commercial off-the-shelf (COTS) components into software systems. The title suggests that they advocate for a straightforward, low-overhead approach to COTS integration, possibly implying that the process should be as simple and seamless as plugging in a component without extensive customization or modification. This perspective contrasts with earlier views that saw COTS integration as risky or difficult, instead promoting it as a practical solution for building complex systems.",
+    "scores": {
+      "correctness": 2,
+      "completeness": 1,
+      "groundedness": 4,
+      "academic_tone": 3
+    },
+    "overall": 2.5,
+    "reasoning": "The answer correctly identifies the article's title and its focus on COTS integration, but it misrepresents the year (1999 instead of 1998) and the journal (IEEE Computer instead of IEEE Software). It also incorrectly states that the title implies a plug-and-play approach, which is not explicitly stated in the source. The answer is incomplete because it does not mention the authors' names or the specific challenges discussed. It is grounded in the context but contains factual errors. The tone is academic but uses a mix of prose and bullet points, which is acceptable but not ideal for a full-length answer.",
+    "parse_status": "ok"
+  }
+}

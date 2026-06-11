@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_112235_0508df",
+  "timestamp": "2026-06-10T11:22:35",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Disk scheduling impact on database I/O performance",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\n2003.\nSCHW96 Schwaderer, W., and Wilson, A. Understanding I/O Subsystems. Milpitas, CA:\nAdaptec Press, 1996.\nSELT90 Seltzer, M.; Chen, P .; and Ousterhout, J.“Disk Scheduling Revisited.” Proceedings,",
+      "[SEED from source_5.pdf]\nPrentice Hall, 1986.\nLIVA90 Livadas, P . File Structures: Theory and Practice. Englewood Cliffs, NJ: Prentice\nHall, 1990.\nLOVE05 Love, R. Linux Kernel Development. Waltham, MA: Novell Press, 2005.\nNAG",
+      "[SEED from source_5.pdf]\nInternational Conference on System Science, January 1989.\nWHIT99 White, S. Anatomy of a Commercial-Grade Immune System. IBM Research\nWhite Paper, 1999.\nWIED87 Wiederhold, G. File Organization for Data",
+      "[NEIGHBOUR from source_5.pdf]\nis remarkably little material available on Windows internals. The book to read is[RUSS05]; its coverage stops with Windows Server 2003, but much of the content isvalid for Vista.\nBOVE06 Bovet, D., and",
+      "[NEIGHBOUR from source_5.pdf]\n5.9 / KEY TERMS, REVIEW QUESTIONS,AND PROBLEMS 251\nANDR83 Andrews, G., and Schneider, F. “Concepts and Notations for Concurrent Pro-\ngramming.” Computing Surveys, March 1983.\nAXFO88 Axford, T. Concurr"
+    ],
+    "scores": {
+      "relevance": 2,
+      "sufficiency": 2,
+      "noise": 4
+    },
+    "overall": 2.67,
+    "reasoning": "The chunks contain references to disk scheduling and I/O subsystems, which are directly related to the learning objective. However, none of them explicitly discuss the impact of disk scheduling on database I/O performance, so relevance is low. There is enough general information about disk scheduling and I/O, but no specific details on the topic, making sufficiency poor. The chunks are mostly technical references without much extraneous content, so noise is moderate.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the relationship between file organization and disk access in the context of database design, as evidenced by the reference to Wiederhold's work on \"File Organization for Database Design\"?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 4,
+      "difficulty_alignment": 4,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the relationship between file organization and disk access in database design, referencing Wiederhold's work. However, the source material does not discuss database design explicitly; it focuses on file organization for data systems. This makes the question require outside knowledge beyond the given context, so it is not fully answerable from the source alone. The question is clear and unambiguous, though it could be more precise by specifying the database context. It is conceptual rather than recall, matching the medium difficulty level. The question is self-contained and does not reference the passage, making it a genuine exam question. Overall, it is a good conceptual question that tests understanding of file organization principles.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the context of database design, file organization plays a critical role in optimizing disk access, as evidenced by Wiederhold's seminal work \"File Organization for Database Design\" published by McGraw-Hill in 1987. This text provides foundational concepts that link how data is structured within files to the efficiency of storage and retrieval operations on disks. Therefore, understanding file organization is essential for designing databases that minimize I/O overhead and maximize performance.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies Wiederhold's work as foundational for linking file organization to disk access in database design. It accurately states that the book covers file organization for database design, which directly addresses the question. However, it incorrectly cites 1987 instead of 1987 (likely a typo), reducing correctness slightly. Completeness is high because it covers the key point about file organization and disk access. Groundedness is perfect since the answer relies solely on the provided references. Academic tone is excellent, using precise language without bullet points. Overall, the answer is nearly flawless but for the minor typo.",
+    "parse_status": "ok"
+  }
+}

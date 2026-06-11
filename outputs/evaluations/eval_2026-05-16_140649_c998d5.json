@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_140649_c998d5",
+  "timestamp": "2026-05-16T14:06:49",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Disk scheduling algorithms",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\n2003.\nSCHW96 Schwaderer, W., and Wilson, A. Understanding I/O Subsystems. Milpitas, CA:\nAdaptec Press, 1996.\nSELT90 Seltzer, M.; Chen, P .; and Ousterhout, J.“Disk Scheduling Revisited.” Proceedings,",
+      "[SEED from source_5.pdf]\nPrentice Hall, 1986.\nLIVA90 Livadas, P . File Structures: Theory and Practice. Englewood Cliffs, NJ: Prentice\nHall, 1990.\nLOVE05 Love, R. Linux Kernel Development. Waltham, MA: Novell Press, 2005.\nNAG",
+      "[NEIGHBOUR from source_5.pdf]\nis remarkably little material available on Windows internals. The book to read is[RUSS05]; its coverage stops with Windows Server 2003, but much of the content isvalid for Vista.\nBOVE06 Bovet, D., and"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not contain any direct information about disk scheduling algorithms. Instead, they list various books and publications that may or may not discuss disk scheduling. Chunk 1 mentions a book by Schwaderer and Wilson, which could potentially be related to disk scheduling, but it does not provide specific details. Chunk 2 and Chunk 3 are even less relevant, as they list other books without any indication of their content. Therefore, these chunks are largely unrelated to the learning objective.\n\nThe chunks do not provide enough information to generate a good exam question on disk scheduling algorithms. They only mention potential sources of information but do not give any concrete details about the algorithms themselves or how they work. Thus, they are insufficient for the task.\n\nWhile the chunks are brief and do not contain extraneous information, they are not clean since they do not directly address the learning objective and instead focus on listing sources rather than providing relevant content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which book provides a detailed discussion on disk scheduling algorithms?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks which book provides a detailed discussion on disk scheduling algorithms. This can be answered using the source context, specifically the reference to SELT90 by Seltzer, M.; Chen, P .; and Ousterhout, J., “Disk Scheduling Revisited.” Therefore, the question is completely answerable from the context alone, making it highly faithful to the source material.\n\nThe question is clear and unambiguous, asking for a specific piece of information that can be directly identified from the given references. It is phrased precisely and does not require any additional context or explanation, earning a high clarity score.\n\nGiven that the question requires recalling a specific book title and author, it aligns well with the requested difficulty level of 'easy' as it involves basic recall rather than deeper understanding or application.\n\nThe question type requested is 'recall', which perfectly matches the nature of the question asked. It does not require any explanation or application beyond identifying the correct reference.\n\nThe question stands alone and does not reference the context or passage, making it a genuine exam question a student could see.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Selzer et al.'s \"Disk Scheduling Revisited\" from the Proceedings of the USENIX Winter Technical Conference in 1990 offers a detailed discussion on disk scheduling algorithms.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 3,
+      "groundedness": 1,
+      "academic_tone": 1
+    },
+    "overall": 1.5,
+    "reasoning": "- CORRECTNESS: The answer incorrectly identifies \"Selzer et al.\" as the authors of the book, which should be \"Seltzer et al.\" Additionally, the title is incorrect; it should be \"Disk Scheduling Revisited\" rather than \"Selzer et al.'s 'Disk Scheduling Revisited'\". This indicates a factual error.\n- COMPLETENESS: The answer covers the main idea of discussing disk scheduling algorithms but fails to mention the specific year and publisher, which are important details.\n- GROUNDEDNESS: The answer contains significant information not present in the context, such as the name \"Selzer et al.\" and the title \"Disk Scheduling Revisited\", which are incorrect based on the given sources.\n- ACADEMIC_TONE: The answer uses a casual tone by misspelling \"Seltzer\" as \"Selzer\" and using informal language like \"et al.'s\". It also includes unnecessary quotation marks around the author's name, which is not typical in academic writing.",
+    "parse_status": "ok"
+  }
+}

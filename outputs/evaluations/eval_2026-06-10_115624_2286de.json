@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_115624_2286de",
+  "timestamp": "2026-06-10T11:56:24",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Concurrent programming and thread safety",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ngram meets its specification and that implementatio n errors will not compromise the\ndependability of the system. If you develop a forma l model of concurrent systems\nusing a specification written in",
+      "[SEED from source_22.pdf]\nstate transitions), checking that the property hold s for each path. If it does, then the\nmodel checker confirms that the model is correct wi th respect to that property. If it\ndoes not hold for a par",
+      "[SEED from source_22.pdf]\nsize of the final program depends on design decisio ns that may not have been made\nwhen the estimate is required. For example, an appl ication that requires high-\nperformance data management may eithe"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks discuss formal verification of concurrent systems, which is tangential to the core topic of concurrent programming and thread safety. They do not directly explain how to ensure thread safety or concurrency correctness. The chunks are moderately relevant because they touch on related concepts but miss the essential material. There is insufficient information to generate a good exam question, as the chunks lack concrete examples or explanations of thread safety principles. The chunks contain some technical jargon but are not overly noisy; the main issue is lack of direct coverage of the learning objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "When developing a formal model of concurrent systems using languages like CSP, what kind of condition can model checking help identify that testing alone would struggle to detect?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about conditions that model checking can identify but testing cannot, which is directly supported by the source's discussion of model checking vs. testing. It is clear and unambiguous, asking for a comparison of two techniques. The difficulty is medium because it requires understanding the distinction between model checking and testing, but not deep analysis. The question is conceptual, matching the requested type. It is self-contained, not referring to the passage, so it stands alone. Overall, it is a good match for the source material and the requested parameters.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Model checking can identify conditions that might lead to deadlock in a concurrent system, which is extremely challenging to discover through testing alone. By systematically analyzing all possible state transitions, model checking reveals paths where the property holds or fails, providing concrete counter-examples when violations occur. This capability is especially valuable for validating concurrent systems, where exhaustive testing is impractical due to their complexity.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer correctly identifies deadlock detection as a key benefit of model checking over testing, referencing the source's mention of property verification through state transitions. It also notes that model checking provides concrete counter-examples when properties fail, which aligns with the source's emphasis on systematic analysis. The answer is complete, covering both the problem (deadlock) and the solution (model checking). It is entirely grounded in the source, as no additional facts are introduced. The language is academic and precise, using terms like \"concurrent systems\" and \"state transitions\" appropriately. Overall, the answer is well-written and accurate.",
+    "parse_status": "ok"
+  }
+}

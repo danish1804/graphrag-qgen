@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-04_060055_8924dd",
+  "timestamp": "2026-06-04T06:00:55",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "deadlock concept in database",
+    "difficulty": "easy",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAlthough locks prevent serious data inconsistencies, they can lead to two major problems:\n•\tThe resulting transaction schedule might not be serializable.\n•\tThe schedule might create deadlocks. A deadl",
+      "[SEED from source_49.pdf]\nSerializability of schedules is guaranteed through the use of two-phase locking. The two-phase locking schema has a growing phase, in which the transaction acquires all of the locks that it needs with",
+      "[NEIGHBOUR from source_31.pdf]\nlock\nmanager \n) receives a sequence of execution requests for these primitives by\nthe transactions, and their outcome is determined by a simple inspection ofan adequate data structure, at a negligible"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are somewhat relevant to the learning objective of understanding the deadlock concept in databases. Chunk 1 directly mentions deadlocks and their relation to transaction schedules, which aligns well with the objective. However, it does not provide much detail about the concept itself. Chunk 2 discusses two-phase locking and its role in ensuring serializability, which is tangentially related but does not directly address deadlocks. Chunk 3 is about lock management and does not contribute to the understanding of deadlocks. \n\nFor sufficiency, only Chunk 1 provides any direct information about deadlocks, but it lacks depth and specific details necessary to formulate a good exam question. The other chunks do not contribute to the understanding of deadlocks.\n\nNoise is moderate as the chunks contain some irrelevant or tangential information, such as discussions on lock management and two-phase locking, which do not directly pertain to the concept of deadlocks.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is a deadlock in the context of database management, and how does it occur according to the provided context?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question directly asks about deadlocks and how they occur, which is covered in the provided context. The context mentions that locks can lead to deadlocks, making this question fully answerable using only the given context.\n- CLARITY: The question is clear and unambiguous. It asks for a definition and explanation of a concept, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question is asking for a basic understanding of a term and its occurrence, which aligns with the easy difficulty level.\n- TYPE_ALIGNMENT: The question asks for an explanation of how deadlocks occur, which fits the conceptual type.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage,\" making it a standalone exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A deadlock occurs when two or more transactions wait indefinitely for each other to release a lock, creating a cyclic dependency that prevents any of them from completing. This situation, often referred to as a \"deadly embrace,\" arises when transactions hold locks on certain data and simultaneously request additional locks held by other transactions, leading to mutual blocking.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly defines a deadlock as a situation where two or more transactions wait indefinitely for each other to release a lock, creating a cyclic dependency. This aligns with the provided context, which mentions that locks can lead to deadlocks. However, the answer does not explicitly mention the two-phase locking schema or the growing phase, which are key aspects of the context. Therefore, while the core concept is correct, there is room for improvement in completeness.\n\nThe answer is grounded in the source context, as it accurately describes the concept of a deadlock without introducing any unsupported information. It does not contain any significant information not present in the context.\n\nThe language used in the answer is precise and academic, using appropriate terminology such as \"transaction\" and \"lock.\" There are no bullet points or casual elements, making it suitable for a university-level writing context.",
+    "parse_status": "ok"
+  }
+}

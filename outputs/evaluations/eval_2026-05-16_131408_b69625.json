@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131408_b69625",
+  "timestamp": "2026-05-16T13:14:08",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Relational algebra and calculus",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_31.pdf]\n38\n2.5 \nExercises \n39\n \nviii \nContents \n3 \nRelational algebra and calculus \n41\n3.1 \nRelational algebra \n42\n3.1.1 \nUnion, intersection, difference \n42\n3.1.2 \nRenaming \n43\n3.1.3 \nSelection \n45\n3.1.4 \nPr",
+      "[SEED from source_31.pdf]\nmodel. First we describe relational algebra, a simple and importantprocedural language; then we introduce declarative languages like relationalcalculus (on domains and on tuples with range restriction",
+      "[NEIGHBOUR from source_36.pdf]\nRelational catalogues \n99\n4.2 \nsql \n queries \n100\n4.2.1 The declarative nature of sql 101\n4.2.2 Simple queries 101\n4.2.3 Aggregate queries 113\n4.2.4 Group by queries 116\n4.2.5 Set queries 120\n4.2.6 Ne"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided are primarily about relational algebra and briefly mention relational calculus. Chunk 1 lists sections related to relational algebra but does not provide any content. Chunk 2 introduces relational calculus but does so in a general context without specific details. Chunk 3 is about SQL queries and relational catalogues, which are not directly related to the learning objective.\n\nFor relevance, the chunks are only partially relevant as they touch upon relational algebra and calculus but lack detailed explanations or examples that would be necessary for an exam question.\n\nFor sufficiency, the chunks are insufficient because they do not provide enough detail or specific examples to generate a meaningful exam question on relational algebra and calculus.\n\nFor noise, the chunks contain mostly irrelevant content, as they discuss topics not aligned with the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What operation in relational algebra is used to select tuples that satisfy a given condition from a relation?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context, which describes relational algebra and its operations, including selection. Therefore, it is 5 out of 5.\n- CLARITY: The question is clear and unambiguous, asking about a specific operation in relational algebra. It is precisely phrased and easy to understand. Thus, it scores 5 out of 5.\n- DIFFICULTY_ALIGNMENT: The question asks for a recall of a specific operation, which aligns with the easy difficulty level requested. Hence, it scores 5 out of 5.\n- TYPE_ALIGNMENT: The question is asking to identify a specific operation, which fits the recall type perfectly. Therefore, it scores 5 out of 5.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but can stand alone as a typical exam question. Thus, it scores 5 out of 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The operation in relational algebra used to select tuples that satisfy a given condition from a relation is known as selection. This operation filters the tuples in a relation based on a specified condition, returning only those tuples that meet the criteria defined in the selection condition.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is fully correct. The selection operation in relational algebra indeed filters tuples based on a condition, which matches the description in the exam question.\n- COMPLETENESS: The answer covers the key point by identifying the selection operation as the one used to filter tuples based on a condition. It does not need to include additional details beyond this core concept.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. There are no unsupported additions or information not present in the context.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, using formal prose without any casual elements or bullet points.",
+    "parse_status": "ok"
+  }
+}

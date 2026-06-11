@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_090638_3c65ac",
+  "timestamp": "2026-06-10T09:06:38",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "MLOps and model deployment pipelines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nPractice and Promise . Boston: Addison-Wesley.\nKruchten, P . (1995). ‘The 4 + 1 view model of archi tecture’. IEEE Software , 11(6), 42–50.\nMellor, S. J. and Balcer, M. J. (2002). Executable UML . Bos",
+      "[SEED from source_22.pdf]\nComputer , 33(7), 66–71.\nSousa, M. J. (1998). ‘A Survey on the Software Main tenance Process’. 14th IEEE International\nConference on Software Maintenance (ICSM ’98), Wash ington, D.C.: 265–74.\nUlrich,",
+      "[SEED from source_22.pdf]\nAnderson, R., 367, 391, 392, 404, 420\nAnderson, R. J., 269, 288\nAndrea, J., 223, 232\nAndrews, M., 418\nAndrews, T., 533, 536\nAppleton, B., 156, 174, 702\nArisholm, E., 72, 80\nArlow, J., 50, 55\nArmour, P",
+      "[NEIGHBOUR from source_22.pdf]\nand permission should be obtained from the publishe r prior to any prohibited reproduction, storage in a\nretrieval system, or transmission in any form or by  any means, electronic, mechanical, photoco",
+      "[NEIGHBOUR from source_22.pdf]\nengineers affected to passively or actively resist the introduction of this technology?Chapter 2IReferences 55\nR E F E R E N C E S\nArlow, J. and Neustadt, I. (2005). UML 2 and the Unified Process: Pra"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks contain references to books and papers on software engineering and architecture, which are tangentially related to MLOps and model deployment pipelines, but none directly addresses those topics. The only potentially relevant chunk is Kruchten's work on architecture, which could be about design patterns used in MLOps. However, the other chunks are mostly about software maintenance and UML, which are not core to the learning objective. Thus, relevance is low. Sufficiency is also low because no specific concepts like pipeline stages or deployment strategies are covered. Noise is moderate since the chunks include many book titles and authors that are not directly relevant to the objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the given context, here is an exam question:\n\nAccording to the bibliography references listed, which book authored by Arlow and Neustadt provides guidance on balancing agility with discipline in software development, and what is its publication year?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about a book by Arlow and Neustadt, which is directly stated in the bibliography. It can be fully answered using only the source context, so faithfulness is high (5). The question is clear and unambiguous, asking for a specific title and year, so clarity is also high (5). The difficulty is medium because it requires understanding that the book is about balancing agility and discipline, which is a conceptual idea rather than a simple recall. The question type is conceptual, asking for an explanation of the book's purpose, which fits the medium difficulty. The question does not reference the context explicitly, so standalone quality is high (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Arlow and Neustadt's book titled \"UML 2 and the Unified Process: Practical Object-Oriented Analysis and Design\" offers guidance on balancing agility and discipline in software development. This comprehensive resource was published in 2005 by Addison-Wesley, providing valuable insights for practitioners and researchers seeking to integrate agile methodologies with disciplined processes.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies the book title, authors, and publication year from the context. It also accurately states that the book provides guidance on balancing agility and discipline. However, the passage does not mention the book's content or its relevance to software development, so completeness is slightly lower. The answer is entirely based on the provided sources, so groundedness is high. The tone is formal and academic, though the use of bullet points breaks the prose flow, slightly reducing academic tone. Overall, correctness and groundedness are strong, while completeness and academic tone have minor issues.",
+    "parse_status": "ok"
+  }
+}

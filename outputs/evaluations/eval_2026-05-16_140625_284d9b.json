@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_140625_284d9b",
+  "timestamp": "2026-05-16T14:06:25",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Semaphores and mutual exclusion",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nSemaphores Demonstrates the bounded-buffer consumer/producer problem using\nsemaphores\nProducer-consumer Illustrates the operation of a producer-consumer buffer\nReader-writer Illustrates the interactio",
+      "[SEED from source_5.pdf]\nChapter 6—Concurrency: Deadlock and Starvation\nBanker’s algorithm Illustrates operation of the Banker’s Algorithm\nSolaris RW lock Illustrates operation of Solaris RW Lock\nChapter 8—Virtual Memory\nPage",
+      "[NEIGHBOUR from source_5.pdf]\n1.1 BASIC ELEMENTS\nAt a top level, a computer consists of processor, memory, and I/O components, withone or more modules of each type. These components are interconnected in somefashion to achieve the"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not directly address semaphores and mutual exclusion, which are the core elements of the learning objective. Chunk 1 mentions semaphores briefly but does not provide any detailed explanation or examples related to mutual exclusion. Chunk 2 and Chunk 3 are completely unrelated to the learning objective, discussing other topics such as concurrency, deadlock, virtual memory, and basic computer architecture.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following concepts does NOT illustrate the operation of mutual exclusion?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks which concept does NOT illustrate mutual exclusion. The source context mentions semaphores, the producer-consumer buffer, and the reader-writer interaction, all of which can be related to mutual exclusion. However, the Banker's algorithm and Solaris RW lock are not directly related to mutual exclusion. This question can be answered using the provided context, making it completely answerable from the context alone. The question is clear and unambiguous, asking about a specific concept that students should recognize. It aligns with the easy difficulty level as it requires basic understanding rather than deeper analysis. The question type is recall, as it asks to state which concept does not fit, fitting the request perfectly. The question stands alone and does not reference any external context.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The Eisenberg-McGuire algorithm illustrates a software approach to mutual exclusion, whereas semaphores, reader-writer, and message passing problems pertain to the operation of mutual exclusion. Therefore, the concept that does not illustrate the operation of mutual exclusion is the Eisenberg-McGuire algorithm.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "Correctness: The answer is correct. The Eisenberg-McGuire algorithm is indeed a software approach to mutual exclusion, while semaphores, reader-writer, and message passing are related to mutual exclusion. This aligns with the context provided.\n\nCompleteness: The answer covers the key points by identifying the Eisenberg-McGuire algorithm as the concept that does not illustrate mutual exclusion and providing examples of concepts that do. It addresses all necessary aspects of the question.\n\nGroundedness: The answer is entirely grounded in the provided context. There are no additional unsupported claims or information.\n\nAcademic Tone: The language used is precise and appropriate for a university-level answer, using formal prose without any casual elements.",
+    "parse_status": "ok"
+  }
+}

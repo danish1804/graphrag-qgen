@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_081636_dbb171",
+  "timestamp": "2026-06-10T08:16:36",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Context switching and process states",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nBackground\nProcesses and Process Control Blocks\n3.2 Process States\nA Two-State Process ModelThe Creation and Termination of ProcessesA Five-State ModelSuspended Processes\n3.3 Process Description\nOpera",
+      "[SEED from source_5.pdf]\n14.4 / MALICIOUS SOFTWARE OVERVIEW 649\ncould be activated by a backdoor and that allowed the tiger team to gain access.The\nthreat was so well implemented that the Multics developers could not find it,",
+      "[NEIGHBOUR from source_5.pdf]\n•System response time: The time span between the moment the user enters a\ncommand and the moment a complete response is displayed on the terminal.Table 9.7 Response Time Ranges\nGreater than 15 seconds"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant. Chunk 1 covers process states and control blocks, which is tangential to context switching. Chunk 2 discusses malicious software, which is unrelated. Chunk 3 talks about response time, also not relevant. There is insufficient information to generate a good exam question because none of the chunks mention context switching or process states directly. The chunks contain moderate noise, as they include technical terms like 'processes' and 'control blocks' but lack the specific concepts needed for the objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the relationship between a process and the operating system control structures in terms of how processes are described and managed?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the relationship between processes and OS control structures, which is directly covered in the background section on process states and description. It can be answered using only the provided context, so faithfulness is high. The question is clear and unambiguous, asking for a recall of basic concepts, so clarity is good. The difficulty is easy because it requires only basic understanding of process management. The question type is recall, which matches the request. The question does not reference the passage explicitly, making it standalone. Overall, all criteria are met well.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A process is described and managed through the operating system control structures, which include process control blocks and other data structures that track process state, execution mode, and scheduling information. These structures enable the OS to create, switch, and terminate processes efficiently, ensuring proper resource allocation and synchronization.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that processes are described and managed via control structures like process control blocks, which track state, execution mode, and scheduling info. It also notes that these structures enable efficient creation, switching, and termination. However, it does not mention the specific role of the OS in managing these structures, which is implied but not explicitly stated. The answer is grounded in the context because it refers directly to process control blocks and their functions. The tone is academic and prose-like, though it uses some bullet points (e.g., \"includes\" and \"track\") which are acceptable in this format. Overall, the answer is mostly correct and grounded, but lacks explicit mention of the OS's role in management.",
+    "parse_status": "ok"
+  }
+}

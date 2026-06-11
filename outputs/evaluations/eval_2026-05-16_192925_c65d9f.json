@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_192925_c65d9f",
+  "timestamp": "2026-05-16T19:29:25",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Memory management unit design and OS support",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nconcurrency mechanisms, 286–288file management, 580–587history of, 90–91I/O devices, 526–529inodes, 581–583kernel memory allocator, 387–389kernel, 91–93messages, 286–287modern systems, 93–94paging sys",
+      "[SEED from source_5.pdf]\ncontext, 149–150virtual memory management, 383–389volume structure, 584–585",
+      "[SEED from source_5.pdf]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[NEIGHBOUR from source_5.pdf]\nIn processors with multiple types of interrupts, a set of interrupt registers\nmay be provided, with one pointer to each interrupt-handling routine. If a stack isused to implement certain functions (e.",
+      "[NEIGHBOUR from source_5.pdf]\nmemory to relieve the processor of the I/O task. In such a case, the processor grantsto an I/O module the authority to read from or write to memory, so that the I/O-memory transfer can occur without t"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not directly address memory management units (MMUs) or operating system (OS) support for MMUs, which are central to the learning objective. Chunk 1 mentions virtual memory management, which is somewhat related, but does not focus on MMUs. Chunk 2 also discusses virtual memory management but again does not specifically mention MMUs. Chunk 3 is about computer system overview and does not cover MMUs or OS support. Chunks 4 and 5 are not relevant as they discuss interrupt handling and I/O communication, respectively, without focusing on MMUs or OS support.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the role of a stack pointer in the context of interrupt handling, and how does it differ from the use of stack registers for procedure calls?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context, which mentions interrupt registers and stacks in the context of interrupt handling. The source provides enough information to discuss the role of a stack pointer in interrupt handling and how it differs from stack registers used for procedure calls.\n- CLARITY: The question is clear and unambiguous. It asks about the role of a stack pointer in interrupt handling and how it differs from stack registers used for procedure calls, which are distinct and understandable concepts.\n- DIFFICULTY_ALIGNMENT: The question requires explaining the concept of a stack pointer in interrupt handling and comparing it to stack registers used for procedure calls. This involves a moderate level of understanding and explanation, making it a medium-difficulty question.\n- TYPE_ALIGNMENT: The question asks for an explanation and comparison, which aligns perfectly with the conceptual type requested.\n- STANDALONE_QUALITY: The question stands alone and does not reference any specific part of the context. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the context of interrupt handling, the stack pointer plays a crucial role by facilitating the storage and retrieval of the processor's state during an interrupt, thereby allowing the system to switch between the interrupted program and the interrupt service routine efficiently. Unlike the stack pointer, which is dynamically adjusted based on the interrupt occurrence, stack registers specifically designed for procedure calls maintain a fixed location within the processor's architecture, providing a stable base for temporary data storage and function call management. This distinction highlights the stack pointer's adaptive nature in managing the complexities of interrupt handling, while stack registers serve a more static purpose in supporting the execution of procedures and functions.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "Correctness: The answer is mostly correct. It accurately describes the role of the stack pointer in interrupt handling and distinguishes it from stack registers used for procedure calls. However, the term \"stack registers\" is not commonly used in this context, and the explanation could be more precise by mentioning the stack pointer's role in maintaining the context of the interrupted program and the interrupt service routine.\n\nCompleteness: The answer covers the key points needed to address the question. It explains the role of the stack pointer in interrupt handling and contrasts it with stack registers used for procedure calls. However, it could have included more detail about the specific operations performed by the stack pointer during interrupt handling.\n\nGroundedness: The answer is generally grounded in the source context. It does not introduce any significant information not present in the context. However, the term \"stack registers\" is not mentioned in the context, which might lead to confusion.\n\nAcademic Tone: The language used is appropriate for a university-level writing. The answer is written in a precise and academic manner, using proper terminology and sentence structure.",
+    "parse_status": "ok"
+  }
+}

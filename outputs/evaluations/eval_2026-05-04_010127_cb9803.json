@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-04_010127_cb9803",
+  "timestamp": "2026-05-04T01:01:27",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "How does deadlock prevention relate to resource scheduling",
+    "difficulty": "hard",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=database]\npractice: avoidance and recovery. In deadlock avoidance , the routing algorithm\nrestricts the paths allowed by packets to only those that keep the global network\nstate deadlock-free. A common way of d",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nupdating the issue logic and the reservation tables in a dynamically scheduledsuperscalar with up to nissues per clock as follows:\n1.Assign a reservation station and a reorder buffer for every instruc",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nto perform molecular dynamics simulations at Anton rates? That is, what ’s the\nfastest simulation step time that might be achieved with a machine 102or 103m\non a side? What about simulating on a world"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For relevance, none of the chunks directly discuss deadlock prevention or its relation to resource scheduling. Chunk 1 briefly mentions deadlock avoidance but does not connect it to resource scheduling. The other two chunks are completely unrelated to the learning objective, discussing issues in superscalar processors and molecular dynamics simulations.\n\nFor sufficiency, the chunks fail to provide any relevant information to generate a good exam question on the given learning objective. There is no mention of deadlock prevention or resource scheduling, making it impossible to formulate a meaningful question based on this content.\n\nFor noise, all chunks contain irrelevant content. Chunk 1 has some tangentially related information, but it does not address the learning objective. The other two chunks are entirely unrelated and thus have high levels of noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "How does the choice of resource granularity affect the probability of deadlocks in a database system, and what strategy can be employed to avoid deadlocks related to lock contention?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, which discusses deadlock avoidance and recovery in database systems. It does not require any additional knowledge beyond what is given.\n- CLARITY: The question is clear and unambiguous. It asks about the effect of resource granularity on deadlock probability and suggests a strategy to avoid deadlocks, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question requires an understanding of how resource granularity affects deadlock probability and the ability to discuss strategies to avoid deadlocks, making it suitable for a higher-level examination. This aligns well with the \"hard\" difficulty level.\n- TYPE_ALIGNMENT: The question asks for an explanation of how resource granularity affects deadlock probability and a strategy to avoid deadlocks, which fits the \"conceptual\" type well.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage directly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The choice of resource granularity significantly influences the probability of deadlocks in a database system, particularly in relation to lock contention. Fine-grained locking, where each tuple is individually locked, reduces the likelihood of deadlocks compared to coarse-grained locking, which locks larger sets of data. This is because fine-grained locking allows more concurrent transactions to acquire and release locks independently, thereby minimizing the risk of circular wait conditions that lead to deadlocks. Conversely, coarse-grained locking increases the probability of deadlocks due to higher chances of conflicting requests among transactions accessing similar sets of data. To avoid deadlocks related to lock contention, a deadlock avoidance strategy can be implemented. This involves ordering the resources in a total or partial order and granting them to transactions in that sequence, ensuring that no transaction waits indefinitely for a set of locked resources. For instance, a database system might prioritize transactions based on their age or the number of locks they currently hold, allowing newer or less resource-intensive transactions to proceed, thus preventing the formation of deadlock conditions.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 3,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "- CORRECTNESS: The answer is largely correct, discussing how resource granularity affects deadlock probability and mentioning strategies to avoid deadlocks. However, it does not directly reference the specific context of database systems or the term \"deadlock avoidance\" as mentioned in the source material. The use of terms like \"fine-grained locking\" and \"coarse-grained locking\" is accurate but could be more aligned with the database context.\n- COMPLETENESS: The answer covers the key points of how resource granularity affects deadlock probability and mentions a strategy to avoid deadlocks. It provides a good balance of theory and practical application without omitting any crucial details.\n- GROUNDEDNESS: The answer is generally grounded in the context of database systems and lock contention, but it does not explicitly mention the term \"deadlock avoidance\" or refer to the specific practices discussed in the source material. It assumes knowledge of database concepts rather than directly referencing the given context.\n- ACADEMIC_TONE: The language used is mostly appropriate for a university-level paper, using precise terminology and a formal tone. However, the structure is somewhat informal, using sentence fragments and a conversational tone, which is not ideal for academic writing.",
+    "parse_status": "ok"
+  }
+}

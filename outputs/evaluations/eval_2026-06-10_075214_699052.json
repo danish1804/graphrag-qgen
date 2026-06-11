@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_075214_699052",
+  "timestamp": "2026-06-10T07:52:14",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Software architecture and modularity",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nstate diagrams for modeling a software system. Chap ter 6 introduces\narchitectural design and I discuss the importance o f architecture and the\nuse of architectural patterns in software design.\nChapte",
+      "[SEED from source_22.pdf]\nmean the same thing) covers questions 4 to 6 in the  previous list. You have to choose\nthe most appropriate structure, such as client–serv er or layered structuring, that will\nenable you to meet the s",
+      "[NEIGHBOUR from source_22.pdf]\nR E F E R E N C E S\nAmbler, S. W. and Jeffries, R. (2002). Agile Modeling: Effective Practices for Extreme Pro gramming\nand the Unified Process. New York: John Wiley & Sons.\nArisholm, E., Gallis, H.,"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are moderately relevant because they mention software architecture and architectural patterns, which align with the learning objective. However, they do not provide specific details about architectural design principles or modularity, so relevance is only 3. Sufficiency is low at 1 because the chunks lack concrete examples or explanations of how to apply architectural patterns to meet requirements. Noise is moderate at 3, as the first chunk includes tangential material like state diagrams and architectural design introduction, while the second chunk focuses on structural choices but does not directly explain architectural patterns.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Which chapter of the course material focuses on introducing architectural design and discusses the importance of architecture and the use of architectural patterns in software design?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks which chapter covers architectural design, which is directly stated in the source context. This is a straightforward recall of a fact from the passage, so it is completely answerable from the context alone. The question is clear and unambiguous, asking for a specific chapter number. It matches the easy difficulty level because it requires only basic understanding. The question is a recall type, exactly matching the requested difficulty. It is self-contained and does not reference the passage, making it a genuine exam question. Overall, all criteria are met perfectly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Chapter 6 of the course material focuses on introducing architectural design and discusses the importance of architecture and the use of architectural patterns in software design. This chapter sets the foundation for understanding how to decompose systems into components and select appropriate architectural styles to meet system requirements.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies Chapter 6 as covering architectural design and its importance, which matches the source context. It also mentions architectural patterns, which is accurate. The answer is complete because it addresses both the introduction of architectural design and the discussion of patterns. It is entirely grounded in the provided context without any hallucinations. The language is precise and academic, using full sentences rather than bullet points, though it could be more concise. Overall, the answer is very strong.",
+    "parse_status": "ok"
+  }
+}

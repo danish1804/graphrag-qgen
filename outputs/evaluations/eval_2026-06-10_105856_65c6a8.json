@@ -1,0 +1,50 @@
+{
+  "eval_id": "eval_2026-06-10_105856_65c6a8",
+  "timestamp": "2026-06-10T10:58:56",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Transaction management and process synchronisation",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\ncontrol and recovery issues. [Bernstein and Newcomer (2009)] provides textbook cov-\nerage of various aspects of transaction processing.\nThe concept of serializability was formalized by [Eswaran et al.",
+      "[SEED from source_8.pdf]\nBibliography\n[Bernstein and Newcomer (2009)] P. A. Bernstein and E. Newcomer, Principles of Transaction\nProcessing , 2nd edition, Morgan Kaufmann (2009).\n[Eswaran et al. (1976)] K. P. Eswaran, J. N. G",
+      "[SEED from source_8.pdf]\nprotocol does not guarantee serializability.\nFurther Reading\n[Gray and Reuter (1993)] provides detailed textbook coverage of transaction-\nprocessing concepts, including concurrenc y-control concepts a",
+      "[NEIGHBOUR from source_36.pdf]\n344 Chapter 9\nT echnology of a database server\nthe presentation of concurrency control we have followed an organization\nvery close to that of Vossen [ 90]. Concurrency control and reliability are\nhand",
+      "[NEIGHBOUR from source_36.pdf]\nstudied more widely in the texts by Brodie and Stonebraker [ 11] and Kim [ 52]\nand in the articles by Bernstein [ 9] and Sheth and Larson [ 76].\n10.10 Exercises\nExercise 10.1 Consider the database:\nPR"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks are mostly about transaction processing and concurrency control, which aligns with the learning objective. However, they lack specific details on transaction management or process synchronization, so relevance is only 3. The material covers general concepts like serializability and concurrency control, but it does not provide enough concrete examples or definitions to fully support a question, so sufficiency is 3. There is some noise from bibliographic references and exercises, but the core content is clean, so noise is 5.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following references would provide the most comprehensive textbook coverage of transaction processing, including concurrency control and recovery?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks for the most comprehensive textbook coverage of transaction processing, which can be answered using the source context that lists two relevant books: Bernstein and Newcomer's Principles of Transaction Processing and Gray and Reuter's textbook. The question is clear and unambiguous, asking for a comparison of coverage. It is a conceptual question requiring explanation rather than recall, so it matches medium difficulty. The question is self-contained and does not reference the passage, making it standalone. However, it is slightly ambiguous because it asks for \"most comprehensive,\" which could be interpreted differently depending on criteria like breadth or depth.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The most comprehensive textbook coverage of transaction processing, including concurrency control and recovery, is provided by Bernstein and Newcomer's \"Principles of Transaction Processing\" (2009). This book covers various aspects of transaction processing, with specific chapters dedicated to concurrency control and recovery. While other sources like Gray and Reuter's work offer detailed concepts, Bernstein and Newcomer's book offers a broader, organized treatment suitable for university-level study.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies Bernstein and Newcomer's book as providing comprehensive coverage of transaction processing, including concurrency control and recovery. It mentions that the book covers various aspects of transaction processing, which aligns with the source context. The answer is complete, covering the key points needed to address the question. It is grounded because it relies solely on the provided references without introducing unsupported information. The language is academic and precise, using appropriate terminology for a university-level answer.",
+    "parse_status": "failed"
+  }
+}

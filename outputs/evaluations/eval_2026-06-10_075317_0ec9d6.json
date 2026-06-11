@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_075317_0ec9d6",
+  "timestamp": "2026-06-10T07:53:17",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Version control and configuration management",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nChapter 25 discusses configuration management. This  is an issue that is\nimportant for all large systems, which are develope d by teams.\nHowever, the need for configuration management is n ot always o",
+      "[SEED from source_22.pdf]\nmanagement processes and tools. When you have read the chapter,\nyou will:\nIunderstand the processes and procedures involved in  software change\nmanagement;\nIknow the essential functionality that must",
+      "[NEIGHBOUR from source_21.pdf]\n2. The Unified Process\n3. Iteration and Incrementation Within the Object-Oriented Paradigm\n32\n4. Requirements Workflow\n5. Analysis Workflow\n6. Design Workflow\n7. Implementation Workflow\n8. Test Workfl"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are partially relevant because they discuss configuration management and software change management, which are related to version control and configuration management. However, they do not directly explain the concept or provide specific procedures, so relevance is moderate. Sufficiency is low because the chunks lack concrete examples or detailed steps for implementing version control. Noise is moderate as the first chunk includes tangential material about team development, while the second chunk is more focused but still contains incomplete ideas.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary purpose of configuration management as discussed in Chapter 25?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for the primary purpose of configuration management, which can be answered directly from the first sentence of the source context. It is a straightforward recall of a basic concept, so it is completely answerable from the context alone. The question is clear and unambiguous, asking for a single fact. It matches the easy difficulty level because it requires only basic understanding. The question is a recall type, asking to state a definition, which aligns with the request. The question does not reference the passage explicitly; it is a standalone exam question. Thus, all criteria score 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Configuration management ensures that changes to software are tracked and controlled systematically, enabling accurate versioning and release management. It addresses the need to manage software evolution effectively, especially in team-based development environments where multiple versions may exist simultaneously.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.5,
+    "reasoning": "The answer correctly identifies configuration management as tracking and controlling software changes, which aligns with the source's emphasis on systematic change management. It covers the key purpose without hallucinations, so groundedness is high. The tone is academic and uses prose, though it could be more precise. Completeness is good as it captures the core idea, but it does not explicitly mention versioning or release management, which are implied. Correctness is strong because the answer matches the source's intent. Overall, the answer is solid but could be more precise.",
+    "parse_status": "ok"
+  }
+}

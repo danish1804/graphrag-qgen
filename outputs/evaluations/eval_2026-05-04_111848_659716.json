@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-04_111848_659716",
+  "timestamp": "2026-05-04T11:18:48",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "explain deadlock using database",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAlthough locks prevent serious data inconsistencies, they can lead to two major problems:\n•\tThe resulting transaction schedule might not be serializable.\n•\tThe schedule might create deadlocks. A deadl",
+      "[SEED from source_49.pdf]\nSerializability of schedules is guaranteed through the use of two-phase locking. The two-phase locking schema has a growing phase, in which the transaction acquires all of the locks that it needs with",
+      "[NEIGHBOUR from source_31.pdf]\nlock\nmanager \n) receives a sequence of execution requests for these primitives by\nthe transactions, and their outcome is determined by a simple inspection ofan adequate data structure, at a negligible"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided are somewhat relevant to the learning objective of explaining deadlock using a database context. Chunk 1 directly mentions deadlock and its relation to locks, which is pertinent to the objective. However, it does not provide a comprehensive explanation or definition of deadlock. Chunk 2 discusses serializability and two-phase locking, which are related but do not directly address deadlock. Chunk 3 is about lock management and does not contribute to the understanding of deadlock. \n\nFor sufficiency, the chunks lack a clear and complete explanation of what deadlock is and how it occurs in a database context. While they touch on related concepts, they do not provide enough detail to generate a good exam question.\n\nNoise is moderate as the chunks contain some irrelevant or tangential information, such as the discussion of transaction schedules and lock management.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the result of two transactions waiting indefinitely for each other to unlock a required piece of data?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "- FAITHFULNESS: The question does not directly reference the source context provided. It asks about a scenario involving deadlocks, which is mentioned in the source but not explicitly defined. However, the concept of deadlocks is a fundamental part of database management and is likely covered in the course material. Thus, while the exact wording may not be found verbatim, the concept is within the scope of the given context.\n- CLARITY: The question is clear and unambiguous. It asks about a specific scenario involving deadlocks, which is a well-defined concept in database management.\n- DIFFICULTY_ALIGNMENT: The question is asking for a basic understanding of a deadlock scenario, which aligns with the \"easy\" difficulty level. It does not require complex reasoning or application beyond recalling the definition of a deadlock.\n- TYPE_ALIGNMENT: The question fits the \"recall\" type as it asks students to state what happens when two transactions wait indefinitely for each other, which is a straightforward recall of a fundamental concept.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The result of two transactions waiting indefinitely for each other to unlock a required piece of data is a deadlock, also referred to as a deadly embrace, where neither transaction can proceed and both are blocked, leading to a state of indefinite waiting.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is fully correct. It accurately describes the situation where two transactions wait indefinitely for each other to unlock a required piece of data as a deadlock or \"deadly embrace,\" which is a well-known term in database management.\n- COMPLETENESS: The answer covers the key point of the question without omitting any important details. It succinctly explains the concept of a deadlock without adding unnecessary information.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It does not introduce any additional information not present in the source material.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, using formal terminology such as \"deadlock\" and \"deadly embrace.\" There are no casual or inappropriate elements.",
+    "parse_status": "ok"
+  }
+}

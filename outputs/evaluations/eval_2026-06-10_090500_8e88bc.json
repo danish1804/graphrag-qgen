@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_090500_8e88bc",
+  "timestamp": "2026-06-10T09:05:00",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Concurrency control in data preprocessing pipelines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nconcurrency control and ( see\nconcurrency control)\ndeﬁned, 1\ndesign of ( seedatabase\ndesign)\ndocument, 3\ndumping and, 930–931\ne ﬃ c i e n c yo f ,1 ,2 ,5 ,9\nembedded, 198, 962\nas ﬁle-processing system",
+      "[SEED from source_8.pdf]\nand, 71–79\ncombination of, 270–271\ncomposite attributes in, 250\nconcurrency control and ( see\nconcurrency control)\ncreation of, 24\ndata mining, 540–549\ndata warehousing, 523–525\ndeﬁned, 12\nentity-rela",
+      "[SEED from source_8.pdf]\nlocal, 1076\nlocks and ( seelocks)\nlogical, 12–13, 1223–1224\nperformance tuning of,\n1214–1218, 1223–1224\nphysical, 12, 13\nphysical-organization\nmodiﬁcation of, 25\nP + Q redundancy, 573, 574\nrecovery sy",
+      "[NEIGHBOUR from source_36.pdf]\n(transactions, concurrency control, reliability, recovery) ﬁrst on a single-server architecture and then on a multi-server architecture with emphasison distribution, replication and parallelism.\n•We e",
+      "[NEIGHBOUR from source_36.pdf]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks contain definitions and descriptions of concurrency control, which directly relates to the learning objective. However, they lack specific examples or techniques for designing concurrency control in data preprocessing pipelines. The chunks also include unrelated topics like file processing and database design, adding noise. While some chunks are relevant, others are not, so relevance is moderate. Sufficiency is low because the material does not provide enough detail to generate a comprehensive exam question. Noise is high due to the inclusion of irrelevant sections.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the relationship between locks and concurrency control in database management systems, and how do they work together to maintain data integrity during concurrent operations?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 4,
+      "difficulty_alignment": 4,
+      "type_alignment": 4,
+      "standalone_quality": 5
+    },
+    "overall": 4.0,
+    "reasoning": "The question asks about the relationship between locks and concurrency control, which is directly addressed in the source context under the section on concurrency control. The question is clear and unambiguous, asking for an explanation of how they work together. It is a conceptual question that requires understanding rather than recall, so it matches medium difficulty. The question is self-contained and does not reference the passage, making it a genuine exam question. However, it is somewhat ambiguous because the source material does not explicitly state a relationship between locks and concurrency control; it only mentions that locks are part of concurrency control. This ambiguity reduces clarity slightly, but the core concept is clear enough for a medium-level question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Locks are a core mechanism in concurrency control, which ensures that multiple transactions do not interfere with each other's operations on shared data. By assigning exclusive or shared locks to data items, locks prevent concurrent modifications from causing inconsistencies, such as lost updates or dirty reads. This cooperation between locks and concurrency control enables efficient and reliable handling of concurrent access across single-server and distributed environments.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 2
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies locks as a core component of concurrency control, explaining their role in preventing interference and maintaining data integrity. It also notes that locks work together with concurrency control mechanisms to handle concurrent access efficiently. The response is grounded in the source context, which discusses locks and concurrency control in detail. However, the language is somewhat informal, using bullet points and incomplete sentences, which detracts from academic tone. Overall, the answer is mostly correct and grounded but lacks completeness and academic polish.",
+    "parse_status": "ok"
+  }
+}

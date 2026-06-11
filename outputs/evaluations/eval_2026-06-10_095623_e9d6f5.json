@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_095623_e9d6f5",
+  "timestamp": "2026-06-10T09:56:23",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Context switching overhead in model training",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_62.pdf]\n11.2.3 Temporal diﬀerence learning . . . . . . . . . . . . . . . . . . . . . . . . . 63\n11.3 Reinforcement learning with action - Policy learning . . . . . . . . . . . . . . . . 64\n12 Generalization a",
+      "[SEED from source_62.pdf]\nMethod Time Space\nSupervised learning O(n)O(n)\nCE learning O(n3)O(n2)\nOne backup CE O(n)O(n2)\nTD learning O(1)O(n)\n11.3 Reinforcement learning with action - Policy learning\nSo far we assumed that we c",
+      "[SEED from source_67.pdf]\nward neural networks and convolutional neural networks.\nPart IV presents reinforcement learning. Topics include Markov\ndecision process and Q-learning.\nPart V introduces some advanced applications of",
+      "[NEIGHBOUR from source_52.pdf]\n1.3.3 Reinforcement learning\nReinforcement is the process of learning from rewards while performing a series of actions.\nIn reinforcement learning, we do not tell the learner or agent, for example, a",
+      "[NEIGHBOUR from source_52.pdf]\nmachine learning, in addition to the two previously seen categories\nof supervised and unsupervised learning. In class we saw a video of\nrobots (made by Boston Dynamics) doing parkour, dancing, and ove"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about reinforcement learning and its methods, which is tangential to the specific topic of context switching overhead in model training. Only Chunk 2 briefly mentions TD learning time complexity, which is somewhat related, but does not explain overhead. The other chunks discuss general machine learning topics without focusing on context switching. Thus, relevance is low. There is insufficient detail to generate a good exam question because the concept of context switching is not covered. Noise is moderate since most chunks are about general ML topics rather than the specific learning objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary difference between traditional reinforcement learning and the approach described in Section 11.3, which explicitly incorporates action-selection mechanisms into the learning process?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the difference between traditional reinforcement learning and the approach in Section 11.3, which explicitly incorporates action-selection mechanisms. This requires understanding the distinction between standard RL and policy-based RL, which is not directly stated in the provided context. The passage mentions TD learning and CE learning but does not compare them to action-based methods. Thus, the question cannot be fully answered from the given context alone, making it less than 5 on faithfulness. It is clear and unambiguous, so clarity is high. The difficulty is medium because it requires explaining a conceptual difference rather than recalling facts. The question type is conceptual, matching the request. Finally, the question is self-contained and does not reference the passage, so standalone quality is good.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Traditional reinforcement learning focuses on learning from rewards without explicit action selection, whereas Section 11.3 describes reinforcement learning with action-policy learning, where the agent actively chooses actions rather than following a fixed policy. This shift allows the agent to explore different strategies and adapt its behavior based on observed outcomes, leading to more flexible and effective learning in environments with multiple possible actions.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 2
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that traditional reinforcement learning lacks explicit action selection, while Section 11.3 introduces action-policy learning. It accurately states that the agent chooses actions rather than following a fixed policy, which aligns with the source's description of reinforcement learning with action selection. The answer is grounded in the context, as it references the specific section and topic. However, the language is somewhat informal, using bullet points and casual phrasing, which detracts from academic tone. Overall, the answer is mostly correct and grounded but could be improved in completeness and tone.",
+    "parse_status": "ok"
+  }
+}

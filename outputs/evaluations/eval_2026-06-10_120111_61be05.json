@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_120111_61be05",
+  "timestamp": "2026-06-10T12:01:11",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Synchronisation mechanisms in concurrent software",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nAccidental Revolutionary . Sebastopol. Calif.: O’Reilly Media, Inc.\nSchmidt, D., Stal, M., Rohnert, H. and Buschmann, F . (2000). Pattern-Oriented Software Architecture\nVolume 2: Patterns for Concurre",
+      "[SEED from source_22.pdf]\nSystems . Boston: Addison-Wesley.\nGomaa, H. (1993). Software Design Methods for Concurrent and Real-Tim e Systems . Reading,\nMass.: Addison-Wesley.\nHarel, D. (1987). ‘Statecharts: A Visual Formalism f",
+      "[SEED from source_22.pdf]\nRegan, P . and Hamilton, S. (2004). ‘NASA’s Mission Reliable’. IEEE Computer , 37(1), 59–68.\nSchneider, S. (1999). Concurrent and Real-time Systems: The CSP Approach . Chichester, UK: John\nWiley and S",
+      "[NEIGHBOUR from source_22.pdf]\n17.1 Components and component models 455\n17.2 CBSE processes 461\n17.3 Component composition 468\nChapter 18 Distributed software engineering 479\n18.1 Distributed systems issues 481\n18.2 Client–server c",
+      "[NEIGHBOUR from source_22.pdf]\n(1986). Bosch (2000) includes a good discussion of how this style relates to system\nquality attributes.\n6.3.3 Client–server architecture\nThe repository pattern is concerned with the static  structure"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks contain references to books and papers on concurrent and real-time systems, which are tangentially related to synchronization mechanisms but do not directly address the core concepts of synchronization patterns or techniques. They also include general software engineering topics like component models and distributed systems, which are not specific to concurrency. The noise score is low because the chunks are primarily bibliographic citations without extraneous content. However, the sufficiency score is low because the chunks lack concrete examples or explanations of synchronization patterns, making it difficult to generate a focused exam question. The relevance score is moderate because while the topics are somewhat relevant, they do not directly cover the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following books provides a comprehensive treatment of concurrent and real-time systems, including topics such as monitors, CSP, and model checking programs?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 3.8,
+    "reasoning": "The question asks about a book that covers concurrent and real-time systems, which is directly addressed by the sources listed. However, the passage does not explicitly state which book contains these topics, so the question cannot be fully answered from the given context alone. The question is clear and unambiguous, asking for a specific book title. It is a conceptual question requiring explanation rather than recall. The question is self-contained and does not reference the passage, making it a genuine exam question. Overall, the question is well-designed but requires some outside knowledge to identify the correct book.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The book by Hoare (1974) provides a comprehensive treatment of concurrent and real-time systems, including topics such as monitors, which are fundamental to structuring operating systems for concurrency. Additionally, Schneider's (1999) work on the CSP approach offers detailed coverage of communication-based synchronization techniques suitable for real-time systems. Together, these works form the core theoretical foundation for understanding concurrent and real-time programming.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.25,
+    "reasoning": "The answer correctly identifies Hoare's (1974) book as providing a comprehensive treatment of concurrent and real-time systems, but it incorrectly attributes monitors to that work when monitors are actually introduced by Hoare in 1974. The answer also mentions Schneider's (1999) book on CSP, which is accurate. However, the passage does not discuss model checking programs, so the answer is incomplete. The answer is grounded in the source context, as it cites specific books and topics mentioned. The language is academic but uses bullet points, which is acceptable for a short answer. Overall, the answer is mostly correct and grounded but lacks completeness and could be more concise.",
+    "parse_status": "ok"
+  }
+}

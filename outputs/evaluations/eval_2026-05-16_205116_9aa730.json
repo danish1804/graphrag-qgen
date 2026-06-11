@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_205116_9aa730",
+  "timestamp": "2026-05-16T20:51:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Scalability from hardware architecture to software design to database tuning",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=database]\n1.9 Quantitative Principles of Computer Design 48\n1.10 Putting It All Together: Performance, Price, and Power 55\n1.11 Fallacies and Pitfalls 58\n1.12 Concluding Remarks 64\n1.13 Historical Perspectives",
+      "[NEIGHBOUR from source_12.pdf domain=database]\naware of which instruction \nset used)  \nPhysical components (Circuit design, Adders, Signals, \nPeripherals)  Logic (Instruction set, \nAddressing m odes, Data \ntypes, Cache optimization)  \nHow to do ?",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nmanipulated (for example, added to the data in another word space).    \n \nThe number of bits in each word is known as word l ength. Word length refers to the \nnumber of bits processed by the CPU in on"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "For relevance, none of the chunks directly address scalability from hardware architecture to software design to database tuning. Chunk 1 seems to be about principles of computer design and performance, but it does not specifically mention scalability or relate to the other aspects of the learning objective. Chunk 2 and 3 are more technical and focus on hardware and circuit design, but they do not cover the full spectrum of the learning objective, including software design and database tuning.\n\nFor sufficiency, the chunks lack the necessary information to generate a good exam question. They do not provide a comprehensive overview of scalability across different levels of the system, which is required to create a meaningful question.\n\nFor noise, the chunks contain mostly technical details that are somewhat related to computer design but do not directly address the learning objective. There is no significant irrelevant content, but the information provided is not directly relevant to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the key factors to consider when designing a distributed database system, and how do they differ from a traditional centralized database system?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The generated question does not align with the source context provided. The source context discusses physical components, logic, and circuit design, not distributed or centralized database systems. Therefore, this question cannot be fully answered using only the given source context.\n- CLARITY: The question is clear and unambiguous. It asks about key factors to consider when designing a distributed database system and how they differ from a traditional centralized system, which can be understood without further clarification.\n- DIFFICULTY_ALIGNMENT: The difficulty level requested is \"hard,\" which typically involves application or analysis. While the question does require some analysis, it primarily focuses on recall and basic understanding rather than deep application or complex analysis.\n- TYPE_ALIGNMENT: The question type requested is \"application.\" However, the question is more of a conceptual one, asking for a comparison between two types of database systems rather than a design or analytical task. This slightly misaligns with the requested type.\n- STANDALONE_QUALITY: The question is self-contained and does not reference any specific part of the context. It can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "When designing a distributed database system, several key factors must be considered, which significantly differ from those in a traditional centralized database system. Firstly, the principle of local independence and cooperation, as discussed in section 10.2.2, is crucial, allowing different parts of the database to operate autonomously while maintaining overall consistency. Secondly, the architecture of distributed databases, as elaborated in chapter 10, necessitates a robust client-server model or peer-to-peer structure, depending on the specific requirements and scale of the application. Additionally, managing concurrency and ensuring transactional integrity across geographically dispersed nodes becomes paramount, requiring sophisticated locking mechanisms and replication strategies to prevent data conflicts and ensure fault tolerance. Unlike centralized systems, distributed databases also require careful consideration of network latency and bandwidth limitations, influencing query optimization techniques such as those discussed in sections 9.6 and 9.6.1, where relation profiles and cost-based optimizations play critical roles. Furthermore, physical database design, including the definition of indexes in SQL (section 9.7.1), must account for distributed storage and retrieval patterns, potentially leading to more complex indexing schemes to optimize performance across the network. Lastly, the acknowledgment of distributed transactions and the management of exceptions become essential, ensuring that operations across multiple nodes are executed reliably and efficiently.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "Correctness: The answer provides a detailed explanation of key factors for designing a distributed database system, aligning well with the content typically found in advanced database system design chapters. However, it does not directly reference the specific sections mentioned in the source context, which could be seen as a minor inaccuracy since the rubric evaluates against the source material rather than the exact wording.\n\nCompleteness: The answer covers all key points necessary to address the question, including local independence, client-server/peer-to-peer architecture, concurrency control, network considerations, physical database design, and distributed transactions. It provides a comprehensive overview without omitting any important details.\n\nGroundedness: The answer is entirely grounded in the provided context, referencing concepts like local independence, client-server models, and distributed transactions, which are consistent with the source material. There are no hallucinations or unsupported claims.\n\nAcademic Tone: The language used is precise and academic, suitable for a university-level paper. The answer is written in prose without using bullet points, maintaining a formal and scholarly tone throughout.",
+    "parse_status": "ok"
+  }
+}

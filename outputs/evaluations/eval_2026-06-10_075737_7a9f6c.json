@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_075737_7a9f6c",
+  "timestamp": "2026-06-10T07:57:37",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Software metrics and quality assurance",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nAT&T (Barnard and Price, 1994), and Nokia (Kilpi, 2 001) introduced metricsReliabilityDepth of Inheritance Tree\nCyclomatic Complexity\nProgram Size in Lines\nof  Code\nNumber of  Error\nMessages\nLength of",
+      "[SEED from source_22.pdf]\n24.10. A colleague who is a very good programmer produces software with a low number of\ndefects but consistently ignores organizational qua lity standards. How should her\nmanagers react to this behavi",
+      "[NEIGHBOUR from source_22.pdf]\nto support the critical activity of equity trading (user accounts and prices) are repli-\ncated and available on all nodes. If a node of the system is attacked and becomes\nunavailable, the critical act"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly about software metrics and quality assurance, which aligns with the learning objective. However, Chunk 2 introduces a scenario about a good programmer ignoring standards, which is tangential and does not directly explain metrics or QA practices. Chunk 3 discusses replication of data for trading, which is unrelated to software metrics. Thus, relevance is moderate at 3. For sufficiency, Chunk 1 provides specific metrics like cyclomatic complexity and program size, which are directly relevant, but Chunk 2 lacks concrete metrics and Chunk 3 has no connection. Sufficiency is low at 1. Noise is high because Chunk 2 and Chunk 3 contain irrelevant content, while Chunk 1 is clean but limited. Noise score is 1.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which organization introduced the concept of Cyclomatic Complexity as a software metric?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks which organization introduced Cyclomatic Complexity, which is directly stated in the source context: AT&T (Barnard and Price, 1994). This is a straightforward recall question that can be answered solely from the passage, so it is completely answerable from context alone (5). The question is clear and unambiguous (5). It is an easy recall question matching the requested difficulty (5). It is a recall question matching the requested type (5). The question does not reference the passage explicitly (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Cyclomatic Complexity was introduced as a software metric by AT&T (Barnard and Price, 1994). This metric measures the complexity of a program by counting the number of linearly independent paths through its control flow graph. It provides a quantitative measure of the number of decision points in a program, which correlates with the difficulty of testing and debugging.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies AT&T as the source of Cyclomatic Complexity, which is accurate based on the context. However, it does not mention that the metric was introduced by Barnard and Price in 1994, so completeness is slightly lacking. The answer is entirely grounded in the provided context without any hallucinations. The language is formal and academic, though it uses a bullet point list rather than prose, which is acceptable for a university setting. Overall, the answer is mostly correct and grounded but could be more complete and stylistically consistent.",
+    "parse_status": "ok"
+  }
+}

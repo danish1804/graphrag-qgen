@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_112416_fff090",
+  "timestamp": "2026-06-10T11:24:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Disk scheduling impact on database I/O performance",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\n2003.\nSCHW96 Schwaderer, W., and Wilson, A. Understanding I/O Subsystems. Milpitas, CA:\nAdaptec Press, 1996.\nSELT90 Seltzer, M.; Chen, P .; and Ousterhout, J.“Disk Scheduling Revisited.” Proceedings,",
+      "[SEED from source_5.pdf]\nPrentice Hall, 1986.\nLIVA90 Livadas, P . File Structures: Theory and Practice. Englewood Cliffs, NJ: Prentice\nHall, 1990.\nLOVE05 Love, R. Linux Kernel Development. Waltham, MA: Novell Press, 2005.\nNAG",
+      "[SEED from source_5.pdf]\nInternational Conference on System Science, January 1989.\nWHIT99 White, S. Anatomy of a Commercial-Grade Immune System. IBM Research\nWhite Paper, 1999.\nWIED87 Wiederhold, G. File Organization for Data",
+      "[NEIGHBOUR from source_5.pdf]\nis remarkably little material available on Windows internals. The book to read is[RUSS05]; its coverage stops with Windows Server 2003, but much of the content isvalid for Vista.\nBOVE06 Bovet, D., and",
+      "[NEIGHBOUR from source_5.pdf]\n5.9 / KEY TERMS, REVIEW QUESTIONS,AND PROBLEMS 251\nANDR83 Andrews, G., and Schneider, F. “Concepts and Notations for Concurrent Pro-\ngramming.” Computing Surveys, March 1983.\nAXFO88 Axford, T. Concurr"
+    ],
+    "scores": {
+      "relevance": 2,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.33,
+    "reasoning": "The chunks contain references to disk scheduling and I/O subsystems, which are directly related to the learning objective. However, none of them explicitly discuss the impact of disk scheduling on database I/O performance, so relevance is low. There is enough general information about disk scheduling and I/O, but not enough specific details to generate a good exam question, so sufficiency is moderate. The chunks are mostly technical references without extraneous content, so noise is low.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of the file organization concept as described in Wiederhold's work \"File Organization for Database Design\"?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the primary purpose of file organization as described by Wiederhold, which is directly stated in the source: \"File Organization for Database Design.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a definition, so clarity is 5. The difficulty is medium because it requires understanding the concept rather than simple recall, matching the requested difficulty. The question is conceptual, asking for an explanation, so type alignment is 5. The question does not reference the passage explicitly, making it standalone, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "File organization in database design serves to structure data efficiently on secondary storage devices such as disks. According to Wiederhold's work, the concept is fundamental to organizing files for optimal access and retrieval, directly supporting database performance by reducing disk I/O overhead. This organization must balance between sequential and random access patterns to minimize latency and maximize throughput, which is critical for database systems handling large volumes of data.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 3
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that file organization is about structuring data on secondary storage for efficient access, and it references Wiederhold's work as the source. However, it does not explicitly state that the concept balances sequential and random access, which is a key point. The answer is mostly grounded but includes some generalizations not directly from the source. The tone is academic but uses a mix of prose and bullet points, which is acceptable but not ideal for a full paragraph. Overall, the answer is largely correct and grounded, but lacks completeness and could be more precise.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_123111_f9736e",
+  "timestamp": "2026-06-10T12:31:11",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Instruction set architecture and compiler design",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\nA Instruction Set Principles\nB Review of Memory HierarchiesC Pipelining: Basic and Intermediate ConceptsD Storage SystemsE Embedded SystemsF Interconnection NetworksG Vector Processors in More DepthH",
+      "[SEED from source_12.pdf]\n. The narrow instructions supportfewer operations, smaller address and immediate fields, fewer registers, and thetwo-address format rather than the classic three-address format of RISC computers.RISC-",
+      "[SEED from source_12.pdf]\n429–431,431\nstrong, 439\nweak, 439\nScan Line Interleave (SLI), M-51\nScatter store, 301 –302\nSchorr, Herb, M-29 –30\nScientific applications\nBarnes, I-8 –9\ncharacteristics, I-6 –12\ncluster history, M-62",
+      "[NEIGHBOUR from source_23.pdf]\n Huge size  \n Need of A.C.  \n Non -portable  \n Consumed lot of electricity  \nSome computers of this generation were:  \n ENIAC  \n EDVAC  \n UNIVAC  \n IBM -701  \n IBM -650",
+      "[NEIGHBOUR from source_23.pdf]\n Consumed less electricity as compared to first generation computers  \n Faster than first generation computers  \n Still very costly  \n A.C. needed  \n Supported machine and assembly languages  \nSo"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 2.67,
+    "reasoning": "The chunks cover topics like instruction set principles, pipelining, and storage systems, which are directly related to instruction set architecture and compiler design. However, they lack specific details about compiler design or architectural features that would be needed for a good exam question. The chunks are somewhat noisy, with some irrelevant computer history and hardware details. Overall, the chunks are partially relevant and moderately sufficient, but not fully clean.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain the key differences between traditional RISC three-address format instructions and the compressed instruction format (RISC-V RV32IC) used in modern compressed instruction architectures, focusing on how each approach handles operations, addressing fields, and register usage.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about differences between RISC three-address format and compressed instruction format, which is directly covered in the source context. It is clear and unambiguous, asking for a comparison of key characteristics. The difficulty is medium because it requires explaining concepts rather than recalling facts. The question is conceptual, matching the requested type. It is self-contained, not referring to the passage, so it is standalone. Overall, it is a good exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Traditional RISC instructions use a three-address format where each operation specifies three operands: two source registers and one destination register. In contrast, compressed RISC-V instructions like RV32IC encode common intermediate operations in 16-bit formats, often using only two addresses (one source and one destination) but with smaller fields for addresses and immediates, reducing overall instruction size. This compression allows more instructions to be packed into memory, improving performance and code density, while still supporting many RISC operations through clever encoding of frequently used patterns.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that traditional RISC uses three-address format while compressed RISC-V uses two addresses, and explains the smaller fields for addresses and immediates. It also notes that compressed RISC-V supports more instructions per memory word due to compression. However, it does not mention that compressed RISC-V uses 16-bit instructions, which is a key difference. The answer is mostly grounded in the source context but includes some unsupported claims about frequent patterns. The tone is academic but uses bullet points instead of prose, which is acceptable for a university setting.",
+    "parse_status": "ok"
+  }
+}

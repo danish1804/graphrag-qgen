@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131225_976143",
+  "timestamp": "2026-05-16T13:12:25",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Indexing and query optimisation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n13.3.3 Data cube 477\n13.4 Development of the data warehouse 479\n13.4.1 Bitmap and join indexes 480\n13.4.2 View materialization 481\n13.5 Data mining 481\n13.5.1 The data mining process 482\n13.5.2 Data m",
+      "[NEIGHBOUR from source_36.pdf]\nheader ) and a ﬁnal part ( page trailer ) containing control information about\nthe access method. This information will typically contain the identiﬁerof the object (table, index, data dictionary, etc"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Indexing and query optimisation.\" Instead, they discuss tree structures, data cubes, and physical database design, which are tangentially related but not central to the objective. Therefore, the relevance score is low.\n\nWhile the first chunk mentions query optimization, it does not provide specific details that would be necessary to formulate a good exam question. The other chunks are even less relevant. Thus, the sufficiency score is also low.\n\nThe chunks are mostly focused on database-related topics and do not contain significant noise or irrelevant content. However, since the content is not directly relevant, the noise score remains high.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the final part (page trailer) of a data page typically contain, and what is its purpose in relation to indexe?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The question asks about the content and purpose of the page trailer, which is not mentioned in the provided source context. The context discusses index-related information but does not provide details about page trailers. Therefore, this question cannot be fully answered using only the given source context.\n- CLARITY: The question is clear and unambiguous, asking specifically about the contents and purpose of the page trailer in relation to indexes. It is well-phrased and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question is a straightforward recall of specific details, which aligns with the requested difficulty level of \"easy.\"\n- TYPE_ALIGNMENT: The question fits the \"recall\" type as it asks to state or list the contents and purpose of the page trailer, which is a basic understanding task.\n- STANDALONE_QUALITY: The question can stand alone without referencing the context, as it is phrased in a way that a student could understand and answer without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The final part (page trailer) of a data page typically contains control information such as identifiers for objects like tables or indexes, pointers to adjacent pages, and metadata about the number of tuples stored on the page and available memory. This information supports efficient management and access to index structures by enabling quick location and navigation through the database pages.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer is mostly correct. It accurately describes the content of the page trailer, including identifiers for objects and metadata about tuples and memory. However, it incorrectly mentions \"pointers to adjacent pages,\" which is not mentioned in the source context and is more related to linked lists rather than data pages.\n- COMPLETENESS: The answer covers the main ideas of the page trailer's content but could be more detailed. It mentions identifiers, metadata, and navigation, but does not explicitly state that the trailer also contains information about the number of tuples and available memory.\n- GROUNDEDNESS: The answer is generally grounded in the source context, focusing on control information and identifiers. However, the mention of \"pointers to adjacent pages\" introduces information not found in the given context.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing, using precise terms and a formal tone. The prose is well-structured without the need for bullet points.",
+    "parse_status": "ok"
+  }
+}

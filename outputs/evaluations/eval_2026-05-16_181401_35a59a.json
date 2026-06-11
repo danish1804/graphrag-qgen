@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_181401_35a59a",
+  "timestamp": "2026-05-16T18:14:01",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Documentation standards for AI model code",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nManual . Reading, Mass.: Addison-Wesley.Chapter 5IReferences 145\nRumbaugh, J., Jacobson, I. and Booch, G. (2004). The Unified Modeling Language Reference Manual,\n2nd ed . Boston: Addison-Wesley.\nSchmi",
+      "[SEED from source_22.pdf]\nIhave learned how systems can be developed by config uring and\ncomposing off-the-shelf application software system s.\nContents\n16.1 The reuse landscape\n16.2 Application frameworks\n16.3 Software produc",
+      "[SEED from source_22.pdf]\nBuschmann, F., Meunier, R., Rohnert, H. and Sommerl ad, P . (1996). Pattern-oriented Software\nArchitecture Volume 1: A System of Patterns. New Yo rk: John Wiley & Sons.\nChapter 6IExercises 175\nClement",
+      "[NEIGHBOUR from source_22.pdf]\nengineering should be used to develop a new system.  What factors should you take into\naccount when deciding whether or not to introduce t his new approach to software\ndevelopment?\nR E F E R E N C E S",
+      "[NEIGHBOUR from source_46.pdf]\npatterns\n16/01/21 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 23\nCreational patterns\n●Used to create other objects\n●Rules-of-thumb: \nhttp://www.vincehuston.org/dp/cr"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided are largely unrelated to the learning objective of \"Documentation standards for AI model code.\" They discuss general software engineering topics such as modeling languages, software architecture patterns, and software development practices, which do not directly address documentation standards for AI models. Therefore, they score low on relevance.\n\nThere is insufficient information to generate a good exam question about documentation standards for AI model code. The chunks do not contain any specific details about documentation practices, formats, or standards that would be necessary for such a question. Thus, they score low on sufficiency.\n\nThe chunks are mostly noise, containing references to books and topics that are not relevant to the learning objective. There is very little usable content related to the objective. Hence, they score low on noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "When considering the adoption of reuse-based software engineering strategies, such as those discussed in \"Documenting Software Architectures: Views and Beyond\" by Clements et al., what are the key factors that should be taken into account according to the provided context?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The question does not reference \"Documenting Software Architectures: Views and Beyond\" by Clements et al.\" directly, nor does it mention any specific content from the provided context. Instead, it asks about factors related to adopting reuse-based software engineering strategies, which is a general topic that could be derived from the context but not explicitly stated. Therefore, this question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous. It asks about key factors to consider when adopting reuse-based software engineering strategies, which is a straightforward request.\n- DIFFICULTY_ALIGNMENT: The question is asking for conceptual understanding rather than specific details, making it a medium-level question that requires explanation and conceptual knowledge.\n- TYPE_ALIGNMENT: The question asks for an explanation of key factors, which aligns with the conceptual type.\n- STANDALONE_QUALITY: The question does not reference the context or passage directly. It reads as a genuine exam question a student could see, though it implicitly depends on the understanding of the context provided.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "When considering the adoption of reuse-based software engineering strategies, several key factors should be taken into account. First, the specific context and requirements of the project must be carefully analyzed to determine if existing software components can effectively meet the needs. Second, the quality and reliability of the available components need to be evaluated to ensure they will perform reliably within the new system. Lastly, the organizational culture and development practices must support reuse, as significant changes may be required to integrate this approach successfully.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 3.25,
+    "reasoning": "The answer is generally correct but lacks direct references to the specific context provided in the source material. It does not mention anything about the \"reuse landscape,\" \"application frameworks,\" or \"software production\" which are key elements from the given context. However, it does touch on important aspects like project context, component quality, and organizational support, which are relevant to the question.\n\nThe answer is incomplete because it does not directly reference the specific context provided in the sources, such as the reuse landscape or application frameworks, which are crucial for understanding the adoption of reuse-based strategies.\n\nThe answer is grounded in the general concepts of software engineering and reuse, but it does not specifically reference the provided context, such as the works by Clements et al. or the discussion on reuse strategies.\n\nThe language used in the answer is academic and appropriate for a university setting, though it could benefit from more precise terminology and direct references to the provided context.",
+    "parse_status": "ok"
+  }
+}

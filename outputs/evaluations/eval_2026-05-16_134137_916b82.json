@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_134137_916b82",
+  "timestamp": "2026-05-16T13:41:37",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Test driven development",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ning during system development to the testing of sof tware releases. I also\ndiscuss the use of test-driven development—an appro ach pioneered in\nagile methods but which has wide applicability. Fin ally",
+      "[SEED from source_22.pdf]\n8.2 Test-driven development\nTest-driven development (TDD) is an approach to pro gram development in which\nyou interleave testing and code development (Beck, 2002; Jeffries and Melnik,\n2007). Essential",
+      "[NEIGHBOUR from source_11.pdf]\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 25\nIncremental Development\n●Also known as evolutionary development\n●Basis for many agile processes \n●Quickly dev"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 3,
+      "noise": 4
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks are directly related to the learning objective of test-driven development, with Chunk 2 explicitly defining TDD and its key characteristics. However, Chunk 1 only mentions TDD briefly without providing detailed information, and Chunk 3 is about incremental development and does not specifically discuss TDD. Therefore, while most chunks are relevant, they do not fully cover the concept of TDD.\n\nFor sufficiency, Chunk 2 provides a clear definition and explanation of TDD, which is essential for generating a good exam question. However, the other chunks provide limited or no additional relevant information, indicating that more details would be needed to fully assess understanding of TDD.\n\nNoise is low in Chunk 2, as it focuses solely on TDD. Chunk 1 contains some noise as it introduces TDD in a broader context, and Chunk 3 is mostly about incremental development, which is not directly related to TDD.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does test-driven development involve in terms of the sequence of activities between writing tests and developing code?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided. It asks about the sequence of activities in TDD, which is directly addressed in the source material.\n- CLARITY: The question is clear and unambiguous. It asks specifically about the sequence of activities in TDD, which is a straightforward request.\n- DIFFICULTY_ALIGNMENT: The question is asking for a basic understanding of TDD, which aligns with the \"easy\" difficulty level requested. It does not require deeper analysis or application.\n- TYPE_ALIGNMENT: The question is asking to recall the sequence of activities, which fits the \"recall\" type perfectly.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Test-driven development involves the programmer writing a failing test before developing the necessary code to pass that test, then refactoring the code as needed while ensuring the test continues to pass. This iterative process of writing tests followed by developing and refining the code ensures that each increment of functionality is thoroughly tested and meets the specified requirements.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly describes the core concept of TDD, involving writing a failing test first, then developing the code to pass it, and refactoring as needed. This aligns with the source context which mentions interleaving testing and code development. The answer is comprehensive, covering the key points of the TDD process without omitting important details. It is entirely grounded in the provided context, referencing the iterative nature of TDD without introducing any unsupported information. The language used is precise and academic, suitable for a university setting, though it could be slightly more formal by removing the period after \"passing\" and using a colon instead of \"then\" to introduce the next step.",
+    "parse_status": "ok"
+  }
+}

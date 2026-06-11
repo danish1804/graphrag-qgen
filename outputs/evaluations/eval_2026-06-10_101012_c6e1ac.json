@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_101012_c6e1ac",
+  "timestamp": "2026-06-10T10:10:12",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "SIMD instructions for deep learning operations",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_64.pdf]\nkernel_constraint= None , bias_constraint= None , **kwargs\n)\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 24 / 42\nOutline\n1Motivation\n22D Convolution in Traditional Computer Vision\n3Basic Convolut",
+      "[SEED from source_64.pdf]\nInvariance to Translation\nImage: Goodfellow, 2016\nWe would like our feature representations, not to change minimally when the input is shifted or\nrotated slightly.\nLecture 4 (Part 1) Deep Learning - C",
+      "[SEED from source_64.pdf]\nPooling\nImage: Goodfellow, 2016\nPooling help reduce redundant information and provide some level of invariance to\ntranslations.\nPooling can use simple mathematical functions like max, sum , etc. “max-",
+      "[NEIGHBOUR from source_50.pdf]\nw1\nw2w\n3w1\nw2w\n3w1\nw2w\n3\nShared weights\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 13 / 42\n1D Convolution\nBoth ideas, sparse connectivity &parameter sharing can be achieved with convolutions.\nCo",
+      "[NEIGHBOUR from source_50.pdf]\nStrided Convolutions\nImage: Goodfellow, 2016\nCan replace convolution + pooling with strided convolutions.\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 33 / 42\nReceptive Field\nAssume 3 by 3 convolu"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to SIMD instructions for deep learning operations. They discuss convolutional layers, pooling, and shared weights, which are general deep learning topics rather than specific SIMD implementations. The only relevant chunk is the one about strided convolutions, but it does not mention SIMD explicitly. Therefore, relevance is low. Sufficiency is also low because the chunks lack detailed explanations of SIMD-specific optimizations or examples. Noise is moderate since some chunks contain useful information but are interspersed with irrelevant passages like images and other topics.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how pooling operations contribute to invariance to translation in convolutional neural networks, and describe what mathematical function is commonly used for pooling.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about pooling's role in translation invariance, which is directly stated in the source: \"Pooling help reduce redundant information and provide some level of invariance to translations.\" The source also mentions common pooling functions like max. The question is clear and unambiguous, asking for an explanation and a specific function. It matches medium difficulty because it requires understanding the concept rather than just recall. It is a conceptual question, asking for an explanation. The question is self-contained, not referring to the passage. Overall, it is a good exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Pooling operations contribute to invariance to translation by reducing redundancy and providing some level of translation invariance. They achieve this by applying a simple mathematical function, such as max-pooling, which down-samples the feature maps while retaining the most prominent features regardless of small shifts. This helps the network focus on robust representations that generalize across spatial displacements.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly states that pooling reduces redundancy and provides translation invariance through max-pooling, which is consistent with the source. It covers the key points about pooling's role in invariance and the common function used. The answer is entirely grounded in the provided context, as no additional facts are introduced. The tone is academic and prose-like, avoiding bullet points. However, it could be more precise by specifying that max-pooling is the typical choice, though this is minor. Overall, the answer is mostly correct and complete, but could be slightly more precise.",
+    "parse_status": "ok"
+  }
+}

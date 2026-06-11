@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131829_d3c98c",
+  "timestamp": "2026-05-16T13:18:29",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Data warehousing and OLAP",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAppendices cover three popular database systems: Microsoft Access, \nibm\ndb2 and Oracle. \nxviii Preface\nA number of features make this book unique.\n•We make a clear distinction between the basic materi",
+      "[SEED from source_49.pdf]\nmanagement. We describe the architecture of the data warehouse, the starand snowﬂake schemas used for data representation within data warehousesand the new operators for data analysis (including drill",
+      "[NEIGHBOUR from source_14.pdf]\n4 \nChapter  \nPublished by \nMcGraw-Hill Publishing Company \nShoppenhangers Road, Maidenhead, Berkshire, sl6 2ql, England \nTelephone: + \n44 \n( \n0 \n)  \n1628 502500 \nFax: + \n44 \n( \n0 \n) \n 1628 770224 \nWeb"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.0,
+    "reasoning": "The first chunk does not mention data warehousing or OLAP at all, focusing instead on database systems like Microsoft Access, IBM DB2, and Oracle. This chunk is unrelated to the learning objective.\n\nThe second chunk begins to address data warehousing and OLAP, mentioning the architecture, star schema, snowflake schema, and data analysis operators. However, it does not provide specific details that would be necessary for a good exam question.\n\nThe third chunk is completely unrelated, containing only publishing information about a book and no content related to data warehousing or OLAP.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the preface mention as making this book unique?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using only the provided source context. It asks about specific details mentioned in the preface regarding the book's uniqueness, which are directly stated in the given text.\n- CLARITY: The question is clear and unambiguous. It directly asks what makes the book unique, which can be answered by identifying the relevant phrases in the preface.\n- DIFFICULTY_ALIGNMENT: The difficulty level is appropriate as it requires recalling specific information from the text, which aligns with the \"easy\" category.\n- TYPE_ALIGNMENT: The question is a straightforward recall task, asking to list the features that make the book unique. This perfectly fits the \"recall\" type.\n- STANDALONE_QUALITY: The question does not reference any external context and can stand alone as a typical exam question. It does not require the reader to know where the information comes from.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The preface mentions several features that make this book unique, including its clear distinction between basic material and advanced topics in Parts I and II, detailed descriptions of data warehouse architecture and schema, and coverage of data analysis operators such as drill-down, roll-up, and data cubes. Additionally, the book offers insights into relevant data mining problems and their solutions, distinguishing it from other texts in the field.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 3
+    },
+    "overall": 3.0,
+    "reasoning": "- CORRECTNESS: The answer includes some accurate points from the source context, such as the clear distinction between basic and advanced topics, and the coverage of data warehouse architecture and schema. However, it also includes additional information about data analysis operators and data mining problems that are not mentioned in the given context. This results in a score of 3.\n- COMPLETENESS: The answer covers the main ideas of the book's uniqueness, such as the clear distinction between basic and advanced topics, data warehouse architecture, and data analysis operators. It does not, however, explicitly mention the appendices covering specific database systems, which were part of the original context. This leads to a score of 3.\n- GROUNDEDNESS: The answer includes information not present in the source context, such as data analysis operators and data mining problems. This makes the answer less grounded and results in a score of 3.\n- ACADEMIC_TONE: The answer uses a formal tone and sentence structure appropriate for university-level writing, though it could be more concise and direct. The inclusion of multiple sentences rather than bullet points is positive. This earns a score of 3.",
+    "parse_status": "ok"
+  }
+}

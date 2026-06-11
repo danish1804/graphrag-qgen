@@ -1,0 +1,48 @@
+{
+  "eval_id": "eval_2026-06-10_083033_53101e",
+  "timestamp": "2026-06-10T08:30:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Virtual memory and address translation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\nment is used for block, and page fault oraddress fault is used for miss. With virtual\nmemory, the processor produces virtual addresses that are translated by a combi-\nnation of hardware and software t",
+      "[SEED from source_12.pdf]\ntual memory.\nThere are further differences between caches and virtual memory beyond those\nquantitative ones mentioned in Figure B.20 :\n■Replacement on cache misses is primarily controlled by hardware,",
+      "[NEIGHBOUR from source_26.pdf]\nComputer Organization and Architectu re \n \n Page 105  \n UNIT – IV          (10 Lectures)  \nTHE MEMORY SYSTEM : Basic concepts, semiconductor RAM types of read ‐ only memory \n(ROM), cache memory, perfo"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.33,
+    "reasoning": "The chunks are directly relevant to virtual memory and address translation, covering concepts like virtual addresses, page faults, and hardware/software translation. However, they lack specific details about how virtual memory works or the relationship between virtual and physical addresses, which would be needed for a good exam question. The chunks are somewhat clean but contain some extraneous material, such as the cache replacement discussion in Chunk 2. Overall, the chunks are mostly relevant and sufficient, but with minor gaps and some noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary responsibility of the operating system in virtual memory replacement?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 1,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the OS's role in virtual memory replacement, which is directly stated in the source: \"Replacement on cache misses is primarily controlled by hardware, but the operating system may also be involved in virtual memory replacement.\" This is a straightforward recall of a fact from the passage, so it is completely answerable from the context alone (faithfulness 5). The question is clear and unambiguous (clarity 5). It is an easy recall question (difficulty 1), matching the requested easy level. It is a recall question (type 5). The question does not reference the passage explicitly (standalone quality 5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The operating system is responsible for making replacement decisions for virtual memory pages when they are evicted from main memory due to a page fault or address fault. Since the miss penalty is longer than for cache misses, the operating system can take more time to decide which page to replace, potentially using more sophisticated algorithms than hardware-based cache replacement policies.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies that the OS makes replacement decisions for virtual memory pages, and it notes that the longer miss penalty allows for more sophisticated algorithms. However, it incorrectly states that the OS controls replacement on cache misses, which is actually handled by hardware. The answer is incomplete because it does not mention that the OS also manages page table updates and may use page replacement algorithms like LRU. It is grounded in the context, as the passage discusses virtual memory and replacement policies. The tone is academic but uses bullet points, which is acceptable for a summary.",
+    "parse_status": "failed"
+  }
+}

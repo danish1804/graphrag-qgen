@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-03_055620_06f385",
+  "timestamp": "2026-05-03T05:56:20",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "How does deadlock prevention relate to resource scheduling in OS and databases",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_44.pdf domain=database]\n​\n; using\n \nsegmented paged memory\n​\n overcomes this (at the cost of some\n \ninternal fragmentation\n​\n).\n \nT\n \nVirMEM\n \n15.\n \nThe \n​\nBanker’s Algorithm\n​\n is used to avoid deadlocks when\n \nconsidering",
+      "[NEIGHBOUR from source_6.pdf domain=database]\nof 100,000 instructions and a para llel portion (parallelized 4 wa ys) of 100,000 instructions per \nthread that he is going to run on his 4-way multithreaded SMT processor. When running the \nserial po",
+      "[NEIGHBOUR from source_6.pdf domain=database]\nOther Base System to Decimal System  \nSteps  \n Step 1  − Determine the column (positional) value of each digit (this depends on the \nposition of the digit and the base of the number system).  \n Step"
+    ],
+    "scores": {
+      "relevance": 2,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.33,
+    "reasoning": "For relevance, Chunk 1 mentions the Banker's Algorithm, which is related to deadlock prevention in operating systems and databases. However, it does not explicitly connect this to resource scheduling. Chunk 2 and Chunk 3 are completely unrelated to the learning objective, discussing memory management and number systems respectively. Thus, only one chunk is somewhat relevant.\n\nFor sufficiency, Chunk 1 provides a brief mention of the Banker's Algorithm, which is a key concept for preventing deadlocks. However, it does not provide enough detail or context to generate a comprehensive exam question. The other chunks offer no relevant information at all.\n\nFor noise, all three chunks contain significant irrelevant content. Chunk 1 has some useful information but is mostly about memory management, while Chunks 2 and 3 are entirely off-topic.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes how deadlock prevention in operating systems relates to resource scheduling in distributed databases, considering the given context? Explain your answer.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 3.8,
+    "reasoning": "- FAITHFULNESS: The question does not directly relate to any of the provided context snippets. The context discusses segmented paged memory, internal fragmentation, and the Banker's Algorithm, none of which are relevant to the question about deadlock prevention in operating systems and resource scheduling in distributed databases. Therefore, the question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous, asking about the relationship between deadlock prevention and resource scheduling in distributed databases. It is well-phrased and easy to understand.\n- DIFFICULTY_ALIGNMENT: Given the context provided, the question is too difficult because it requires knowledge beyond the given context. However, if we consider the context of the Banker's Algorithm and resource management, it could be seen as a harder application question. But since the context does not provide relevant information, it is not a perfect fit for a hard difficulty level.\n- TYPE_ALIGNMENT: The question asks for an explanation of the relationship between deadlock prevention and resource scheduling, which aligns with the application type rather than just recall or conceptual understanding.\n- STANDALONE_QUALITY: The question can stand alone without referencing the context, making it a genuine exam question a student could see.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Deadlock prevention in operating systems and resource scheduling in distributed databases share a fundamental relationship centered around the management of concurrent access to shared resources. In operating systems, deadlock prevention often involves limiting access to resources or imposing strict rules on process actions to avoid conflicts, which parallels the need for resource scheduling in distributed databases to manage concurrent transactions. Both domains utilize mechanisms such as the Banker's Algorithm to allocate resources in a manner that avoids deadlocks, ensuring that transactions in databases and processes in operating systems can proceed without mutual exclusion. For instance, in databases, the probability of conflict between transactions influences the granularity of resource allocation, similar to how the order of resource requests impacts process scheduling in operating systems. Additionally, both systems employ timeouts and rollback strategies to handle unresolvable conflicts, thereby maintaining system stability and preventing deadlocks.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "- **Correctness**: The answer is largely correct, aligning with the context provided about the Banker's Algorithm and its application in avoiding deadlocks. However, it incorrectly mentions \"segmented paged memory\" and \"internal fragmentation\" from the source context, which are not directly related to the question about deadlock prevention and resource scheduling. This introduces a minor factual error.\n- **Completeness**: The answer covers the key points by discussing the relationship between deadlock prevention and resource scheduling, mentioning the Banker's Algorithm, and comparing transaction handling in databases to process scheduling in operating systems. It also touches on timeout and rollback strategies, which are relevant but not explicitly mentioned in the context.\n- **Groundedness**: The answer is mostly grounded in the provided context, focusing on the Banker's Algorithm and its application in both operating systems and distributed databases. However, it introduces the concept of \"segmented paged memory\" and \"internal fragmentation,\" which are not directly relevant to the question and thus are not grounded in the context.\n- **Academic Tone**: The language used is precise and academic, with proper sentence structure and no use of bullet points. The answer is well-written and suitable for a university-level examination.",
+    "parse_status": "ok"
+  }
+}

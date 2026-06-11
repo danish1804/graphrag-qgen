@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_185209_4a783d",
+  "timestamp": "2026-05-16T18:52:09",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Process scheduling for database query execution",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n10.2.2 Local independence and co-operation 355\n10.2.3 Data fragmentation and allocation 356\n10.2.4 Transparency levels 358\n10.2.5 Classiﬁcation of transactions 360\n10.3 Technology of distributed datab",
+      "[SEED from source_36.pdf]\nhand, vertical partitioning generates entities with fewer attributes. They cantherefore be translated into physical structures from which we can retrieve agreat deal of data with a single access. Part",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not contain any direct information about process scheduling for database query execution. Instead, they discuss topics such as tree structures, query optimization, and physical database design, which are tangential to the learning objective. Therefore, the chunks are largely unrelated to the specified learning objective.\n\nThe chunks do not provide any specific details about process scheduling or how it relates to database query execution. While some chunks touch on aspects of query optimization, they do not delve into the specifics of process scheduling, which would be necessary to formulate a relevant exam question. Thus, the information is insufficient for generating a good exam question on the given learning objective.\n\nThe chunks are mostly focused on database-related topics but are not cluttered with irrelevant content. However, they lack the specific focus required to meet the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary advantage of vertical partitioning in distributed databases, and how does it affect the retrieval process?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, specifically the statement \"Vertical partitioning generates entities with fewer attributes. They can therefore be translated into physical structures from which we can retrieve a great deal of data with a single access.\" This information directly addresses the primary advantage of vertical partitioning and its effect on the retrieval process.\n- CLARITY: The question is clear and unambiguous. It asks for the primary advantage of vertical partitioning and how it affects the retrieval process, which are straightforward concepts to understand.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept rather than just recalling a fact, making it suitable for a medium-level difficulty.\n- TYPE_ALIGNMENT: The question asks for an explanation of a concept, which fits well with the conceptual type.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Vertical partitioning in distributed databases offers a significant advantage by creating entities with fewer attributes, thereby facilitating efficient data retrieval through reduced access requirements. This technique allows for more compact physical structures, enabling the acquisition of substantial data with a single access operation. Consequently, vertical partitioning enhances performance and scalability in distributed environments by optimizing data layout and access patterns.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.25,
+    "reasoning": "- CORRECTNESS: The answer is largely correct, aligning with the provided context. Vertical partitioning indeed reduces the number of attributes per entity, leading to more efficient data retrieval and access operations. However, the phrase \"acquisition of substantial data with a single access operation\" might be slightly exaggerated, as the actual amount of data retrieved depends on the query and schema design.\n- COMPLETENESS: The answer covers the primary advantage of vertical partitioning and its impact on the retrieval process. It mentions the reduction in attributes and the potential for efficient data access, which are key points.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context, discussing vertical partitioning and its effects on data retrieval without introducing any unsupported information.\n- ACADEMIC_TONE: The language used is precise and suitable for a university-level writing, though it could benefit from more formal academic prose. The use of \"thereby\" and \"therefore\" is appropriate, but the overall sentence structure is somewhat informal.",
+    "parse_status": "ok"
+  }
+}

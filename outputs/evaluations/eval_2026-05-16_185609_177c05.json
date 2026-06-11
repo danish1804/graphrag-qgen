@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_185609_177c05",
+  "timestamp": "2026-05-16T18:56:09",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Disk scheduling impact on database I/O performance",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\n2003.\nSCHW96 Schwaderer, W., and Wilson, A. Understanding I/O Subsystems. Milpitas, CA:\nAdaptec Press, 1996.\nSELT90 Seltzer, M.; Chen, P .; and Ousterhout, J.“Disk Scheduling Revisited.” Proceedings,",
+      "[SEED from source_5.pdf]\nPrentice Hall, 1986.\nLIVA90 Livadas, P . File Structures: Theory and Practice. Englewood Cliffs, NJ: Prentice\nHall, 1990.\nLOVE05 Love, R. Linux Kernel Development. Waltham, MA: Novell Press, 2005.\nNAG",
+      "[SEED from source_5.pdf]\nInternational Conference on System Science, January 1989.\nWHIT99 White, S. Anatomy of a Commercial-Grade Immune System. IBM Research\nWhite Paper, 1999.\nWIED87 Wiederhold, G. File Organization for Data",
+      "[NEIGHBOUR from source_5.pdf]\nis remarkably little material available on Windows internals. The book to read is[RUSS05]; its coverage stops with Windows Server 2003, but much of the content isvalid for Vista.\nBOVE06 Bovet, D., and",
+      "[NEIGHBOUR from source_5.pdf]\n5.9 / KEY TERMS, REVIEW QUESTIONS,AND PROBLEMS 251\nANDR83 Andrews, G., and Schneider, F. “Concepts and Notations for Concurrent Pro-\ngramming.” Computing Surveys, March 1983.\nAXFO88 Axford, T. Concurr"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided are largely unrelated to the learning objective of \"Disk scheduling impact on database I/O performance.\" Most of the chunks discuss general topics such as file structures, operating system concepts, and programming languages, which do not directly address disk scheduling or its impact on database I/O performance. Therefore, the relevance score is 1.\n\nWhile there might be some tangential information that could potentially relate to disk scheduling, the chunks do not provide enough specific details about how disk scheduling affects database I/O performance. Thus, the sufficiency score is also 1, indicating insufficient information to generate a good exam question.\n\nThe chunks contain mostly technical and academic references, which are generally relevant to computer science but not specifically to the learning objective. There is no significant noise in the sense of irrelevant content, so the noise score is 5.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following references would provide the most relevant information for understanding the impact of disk scheduling on database I/O performance?\n\nWIED87 Wiederhold, G. File Organization for Database Design. New York: McGraw-Hill, 1987.",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "- FAITHFULNESS: The question can be answered using the provided source context, specifically the reference to Seltzer et al.'s work on \"Disk Scheduling Revisited.\" However, the generated question does not directly reference this material, making it somewhat ambiguous. Therefore, it scores a 3.\n- CLARITY: The question is clear and unambiguous, asking about the relevance of a specific reference to a particular topic. It is phrased precisely and easily understood. Thus, it scores a 5.\n- DIFFICULTY_ALIGNMENT: The question requires understanding the relationship between disk scheduling and database I/O performance, which involves a conceptual grasp rather than just recalling facts. This aligns well with the medium difficulty level. Hence, it scores a 5.\n- TYPE_ALIGNMENT: The question asks for an evaluation of the relevance of a reference, which falls under the conceptual category of explaining or comparing. Therefore, it scores a 5.\n- STANDALONE_QUALITY: The question stands on its own and does not explicitly refer to the provided context. It can be understood and answered without needing to know the source material beyond the given references. Thus, it scores a 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The reference that would provide the most relevant information for understanding the impact of disk scheduling on database I/O performance is WIED87 by Wiederhold. This book focuses on file organization for database design, which inherently involves considerations of disk scheduling and I/O subsystems. Although Wiederhold's work was published in 1987, it remains foundational in the field of database management systems and provides critical insights into how disk scheduling affects overall database performance.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 1.5,
+    "reasoning": "Correctness: The answer is incorrect because the reference suggested is WIED87, which is titled \"File Organization for Database Design\" and does not specifically focus on disk scheduling. The correct reference should be SELT90, which is \"Disk Scheduling Revisited,\" as it directly addresses disk scheduling and its impact on I/O performance.\n\nCompleteness: The answer is incomplete because it does not mention the correct reference (SELT90) and instead focuses on a book that, while related to databases, does not specifically address disk scheduling. It also lacks a discussion on the relevance of the chosen reference to the question.\n\nGroundedness: The answer is not grounded in the source context because it introduces a reference (WIED87) that is not mentioned in the provided sources. The correct reference (SELT90) is not included, which is a significant omission.\n\nAcademic Tone: The answer has an appropriate academic tone, using formal language and providing a reasoned argument. However, the content is flawed, so the score is reduced due to the factual errors and omissions.",
+    "parse_status": "ok"
+  }
+}

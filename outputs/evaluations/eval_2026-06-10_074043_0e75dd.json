@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_074043_0e75dd",
+  "timestamp": "2026-06-10T07:40:43",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Data warehousing and OLAP",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAppendices cover three popular database systems: Microsoft Access, \nibm\ndb2 and Oracle. \nxviii Preface\nA number of features make this book unique.\n•We make a clear distinction between the basic materi",
+      "[SEED from source_49.pdf]\nmanagement. We describe the architecture of the data warehouse, the starand snowﬂake schemas used for data representation within data warehousesand the new operators for data analysis (including drill",
+      "[NEIGHBOUR from source_14.pdf]\n4 \nChapter  \nPublished by \nMcGraw-Hill Publishing Company \nShoppenhangers Road, Maidenhead, Berkshire, sl6 2ql, England \nTelephone: + \n44 \n( \n0 \n)  \n1628 502500 \nFax: + \n44 \n( \n0 \n) \n 1628 770224 \nWeb"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The first chunk mentions database systems but does not discuss data warehousing or OLAP, so it is unrelated. The second chunk covers data warehouse architecture, star and snowflake schemas, and data analysis operators, which are directly relevant to the learning objective. The third chunk is a publisher contact page with no content about data warehousing. Thus, only the second chunk is relevant. It provides sufficient information for a question on data warehouse architecture and analysis operators, but lacks details on star and snowflake schemas. The publisher page has no relevance at all. The second chunk has moderate noise from the publisher page, but the core content is clean.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the three database systems covered in the appendices of this book?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for a list of three database systems, which can be directly extracted from the source context (\"Microsoft Access, ibm db2 and Oracle\"). This is a straightforward recall task that does not require any outside knowledge, so it is completely answerable from the context alone. The question is clear and unambiguous, asking for a specific list of items. It matches the easy difficulty level because it involves simple recall rather than deeper understanding. The question is also clearly a recall task, matching the requested type. Finally, the question is self-contained and does not reference the source material, making it a genuine standalone exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The appendices cover three popular database systems: Microsoft Access, ibm db2, and Oracle. These systems are presented to provide readers with practical insights into real-world database applications.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer correctly identifies the three database systems (Microsoft Access, IBM DB2, and Oracle) from the source context. It is complete because it lists all three systems without omission. The answer is entirely grounded in the provided text, as no additional information is introduced. The tone is academic and precise, using sentence structure typical of university-level writing. Thus, all criteria score 5.",
+    "parse_status": "ok"
+  }
+}

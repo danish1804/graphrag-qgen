@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_191016_8063d8",
+  "timestamp": "2026-05-16T19:10:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "File system APIs in software engineering",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ntive component reuse. I also discuss the general pr ocess of component-\nbased software engineering and the problems of comp onent composition. \nThe majority of large systems are now distributed s yste",
+      "[SEED from source_22.pdf]\nfollowed. As I discussed in Chapters 8 and 15, revi ews and inspections are used\nalongside program testing as part of the general pr ocess of software verification and\nvalidation.\nDuring a review, a g",
+      "[SEED from source_22.pdf]\naccount by the system designer.\nSome of the most important design issues that have to be considered in distributed\nsystems engineering are:\n1.Transparency To what extent should the distributed system",
+      "[NEIGHBOUR from source_22.pdf]\n17.1 Components and component models 455\n17.2 CBSE processes 461\n17.3 Component composition 468\nChapter 18 Distributed software engineering 479\n18.1 Distributed systems issues 481\n18.2 Client–server c",
+      "[NEIGHBOUR from source_22.pdf]\n(1986). Bosch (2000) includes a good discussion of how this style relates to system\nquality attributes.\n6.3.3 Client–server architecture\nThe repository pattern is concerned with the static  structure"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss file system APIs in software engineering. They instead cover topics like component-based software engineering, software verification and validation, and distributed systems issues. Therefore, the relevance score is 1.\n\nFor SUFFICIENCY, the chunks provide no specific information about file system APIs or related concepts necessary to generate an exam question. Thus, the sufficiency score is 1.\n\nFor NOISE, while the chunks contain some technical terms related to software engineering, they are largely irrelevant to the learning objective. The presence of unrelated topics such as component-based software engineering and distributed systems issues adds significant noise. Hence, the noise score is 1.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the two key design issues that must be considered in distributed systems engineering, and briefly describe each?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question asks about two key design issues in distributed systems engineering, which can be directly found in the source context. Therefore, it is completely answerable from the context alone, earning a score of 5.\n- CLARITY: The question is clear and unambiguous, asking for specific information without any vague terms. It is phrased precisely, earning a score of 5.\n- DIFFICULTY_ALIGNMENT: The question requires explaining two design issues, which involves some conceptual understanding rather than simple recall. This aligns well with the medium difficulty level requested, earning a score of 5.\n- TYPE_ALIGNMENT: The question asks for a brief description of each issue, which falls under the conceptual category of explaining or describing concepts. This perfectly matches the requested type, earning a score of 5.\n- STANDALONE_QUALITY: The question does not reference the context or passage explicitly and can stand alone as a genuine exam question. It does not require students to remember where the information came from, earning a score of 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Two key design issues in distributed systems engineering are transparency and openness. Transparency concerns the extent to which a distributed system should appear to users as a single cohesive entity, potentially simplifying user interaction but complicating system management. Openness involves designing systems using standard protocols that support interoperability versus more specialized protocols that may offer greater flexibility but reduce compatibility with other systems.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 1,
+      "academic_tone": 5
+    },
+    "overall": 2.75,
+    "reasoning": "Correctness: The answer mentions transparency, which is indeed a key issue in distributed systems engineering as per the source context. However, the term \"openness\" is not mentioned in the provided context. Instead, the context discusses transparency and possibly other issues like component-based software engineering and client-server architecture. Therefore, the answer is partially correct but contains a factual error.\n\nCompleteness: The answer covers the key point of transparency but introduces \"openness\" which is not directly addressed in the source context. It does not mention other important issues such as component composition or client-server architecture, which are relevant to distributed systems engineering. Thus, it is incomplete.\n\nGroundedness: The answer introduces the concept of \"openness,\" which is not found in the given context. The context focuses on transparency and related issues rather than openness. Hence, the answer is not entirely grounded in the provided context.\n\nAcademic Tone: The answer is written in a clear and concise manner, using appropriate academic language without any bullet points or casual elements. This makes it suitable for a university-level setting.",
+    "parse_status": "ok"
+  }
+}

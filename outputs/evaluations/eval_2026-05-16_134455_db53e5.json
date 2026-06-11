@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_134455_db53e5",
+  "timestamp": "2026-05-16T13:44:55",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Version control and configuration management",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nChapter 25 discusses configuration management. This  is an issue that is\nimportant for all large systems, which are develope d by teams.\nHowever, the need for configuration management is n ot always o",
+      "[SEED from source_22.pdf]\nmanagement processes and tools. When you have read the chapter,\nyou will:\nIunderstand the processes and procedures involved in  software change\nmanagement;\nIknow the essential functionality that must",
+      "[NEIGHBOUR from source_21.pdf]\n2. The Unified Process\n3. Iteration and Incrementation Within the Object-Oriented Paradigm\n32\n4. Requirements Workflow\n5. Analysis Workflow\n6. Design Workflow\n7. Implementation Workflow\n8. Test Workfl"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "The first chunk mentions configuration management but does not provide specific details about version control or related processes, making it only partially relevant to the learning objective. The second chunk starts to address software change management, which is closely related to version control, but it does not explicitly mention version control or configuration management. The third chunk is completely unrelated as it lists various workflows without any mention of version control or configuration management.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the key processes involved in software change management according to Chapter 25?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided. It asks about key processes in software change management, which is directly related to the content of Chapter 25.\n- CLARITY: The question is clear and unambiguous. It directly asks about key processes in software change management, which is easily understood.\n- DIFFICULTY_ALIGNMENT: The question is asking for recall of basic information, which aligns with the \"easy\" difficulty level requested.\n- TYPE_ALIGNMENT: The question is asking to list or state key processes, which perfectly fits the \"recall\" type requested.\n- STANDALONE_QUALITY: The question does not reference the context or passage explicitly. It can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The key processes involved in software change management according to Chapter 25 include change management itself, version management, and system building. These processes are interrelated, with version management providing essential functionality that supports system building and facilitating effective software change management.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 3
+    },
+    "overall": 3.0,
+    "reasoning": "- CORRECTNESS: The answer mentions change management, version management, and system building, which are plausible processes related to software change management. However, the term \"system building\" is not explicitly mentioned in the source context, making it slightly speculative. Thus, it can be rated as 3.\n- COMPLETENESS: The answer covers the main ideas of change management and version management, which are key aspects of software change management. It does not, however, mention specific procedures or tools, which would be more detailed and thus could be considered incomplete. Therefore, it scores a 3.\n- GROUNDEDNESS: The answer introduces the term \"system building,\" which is not found in the source context. This addition makes the answer less grounded, hence it scores a 3.\n- ACADEMIC_TONE: The answer is written in a somewhat formal tone but uses bullet points, which is not typical for university-level writing. This reduces its score to 3.",
+    "parse_status": "ok"
+  }
+}

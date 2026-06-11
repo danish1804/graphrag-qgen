@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_130935_c99ce3",
+  "timestamp": "2026-05-16T13:09:35",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "SQL joins — inner and outer",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_13.pdf]\nSELECT  column-list\nFROM  table1 FULL [OUTER] JOIN table2 ON join-condition\nFor example, the following query lists the product code, vendor code, and vendor name for all products and includes \nall pro",
+      "[SEED from source_13.pdf]\nwhich then executes until the last outer query finishes (the first SQL statement in the code).Cengage Learning © 2015FIGURE\n8.13Another example of an inline subquery\nI_C8618_ch08_ptg01_hr_322-411.indd",
+      "[NEIGHBOUR from source_14.pdf]\n4.4.4 Views in queries 135\n4.5 Access control 136\n4.5.1 Resources and privileges 136\n4.5.2 Commands for granting and revoking privileges 137\n4.6 Use of sql in programming languages 138\n4.6.1 Integrati"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are somewhat relevant to the learning objective on SQL joins, specifically inner and outer joins. Chunk 1 provides a clear example of an outer join, which directly relates to the objective. However, Chunk 2 and Chunk 3 are largely irrelevant as they discuss unrelated topics such as the execution order of SQL statements and views in queries, respectively.\n\nChunk 1 offers a good starting point for generating a question about SQL joins, but it lacks detailed explanations or examples that would be necessary for a comprehensive exam question. Therefore, while it is relevant, it does not provide sufficient information on its own.\n\nChunk 2 and Chunk 3 contain no useful information related to the learning objective, making them highly noisy and distracting.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which SQL statement would produce a result set that includes all rows from both tables, even if there is no match between them?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about an SQL statement that produces a result set including all rows from both tables, even if there is no match between them. This can be directly answered using the context provided, which mentions a FULL OUTER JOIN. Therefore, the question is completely answerable from the context alone, making it very faithful to the source material.\n\nThe question is clear and unambiguous, asking for a specific SQL statement type. It does not require any additional explanation or context beyond the given information, so it is crisp and precise.\n\nThe difficulty level is appropriate for an easy question as it requires basic understanding of SQL joins, specifically the concept of a FULL OUTER JOIN, which is a fundamental concept in SQL.\n\nThe question type is a recall question, asking to identify the correct SQL statement type, which fits the request perfectly.\n\nThe question stands alone and does not reference the context or passage, making it a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A SQL statement that would produce a result set including all rows from both tables, even if there is no match between them, utilizes a FULL OUTER JOIN. This join type combines all records from both tables, adding rows with NULL values for columns from the non-matching table where no corresponding record exists in either table.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer correctly identifies the use of a FULL OUTER JOIN to include all rows from both tables, even if there is no match between them. This aligns with the source context which discusses JOIN operations and their purpose in combining records from multiple tables. The explanation is accurate and consistent with the provided context.\n\nThe answer covers the key point of using a FULL OUTER JOIN to achieve the desired result set. It provides a clear and concise explanation without omitting any important details.\n\nThe answer does not introduce any information not present in the source context. It stays within the scope of the provided material and does not include any unsupported additions.\n\nThe language used in the answer is precise and academic, suitable for a university-level setting. It avoids casual or inappropriate tones and uses proper sentence structure.",
+    "parse_status": "ok"
+  }
+}

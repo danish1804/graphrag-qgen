@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_120254_e5bbcb",
+  "timestamp": "2026-06-10T12:02:54",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Deadlock avoidance in multi-threaded applications",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nANDSTARVATION\n6.1 Principles of Deadlock\nReusable Resources\nConsumable ResourcesResource Allocation\nGraphs\nThe Conditions for \nDeadlock\n6.2 Deadlock Prevention\nMutual ExclusionHold and WaitNo Preempti",
+      "[SEED from source_5.pdf]\nSolution Using SemaphoresSolution Using a Monitor\n6.7 UNIX Concurrency Mechanisms\nPipesMessagesShared MemorySemaphoresSignals\n6.8 Linux Kernel ConcurrencyMechanisms\nAtomic OperationsSpinlocksSemaphore",
+      "[SEED from source_5.pdf]\nthe key aspects of concurrency on a single system, with emphasis on issues ofmutual exclusion and deadlock.\nPart Three. Memory: Provides a comprehensive survey of techniques for\nmemory management, inc",
+      "[NEIGHBOUR from source_5.pdf]\n5.6 Readers/Writers Problem 245\n5.7 Summary 249\n5.8 Recommended Reading 250\n5.9 Key T erms, Review Questions, and Problems 251\nChapter 6 Concurrency: Deadlock and Starvation 262\n6.1 Principles of Dead",
+      "[NEIGHBOUR from source_5.pdf]\nChapter 6  Concurrency: Deadlock and Starvation\nChapter 6 looks at two additional aspects of concurrency control. Deadlock refers to"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about general concurrency topics rather than specific deadlock avoidance. Chunk 1 mentions principles and conditions for deadlock, which is relevant, but does not focus on prevention or resolution. Chunk 4 references the readers/writers problem, which is related to mutual exclusion but not deadlock. Chunk 5 reiterates the chapter title without details. Overall, the chunks are partially relevant because they touch on deadlock but lack detailed explanations or examples needed for a good exam question. Noise is moderate since the chunks contain some useful information but also include titles and summaries that are not essential for the learning objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain the relationship between mutual exclusion, hold and wait, and circular wait conditions as they relate to the principles of deadlock prevention.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the relationship among three specific conditions (mutual exclusion, hold and wait, circular wait) that are directly stated in the source context. It can be fully answered using only the provided material, so it is faithful (5). The question is clear and unambiguous, asking for an explanation of how these concepts relate, which is a conceptual task (5). The difficulty level is medium because it requires understanding the definitions and their interconnections, not just recall. The question type is conceptual, matching the request (5). It is self-contained and does not reference the passage, so it is standalone (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The three conditions—mutual exclusion, hold and wait, and circular wait—are necessary and sufficient for deadlock. Mutual exclusion ensures that only one process can access a resource at a time, preventing starvation. Hold and wait allows processes to acquire multiple resources while holding others, which can lead to circular wait where each process waits for a resource held by another, creating a cycle. By enforcing mutual exclusion and avoiding hold and wait or circular wait, deadlock can be prevented.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies the three conditions as necessary and sufficient for deadlock, and explains how mutual exclusion prevents starvation. However, it conflates mutual exclusion with starvation prevention, which is incorrect; mutual exclusion alone does not prevent starvation. The explanation of hold and wait and circular wait is accurate but could be more precise. The answer is grounded in the source context, which discusses these concepts. The tone is academic but uses bullet points, which is acceptable for a short answer. Overall, the answer is mostly correct and grounded but contains a factual error and could be more precise.",
+    "parse_status": "ok"
+  }
+}

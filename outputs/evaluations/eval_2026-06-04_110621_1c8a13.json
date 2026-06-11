@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-04_110621_1c8a13",
+  "timestamp": "2026-06-04T11:06:21",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Apply process synchronisation concepts to prevent deadlock when multiple processes share resources with database concepts",
+    "difficulty": "hard",
+    "question_type": "case_study"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=database]\nA wide variety of synchronization primitives have been proposed for shared-memory multiprocessors. Mellor-Crummey and Scott [1991] provided an over-view of the issues as well as efficient implementati",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nprocessors, or multiprocessors. Instead of using parallelism to overlap individualinstructions, multiprocessing uses parallelism to allow multiple instruction streamsto be executed simultaneously on d",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nClusters are collections of independent computers that are connected together usinglocal area networks (LANs) and switches. For workloads that did not requireintensive communication, clusters offered"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly address the learning objective of applying process synchronization concepts to prevent deadlock in a database context. Chunk 1 discusses synchronization primitives but does not mention deadlock prevention or database concepts. Chunk 2 and 3 focus on multiprocessing and clusters, which are not directly related to the objective of preventing deadlock in a database setting. Therefore, the chunks are largely unrelated to the learning objective.\n\nThere is insufficient information in the chunks to generate a good exam question. While they provide some general concepts related to parallel processing, they lack specific details on how to apply synchronization to prevent deadlock in a database environment. Thus, the sufficiency score is low.\n\nThe chunks contain a significant amount of irrelevant content, such as discussions on multiprocessing and cluster computing, which do not contribute to the learning objective. This makes them quite noisy.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "SCENARIO: A distributed database system manages customer orders across multiple servers. Each server has multiple cores that allow for parallel transaction processing. The system uses a two-phase commit algorithm for transaction management and supports read-only transactions on replicas of the database.\n\nQUESTION: Considering the distributed nature of the system and the potential for concurrent transactions, how would you implement a deadlock detection mechanism using Lamport clocks to ensure that all transactions complete successfully?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The question does not directly reference the source context about Mellor-Crummey and Scott's overview or multiprocessing. However, it does use the concept of a distributed database system with multiple cores, which is somewhat related to the source material. The question can be answered using the given scenario and general knowledge of distributed systems and concurrency control, so it is not completely answerable from the context alone but is mostly answerable with some outside knowledge.\n- CLARITY: The question is clear and unambiguous. It asks for a specific implementation of a deadlock detection mechanism using Lamport clocks, which is a precise request.\n- DIFFICULTY_ALIGNMENT: The question requires applying concepts of distributed systems and concurrency control to a specific scenario, which aligns with the \"hard\" difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for the design and application of a deadlock detection mechanism, which fits the \"application\" type rather than just recalling or explaining concepts.\n- STANDALONE_QUALITY: The question is self-contained and does not reference the context or passage explicitly. It provides all necessary information within itself.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "To implement a deadlock detection mechanism in a distributed database system using Lamport clocks, one must first understand that Lamport clocks provide a way to order events in a distributed system chronologically. This ordering is crucial for detecting and resolving deadlocks, as it allows us to determine the sequence of operations and identify any circular wait conditions. In a distributed system managing customer orders across multiple servers, each server maintains its own Lamport clock to timestamp events. When a transaction starts, it increments the Lamport clock to mark the start of the transaction. During the execution of the transaction, all actions are timestamped with the current Lamport clock value. If a transaction needs to acquire a lock on a resource, it checks the Lamport clock values of other transactions holding locks on the same resource to ensure no circular wait condition exists. For instance, if transaction T1 holds a lock on resource R1 and T2 holds a lock on resource R2, and both attempt to acquire each other's lock, the system can detect a potential deadlock by comparing the Lamport clock values. If T1 requests a lock from T2 after T2 acquired its lock, and vice versa, a deadlock is likely. The system then employs a deadlock detection algorithm such as the Banker's algorithm or a simple timeout mechanism to resolve the deadlock by aborting one of the transactions and rolling back its changes. This approach ensures that all transactions complete successfully, maintaining the integrity and consistency of the distributed database.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "Correctness: The answer is largely correct, aligning with the principles of using Lamport clocks for ordering events and detecting deadlocks. However, it does not explicitly mention that Lamport clocks alone do not prevent deadlocks but rather help in detecting them. This is a minor inaccuracy since the primary role of Lamport clocks is to order events, which indirectly aids in deadlock detection.\n\nCompleteness: The answer covers the key points needed to address the question, including the use of Lamport clocks for ordering events, detecting circular wait conditions, and resolving deadlocks through a timeout mechanism or Banker's algorithm. It provides a comprehensive explanation but could benefit from mentioning the prevention aspect of Lamport clocks in the context of distributed systems.\n\nGroundedness: The answer is entirely grounded in the provided context, focusing on the use of Lamport clocks for event ordering and deadlock detection without introducing any unsupported information.\n\nAcademic Tone: The language used is precise and academic, suitable for a university-level writing. The answer is presented in a coherent paragraph without the need for bullet points, maintaining an appropriate tone.",
+    "parse_status": "ok"
+  }
+}

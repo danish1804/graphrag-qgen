@@ -1,0 +1,46 @@
+{
+  "eval_id": "eval_2026-06-10_092525_e2f95a",
+  "timestamp": "2026-06-10T09:25:25",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Agile development for machine learning projects",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nR E F E R E N C E S\nAmbler, S. W. and Jeffries, R. (2002). Agile Modeling: Effective Practices for Extreme Pro gramming\nand the Unified Process. New York: John Wiley & Sons.\nArisholm, E., Gallis, H.,",
+      "[SEED from source_22.pdf]\nover multiple software releases’. J. of Software Maintenance and Evolution , 20(1), 31–58.\nKrogstie, J., Jahr, A. and Sjoberg, D. I. K. (2005) . ‘A longitudinal study of development and\nmaintenance in",
+      "[SEED from source_22.pdf]\ning during system development to the testing of sof tware releases. I also\ndiscuss the use of test-driven development—an appro ach pioneered in\nagile methods but which has wide applicability. Fin ally",
+      "[NEIGHBOUR from source_22.pdf]\nScrum (Cohn, 2009; Schwaber, 2004; Schwaber and Bee dle, 2001), Crystal\n(Cockburn, 2001; Cockburn, 2004), Adaptive Software  Development (Highsmith,\n2000), DSDM (Stapleton, 1997; Stapleton, 2003), and",
+      "[NEIGHBOUR from source_22.pdf]\nSOFTWARE ENGINEERING\nNinth Edition\nIan Sommerville\nAddison-Wesley\nBoston Columbus Indianapolis New York San Francisco Uppe r Saddle River\nAmsterdam Cape Town Dubai London Madrid Milan Munich Paris Mon"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about agile software development practices, which is tangential to the specific focus on agile development for machine learning projects. Only Chunk 4 mentions Scrum and Crystal, which are agile methodologies, but none directly discuss machine learning or its integration with agile. The references are about general software engineering rather than machine learning. Thus, relevance is low. There is insufficient information to generate a good exam question because no chunk covers the core concept of applying agile methods to machine learning. Noise is moderate since the chunks contain many references and general software engineering content that is not directly relevant.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the context provided, here is an exam question:\n\nAccording to the reference material, what is the relationship between Scrum, Crystal, Adaptive Software Development, DSDM, and Feature Driven Development, and how does this relate to the concept of agile modeling?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the relationship between Scrum, Crystal, Adaptive Software Development, DSDM, and Feature Driven Development, and how this relates to agile modeling. This can be answered using the source context, which lists these methodologies under agile modeling. The question is clear and unambiguous, asking for a conceptual comparison. It matches the medium difficulty level because it requires understanding the relationships rather than simple recall. The type is conceptual, asking for an explanation of how these methodologies relate to agile modeling. The question is self-contained and does not reference the context, making it a standalone exam question. Overall, all criteria are met with high scores.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "These methods—Scrum, Crystal, Adaptive Software Development, DSDM, and Feature Driven Development—are all agile methods that have achieved widespread success. The success of these methods has led to their integration with traditional development methods based on system modeling, resulting in the concept of agile modeling. This integration aims to combine the flexibility of agile approaches with the rigor of formal system design, creating agile instantiations that can be used in various contexts.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies that Scrum, Crystal, Adaptive Software Development, DSDM, and Feature Driven Development are all agile methods, and it accurately states that their success led to integration with traditional modeling, forming agile modeling. However, it incorrectly includes Feature Driven Development, which is not mentioned in the source context. The answer is incomplete because it does not explain how this integration relates to the concept of agile modeling. It is mostly grounded but includes the incorrect mention of Feature Driven Development. The tone is academic but uses bullet points, which is not appropriate for a university essay.",
+    "parse_status": "failed"
+  }
+}

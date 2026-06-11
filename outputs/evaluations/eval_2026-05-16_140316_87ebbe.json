@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_140316_87ebbe",
+  "timestamp": "2026-05-16T14:03:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Banker algorithm and resource allocation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_43.pdf]\nrequest at most k instances of resource type Rj. \n❑Allocation : n × m matrix. If Allocation [i,j] = k, then process \nPi is currently allocated k instances of resource type Rj.\n❑Need : n × m matrix. If",
+      "[SEED from source_43.pdf]\nmust wait since resources are not available. \n❑STEP 3: Pretend to allocate requested resources to Pi by \nmodifying the state as follows: \n   Available := Available - Request (i);\n         Allocation (",
+      "[NEIGHBOUR from source_33.pdf]\n1.7 / I/O COMMUNICATION TECHNIQUES 35\nare in the module’s data register, the module signals an interrupt to the processor over\na control line. The module then waits until its data are requested by the"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks provided do not directly relate to the learning objective of \"Banker algorithm and resource allocation.\" They discuss concepts such as allocation matrices and need matrices, which are related to resource management but do not specifically mention the Banker algorithm or its steps. Therefore, they are only partially relevant to the learning objective.\n\nThe chunks contain some useful information about resource allocation but lack specific details about the Banker algorithm, such as the safety test and the exact steps involved in the algorithm. This makes it insufficient to generate a comprehensive exam question on the Banker algorithm.\n\nThe chunks are relatively clean, with minimal irrelevant content, though they do not provide a complete picture of the Banker algorithm.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the formula `Need [i,j] = Max[i,j] - Allocation [i,j]` represent in the context of the banker's algorithm?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question directly relates to the concept of the `Need` matrix in the context of the banker's algorithm, which is provided in the source material. It can be fully answered using the given context without requiring any additional knowledge.\n- CLARITY: The question is clear and unambiguous. It asks about a specific formula and its meaning in a well-defined context, making it easy to understand.\n- DIFFICULTY_ALIGNMENT: The question is straightforward and requires recalling a basic definition, fitting the \"easy\" category well.\n- TYPE_ALIGNMENT: The question asks for a definition or statement of the formula, which aligns perfectly with the \"recall\" type.\n- STANDALONE_QUALITY: The question stands independently and does not reference the context explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The formula `Need [i,j] = Max[i,j] - Allocation [i,j]` represents the calculation of the remaining resource requirements for each process with respect to each resource type under the banker's algorithm. Specifically, it determines how many additional instances of a given resource type a process needs to complete its task, based on the difference between its maximum required amount and the current allocation.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is fully correct. It accurately describes the formula `Need [i,j] = Max[i,j] - Allocation [i,j]` in the context of the banker's algorithm, which calculates the remaining resource requirements for each process with respect to each resource type.\n- COMPLETENESS: The answer covers the key points needed to fully address the question. It explains the formula and its purpose without omitting any important details.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It does not introduce any information that is not present in the source material.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, using formal prose without any casual or inappropriate elements.",
+    "parse_status": "ok"
+  }
+}

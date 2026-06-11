@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_094933_ad68be",
+  "timestamp": "2026-06-10T09:49:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Memory mapped files for large dataset access",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\n1.9 Quantitative Principles of Computer Design 48\n1.10 Putting It All Together: Performance, Price, and Power 55\n1.11 Fallacies and Pitfalls 58\n1.12 Concluding Remarks 64\n1.13 Historical Perspectives",
+      "[SEED from source_12.pdf]\ne.[25]<1.10>Write the general equation that solves this question: What is the\nnumber of processors with the highest speedup in an application in which P% ofthe original execution time is parallelizabl",
+      "[SEED from source_12.pdf]\n2.3 Ten Advanced Optimizations of Cache Performance\nThe preceding average memory access time formula gives us three metrics for\ncache optimizations: hit time, miss rate, and miss penalty. Given the re",
+      "[NEIGHBOUR from source_12.pdf]\naware of which instruction \nset used)  \nPhysical components (Circuit design, Adders, Signals, \nPeripherals)  Logic (Instruction set, \nAddressing m odes, Data \ntypes, Cache optimization)  \nHow to do ?",
+      "[NEIGHBOUR from source_12.pdf]\nmanipulated (for example, added to the data in another word space).    \n \nThe number of bits in each word is known as word l ength. Word length refers to the \nnumber of bits processed by the CPU in on"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are unrelated to the learning objective about memory mapped files for large dataset access. They cover topics like cache performance, processor speedup, and circuit design, none of which directly relate to memory mapping or file access. Therefore, relevance is 1. There is insufficient information to generate a good exam question because no chunk mentions memory mapped files or their use for large datasets. Sufficiency scores 1. The chunks contain some technical terms but are mostly about other subjects, so noise is moderate at 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how the relationship between cache performance and the ten advanced optimizations of cache performance contributes to optimizing overall system performance.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about the relationship between cache performance and advanced optimizations, which is directly covered in the source material. It is clear and unambiguous, asking for an explanation rather than a specific fact. The difficulty is medium because it requires understanding the concepts rather than simple recall. The question is conceptual, matching the requested type. It is self-contained, as no external context is needed to answer it. However, it does reference the passage (\"the preceding average memory access time formula\"), so it is not completely standalone.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The ten advanced optimizations of cache performance directly enhance cache performance, which is critical for reducing memory access latency and improving overall system performance. By focusing on metrics such as hit time, miss rate, and miss penalty, these optimizations enable designers to tailor caches to specific application needs, thereby achieving higher speedups even as the number of processors increases. This relationship underscores the importance of balancing cache efficiency with scalability, ensuring that as more processors are added, the communication overhead remains minimal.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that the ten advanced optimizations of cache performance directly enhance cache performance, which reduces memory access latency and improves overall system performance. It also notes that these optimizations balance cache efficiency with scalability, allowing speedups as processor count increases. However, it does not explicitly connect the optimizations to the specific metrics mentioned in the source (hit time, miss rate, miss penalty), so completeness is slightly lower. The answer is grounded in the source context, as it references the ten optimizations without introducing unsupported ideas. The tone is academic but could be more precise, especially in the opening sentence. Overall, correctness and groundedness are high, while completeness and academic tone are near-perfect.",
+    "parse_status": "ok"
+  }
+}

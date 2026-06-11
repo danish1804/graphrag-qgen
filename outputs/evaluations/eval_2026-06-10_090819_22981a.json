@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_090819_22981a",
+  "timestamp": "2026-06-10T09:08:19",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Testing strategies for machine learning systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_61.pdf]\nData Preprocessing\nPart III: Tree-Based Methods\nDecision Trees\nEnsemble Methods\nPart IV: Evaluation\nModel Selection & Evaluation 1\nModel Selection & Evaluation 2\nPart V: Dimensionality Reduction\nFeatu",
+      "[SEED from source_61.pdf]\nmates σ∗2 Tr (XT X)−1 ? Yes, it can. This is indeed the beneﬁt from regular ization: we · \ncan reduce large variance at the cost of introducing a bit of bias. We will get back to this \ntrade-oﬀ in the",
+      "[SEED from source_61.pdf]\nFrom here on we will be referring to discriminan t functions rather than kernels so as to \nemphasize the point that the discussion applies to other types of classiﬁers as well. \nModel selection prelim",
+      "[NEIGHBOUR from source_52.pdf]\n16 Machine Learning and Ethics 207\n16.1Facebook’s Suicide Prevention 207\n16.2Racial Bias in Machine Learning 208\n16.3Conceptions of Fairness in Machine Learning 209\n16.4Limitations of the ML Paradigm",
+      "[NEIGHBOUR from source_52.pdf]\nportion of black population in the neighborhood). On the other hand,\nthe fitted model confirms that there is an underlying segregation\neffect already present in the society. Also, we cannot guarantee"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to testing strategies for machine learning systems. They cover topics like data preprocessing, evaluation, and dimensionality reduction, which are tangential to the objective. Only one chunk mentions model selection, but it is brief and does not provide specific strategies. The noise score is high because many chunks contain unrelated material such as Facebook ethics or racial bias, which distract from the core topic. There is insufficient information to generate a good exam question, as key concepts like cross-validation or hyperparameter tuning are missing.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how regularization affects the trade-off between bias and variance in machine learning models, and describe what benefit regularization provides in terms of reducing large variance.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about regularization's effect on bias-variance trade-off and its benefit, which is directly stated in the source: \"we can reduce large variance at the cost of introducing a bit of bias.\" The passage also mentions that regularization reduces variance, so the answer is fully contained within the context. The question is clear and unambiguous, asking for an explanation of a concept. It is a conceptual question matching the medium difficulty level, as it requires understanding rather than application. The question does not reference the passage explicitly, making it standalone. Overall, all criteria are met with high scores.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Regularization reduces large variance by introducing a small amount of bias, which compensates for the high variance caused by complex models. This trade-off allows us to achieve more stable and generalizable predictions without sacrificing accuracy entirely. The benefit of this approach is that it helps prevent overfitting, ensuring that the model performs well on unseen data while maintaining a balance between underfitting and overfitting.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly states that regularization reduces variance by adding bias, which is consistent with the source material. It also mentions the trade-off and the benefit of preventing overfitting, which are accurate. However, the answer does not explicitly reference the specific mathematical formulation (e.g., the regularization term) or the concept of bias-variance trade-off as a fundamental principle. The language is academic but could be more precise, such as using technical terms like 'regularization parameter' instead of vague phrases. Overall, the answer is mostly correct and grounded, but lacks some completeness and precision.",
+    "parse_status": "ok"
+  }
+}

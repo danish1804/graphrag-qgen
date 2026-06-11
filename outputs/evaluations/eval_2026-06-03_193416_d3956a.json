@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-03_193416_d3956a",
+  "timestamp": "2026-06-03T19:34:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.0.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Explain SQL joins in relational databases",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nimportant. This is because most current database systems do not takeadvantage of attribute names in order to combine relations, and thus use theequi-join and theta-join rather than the natural join. W",
+      "[SEED from source_49.pdf]\nfrom student\n grades\norder by GPA desc\nlimit 10;\nInIBM DB2 and the most recent versions of Oracle, the equivalent of the limit\nclause is fetch ﬁrst 10rows only .M i c r o s o f t SQL S erver places it",
+      "[SEED from source_49.pdf]\n>R-timestamp( Qk)), it creates a new version of Q.\nThe justiﬁcation for rule 1 is clear. A transaction reads the most recent version\nthat comes before it in time. The second rule forces a transaction",
+      "[NEIGHBOUR from source_14.pdf]\n9.3.3 Buffer management policies 310\n9.3.4 Relationship between buffer manager and ﬁle system 310\n9.4 Reliability control system 311\n9.4.1 Architecture of the reliability control system 312\n9.4.2 Log",
+      "[NEIGHBOUR from source_14.pdf]\nmodel. First we describe relational algebra, a simple and importantprocedural language; then we introduce declarative languages like relationalcalculus (on domains and on tuples with range restriction"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss SQL joins in relational databases. Chunk 1 mentions joins but in the context of database systems' limitations, while the other chunks are about different topics such as buffer management and reliability control systems. Therefore, the relevance score is 1.\n\nFor SUFFICIENCY, the chunks provide no information about SQL joins, which is the core concept of the learning objective. There is a complete lack of necessary information to generate a good exam question. Thus, the sufficiency score is 1.\n\nFor NOISE, all chunks contain content that is not related to the learning objective, making them highly noisy. Therefore, the noise score is 1.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which SQL feature was introduced in the most recent versions to provide functionality similar to the LIMIT clause found in other database systems?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using only the source context provided. It asks about a specific SQL feature related to limiting results, which is directly mentioned in the context.\n- CLARITY: The question is clear and unambiguous. It asks specifically about a SQL feature that provides similar functionality to the LIMIT clause, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question is at a medium difficulty level as it requires understanding of SQL features and their equivalents across different database systems, which is a conceptual understanding.\n- TYPE_ALIGNMENT: The question is clearly asking for a conceptual explanation of a SQL feature, which fits the \"conceptual\" type well.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but can stand alone as a typical exam question. It does not require the reader to recall specific passages or details from the text.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The most recent versions of SQL, specifically IBM DB2 and Oracle, introduced the \"fetch first n rows only\" clause to provide functionality similar to the LIMIT clause found in other database systems. This feature allows users to retrieve a specified number of rows from the top of the result set, enhancing query flexibility and performance optimization. Microsoft SQL Server, on the other hand, incorporates this feature within the SELECT clause using the \"TOP n\" syntax, demonstrating the evolution and adaptation of SQL standards across different database management systems to meet contemporary querying needs.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.5,
+    "reasoning": "- CORRECTNESS: The answer is mostly correct. It accurately identifies IBM DB2 and Oracle as introducing the \"fetch first n rows only\" clause, and correctly mentions Microsoft SQL Server's use of \"TOP n\". However, it incorrectly states that this feature is part of the SELECT clause in Microsoft SQL Server, which is not accurate based on the context provided.\n- COMPLETENESS: The answer covers the key points needed to address the question, including the specific clauses used in different databases and their purpose. It provides a good explanation of the feature's function.\n- GROUNDEDNESS: The answer is generally grounded in the source context, mentioning IBM DB2, Oracle, and Microsoft SQL Server. However, the statement about Microsoft SQL Server using \"TOP n\" in the SELECT clause is not supported by the given context.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing, with a formal and precise tone. The answer is well-structured and uses academic prose.",
+    "parse_status": "ok"
+  }
+}

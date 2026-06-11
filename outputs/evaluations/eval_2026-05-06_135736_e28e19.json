@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-05-06_135736_e28e19",
+  "timestamp": "2026-05-06T13:57:36",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Two phase locking and deadlock prevention",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\ning, and validation. Our study of lock-based schedulers includes the important \nconcept of “two-phase locking,” which is a requirement widely used to assure \nserializability of schedules.\n18.1 Serial",
+      "[SEED from source_49.pdf]\nwe must consider not only the effect from the database state A =  B =  25, \nwhich we show in Fig. 18.5, but from any consistent database state. Since all \nconsistent database states have A —  B  =  c",
+      "[SEED from source_13.pdf]\nFortunately, both problems can be managed: serializability is attained through a locking protocol known as two-phase locking, and deadlocks can be managed by using deadlock detection and prevention te",
+      "[NEIGHBOUR from source_49.pdf]\nThe example shows a procedure that subtracts Withdrawal  from the\naccount with the code ClientAccount , if there is enough money in the\naccount. The procedure uses local variables ( OldAmount , NewAmo",
+      "[NEIGHBOUR from source_49.pdf]\nconcurrent transactions. A schedule S1 is thus a sequence of the type:\nS1 :r1(x) r2(z) w1(x) w2(z) …\nwhere r1(x) represents the reading of the object x carried out by the\ntransaction t1, and w2(z) the",
+      "[NEIGHBOUR from source_49.pdf]\nothers. For example, the system must avoid the anomalies shown in thesection above. This is carried out by a scheduler , the task of which is to keep\ntrack of all the operations performed on the datab",
+      "[NEIGHBOUR from source_14.pdf]\n•\ndbms s are also concerned with eYciency , that is, the capacity to carry out\noperations using an appropriate amount of resources (time and space) foreach user. This characteristic relies on the tech"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "For RELEVANCE, Chunk 1 and Chunk 3 directly mention two-phase locking, which is a key concept in the learning objective. However, they do not discuss deadlock prevention. Chunk 2 and the other chunks are not relevant as they discuss database states, transaction sequences, and efficiency, which are not directly related to the learning objective. Thus, the chunks are partially relevant.\n\nFor SUFFICIENCY, Chunk 1 provides a brief introduction to two-phase locking but does not explain its purpose or how it prevents deadlock. Chunk 3 mentions both two-phase locking and deadlock management but does not provide specific details. The other chunks are not relevant to the learning objective, so they do not contribute to the sufficiency score. Therefore, the information is insufficient to generate a good exam question.\n\nFor NOISE, most chunks contain irrelevant or distracting content such as discussions on database states, transaction sequences, and efficiency. Only Chunk 1 and Chunk 3 contain content related to the learning objective, but they are still somewhat noisy due to the lack of detailed explanations.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following schedules would violate the two-phase locking protocol and thus not be considered serializable?\n\nS1: r1(A) w1(A) r2(B) w2(B)\nS2: r1(B) w1(B) r2(A) w2(A)",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided, specifically the concept of two-phase locking and serializability. The source mentions that two-phase locking is used to ensure serializability, so this question directly relates to that concept.\n- CLARITY: The question is clear and unambiguous. It asks which schedule violates the two-phase locking protocol, and the options provided are straightforward.\n- DIFFICULTY_ALIGNMENT: The question requires applying the concept of two-phase locking to determine which schedule is invalid, making it a good application-level question rather than just a recall or basic understanding one. Thus, it aligns well with the \"hard\" difficulty level.\n- TYPE_ALIGNMENT: The question asks to identify a schedule that violates the protocol, which fits well with the \"application\" type requested.\n- STANDALONE_QUALITY: The question does not reference the context explicitly and can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Both schedules S1 and S2 violate the two-phase locking protocol and therefore would not be considered serializable. Schedule S1 first acquires and then releases a lock on A, followed by acquiring and releasing a lock on B, which is compliant with the two-phase locking protocol. However, S1 violates the second phase of 2PL where locks should only be released after all operations are completed, by performing reads and writes in an interleaved manner. Similarly, schedule S2 starts by locking B before A, then performs operations on A, and finally locks and writes to A again, violating the same principle of holding locks until completion. Both schedules demonstrate non-conformity to the two-phase locking protocol by prematurely releasing locks, leading to potential serialization anomalies and loss of serializability.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 3,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 2.0,
+    "reasoning": "- CORRECTNESS: The answer incorrectly identifies S1 as compliant with the two-phase locking protocol while S2 as violating it. According to the two-phase locking protocol, locks should be held throughout the transaction until completion, and locks should be acquired in the first phase and released in the second phase. S1 actually violates this by releasing the lock on A before completing its operations, and S2 does the same with B. Therefore, the answer contains clear factual errors.\n- COMPLETENESS: The answer covers the key points of identifying which schedules violate the two-phase locking protocol but incorrectly attributes compliance and violation to the wrong schedules. It does not provide a clear explanation of why the schedules violate the protocol, which is a key point.\n- GROUNDEDNESS: The answer does not reference the source material correctly. It introduces new information about S1 being compliant with 2PL, which contradicts the source context and is not grounded in the given material.\n- ACADEMIC_TONE: The answer is written in a somewhat academic tone but uses a mix of sentence structures and could benefit from more precise language and fewer informal elements.",
+    "parse_status": "ok"
+  }
+}

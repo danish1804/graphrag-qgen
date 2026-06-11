@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_082823_baa2be",
+  "timestamp": "2026-06-10T08:28:23",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "RISC vs CISC architecture",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_9.pdf]\nComputer Organization and Architectu re \n \n Page 88 \n  \nWhich  one is better  ? \nWe cannot  differentiate  RISC  and CISC  technology  because  both are suitable  at its specific  \napplication.  What",
+      "[SEED from source_9.pdf]\nedge  on the competition.  \n \nhttp://www.laureateiit.com/projects/bacii2014/ projec ts/coa_anil/i_o_interface.html  \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nUNIT – III          (12 Lectures)  \nMIC",
+      "[NEIGHBOUR from source_9.pdf]\nComputer Organization and Architectu re \n \n Page 1 \n VARDHAMAN COLLEGE OF ENGINEERING  \n(AUTONOMOUS)  \nShamshabad – 501 218, Hyderabad  \n \n \nDEPARTMENT OF INFORMATION TECHNOLOGY  \n \nCOMPUTER \nORGANIZA"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are largely irrelevant to the learning objective, which asks about comparing RISC and CISC architectures. Chunk 1 mentions the topic but does not provide a clear comparison or explanation. Chunk 2 is completely unrelated, discussing I/O interfaces. Chunk 3 is also unrelated, being a college course page. There is no sufficient information to generate a good exam question. The chunks contain minimal noise, as they are brief and focused on the topic, though they lack depth. However, the overall relevance is extremely low.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of the edge in the context of RISC and CISC technology competition?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The question asks about the edge in the context of RISC and CISC competition, but the source does not mention any edge or competition. The passage discusses that both technologies are suitable for their applications, so there is no basis for a question about an edge. This makes the question impossible to answer using only the provided context, so it fails the faithfulness criterion. The question is also unclear because it introduces an undefined term (edge) without context. It is too difficult for recall since it requires understanding of the passage, which is not a simple recall task. The question type is not specified, but it seems to ask for an explanation rather than a basic recall, so it does not perfectly match recall. Finally, the question explicitly references the passage, making it dependent on the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The edge in the context of RISC and CISC technology competition refers to a competitive advantage that either architecture can achieve over the other. Both architectures are suitable for their specific applications, but the edge allows one to outperform the other in terms of instruction execution speed or software compatibility. This edge is sought by manufacturers to gain market share and dominate the industry.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that the edge refers to a competitive advantage between RISC and CISC, and it explains that both architectures are suitable for different applications. However, it does not directly quote the source's definition of edge, which states \"What is the edge on the competition?\" The answer is incomplete because it does not explain how the edge is achieved or why it matters. It is grounded in the context but lacks direct citation. The tone is academic but uses a sentence structure typical of a university essay rather than a single paragraph, which is acceptable.",
+    "parse_status": "ok"
+  }
+}

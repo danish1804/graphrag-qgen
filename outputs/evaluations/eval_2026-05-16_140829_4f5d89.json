@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_140829_4f5d89",
+  "timestamp": "2026-05-16T14:08:29",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Context switching and process states",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nBackground\nProcesses and Process Control Blocks\n3.2 Process States\nA Two-State Process ModelThe Creation and Termination of ProcessesA Five-State ModelSuspended Processes\n3.3 Process Description\nOpera",
+      "[SEED from source_5.pdf]\n14.4 / MALICIOUS SOFTWARE OVERVIEW 649\ncould be activated by a backdoor and that allowed the tiger team to gain access.The\nthreat was so well implemented that the Multics developers could not find it,",
+      "[NEIGHBOUR from source_5.pdf]\n•System response time: The time span between the moment the user enters a\ncommand and the moment a complete response is displayed on the terminal.Table 9.7 Response Time Ranges\nGreater than 15 seconds"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "Chunk 1 does not directly address context switching or process states, instead providing background information on processes and their control blocks. It mentions process states briefly but does not focus on them. Therefore, it scores low on relevance.\n\nChunk 2 discusses malicious software and its activation, which is completely unrelated to the learning objective of context switching and process states. This chunk scores very low on relevance.\n\nChunk 3 talks about system response time and terminal display, which is also not related to the learning objective. It provides no useful information regarding context switching or process states. Thus, it scores low on relevance as well.\n\nFor sufficiency, none of the chunks provide any specific details about context switching or process states, making it impossible to generate a good exam question based on these chunks alone. Hence, they score very low on sufficiency.\n\nFor noise, while Chunk 1 has some tangentially related information, the majority of the other chunks contain no relevant content at all. Therefore, they score low on noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the maximum response time allowed for conversational interaction according to Table 9.7?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the information provided in the source context, specifically the table reference in the neighbor text. However, the actual content of the question does not directly relate to the source context given, which discusses process states and system response times. This mismatch slightly reduces the faithfulness score.\n- CLARITY: The question is clear and unambiguous, asking for a specific value from a table. It is well-phrased and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question is straightforward and requires only basic understanding to answer, making it easy. It fits the requested difficulty level of 'easy'.\n- TYPE_ALIGNMENT: The question asks for a specific value from a table, which is a recall-based question. It perfectly matches the requested type.\n- STANDALONE_QUALITY: The question stands alone and does not reference any specific part of the context. It can be understood and answered without needing to refer to the surrounding text.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "According to Table 9.7, the maximum response time allowed for conversational interaction is less than 15 seconds, as any response time greater than 15 seconds would rule out such interaction.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 2,
+      "groundedness": 2,
+      "academic_tone": 3
+    },
+    "overall": 2.0,
+    "reasoning": "Correctness: The answer is incorrect because the generated text suggests that the maximum response time is less than 15 seconds, which contradicts the source context that explicitly states \"Greater than 15 seconds\" as a threshold for system response time. This indicates a factual error.\n\nCompleteness: The answer is incomplete as it does not directly state the specific value of the maximum response time, which is \"greater than 15 seconds.\" It instead infers this from the opposite condition, which is not necessary for a direct answer to the question.\n\nGroundedness: The answer is not entirely grounded in the provided context. While it references the concept of response time, it introduces new information about conversational interaction without referencing the table or the specific value mentioned in the context.\n\nAcademic Tone: The answer is acceptable but inconsistent. It uses prose rather than bullet points, which is good, but the inference made about the response time being less than 15 seconds is not directly supported by the given context and thus is not appropriate for a university-level answer.",
+    "parse_status": "ok"
+  }
+}

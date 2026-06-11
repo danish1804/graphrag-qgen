@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_110856_19245b",
+  "timestamp": "2026-06-10T11:08:56",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Process scheduling for database query execution",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n10.2.2 Local independence and co-operation 355\n10.2.3 Data fragmentation and allocation 356\n10.2.4 Transparency levels 358\n10.2.5 Classiﬁcation of transactions 360\n10.3 Technology of distributed datab",
+      "[SEED from source_36.pdf]\nhand, vertical partitioning generates entities with fewer attributes. They cantherefore be translated into physical structures from which we can retrieve agreat deal of data with a single access. Part",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to process scheduling for database query execution. Only Chunk 3 mentions vertical partitioning, which could be tangentially related if the objective included physical design aspects. However, the other chunks discuss topics like query optimization, distributed databases, and general database management, none of which directly address scheduling. The sufficiency score is low because even the relevant chunk lacks specific details about scheduling algorithms or mechanisms. Noise is moderate since the chunks contain many unrelated sections, but the core material is somewhat scattered.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the relationship between distributed databases and local independence, and how does this relationship support the operation of distributed systems?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the relationship between distributed databases and local independence, which is not directly addressed in the provided context. The passage discusses distributed databases and local independence separately, but no explicit connection is made. Therefore, the question cannot be fully answered using only the given context, so it scores 1 for faithfulness. The question is clear and unambiguous, scoring 5 for clarity. It asks for an explanation of the relationship, which is a conceptual question, matching the medium difficulty level and conceptual type, so it scores 5 for difficulty alignment and type alignment. The question is self-contained and does not reference the passage, scoring 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Local independence allows distributed databases to operate without centralized control, enabling autonomous nodes to manage their own data independently. This property supports efficient query processing by allowing each node to handle its own partitions, reducing latency and improving scalability. The transparency levels discussed in the chapter ensure that users perceive a unified view despite the distributed nature, which is critical for maintaining consistency across the system.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that local independence enables distributed databases to operate autonomously, supporting efficient query processing through independent partition management. It also notes transparency levels for user perception, which aligns with the source's discussion of distributed databases. However, it omits the specific relationship between local independence and distributed systems, such as how transparency levels facilitate cooperation among nodes. The answer is grounded in the source material but could be more precise about the exact connection. The tone is academic but uses bullet points, which is acceptable for a short answer but not ideal for a full essay. Overall, the answer is mostly correct and grounded, but lacks completeness and could improve academic tone.",
+    "parse_status": "ok"
+  }
+}

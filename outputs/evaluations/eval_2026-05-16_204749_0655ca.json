@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_204749_0655ca",
+  "timestamp": "2026-05-16T20:47:49",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Resource scheduling across CPU memory and database query execution",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=database]\n1.9 Quantitative Principles of Computer Design 48\n1.10 Putting It All Together: Performance, Price, and Power 55\n1.11 Fallacies and Pitfalls 58\n1.12 Concluding Remarks 64\n1.13 Historical Perspectives",
+      "[NEIGHBOUR from source_12.pdf domain=database]\naware of which instruction \nset used)  \nPhysical components (Circuit design, Adders, Signals, \nPeripherals)  Logic (Instruction set, \nAddressing m odes, Data \ntypes, Cache optimization)  \nHow to do ?",
+      "[NEIGHBOUR from source_12.pdf domain=database]\nmanipulated (for example, added to the data in another word space).    \n \nThe number of bits in each word is known as word l ength. Word length refers to the \nnumber of bits processed by the CPU in on"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "For relevance, none of the chunks directly address resource scheduling across CPU memory and database query execution. Chunk 1 seems to be about general principles of computer design and performance, while Chunk 2 and 3 discuss hardware components and logic, which are somewhat related but not specifically to the learning objective. Therefore, the relevance score is 1.\n\nFor sufficiency, the chunks lack specific details about resource scheduling, which is a key aspect of the learning objective. There is no mention of how resources are allocated or managed between CPU, memory, and database queries. Thus, the sufficiency score is 1.\n\nFor noise, the chunks contain mostly technical information that is somewhat related to computer architecture and design, but they do not provide the necessary context or detail for the specific learning objective. The content is not overly noisy, but it is not clean either. Hence, the noise score is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the potential benefits of executing Java or C# code within a sandbox during database query execution, and how does this approach address the issue of time overhead associated with interprocess communication?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 3.8,
+    "reasoning": "- FAITHFULNESS: The generated question does not align with the provided source context. The source context discusses physical components, logic, and circuit design, while the question focuses on Java/C# code execution within a sandbox and its impact on database query execution. This question introduces concepts not present in the given context, requiring additional knowledge beyond the provided material.\n- CLARITY: The question is clear and unambiguous. It asks about the benefits of sandbox execution and how it addresses time overhead issues, which can be understood without further clarification.\n- DIFFICULTY_ALIGNMENT: The question is moderately difficult as it requires understanding the concept of sandbox execution and its implications on performance, which goes beyond basic recall. However, it does not require deep analysis or application of complex principles, making it more of a medium difficulty rather than hard.\n- TYPE_ALIGNMENT: The question is an application-type question as it requires students to apply their understanding of sandbox execution to a specific scenario involving database query execution and performance overhead.\n- STANDALONE_QUALITY: The question is self-contained and does not reference any specific part of the provided context. It can stand alone as a valid exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Executing Java or C# code within a sandbox during database query execution offers several potential benefits. Firstly, it allows the code to run in the same process space as the database query, thereby eliminating the need for interprocess communication and significantly reducing the time overhead associated with such communication. This approach addresses the issue of time overhead by minimizing the latency introduced through interprocess communication, as the sandbox provides a secure environment for the code to execute alongside the database operations. By doing so, it enhances the efficiency and performance of complex queries that incorporate custom logic, such as those involving nested or aggregate functions. For instance, consider a scenario where a query requires real-time processing of streaming data, such as calculating moving averages or filtering based on dynamic conditions. In such cases, embedding the necessary Java or C# code within the database query execution process ensures that these operations are performed in real-time without the significant delay that would otherwise occur due to interprocess communication. Furthermore, this method simplifies the integration of external functionalities into the database environment, making it easier to develop and maintain complex applications that leverage both the robustness of SQL and the flexibility of high-level programming languages.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.75,
+    "reasoning": "Correctness: The answer is largely correct, focusing on the benefits of sandbox execution for reducing interprocess communication overhead. However, it does not directly mention the sandbox's role in security or isolation, which could be considered a minor inaccuracy given the context of the question.\n\nCompleteness: The answer covers the key points of reducing interprocess communication overhead and enhancing real-time processing. It also touches on the integration of external functionalities, which is relevant to the question. However, it could have elaborated more on the specific mechanisms of sandbox execution and their impact on performance.\n\nGroundedness: The answer is generally grounded in the context, discussing concepts like interprocess communication and real-time processing. However, it introduces the concept of word length and cache optimization, which are not directly related to the question and seem to come from other parts of the document.\n\nAcademic Tone: The language used is mostly appropriate for a university-level answer, using precise terms and a formal tone. However, the use of examples and the somewhat informal structure (e.g., \"For instance\") slightly detracts from the academic tone.",
+    "parse_status": "ok"
+  }
+}

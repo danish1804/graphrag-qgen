@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_121102_c76e6a",
+  "timestamp": "2026-06-10T12:11:02",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "System call design and software architecture",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ntive component reuse. I also discuss the general pr ocess of component-\nbased software engineering and the problems of comp onent composition. \nThe majority of large systems are now distributed s yste",
+      "[SEED from source_22.pdf]\naccount by the system designer.\nSome of the most important design issues that have to be considered in distributed\nsystems engineering are:\n1.Transparency To what extent should the distributed system",
+      "[SEED from source_22.pdf]\nstate diagrams for modeling a software system. Chap ter 6 introduces\narchitectural design and I discuss the importance o f architecture and the\nuse of architectural patterns in software design.\nChapte",
+      "[NEIGHBOUR from source_22.pdf]\n17.1 Components and component models 455\n17.2 CBSE processes 461\n17.3 Component composition 468\nChapter 18 Distributed software engineering 479\n18.1 Distributed systems issues 481\n18.2 Client–server c",
+      "[NEIGHBOUR from source_22.pdf]\n(1986). Bosch (2000) includes a good discussion of how this style relates to system\nquality attributes.\n6.3.3 Client–server architecture\nThe repository pattern is concerned with the static  structure"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about distributed systems and component-based software engineering, which are tangential to the core learning objective of system call design and software architecture. Only Chunk 4 mentions distributed software engineering, but it does not directly address system calls or architectural design. The other chunks focus on component models and architectural patterns, which are somewhat related but not central. Thus, relevance is low. Sufficiency is moderate because some chunks contain useful information, but they lack specific details on system calls or architectural patterns needed for a good exam question. Noise is high because many chunks include irrelevant discussions on transparency, client-server architecture, and static structure that do not contribute to the objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What are the two primary design issues that must be considered when engineering distributed systems, and how do they relate to the transparency and openness of the system?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about two primary design issues for distributed systems, which are explicitly stated in the source: transparency and openness. It also asks how these relate to the transparency of the system, which is directly addressed in the passage. The question is clear and unambiguous, asking for a straightforward comparison. It is at medium difficulty because it requires understanding the concepts rather than simple recall. The question is conceptual, matching the requested type. It is self-contained, as it does not reference the passage or context. Overall, the question is well-designed and faithful to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "When engineering distributed systems, the primary design issues are transparency and openness. Transparency concerns how much the distributed system appears to the user as a single entity, which depends on whether users need to understand the system's distributed nature. Openness involves designing the system with standard protocols to ensure interoperability, versus using specialized protocols that limit flexibility. These issues are fundamental because they directly affect user experience and the system's ability to integrate with other systems.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies transparency and openness as the two primary design issues for distributed systems, aligning with the source material. It accurately explains that transparency concerns how users perceive the system, while openness relates to protocol standards. The answer is complete, covering both issues without omitting key points. It is grounded because it relies solely on the provided context without introducing unsupported ideas. The academic tone is appropriate, using precise language and avoiding bullet points, though the passage itself uses some informal elements like 'To what extent'. Overall, the answer meets all criteria well.",
+    "parse_status": "ok"
+  }
+}

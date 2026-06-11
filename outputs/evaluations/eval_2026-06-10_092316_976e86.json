@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_092316_976e86",
+  "timestamp": "2026-06-10T09:23:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Refactoring deep learning pipelines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_61.pdf]\nAnnals of Statistics , 50(2):949–986, 2022.\nKaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Deep residual\nlearning for image recognition. In Proceedings of the IEEE conference on\ncomputer visio",
+      "[SEED from source_61.pdf]\nmization. arXiv preprint arXiv:1412.6980 , 2014.\nDiederik P Kingma and Max Welling. Auto-encoding variational bayes. arXiv\npreprint arXiv:1312.6114 , 2013.\nYuping Luo, Huazhe Xu, Yuanzhi Li, Yuandong",
+      "[SEED from source_52.pdf]\n9.3Implementation of Matrix Factorization 110\n5\nIII Deep Learning 113\n10 Introduction to Deep Learning 115\n10.1A Brief History 116\n10.2Anatomy of a Neural Network 116\n10.3Why Deep Learning? 119\n10.4Mu",
+      "[NEIGHBOUR from source_52.pdf]\n6.4Clustering in Programming 76\n7 Low-Dimensional Representation 81\n7.1Low-Dimensional Representation with Error 82\n7.2Application 1: Stylometry 84\n7.3Application 2: Eigenfaces 87\n8 n-Gram Language Mo",
+      "[NEIGHBOUR from source_52.pdf]\nunsupervised, deep learning, and reinforcement learning as a foun-\ndation for further study or independent work in ML, AI, and data\nscience. Topics include linear models for classification and regress"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly unrelated to refactoring deep learning pipelines. Chunk 1 discusses residual learning for image recognition, which is about architecture design rather than refactoring. Chunk 2 covers auto-encoding variational Bayes, which is generative modeling. Chunk 3 is a table of contents for a deep learning textbook, not specific to refactoring. Chunk 4 is about clustering and low-dimensional representation, also not directly relevant. Only chunk 5 mentions unsupervised learning and reinforcement learning, which could be tangentially related, but it does not focus on refactoring. Thus, relevance is very low.\nSufficiency: The chunks contain no information about refactoring techniques, pipeline optimization, or iterative improvement of neural networks. They lack any concept that would enable a good exam question on refactoring. Therefore, sufficiency is extremely low.\nNoise: The chunks are clean except for the occasional unrelated topic like clustering or language models. However, since they are all irrelevant, the noise level is moderate because some chunks have some content, but it is not distracting. Noise score is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the relationship between back-propagation and neural networks in the context of implementing deep learning pipelines?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the relationship between back-propagation and neural networks, which is not directly stated in the source context. The passage discusses deep learning and neural networks but does not explicitly link them to back-propagation. Therefore, the question requires outside knowledge beyond the given material, making it 1 (requires outside knowledge). The question is clear and unambiguous, so it scores 5 for clarity. It asks for a conceptual explanation, which aligns with the medium difficulty level, so it scores 5 for difficulty alignment. The question is self-contained and does not reference the passage, so it scores 5 for standalone quality. However, the passage does not mention back-propagation, so the question cannot be fully answered from the context alone, reducing faithfulness to 1. The question is also slightly ambiguous because it asks about a relationship that is not clearly defined in the source, though this is minor compared to the other criteria.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Backpropagation is a fundamental algorithm used to compute gradients efficiently in neural networks, enabling the training of deep architectures through gradient descent. It underpins the implementation of deep learning pipelines by providing the mechanism for automatic differentiation needed to optimize weights during forward and backward passes. This relationship is critical because without backpropagation, the complex computations required for deep neural networks would be infeasible to train effectively.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies backpropagation as the core algorithm for training neural networks, which is accurate given the source context. It covers the key points about its role in gradient computation and optimization. The answer is entirely grounded in the provided references, as no unsupported claims are made. The language is precise and academic, using appropriate terminology like 'forward and backward passes' and 'gradient descent'. However, it could be more concise and avoid repetition of concepts already covered in the context. Overall, the answer is very strong but could be slightly improved in conciseness.",
+    "parse_status": "ok"
+  }
+}

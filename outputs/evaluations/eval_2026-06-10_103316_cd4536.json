@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_103316_cd4536",
+  "timestamp": "2026-06-10T10:33:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Database schema migration in agile projects",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAppendices cover three popular database systems: Microsoft Access, \nibm\ndb2 and Oracle. \nxviii Preface\nA number of features make this book unique.\n•We make a clear distinction between the basic materi",
+      "[SEED from source_49.pdf]\nmanagement. We describe the architecture of the data warehouse, the starand snowﬂake schemas used for data representation within data warehousesand the new operators for data analysis (including drill",
+      "[SEED from source_49.pdf]\nAn international textbook\nMaking the book reﬂect the international nature of the subject has been achallenge and an opportunity. This book has Italian authors, who have also\nxxii Preface\ngiven regular",
+      "[NEIGHBOUR from source_14.pdf]\n4 \nChapter  \nPublished by \nMcGraw-Hill Publishing Company \nShoppenhangers Road, Maidenhead, Berkshire, sl6 2ql, England \nTelephone: + \n44 \n( \n0 \n)  \n1628 502500 \nFax: + \n44 \n( \n0 \n) \n 1628 770224 \nWeb",
+      "[NEIGHBOUR from source_14.pdf]\nThe  \nloc \n data for this book has been applied for and may be obtained from the\nLibrary of Congress, Washington,  \nd.c \n. \nAuthors’ Web site address: http://www.mcgraw-hill.co.uk/atzeni \nPublishing D"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to database schema migration in agile projects. They discuss database systems, data warehousing, and publishing details, none of which directly address schema migration or agile practices. The only potentially relevant chunk is the first one mentioning database systems, but it does not explain migration or agile methods. Thus, relevance is low. Sufficiency is also low because no chunk provides enough detail about schema migration or agile project management. Noise is moderate since some chunks contain extraneous information like publishing addresses and author affiliations.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What role do appendices play in this database textbook, and which specific database systems are covered?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about appendices and covered database systems, both directly stated in the source. It is clear and unambiguous, requiring no outside knowledge. The difficulty is medium because it involves explaining a concept (appendices' role) rather than simple recall. The type is conceptual, matching the request. The question is self-contained, referring only to the source material without explicit context references. Thus, all criteria score 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Appendices serve to supplement the main content with additional information, such as detailed descriptions of three prominent database systems: Microsoft Access, ibm db2, and Oracle. This supports readers by providing practical insights into these systems, enhancing their understanding of real-world applications. The appendices are a valuable resource for students and professionals alike, offering hands-on examples that reinforce the theoretical concepts presented in the core chapters.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.25,
+    "reasoning": "The answer correctly identifies that appendices provide supplementary material, specifically covering three database systems: Microsoft Access, IBM DB2, and Oracle. It accurately states that appendices are useful for practical insights. However, it incorrectly adds 'star and snowflake schemas' and 'new operators for data analysis' as appendices, which are not mentioned in the source. The answer is incomplete because it does not mention the appendices' role in reflecting the international nature of the subject. The language is academic but uses bullet points, which is acceptable for a summary. Overall, the answer is mostly correct and grounded but lacks completeness and could improve on academic tone.",
+    "parse_status": "ok"
+  }
+}

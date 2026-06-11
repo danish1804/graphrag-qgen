@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_142818_593498",
+  "timestamp": "2026-05-16T14:28:18",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Instruction set architecture",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\ncovers computer arithmetic.\nAppendix K provides a survey of instruction architectures, including the\n80x86, the IBM 360, the VAX, and many RISC architectures, including ARM,MIPS, Power, RISC-V, and SP",
+      "[SEED from source_12.pdf]\nmakes real memory a separate, intermediate level between virtual memory andphysical memory. (Some use the terms virtual memory, physical memory , and\nmachine memory to name the same three levels.) The",
+      "[NEIGHBOUR from source_23.pdf]\n Huge size  \n Need of A.C.  \n Non -portable  \n Consumed lot of electricity  \nSome computers of this generation were:  \n ENIAC  \n EDVAC  \n UNIVAC  \n IBM -701  \n IBM -650"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "For relevance, Chunk 1 mentions instruction architectures, which is directly related to the learning objective. However, it does not specifically focus on instruction set architecture but rather provides a general overview of various architectures. Chunk 2 is completely unrelated to the learning objective as it discusses memory levels. Chunk 3 is also unrelated, focusing on early computers and their characteristics. Thus, only one chunk is somewhat relevant, but not directly addressing the core concept of instruction set architecture.\n\nFor sufficiency, Chunk 1 provides a brief mention of instruction architectures, which could be used to generate a basic exam question. However, it lacks detailed information about the specific components or design principles of instruction sets. Therefore, the information is insufficient to fully support generating a comprehensive exam question.\n\nFor noise, both Chunk 2 and Chunk 3 contain significant irrelevant content, making them highly noisy. Chunk 1, while somewhat relevant, still includes extraneous information about computer arithmetic that is not directly related to instruction set architecture.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following architectures is mentioned in Appendix K as an example of a many RISC architecture?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about architectures mentioned in Appendix K as examples of many RISC architectures. The source context explicitly mentions \"many RISC architectures, including ARM, MIPS, Power, RISC-V, and SP.\" This information can be directly used to answer the question, making it completely answerable from the context alone. Therefore, the question is faithful to the source material.\n\nThe question is clear and unambiguous, asking for a specific list of architectures that are RISC-based. It is phrased precisely and does not require any additional context beyond the provided source material.\n\nThe difficulty of the question is set at \"easy,\" which aligns with the requirement to simply recall a list of architectures. Recalling a list from a given context is a basic understanding task, fitting the \"easy\" category.\n\nThe question type is a recall question, asking to list specific architectures. This perfectly matches the requested type of \"recall.\"\n\nThe question stands alone and does not reference the context or passage. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "ARM is mentioned in Appendix K as an example of a many RISC architecture.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer states that ARM is mentioned in Appendix K as an example of a many RISC architecture. This is correct based on the source context which mentions ARM as one of the RISC architectures covered in Appendix K. Therefore, the answer is fully correct and consistent with the context.\n\nThe answer is concise and directly addresses the question without omitting any key points. It covers the main idea of identifying an RISC architecture mentioned in the context.\n\nThe answer does not introduce any new information not found in the source context. It is entirely grounded in the provided context.\n\nThe answer is presented in a straightforward manner without using bullet points, which is appropriate for university-level writing.",
+    "parse_status": "ok"
+  }
+}

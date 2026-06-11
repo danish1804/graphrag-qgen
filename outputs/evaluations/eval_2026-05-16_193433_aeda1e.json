@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_193433_aeda1e",
+  "timestamp": "2026-05-16T19:34:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Hardware interrupts and OS interrupt service routines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[SEED from source_5.pdf]\nIn processors with multiple types of interrupts, a set of interrupt registers\nmay be provided, with one pointer to each interrupt-handling routine. If a stack isused to implement certain functions (e.",
+      "[SEED from source_5.pdf]\nmemory to relieve the processor of the I/O task. In such a case, the processor grantsto an I/O module the authority to read from or write to memory, so that the I/O-memory transfer can occur without t",
+      "[NEIGHBOUR from source_41.pdf]\n1.1 BASIC ELEMENTS\nAt a top level, a computer consists of processor, memory, and I/O components, withone or more modules of each type. These components are interconnected in somefashion to achieve the",
+      "[NEIGHBOUR from source_41.pdf]\nment. The external environment consists of a variety of devices, includingsecondary memory devices (e. g., disks), communications equipment, andterminals.\n•System bus: Provides for communication among"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not directly address hardware interrupts and OS interrupt service routines. Chunk 1 only mentions the chapter structure and does not discuss interrupts. Chunk 2 briefly touches on interrupt handling but does not provide specific details about hardware interrupts or OS interrupt service routines. Chunk 3 discusses I/O communication but does not relate to the learning objective. Chunks 4 and 5 are also unrelated, discussing basic computer elements and system buses respectively.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the role of interrupt registers in a processor with multiple types of interrupts, and how do they interact with interrupt-handling routines and the processor's control flow?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question directly relates to the content provided in the source context, specifically the mention of interrupt registers and their interaction with interrupt-handling routines. This information is sufficient to answer the question without requiring additional knowledge.\n- CLARITY: The question is clear and unambiguous. It asks about the role of interrupt registers and how they interact with interrupt-handling routines and the processor's control flow, which are all terms and concepts clearly defined in the source material.\n- DIFFICULTY_ALIGNMENT: The question requires explaining the concept of interrupt registers and their function, which involves a level of understanding beyond simple recall. This aligns well with the medium difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for an explanation of the role of interrupt registers and their interaction with other components, which fits well with the conceptual type requested.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but rather focuses on a general concept that can be understood independently of the exact wording used in the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In processors supporting multiple interrupt types, interrupt registers serve as critical control structures, each holding pointers to specific interrupt-handling routines. These registers facilitate the processor's ability to respond efficiently to various interrupt sources by directing control flow to the appropriate routine upon an interrupt occurrence. Consequently, this mechanism ensures that the processor can manage different types of interruptions without interruption, maintaining the integrity and efficiency of its primary computational tasks.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer is largely correct. It accurately describes the role of interrupt registers in directing control flow to appropriate interrupt-handling routines. However, it slightly overstates the role of the registers by saying they \"facilitate the processor's ability to respond efficiently to various interrupt sources\" without mentioning that the actual handling is done by the routines themselves. This is a minor inaccuracy but does not significantly detract from the overall correctness.\n- COMPLETENESS: The answer covers the key points needed to address the question, including the role of interrupt registers and their interaction with interrupt-handling routines. It also touches on the concept of control flow, which is relevant. However, it could have been more detailed about the exact mechanism of how the registers point to routines and how this affects the processor's control flow.\n- GROUNDEDNESS: The answer is generally grounded in the source context, focusing on the role of interrupt registers and interrupt-handling routines. There are no significant additions that are not supported by the context.\n- ACADEMIC_TONE: The language used is mostly appropriate for university-level writing. It uses precise terms like \"interrupt registers\" and \"interrupt-handling routines,\" but the sentence structure could be more formal and less colloquial.",
+    "parse_status": "ok"
+  }
+}

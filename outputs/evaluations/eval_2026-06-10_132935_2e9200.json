@@ -1,0 +1,60 @@
+{
+  "eval_id": "eval_2026-06-10_132935_2e9200",
+  "timestamp": "2026-06-10T13:29:35",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Deadlock prevention across OS databases and distributed systems",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf domain=database]\nconcurrency control and ( see\nconcurrency control)\ndeﬁned, 1\ndesign of ( seedatabase\ndesign)\ndocument, 3\ndumping and, 930–931\ne ﬃ c i e n c yo f ,1 ,2 ,5 ,9\nembedded, 198, 962\nas ﬁle-processing system",
+      "[SEED from source_8.pdf domain=database]\nand, 71–79\ncombination of, 270–271\ncomposite attributes in, 250\nconcurrency control and ( see\nconcurrency control)\ncreation of, 24\ndata mining, 540–549\ndata warehousing, 523–525\ndeﬁned, 12\nentity-rela",
+      "[SEED from source_8.pdf domain=database]\nlocal, 1076\nlocks and ( seelocks)\nlogical, 12–13, 1223–1224\nperformance tuning of,\n1214–1218, 1223–1224\nphysical, 12, 13\nphysical-organization\nmodiﬁcation of, 25\nP + Q redundancy, 573, 574\nrecovery sy",
+      "[NEIGHBOUR from source_36.pdf domain=database]\n(transactions, concurrency control, reliability, recovery) ﬁrst on a single-server architecture and then on a multi-server architecture with emphasison distribution, replication and parallelism.\n•We e",
+      "[NEIGHBOUR from source_36.pdf domain=database]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati",
+      "[NEIGHBOUR from source_36.pdf domain=database]\nnumber of database servers dispersed in a distributed or parallelenvironment. Again, transactions, concurrency control and reliabilityrequirements due to data distribution are discussed; these notions",
+      "[NEIGHBOUR from source_36.pdf domain=database]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt",
+      "[SEED from source_5.pdf domain=operating_systems]\nANDSTARVATION\n6.1 Principles of Deadlock\nReusable Resources\nConsumable ResourcesResource Allocation\nGraphs\nThe Conditions for \nDeadlock\n6.2 Deadlock Prevention\nMutual ExclusionHold and WaitNo Preempti",
+      "[SEED from source_5.pdf domain=operating_systems]\nSolution Using SemaphoresSolution Using a Monitor\n6.7 UNIX Concurrency Mechanisms\nPipesMessagesShared MemorySemaphoresSignals\n6.8 Linux Kernel ConcurrencyMechanisms\nAtomic OperationsSpinlocksSemaphore",
+      "[SEED from source_5.pdf domain=operating_systems]\nthe key aspects of concurrency on a single system, with emphasis on issues ofmutual exclusion and deadlock.\nPart Three. Memory: Provides a comprehensive survey of techniques for\nmemory management, inc",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\n•Background\n•Processes\n•Memory\n•Scheduling\n•Input/output and files\n•Embedded systems\n•Security\n•Distributed systems\nThe book includes a number of pedagogic features, including the use of animation and",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nauxiliary memory. These are used to store program and data files and are usuallyvisible to the programmer only in terms of files and records, as opposed to individ-ual bytes or words.A hard disk is al",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\n2.1 Operating System Objectives and Functions 51\n2.2 The Evolution of Operating Systems 55\n2.3 Major Achievements 64\n2.4 Developments Leading to Modern Operating Systems 77\n2.5 Microsoft Windows Overv"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are primarily from operating systems texts, which focus on concurrency, deadlocks, and resource allocation rather than database concurrency control. While some chunks mention deadlock prevention (e.g., source_5.pdf), they do not directly discuss database-specific issues like transaction isolation or concurrency control mechanisms. Therefore, relevance is low. Sufficiency is also low because the chunks lack specific details about how to prevent deadlock in distributed systems or databases. Noise is moderate, as the chunks contain many unrelated topics like memory hierarchy and processor registers.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how deadlock prevention mechanisms (such as mutual exclusion, hold and wait, and circular wait conditions) must be implemented differently in both single-server and multi-server database architectures, considering the distributed and replicated nature of modern database systems.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about implementing deadlock prevention differently in single-server vs multi-server architectures, which requires understanding the distributed and replicated nature of modern databases. This goes beyond the source context, which only mentions single-server and multi-server architectures briefly. The question is clear and unambiguous, asking for an explanation of differences. It is hard because it requires applying concepts to a specific scenario. The question is an application type, asking students to apply knowledge rather than recall facts. It is self-contained, not referring to the passage. However, the source does not provide enough detail to fully answer the question without external knowledge, so faithfulness is low. Clarity is high. Difficulty is appropriate. Type is correct. Quality is good.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In a single-server architecture, deadlock prevention focuses on ensuring mutual exclusion and preventing circular wait conditions among transactions accessing shared resources like locks. However, in multi-server distributed databases, additional challenges arise because transactions may span multiple servers, requiring coordination across nodes. For example, hold and wait cannot be applied directly since a transaction holding locks on one server might need to acquire locks on another. Instead, distributed protocols like two-phase locking or timestamp ordering must be used to manage concurrency and prevent deadlocks when transactions interact across servers.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that single-server deadlock prevention relies on mutual exclusion and hold and wait, while multi-server systems require distributed protocols like two-phase locking. It also notes that hold and wait cannot be applied directly across servers. However, it does not mention circular wait or other conditions, which are essential for full coverage. The answer is grounded in the source context, which discusses both single-server and multi-server architectures. The language is academic but uses bullet points, which is acceptable for a university setting.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_190428_cfbc90",
+  "timestamp": "2026-05-16T19:04:28",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Memory bandwidth and database join operations",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n10.2.2 Local independence and co-operation 355\n10.2.3 Data fragmentation and allocation 356\n10.2.4 Transparency levels 358\n10.2.5 Classiﬁcation of transactions 360\n10.3 Technology of distributed datab",
+      "[SEED from source_36.pdf]\nhand, vertical partitioning generates entities with fewer attributes. They cantherefore be translated into physical structures from which we can retrieve agreat deal of data with a single access. Part",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not contain any direct information about memory bandwidth or database join operations. Instead, they discuss topics such as tree structures, query optimization, and physical database design, which are tangentially related but not directly addressing the learning objective. Therefore, the chunks are largely unrelated to the specified learning objective.\n\nThe chunks do not provide any specific details about memory bandwidth or join operations, which are crucial for generating a meaningful exam question on this topic. Thus, while the content is somewhat related to database management, it lacks the necessary focus on the specific concepts required for the learning objective.\n\nThe chunks contain a mix of relevant and irrelevant content. For instance, Chunk 3 mentions vertical partitioning, which could be somewhat related to database design, but the rest of the chunks are clearly not focused on the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the advantage of using vertical partitioning in distributed databases, and how does it affect the retrieval process?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided, specifically the statement \"Vertical partitioning generates entities with fewer attributes. They can therefore be translated into physical structures from which we can retrieve a great deal of data with a single access.\" This information directly addresses the advantages of vertical partitioning and its impact on the retrieval process.\n- CLARITY: The question is clear and unambiguous. It asks for a specific advantage of vertical partitioning and how it affects the retrieval process, which can be easily understood.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept rather than just recalling a fact, making it suitable for a medium difficulty level.\n- TYPE_ALIGNMENT: The question asks for an explanation of the advantage and impact, which aligns perfectly with the conceptual type.\n- STANDALONE_QUALITY: The question stands alone and does not reference any specific part of the context, making it a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Vertical partitioning in distributed databases offers the advantage of creating entities with fewer attributes, thereby facilitating efficient data retrieval through a single access. This approach enhances performance by reducing the amount of data that needs to be processed during a query execution, as each partitioned entity contains only relevant information. Consequently, this optimization leads to a significant reduction in the number of accesses required to fetch the necessary data, improving overall system efficiency and response time.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "- CORRECTNESS: The answer is largely correct, aligning with the provided context. Vertical partitioning indeed reduces the number of attributes per entity, leading to more efficient data retrieval with a single access. However, the statement \"Each partitioned entity contains only relevant information\" is not explicitly mentioned in the context but is a reasonable inference based on the given information. Therefore, it is rated as 4 out of 5.\n- COMPLETENESS: The answer covers the key points of the question, including the reduction in attribute count and the improvement in retrieval efficiency. It also mentions the reduction in the number of accesses required, which is a crucial aspect of the benefit. Thus, it is rated as 5 out of 5.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context without introducing any unsupported information. The concepts of vertical partitioning and its benefits are directly related to the given context. Hence, it is rated as 5 out of 5.\n- ACADEMIC_TONE: The language used in the answer is precise and academic, suitable for a university-level writing. There are no casual or inappropriate tones, and the prose is well-written. Therefore, it is rated as 5 out of 5.",
+    "parse_status": "ok"
+  }
+}

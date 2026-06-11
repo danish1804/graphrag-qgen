@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_184845_5b9b7a",
+  "timestamp": "2026-05-16T18:48:45",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "File system and database storage management",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_14.pdf]\ndata in a v ariety of ways \nfile-based system : an applic ation pr ogram designe d to manipula te da ta files \nExercises \n1. Discuss e ach o f the f ollowing terms: \n1. data \n2. field \n3. record \n4. f",
+      "[SEED from source_14.pdf]\n• Customer( Cust ID, CustN ame) \n• Order(OrderID, CustID , Date) \nA str ong, or iden tifying, r elationship e xists when the primar y key of the r elated en tity contains the primar y key \ncomponen t",
+      "[SEED from source_14.pdf]\nno repeating gr oups. \nTo normaliz e a r elation tha t contains a r epeating gr oup, r emo ve the r epeating gr oup and f orm t wo ne w relations. \nThe P K of the ne w relation is a c ombina tion o f",
+      "[NEIGHBOUR from source_14.pdf]\nChapter 14 D atabase U sers \nAdrienne W att 91 \nChapter 15 SQ L Structured Quer y Languag e \nAdrienne W att & N elson Eng 93 \nChapter 16 SQ L Data Manipula tion L anguag e \nAdrienne W att & N elson En",
+      "[NEIGHBOUR from source_14.pdf]\nGRO UP B Y  field( s) \nORDER B Y fields \nWe can use the SELECT  statemen t to g ener ate an emplo yee phone list fr om the Emplo yees table as f ollows: \nSELECT  FirstN ame, L astN ame, phone \nFROM Em"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss file system or database storage management. Chunk 1 mentions data files and application programs, which are tangentially related but not specific to storage management. The other chunks are about database normalization and relationships, which are more specific to database management rather than file system management.\n\nFor SUFFICIENCY, the chunks provide some basic concepts like data files and relationships, but they lack detailed information on how to manage file systems or databases. There is insufficient context on storage strategies, file organization, or database management practices that would be necessary for a comprehensive exam question on this topic.\n\nFor NOISE, the chunks contain mostly irrelevant content. Chunk 1 has some useful terms but is largely about data definitions. The other chunks are about database normalization and relationships, which are not directly related to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "In the given relational schema, how many records does the file contain, and what is the primary key of each entity involved?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 3,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 3
+    },
+    "overall": 2.6,
+    "reasoning": "- FAITHFULNESS: The question cannot be fully answered using only the provided source context. It requires additional information about the specific entities and their relationships, which are not explicitly stated in the given context.\n- CLARITY: The question is somewhat ambiguous because it asks about the number of records in a file, which is not directly related to the relational schema provided. However, it is understandable with some context.\n- DIFFICULTY_ALIGNMENT: The question is slightly off target for medium difficulty. It is more of a recall-based question rather than requiring an explanation or conceptual understanding.\n- TYPE_ALIGNMENT: The question is not a perfect fit for the conceptual type. It leans more towards recall rather than explaining or comparing concepts.\n- STANDALONE_QUALITY: The question references the context by mentioning \"the given relational schema,\" indicating that it is not entirely self-contained.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the given relational schema, the file contains three records. The primary key of the Customer entity is Cust ID, while the primary key of the Order entity is OrderID. Each entity's primary key uniquely identifies its records within the respective tables.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 3.75,
+    "reasoning": "- CORRECTNESS: The answer states that the file contains three records, which is not explicitly mentioned in the context. However, it correctly identifies the primary keys for both entities (Cust ID for Customer and OrderID for Order). This is partially correct but lacks the necessary detail about the number of records.\n- COMPLETENESS: The answer covers the key points by identifying the primary keys for both entities but fails to mention the number of records, which is a crucial part of the question.\n- GROUNDEDNESS: The answer is grounded in the source context, as it references the primary keys of the entities correctly without introducing any unsupported information.\n- ACADEMIC_TONE: The answer is presented in a straightforward manner using prose, which is appropriate for a university-level response.",
+    "parse_status": "ok"
+  }
+}

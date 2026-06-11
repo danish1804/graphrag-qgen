@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-05-06_140636_c00eb5",
+  "timestamp": "2026-05-06T14:06:36",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Test planning for safety critical systems",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nscenario testing’. Software Testing and Quality Engineering , 5(5), 16–22.\nLutz, R. R. (1993). ‘Analyzing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE’93, San Diego, Calif.:",
+      "[SEED from source_22.pdf]\nP . (ed.). Amsterdam: Elsevier. 401–412.\nLutz, R. R. (1993). ‘Analysing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE'93, San Diego, Calif: IEEE. \nMills, H. D., Dyer, M. and L",
+      "[SEED from source_47.pdf]\nIncident and accident analysisPeriodic audits\nPerformance MonitoringChange AnalysisPeriodic auditsPreliminary Hazard Analysis\nSystem Hazard Analysis\nSafety Verification\nOperational AnalysisOperational",
+      "[NEIGHBOUR from source_22.pdf]\nreusable components have this form of interface.\n4.Message passing interfaces These are interfaces in which one component\nrequests a service from another component by passin g a message to it. A retur",
+      "[NEIGHBOUR from source_22.pdf]\n2. The specification may be incomplete in that it do es not describe the required\nbehavior of the system in some critical situations.  A high percentage of system\nmalfunctions (Boehm et al., 1975; End",
+      "[NEIGHBOUR from source_22.pdf]\n(2004). ‘Agile Software Development in Large Organi zations’. IEEE Computer, 37(12), 26–34.\nMartin, J. (1981). Application Development Without Programmers. Englewood Cliffs, NJ: \nPrentice-Hall.\nMassol",
+      "[NEIGHBOUR from source_22.pdf]\nProwell, S. J., Trammell, C. J., Linger, R. C. and Poore, J. H. (1999). Cleanroom Software Engineering:\nTechnology and Process . Reading, Mass.: Addison-Wesley.\nWhittaker, J. W. (2002). How to Break S"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Test planning for safety critical systems.\" Instead, they discuss software testing, requirements errors, and other related topics that are tangentially related but not specifically about test planning for safety-critical systems. Therefore, the relevance score is 1.\n\nWhile the chunks contain some information that could be useful for a test question, such as the discussion on software testing and requirements errors, they lack specific details on test planning strategies or methodologies for safety-critical systems. This results in a sufficiency score of 3.\n\nThe chunks are mostly focused on the topics relevant to software testing and requirements, with only a few being completely off-topic. However, the majority of the content is still somewhat relevant to the broader context of software testing in safety-critical systems. Thus, the noise score is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "According to Lutz (1993), what is the key root cause of safety issues in embedded systems based on his study of software errors?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 3
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The question can be answered using the source context provided, specifically the reference to Lutz (1993) and the title of the paper. However, the specific content of the paper is not given, so we cannot determine the exact answer from the context alone. This would require some outside knowledge about the paper's contents. Thus, it scores a 3.\n- CLARITY: The question is clear and unambiguous, asking for a specific piece of information from the source. It is phrased precisely and easily understood. Therefore, it scores a 5.\n- DIFFICULTY_ALIGNMENT: The question asks for a specific detail from the source, which requires some analysis to identify the key root cause of safety issues. Given that the context does not provide the exact answer, this aligns with a harder difficulty level than just basic recall. Thus, it scores a 3.\n- TYPE_ALIGNMENT: The question is asking for a specific detail from the source, which fits best under the \"recall\" category rather than \"application.\" However, since the question requires identifying a key point from the text, it leans towards \"application\" as it involves analyzing the text to find the correct answer. Thus, it scores a 3.\n- STANDALONE_QUALITY: The question does not explicitly refer to the passage or context but implicitly depends on the information provided. Therefore, it scores a 3.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "According to Lutz (1993), the key root cause of safety issues in embedded systems, as identified through his study of software errors, is the difficulty with requirements. This conclusion stems from the observation that a significant proportion of system malfunctions in embedded systems can be attributed to specification errors rather than design flaws. Lutz's findings highlight the critical importance of accurately defining and specifying the required behavior of the system under all possible scenarios, especially in safety-critical applications where even minor specification omissions can lead to severe consequences.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "- CORRECTNESS: The answer is largely correct. It accurately reflects Lutz's (1993) emphasis on the importance of accurate requirements and specifications in preventing safety issues in embedded systems. However, the answer does not explicitly mention the term \"specification errors\" as used in the source, which could slightly reduce the score.\n- COMPLETENESS: The answer covers the key points needed to address the question, including the focus on requirements and the impact of specification errors. It provides a good summary of the main idea without omitting important details.\n- GROUNDEDNESS: The answer is grounded in the source context, focusing on the concept of requirements and specifications as highlighted in Lutz's work. There are no significant additions that are not supported by the context.\n- ACADEMIC_TONE: The language used in the answer is appropriate for university-level writing. It uses formal academic prose and avoids casual or inappropriate tones.",
+    "parse_status": "ok"
+  }
+}

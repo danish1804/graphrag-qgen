@@ -1,0 +1,47 @@
+{
+  "eval_id": "eval_2026-06-10_083724_68840c",
+  "timestamp": "2026-06-10T08:37:24",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Floating point representation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_27.pdf]\nJ.6 [15/15/20] <J.3>Represent the following numbers as single-precision and\ndouble-precision IEEE floating-point numbers:\na.[15]<J.3>10.\nb.[15]<J.3>10.5.\nc.[20]<J.3>0.1.\nJ.7 [12/12/12/12/12] <J.3>Belo",
+      "[SEED from source_27.pdf]\n50MHz clock rate. How many clock cycles does the access time represent?How many clock cycles are necessary to transfer a 4KB block at a rate of10MB/s?\nAnswer:\nThe clock cycle is given by:\nThe number o"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks contain exercises that require representing numbers in IEEE floating-point format, which directly addresses the learning objective. However, the second chunk is cut off mid-sentence and lacks context, making it unclear if it fully supports the objective. The first chunk provides specific examples, so it is relevant. The second chunk's partial content is insufficient for a full exam question. Overall, the chunks are moderately noisy due to the incomplete second chunk. The relevance is high because they cover the topic, but sufficiency is low due to the missing context. Noise is moderate because the first chunk is clean, but the second is cut off.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Write the IEEE floating-point representation for the number 0.1 in both single-precision and double-precision formats, showing all components including sign bit, exponent, and mantissa.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for the IEEE floating-point representation of 0.1, which is directly stated in the source: \"0.1\" is the number to represent. The question is clear and unambiguous, asking for a specific technical detail. It is an easy recall question, matching the requested difficulty. The type is recall, which fits perfectly. The question is self-contained, requiring no reference to the source context. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In single-precision, 0.1 is represented with sign bit 0 (positive), exponent 127+(-4) = 123 (binary 1111011), and mantissa 1.100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies the sign bit as 0, exponent as 123 (binary 1111011), and mantissa as 1.10011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011001100110011",
+    "parse_status": "failed"
+  }
+}

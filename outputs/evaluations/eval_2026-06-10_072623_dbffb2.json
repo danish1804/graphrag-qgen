@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_072623_dbffb2",
+  "timestamp": "2026-06-10T07:26:23",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "ACID properties in database transactions",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_31.pdf]\nimplicitly carried out after each commit or abort, to render well-formed allthe transactional computations. From now on, we will assume that all theprograms for the modiﬁcation of the contents of a da",
+      "[SEED from source_31.pdf]\nis diVerent from the concept of transaction that a user could have. For the\nsystem, a transaction is a unit of execution characterized by \nacid  properties.\nFor the user, a transaction is any interact",
+      "[NEIGHBOUR from source_36.pdf]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are partially relevant because they mention ACID properties, which is part of the learning objective, but they also include unrelated material like database normalization and verification techniques. The first chunk discusses ACID properties in the context of transactional computations, which is directly related. The second chunk defines ACID properties for the system, which is exactly what the objective asks. However, the third chunk is completely irrelevant, discussing normalization techniques. Therefore, the chunks are only partially relevant overall.\nThe sufficiency score is low because while the first two chunks contain useful information about ACID properties, they lack specific details needed to formulate a good exam question, such as definitions or examples. The third chunk provides no relevant content at all.\nNoise is moderate because the first two chunks contain some useful information, but the third chunk is entirely irrelevant and thus adds noise. The presence of unrelated material reduces clarity.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the acronym ACID stand for in the context of database transactions?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for the meaning of ACID, which is explicitly defined in the source as a set of properties. It can be answered directly from the text without requiring external knowledge, so it is completely answerable from context alone (5). The question is clear and unambiguous, asking for a definition (5). It is an easy recall question, matching the requested difficulty (5). It is a recall question, exactly matching the requested type (5). The question does not reference the passage or context, making it standalone (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The acronym ACID stands for Atomicity, Consistency, Isolation, and Durability, which are the four fundamental properties that transactions must satisfy to ensure reliable and predictable database operations. These properties collectively guarantee that each transaction is processed as a single, indivisible unit, maintaining data integrity and isolation from concurrent activities.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer correctly identifies ACID as Atomicity, Consistency, Isolation, and Durability, matching the source's definition. It covers all key points needed to explain the acronym. The information is entirely grounded in the provided context, with no extraneous details. The language is precise and academic, using proper sentence structure without bullet points. Overall, the answer is fully correct, complete, grounded, and appropriately academic.",
+    "parse_status": "ok"
+  }
+}

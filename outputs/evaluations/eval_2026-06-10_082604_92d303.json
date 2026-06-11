@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_082604_92d303",
+  "timestamp": "2026-06-10T08:26:04",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Superscalar and out of order execution",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\n2.45 [30]<2.2, 2.3 >Since instruction-level parallelism can also be effectively\nexploited on in-order superscalar processors and very long instruction word\n(VLIW) processors with speculation, one impo",
+      "[SEED from source_12.pdf]\nInstruction\nfetch\nBIU\nFigure 2.36 Floorplan of the Alpha 21264 [Kessler 1999].Case Studies and Exercises ■163\nand the mappers rename register specifiers. Therefore these are necessary additions\nto sup",
+      "[NEIGHBOUR from source_23.pdf]\n3 of 15 \nName: _____________________________ \nQuestion 2. (8 Points) \nIn order to eliminate branches, several architectures have a conditional move ( CMOV) instruction \nof the form: \nCMOV<cond>Z Rd, R"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to the learning objective about superscalar and out-of-order execution. Chunk 1 mentions instruction-level parallelism but does not discuss superscalar or out-of-order features. Chunk 2 is about floorplanning and does not relate to the topic at all. Chunk 3 is about conditional moves, which is a different concept. There is no direct coverage of superscalar or out-of-order execution, so relevance is low. Sufficiency is also low because none of the chunks provide the necessary details for a good exam question. Noise is moderate since the chunks contain some technical terms but are not focused on the learning objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary reason for implementing out-of-order (OOO) issue support in a processor architecture, according to the given context?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the primary reason for OOO issue support, which is not directly stated in the given context. The passage discusses instruction-level parallelism and speculative execution but does not mention OOO issue support. Thus, the question cannot be fully answered using only the provided context, making it 1/5 for faithfulness. It is clear and unambiguous, so clarity is 5/5. The difficulty is easy because it tests basic recall, matching the requested easy level, so difficulty alignment is 5/5. The question asks for a reason, which is a recall task, so type alignment is 5/5. The question does not reference the passage explicitly, so standalone quality is 5/5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The primary reason for implementing out-of-order (OOO) issue support is to tolerate unpredictable memory latency caused by cache misses, which is especially critical for in-order superscalar processors and VLIW processors with speculation. This capability allows the processor to continue executing other instructions while waiting for memory accesses, thereby improving overall performance.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that OOO issue support tolerates unpredictable memory latency, which is a key benefit. It also notes that this is especially important for in-order superscalar and VLIW processors with speculation, aligning with the source's emphasis on such architectures. However, it does not explicitly mention the role of speculative execution, which is implied but not directly stated. The answer is grounded in the context, as it references the same concepts without introducing unsupported ideas. The tone is academic and prose-like, though it could be more precise. Overall, the answer is mostly correct and grounded, but lacks some detail and precision.",
+    "parse_status": "ok"
+  }
+}

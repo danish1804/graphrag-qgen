@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-05-04_112108_9dba40",
+  "timestamp": "2026-05-04T11:21:08",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "explain deadlock using database",
+    "difficulty": "hard",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAlthough locks prevent serious data inconsistencies, they can lead to two major problems:\n•\tThe resulting transaction schedule might not be serializable.\n•\tThe schedule might create deadlocks. A deadl",
+      "[SEED from source_49.pdf]\nSerializability of schedules is guaranteed through the use of two-phase locking. The two-phase locking schema has a growing phase, in which the transaction acquires all of the locks that it needs with",
+      "[SEED from source_49.pdf]\ndeadlock—A condition in which two or more transactions \nwait indefinitely for the other to release the lock on a previously locked data item. Also called deadly embrace. See also lock.\ndeadly embrace—",
+      "[NEIGHBOUR from source_31.pdf]\nlock\nmanager \n) receives a sequence of execution requests for these primitives by\nthe transactions, and their outcome is determined by a simple inspection ofan adequate data structure, at a negligible",
+      "[NEIGHBOUR from source_31.pdf]\nshared \n, because more than one lock\nof this type can be active on one piece of data at one time. \n2. \nEach write operation must be preceded by a  \nw_lock \n and followed by an \nunlock \n. The lock in t",
+      "[NEIGHBOUR from source_31.pdf]\nthan a read or write action on that resource. In some systems, a single lockprimitive is available, which does not distinguish between read and write,and thus behaves like an exclusive lock. If a tran",
+      "[NEIGHBOUR from source_36.pdf]\ntuples in the relation R;\nTis the target list , composed of elements of type Y:x.Z (or simply x.Z,\nabbreviation for Z:x.Z), with x variable and Y and Z sequences of\nattributes (of equal length); the a"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are somewhat relevant to the learning objective of explaining deadlock using a database context. Chunk 1 and Chunk 3 directly mention deadlock, which is central to the objective. However, they provide only brief definitions without much detail. Chunk 2 discusses serializability and two-phase locking, which are related but do not directly explain deadlock. The remaining chunks discuss general database concepts such as locks and lock managers, which are tangential and do not specifically address deadlock.\n\nFor sufficiency, the chunks provide basic definitions of deadlock but lack detailed explanations or examples necessary to fully understand and explain the concept. There is insufficient depth to generate a comprehensive exam question.\n\nNoise is moderate as the chunks contain some irrelevant or tangential information, particularly in Chunks 4, 5, 6, and 7, which focus on general database operations rather than deadlock.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the definition of a deadlock in the context of database management, and how does it occur according to the given material?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context. The material directly defines deadlock as a condition where two or more transactions wait indefinitely for each other to release locks, which matches the definition asked for.\n- CLARITY: The question is clear and unambiguous. It asks for a specific definition and how it occurs, which is straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The difficulty level is appropriate as it requires recalling a specific term and its definition, which aligns with the \"hard\" label for recall questions.\n- TYPE_ALIGNMENT: The question clearly fits the \"recall\" type, asking for a definition without requiring any additional explanation or application.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A deadlock in the context of database management is a situation where two or more transactions are waiting indefinitely for each other to release the lock on a previously locked data item, resulting in a state of mutual blockage. According to the given material, this occurs when transactions acquire locks but are unable to proceed further due to the need for additional locks held by other transactions involved in the same scenario. For instance, consider two transactions T1 and T2 where T1 holds an exclusive lock on data item D1 and waits for a shared lock on D2, while T2 holds a shared lock on D2 and waits for an exclusive lock on D1. Both transactions will continue to wait, leading to a deadlock. This condition is also referred to as a \"deadly embrace,\" emphasizing the interlocked nature of the transactions. To prevent such deadlocks, database systems employ strategies such as the two-phase locking protocol, which ensures that once a transaction acquires a lock, it does not release it until the transaction completes, thereby maintaining a growing phase and a shrinking phase to avoid indefinite waiting.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly defines a deadlock as a situation where two or more transactions are waiting indefinitely for each other to release locks, which aligns with the source context mentioning \"two or more transactions wait indefinitely for the other to release the lock on a previously locked data item.\" It also accurately describes the example of two transactions T1 and T2 waiting for each other's locks, which is consistent with the given material. However, the answer could be more precise by mentioning that the two-phase locking protocol is used to prevent such deadlocks, which is a key point from the context. The term \"deadly embrace\" is correctly used to describe the same concept.\n\nThe answer covers the key points needed to fully address the question, including the definition of a deadlock, its occurrence, and the example provided. It also mentions the two-phase locking protocol, though not explicitly stated in the context, it is implied.\n\nThe answer is entirely grounded in the provided context, using terms and concepts directly from the source material without introducing any new or unsupported information.\n\nThe language used in the answer is formal and appropriate for a university-level writing, though it could be slightly more concise and direct in places.",
+    "parse_status": "ok"
+  }
+}

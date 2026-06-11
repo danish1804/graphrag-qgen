@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_182121_c3bf85",
+  "timestamp": "2026-05-16T18:21:21",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "File system optimisation for dataset loading",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_14.pdf]\ndata in a v ariety of ways \nfile-based system : an applic ation pr ogram designe d to manipula te da ta files \nExercises \n1. Discuss e ach o f the f ollowing terms: \n1. data \n2. field \n3. record \n4. f",
+      "[SEED from source_14.pdf]\nand pr oceeds to an e ver-incr easing le vel of detail, so does da tabase design.  For example, when building a home, y ou \nstart with ho w man y be drooms and ba throoms the home will ha ve, whe ther",
+      "[SEED from source_14.pdf]\nGRO UP B Y type \nUsing COUNT with GR OUP BY \nWe can use CO UNT to tall y ho w man y items ar e in a c ontainer . However, if w e want to c ount dif ferent items in to \nsepar ate gr oups, such as marbl",
+      "[NEIGHBOUR from source_14.pdf]\nChapter 14 D atabase U sers \nAdrienne W att 91 \nChapter 15 SQ L Structured Quer y Languag e \nAdrienne W att & N elson Eng 93 \nChapter 16 SQ L Data Manipula tion L anguag e \nAdrienne W att & N elson En",
+      "[NEIGHBOUR from source_14.pdf]\nGRO UP B Y  field( s) \nORDER B Y fields \nWe can use the SELECT  statemen t to g ener ate an emplo yee phone list fr om the Emplo yees table as f ollows: \nSELECT  FirstN ame, L astN ame, phone \nFROM Em"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address file system optimization for dataset loading. Instead, they discuss general database concepts like data, fields, records, and SQL commands, which are tangential to the specific learning objective. Therefore, the relevance score is 1.\n\nWhile the chunks contain some database-related terminology, they lack specific information about file system optimization techniques or strategies for efficient dataset loading. This results in insufficient information to generate a meaningful exam question, leading to a sufficiency score of 1.\n\nThe chunks are mostly focused on database concepts rather than file system optimization, making them somewhat clean but still containing irrelevant content. Thus, the noise score is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "In the provided SQL query `SELECT FirstName, LastName, phone FROM Employees ORDER BY LastName`, how many records are returned when executed?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The question does not require any knowledge beyond what is provided in the source context. It focuses on a basic SQL query that can be understood from the given context.\n- CLARITY: The question is clear and unambiguous. It asks a straightforward question about the number of records returned by an SQL query.\n- DIFFICULTY_ALIGNMENT: The question is relatively simple and does not require deep understanding or analysis. It is best suited for a basic understanding level, making it slightly easier than the requested medium difficulty.\n- TYPE_ALIGNMENT: The question asks for a specific piece of information (number of records) from an SQL query, which aligns more closely with a recall type rather than a conceptual one. However, since the context does not provide enough information to determine the actual number of records, it leans towards a conceptual understanding.\n- STANDALONE_QUALITY: The question can stand alone and does not reference the context explicitly. It is phrased as a typical exam question a student might encounter.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The provided SQL query selects the columns FirstName, LastName, and phone from the Employees table and orders the results by LastName. Without additional constraints such as WHERE clauses or LIMIT statements, this query will return all records from the Employees table. Therefore, the number of records returned depends on the actual size of the Employees table, which is not specified in the given context.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "- CORRECTNESS: The answer is correct in stating that the query will return all records from the Employees table without additional constraints. It accurately explains that the number of records returned depends on the actual size of the Employees table.\n- COMPLETENESS: The answer covers the key points needed to fully address the question by explaining the effect of the ORDER BY clause and the implication of no additional constraints on the number of records returned.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context, discussing the SELECT statement and its behavior without introducing any unsupported information.\n- ACADEMIC_TONE: The language used is precise and academic, suitable for a university setting, though it could be more formal in tone to better fit the academic style.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_135338_7a1bb5",
+  "timestamp": "2026-05-16T13:53:38",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Safety critical software testing",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nscenario testing’. Software Testing and Quality Engineering , 5(5), 16–22.\nLutz, R. R. (1993). ‘Analyzing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE’93, San Diego, Calif.:",
+      "[SEED from source_22.pdf]\nP . (ed.). Amsterdam: Elsevier. 401–412.\nLutz, R. R. (1993). ‘Analysing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE'93, San Diego, Calif: IEEE. \nMills, H. D., Dyer, M. and L",
+      "[NEIGHBOUR from source_22.pdf]\nreusable components have this form of interface.\n4.Message passing interfaces These are interfaces in which one component\nrequests a service from another component by passin g a message to it. A retur"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not contain any direct information about safety critical software testing. They mention related topics such as software testing and errors in safety-critical systems, but do not specifically address the learning objective. Therefore, they are not directly relevant to the learning objective.\n\nThere is insufficient information to generate a good exam question because the chunks do not provide specific details about safety critical software testing. They only hint at related areas without giving concrete examples or methodologies that would be necessary for a comprehensive exam question.\n\nThe chunks are relatively clean with no obvious irrelevant content, though they lack the specific details needed to be considered noise-free.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "According to Lutz (1993), what are the three classes of interface errors in complex systems?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the three classes of interface errors in complex systems according to Lutz (1993). However, the source context provided does not contain any information about interface errors or their classification. Therefore, the question cannot be fully answered using only the given context, making it require outside knowledge.\n\nClarity: The question is clear and unambiguous, asking for specific information that can be directly stated. It is well-phrased and easy to understand.\n\nDifficulty Alignment: The difficulty level requested is \"easy,\" which aligns with the type of question being asked. Recalling specific details from a text is generally considered an easy task.\n\nType Alignment: The question type requested is \"recall,\" which fits perfectly as it asks the examinee to list or state specific information from the text.\n\nStandalone Quality: The question does not reference the context or passage explicitly. It can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "According to Lutz (1993), interface errors in complex systems can be categorized into three classes: miscommunication errors, timing errors, and resource allocation errors.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 3,
+      "groundedness": 1,
+      "academic_tone": 5
+    },
+    "overall": 2.5,
+    "reasoning": "The generated answer suggests that Lutz (1993) identified three classes of interface errors: miscommunication errors, timing errors, and resource allocation errors. However, the source context provided does not contain any information about these specific error types. The closest related content is about message passing interfaces, but there is no mention of interface errors or their classification. Therefore, the answer is not grounded in the given context and contains factual errors.\n\nThe answer attempts to provide a comprehensive response but fails to do so based on the available information. It covers the key points needed to address the question but does so without supporting evidence from the source material, indicating a lack of groundedness.\n\nThe language used in the answer is in the form of a declarative statement, which is appropriate for university-level writing. However, the content is not supported by the source material, and the answer introduces terms (miscommunication errors, timing errors, resource allocation errors) that are not found in the provided context.",
+    "parse_status": "ok"
+  }
+}

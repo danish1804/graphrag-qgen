@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131757_f0c0fb",
+  "timestamp": "2026-05-16T13:17:57",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Database security and access control",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\nand O’Neil [63]. Date’ s book [33], now in its sixth edition, is very popular in\nthe practitioners’ world, since it gives a simple description of manyimportant aspects. Ullman [ 88] oVers an integrate",
+      "[SEED from source_7.pdf]\ncoverage of database systems is provided by [O’Neil and O’Neil (2000)], [Ramakrish-\nnan and Gehrke (2002)], [Date (2003)], [Kifer et al. (2005)], [Garcia-Molina et al.\n(2008)], and [Elmasri and Navath",
+      "[NEIGHBOUR from source_49.pdf]\npages 16–25.\n[Knuth (1973)] D. E. Knuth, The Art of Computer Programming, Volume 3 , Addison Wesley,\nSorting and Searching (1973).\n[O’Neil and Quass (1997)] P. O’Neil and D. Quass, “Improved Query Per"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Database security and access control.\" Instead, they discuss general references and books related to database systems. While these might be relevant to understanding the broader context of database management, they do not specifically cover security or access control mechanisms.\n\nThere is insufficient information in the chunks to generate a good exam question on database security and access control. The chunks mention various books and authors but do not provide specific details about security measures or access control policies.\n\nThe chunks contain a significant amount of noise, with most of the content being about general references rather than the specific topic of database security and access control.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following references discusses an improved query performance technique using variant indexes?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be answered using the information provided in the source context, specifically the reference [O’Neil and Quass (1997)]. This reference directly mentions \"Improved Query Performance\" which aligns with the question asked.\n- CLARITY: The question is clear and unambiguous. It asks about a specific reference that discusses improved query performance, which is straightforward.\n- DIFFICULTY_ALIGNMENT: The question is at a basic recall level, asking for a specific reference, which fits the \"easy\" category.\n- TYPE_ALIGNMENT: The question is a straightforward recall of a reference, matching the \"recall\" type requested.\n- STANDALONE_QUALITY: The question does not reference the context explicitly but relies on the information provided within the context to be understood and answered.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The reference [O’Neil and Quass (1997)] discusses an improved query performance technique using variant indexes, as indicated in the context where it mentions \"Improved Query Performance with Variant Indexes\" in the proceedings of the ACM SIGMOD Conference on Management of Data.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 1
+    },
+    "overall": 1.0,
+    "reasoning": "Correctness: The answer suggests that [O’Neil and Quass (1997)] discusses an improved query performance technique using variant indexes. However, the context provided does not mention anything about variant indexes or improved query performance techniques. Therefore, this answer contains clear factual errors, making it incorrect.\n\nCompleteness: The answer attempts to address the question by identifying a specific reference, but it fails to provide any supporting evidence from the context. It also does not explain why this reference is relevant to the question, which is necessary for completeness. Thus, it scores low on completeness.\n\nGroundedness: The answer introduces the concept of \"variant indexes\" and \"improved query performance,\" which are not mentioned in the given context. This indicates that the answer is not grounded in the source material, leading to a score of 1.\n\nAcademic Tone: The answer is presented in a straightforward manner without any formal academic language or citation style. While it does provide a reference, the lack of proper academic tone and the absence of context support make it unsuitable for a university-level writing style, resulting in a score of 1.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "eval_id": "eval_2026-06-10_114410_ae09e8",
+  "timestamp": "2026-06-10T11:44:10",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Bus architecture impact on database throughput",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n10.2.2 Local independence and co-operation 355\n10.2.3 Data fragmentation and allocation 356\n10.2.4 Transparency levels 358\n10.2.5 Classiﬁcation of transactions 360\n10.3 Technology of distributed datab",
+      "[SEED from source_36.pdf]\nhand, vertical partitioning generates entities with fewer attributes. They cantherefore be translated into physical structures from which we can retrieve agreat deal of data with a single access. Part",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to the learning objective about bus architecture impact on database throughput. Only Chunk 3 mentions vertical partitioning, which could tangentially relate to physical design, but it does not discuss bus architectures or their impact on throughput. The other chunks cover topics like query optimization, distributed databases, and general database management, none of which directly address the bus architecture concept. Therefore, relevance is low. Sufficiency is also low because the few relevant chunks lack specific details about how bus architecture affects throughput. Noise is moderate since the chunks contain some useful information but are primarily about other topics.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary purpose of the two-phase commit protocol in distributed database systems, and what are its key components?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the primary purpose and key components of the two-phase commit protocol, which is not mentioned in the provided source context. The context covers topics like distributed database management and transaction classification, but does not discuss this specific protocol. Therefore, the question cannot be fully answered using only the given context, so it scores 1 for faithfulness. The question is clear and unambiguous, asking for a definition and components, so it scores 5 for clarity. The difficulty level is medium, which aligns with the conceptual nature of the question, so it scores 5 for difficulty alignment. The question type is conceptual, matching the request, so it scores 5 for type alignment. The question is self-contained and does not reference the passage, so it scores 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The two-phase commit protocol ensures atomicity and consistency in distributed transactions across multiple nodes. Its basic protocol involves a coordinator sending a prepare message to all participants, who then send back either prepare or abort messages. If all participants prepare, the coordinator commits; otherwise, it aborts. This protocol handles failures by requiring a new coordinator to re-issue the protocol.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies that the two-phase commit protocol ensures atomicity and consistency in distributed transactions. It accurately describes the protocol's phases and handling of failures. However, it does not mention the key component of the protocol being the coordinator, which is essential for understanding how the protocol operates. The answer is grounded in the source context, as it refers to the protocol without introducing unsupported information. The language is academic and precise, though it could be more concise. Overall, the answer is mostly correct and grounded but lacks completeness due to omitting the coordinator role.",
+    "parse_status": "failed"
+  }
+}

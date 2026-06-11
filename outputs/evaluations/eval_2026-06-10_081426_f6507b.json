@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_081426_f6507b",
+  "timestamp": "2026-06-10T08:14:26",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Page replacement algorithms",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nAnimation\nPage Replacement \nAlgorithms\nBasic Algorithms Regardless of the resident set management strategy (dis-\ncussed in the next subsection), there are certain basic algorithms that are used forthe",
+      "[SEED from source_5.pdf]\n. The logic be-hind this choice, other than its simplicity, is that one is replacing the page that hasbeen in memory the longest: A page fetched into memory a long time ago may havenow fallen out of u",
+      "[NEIGHBOUR from source_5.pdf]\nprocesses and the allocation of resources in a multiprogramming environment. TheOS maintains a number of queues, each of which is simply a list of processes waitingfor some resource. The short-term qu"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are directly relevant to page replacement algorithms, covering basic algorithms and their rationale. However, they lack specific details like FIFO or LRU, so sufficiency is low. Noise is moderate because some chunks contain unrelated material about process scheduling. Overall, the chunks are partially relevant and insufficient for a good exam question.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary limitation of the First-In-First-Out (FIFO) page replacement algorithm when applied in a multiprogramming environment?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about FIFO's limitation in multiprogramming, which is directly stated in the source: \"One is replacing the page that has been in memory the longest.\" This is a straightforward recall of a fact from the passage, so it is completely answerable from context alone (5). The question is clear and unambiguous (5). It is an easy recall question (5) and matches the recall type (5). It does not reference the passage explicitly (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "FIFO suffers from poor performance in multiprogramming environments because it replaces the oldest page regardless of whether it is currently in use. This can lead to frequent page faults for frequently accessed pages, as those pages may have been evicted despite being needed again soon. As a result, FIFO does not adapt well to patterns of access and can cause unnecessary paging activity.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies FIFO's primary limitation as poor performance in multiprogramming due to replacing the oldest page regardless of current usage. It explains that this leads to frequent faults for frequently accessed pages, which is accurate. However, it does not explicitly reference the source context, so groundedness is slightly lower. The language is precise and academic, though it could be more concise. Overall, correctness and completeness are high, groundedness is good but not perfect, and academic tone is excellent.",
+    "parse_status": "ok"
+  }
+}

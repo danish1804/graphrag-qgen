@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_120926_b2a7c6",
+  "timestamp": "2026-06-10T12:09:26",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Real time software development for OS environments",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nF U RT H E R  R E A D I N G\nSoftware Engineering for Real-Time Systems . Written from an engineering rather than a compute r\nscience perspective, this book is a good practical guide to real-time syste",
+      "[SEED from source_22.pdf]\nInInformation Processing . Ritter, G. (ed.). Amsterdam: Elsevier Science Pub lishers, 11–17.\nBrinch-Hansen, P . (1973). Operating System Principles . Englewood Cliffs, NJ: Prentice-Hall.\nBurns, A. and",
+      "[SEED from source_22.pdf]\nHowever, in a fast-moving business environment, thi s can cause real problems. By\nthe time the software is available for use, the ori ginal reason for its procurement may\nhave changed so radically tha",
+      "[NEIGHBOUR from source_22.pdf]\neven if the code is perfect.\n3. What do we mean by selected inputs ?With a real-time system, no\ncontrol over the inputs is possible, e.g.\n(a) an avionics system in an aircraft, for which the inputs de",
+      "[NEIGHBOUR from source_22.pdf]\nThe activities in the design process vary, dependin g on the type of system being\ndeveloped. For example, real-time systems require t iming design but may not\ninclude a database so there is no databas"
+    ],
+    "scores": {
+      "relevance": 2,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.0,
+    "reasoning": "The chunks are mostly about general software engineering and operating systems, with only one chunk (Chunk 4) directly addressing real-time systems. However, that chunk is brief and does not provide enough detail for a good exam question. The other chunks are either unrelated or too vague. There is significant noise from unrelated topics like database design and timing in non-real-time systems. Thus, the chunks are insufficient and noisy.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are some key differences in the design activities required for real-time systems compared to general information systems, particularly regarding timing design?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about differences in design activities for real-time systems versus general information systems, specifically regarding timing design. This requires understanding the source's distinction between real-time and general systems, which is present in the context. The question is clear and unambiguous, asking for a comparison of activities. It matches medium difficulty because it requires comprehension of the concepts but does not demand complex analysis. The type is conceptual, asking for an explanation of differences. The question is self-contained, referring only to the topic of real-time systems and their design activities, not to any specific passage or context. Thus, all criteria are met with high scores.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Real-time systems require specific timing design because they must meet strict deadlines, whereas general information systems typically do not. Unlike non-real-time systems, real-time systems often lack database design, as timing constraints take precedence over data management. The architectural design for real-time systems must account for these timing requirements, focusing on how components interact under tight time constraints, unlike the more flexible approach in conventional systems.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that real-time systems require timing design and may omit database design due to timing constraints. It also notes that architectural design must focus on component interactions under time pressure. However, it incorrectly states that real-time systems lack database design when the source does not claim that; instead, it says real-time systems may not include databases. The answer is mostly grounded but includes a factual error. The tone is academic but uses bullet points, which is acceptable for a short answer. Overall, the answer is largely correct and complete, but contains a minor inaccuracy and uses a slightly informal structure.",
+    "parse_status": "ok"
+  }
+}

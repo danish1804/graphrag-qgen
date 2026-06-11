@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_103147_77e799",
+  "timestamp": "2026-06-10T10:31:47",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Database schema migration in agile projects",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAppendices cover three popular database systems: Microsoft Access, \nibm\ndb2 and Oracle. \nxviii Preface\nA number of features make this book unique.\n•We make a clear distinction between the basic materi",
+      "[SEED from source_49.pdf]\nmanagement. We describe the architecture of the data warehouse, the starand snowﬂake schemas used for data representation within data warehousesand the new operators for data analysis (including drill",
+      "[SEED from source_49.pdf]\nAn international textbook\nMaking the book reﬂect the international nature of the subject has been achallenge and an opportunity. This book has Italian authors, who have also\nxxii Preface\ngiven regular",
+      "[NEIGHBOUR from source_14.pdf]\n4 \nChapter  \nPublished by \nMcGraw-Hill Publishing Company \nShoppenhangers Road, Maidenhead, Berkshire, sl6 2ql, England \nTelephone: + \n44 \n( \n0 \n)  \n1628 502500 \nFax: + \n44 \n( \n0 \n) \n 1628 770224 \nWeb",
+      "[NEIGHBOUR from source_14.pdf]\nThe  \nloc \n data for this book has been applied for and may be obtained from the\nLibrary of Congress, Washington,  \nd.c \n. \nAuthors’ Web site address: http://www.mcgraw-hill.co.uk/atzeni \nPublishing D"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely unrelated to database schema migration in agile projects. They discuss database systems, data warehousing, and publishing details, none of which directly address schema migration or agile practices. The only potentially relevant chunk is the one about data representation within data warehouses, but it does not mention schema migration. Thus, relevance is low. Sufficiency is also low because no chunk provides enough detail on schema migration techniques or agile project management. Noise is moderate since some chunks contain extraneous information like publishing addresses and author affiliations.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, which appears to be metadata about a textbook rather than substantive course material, I cannot generate a meaningful exam question that is answerable using only the given context.\n\nThe context shows only:\n- Book metadata (title, publisher, ISBN, authors)\n- Table of contents structure (Appendices, Chapters)\n- Bibliographic citations\n- Copyright information\n\nThis content does not contain any actual course material, explanations, definitions, or examples that could be used to formulate an exam question.\n\nTo generate a valid exam question aligned with the stated learning objective \"Database schema migration in agile projects,\" I would need actual course content explaining database schema migration processes, agile project methodologies, or related concepts.\n\nPlease provide the actual course material content so I can",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The question asks about database schema migration in agile projects, but the provided context contains no relevant information about either topic. The passage is metadata about a textbook, not course content. Therefore, the question cannot be answered using only the given context, making it unfaithful. It is also unclear because the topic is not defined in the context. The difficulty level is not appropriate since the question is impossible to answer. The type is conceptual, but the question is not clearly conceptual. Finally, the question references the passage, so it is not standalone.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The context provides metadata for a textbook on databases, including chapters on database management and data mining. However, it lacks specific content on database schema migration in agile projects, so no direct answer can be given based solely on this information. The book covers topics like data warehouse architecture and operators, but without detailed explanations, it is impossible to assess understanding of schema migration in agile contexts.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 2.5,
+    "reasoning": "The answer correctly identifies that the context lacks specific content on database schema migration in agile projects, making it impossible to give a factual answer. It explains that the book covers general database topics but not the targeted topic. The answer is incomplete because it does not provide any substantive information about schema migration or agile projects. It is grounded in the context since it avoids hallucinations and focuses on what is actually present. The tone is academic but could be more precise, as it uses bullet points instead of prose.",
+    "parse_status": "ok"
+  }
+}

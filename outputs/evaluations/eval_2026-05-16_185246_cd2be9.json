@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_185246_cd2be9",
+  "timestamp": "2026-05-16T18:52:46",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Semaphores in database concurrency control",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nconcurrency control and ( see\nconcurrency control)\ndeﬁned, 1\ndesign of ( seedatabase\ndesign)\ndocument, 3\ndumping and, 930–931\ne ﬃ c i e n c yo f ,1 ,2 ,5 ,9\nembedded, 198, 962\nas ﬁle-processing system",
+      "[SEED from source_8.pdf]\nand, 71–79\ncombination of, 270–271\ncomposite attributes in, 250\nconcurrency control and ( see\nconcurrency control)\ncreation of, 24\ndata mining, 540–549\ndata warehousing, 523–525\ndeﬁned, 12\nentity-rela",
+      "[SEED from source_8.pdf]\nlocal, 1076\nlocks and ( seelocks)\nlogical, 12–13, 1223–1224\nperformance tuning of,\n1214–1218, 1223–1224\nphysical, 12, 13\nphysical-organization\nmodiﬁcation of, 25\nP + Q redundancy, 573, 574\nrecovery sy",
+      "[NEIGHBOUR from source_36.pdf]\n(transactions, concurrency control, reliability, recovery) ﬁrst on a single-server architecture and then on a multi-server architecture with emphasison distribution, replication and parallelism.\n•We e",
+      "[NEIGHBOUR from source_36.pdf]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks provided do not directly address semaphores in database concurrency control. Instead, they discuss general aspects of concurrency control, locks, and related database management topics. While these concepts are related to database concurrency control, they do not specifically mention semaphores, which is a key component of the learning objective. Therefore, the chunks are only partially relevant.\n\nThe chunks contain some useful information about concurrency control and related concepts, but they lack specific details about semaphores and their role in database concurrency control. This means that while there is some relevant information, it is insufficient to fully support the generation of a good exam question on the given learning objective.\n\nThe chunks are relatively clean, with minimal irrelevant or distracting content. However, the presence of multiple references to other topics (like data mining, data warehousing, etc.) adds some noise to the content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of concurrency control in a database management system, and how does it relate to the concepts of locks and view-equivalence?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, which includes definitions and discussions about concurrency control, locks, and view-equivalence. Therefore, it is completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks for the primary purpose of concurrency control and how it relates to locks and view-equivalence, which are well-defined terms in the context.\n- DIFFICULTY_ALIGNMENT: The question requires explaining the concept of concurrency control and its relationship with locks and view-equivalence, which involves a moderate level of understanding rather than simple recall. This aligns well with the medium difficulty level.\n- TYPE_ALIGNMENT: The question asks for an explanation of the relationship between concepts, which fits the conceptual type perfectly.\n- STANDALONE_QUALITY: The question does not reference the context explicitly and can stand alone as a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Concurrency control in a database management system primarily ensures that multiple transactions can execute simultaneously without causing data inconsistencies or errors. It achieves this by implementing mechanisms such as locks, which prevent conflicts when two transactions attempt to modify the same data concurrently. Locks are integral to concurrency control as they allow the system to manage access to shared resources efficiently. Additionally, view-equivalence plays a crucial role in ensuring that the illusion of serial execution is maintained, allowing users to perceive the database operations as if they were executed one after another, even though they may be interleaved. This relationship between concurrency control, locks, and view-equivalence is fundamental to maintaining data integrity and user satisfaction in concurrent database environments.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies the primary purpose of concurrency control and its relation to locks and view-equivalence. It accurately describes how concurrency control ensures data consistency through lock mechanisms and how view-equivalence helps maintain the illusion of serial execution. The answer is well-grounded in the provided context, referencing locks and their role in concurrency control. However, the answer could be more precise and detailed, especially regarding the specific types of locks mentioned in the context (local, logical, physical). The academic tone is appropriate, but the use of prose is consistent throughout, which is acceptable for university-level writing.",
+    "parse_status": "ok"
+  }
+}

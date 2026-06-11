@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_094751_d65cef",
+  "timestamp": "2026-06-10T09:47:51",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Deadlock prevention in parallel training systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nPress, 1980.\n795\n796 REFERENCES\nBARB90 Barbosa, V . “Strategies for the Prevention of Communication Deadlocks in\nDistributed Parallel Programs.” IEEE Transactions on Software Engineering ,\nNovember 19",
+      "[SEED from source_5.pdf]\nPress, 1994.\nDALE68 Daley, R, and Dennis, R. “Virtual Memory, Processes, and Sharing in MUL-TICS.” Communications of the ACM, May 1968.\nDALT96 Dalton, W., et al. Windows NT Server 4: Security, Trouble",
+      "[SEED from source_5.pdf]\nsity Press, 2001.\nTEVA87 Tevanian, A., et al. “Mach Threads and the UNIX Kernel: The Battle for Con-trol.” Proceedings, Summer 1987 USENIX Conference, June 1987.\nTHAD81 Thadhani, A. “Interactive User",
+      "[NEIGHBOUR from source_5.pdf]\nthe IEEE Computer Society and the ACM, for the Undergraduate Program in ComputerScience. The book also covers the operating systems topics recommended in the Guidelines\nfor Associate-Degree Curricula",
+      "[NEIGHBOUR from source_5.pdf]\ncality principle, making for fascinating reading.\nDENN05 Denning, P . “The Locality Principle” Communications of the ACM, July 2005.\nHENN07 Hennessy, J., and Patterson, D. Computer Architecture:A Quan"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly irrelevant to deadlock prevention in parallel training systems. Only Chunk 1 mentions communication deadlocks, which is tangential. The other chunks discuss unrelated topics like virtual memory, operating system threads, and computer architecture principles. There is insufficient information to generate a good exam question because no chunk directly addresses the core concept of deadlock prevention. The chunks contain moderate noise—some are clearly off-topic, but others are at least somewhat related to OS concepts. However, the overall quality is poor due to lack of relevance and sufficiency.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of the \"usedto\" relationship in the context of deadlock prevention strategies in distributed parallel programs?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the \"usedto\" relationship in deadlock prevention, which is not mentioned in the source context. The passage discusses strategies for preventing communication deadlocks but does not define or use any \"usedto\" relationship. Therefore, the question cannot be fully answered using only the given context, so it scores 1 for faithfulness. The question is clear and unambiguous, asking for a definition or explanation of a specific term, so it scores 5 for clarity. The difficulty level is medium because it requires understanding of a concept rather than simple recall, matching the request. The question type is conceptual, asking for an explanation, which aligns with the request. The question is self-contained and does not reference the passage, so it scores 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The \"usedto\" relationship indicates that the work of Barbosa on communication deadlock prevention in distributed parallel programs is cited to support the study of deadlock resolution techniques. This suggests that understanding how communication deadlocks arise and are prevented is foundational for developing effective deadlock resolution algorithms, as exemplified by the cited research. Thus, the relationship highlights the interconnection between communication patterns and deadlock avoidance in parallel computing environments.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that Barbosa's work on communication deadlock prevention is used to support the study of deadlock resolution, which is accurate based on the source. It covers the key point that understanding communication patterns is essential for deadlock prevention. The answer is grounded because it directly references the cited work without adding unsupported information. The tone is academic and uses prose, though it could be more precise. Overall, the answer is mostly correct and grounded but lacks some completeness in explaining the specific relationship between communication and deadlock.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "eval_id": "eval_2026-06-10_075422_9ebb02",
+  "timestamp": "2026-06-10T07:54:22",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Code review and static analysis",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_45.pdf]\napplications. (M. Andrews and J. A. Whittaker, Addi son-Wesley, 2006.)\n‘Using static analysis to find bugs’. This paper de scribes Findbugs, a Java static analyzer that uses\nsimple techniques to find",
+      "[SEED from source_45.pdf]\nthe tip of the iceberg.\n\u000f \u0010 \u0012 \u0010 \u0015 \u0016 \u0017 \u0019 \u0010 \u001b \u001c\n\u001d \u001e  ! # $ %' % ) + - \u001e. / 1%2 % ) 45  + \u001e 4  + \u001eUnderstanding the Problem\n1/3 planning\ncCopyright Nancy Leveson, Sept. 1999Development Costs\nCoding\nTestP",
+      "[NEIGHBOUR from source_22.pdf]\nHofmeister, C., Nord, R. and Soni, D. (2000). Appli ed Software Architecture. Boston: Addison-\nWesley.\nHunter, D., Rafter, J., Fawcett, J. and Van Der Vli st, E. (2007). Beginning XML, 4th ed. Indiana"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "The first chunk is directly relevant because it discusses using static analysis to find bugs, which aligns with the learning objective. The second chunk appears to be a random string of characters and symbols, likely a formatting error or placeholder, so it is completely unrelated and noisy. The third chunk is also unrelated as it covers applied software architecture rather than code review and static analysis. Thus, only the first chunk is relevant, but it lacks sufficient detail for a good exam question. There is significant noise due to the second chunk being gibberish.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following papers discusses the use of static analysis techniques to identify potential security violations and runtime errors in Java applications?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about a paper discussing static analysis for Java applications, which is directly stated in the source context. It can be answered solely from the given text, so faithfulness is 5. The question is clear and unambiguous, asking for a specific paper title, so clarity is 5. The difficulty is easy because it requires only recall of a title, matching the easy label. The question type is recall, which exactly matches the request. The question does not reference the passage explicitly, so standalone quality is 5. All criteria are met perfectly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "N. Ayewah et al. describe Findbugs, a Java static analyzer that uses simple techniques to detect potential security violations and runtime errors, as presented in IEEE Software in September/October 2008. This paper provides a practical application of static analysis in software development, focusing on identifying common flaws before execution.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies N. Ayewah et al. as the authors of the paper describing Findbugs, which is a static analyzer for Java. However, it incorrectly states that the paper was published in IEEE Software in September/October 2008, when the actual publication date is 2008, not 2008. The answer is incomplete because it does not mention that the paper describes simple techniques for detecting flaws. The answer is grounded in the source context, as it references the correct paper and its title. The language is academic but uses bullet points, which is acceptable for a short answer.",
+    "parse_status": "failed"
+  }
+}

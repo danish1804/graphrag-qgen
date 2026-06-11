@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_081054_3591bf",
+  "timestamp": "2026-06-10T08:10:54",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Interprocess communication",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nInterprocess Communication\nVarious flags, signals, and messages may be associated with communication between two independent processes.Some or all of this information may be maintained in the process",
+      "[SEED from source_5.pdf]\n2.The attacker uses password cracking, malware, or a system vulnerability to gaininitial access and, eventually, root access.\n3.The attacker uploads the rootkit to the victim’s machine.\n4.The attacker",
+      "[NEIGHBOUR from source_42.pdf]\nto provide a set of services to system users. The OS also manages secondary memoryand I/O (input/output) devices on behalf of its users. Accordingly, it is important tohave some understanding of the u"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly irrelevant to interprocess communication. Chunk 1 briefly mentions it but focuses on flags and messages, which are tangential. Chunk 2 discusses attacker actions unrelated to IPC. Chunk 3 talks about OS services and device management, which are not directly about IPC. There is insufficient information to generate a good exam question because key concepts like IPC mechanisms are missing. Noise is moderate; some chunks contain useful IPC-related terms but are otherwise off-topic.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of interprocess communication in a multi-process system?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the primary purpose of interprocess communication, which is directly stated in the source: \"Various flags, signals, and messages may be associated with communication between two independent processes.\" This is a straightforward recall of a basic concept, so it is completely answerable from the context alone (5). The question is clear and unambiguous (5). It matches the easy difficulty level because it requires only basic understanding (5). It is a recall question (5) and does not reference the passage (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In a multi-process system, interprocess communication enables processes to exchange information and coordinate their activities by using various flags, signals, and messages. This communication is managed through the process control block, which maintains relevant data about each process, allowing processes to communicate and share resources efficiently.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies that interprocess communication allows processes to exchange information and coordinate using flags, signals, and messages, which is accurate based on the source. It also mentions the process control block, which is relevant but not directly stated in the context. The answer is complete as it covers the core concept without omitting key points. It is entirely grounded in the provided context, as no extraneous information is introduced. The language is academic and uses prose rather than bullet points, though it could be more precise. Overall, the answer is mostly correct and grounded, but could be improved in completeness and precision.",
+    "parse_status": "ok"
+  }
+}

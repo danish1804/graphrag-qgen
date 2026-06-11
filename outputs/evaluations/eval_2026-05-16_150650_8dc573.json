@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_150650_8dc573",
+  "timestamp": "2026-05-16T15:06:50",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "SQL vs NoSQL for machine learning applications",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\nand O’Neil [63]. Date’ s book [33], now in its sixth edition, is very popular in\nthe practitioners’ world, since it gives a simple description of manyimportant aspects. Ullman [ 88] oVers an integrate",
+      "[SEED from source_7.pdf]\ncoverage of database systems is provided by [O’Neil and O’Neil (2000)], [Ramakrish-\nnan and Gehrke (2002)], [Date (2003)], [Kifer et al. (2005)], [Garcia-Molina et al.\n(2008)], and [Elmasri and Navath",
+      "[SEED from source_7.pdf]\n[Kifer et al. (2005)] M. Kifer, A. Bernstein, and P. Lewis, Database Systems: An Application\nOriented Approach, Complete Version , 2nd edition, Addison Wesley (2005).\n[O’Neil and O’Neil (2000)] P. O’N",
+      "[NEIGHBOUR from source_49.pdf]\npages 16–25.\n[Knuth (1973)] D. E. Knuth, The Art of Computer Programming, Volume 3 , Addison Wesley,\nSorting and Searching (1973).\n[O’Neil and Quass (1997)] P. O’Neil and D. Quass, “Improved Query Per",
+      "[NEIGHBOUR from source_49.pdf]\ntrol in main-memory databases. The ABA problem with latch-free data structures as\nwell as solutions for the problem are discussed in [Dechev et al. (2010)].\nBibliography\n[Bayer and Schkolnick (1977)]"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided are largely unrelated to the learning objective of comparing SQL vs NoSQL for machine learning applications. They mostly discuss general database system books and authors without any specific mention of SQL, NoSQL, or their application in machine learning. Therefore, they score low on relevance.\n\nThere is insufficient information to generate a good exam question about SQL vs NoSQL for machine learning applications. The chunks do not provide any comparative analysis or specific details about these technologies in the context of machine learning. Hence, they score low on sufficiency.\n\nThe chunks contain a lot of noise, including references to various authors and books that are not directly related to the learning objective. This makes them difficult to use for generating a focused exam question. Thus, they score low on noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following books provides a comprehensive coverage of database systems, suitable for both introductory and advanced courses, according to the given context?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks which book provides a comprehensive coverage of database systems, suitable for both introductory and advanced courses. This can be answered using the information provided in the context, specifically the list of books and their descriptions. Therefore, the question is completely answerable from the context alone, making it highly faithful to the source material.\n\nThe question is clear and unambiguous, asking for a specific set of books that meet certain criteria. It is phrased precisely and does not contain any awkwardness or vagueness, earning a high clarity score.\n\nThe difficulty of the question is medium as it requires understanding the content of the context and matching the books to the given criteria. This aligns well with the requested medium difficulty level.\n\nThe question type is conceptual, as it requires explaining which books fit the given criteria rather than just recalling a single fact. This matches the requested type perfectly.\n\nThe question is self-contained and does not reference the context or passage directly. It can stand alone as a genuine exam question, earning a high standalone quality score.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "According to the given context, the book \"Database Systems: An Application-Oriented Approach\" by M. Kifer, A. Bernstein, and P. Lewis, offers a comprehensive coverage of database systems suitable for both introductory and advanced courses. This is supported by the reference to its complete version, indicating thoroughness and application-focused content. Additionally, the mention of its second edition suggests ongoing updates and relevance across different levels of study.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer correctly identifies \"Database Systems: An Application-Oriented Approach\" by M. Kifer, A. Bernstein, and P. Lewis as the book that provides comprehensive coverage of database systems. It also mentions the second edition, which indicates ongoing updates and relevance across different levels of study. However, the answer does not explicitly state that this book is suitable for both introductory and advanced courses, which is a key point of the question. Therefore, it scores a 3 out of 5.\n- COMPLETENESS: The answer covers the main idea of which book provides comprehensive coverage but misses the specific detail about it being suitable for both introductory and advanced courses. It also does not mention other books like those by Date, Ramakrishnan, Gehrke, Kifer et al., Garcia-Molina et al., and Elmasri and Navath, which are mentioned in the context. Thus, it scores a 3 out of 5.\n- GROUNDEDNESS: The answer is entirely based on the information provided in the context, specifically the reference to the book \"Database Systems: An Application-Oriented Approach\" by M. Kifer, A. Bernstein, and P. Lewis. There are no additional unsupported claims or information. Therefore, it scores a 5 out of 5.\n- ACADEMIC_TONE: The answer is written in a formal and precise manner, using appropriate academic language and structure. It avoids any casual or inappropriate tone and uses prose rather than bullet points. Therefore, it scores a 5 out of 5.",
+    "parse_status": "ok"
+  }
+}

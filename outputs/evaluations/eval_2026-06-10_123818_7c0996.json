@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_123818_7c0996",
+  "timestamp": "2026-06-10T12:38:18",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Code review for performance critical software",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nSystems J., 15(3), 182–211.\nFagan, M. E. (1986). ‘Advances in Software Inspecti ons’. IEEE Trans. on Software Eng., SE-12 (7),\n744–51.\nGilb, T. and Graham, D. (1993). Software Inspection . Wokingham:",
+      "[SEED from source_22.pdf]\nFitzpatrick, B. W., 204, 704\nFogel, K., 202\nFowler, M., 251, 259\nG\nGalin, D., 678\nGamma, E., 155, 175, 190, 191, 202, 204, 432, 433, 450\nGarfinkel, S., 382, 392\nGarlan, D., 152, 156, 171, 173, 175, 44",
+      "[SEED from source_22.pdf]\nR E F E R E N C E S\nAdams, E. N. (1984). ‘Optimizing preventative servi ce of software products’. IBM J. Res & Dev.,\n28(1), 2–14.\nBerghel, H. (2001). ‘The Code Red Worm’. Comm. ACM, 44(12), 15–19.\nBoe",
+      "[NEIGHBOUR from source_22.pdf]\nto objectively demonstrate that this is the case. T o test this hypothesis, you need fail-\nure data for a large number of components and acces s to the component source code\nfor analysis. Very few com",
+      "[NEIGHBOUR from source_22.pdf]\n4.Computer misuse You should not use your technical skills to misuse other\npeople’s computers. Computer misuse ranges from rel atively trivial (game playing\non an employer’s machine, say) to extremely"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about software inspection and code reviews, which are tangential to the specific objective of performance-critical code review. Only one chunk mentions performance optimization, but it is brief and lacks detail. The rest discuss general software engineering topics like failure data and computer misuse, which are not directly relevant. Thus, relevance is low. There is insufficient information to generate a good exam question because the core concept of performance-critical review is barely touched. Noise is moderate, as some chunks contain useful information but are interspersed with unrelated material.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, here is an exam question:\n\nAccording to the reference material, what significant challenge exists in obtaining failure data for software analysis, and why is it difficult for organizations to collect this information over the long term?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about challenges in obtaining failure data, which is directly stated in the context (\"Very few companies have access to the component source code for analysis\"). It is clear and unambiguous, requiring no outside knowledge. The difficulty is medium because it involves explaining a concept rather than simple recall. The question type is conceptual, matching the request. It is standalone as it does not reference the passage explicitly. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Obtaining failure data for software analysis is a significant challenge because very few companies have made a long-term commitment to collecting data about their software. This difficulty arises because failure data is rarely available, making it hard to systematically study component reliability and quality. The lack of such data hinders objective demonstration of software quality metrics and the development of effective inspection programs.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that failure data is rarely available and that long-term collection is difficult, which aligns with the source material. It also notes that this makes it hard to demonstrate software quality objectively. However, it does not explicitly mention the need for component source code access, which is implied by the source but not directly stated. The language is academic and precise, though it could be more concise. Overall, the answer is mostly correct and grounded, but lacks some detail from the source.",
+    "parse_status": "ok"
+  }
+}

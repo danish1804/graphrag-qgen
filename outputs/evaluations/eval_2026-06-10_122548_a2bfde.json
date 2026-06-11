@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_122548_a2bfde",
+  "timestamp": "2026-06-10T12:25:48",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Assembly language integration in software projects",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nComputer ,21(5), 61–72.\nBudgen, D. (2003). Software Design (2nd Edition) . Harlow, UK.: Addison-Wesley.\nKrutchen, P . (2003). The Rational Unified Process—An Introduction (3rd E dition) . Reading, MA:",
+      "[SEED from source_22.pdf]\n(2004). ‘Agile Software Development in Large Organi zations’. IEEE Computer, 37(12), 26–34.\nMartin, J. (1981). Application Development Without Programmers. Englewood Cliffs, NJ: \nPrentice-Hall.\nMassol",
+      "[SEED from source_22.pdf]\nscenario testing’. Software Testing and Quality Engineering , 5(5), 16–22.\nLutz, R. R. (1993). ‘Analyzing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE’93, San Diego, Calif.:",
+      "[NEIGHBOUR from source_22.pdf]\n8(3), 231–74.\nKircher, M. and Jain, P . (2004). Pattern-Oriented Software Architecture Volume 3: Pa tterns for\nResource Management . New York: John Wiley & Sons.\nMassol, V. (2003). JUnit in Action . G",
+      "[NEIGHBOUR from source_47.pdf]\nones.\n(c) No editing in the first round(s), when ideas are being suggested.\nEditing happens after all ideas have been suggested.\n(d)Student Question: Is brainstorming always top-down then?\nInstructor"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about software development methodologies and patterns, which are tangential to assembly language integration. Only one chunk (Budgen's book) briefly mentions software design, but it does not focus on assembly language. Therefore, relevance is low. Sufficiency is also low because none of the chunks provide specific details about how assembly language integrates into software projects. Noise is moderate since some chunks contain general software engineering topics that are not directly related.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, here is an exam question:\n\nAccording to the reference materials, what is the relationship between JUnit and software development practices as evidenced by the works cited in the bibliography?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the relationship between JUnit and software development practices, which can be answered using the context that Massol wrote a book titled \"JUnit in Action.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a relationship, so clarity is 5. The difficulty is medium because it requires understanding the role of JUnit in software development, which is a conceptual task. The question type is conceptual, matching the request. The question does not reference the context explicitly, so standalone quality is 5. All criteria are met perfectly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The works by Massol and Husted (2003) and Budgen (2003) directly address JUnit, which is a framework for unit testing in Java. This indicates that JUnit has become a standard tool in software development practices, supported by both educational texts and professional references. The bibliography also includes works on agile development, process management, and prototyping, suggesting that JUnit is part of a broader set of methodologies aimed at improving software quality and efficiency.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 3
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that Massol and Husted's work on JUnit in Action and Budgen's Software Design textbook both discuss JUnit, showing it is a standard tool. It also notes that other references like agile development and prototyping support broader practices. However, the answer does not explicitly connect JUnit to specific agile practices or its role in resource management, which could be considered incomplete. The answer is grounded in the provided sources but adds some general statements about software development practices without direct citation. The tone is academic but uses bullet points, which is acceptable for a short answer but not ideal for a full essay. Overall, the answer is mostly correct and grounded but lacks depth and consistency in tone.",
+    "parse_status": "ok"
+  }
+}

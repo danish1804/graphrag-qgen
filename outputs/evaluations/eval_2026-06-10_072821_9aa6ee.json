@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_072821_9aa6ee",
+  "timestamp": "2026-06-10T07:28:21",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Indexing and query optimisation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n13.3.3 Data cube 477\n13.4 Development of the data warehouse 479\n13.4.1 Bitmap and join indexes 480\n13.4.2 View materialization 481\n13.5 Data mining 481\n13.5.1 The data mining process 482\n13.5.2 Data m",
+      "[NEIGHBOUR from source_36.pdf]\nheader ) and a ﬁnal part ( page trailer ) containing control information about\nthe access method. This information will typically contain the identiﬁerof the object (table, index, data dictionary, etc"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks cover topics like query optimization and physical database design, which are directly related to indexing and query optimization. However, they do not explicitly mention indexing techniques or specific optimization strategies, so relevance is moderate (3). The chunks provide some useful information on query optimization, but lack concrete examples or detailed explanations, making sufficiency only 3. Noise is low because the chunks are brief and focused on database concepts, with minimal extraneous detail.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What are the three main components that make up the development of the data warehouse as described in the context?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for three main components of data warehouse development, which can be directly answered from the source context (e.g., bitmap and join indexes, view materialization). This is a straightforward recall task, so it is completely answerable from the context alone (5/5). The question is clear and unambiguous (5/5). It matches the easy difficulty level because it requires basic understanding rather than deeper analysis (5/5). The question is a recall task, which exactly matches the requested type (5/5). The question does not reference the context; it stands alone as a typical exam question (5/5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The development of the data warehouse includes bitmap and join indexes, which improve query performance by allowing efficient storage and retrieval of large datasets, and view materialization, which precomputes and stores results of complex queries to speed up subsequent accesses. These techniques together enable more scalable and faster analysis of aggregated data.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.25,
+    "reasoning": "The answer correctly identifies bitmap and join indexes as improving query performance, and view materialization as precomputing results. However, it omits the third component mentioned in the context, which is not explicitly stated in the generated answer. The answer is grounded in the source material because it does not introduce unsupported concepts. The tone is academic but uses bullet points, which is acceptable for a summary. Overall, the answer is mostly correct and grounded but lacks completeness and could be improved stylistically.",
+    "parse_status": "ok"
+  }
+}

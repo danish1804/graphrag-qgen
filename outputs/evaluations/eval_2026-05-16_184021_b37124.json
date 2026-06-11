@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_184021_b37124",
+  "timestamp": "2026-05-16T18:40:21",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Database schema migration in agile projects",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAppendices cover three popular database systems: Microsoft Access, \nibm\ndb2 and Oracle. \nxviii Preface\nA number of features make this book unique.\n•We make a clear distinction between the basic materi",
+      "[SEED from source_49.pdf]\nmanagement. We describe the architecture of the data warehouse, the starand snowﬂake schemas used for data representation within data warehousesand the new operators for data analysis (including drill",
+      "[SEED from source_49.pdf]\nAn international textbook\nMaking the book reﬂect the international nature of the subject has been achallenge and an opportunity. This book has Italian authors, who have also\nxxii Preface\ngiven regular",
+      "[NEIGHBOUR from source_14.pdf]\n4 \nChapter  \nPublished by \nMcGraw-Hill Publishing Company \nShoppenhangers Road, Maidenhead, Berkshire, sl6 2ql, England \nTelephone: + \n44 \n( \n0 \n)  \n1628 502500 \nFax: + \n44 \n( \n0 \n) \n 1628 770224 \nWeb",
+      "[NEIGHBOUR from source_14.pdf]\nThe  \nloc \n data for this book has been applied for and may be obtained from the\nLibrary of Congress, Washington,  \nd.c \n. \nAuthors’ Web site address: http://www.mcgraw-hill.co.uk/atzeni \nPublishing D"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"Database schema migration in agile projects.\" Instead, they discuss general aspects of database systems, data warehousing, and publishing details of the book. These topics are tangential at best and do not provide any specific information about schema migration or agile project management.\n\nFor sufficiency, the chunks lack any information related to the learning objective. There is no mention of database schema migration or agile project methodologies, which are essential for crafting an exam question on this topic.\n\nRegarding noise, while the chunks contain some general information that might be relevant to other aspects of database management, the majority of the content is not pertinent to the learning objective. The chunks are mostly focused on unrelated topics such as book publishing and database system descriptions.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the preface indicate about the international perspective of this book, and how might this influence its content and examples?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 4.6,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the information provided in the source context. It asks about the international perspective of the book and how it influences its content and examples, which is directly addressed in the context.\n- CLARITY: The question is clear and unambiguous. It asks for a specific aspect of the book's content and provides a straightforward way to interpret the answer.\n- DIFFICULTY_ALIGNMENT: The question requires students to understand the concept of an international perspective in a book and its implications, which is a conceptual understanding rather than a simple recall. This aligns with the medium difficulty level.\n- TYPE_ALIGNMENT: The question asks students to explain how the international perspective of the book influences its content and examples, which fits well with the conceptual type.\n- STANDALONE_QUALITY: The question does not reference \"the context\" or \"the passage\" explicitly but assumes that the reader has understood the context provided. It is a genuine exam question a student could see.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The preface indicates that the international perspective of this book is a significant aspect, as it notes the involvement of Italian authors who have taught in multiple countries including the United States, Canada, and Switzerland. This international dimension influences the content by ensuring that the material reflects diverse global contexts, potentially incorporating varied approaches to database management and data analysis. Additionally, the book emphasizes the relevance of databases in the contemporary globalized world, particularly through Chapter 14's focus on the relationship between databases and the World Wide Web, suggesting that the content will include international case studies and examples to illustrate these concepts.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 3.75,
+    "reasoning": "- CORRECTNESS: The answer contains a factual error by stating that the Italian authors have taught in multiple countries including the United States, Canada, and Switzerland. The source context does not provide any information about the authors' teaching locations. Therefore, this part of the answer is incorrect.\n- COMPLETENESS: The answer covers the key points needed to address the question, such as the international perspective of the book and how it influences the content. However, it could have elaborated more on the specific ways the international nature of the book impacts the content and examples.\n- GROUNDEDNESS: The answer introduces information about the authors' teaching locations, which is not present in the source context. This addition is not grounded in the provided context.\n- ACADEMIC_TONE: The language used in the answer is appropriate for university-level writing, using precise and academic prose without any casual or inappropriate elements.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_081527_bcd0ba",
+  "timestamp": "2026-06-10T08:15:27",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "System calls and kernel mode",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_39.pdf]\nkerne l must arrange that a processor switches fro m user mode to kernel mode (and \nback); 2) the kernel and devices must coordinate their parallel activitie s; an d 3) the \nkerne l must understand th",
+      "[SEED from source_39.pdf]\nSystem s calls , exceptions, an d interrupts \nWith a system call a user program can as k for an operating system service , as we saw \nat the end o f the last chapter . The term exception refers to an",
+      "[NEIGHBOUR from source_5.pdf]\n•Executive: Contains the base OS services, such as memory management, process\nand thread management, security, I/O, and interprocess communication.\n•Kernel: Controls execution of the processor(s). The"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are mostly about kernel functions and system calls, which are directly related to the learning objective. However, they do not explicitly mention switching between modes or coordination, so relevance is 3. The chunks provide some useful information about system calls and kernel responsibilities, but they lack details on how the kernel manages mode transitions or device coordination, so sufficiency is 3. There is moderate noise: Chunk 1 ends abruptly with incomplete sentences, and Chunk 2 introduces exceptions without linking them to the objective. Noise score is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of a system call in an operating system?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the primary purpose of a system call, which is directly stated in the source: \"a user program can ask for an operating system service.\" This is a straightforward recall of a basic concept, so it is completely answerable from the context alone (faithfulness 5). The question is clear and unambiguous (clarity 5). It is an easy recall question matching the requested difficulty (difficulty_alignment 5). The question asks for the primary purpose, which is a recall task (type_alignment 5). The question does not reference the passage explicitly (standalone_quality 5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A system call allows a user program to request an operating system service. When a user program invokes a system call, the processor switches from user mode to kernel mode, enabling the kernel to perform privileged operations like memory management or process scheduling. This mechanism ensures that sensitive tasks are handled securely and efficiently by the kernel.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that a system call allows a user program to request an OS service, which aligns with the source's definition. It also explains the mode switch and mentions memory management and process scheduling, though it does not explicitly state that the kernel handles these tasks. The answer is mostly grounded in the context, as it does not introduce unsupported concepts like interprocess communication. The tone is academic but uses bullet points, which is acceptable for a short answer. Overall, the answer is largely correct and complete, with minor omissions and a slight inconsistency in structure.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131005_51105a",
+  "timestamp": "2026-05-16T13:10:05",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "ACID properties in database transactions",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_31.pdf]\nimplicitly carried out after each commit or abort, to render well-formed allthe transactional computations. From now on, we will assume that all theprograms for the modiﬁcation of the contents of a da",
+      "[SEED from source_31.pdf]\nis diVerent from the concept of transaction that a user could have. For the\nsystem, a transaction is a unit of execution characterized by \nacid  properties.\nFor the user, a transaction is any interact",
+      "[NEIGHBOUR from source_36.pdf]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.67,
+    "reasoning": "The first chunk discusses the acid properties in the context of database transactions, specifically focusing on how they are implicitly carried out after each commit or abort. This directly relates to the learning objective of understanding acid properties in database transactions. The second chunk defines acid properties as a system concept for transactions, which also aligns with the learning objective. However, both chunks provide only brief mentions without delving into the specific properties (atomicity, consistency, isolation, durability). The third chunk is completely unrelated to the learning objective, discussing normalization techniques rather than acid properties.\n\nThe chunks are partially relevant as they touch upon the topic but lack detailed information about the acid properties themselves. There is insufficient information to generate a comprehensive exam question without additional context or details. The third chunk introduces significant noise as it is entirely off-topic.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the term \"acid properties\" refer to in the context of database transactions?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about \"acid properties\" in the context of database transactions. This can be directly answered using the provided source context, which explicitly mentions \"acid properties\" in relation to database transactions. Therefore, it is completely answerable from the context alone, making it highly faithful to the source material.\n\nThe question is clear and unambiguous, asking for a specific term's definition within a given context. It is phrased precisely and easily understood, earning a high clarity score.\n\nGiven that the question requires recalling a specific term and its meaning, it aligns well with the requested difficulty level of \"easy.\" The term \"acid properties\" is a fundamental concept in database transactions, making this a basic recall task rather than a more complex conceptual or application-based question.\n\nThe question type requested is \"recall,\" which perfectly matches the nature of the question. It asks for a definition or statement of a term, fitting the recall category.\n\nThe question stands alone and does not reference the context or passage directly. It can be understood and answered without needing to refer back to the source material, making it self-contained.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The term \"acid properties\" refers to the four essential characteristics that transactions in a database management system must exhibit: atomicity, consistency, isolation, and durability. These properties ensure that transactions are processed reliably and maintain the integrity of the database, making them crucial for the proper functioning of database systems.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer correctly identifies the four acid properties (atomicity, consistency, isolation, and durability) as the essential characteristics of database transactions. This aligns with the general understanding of acid properties in database management systems, which is consistent with the context provided.\n- COMPLETENESS: The answer covers all key points necessary to address the question, including all four acid properties. It provides a comprehensive and accurate response without omitting any important details.\n- GROUNDEDNESS: The answer does not introduce any information not present in the context. It directly relates to the concept of acid properties in the context of database transactions, which is consistent with the provided sources.\n- ACADEMIC_TONE: The language used in the answer is precise and academic, suitable for a university-level examination. It avoids casual or inappropriate tones and uses appropriate academic prose.",
+    "parse_status": "ok"
+  }
+}

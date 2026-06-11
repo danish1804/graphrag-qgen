@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_185951_7ada5f",
+  "timestamp": "2026-05-16T18:59:51",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Cache efficiency in database systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n10.2.2 Local independence and co-operation 355\n10.2.3 Data fragmentation and allocation 356\n10.2.4 Transparency levels 358\n10.2.5 Classiﬁcation of transactions 360\n10.3 Technology of distributed datab",
+      "[SEED from source_36.pdf]\nhand, vertical partitioning generates entities with fewer attributes. They cantherefore be translated into physical structures from which we can retrieve agreat deal of data with a single access. Part",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not contain any direct discussion of cache efficiency in database systems. Instead, they cover topics such as tree structures, query optimization, and distributed database technologies. While these topics are related to database systems, they do not specifically address cache efficiency, which is the focus of the learning objective. Therefore, the chunks are largely unrelated to the objective.\n\nThere is insufficient information in the chunks to generate a good exam question on cache efficiency. The chunks discuss various aspects of database systems but do not provide the necessary details about cache efficiency, such as how it works, its importance, or how it affects performance.\n\nThe chunks are mostly free from irrelevant content, as they primarily discuss database-related topics. However, none of them directly address the specific learning objective of cache efficiency, so they contain significant noise relative to the objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary advantage of using vertical partitioning in distributed databases, and how does it affect the retrieval process?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question directly relates to the content provided in the source context, specifically the statement about vertical partitioning. It can be fully answered using the given information without requiring any external knowledge.\n- CLARITY: The question is clear and unambiguous. It asks for a specific advantage of vertical partitioning and how it affects the retrieval process, which is straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept rather than just recalling a fact, making it suitable for a medium-level difficulty question.\n- TYPE_ALIGNMENT: The question asks for an explanation of the advantages and effects of vertical partitioning, which aligns perfectly with the conceptual type.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Vertical partitioning in distributed databases offers a significant advantage by generating entities with fewer attributes, thereby facilitating efficient data retrieval. This process allows for the creation of physical structures where related but distinct subsets of attributes are stored separately, enabling the retrieval of substantial amounts of data through a single access operation. Consequently, this approach optimizes the performance of distributed database systems by reducing the complexity and improving the efficiency of query execution across nodes.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.5,
+    "reasoning": "- CORRECTNESS: The answer is largely correct, aligning with the source context which mentions that vertical partitioning generates entities with fewer attributes, leading to efficient data retrieval. However, the statement \"Consequently, this approach optimizes the performance of distributed database systems by reducing the complexity and improving the efficiency of query execution across nodes\" is not directly supported by the given context, which focuses more on the reduction of attribute count rather than query execution complexity.\n- COMPLETENESS: The answer covers the primary advantage of vertical partitioning and its effect on the retrieval process, addressing the key points of the question. It mentions the reduction in attribute count and the ability to retrieve large amounts of data with a single access, which are important aspects.\n- GROUNDEDNESS: The answer is mostly grounded in the provided context, focusing on the reduction of attribute count and the benefits of vertical partitioning. However, the part about optimizing performance and query execution across nodes is not explicitly mentioned in the context, so it introduces some unsupported information.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing, presenting the information in a clear and concise manner without using bullet points or informal language.",
+    "parse_status": "ok"
+  }
+}

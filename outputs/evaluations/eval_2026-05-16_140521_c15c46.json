@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_140521_c15c46",
+  "timestamp": "2026-05-16T14:05:21",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "File systems and directory structures",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\njust proposed is unmanageably large, even for a book devoted to file systems. In thisbrief survey, we will outline five fundamental organizations. Most structures used inactual systems either fall int",
+      "[SEED from source_5.pdf]\nmore records are stored in each physical block. Each block on disk contains a pointerto the next block.The insertion of new records involves pointer manipulation but doesnot require that the new recor",
+      "[NEIGHBOUR from source_5.pdf]\n•Background\n•Processes\n•Memory\n•Scheduling\n•Input/output and files\n•Embedded systems\n•Security\n•Distributed systems\nThe book includes a number of pedagogic features, including the use of animation and"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "For RELEVANCE, Chunk 1 mentions file systems but only briefly discusses them, which is somewhat related to the learning objective. However, it does not provide specific details about file systems or directory structures. Chunk 2 also touches on file systems but focuses more on record storage and block pointers, which is tangentially related but not directly to the learning objective. Chunk 3 is completely unrelated as it lists various topics without any mention of file systems or directory structures. Therefore, the chunks are only partially relevant to the learning objective.\n\nFor SUFFICIENCY, neither chunk provides enough detailed information about file systems and directory structures to generate a good exam question. Chunk 1 and 2 offer some context but lack specific details necessary for a comprehensive understanding of the topic. Chunk 3 offers no relevant information at all. Thus, the chunks are insufficient to generate a good exam question.\n\nFor NOISE, both Chunk 1 and 2 contain some relevant information amidst general discussions, making them moderately noisy. Chunk 3 is entirely irrelevant and thus has high noise levels.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary advantage of an indexed sequential file over a sequential file?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 3.4,
+    "reasoning": "- FAITHFULNESS: The question about the primary advantage of an indexed sequential file over a sequential file is not directly addressed in the provided source context. The context discusses file system organization and block pointers but does not compare indexed sequential files with sequential files. Therefore, this question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous. It asks for a specific comparison between two types of file organization, which can be understood without additional context.\n- DIFFICULTY_ALIGNMENT: The question is asking for a basic understanding of a concept, which aligns with the \"easy\" difficulty level. However, it requires some knowledge of file organization concepts, which might make it slightly more challenging than purely recall-based questions.\n- TYPE_ALIGNMENT: The question is asking to recall a specific advantage, which fits the \"recall\" type requested.\n- STANDALONE_QUALITY: The question stands on its own and does not reference the context explicitly. However, it implicitly depends on the reader's understanding of file organization concepts, which is not provided in the context.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "An indexed sequential file offers faster search capabilities compared to a sequential file by maintaining an index, allowing for direct access to records based on key values, whereas a sequential file requires linear search through all records to locate a specific entry.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "Correctness: The answer is factually correct. Indexed sequential files do offer faster search capabilities than sequential files by using an index for direct access, which contrasts with the linear search required in sequential files. This aligns with the general understanding of file organization techniques.\n\nCompleteness: The answer covers the key points needed to address the question. It highlights the primary advantage of indexed sequential files over sequential files, which is the speed of search due to the index, and mentions the contrast with sequential files' need for linear search.\n\nGroundedness: The answer is entirely grounded in the provided context. There are no hallucinations or unsupported additions. The context discusses file system organizations and indexing, which supports the answer's content.\n\nAcademic Tone: The language used is precise and appropriate for a university-level writing, though it could be more formal. The answer avoids casual language and uses prose rather than bullet points, making it suitable for an academic setting.",
+    "parse_status": "ok"
+  }
+}

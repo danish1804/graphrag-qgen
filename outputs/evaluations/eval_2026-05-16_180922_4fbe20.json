@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_180922_4fbe20",
+  "timestamp": "2026-05-16T18:09:22",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Software design patterns for neural network systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nBuschmann, F., Meunier, R., Rohnert, H. and Sommerl ad, P . (1996). Pattern-oriented Software\nArchitecture Volume 1: A System of Patterns. New Yo rk: John Wiley & Sons.\nChapter 6IExercises 175\nClement",
+      "[SEED from source_22.pdf]\nProwell, S. J., Trammell, C. J., Linger, R. C. and Poore, J. H. (1999). Cleanroom Software Engineering:\nTechnology and Process . Reading, Mass.: Addison-Wesley.\nWhittaker, J. W. (2002). How to Break S",
+      "[SEED from source_22.pdf]\nby static analysis methods’. Proc. IEEE Conf. on Dependable Systems and Networks  (DSN’2003) , \nSan Francisco, Calif.: IEEE Computer Society, 75–9.\nPfleeger, C. P . and Pfleeger, S. L. (2007). Securit",
+      "[NEIGHBOUR from source_22.pdf]\nrequired.\n6.3 Architectural patterns\nThe idea of patterns as a way of presenting, sharin g, and reusing knowledge about\nsoftware systems is now widely used. The trigger fo r this was the publication o",
+      "[NEIGHBOUR from source_22.pdf]\nCohn, M., 59, 80, 631, 647\nColeman, A., 24\nColeman, D., 247, 259\nCollins-Sussman, B., 204, 704\nColyer, A., 566, 567, 584, 589Connaughton, C., 678\nConradi, R., 729\nConstantinos, C., 586, 589\nCooling, J"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly address software design patterns for neural network systems. Instead, they discuss general software architecture and engineering books, which are only tangentially related to the learning objective. Therefore, the relevance score is 1.\n\nWhile the chunks contain some information about software patterns, they do not provide specific details about neural network system design patterns. Thus, there is insufficient information to generate a good exam question, leading to a sufficiency score of 1.\n\nThe chunks are mostly about references and authors rather than the content of the books. This results in a high level of noise, with scores of 1 for noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which author co-published a book on organizational patterns of agile software development alongside J.H. Coplien?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 3
+    },
+    "overall": 3.0,
+    "reasoning": "- FAITHFULNESS: The question cannot be fully answered using only the provided source context. The source does not mention any book on organizational patterns of agile software development co-published with J.H. Coplien. This information would require additional knowledge beyond the given context.\n- CLARITY: The question is clear and unambiguous. It asks for a specific author who co-published a book with J.H. Coplien, which is easily understood.\n- DIFFICULTY_ALIGNMENT: The difficulty level is slightly off target. While the question requires some knowledge that isn't present in the context, it doesn't require deep analysis or complex understanding. It is more of a recall or basic understanding type of question.\n- TYPE_ALIGNMENT: The question is conceptual in nature as it requires explaining the relationship between authors and their publications, which involves understanding and comparing the information provided.\n- STANDALONE_QUALITY: The question references the context by mentioning J.H. Coplien and the need to identify another author who co-published with him, thus implicitly depending on the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Nord R. B. co-published a book on organizational patterns of agile software development with J.H. Coplien. This collaboration resulted in the publication \"Organizational Patterns of Agile Software Development\" in 2004, reflecting their joint effort in advancing methodologies for agile software development practices.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 1
+    },
+    "overall": 1.0,
+    "reasoning": "- CORRECTNESS: The answer states that Nord R. B. co-published a book with J.H. Coplien, but there is no mention of Nord R. B. in the given context. The context does not provide any information about such a co-publication. Therefore, the answer contains clear factual errors.\n- COMPLETENESS: The answer attempts to address the question by providing a name and a book title, but it fails to do so accurately based on the given context. It also lacks the necessary supporting details such as the year of publication and the actual authors' names.\n- GROUNDEDNESS: The answer introduces information (Nord R. B.) that is not present in the provided context. There is no evidence in the context to support the claim about the co-publication.\n- ACADEMIC_TONE: The answer is presented in a straightforward manner without using academic language or referencing the sources appropriately. It does not follow the academic tone expected in university-level writing.",
+    "parse_status": "ok"
+  }
+}

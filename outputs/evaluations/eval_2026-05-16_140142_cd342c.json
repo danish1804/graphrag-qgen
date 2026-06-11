@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_140142_cd342c",
+  "timestamp": "2026-05-16T14:01:42",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "CPU scheduling algorithms",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nSpringer-Verlag, 1993.\nLIU73 Liu, C., and Layland, J. “Scheduling Algorithms for Multiprogramming in a\nHard Real-time Environment.” Journal of the ACM, February 1973.\nLIU00 Liu, J. Real-Time Systems.",
+      "[SEED from source_5.pdf]\nRaton, FL: CRC Press, 2000.\nRAMA94 Ramamritham, K., and Stankovic, J. “Scheduling Algorithms and OperatingSystems Support for Real-Time Systems.” Proceedings of the IEEE, January\n1994.\nRASH88 Rashid,",
+      "[NEIGHBOUR from source_5.pdf]\n2.3 / MAJOR ACHIEVEMENTS 67\nWhat is needed to tackle these problems is a systematic way to monitor and\ncontrol the various programs executing on the processor. The concept of the\nprocess provides the"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not contain any direct information about CPU scheduling algorithms. They instead reference academic papers and books that discuss real-time systems and scheduling, but do not specifically focus on CPU scheduling algorithms. Therefore, they are not directly relevant to the learning objective.\n\nThere is insufficient information to generate a good exam question because none of the chunks provide specific details about CPU scheduling algorithms, which would be necessary for crafting a meaningful question.\n\nThe chunks are relatively clean, with no obvious irrelevant or distracting content, though they do not contain the necessary information to meet the criteria for relevance and sufficiency.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following references provides a foundational understanding of CPU scheduling algorithms?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be answered using the provided sources, specifically the references listed. It does not require any additional knowledge beyond what is given.\n- CLARITY: The question is clear and unambiguous. It asks for a specific type of reference that provides foundational understanding, which is easily understood.\n- DIFFICULTY_ALIGNMENT: The question is asking for a basic understanding of CPU scheduling algorithms, which aligns with the \"easy\" difficulty level requested.\n- TYPE_ALIGNMENT: The question asks for a recall of a reference, which fits the \"recall\" type requested.\n- STANDALONE_QUALITY: The question does not reference the context or passage directly and can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The foundational understanding of CPU scheduling algorithms is provided by Liu and Layland's seminal work, \"Scheduling Algorithms for Multiprogramming in a Hard Real-time Environment,\" published in the Journal of the ACM in February 1973. This reference offers a critical analysis of scheduling techniques essential for managing processes in real-time systems.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is fully correct. It accurately identifies Liu and Layland's work as providing a foundational understanding of CPU scheduling algorithms, which aligns with the source context provided.\n- COMPLETENESS: The answer covers the key points needed to fully address the question. It mentions the specific title, authors, publication, and relevance to real-time systems, which are all important aspects.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It does not introduce any additional information that is not supported by the sources given.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, using formal prose without any casual elements or bullet points.",
+    "parse_status": "ok"
+  }
+}

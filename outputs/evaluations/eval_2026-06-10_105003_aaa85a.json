@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_105003_aaa85a",
+  "timestamp": "2026-06-10T10:50:03",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Unit testing strategies for database operations",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\nand O’Neil [63]. Date’ s book [33], now in its sixth edition, is very popular in\nthe practitioners’ world, since it gives a simple description of manyimportant aspects. Ullman [ 88] oVers an integrate",
+      "[SEED from source_7.pdf]\ncoverage of database systems is provided by [O’Neil and O’Neil (2000)], [Ramakrish-\nnan and Gehrke (2002)], [Date (2003)], [Kifer et al. (2005)], [Garcia-Molina et al.\n(2008)], and [Elmasri and Navath",
+      "[SEED from source_7.pdf]\n[Kifer et al. (2005)] M. Kifer, A. Bernstein, and P. Lewis, Database Systems: An Application\nOriented Approach, Complete Version , 2nd edition, Addison Wesley (2005).\n[O’Neil and O’Neil (2000)] P. O’N",
+      "[NEIGHBOUR from source_49.pdf]\npages 16–25.\n[Knuth (1973)] D. E. Knuth, The Art of Computer Programming, Volume 3 , Addison Wesley,\nSorting and Searching (1973).\n[O’Neil and Quass (1997)] P. O’Neil and D. Quass, “Improved Query Per",
+      "[NEIGHBOUR from source_49.pdf]\ntrol in main-memory databases. The ABA problem with latch-free data structures as\nwell as solutions for the problem are discussed in [Dechev et al. (2010)].\nBibliography\n[Bayer and Schkolnick (1977)]"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to unit testing strategies for database operations. They discuss general database system books and papers, which may be tangentially related but do not focus on testing methods or techniques. There is insufficient information to generate a specific exam question about unit testing. The noise level is moderate because some chunks contain useful references, but many are just bibliographic entries without content.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, which does not contain actual content about unit testing strategies for database operations but instead contains bibliographic references and citations, I cannot generate a valid exam question.\n\nThe context only shows metadata, references, author names, publication information, and citation keys. It lacks substantive content about unit testing strategies or any other specific database topic.\n\nTo generate a meaningful exam question aligned with the stated learning objective (\"Unit testing strategies for database operations\"), I would need actual course material content that explains unit testing approaches for database operations.\n\nPlease provide the actual course content text rather than just bibliographic metadata so I can generate an appropriate exam question.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The question asks about unit testing strategies for database operations, but the provided context contains only bibliographic references and metadata, none of which discuss unit testing. Therefore, the question cannot be answered using only the given context, making it unfaithful (1). The question is also unclear because it assumes knowledge of unit testing strategies that are not present in the source. It is not medium difficulty as requested, but impossible to answer at all. The question type is conceptual, but the content is purely bibliographic, so it does not match the requested type. Finally, the question explicitly references \"the context,\" making it dependent on the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The context provides bibliographic references and metadata for several database system textbooks, including works by O'Neil, Ramakrishnan, and Date. However, it does not contain any content about unit testing strategies for database operations. Therefore, a valid exam question would require a passage containing such content, not just references. The source material lacks the necessary details to formulate an appropriate question.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 1,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that the context lacks content about unit testing strategies, making it impossible to formulate a valid exam question. It also notes that the source material is bibliographic metadata rather than substantive content. The answer is factually correct in stating this limitation, but it does not provide a specific exam question, which is required. The answer is incomplete because it does not offer a hypothetical question based on the given context. It is entirely grounded in the provided metadata, as no hallucinations are present. The tone is academic, using prose rather than bullet points, though it could be more precise. Overall, the answer is mostly correct and grounded but lacks completeness and could be more precise in its academic tone.",
+    "parse_status": "ok"
+  }
+}

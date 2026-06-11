@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_131626_7bdf74",
+  "timestamp": "2026-05-16T13:16:26",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "B-tree and hash indexing",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\n15.4.9 Summary of Sort-Based A lg o rith m s .................................. 730\n15.4.10Exercises for Section 1 5 .4 ..................................................... 730\n15.5 Two-Pass Algorith",
+      "[SEED from source_49.pdf]\nexactly as for the sort-based, two-pass algorithm for 6 .\nThe number of disk I/O ’s is also similar to that of the sort-based algorithm. \nWe read each block of R once as we hash its tuples, and we wri",
+      "[NEIGHBOUR from source_36.pdf]\nargument of the \nwhere  clause. If, however, the conditions have to refer to\nvalues that are the result of aggregations, we have to use a new construct, the\nhaving  clause.\nThe having  clause describe"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks provided do not contain any information related to B-trees or hash indexing. They instead discuss sorting algorithms and related exercises, which are not aligned with the learning objective. Therefore, they are completely unrelated to the objective.\n\nThe chunks do not provide any information about B-trees or hash indexing, making it impossible to generate a meaningful exam question based on these chunks alone. Hence, they are insufficient for the purpose.\n\nWhile the chunks are brief, they do not contain any distracting or irrelevant content, as they are focused on topics not related to the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What clause is used in SQL queries to apply conditions at the end of the execution of a query that uses the GROUP BY clause?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "- FAITHFULNESS: The generated question does not align with the provided source context. The source context discusses disk I/O operations and hash algorithms, while the question asks about SQL clauses. Therefore, this question cannot be fully answered using only the given source context.\n- CLARITY: The question is clear and unambiguous. It asks specifically about which SQL clause is used for applying conditions after a GROUP BY clause, which is easily understood.\n- DIFFICULTY_ALIGNMENT: The question is straightforward and requires basic recall, making it suitable for an easy difficulty level.\n- TYPE_ALIGNMENT: The question fits the recall type as it asks to state or list the correct SQL clause, which is a simple recall task.\n- STANDALONE_QUALITY: The question stands alone and does not reference any specific part of the provided context, making it a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The having clause is used in SQL queries to apply conditions at the end of the execution of a query that uses the GROUP BY clause. This clause specifies the criteria that each subset of rows forming part of the result must satisfy after the aggregation operations have been executed.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is fully correct. It accurately describes the purpose of the HAVING clause in SQL queries, which applies conditions at the end of the execution of a query using the GROUP BY clause after aggregation operations.\n- COMPLETENESS: The answer covers all key points needed to fully address the question. It mentions the application of conditions after aggregation and the role of the HAVING clause in specifying these criteria.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. It does not introduce any information not present in the context, such as the specific details about the sort-based algorithms or disk I/Os.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, using formal prose without any casual elements or bullet points.",
+    "parse_status": "ok"
+  }
+}

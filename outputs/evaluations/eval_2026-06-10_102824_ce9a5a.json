@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_102824_ce9a5a",
+  "timestamp": "2026-06-10T10:28:24",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Database driven application architecture",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nAppendices cover three popular database systems: Microsoft Access, \nibm\ndb2 and Oracle. \nxviii Preface\nA number of features make this book unique.\n•We make a clear distinction between the basic materi",
+      "[SEED from source_49.pdf]\nmanagement. We describe the architecture of the data warehouse, the starand snowﬂake schemas used for data representation within data warehousesand the new operators for data analysis (including drill",
+      "[SEED from source_49.pdf]\nAn international textbook\nMaking the book reﬂect the international nature of the subject has been achallenge and an opportunity. This book has Italian authors, who have also\nxxii Preface\ngiven regular",
+      "[NEIGHBOUR from source_14.pdf]\n4 \nChapter  \nPublished by \nMcGraw-Hill Publishing Company \nShoppenhangers Road, Maidenhead, Berkshire, sl6 2ql, England \nTelephone: + \n44 \n( \n0 \n)  \n1628 502500 \nFax: + \n44 \n( \n0 \n) \n 1628 770224 \nWeb",
+      "[NEIGHBOUR from source_14.pdf]\nThe  \nloc \n data for this book has been applied for and may be obtained from the\nLibrary of Congress, Washington,  \nd.c \n. \nAuthors’ Web site address: http://www.mcgraw-hill.co.uk/atzeni \nPublishing D"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about database systems and data warehousing, which are tangential to the core learning objective of database-driven application architecture. Only Chunk 1 briefly mentions database systems, but does not explain their role in applications. The other chunks discuss data warehouses and international authorship, which are not directly related. Thus, relevance is low. Sufficiency is also low because no chunk provides a clear explanation of how databases drive application architecture. Noise is moderate; while most chunks contain some relevant material, they are filled with extraneous details like publisher contact info and appendices.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary purpose of including appendices on Microsoft Access, IBM db2, and Oracle in this database textbook?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the purpose of appendices, which can be answered directly from the source context. It is clear and unambiguous, requiring no outside knowledge. The difficulty is medium because it involves explaining a concept rather than simple recall. The question is conceptual, matching the requested type. It is self-contained, as it does not reference the passage explicitly. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The appendices on Microsoft Access, IBM db2, and Oracle serve to provide practical guidance on specific database management systems, enabling readers to apply theoretical concepts to real-world tools. By covering these popular systems, the book offers hands-on experience with industry-standard software, which enhances understanding of database technologies. Additionally, the inclusion of such appendices supports the book's goal of reflecting the international nature of the subject, as it caters to diverse user needs across different regions.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.5,
+    "reasoning": "The answer correctly identifies that the appendices provide practical guidance on specific DBMSs, enhancing application of theory. It also notes the international focus by mentioning Italian authors. However, it incorrectly states that the appendices support the book's international nature, when the context actually mentions making the book reflect internationalism. The answer is mostly grounded but includes a factual error. The tone is academic but uses some bullet points, which is acceptable for a summary. Overall, the answer is largely correct and complete, but contains a minor inaccuracy and uses a mix of prose and list items.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_093546_9170d0",
+  "timestamp": "2026-06-10T09:35:46",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Parallel processing in neural network training",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_65.pdf]\nRMIT Classification: TrustedRMIT Classification: Trusted\nSummaryPerceptronsProcessing & TrainingMultiple perceptrons for classificationMulti-Layer Perceptrons (MLP)Feed-Forward processingTraining via",
+      "[SEED from source_53.pdf]\nParallel processing capability:  \nArtificial neural networks have a numerical value that can perform more than one task simultaneously.  \n \nStoring data on the entire  network:  \nData that is used in",
+      "[SEED from source_53.pdf]\nCapability to work with incomplete knowledge:  \nAfter ANN training, the information may produce output even with inadequate data. The loss of",
+      "[NEIGHBOUR from source_77.pdf]\n4\n4.3Support Vector Machines 53\n4.4Multi-class Classification (Multinomial Regression) 55\n4.5Regularization with SVM 55\n4.6Linear Classification in Python Programming 56\n5 Exploring “Data Science” via",
+      "[NEIGHBOUR from source_77.pdf]\nunsupervised, deep learning, and reinforcement learning as a foun-\ndation for further study or independent work in ML, AI, and data\nscience. Topics include linear models for classification and regress"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly irrelevant to parallel processing in neural network training. Chunk 1 briefly mentions MLP feed-forward processing, which is tangential. Chunk 2 discusses parallel processing capability but does not explain how it relates to training. Chunk 3 covers incomplete knowledge handling, which is not directly about parallelism. Chunk 4 and 5 are unrelated to the topic. Thus, relevance is low. Sufficiency is also low because none of the chunks provide detailed information on parallel processing techniques or their application in training. Noise is moderate since some chunks contain useful information (e.g., feed-forward processing), but much of the content is off-topic.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how artificial neural networks handle incomplete knowledge during training and inference, and describe what characteristic allows them to produce output even when data is missing.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about handling incomplete knowledge, which is directly stated in the source: \"After ANN training, the information may produce output even with inadequate data.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for an explanation of a specific property, so clarity is 5. The difficulty level is medium because it requires understanding a concept rather than simple recall, matching the request. The question type is conceptual, asking for an explanation, which fits perfectly. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Artificial neural networks can produce output even when data is missing because they are trained on incomplete knowledge. During training, the network learns patterns from partial data, allowing it to generalize to new instances where some inputs are unknown. This capability stems from the network's ability to represent complex relationships between features, which enables it to infer missing values based on learned correlations. Thus, ANNs are robust against data gaps, making them suitable for real-world scenarios where complete information is unavailable.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly states that ANNs produce output with incomplete data by generalizing from partial training, which aligns with the source's mention of handling incomplete knowledge. It also notes that ANNs learn patterns from partial data, matching the source's description of training on incomplete knowledge. However, the answer does not explicitly reference the source material, so it is somewhat ungrounded. The tone is academic but uses bullet points, which is acceptable for a short answer. Overall, the answer is mostly correct and grounded, but could be more precise.",
+    "parse_status": "ok"
+  }
+}

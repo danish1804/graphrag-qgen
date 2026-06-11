@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_072527_ba0768",
+  "timestamp": "2026-06-10T07:25:27",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "SQL joins — inner and outer",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_13.pdf]\nSELECT  column-list\nFROM  table1 FULL [OUTER] JOIN table2 ON join-condition\nFor example, the following query lists the product code, vendor code, and vendor name for all products and includes \nall pro",
+      "[SEED from source_13.pdf]\nwhich then executes until the last outer query finishes (the first SQL statement in the code).Cengage Learning © 2015FIGURE\n8.13Another example of an inline subquery\nI_C8618_ch08_ptg01_hr_322-411.indd",
+      "[NEIGHBOUR from source_14.pdf]\n4.4.4 Views in queries 135\n4.5 Access control 136\n4.5.1 Resources and privileges 136\n4.5.2 Commands for granting and revoking privileges 137\n4.6 Use of sql in programming languages 138\n4.6.1 Integrati"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are directly about SQL joins, which matches the learning objective. Chunk 1 provides a clear definition of full outer join and an example, while Chunk 2 discusses inline subqueries, which is not directly related. Chunk 3 is about views and access control, also unrelated. Thus, relevance is 3 (some chunks are relevant, others are not). Sufficiency is 3 because the example in Chunk 1 covers the concept, but the other chunks provide no additional useful information. Noise is 5 because all chunks contain only relevant content, with no distracting material.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the result of executing a FULL OUTER JOIN between two tables, and how does it differ from an INNER JOIN?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the result of a FULL OUTER JOIN and how it differs from an INNER JOIN. This can be answered using the definition of FULL OUTER JOIN, which returns all rows from both tables, including unmatched rows with NULLs. The difference from INNER JOIN is that INNER JOIN only returns matching rows, while FULL OUTER JOIN includes all rows from both tables. The question is clear and unambiguous, so clarity is high. It is a recall question asking for definitions, so difficulty is easy. The question type is recall, which matches the request. The question is self-contained and does not reference the source, so standalone quality is high.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A FULL OUTER JOIN combines rows from both tables, including all rows from each table regardless of whether there is a match, with NULL values for unmatched rows. This differs from an INNER JOIN, which returns only rows where there is a match on the join condition, omitting any unmatched rows from either table.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer correctly states that a FULL OUTER JOIN includes all rows from both tables, with NULLs for unmatched rows, while an INNER JOIN only matches. It accurately contrasts the two types. The answer is grounded in the source context, which discusses JOIN operations. The language is precise and academic, using proper terminology without bullet points. However, the answer could be more concise by omitting the example about inline subqueries, which is not directly relevant to the question.",
+    "parse_status": "ok"
+  }
+}

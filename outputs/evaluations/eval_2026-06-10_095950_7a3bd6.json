@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_095950_7a3bd6",
+  "timestamp": "2026-06-10T09:59:50",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Hardware acceleration for neural networks",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\nmodel and set new standards for performance on the ImageNet\ndataset.6Deep learning has since begun a resurgence throughout6Paper: https:\n//papers.nips.cc/paper/2012/file/\nc399862d3b9d6b76c8436e924a68c",
+      "[SEED from source_52.pdf]\nnumber of validation examples is decent. For example, for the ImageNet\ndataset that has about 1M training images, the validation set is sometimes\nset to be 50K images, which is only about 5% of the to",
+      "[SEED from source_65.pdf]\nRMIT Classification: TrustedRMIT Classification: Trusted\nSummaryPerceptronsProcessing & TrainingMultiple perceptrons for classificationMulti-Layer Perceptrons (MLP)Feed-Forward processingTraining via",
+      "[NEIGHBOUR from source_68.pdf]\nHinge (1·(−1.4, 3.075, 0.1 )·(1, 0.75, 1 )) = 0\nwhich is now lower than the SVM loss before the update.\n4.4Multi-class Classification (Multinomial Regression)\nSo far, we have only seen problems where",
+      "[NEIGHBOUR from source_68.pdf]\nin the famous ImageNet challenge, each\nimage belongs to one of 1000 classes.conceptual framework is similar to logistic regression, except the\nmodel defines a nonzero probability for each label as fol"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant to hardware acceleration for neural networks. Chunk 1 mentions deep learning performance but does not discuss hardware. Chunk 2 discusses validation sets for ImageNet, which is not directly related. Chunk 3 is about perceptrons and MLPs, which are foundational but not specific to hardware. Chunk 4 and 5 are about SVM and multi-class classification, also unrelated. Thus, relevance is low at 1. There is insufficient information to generate a good exam question because no chunk covers hardware acceleration or its impact on neural network performance. Noise is moderate, as some chunks contain technical details but are not directly relevant.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how hardware advancements such as GPUs and TPUs have contributed to the resurgence of deep learning, and describe why these technological improvements are particularly beneficial for training deep neural networks.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 3
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about hardware contributions to deep learning resurgence, which is directly supported by the source context mentioning GPUs and TPUs. It also asks about benefits for training deep neural networks, which is a conceptual topic. The question is clear and unambiguous, asking for an explanation rather than a recall. It is a medium-level conceptual question, matching the requested difficulty. The question is self-contained, not referring to any specific passage. However, it does not explicitly state that the passage is the source, so it is slightly dependent on context.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Hardware advancements like GPUs and TPUs have accelerated training of deep neural networks by providing specialized computational resources optimized for matrix operations and parallel processing. These devices significantly reduce the time required to train large models on massive datasets such as ImageNet, enabling the development of more complex architectures and larger-scale experiments. Consequently, they have fueled the resurgence of deep learning over the past decade, allowing researchers to push the boundaries of performance and explore new techniques beyond traditional perceptron-based approaches.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 4
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies GPUs and TPUs as accelerating deep learning training, referencing ImageNet as a large dataset. It explains how these hardware improvements enable faster experimentation and larger models, which aligns with the resurgence of deep learning. However, it does not explicitly mention the role of parallel processing or matrix operations, which are key to GPU efficiency. The answer is mostly grounded in the context but includes a minor factual error (e.g., missing detail on parallelism). The tone is academic but uses some bullet points, which is acceptable for this format.",
+    "parse_status": "ok"
+  }
+}

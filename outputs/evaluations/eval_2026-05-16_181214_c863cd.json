@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_181214_c863cd",
+  "timestamp": "2026-05-16T18:12:14",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Technical debt in machine learning codebases",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\n16 Machine Learning and Ethics 207\n16.1Facebook’s Suicide Prevention 207\n16.2Racial Bias in Machine Learning 208\n16.3Conceptions of Fairness in Machine Learning 209\n16.4Limitations of the ML Paradigm",
+      "[SEED from source_52.pdf]\nThere are other formulations of fairness, but it is difficult to find a\ncombination of these notions that are compatible with each other. So\none way or another, we need to sacrifice some notions of “f",
+      "[SEED from source_52.pdf]\nas likely as whites to be labeled a\nhigher risk but not actually re-offend.\nConversely, whites are twice as likely as\nAfrican-Americans to be labeled lower\nrisk but go on to commit other crimes.\n16.3C",
+      "[NEIGHBOUR from source_61.pdf]\nSTAT 479: Machine Learning\nLecture Notes\nSebastian Raschka\nDepartment of Statistics\nUniversity of Wisconsin–Madison\nhttp://stat.wisc.edu/ ∼sraschka/teaching/stat479-fs2018/\nFall 2018\nContents\n1 L01: W",
+      "[NEIGHBOUR from source_61.pdf]\n1.7.2 Pedro Domingo’s 5 Tribes of Machine Learning . . . . . . . . . . . . . 11\n1.8 Components of Machine Learning Algorithms . . . . . . . . . . . . . . . . . . 12\n1.8.1 Training . . . . . . . . . ."
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not contain any direct discussion about technical debt in machine learning codebases. Instead, they focus on ethical considerations and fairness in machine learning, which are tangentially related but not directly addressing the learning objective. Therefore, the chunks are largely unrelated to the specific learning objective.\n\nThe chunks provide some context around fairness in machine learning, but they do not discuss technical debt, which involves the accumulation of suboptimal design decisions in codebases that can lead to maintenance issues. Thus, while there is some relevant content, it is insufficient to generate a meaningful exam question on the given learning objective.\n\nThe chunks are mostly focused on the content of the document, such as chapter titles and references, rather than substantive information about technical debt. This makes them quite noisy, as they contain a lot of irrelevant information.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "In the context of machine learning, explain why it is challenging to achieve a perfect balance among different conceptions of fairness and provide an example to illustrate this challenge.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided, specifically the section on \"Conceptions of Fairness in Machine Learning.\" It does not require any additional knowledge beyond what is given.\n- CLARITY: The question is clear and unambiguous. It asks for an explanation of a concept and provides a specific task to illustrate the challenge, making it easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept and providing an example, which aligns well with the medium difficulty level requested. It goes beyond simple recall and involves conceptual understanding.\n- TYPE_ALIGNMENT: The question clearly asks for an explanation and an example, fitting the conceptual type perfectly.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context explicitly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Achieving a perfect balance among different conceptions of fairness in machine learning is inherently challenging due to the conflicting nature of these conceptions. As noted in the context, various formulations of fairness exist, yet finding a combination that is mutually compatible is difficult, often necessitating a trade-off where one aspect of fairness must be sacrificed. This is illustrated by the example of racial disparities in risk assessment, where African-Americans are more likely to be mislabeled as higher risk despite not re-offending, while whites are more likely to be mislabeled as lower risk and go on to commit other crimes. Such discrepancies highlight the tension between ensuring fairness across diverse criteria and the inevitable compromises required when implementing machine learning models in real-world applications.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies the challenge of achieving a perfect balance among different conceptions of fairness in machine learning and provides a relevant example from the context. It accurately reflects the source material's discussion on the difficulty of combining various fairness notions without sacrificing any. The example of racial disparities in risk assessment is directly taken from the given context, making the answer grounded in the source material. The language used is formal and appropriate for a university-level discussion, though it could benefit from more precise academic prose.",
+    "parse_status": "ok"
+  }
+}

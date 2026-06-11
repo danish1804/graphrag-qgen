@@ -1,0 +1,48 @@
+{
+  "eval_id": "eval_2026-06-10_073831_403f3a",
+  "timestamp": "2026-06-10T07:38:31",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Query execution plans and optimiser",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nindex and materialized view selection, parametric query optimization, and multiquery\noptimization.\nBibliography\n[Graefe (1995)] G. Graefe, “The Cascades Framework for Query Optimization”, Data Engi-\nn",
+      "[SEED from source_8.pdf]\nSystem”, In Proc. of the ACM SIGMOD Conf. on Management of Data (1990), pages 102–111.\n[Graefe (1993)] G. Graefe, “Query Evaluation Techniques for Large Databases”, ACM Com-\nputing Surveys , Volume 25",
+      "[NEIGHBOUR from source_49.pdf]\ndocuments, and eﬃciently computing ranked answers to keyword queries may be found\nin [Manning et al. (2008)].\nBibliography\n[Faerber et al. (2017)] F. Faerber, A. Kemper, P.-A. Larson, J. Levandoski, T"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are directly relevant to query execution plans and optimizers, as they discuss index and materialized view selection, parametric query optimization, and multiquery optimization. However, the second chunk is about system design rather than query evaluation techniques, so it is only partially relevant. The third chunk is about keyword queries and is unrelated. The first chunk provides sufficient information for a question on query optimization techniques, while the second chunk offers some useful details but lacks direct coverage of the objective. The third chunk is completely irrelevant. Overall, the chunks are moderately noisy due to the inclusion of unrelated material.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the relationship between the \"Volcano Optimizer Generator\" and the \"Cascades Framework for Query Optimization\"?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the relationship between two specific query optimization frameworks, which can be answered directly from the source context. It is clear and unambiguous, requiring only recall of the names and concepts. The difficulty is easy because it tests basic recognition rather than deeper understanding. The question type is recall, matching the request. It is standalone, as it does not reference the passage explicitly. Overall, it is a well-formed, easy recall question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The Volcano Optimizer Generator is described in the context as a work by Graefe and McKenna published in the International Conference on Data Engineering in 1993, while the Cascades Framework for Query Optimization is attributed to Graefe in the same year. Both works focus on query optimization techniques, with the Volcano Optimizer Generator being a specific tool for generating optimizers, and the Cascades Framework providing a general approach for evaluating query plans.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies both works by Graefe, but it incorrectly states that the Volcano Optimizer Generator was published in 1993 when the source shows it was published in 1995. The answer also conflates the two works by suggesting they are the same, which is incorrect. It does not mention that the Volcano Optimizer Generator is a specific tool while the Cascades Framework is a general approach. The answer is incomplete because it fails to explain the relationship between the two works. It is not grounded because it includes unsupported information about publication years and conflations. The tone is acceptable but could be more precise and academic.",
+    "parse_status": "failed"
+  }
+}

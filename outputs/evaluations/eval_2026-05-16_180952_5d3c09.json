@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_180952_5d3c09",
+  "timestamp": "2026-05-16T18:09:52",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Software design patterns for neural network systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nBuschmann, F., Meunier, R., Rohnert, H. and Sommerl ad, P . (1996). Pattern-oriented Software\nArchitecture Volume 1: A System of Patterns. New Yo rk: John Wiley & Sons.\nChapter 6IExercises 175\nClement",
+      "[SEED from source_22.pdf]\nProwell, S. J., Trammell, C. J., Linger, R. C. and Poore, J. H. (1999). Cleanroom Software Engineering:\nTechnology and Process . Reading, Mass.: Addison-Wesley.\nWhittaker, J. W. (2002). How to Break S",
+      "[SEED from source_22.pdf]\nby static analysis methods’. Proc. IEEE Conf. on Dependable Systems and Networks  (DSN’2003) , \nSan Francisco, Calif.: IEEE Computer Society, 75–9.\nPfleeger, C. P . and Pfleeger, S. L. (2007). Securit",
+      "[NEIGHBOUR from source_22.pdf]\nrequired.\n6.3 Architectural patterns\nThe idea of patterns as a way of presenting, sharin g, and reusing knowledge about\nsoftware systems is now widely used. The trigger fo r this was the publication o",
+      "[NEIGHBOUR from source_22.pdf]\nCohn, M., 59, 80, 631, 647\nColeman, A., 24\nColeman, D., 247, 259\nCollins-Sussman, B., 204, 704\nColyer, A., 566, 567, 584, 589Connaughton, C., 678\nConradi, R., 729\nConstantinos, C., 586, 589\nCooling, J"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly address software design patterns for neural network systems. Instead, they discuss general software architecture and engineering books, which are not specifically related to neural networks or design patterns within that context. Therefore, the relevance score is 1.\n\nWhile the chunks contain information about software patterns and architectures, they do not provide specific details about neural network design patterns. This means there is insufficient information to generate a good exam question on the given learning objective, leading to a sufficiency score of 1.\n\nThe chunks are mostly about references and authors rather than substantive content, making them quite noisy. Thus, the noise score is 1.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which author co-authored a book on organizational patterns of agile software development alongside John Harrison?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 3
+    },
+    "overall": 2.2,
+    "reasoning": "- FAITHFULNESS: The question cannot be answered using only the provided source context. The source material does not mention any book on organizational patterns of agile software development or any authors co-authoring such a book. Therefore, it requires knowledge not present in the given context.\n- CLARITY: The question is clear and unambiguous. It asks for a specific piece of information that can be understood without further clarification.\n- DIFFICULTY_ALIGNMENT: The difficulty level is too high for a medium-level question. It would require knowledge beyond the scope of the given context, making it more suitable for a higher difficulty level.\n- TYPE_ALIGNMENT: The question is asking for a specific author, which aligns with a recall-based question rather than a conceptual one. However, since the question cannot be answered from the given context, it does not fit the requested type.\n- STANDALONE_QUALITY: The question references the context by implying that there should be a book on organizational patterns of agile software development, which is not mentioned in the given context. This makes it dependent on the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "John Harrison co-authored a book on organizational patterns of agile software development with James O. Coplien. This collaboration resulted in the publication \"Organizational Patterns of Agile Software Development\" in 2004.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 1
+    },
+    "overall": 1.0,
+    "reasoning": "- CORRECTNESS: The answer states that John Harrison co-authored a book with James O. Coplien, which is incorrect based on the given context. There is no mention of John Harrison or any co-authorship with James O. Coplien in the provided sources. Therefore, this answer contains clear factual errors.\n- COMPLETENESS: The answer does not address the key point of identifying the correct authors who co-authored a book on organizational patterns of agile software development. It instead provides incorrect information, thus missing the main requirement of the question.\n- GROUNDEDNESS: The answer introduces information not found in the provided context, such as the names of the co-authors and the title of the book. This is not grounded in the given sources.\n- ACADEMIC_TONE: The answer is presented in a straightforward manner without any academic language or formal structure, which is not appropriate for a university-level response.",
+    "parse_status": "ok"
+  }
+}

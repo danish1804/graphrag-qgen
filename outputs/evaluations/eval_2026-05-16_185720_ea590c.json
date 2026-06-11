@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_185720_ea590c",
+  "timestamp": "2026-05-16T18:57:20",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Real time database systems and OS scheduling",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nDue to the unpredictable nature of delays when reading data from disk, main-\nmemory databases are often used if real-time constraints have to be met. However, even\nif data are resident in main memory,",
+      "[SEED from source_8.pdf]\nhigher priority for transactions with early deadlines. They have found that optimistic\nconcurrency protocols perform well in real-time databases; that is, these protocols re-\nsult in fewer missed dead",
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 2,
+      "noise": 1
+    },
+    "overall": 2.0,
+    "reasoning": "The chunks provided do not directly address the learning objective of \"real time database systems and OS scheduling.\" Chunk 1 briefly mentions main-memory databases and real-time constraints, which tangentially relates to the topic. Chunk 2 discusses transaction priorities and optimistic concurrency protocols, which is somewhat related but does not fully cover the learning objective. Chunk 3 and Chunk 4 are completely unrelated, discussing tree structures, query optimization, and control structures, respectively. Therefore, the chunks are only partially relevant to the learning objective.\n\nFor sufficiency, while Chunk 1 provides a small piece of information about main-memory databases and real-time constraints, it lacks details on OS scheduling and real-time database systems. Chunk 2 offers more relevant information about transaction priorities and optimistic concurrency protocols, but still does not provide a comprehensive overview of the learning objective. The other chunks are entirely irrelevant, so they contribute nothing to the sufficiency score.\n\nNoise is high across all chunks due to their lack of relevance to the learning objective. Chunk 3 and Chunk 4 contain no content at all related to the objective, making them highly noisy.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes why main-memory databases are preferred over traditional disk-based databases for real-time applications, despite both potentially residing in main memory?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the provided source context, which discusses the use of main-memory databases for real-time applications due to the unpredictability of disk read delays. This context is sufficient to understand why main-memory databases are preferred.\n- CLARITY: The question is clear and unambiguous. It asks for a description of why main-memory databases are preferred, which is straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question requires explaining a concept rather than just recalling it, making it suitable for a medium-level difficulty.\n- TYPE_ALIGNMENT: The question asks for an explanation of why main-memory databases are preferred, which aligns perfectly with the conceptual type.\n- STANDALONE_QUALITY: The question does not reference any specific part of the context but can stand alone as a typical exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Main-memory databases are preferred over traditional disk-based databases for real-time applications primarily because they mitigate the unpredictability associated with disk I/O operations, which can introduce significant variability in execution times. Even though data may reside in main memory, other factors such as lock contention and transaction aborts still contribute to execution time variance. Main-memory databases avoid these issues by eliminating the need for disk access, thus providing more consistent performance and reducing the likelihood of missing real-time constraints.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer is mostly correct. It accurately identifies the unpredictability of disk I/O operations as a reason for preferring main-memory databases over traditional disk-based ones. However, it slightly misrepresents the context by suggesting that lock contention and transaction aborts contribute to execution time variance, which is not directly mentioned in the given context. The context emphasizes the importance of main memory for real-time constraints rather than specific issues like lock contention.\n- COMPLETENESS: The answer covers the key point about mitigating disk I/O unpredictability but could be more detailed. It does not explicitly mention the elimination of disk access as a primary benefit, which would strengthen the completeness score.\n- GROUNDEDNESS: The answer is generally grounded in the context but introduces concepts (lock contention and transaction aborts) not explicitly stated in the source material. This slightly reduces its groundedness score.\n- ACADEMIC_TONE: The language is formal and appropriate for university-level writing, though it could be more precise and concise. The use of prose is consistent throughout the answer.",
+    "parse_status": "ok"
+  }
+}

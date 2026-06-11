@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_140451_8d4250",
+  "timestamp": "2026-05-16T14:04:51",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "File systems and directory structures",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\njust proposed is unmanageably large, even for a book devoted to file systems. In thisbrief survey, we will outline five fundamental organizations. Most structures used inactual systems either fall int",
+      "[SEED from source_5.pdf]\nmore records are stored in each physical block. Each block on disk contains a pointerto the next block.The insertion of new records involves pointer manipulation but doesnot require that the new recor",
+      "[NEIGHBOUR from source_5.pdf]\n•Background\n•Processes\n•Memory\n•Scheduling\n•Input/output and files\n•Embedded systems\n•Security\n•Distributed systems\nThe book includes a number of pedagogic features, including the use of animation and"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "For RELEVANCE, Chunk 1 mentions file systems but quickly shifts to discussing an overview of fundamental organizations, which is somewhat related but not directly to the specific learning objective of file systems and directory structures. Chunk 2 discusses aspects of file systems like block pointers and record storage, which are more directly related. However, neither chunk provides comprehensive coverage of file systems and directory structures. Chunk 3 is completely unrelated as it lists topics from a book without any focus on file systems or directory structures.\n\nFor SUFFICIENCY, neither chunk provides enough detailed information about file systems and directory structures to generate a good exam question. Chunk 2 offers some relevant details, but they are insufficient to fully cover the topic. Chunk 1 and Chunk 3 offer no useful information at all.\n\nFor NOISE, both Chunk 1 and Chunk 2 contain some relevant information amidst broader discussions, making them moderately noisy. Chunk 3 is entirely irrelevant and thus has high noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary characteristic of an indexed sequential file that differentiates it from a regular sequential file?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 1
+    },
+    "overall": 3.0,
+    "reasoning": "- FAITHFULNESS: The generated question does not directly relate to the provided source context. The source context discusses block pointers and record storage, but does not mention indexed sequential files. Therefore, this question cannot be fully answered using only the given context.\n- CLARITY: The question is clear and unambiguous. It asks about a specific characteristic of indexed sequential files compared to regular sequential files, which can be understood without additional context.\n- DIFFICULTY_ALIGNMENT: The question is straightforward and requires basic understanding rather than deeper analysis or application. However, since the context does not provide relevant information, it is not perfectly aligned with the requested difficulty level.\n- TYPE_ALIGNMENT: The question is asking for a recall of a specific characteristic, which fits the \"recall\" type requested.\n- STANDALONE_QUALITY: The question references concepts that are not present in the given context, making it dependent on external knowledge.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "An indexed sequential file differs from a regular sequential file by incorporating an index that allows for faster access to specific records through their keys, while still maintaining the sequential storage of records in blocks on disk. This hybrid approach combines the sequential organization's simplicity and continuous storage with the indexed file's ability to quickly locate records, thus offering improved search efficiency without the need for direct addressing mechanisms.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 5,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "- CORRECTNESS: The answer is mostly correct. It accurately describes the primary characteristic of an indexed sequential file, which is the inclusion of an index for faster record access. However, it incorrectly states that regular sequential files do not have an index, which is not accurate based on the provided context.\n- COMPLETENESS: The answer covers the key points needed to address the question, specifically mentioning the index and the sequential storage of records. It provides a good explanation of how indexed sequential files differ from regular sequential files.\n- GROUNDEDNESS: The answer is generally grounded in the provided context, focusing on the concept of an index and sequential storage. However, it introduces the idea of regular sequential files not having an index, which is not supported by the given context.\n- ACADEMIC_TONE: The language used is appropriate for university-level writing, using precise and academic prose. There are no bullet points or casual elements.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_205511_3cad01",
+  "timestamp": "2026-05-16T20:55:11",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Testing strategies from unit tests to system integration and hardware validation",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf domain=software_engineering]\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Prediction 182\n3.4 Overcoming Data Haza",
+      "[NEIGHBOUR from source_38.pdf domain=software_engineering]\nChapter 3 covers the exploitation of instruction-level parallelism in high-\nperformance processors, including superscalar execution, branch prediction\n(including the new tagged hybrid predictors), spe",
+      "[NEIGHBOUR from source_38.pdf domain=software_engineering]\ncomputer architecture as did the switch to multicore. We retain the focus on theextremes in size of computing, with personal mobile devices (PMDs) such as cellphones and tablets as the clients and war"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks provided do not directly relate to testing strategies from unit tests to system integration and hardware validation. Instead, they discuss concepts related to instruction-level parallelism and compiler techniques, which are more aligned with software engineering and computer architecture topics. Therefore, the chunks are largely unrelated to the given learning objective.\n\nThere is insufficient information in the chunks to generate a good exam question on testing strategies. The chunks focus on technical details about instruction-level parallelism and branch prediction, which do not provide the necessary context or information to formulate questions about testing strategies.\n\nThe chunks contain a significant amount of technical jargon and concepts that are not directly related to the learning objective, making them quite noisy and distracting from the intended focus.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following best describes the difference between verification and validation in the context of software engineering?\n\na) Verification ensures the software correctly implements a specific function, while validation ensures the software built is traceable to customer requirements.\n\nb) Verification focuses on testing the software's performance, while validation ensures the software meets user expectations.\n\nc) Verification checks the software against the design, while validation ensures the design meets the project's scope.\n\nd) Verification involves debugging and fixing errors, while validation confirms the software works as intended.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 5
+    },
+    "overall": 2.6,
+    "reasoning": "The generated question asks about the difference between verification and validation in software engineering, which is not directly related to the provided source context that discusses instruction-level parallelism and compiler techniques. This question requires knowledge beyond the given context, making it not fully answerable from the provided sources.\n\nClarity: The question is clear and unambiguous, asking for a definition of verification and validation in software engineering. It is well-phrased and easy to understand.\n\nDifficulty Alignment: The question is labeled as \"hard,\" but it actually tests basic understanding rather than application or analysis. A more appropriate difficulty level would be \"easy.\"\n\nType Alignment: The question asks for definitions, which fits the \"recall\" type rather than \"application.\" However, since the difficulty is misaligned, this criterion is also affected.\n\nStandalone Quality: The question does not reference any specific part of the context and can stand alone as a valid exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the context of software engineering, verification and validation serve distinct yet complementary roles in ensuring the quality and suitability of a software product. Verification focuses on the correctness of the product itself, ensuring that the software accurately implements its specified functions. This aligns with option (a) provided, where verification is described as ensuring the software correctly implements a specific function. For example, during the development of a software module, verification would involve checking that the code adheres to the defined specifications, such as verifying that a particular algorithm performs as intended without errors or bugs. On the other hand, validation ensures that the software product is aligned with the customer's requirements, confirming that the final product meets the needs and expectations of the users. This involves testing the software in the context of its intended use and verifying that it functions correctly under real-world conditions, as stated in option (a). Thus, while verification focuses on the internal consistency and correctness of the software, validation assesses the external fitness-for-purpose of the software, ensuring that it satisfies the end-user requirements.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly distinguishes between verification and validation, aligning with the provided options. It accurately states that verification focuses on the correctness of the product itself, ensuring that the software accurately implements its specified functions, and validation ensures that the software meets the needs and expectations of the users. This is consistent with the source context which discusses the importance of both concepts in software engineering. However, the answer could be more precise by directly referencing the source material, such as mentioning branch prediction or superscalar execution, which are discussed in the neighboring context. The language used is generally appropriate for a university-level answer, though it could be more concise and formal.",
+    "parse_status": "ok"
+  }
+}

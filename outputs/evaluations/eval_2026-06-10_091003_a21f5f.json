@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_091003_a21f5f",
+  "timestamp": "2026-06-10T09:10:03",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Version control for machine learning experiments",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\n8(3), 231–74.\nKircher, M. and Jain, P . (2004). Pattern-Oriented Software Architecture Volume 3: Pa tterns for\nResource Management . New York: John Wiley & Sons.\nMassol, V. (2003). JUnit in Action . G",
+      "[SEED from source_22.pdf]\nPfleeger, S. L., 303, 308, 367, 371, 392, 406, 421\nPilato, C., 196, 204, 691, 704\nPlakosh, D., 257\nPoole, C., 61, 81, 240, 259\nPooley, R., 107, 117, 143\nPope, A., 454, 478, 483, 507\nPrice, A., 670, 67",
+      "[SEED from source_22.pdf]\nPeach, R. W. (1996). The ISO 9000 Handbook, 3rd edition . New York: Irwin Professional Pub.\nPilato, C. M., Collins-Sussman, B. and Fitzpatrick,  B. W. (2004). Version Control with Subversion .\nSebasto",
+      "[NEIGHBOUR from source_22.pdf]\nsource code of a software system is published and v olunteers are invited to partici-\npate in the development process (Raymond, 2001). It s roots are in the Free Software\nFoundation (http://www.fsf.or",
+      "[NEIGHBOUR from source_22.pdf]\nSOFTWARE ENGINEERING\nNinth Edition\nIan Sommerville\nAddison-Wesley\nBoston Columbus Indianapolis New York San Francisco Uppe r Saddle River\nAmsterdam Cape Town Dubai London Madrid Milan Munich Paris Mon"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about version control in general, not specifically for machine learning experiments. Only Chunk 3 mentions version control in the context of software engineering, which is somewhat related. However, none of them directly discuss version control for ML experiments. Thus, relevance is low. There is insufficient detail to generate a good exam question because the concepts are too broad or absent. Noise is moderate since some chunks contain tangential material like book references.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, here is an exam question:\n\nWhich of the following books is recommended as a resource for understanding version control practices, particularly for software development projects?\n\nA) JUnit in Action by Massol\nB) The Cathedral and the Bazaar by Raymond\nC) Version Control with Subversion by Pilato, Collins-Sussman, and Fitzpatrick\nD) ISO 9000 Handbook by Peach\n\nExplanation: The context mentions Pilato, Collins-Sussman, and Fitzpatrick's book \"Version Control with Subversion\" as a recommended resource, so option C is the correct answer.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about a book on version control, which is directly stated in the context. It can be answered solely from the provided references, so it is completely answerable from context alone (5). The question is clear and unambiguous, asking for a specific title (5). The difficulty is medium because it requires understanding that the book is about version control, not just recalling a title (3). The question is conceptual, asking for a recommendation rather than a definition or application (5). The question does not reference the context explicitly, making it standalone (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The book \"Version Control with Subversion\" by Pilato, Collins-Sussman, and Fitzpatrick is recommended as a resource for understanding version control practices, particularly for software development projects. This book is specifically noted in the context as a relevant work on version control.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies the book \"Version Control with Subversion\" by Pilato, Collins-Sussman, and Fitzpatrick as the recommended resource. It is fully grounded in the context, which explicitly mentions this book. The language is precise and academic, using proper sentence structure without bullet points. However, it does not explain why this book is specifically recommended for version control, which could be seen as incomplete. The answer is mostly correct but lacks some detail about its relevance to version control practices.",
+    "parse_status": "ok"
+  }
+}

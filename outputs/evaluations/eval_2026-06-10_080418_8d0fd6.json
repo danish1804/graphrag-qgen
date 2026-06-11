@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_080418_8d0fd6",
+  "timestamp": "2026-06-10T08:04:18",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Virtual memory and paging",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\ning for the relatively slow I/O to complete.The second problem is that this approachto I/O interferes with swapping decisions by the operating system. Virtual locations1000 to 1511 must remain in main",
+      "[SEED from source_5.pdf]\ntimes, each time with a different set of starting conditions or parameters.A good\nexample is a simulation model, which will run a large number of different sce-narios and then develop statistical summ",
+      "[NEIGHBOUR from source_5.pdf]\n•Six online appendices that expand on the treatment in the book. Topics in-\nclude complexity of algorithms, Internet standards, and Sockets\n•A PDF copy of all the algorithms in the book in an easy-to-"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are largely irrelevant to virtual memory and paging. Chunk 1 mentions swapping and virtual addresses but does not explain how they relate to paging. Chunk 2 discusses simulations and scenarios, which are unrelated. Chunk 3 lists appendices about algorithm complexity and sockets, none of which directly cover virtual memory. There is insufficient information to generate a meaningful exam question on the topic. The chunks contain some technical terms like 'virtual locations' and 'swapping', but lack clear explanations or examples. Noise is moderate because the appendices are somewhat relevant, but the core content is mostly irrelevant.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "When using paged virtual memory, why must certain pages remain in main memory during the course of a block transfer operation?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks why certain pages must remain in main memory during a block transfer, which is directly stated in the source: \"Virtual locations 1000 to 1511 must remain in main memory.\" This is a straightforward recall of a fact from the passage, so it is completely answerable from context alone (faithfulness 5). The question is clear and unambiguous (clarity 5). It is an easy recall question matching the requested difficulty (difficulty_alignment 5). It is a recall question matching the requested type (type_alignment 5). The question does not reference the passage explicitly (standalone_quality 5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "During a block transfer operation, the target virtual locations must remain in main memory because the page containing those locations must be locked to prevent loss of data. This ensures that all necessary data stays in physical memory throughout the transfer, maintaining consistency and avoiding data corruption.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that pages must remain in main memory to prevent data loss during a block transfer, which aligns with the source's emphasis on keeping virtual locations in main memory. However, it does not mention the interference with swapping decisions, which is a key point from the context. The answer is grounded in the source but omits a critical detail. The tone is academic but uses a list instead of prose, which is acceptable for short answers. Overall, the answer is mostly correct and grounded but lacks completeness and could be more precise.",
+    "parse_status": "ok"
+  }
+}

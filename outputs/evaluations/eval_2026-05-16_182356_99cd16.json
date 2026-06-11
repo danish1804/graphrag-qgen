@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-05-16_182356_99cd16",
+  "timestamp": "2026-05-16T18:23:56",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "OS scheduling impact on neural network training",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_51.pdf]\nlearning to reduce the search space within the hypothesis space. (A neural network with a\nsingle hidden layer, a ﬁnite number of neurons, and non-linear activation functions such as\nsigmoid units, was",
+      "[SEED from source_51.pdf]\no(x) =σ(w0+∑\nhwhσ(wh\n0+∑\niwh\nixi)\n\noh). (6.2)\nMore generally, prediction in neural networks is done by starting from the input layer and, for\neach subsequent layer, computing the output of the sig",
+      "[SEED from source_51.pdf]\nexploring “data science ”via linear regression 63\nhow to leverage techniques from linear regression in order to solve\nthis problem.\n5.2.1Linear Superposition\nThe key intuition involves a concept calle",
+      "[NEIGHBOUR from source_64.pdf]\nUnsupervised midTraditional\nDeep Learning\nHandcrafted features are time consuming, brittle and not scalable in\npractice. DL learn underlying features directly from data.\nLecture 4 (Part 1) Deep Learni",
+      "[NEIGHBOUR from source_64.pdf]\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 10 / 42\nApply Neural Networks to Images\nIn our ML model we would like to have these two properties.\nFeature extraction usually happens locally - sparse"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "For RELEVANCE, none of the chunks directly discuss OS scheduling and its impact on neural network training. Chunk 1 mentions neural networks but focuses on reducing the search space, while the other chunks are about linear regression, unsupervised learning, and feature extraction. Therefore, the relevance score is 1.\n\nFor SUFFICIENCY, the chunks provide minimal information related to the learning objective. There is no mention of operating system scheduling or how it impacts neural network training. The closest chunk is Chunk 1, which discusses neural networks but does not connect them to OS scheduling. Thus, the sufficiency score is 1.\n\nFor NOISE, the chunks contain a lot of irrelevant information. They discuss various topics in machine learning and neural networks but do not address the specific learning objective. The noise score is 1.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the mathematical expression \\( o_h = \\sigma(w_{0h} + \\sum_i w_{ih}x_i) \\) represent in the context of a neural network with a single hidden layer and sigmoid units?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question can be fully answered using the source context provided, which includes the definition of the mathematical expression for the hidden layer output in a neural network. Therefore, it is 5 out of 5.\n- CLARITY: The question is clear and unambiguous, asking about the meaning of a specific mathematical expression in the context of a neural network. It is phrased precisely and is easy to understand. Thus, it scores 5 out of 5.\n- DIFFICULTY_ALIGNMENT: The question requires understanding the role of the given expression in a neural network, which involves some conceptual knowledge rather than just recalling a fact. This aligns well with the medium difficulty level requested. Hence, it scores 5 out of 5.\n- TYPE_ALIGNMENT: The question asks for an explanation of what the expression represents, which fits the conceptual type requested. It does not require applying the concept to a new situation or designing something, making it a perfect fit for the conceptual type. Thus, it scores 5 out of 5.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context explicitly. It can be understood and answered without needing to refer back to the source material. Therefore, it scores 5 out of 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The mathematical expression \\( o_h = \\sigma(w_{0h} + \\sum_i w_{ih}x_i) \\) represents the output of a single sigmoid unit in a hidden layer of a neural network. Here, \\( w_{0h} \\) is the bias weight for the hidden unit, \\( w_{ih} \\) are the weights connecting the hidden unit to the input layer, and \\( x_i \\) are the inputs from the input layer. The summation \\( \\sum_i w_{ih}x_i \\) calculates the weighted sum of the inputs, which is then passed through the sigmoid activation function \\( \\sigma \\) to produce the output \\( o_h \\). This expression captures the essence of how information is transformed and propagated through the hidden layer in a neural network using a non-linear activation function.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- CORRECTNESS: The answer is fully correct. It accurately describes the mathematical expression in terms of the weights, biases, and activation function, which aligns with the source context provided.\n- COMPLETENESS: The answer covers all key points needed to fully address the question. It mentions the bias weight, input weights, input values, and the activation function, which are all essential components of the expression.\n- GROUNDEDNESS: The answer is entirely grounded in the provided context. There are no additional unsupported details or information that is not present in the source material.\n- ACADEMIC_TONE: The language used is precise and appropriate for a university-level writing, adhering to the formal tone expected in academic settings.",
+    "parse_status": "ok"
+  }
+}

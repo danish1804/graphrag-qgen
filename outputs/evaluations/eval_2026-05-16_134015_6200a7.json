@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-05-16_134015_6200a7",
+  "timestamp": "2026-05-16T13:40:15",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "input": {
+    "learning_objective": "Unit testing and integration testing",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_46.pdf]\n14\n(b) Unit test each individual component\n(c) Integration (system) testing - combine components, test interfaces\namong components\n(d) Acceptance testing - use live data in client’s test environment.",
+      "[SEED from source_46.pdf]\nalways kept in mind.\nAccording to the Scrum Method , we iterate through the following two\nphases until the backlog of tasks is empty.\nRequirements Sprints\nUser Stories Daily Meetings\nPrioritization Ev",
+      "[NEIGHBOUR from source_47.pdf]\n●4 sub-stages:\n–Preprocessing\n–Compilation\n–Assembly\n–Linking (static/dynamic)\n16/01/21 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 5\nPreface: from code to binary (2"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 5,
+      "noise": 1
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks provided are somewhat relevant to the learning objective of unit testing and integration testing. Chunk 1 directly mentions these terms and provides a clear distinction between unit testing and integration testing, which aligns with the learning objective. However, it also includes acceptance testing, which is not part of the objective. Chunk 2 and Chunk 3 are largely unrelated to the objective, discussing Scrum methodology and software engineering processes respectively.\n\nFor sufficiency, Chunk 1 offers a direct and concise explanation of unit testing and integration testing, which is sufficient to generate a good exam question. The other chunks do not provide any relevant information.\n\nNoise is high in both Chunk 2 and Chunk 3, as they contain content that is completely unrelated to the learning objective. In contrast, Chunk 1 has low noise as it focuses solely on the relevant concepts.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "According to the Scrum methodology, which of the following best describes the iterative process involved in completing the backlog of tasks?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "- FAITHFULNESS: The question does not require any knowledge beyond the provided context about Scrum methodology. It can be fully answered using the given information, so it is completely answerable from the context alone.\n- CLARITY: The question is clear and unambiguous. It asks for a description of the iterative process in Scrum methodology, which is straightforward and easy to understand.\n- DIFFICULTY_ALIGNMENT: The question is asking for a basic understanding of the Scrum methodology's iterative process, which aligns with the \"easy\" difficulty level requested.\n- TYPE_ALIGNMENT: The question is asking to recall the steps involved in the Scrum methodology, which fits perfectly with the \"recall\" type requested.\n- STANDALONE_QUALITY: The question stands alone and does not reference the context or passage directly. It can be understood and answered without needing to refer back to the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "According to the Scrum methodology, the iterative process involves repeatedly conducting Requirements Sprints, where user stories are prioritized, daily meetings are held to discuss progress, and tasks are eventually reassigned as needed, until the backlog of tasks is completed. This cyclic approach ensures continuous refinement and delivery of new versions within fixed timeframes, promoting adaptive planning and frequent updates.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.5,
+    "reasoning": "Correctness: The answer is mostly correct but lacks precision. It correctly identifies the key elements of Scrum such as sprints, user stories, daily meetings, and task completion. However, it does not explicitly mention \"requirements\" as part of the sprints, which could be seen as a minor inaccuracy given that user stories often encapsulate requirements.\n\nCompleteness: The answer covers the main ideas of Scrum but could be more detailed. It mentions sprints, user stories, daily meetings, and task completion, but it does not include other important aspects like retrospectives or the role of the product owner in prioritizing the backlog.\n\nGroundedness: The answer is generally grounded in the provided context but introduces the concept of \"user stories\" without referencing them directly from the source material. The term \"user stories\" is commonly associated with Scrum but was not explicitly mentioned in the given context.\n\nAcademic Tone: The answer uses a formal tone and sentence structure appropriate for university-level writing. However, the use of bullet points in the original context might suggest a list format, which is not maintained here, potentially affecting the academic tone slightly.",
+    "parse_status": "ok"
+  }
+}
