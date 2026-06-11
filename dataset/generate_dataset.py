@@ -46,6 +46,12 @@ OUTPUT_XLSX = os.path.join(_DIR, "outputs",
 TEMPLATE    = os.path.join(_DIR, "outputs",
                            "P000233DS_Question_Dataset_Template.xlsx")
 
+# Overridden at runtime if --output flag is passed
+_OUTPUT_XLSX_OVERRIDE = None
+
+def _get_output_path() -> str:
+    return _OUTPUT_XLSX_OVERRIDE if _OUTPUT_XLSX_OVERRIDE else OUTPUT_XLSX
+
 # ── API config ────────────────────────────────────────────
 API_BASE    = "http://localhost:8000"
 TIMEOUT     = 300       # seconds per request
@@ -185,14 +191,14 @@ def parse_response(response: dict) -> dict:
 
 def init_excel() -> openpyxl.Workbook:
     """Create or load the output Excel workbook."""
+    out = _get_output_path()
+    os.makedirs(os.path.dirname(out), exist_ok=True)
 
-    os.makedirs(os.path.dirname(OUTPUT_XLSX), exist_ok=True)
+    if os.path.exists(out):
+        print(f"[Excel] Loading existing: {out}")
+        return openpyxl.load_workbook(out)
 
-    if os.path.exists(OUTPUT_XLSX):
-        print(f"[Excel] Loading existing: {OUTPUT_XLSX}")
-        return openpyxl.load_workbook(OUTPUT_XLSX)
-
-    print(f"[Excel] Creating new workbook: {OUTPUT_XLSX}")
+    print(f"[Excel] Creating new workbook: {out}")
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = "Question Dataset"
@@ -230,7 +236,7 @@ def init_excel() -> openpyxl.Workbook:
 
     ws.row_dimensions[1].height = 20
     ws.row_dimensions[2].height = 35
-    wb.save(OUTPUT_XLSX)
+    wb.save(_get_output_path())
     return wb
 
 def get_existing_ids(wb: openpyxl.Workbook) -> set:
@@ -286,8 +292,9 @@ def append_row(wb: openpyxl.Workbook,
 
 
 def save_excel(wb: openpyxl.Workbook):
-    wb.save(OUTPUT_XLSX)
-    print(f"    [Excel] Saved: {OUTPUT_XLSX}")
+    out = _get_output_path()
+    wb.save(out)
+    print(f"    [Excel] Saved: {out}")
 
 
 # ════════════════════════════════════════════════════════════
@@ -366,7 +373,8 @@ def _reset_failed_rows(category: str = None):
 def run(batch_size: int = 15,
         category: str = None,
         dry_run: bool = False,
-        reset_failed: bool = False):
+        reset_failed: bool = False,
+        force_regen: bool = False):
 
     print("\n" + "=" * 55)
     print("P000233DS — Question Dataset Generator")
@@ -407,7 +415,11 @@ def run(batch_size: int = 15,
     # Init Excel
     wb          = init_excel()
     existing_ids = get_existing_ids(wb)
-    print(f"[Generator] Already in Excel: {len(existing_ids)}")
+    if force_regen:
+        print(f"[Generator] --force-regen: ignoring {len(existing_ids)} existing entries")
+        existing_ids = set()   # treat nothing as already done
+    else:
+        print(f"[Generator] Already in Excel: {len(existing_ids)}")
 
     # Generate
     to_process = pending[:batch_size]
@@ -420,7 +432,7 @@ def run(batch_size: int = 15,
     for idx, row in enumerate(to_process, 1):
         q_id = row["q_id"]
 
-        # Skip already in Excel
+        # Skip already in Excel (unless force_regen)
         if q_id in existing_ids:
             print(f"  [{idx:3}/{len(to_process)}] "
                   f"SKIP (already exists): {q_id}")
@@ -469,7 +481,7 @@ def run(batch_size: int = 15,
     print(f"  Generated: {success}")
     print(f"  Failed:    {failed}")
     print(f"  Remaining: {len(pending) - len(to_process)}")
-    print(f"  Output:    {OUTPUT_XLSX}")
+    print(f"  Output:    {_get_output_path()}")
     print("=" * 55)
 
 
@@ -478,8 +490,8 @@ if __name__ == "__main__":
         description="Generate question dataset via GraphRAG API"
     )
     parser.add_argument(
-        "--batch", type=int, default=15,
-        help="Number of questions per batch (default: 15)"
+        "--batch", type=int, default=999,
+        help="Number of questions per batch (default: 999 = all)"
     )
     parser.add_argument(
         "--category", type=str, default=None,
@@ -489,16 +501,29 @@ if __name__ == "__main__":
         "--dry-run", action="store_true",
         help="Preview what would be generated without calling API"
     )
-
     parser.add_argument(
-    "--reset-failed", action="store_true",
-    help="Reset failed rows to pending before running"
+        "--reset-failed", action="store_true",
+        help="Reset failed rows to pending before running"
+    )
+    parser.add_argument(
+        "--output", type=str, default=None,
+        help="Custom output Excel path (default: P000233DS_Question_Dataset.xlsx)"
+    )
+    parser.add_argument(
+        "--force-regen", action="store_true",
+        help="Regenerate all pending rows even if already in the output Excel"
     )
     args = parser.parse_args()
 
+    # Apply output path override before run()
+    # (module-level scope here — assignment works directly, 'global' is a SyntaxError)
+    if args.output:
+        _OUTPUT_XLSX_OVERRIDE = os.path.abspath(args.output)
+
     run(
-        batch_size = args.batch,
-        category   = args.category,
-        dry_run    = args.dry_run,
+        batch_size   = args.batch,
+        category     = args.category,
+        dry_run      = args.dry_run,
         reset_failed = args.reset_failed,
+        force_regen  = args.force_regen,
     )

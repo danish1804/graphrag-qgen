@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_120757_63d75e",
+  "timestamp": "2026-06-10T12:07:57",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Inter-process communication in software design",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ntive component reuse. I also discuss the general pr ocess of component-\nbased software engineering and the problems of comp onent composition. \nThe majority of large systems are now distributed s yste",
+      "[SEED from source_22.pdf]\naccount by the system designer.\nSome of the most important design issues that have to be considered in distributed\nsystems engineering are:\n1.Transparency To what extent should the distributed system",
+      "[SEED from source_22.pdf]\nfollowed. As I discussed in Chapters 8 and 15, revi ews and inspections are used\nalongside program testing as part of the general pr ocess of software verification and\nvalidation.\nDuring a review, a g",
+      "[NEIGHBOUR from source_22.pdf]\n17.1 Components and component models 455\n17.2 CBSE processes 461\n17.3 Component composition 468\nChapter 18 Distributed software engineering 479\n18.1 Distributed systems issues 481\n18.2 Client–server c",
+      "[NEIGHBOUR from source_22.pdf]\n(1986). Bosch (2000) includes a good discussion of how this style relates to system\nquality attributes.\n6.3.3 Client–server architecture\nThe repository pattern is concerned with the static  structure"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to the learning objective of inter-process communication. They discuss topics like component-based software engineering, distributed systems, and client-server architecture, which are tangential rather than directly addressing IPC. There is insufficient information to generate a good exam question because the core concept of IPC is not covered. The chunks contain moderate noise, as they include discussions on reviews, inspections, and other software engineering practices that are not directly related to IPC.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain the relationship between transparency and openness as design issues in distributed systems engineering, and describe how each principle affects the visibility of a distributed system to its users.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the relationship between transparency and openness, which are both explicitly mentioned in the source context. It is completely answerable from the given text, so faithfulness is 5. The question is clear and unambiguous, asking for an explanation of how each principle affects visibility, so clarity is 5. The difficulty level is medium, matching the source's discussion of design issues, so difficulty alignment is 5. The question asks for an explanation, which is a conceptual task, so type alignment is 5. The question does not reference the passage directly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Transparency addresses whether a distributed system should appear to users as a single coherent system, while openness concerns whether it uses standardized protocols for interoperability. Transparency aims to minimize complexity by hiding internal distribution, allowing users to interact without understanding the underlying architecture. Openness, in contrast, prioritizes flexibility and compatibility by adopting common standards, which may sacrifice some performance for ease of integration across different systems. Both principles are essential for designing distributed systems that balance usability and maintainability.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 3
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies transparency and openness as key design issues in distributed systems, and explains their roles in terms of user interaction and standardization. It is mostly grounded in the source, which discusses these concepts but does not explicitly link them to system quality attributes. The language is academic but uses bullet points, which is acceptable for a short answer. However, the explanation could be more precise and less casual.",
+    "parse_status": "ok"
+  }
+}

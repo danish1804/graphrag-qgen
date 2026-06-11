@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_111731_d00394",
+  "timestamp": "2026-06-10T11:17:31",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Page replacement algorithms in database systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n10.2.2 Local independence and co-operation 355\n10.2.3 Data fragmentation and allocation 356\n10.2.4 Transparency levels 358\n10.2.5 Classiﬁcation of transactions 360\n10.3 Technology of distributed datab",
+      "[SEED from source_36.pdf]\nhand, vertical partitioning generates entities with fewer attributes. They cantherefore be translated into physical structures from which we can retrieve agreat deal of data with a single access. Part",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to page replacement algorithms in database systems. Only Chunk 3 briefly mentions vertical partitioning, which could be tangentially related if the objective included physical design aspects. However, the other chunks discuss topics like query optimization, distributed databases, and general database management, none of which directly address page replacement. Thus, relevance is low. Sufficiency is also low because no chunk contains detailed explanations of page replacement algorithms or their implementation. Noise is moderate; while most chunks are about database topics, they are not directly relevant, so the noise level is not high.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary purpose of vertical partitioning in distributed databases, and how does it differ from horizontal partitioning in terms of data retrieval efficiency?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about vertical partitioning and its effect on data retrieval efficiency, which is directly covered in the source context. It is clear and unambiguous, asking for a comparison between two concepts. The difficulty is medium because it requires understanding the concept of vertical partitioning and its benefits, but does not require deep analysis. The question is conceptual, matching the requested type. It is self-contained, as it does not reference the passage explicitly. Overall, it is a good medium-difficulty conceptual question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Vertical partitioning in distributed databases generates entities with fewer attributes, allowing them to be efficiently retrieved with a single access. In contrast, horizontal partitioning distributes data across multiple tables or partitions based on attribute values, potentially requiring joins to retrieve related data. While both partitioning techniques improve scalability, vertical partitioning simplifies query execution by reducing the number of columns accessed per row, whereas horizontal partitioning balances load but may complicate joins.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that vertical partitioning reduces attribute count per entity, enabling efficient single-access retrieval. It also contrasts this with horizontal partitioning, which distributes data across tables and requires joins. The explanation is accurate and consistent with the source context. However, the answer could be more precise by explicitly stating that vertical partitioning simplifies queries by reducing column access, while horizontal partitioning balances load but complicates joins. The language is academic but uses bullet points, which is acceptable for a university setting. Overall, the answer is mostly correct and grounded, though it could be slightly more detailed.",
+    "parse_status": "ok"
+  }
+}

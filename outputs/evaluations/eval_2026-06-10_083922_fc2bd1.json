@@ -1,0 +1,44 @@
+{
+  "eval_id": "eval_2026-06-10_083922_fc2bd1",
+  "timestamp": "2026-06-10T08:39:22",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Assembly language and low level programming",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\nA Instruction Set Principles\nB Review of Memory HierarchiesC Pipelining: Basic and Intermediate ConceptsD Storage SystemsE Embedded SystemsF Interconnection NetworksG Vector Processors in More DepthH",
+      "[SEED from source_12.pdf]\n. The narrow instructions supportfewer operations, smaller address and immediate fields, fewer registers, and thetwo-address format rather than the classic three-address format of RISC computers.RISC-",
+      "[NEIGHBOUR from source_23.pdf]\n Huge size  \n Need of A.C.  \n Non -portable  \n Consumed lot of electricity  \nSome computers of this generation were:  \n ENIAC  \n EDVAC  \n UNIVAC  \n IBM -701  \n IBM -650"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about computer architecture and history, not assembly language or low-level programming. Chunk 1 lists topics like pipelining and storage systems, which are tangential. Chunk 2 discusses RISC instruction sets, which are related but not directly about assembly. Chunk 3 is about early computers, which is historical and not relevant. Thus, relevance is low. There is insufficient information to generate a good exam question because no chunk covers core assembly concepts like register usage or addressing modes. Noise is moderate since some chunks contain useful information but are mixed with irrelevant details.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What does the term \"compressed\" refer to in the context of the RISC-V instruction set?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about \"compressed\" in the RISC-V context, which is not mentioned in the provided source material. The passage discusses compressed RISC-V instructions but does not define \"compressed.\" Therefore, the question cannot be fully answered using only the given context, so it fails the faithfulness criterion. The question is clear and unambiguous, so clarity is high. It is a recall question, matching the requested difficulty and type. The question is self-contained and does not reference the passage, so standalone quality is good. However, the term \"compressed\" is not defined in the source, making it slightly ambiguous. Overall, the question is mostly answerable from context but requires some outside knowledge, so faithfulness is 3. Clarity is 5. Difficulty and type are both 5. Standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The term \"compressed\" refers to a 16-bit encoding used for common instruction patterns, such as intermediate values and simple ALU operations, where the source and destination registers are identical. This encoding reduces instruction size compared to standard 32-bit RISC instructions, enabling more instructions to be packed into cache lines and improving memory bandwidth efficiency.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer is incorrect because it misinterprets \"compressed\" as a 16-bit encoding for common patterns, which is not the standard meaning. Compressed instructions typically refer to a subset of instructions that use fewer bits than normal, often to save space or improve density. The passage does not mention 16-bit encoding. The answer is incomplete as it fails to explain why compressed instructions are useful (e.g., for frequent patterns). It is grounded because it references the source material, though the interpretation is flawed. The tone is academic but the explanation is overly simplistic and lacks precision.",
+    "parse_status": "failed"
+  }
+}

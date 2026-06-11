@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_113041_a55a97",
+  "timestamp": "2026-06-10T11:30:41",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Disk storage architecture and database indexing",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n13.3.3 Data cube 477\n13.4 Development of the data warehouse 479\n13.4.1 Bitmap and join indexes 480\n13.4.2 View materialization 481\n13.5 Data mining 481\n13.5.1 The data mining process 482\n13.5.2 Data m",
+      "[SEED from source_36.pdf]\nrequirements\nDatabase\ndesign\nLogical design\nPhysical designCONCEPTUAL SCHEMA\nLOGICAL SCHEMA\nPHYSICAL SCHEMAConceptual design\nDatabase structure and\nrelated documentation\n162 Chapter 5\nDesign technique",
+      "[NEIGHBOUR from source_36.pdf]\nheader ) and a ﬁnal part ( page trailer ) containing control information about\nthe access method. This information will typically contain the identiﬁerof the object (table, index, data dictionary, etc",
+      "[NEIGHBOUR from source_36.pdf]\n•in an entry-sequenced  organization, the sequence of the tuples is dictated\nby their order of entry;\n•in an array  organization, the tuples are arranged as in an array, and their\npositions depend on"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to disk storage architecture and database indexing. Chunk 1 covers query optimization and physical database design, which are tangential. Chunk 2 discusses data warehousing and data mining, also off-topic. Chunk 3 is about database design techniques, which is somewhat related but not specific to indexing. Chunk 4 mentions access method headers, which could be relevant, but the passage is brief and unclear. Chunk 5 discusses tuple organization, which is directly about indexing, but the passage is incomplete and lacks context. Overall, only one chunk (Chunk 5) is even remotely relevant, and it is insufficient for a full exam question. Noise levels vary; Chunk 4 has moderate noise due to its brevity, while Chunk 5 is clean but incomplete.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how the concept of parallel indexing relates to the physical design phase of database design, and describe what role it plays in improving query performance compared to traditional sequential processing approaches.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about parallel indexing and its role in physical design, which is covered in the source context under physical database design. It can be answered using only that material, so faithfulness is high. The question is clear and unambiguous, asking for an explanation of how parallel indexing improves performance. It matches the medium difficulty level because it requires understanding concepts rather than simple recall. The question type is conceptual, asking for an explanation, which fits. It is self-contained, not referring to any specific passage, so standalone quality is good.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Parallel indexing is a technique that improves query performance during the physical design phase by distributing index data across multiple processors or nodes, enabling concurrent access and faster search operations. Unlike traditional sequential processing where all data must be scanned linearly, parallel indexing allows simultaneous scanning of different partitions, reducing overall query execution time. This approach is particularly effective in distributed databases, where local independence and cooperation enable efficient workload distribution among servers.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies parallel indexing as a technique for improving query performance during physical design, and explains its advantage over sequential processing. It accurately references the physical design phase and the concept of concurrent access. However, it does not explicitly mention the role of partitioning or the use of multiple processors, which are key aspects of parallel indexing. The answer is grounded in the source context, as it avoids unsupported claims. The language is academic but uses bullet points, which is acceptable for a university setting. Overall, the answer is mostly correct and grounded, but lacks some completeness and could improve academic tone by avoiding bullet points.",
+    "parse_status": "ok"
+  }
+}

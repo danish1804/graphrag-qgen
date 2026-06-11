@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-11_130707_b381ea",
+  "timestamp": "2026-06-11T13:07:07",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "How a CNN works",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_68.pdf]\nTraining with Back- propagation\nTraining a CNN uses back -propagation and works the same as with an MLP:\nStep 1: Initialise all filters/weights with random values\nStep 2: Select a batch size, and feed",
+      "[NEIGHBOUR from source_64.pdf]\nthere we show that under certain conditions the hypothesis that minimizes E is also the most probable \nhypothesis in H given the training data.  \n \n2.3.2. Multi -layer Perceptron  \n \nMulti -layer Perc",
+      "[NEIGHBOUR from source_64.pdf]\nwhere weight matrix  at index  i represents the weights between layer  i and layer  i+1. intercepts_  is a list \nof bias vectors, where the vector at index  i represents the bias values added to layer"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The first chunk directly addresses how a CNN works by explaining that it uses back-propagation similar to an MLP, which is relevant to the learning objective. The second chunk is about minimizing error and probability, which is not directly related to CNN operation. The third chunk discusses weight matrices and biases, which are technical details but do not explain the core concept of CNNs. Thus, only the first chunk is highly relevant. The first chunk provides enough detail to generate a question, so sufficiency is moderate. There is some noise in the second and third chunks, but the first is clean. Overall, relevance is 3, sufficiency is 3, and noise is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the role of back-propagation in the training process of a CNN, and how does it relate to the calculation of gradients for updating weights?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about back-propagation in CNN training, which is directly stated in the source: \"Training a CNN uses back-propagation and works the same as with an MLP.\" The question is clear and unambiguous, asking for a conceptual explanation of how back-propagation relates to gradient calculation. It matches medium difficulty because it requires understanding the concept rather than simple recall. The question is conceptual, not application or recall. It is self-contained, as it does not reference the passage explicitly. However, it assumes the reader understands the basic structure of CNNs and back-propagation, so it is not completely answerable from the context alone, but it is still mostly answerable.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Back-propagation calculates gradients of the error with respect to all weights in the network, enabling updates via gradient descent. This step follows feed-forward propagation, where the total error is computed across all classes, and then the gradients are used to adjust weights iteratively. The relationship between back-propagation and other concepts like categorical cross-entropy ensures that the error is minimized during training.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 2,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly states that back-propagation computes gradients for weight updates, which is accurate. It mentions feed-forward propagation and gradient descent, but these are not directly related to the source context, so completeness is low. The answer is entirely based on the source material, so groundedness is high. The tone is academic but uses bullet points, which is acceptable for a short answer. Overall, correctness is good, completeness is poor, groundedness is excellent, and academic tone is acceptable.",
+    "parse_status": "ok"
+  }
+}

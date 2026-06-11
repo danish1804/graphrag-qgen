@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_080949_52ab34",
+  "timestamp": "2026-06-10T08:09:49",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Interprocess communication",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nInterprocess Communication\nVarious flags, signals, and messages may be associated with communication between two independent processes.Some or all of this information may be maintained in the process",
+      "[SEED from source_5.pdf]\n2.The attacker uses password cracking, malware, or a system vulnerability to gaininitial access and, eventually, root access.\n3.The attacker uploads the rootkit to the victim’s machine.\n4.The attacker",
+      "[NEIGHBOUR from source_42.pdf]\nto provide a set of services to system users. The OS also manages secondary memoryand I/O (input/output) devices on behalf of its users. Accordingly, it is important tohave some understanding of the u"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly irrelevant to interprocess communication. Chunk 1 briefly mentions the topic but does not explain how processes communicate. Chunk 2 discusses unauthorized access and rootkits, which are unrelated. Chunk 3 talks about operating system services and device management, also not relevant. There is insufficient information to generate a good exam question because none of the chunks cover the core concepts of interprocess communication. The chunks contain moderate noise, as they include tangential material like unauthorized access steps and OS functions that distract from the learning objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is interprocess communication and what role does it play in the context of system utilities?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 3,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.4,
+    "reasoning": "The question asks about interprocess communication and its role in system utilities. The source context defines interprocess communication as the exchange of information between processes, which is directly answerable from the passage. However, the question conflates interprocess communication with system utilities, which are unrelated concepts. This ambiguity makes the question unclear and confusing. The difficulty is easy because it requires only basic recall, but the type is conceptual rather than recall. The question references the passage explicitly, so it is not standalone. Overall, the question fails multiple criteria.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Interprocess communication allows different processes to exchange data and synchronize their activities. This mechanism supports the provision of services by enabling processes to interact effectively, which is essential for managing system utilities and ensuring efficient operation.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that interprocess communication enables processes to exchange data and synchronize, which aligns with the source's description of communication between independent processes. It also notes that this supports service provision, matching the context. However, the passage does not explicitly state that interprocess communication is used by system utilities, so the answer is slightly incomplete. The answer is entirely grounded in the source material without any hallucinations. The language is academic and uses prose rather than bullet points, though it could be more precise. Overall, the answer is mostly correct and grounded but lacks completeness and could be more precise.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "eval_id": "eval_2026-06-10_104442_411099",
+  "timestamp": "2026-06-10T10:44:42",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Risk management in database migration projects",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\nand O’Neil [63]. Date’ s book [33], now in its sixth edition, is very popular in\nthe practitioners’ world, since it gives a simple description of manyimportant aspects. Ullman [ 88] oVers an integrate",
+      "[SEED from source_7.pdf]\ncoverage of database systems is provided by [O’Neil and O’Neil (2000)], [Ramakrish-\nnan and Gehrke (2002)], [Date (2003)], [Kifer et al. (2005)], [Garcia-Molina et al.\n(2008)], and [Elmasri and Navath",
+      "[SEED from source_7.pdf]\n[Kifer et al. (2005)] M. Kifer, A. Bernstein, and P. Lewis, Database Systems: An Application\nOriented Approach, Complete Version , 2nd edition, Addison Wesley (2005).\n[O’Neil and O’Neil (2000)] P. O’N",
+      "[NEIGHBOUR from source_49.pdf]\npages 16–25.\n[Knuth (1973)] D. E. Knuth, The Art of Computer Programming, Volume 3 , Addison Wesley,\nSorting and Searching (1973).\n[O’Neil and Quass (1997)] P. O’Neil and D. Quass, “Improved Query Per",
+      "[NEIGHBOUR from source_49.pdf]\ntrol in main-memory databases. The ABA problem with latch-free data structures as\nwell as solutions for the problem are discussed in [Dechev et al. (2010)].\nBibliography\n[Bayer and Schkolnick (1977)]"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about database systems and related books, which are tangential to risk management in database migration projects. Only one chunk mentions migration (O'Neil's book), but it does not discuss risk management specifically. Therefore, relevance is low. Sufficiency is also low because the chunks lack specific details on risk management strategies or case studies. Noise is moderate; while most chunks are about database systems, they contain some useful information like book references, but the overall mix is distracting.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Which of the following references provides a comprehensive coverage of database systems, including principles, programming, and performance, suitable for both theoretical understanding and practical application?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for a reference that provides comprehensive coverage of database systems, which can be answered using the source context, making it faithful (5). It is clear and unambiguous, so clarity is high (5). The difficulty level is medium, matching the request (5). The question asks for a reference, which is a conceptual task, so type alignment is perfect (5). The question does not reference the passage explicitly, so standalone quality is high (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "O'Neil and O'Neil's book \"Database: Principles, Programming, Performance\" offers a comprehensive coverage of database systems, addressing fundamental concepts, programming techniques, and performance optimization. This text is well-suited for both theoretical understanding and practical application, making it a valuable resource for students and professionals alike.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies O'Neil and O'Neil's book as providing comprehensive coverage of database systems, which aligns with the source context mentioning their work. It covers principles, programming, and performance, matching the question's requirements. However, the title is not exactly as stated in the source (it lacks \"Principles, Programming, Performance\"), so correctness is slightly lower. The answer is complete, covering all key points. It is entirely grounded in the provided references. The tone is academic and appropriate for university-level writing.",
+    "parse_status": "failed"
+  }
+}

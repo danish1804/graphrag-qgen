@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_094427_ed4e34",
+  "timestamp": "2026-06-10T09:44:27",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "File system optimisation for dataset loading",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_14.pdf]\ndata in a v ariety of ways \nfile-based system : an applic ation pr ogram designe d to manipula te da ta files \nExercises \n1. Discuss e ach o f the f ollowing terms: \n1. data \n2. field \n3. record \n4. f",
+      "[SEED from source_14.pdf]\nand pr oceeds to an e ver-incr easing le vel of detail, so does da tabase design.  For example, when building a home, y ou \nstart with ho w man y be drooms and ba throoms the home will ha ve, whe ther",
+      "[SEED from source_14.pdf]\nGRO UP B Y type \nUsing COUNT with GR OUP BY \nWe can use CO UNT to tall y ho w man y items ar e in a c ontainer . However, if w e want to c ount dif ferent items in to \nsepar ate gr oups, such as marbl",
+      "[NEIGHBOUR from source_14.pdf]\nChapter 14 D atabase U sers \nAdrienne W att 91 \nChapter 15 SQ L Structured Quer y Languag e \nAdrienne W att & N elson Eng 93 \nChapter 16 SQ L Data Manipula tion L anguag e \nAdrienne W att & N elson En",
+      "[NEIGHBOUR from source_14.pdf]\nGRO UP B Y  field( s) \nORDER B Y fields \nWe can use the SELECT  statemen t to g ener ate an emplo yee phone list fr om the Emplo yees table as f ollows: \nSELECT  FirstN ame, L astN ame, phone \nFROM Em"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely unrelated to file system optimization for dataset loading. They discuss general database concepts like data files and fields, but none directly address file system design or performance. The only somewhat relevant chunk is the first one mentioning file-based systems, but it is brief and vague. Thus relevance is low. Sufficiency is also low because no specific techniques or optimizations are covered. Noise is moderate since some chunks contain unrelated material like exercises or chapter listings.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how the GROUP BY command works in conjunction with the COUNT function to differentiate between counting items in a single container versus counting different items across multiple groups.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about GROUP BY and COUNT together, which directly relates to the source's discussion of using COUNT to count items in containers and separating them into groups. It is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for an explanation of how GROUP BY works with COUNT, so clarity is 5. The difficulty is medium because it requires explaining a concept rather than just recalling facts, matching the requested difficulty. The question type is conceptual, asking for an explanation, which fits perfectly. The question is self-contained and does not reference the source, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The GROUP BY command allows us to categorize data into distinct groups, enabling the COUNT function to tally items within each group separately rather than summing them all together. Without GROUP BY, COUNT simply counts every item in a single container. By specifying fields in GROUP BY, we partition the dataset and compute counts for each group independently, providing granular insights that a simple count cannot offer.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly explains that GROUP BY partitions data into groups before applying COUNT, allowing separate counts per group. It avoids factual errors and is consistent with the source context. The explanation covers the key idea of grouping and counting separately, which is complete. The answer is grounded because it references the source material without introducing unsupported claims. The tone is academic and uses prose, though it could be more precise. Overall, the answer is mostly correct and grounded, but could improve on completeness and precision.",
+    "parse_status": "ok"
+  }
+}

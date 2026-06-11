@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_112550_fe92e7",
+  "timestamp": "2026-06-10T11:25:50",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "System calls used in database management systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\ning the SQL language to support procedural actions or by allowing functions deﬁned in\nprocedural languages to be executed within the database. We describe triggers, which\ncan be used to specify action",
+      "[SEED from source_8.pdf]\nforJava Database Connectivity , but the full form is no longer used.)\n5.1 Accessing SQL from a Programming Language 185\nFigure 5.1 shows example Java code that uses the JDBC interface. The Java progra",
+      "[SEED from source_8.pdf]\n1There are multiple versions of the getConnection() method, which diﬀer in the parameters that they accept. We present\nthe most commonly used version.\n2Prior to version 4, locating the driver was done",
+      "[NEIGHBOUR from source_49.pdf]\ndata, but provides only simple mechanisms for access and sharing. With thisapproach, the procedures written in a programming language are completelyautonomous; each one deﬁnes and uses one or more ‘pr",
+      "[NEIGHBOUR from source_49.pdf]\nallow the data organization to be of a higher level of complexity.\nSection 1.3  5\nData models\n1.3 Data models\nA data model  is a combination of constructs used to organize data. Each data\nmodel provid"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant to the learning objective about system calls in database management systems. They discuss JDBC and data models instead of system calls. There is insufficient information to generate a good exam question because no system call examples or definitions appear. The chunks contain moderate noise, such as irrelevant details about driver location and data organization, but also include some useful information like trigger descriptions.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the purpose of the `java.sql.DriverManager.getConnection()` method in Java applications that interact with databases?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the purpose of `getConnection()`, which is described in the source as a method that returns a connection to a database. This can be answered directly from the context, so it is completely answerable from the source alone (5). The question is clear and unambiguous (5). It asks for a conceptual explanation of the method's role, which aligns with the medium difficulty level (5) and the conceptual question type (5). The question does not reference the passage explicitly, making it standalone (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The `java.sql.DriverManager.getConnection()` method establishes a connection between a Java application and a database. It requires parameters such as the database URL, username, and password, and returns a Connection object that enables the application to execute SQL commands. This method is essential for integrating database access into Java programs, providing a standardized way to connect to various database systems.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies that `getConnection()` establishes a connection, requires parameters like URL, username, and password, and returns a Connection object. It also mentions that the method is essential for database integration. However, it does not mention that the method has multiple versions or that the parameters vary. The answer is mostly grounded in the context, as it does not introduce unsupported details. The tone is academic and precise, using appropriate terminology. Overall, the answer is largely correct and complete, though it could be more detailed about parameter variations.",
+    "parse_status": "ok"
+  }
+}

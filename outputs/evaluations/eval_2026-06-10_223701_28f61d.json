@@ -1,0 +1,67 @@
+{
+  "eval_id": "eval_2026-06-10_223701_28f61d",
+  "timestamp": "2026-06-10T22:37:01",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Performance optimisation across hardware software and data layers",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf domain=deep_learning]\nspecialized architectures have the ability to perform fast parallel\ncomputations. To exploit these special capabilities, a special vari-\nant of SGD — Mini-batch SGD — can be used. Here the dataset is",
+      "[SEED from source_52.pdf domain=deep_learning]\nvectorization is the speed perspective in the implementation. In order to\nimplement a neural network eﬃciently, one must be careful when using for\nloops. The most natural way to implement equation (7.",
+      "[SEED from source_52.pdf domain=deep_learning]\n7.5 Vectorization over training examples\nAs we discussed in Section 7.1, in the implementation of neural networks,\nwe will leverage the parallelism across the multiple examples. This means\nthat we wil",
+      "[NEIGHBOUR from source_52.pdf domain=deep_learning]\nOn the other hand, if we pick any random trajectory starting\nfrom s, its next node will be some state s′that is reachable from s.\nTherefore, the contribution of this particular trajectory to vπ(s)is\na",
+      "[NEIGHBOUR from source_52.pdf domain=deep_learning]\nahead tree for a reasonable number of steps and try to calculate\nthe best move. But the size of a game tree is astronomical, so it is\ncomputationally infeasible to search all levels of the tree.10 10T",
+      "[NEIGHBOUR from source_52.pdf domain=deep_learning]\nitems constitute design choices for the implementation of the learning program.  \n \n1.4.4 Choosing an approximation algorithm for the Target Function  \nGenerating training data — \nTo train our learnin",
+      "[NEIGHBOUR from source_56.pdf domain=deep_learning]\nunknown function\nf(x) =y, (1)\nwhere xis a vector of input features associated with a training example or dataset instance\n(for example, the pixel values of an image) and yis the outcome we want to pre",
+      "[SEED from source_5.pdf domain=operating_systems]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[SEED from source_5.pdf domain=operating_systems]\nory technologies that provide for large-capacity memory, both because the capacity\nis needed and because the cost per bit is low. However, to meet performance re-quirements, the designer needs to use",
+      "[SEED from source_5.pdf domain=operating_systems]\n(0.95) (0.1 μs) /H11001(0.05) (0.1 μs /H11001 1 μs) /H11005 0.095 /H110010.055 /H110050.15 μs\n5If the accessed word is found in the faster memory, that is defined as a hit.A  miss occurs if the access",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nIn processors with multiple types of interrupts, a set of interrupt registers\nmay be provided, with one pointer to each interrupt-handling routine. If a stack isused to implement certain functions (e.",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nmemory to relieve the processor of the I/O task. In such a case, the processor grantsto an I/O module the authority to read from or write to memory, so that the I/O-memory transfer can occur without t",
+      "[NEIGHBOUR from source_41.pdf domain=operating_systems]\n1.1 BASIC ELEMENTS\nAt a top level, a computer consists of processor, memory, and I/O components, withone or more modules of each type. These components are interconnected in somefashion to achieve the",
+      "[NEIGHBOUR from source_41.pdf domain=operating_systems]\nment. The external environment consists of a variety of devices, includingsecondary memory devices (e. g., disks), communications equipment, andterminals.\n•System bus: Provides for communication among",
+      "[SEED from source_12.pdf domain=computer_architecture]\n1.9 Quantitative Principles of Computer Design 48\n1.10 Putting It All Together: Performance, Price, and Power 55\n1.11 Fallacies and Pitfalls 58\n1.12 Concluding Remarks 64\n1.13 Historical Perspectives",
+      "[SEED from source_12.pdf domain=computer_architecture]\ne.[25]<1.10>Write the general equation that solves this question: What is the\nnumber of processors with the highest speedup in an application in which P% ofthe original execution time is parallelizabl",
+      "[SEED from source_12.pdf domain=computer_architecture]\n2.3 Ten Advanced Optimizations of Cache Performance\nThe preceding average memory access time formula gives us three metrics for\ncache optimizations: hit time, miss rate, and miss penalty. Given the re",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\naware of which instruction \nset used)  \nPhysical components (Circuit design, Adders, Signals, \nPeripherals)  Logic (Instruction set, \nAddressing m odes, Data \ntypes, Cache optimization)  \nHow to do ?",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\nmanipulated (for example, added to the data in another word space).    \n \nThe number of bits in each word is known as word l ength. Word length refers to the \nnumber of bits processed by the CPU in on",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\nComputer Organization and Architectu re \n \n Page 31 \n Let us examine the flow of program instructions and data between the memory and \nthe processor. At the start of execution, all program instruction",
+      "[NEIGHBOUR from source_23.pdf domain=computer_architecture]\nComputer Organization and Architectu re \n \n Page 2 \n STRUCTURE OF COMPUTERS : Computer types, functional units, basic operational concepts, \nVon‐Neumann architecture, bus structures, software, perform"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about computer architecture and performance optimization, which aligns with the learning objective. However, they focus on hardware and system-level concepts rather than software and data layer optimizations. While some chunks discuss parallel computation and vectorization, they do not explicitly cover how software and data layers interact with hardware for performance. Therefore, relevance is moderate. Sufficiency is low because the chunks lack specific details on how software and data layers optimize performance, making it hard to generate a comprehensive exam question. Noise is high due to many irrelevant passages about instruction sets, word length, and system structure that do not contribute to the objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "When implementing a neural network with a GPU, explain how the choice of mini-batch size relates to the parallelism capabilities of the GPU, and describe why vectorizing operations across multiple training examples is essential for achieving efficient execution on a GPU.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about mini-batch size and vectorization, which directly relate to the source's discussion of specialized architectures and vectorization for neural networks. It is completely answerable from the context, so faithfulness is 5. The question is clear and unambiguous, asking for an explanation of two concepts, so clarity is 5. The difficulty is hard because it requires applying concepts to a specific scenario (GPU implementation), matching the request. The type is application, asking for an analysis rather than a simple definition, so type alignment is 5. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Choosing a mini-batch size that matches the GPU's parallelism allows the GPU to fully utilize its many cores, enabling simultaneous computation on multiple samples. Vectorizing operations across training examples leverages the GPU's SIMD architecture, where each thread processes a different training example in parallel, greatly speeding up the forward and backward passes. This approach reduces overhead from branching and synchronization, making the GPU a powerful tool for deep learning. By aligning the mini-batch size with the GPU's degree of parallelism, the system achieves optimal performance, demonstrating the critical interplay between hardware capabilities and algorithmic design.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that mini-batch size should match GPU parallelism for full utilization, and that vectorization across examples is essential for SIMD execution. It also explains how vectorization reduces overhead. However, it does not explicitly mention that vectorization is necessary for exploiting parallelism, which is a key point. The answer is mostly grounded but includes a minor elaboration not directly from the source. The tone is academic but uses some informal language like \"simultaneously\" and \"greatly,\" which could be more precise. Overall, the answer is good but could be stronger on completeness and groundedness.",
+    "parse_status": "ok"
+  }
+}

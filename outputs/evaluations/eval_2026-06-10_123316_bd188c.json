@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_123316_bd188c",
+  "timestamp": "2026-06-10T12:33:16",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Agile development for embedded systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\n30% and 40% of the text has been completely rewritt en.\n6. I have added new chapters on agile software devel opment and embedded systems.\n7. As well as these new chapters, there is new mater ial on mo",
+      "[SEED from source_22.pdf]\nmodeling, reuse, etc.\nThe three types of systems that I use as case studi es are:\n1.An embedded system This is a system where the software controls a hard ware\ndevice and is embedded in that device. I",
+      "[SEED from source_22.pdf]\nconditions, and maintainability. The example of a d ata collection system that\nI use is a wilderness weather station.\nI introduce each of these systems in this chapter, with more information about\neac",
+      "[NEIGHBOUR from source_46.pdf]\n(Definitions from [Sommerville2011])\n●There is no ideal process.\n●One size does not fit all.\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 3\nFundamental Activ",
+      "[NEIGHBOUR from source_46.pdf]\n●Also involves testing & debugging\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 12\nSoftware Design & Implementation\nImage source (FU):  Sommerville, Software"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant to agile development for embedded systems. Only Chunk 2 mentions embedded systems briefly, but it lacks details. Chunk 4 and 5 discuss general software engineering principles without focusing on agile methods or embedded systems. There is insufficient information to generate a meaningful exam question. The chunks contain moderate noise, such as repeated definitions and tangential material, though some are clean like Chunk 2's brief mention.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What distinguishes an embedded system from other types of systems in terms of its primary purpose and typical application domain?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about distinguishing characteristics of embedded systems, which is directly stated in the source: \"An embedded system This is a system where the software controls a hardware device and is embedded in that device.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a definition, so clarity is 5. The difficulty is medium because it requires understanding the concept rather than simple recall, matching the requested difficulty. The question is conceptual, asking for a definition, so type alignment is 5. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "An embedded system is a type of software system designed to control a hardware device and is integrated within it, often serving specific real-time functions such as medical device management. Unlike general-purpose information systems, embedded systems prioritize performance, reliability, and low power consumption over user interaction, making them suitable for applications requiring quick response and minimal resource usage.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that an embedded system controls a hardware device and is embedded in it, which aligns with the source's definition. It also notes that embedded systems prioritize performance and reliability, though the passage does not explicitly state this. The answer omits mentioning the real-time nature and specific application domains like medical devices, which are implied by the context. The answer is grounded in the source, as it does not include unsupported claims. The tone is academic but uses a mix of prose and bullet points, which is acceptable for university writing. Overall, the answer is mostly correct and grounded but lacks completeness and could be more precise.",
+    "parse_status": "ok"
+  }
+}

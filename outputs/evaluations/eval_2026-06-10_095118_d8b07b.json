@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_095118_d8b07b",
+  "timestamp": "2026-06-10T09:51:18",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "OS scheduling impact on neural network training",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_51.pdf]\nlearning to reduce the search space within the hypothesis space. (A neural network with a\nsingle hidden layer, a ﬁnite number of neurons, and non-linear activation functions such as\nsigmoid units, was",
+      "[SEED from source_51.pdf]\no(x) =σ(w0+∑\nhwhσ(wh\n0+∑\niwh\nixi)\n\noh). (6.2)\nMore generally, prediction in neural networks is done by starting from the input layer and, for\neach subsequent layer, computing the output of the sig",
+      "[SEED from source_51.pdf]\nexploring “data science ”via linear regression 63\nhow to leverage techniques from linear regression in order to solve\nthis problem.\n5.2.1Linear Superposition\nThe key intuition involves a concept calle",
+      "[NEIGHBOUR from source_64.pdf]\nUnsupervised midTraditional\nDeep Learning\nHandcrafted features are time consuming, brittle and not scalable in\npractice. DL learn underlying features directly from data.\nLecture 4 (Part 1) Deep Learni",
+      "[NEIGHBOUR from source_64.pdf]\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 10 / 42\nApply Neural Networks to Images\nIn our ML model we would like to have these two properties.\nFeature extraction usually happens locally - sparse"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant to the learning objective about OS scheduling impact on neural network training. They discuss neural network architecture and feature extraction, which are tangential to OS scheduling. Only one chunk mentions scheduling (Chunk 1), but it is brief and does not connect to the objective. The other chunks are about unsupervised learning and feature extraction, which are not directly related. Thus, relevance is low. Sufficiency is also low because the chunks lack specific details on how OS scheduling affects neural network training. Noise is moderate since some chunks contain technical details that could be useful if they were relevant, but the overall mix is distracting.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how the principle of linear superposition applies to deep learning when applying neural networks to image processing, specifically addressing how it relates to both sparse connectivity and parameter sharing.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about linear superposition in deep learning applied to images, which is not explicitly covered in the source context. The passage discusses linear superposition in the context of feature extraction and parameter sharing, but does not directly apply it to images. Therefore, the question requires knowledge beyond the given context, making it 1 out of 5 for faithfulness. The question is clear and unambiguous, so it scores 5 for clarity. It asks for an explanation of how linear superposition relates to sparse connectivity and parameter sharing, which is a conceptual task, matching medium difficulty. The question is clearly a conceptual explanation, so it scores 5 for type alignment. Finally, the question does not reference the passage, so it scores 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Linear superposition states that the total response of a neuron to multiple inputs is the sum of its responses to each individual input. In image processing, this principle allows a neural network to learn features locally, where each hidden unit receives connections from only a subset of pixels (sparse connectivity), yet still capture the combined effect of multiple stimuli. Additionally, parameter sharing ensures that the same weight parameters are used across all spatial positions, enabling the network to apply the same transformation consistently over the entire image while maintaining locality. Thus, linear superposition underpins both efficient local feature extraction and robust spatial invariance in deep learning architectures.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies linear superposition as the principle allowing local feature extraction through sparse connectivity and parameter sharing. It accurately describes how each hidden unit responds to multiple inputs by summing their effects, which enables local receptive fields. The explanation of parameter sharing as applying the same weights across positions is also correct. However, the answer could be more precise by explicitly linking linear superposition to the sum of weighted inputs, and it does not mention that parameter sharing reduces the number of parameters, which is a key benefit. The language is academic but uses some informal terms like \"local\" without defining it, and the structure is somewhat fragmented. Overall, the answer is mostly correct and grounded but lacks some precision and completeness.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_112718_af3950",
+  "timestamp": "2026-06-10T11:27:18",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Real time database systems and OS scheduling",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nDue to the unpredictable nature of delays when reading data from disk, main-\nmemory databases are often used if real-time constraints have to be met. However, even\nif data are resident in main memory,",
+      "[SEED from source_8.pdf]\nhigher priority for transactions with early deadlines. They have found that optimistic\nconcurrency protocols perform well in real-time databases; that is, these protocols re-\nsult in fewer missed dead",
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about database management and concurrency, which is tangential to real-time OS scheduling. Only Chunk 1 briefly mentions real-time constraints, but it does not discuss OS scheduling. The other chunks are unrelated. Thus, relevance is low. There is enough information to identify key concepts like real-time databases and concurrency protocols, but the focus is not on OS scheduling. Noise is moderate because some chunks contain useful information, but many are irrelevant.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain why real-time constraints in database systems require different considerations compared to non-real-time databases, specifically addressing how the unpredictable nature of disk access affects database design and implementation.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about real-time constraints and disk access unpredictability, which are directly covered in the source context. It is clear and unambiguous, asking for an explanation of how these factors affect database design. The difficulty level is medium because it requires understanding the relationship between real-time constraints and disk access, rather than simple recall. The question is conceptual, matching the requested type. It is self-contained, as it does not reference the passage explicitly. Overall, it is a well-formed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Real-time databases must prioritize predictable response times over data consistency, as unpredictable delays from disk access make main-memory databases essential for meeting strict deadlines. Even in memory, lock waits and transaction aborts introduce variability, necessitating concurrency control strategies like extended locking or optimistic protocols to minimize missed deadlines. This focus contrasts with non-real-time databases, where consistency is prioritized even at the cost of occasional delays.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that real-time databases prioritize predictable response times over data consistency due to disk access unpredictability, and it mentions main-memory databases and optimistic concurrency protocols. However, it does not explicitly connect the source's mention of lock waits and transaction aborts to the need for concurrency control. The answer is mostly grounded but includes a minor factual error (missed deadlines instead of missed deadlines). The tone is academic but uses a mix of prose and bullet points, which is acceptable but not ideal for a full paragraph. Overall, the answer is good but could be more precise and consistent.",
+    "parse_status": "ok"
+  }
+}

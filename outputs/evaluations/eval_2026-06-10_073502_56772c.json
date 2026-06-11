@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_073502_56772c",
+  "timestamp": "2026-06-10T07:35:02",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "NoSQL vs relational databases",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_31.pdf]\nNoSQL is one of the hottest items in database technologies today. But it is only one of many emerging trends in data \nmanagement. Whatever database technology you use, you need to be able to select th",
+      "[SEED from source_31.pdf]\n13.7.7   Relational vs. Multidimensional OLAP \nTable 13.12 summarizes some pros and cons of ROLAP and MOLAP. Keep in mind that the selection of one or the other often depends on the evaluator’s vantag",
+      "[NEIGHBOUR from source_31.pdf]\ntable T(X,Y)toT(X,Y,Z,U)and allow the ZandUcolumns to be\nNULL for those rows in Tnot participating in the relationship.\nPros and cons?\ndjg11 (cl.cam.ac.uk) Introduction to DatabasesLectures 1 - 8 Ia D"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to NoSQL vs relational databases. Chunk 1 mentions NoSQL briefly but does not compare it to relational databases. Chunk 2 discusses ROLAP vs MOLAP, which is unrelated. Chunk 3 appears to be about database relationships and normalization, also not relevant. Thus, relevance is 1. There is insufficient information to generate a good exam question because none of the chunks provide a clear comparison or contrast between NoSQL and relational databases. Noise is moderate since the chunks contain some useful information but are mostly off-topic.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What are the key factors that should be considered when selecting the appropriate database technology for a given application?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about factors for selecting database technology, which can be answered using the source context that discusses NoSQL and multidimensional OLAP. It is clear and unambiguous, asking for a list of considerations. The difficulty is easy because it requires basic recall of pros and cons, matching the recall level. The question type is recall, which fits perfectly. It is self-contained and does not reference the passage, so it is standalone.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "When selecting database technology, one must consider both pros and cons of each technology, such as performance, price, hardware compatibility, programming requirements, and administrative tools. Additionally, the choice often depends on the specific application needs, as different technologies may excel in handling particular types of relationships or data models.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that pros and cons should be considered, and that selection depends on application needs. It also mentions performance, price, hardware, programming, and administrative tools, which are all relevant factors. However, it does not explicitly mention relational vs multidimensional OLAP, which is a key point from the source. The answer is grounded in the context, as it references the pros and cons table and application needs. The tone is academic but uses bullet points, which is acceptable for this format. Overall, the answer is mostly correct and complete, but lacks one key factor.",
+    "parse_status": "ok"
+  }
+}

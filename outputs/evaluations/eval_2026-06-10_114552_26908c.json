@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_114552_26908c",
+  "timestamp": "2026-06-10T11:45:52",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Memory bandwidth and database join operations",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[SEED from source_36.pdf]\n10.2.2 Local independence and co-operation 355\n10.2.3 Data fragmentation and allocation 356\n10.2.4 Transparency levels 358\n10.2.5 Classiﬁcation of transactions 360\n10.3 Technology of distributed datab",
+      "[SEED from source_36.pdf]\nhand, vertical partitioning generates entities with fewer attributes. They cantherefore be translated into physical structures from which we can retrieve agreat deal of data with a single access. Part",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are mostly unrelated to memory bandwidth or database join operations. Chunk 1 briefly mentions query optimization, but does not discuss joins or bandwidth. Chunk 2 covers distributed database topics, which are not relevant. Chunk 3 discusses vertical partitioning, which could be tangentially related, but the passage is brief and unclear. Chunk 4 and 5 are completely irrelevant, being about control structures and book metadata. Thus, the chunks are largely irrelevant.\nThe chunks contain minimal information about joins or bandwidth, so they are insufficient for generating a good exam question. The only potentially relevant chunk (Chunk 3) is too brief and unclear to be sufficient.\nThe chunks are clean except for the irrelevant content, so noise is low.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary advantage of vertical partitioning in distributed databases, and how does it differ from horizontal partitioning in terms of data retrieval efficiency?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about vertical partitioning's advantage and comparison to horizontal partitioning, which is directly stated in the source: \"vertical partitioning generates entities with fewer attributes, allowing efficient retrieval with a single access.\" The question is clear and unambiguous, so clarity is high. It requires explanation rather than recall, making it medium difficulty. The type is conceptual, matching the request. The question is self-contained, referring only to concepts within the passage, so standalone quality is good. Overall, all criteria are met satisfactorily.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Vertical partitioning divides an entity into subentities based on attributes, resulting in smaller entities that can be stored more efficiently. This approach enables faster data retrieval because each partition contains fewer attributes, allowing a single access to obtain much data. In contrast, horizontal partitioning splits entities into subsets based on rows, which may require multiple accesses to gather all relevant data. The key difference lies in attribute distribution versus row distribution, with vertical partitioning optimizing for attribute-based queries by reducing the size of individual partitions.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that vertical partitioning reduces attribute count per entity, enabling efficient retrieval via single access. It contrasts this with horizontal partitioning requiring multiple accesses. However, the explanation is somewhat vague and could benefit from more precise terminology (e.g., 'attribute-based' vs. 'row-based'). The answer is grounded in the source context, which discusses vertical partitioning and its benefits. The tone is academic but uses some informal language like 'much data' rather than formal prose. Overall, the answer is mostly correct and grounded but lacks precision and polish.",
+    "parse_status": "ok"
+  }
+}

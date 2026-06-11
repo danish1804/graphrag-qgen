@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_075849_804779",
+  "timestamp": "2026-06-10T07:58:49",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Refactoring and technical debt",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nsuch as Eclipse (Carlson, 2005), include tools for refactoring which simplify the\nprocess of finding dependencies between code sectio ns and making global code\nmodifications.\nIn principle then, the so",
+      "[SEED from source_22.pdf]\nPrentice Hall.\nBeck, K. (1999). ‘Embracing Change with Extreme Pro gramming’. IEEE Computer, 32(10), 70–8.\nBeck, K. (2000). extreme Programming explained. Reading, Mass.: Addison-Wesley.\nCarlson, D. (",
+      "[NEIGHBOUR from source_46.pdf]\n(Definitions from [Sommerville2011])\n●There is no ideal process.\n●One size does not fit all.\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 3\nFundamental Activ"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are partially relevant because they mention refactoring tools and related concepts like technical debt, but they do not directly explain the concept of refactoring or its relationship to technical debt. The sufficiency score is low because the chunks lack concrete examples or definitions that would be needed to formulate a good exam question. Noise is moderate since the chunks contain references to other sources and general software engineering principles that are not directly about refactoring or technical debt.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Which of the following authors is credited with writing \"Eclipse Distilled\" as part of their work in software engineering?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about an author of \"Eclipse Distilled,\" but the source context mentions Eclipse only in relation to refactoring tools, not as a book. The passage does not contain any author names associated with that title, so the question cannot be answered solely from the given context. This violates faithfulness (1). The question is clear and unambiguous (5). It is an easy recall question (5) matching the requested difficulty. It is a recall question (5) matching the requested type. The question is self-contained and does not reference the passage (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The author who wrote \"Eclipse Distilled\" is David Carlson. This book was published by Addison-Wesley in Boston and focuses on tools for refactoring in Eclipse, simplifying dependency analysis and global code modifications.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "The answer states that David Carlson wrote \"Eclipse Distilled,\" which is accurate based on the source context. It covers the key point about the book's focus on refactoring tools in Eclipse. The answer is entirely grounded in the provided context, as it cites the correct author and publisher. The language is precise and academic, using proper sentence structure without bullet points. However, the answer could be more concise, potentially reducing completeness slightly. Overall, the answer is mostly correct and grounded, with minor room for improvement in conciseness.",
+    "parse_status": "ok"
+  }
+}

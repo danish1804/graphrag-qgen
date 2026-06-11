@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_074618_d861cd",
+  "timestamp": "2026-06-10T07:46:18",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Verification and validation in software testing",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\non software testing in which the author presents a set of experience-based guidelines on designing\ntests that are likely to be effective in discoverin g system faults. (J. A. Whittaker, Addison-Wesley",
+      "[SEED from source_22.pdf]\napplications. (M. Andrews and J. A. Whittaker, Addi son-Wesley, 2006.)\n‘Using static analysis to find bugs’. This paper de scribes Findbugs, a Java static analyzer that uses\nsimple techniques to find",
+      "[NEIGHBOUR from source_21.pdf]\n14\n(b) Unit test each individual component\n(c) Integration (system) testing - combine components, test interfaces\namong components\n(d) Acceptance testing - use live data in client’s test environment."
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are partially relevant because they discuss testing approaches and tools, but none directly explain verification and validation. Chunk 1 mentions guidelines for effective testing, which could indirectly relate, but does not explicitly cover verification/validation. Chunk 2 discusses static analysis, which is tangential. Chunk 3 lists testing phases, which are somewhat related but do not focus on verification/validation. The chunks lack direct coverage of the learning objective.\nSUFFICIENCY: The chunks provide some general testing information, but they do not contain specific concepts about verification and validation. Without explicit definitions or examples, it would be difficult to generate a meaningful exam question. The information is insufficient.\nNOISE: The chunks are moderately noisy. Chunk 1 includes a reference to a book, which is not directly relevant. Chunk 2 has a title that is not fully explained. Chunk 3 is clean but lacks detail. Overall, the noise level is moderate.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the term \"further problem\" refer to in the context of software testing?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 3,
+      "standalone_quality": 1
+    },
+    "overall": 1.4,
+    "reasoning": "The question asks about \"further problem,\" which is not mentioned in the provided source context. The passage discusses static analysis tools and testing guidelines, but does not introduce any concept called \"further problem.\" Therefore, the question cannot be answered solely from the given context, making it impossible to score high on faithfulness. The question is also unclear because it uses undefined terminology, reducing clarity. It is too difficult for recall since no such term exists, so difficulty alignment is poor. The question type is recall, which matches the request, but the term is not defined in the context, so type alignment is weak. Finally, the question explicitly references the passage, failing standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Further problem refers to the additional challenges encountered when applying software testing principles beyond the basic techniques described by J.A. Whittaker. It encompasses issues such as integration testing, acceptance testing, and post-delivery maintenance, which extend the scope of testing beyond individual components. These problems require more sophisticated approaches to ensure comprehensive coverage and reliability.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies further problems as extending beyond basic testing to include integration, acceptance, and maintenance. However, it incorrectly states that these are part of the source's guidelines, whereas the source actually describes static analysis tools. The answer is incomplete because it does not mention the specific static analysis tool (Findbugs) mentioned in the neighbor passage. It is grounded in the source material but includes unsupported generalizations about testing principles. The tone is academic but uses bullet points, which is acceptable for this format.",
+    "parse_status": "ok"
+  }
+}

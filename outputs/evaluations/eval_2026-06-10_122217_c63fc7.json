@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_122217_c63fc7",
+  "timestamp": "2026-06-10T12:22:17",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Embedded systems software development",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nF U RT H E R  R E A D I N G\nSoftware Engineering for Real-Time Systems . Written from an engineering rather than a compute r\nscience perspective, this book is a good practical guide to real-time syste",
+      "[SEED from source_22.pdf]\nInInformation Processing . Ritter, G. (ed.). Amsterdam: Elsevier Science Pub lishers, 11–17.\nBrinch-Hansen, P . (1973). Operating System Principles . Englewood Cliffs, NJ: Prentice-Hall.\nBurns, A. and",
+      "[SEED from source_22.pdf]\nChapter 20 Embedded software 537\n20.1 Embedded systems design 540\n20.2 Architectural patterns 547\n20.3 Timing analysis 554\n20.4 Real-time operating systems 558\nChapter 21 Aspect-oriented software engi",
+      "[NEIGHBOUR from source_22.pdf]\neven if the code is perfect.\n3. What do we mean by selected inputs ?With a real-time system, no\ncontrol over the inputs is possible, e.g.\n(a) an avionics system in an aircraft, for which the inputs de",
+      "[NEIGHBOUR from source_22.pdf]\nThe activities in the design process vary, dependin g on the type of system being\ndeveloped. For example, real-time systems require t iming design but may not\ninclude a database so there is no databas"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about general software engineering topics like real-time systems and operating systems, which are tangential to embedded systems software development. Only Chunk 3 mentions embedded software, but it is brief and lacks detail. The other chunks discuss broader concepts without focusing on the specific skills needed for embedded systems. Thus, relevance is low. There is insufficient information to generate a good exam question because key concepts like timing analysis or architectural patterns are not covered. Noise is moderate since some chunks contain useful information but are also filled with tangential material.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Which of the following statements best describes why real-time systems require timing design as part of their architectural design process, according to the provided context?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about timing design in real-time systems, which is directly stated in the source: \"real-time systems require timing design but may not include a database.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a specific concept, so clarity is 5. The difficulty is medium because it requires understanding the distinction between real-time and non-real-time systems, which is a conceptual leap beyond simple recall. The question type is conceptual, asking for an explanation of why timing is needed, which fits perfectly. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Real-time systems require timing design because they must meet strict time constraints for correct operation. Unlike non-real-time systems, real-time systems have critical deadlines that determine whether outputs are valid; thus, their architecture must account for predictable execution times across all components. This timing analysis is essential for ensuring that the system can handle unpredictable inputs within its required response windows, making it a core activity in real-time system design.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that real-time systems require timing design due to strict time constraints, which is accurate based on the context. It covers the key point that timing analysis ensures correct operation under unpredictable inputs. The answer is grounded in the source, as it does not introduce unsupported ideas. However, it could be more precise by referencing specific examples from the context, such as the avionics system. The tone is academic but uses some bullet points, which is acceptable for a short answer. Overall, the answer is mostly correct and grounded, but could improve on completeness and precision.",
+    "parse_status": "ok"
+  }
+}

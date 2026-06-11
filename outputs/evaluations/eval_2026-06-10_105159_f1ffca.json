@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_105159_f1ffca",
+  "timestamp": "2026-06-10T10:51:59",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Unit testing strategies for database operations",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\nand O’Neil [63]. Date’ s book [33], now in its sixth edition, is very popular in\nthe practitioners’ world, since it gives a simple description of manyimportant aspects. Ullman [ 88] oVers an integrate",
+      "[SEED from source_7.pdf]\ncoverage of database systems is provided by [O’Neil and O’Neil (2000)], [Ramakrish-\nnan and Gehrke (2002)], [Date (2003)], [Kifer et al. (2005)], [Garcia-Molina et al.\n(2008)], and [Elmasri and Navath",
+      "[SEED from source_7.pdf]\n[Kifer et al. (2005)] M. Kifer, A. Bernstein, and P. Lewis, Database Systems: An Application\nOriented Approach, Complete Version , 2nd edition, Addison Wesley (2005).\n[O’Neil and O’Neil (2000)] P. O’N",
+      "[NEIGHBOUR from source_49.pdf]\npages 16–25.\n[Knuth (1973)] D. E. Knuth, The Art of Computer Programming, Volume 3 , Addison Wesley,\nSorting and Searching (1973).\n[O’Neil and Quass (1997)] P. O’Neil and D. Quass, “Improved Query Per",
+      "[NEIGHBOUR from source_49.pdf]\ntrol in main-memory databases. The ABA problem with latch-free data structures as\nwell as solutions for the problem are discussed in [Dechev et al. (2010)].\nBibliography\n[Bayer and Schkolnick (1977)]"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to unit testing strategies for database operations. They discuss general database system books and papers, which may be tangentially related but do not focus on testing methods or techniques. The only somewhat relevant chunk is [O'Neil and O'Neil (2000)], which might touch on database concepts, but it is not specific to testing. Therefore, relevance is low. Sufficiency is also low because no detailed testing strategies or examples are provided. Noise is moderate, as some chunks contain general information that is not directly about testing, but most are at least somewhat related to database systems.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, I cannot generate a meaningful exam question because the context only contains bibliographic references and citations without substantive content about database systems, concepts, or learning objectives.\n\nThe context shows only:\n- Book references and authors\n- Bibliographic citations\n- Page numbers\n- Conference proceedings mentions\n- No actual course material content\n\nTo generate a valid exam question aligned with a learning objective, I need actual course content material that explains key concepts, principles, or operational details. Please provide the actual course material content rather than just bibliographic metadata.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The question cannot be answered using only the provided context, which consists solely of bibliographic references and citations. Without substantive course content, no conceptual or application question can be formulated. The context lacks any explanation of database systems, so a conceptual question would require outside knowledge. The question type is unspecified, but a conceptual question would be appropriate if the context contained relevant material. However, the context does not provide such material, making the question impossible to formulate. Therefore, the scores are low across all criteria.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The provided context lists numerous database-related books and papers, but lacks substantive course content. To construct a meaningful exam question, one would need to identify core concepts such as indexing, concurrency control, or query optimization from the referenced works. For example, a question could ask students to explain how the log-structured merge-tree (LSM-tree) improves query performance compared to traditional B-tree indexes, using the relevant paper by O'Neil et al. (1996) as a reference.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 1,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that the context provides bibliographic references but lacks substantive course content. It suggests a question based on a specific concept (LSM-tree) from a cited paper, which is grounded in the context. However, the answer itself is incomplete because it does not actually formulate a question or provide a detailed explanation of the LSM-tree. The academic tone is appropriate for a university setting, but the completeness score is low due to the lack of a concrete question and explanation. The correctness and groundedness scores are high because the answer is based on the provided references, though completeness is poor.",
+    "parse_status": "ok"
+  }
+}

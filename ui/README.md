@@ -48,15 +48,16 @@ Controls **how the LLM writes** the question (Bloom level + prompt template). Do
 - `hard + case_study + Auto route` → multi-domain, 7 chunks per domain, scenario + question.
 - `hard + case_study + database` → single domain, 7 chunks, scenario + question.
 
-### What “K” means in the UI info box
+### What “K” means in the UI
 
-The UI no longer has an editable “Top K” field. It displays config-driven retrieval parameters:
+The UI has an **editable Top K field**, pre-filled with the config.yml default
+for the selected difficulty. The educator's selection is sent to the API:
 
-- **top_k_nodes** — how many graph **seed nodes** FAISS selects (graph entry points).
-- **neighbour_depth** — how many **edge hops** expand related concepts.
-- **max_chunks** — how many **text chunks** go into the LLM prompt.
+- **top_k_nodes** (GraphRAG, editable) — how many graph **seed nodes** FAISS selects (graph entry points). Passed as `top_k_nodes` to `/graphrag/generate`.
+- **neighbour_depth** — how many **edge hops** expand related concepts (config-driven, shown in caption).
+- **max_chunks** — how many **text chunks** go into the LLM prompt (config-driven, shown in caption).
 
-For Standard RAG modes, the box shows **top_k_results** instead (flat chunk retrieval, no graph).
+For Standard RAG modes the editable field is **top_k_results** (flat chunk retrieval, no graph), passed as `top_k` to `/generate`.
 
 ### Domain selection
 

@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_120435_1fc872",
+  "timestamp": "2026-06-10T12:04:35",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "File system APIs in software engineering",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ntive component reuse. I also discuss the general pr ocess of component-\nbased software engineering and the problems of comp onent composition. \nThe majority of large systems are now distributed s yste",
+      "[SEED from source_22.pdf]\nfollowed. As I discussed in Chapters 8 and 15, revi ews and inspections are used\nalongside program testing as part of the general pr ocess of software verification and\nvalidation.\nDuring a review, a g",
+      "[SEED from source_22.pdf]\naccount by the system designer.\nSome of the most important design issues that have to be considered in distributed\nsystems engineering are:\n1.Transparency To what extent should the distributed system",
+      "[NEIGHBOUR from source_22.pdf]\n17.1 Components and component models 455\n17.2 CBSE processes 461\n17.3 Component composition 468\nChapter 18 Distributed software engineering 479\n18.1 Distributed systems issues 481\n18.2 Client–server c",
+      "[NEIGHBOUR from source_22.pdf]\n(1986). Bosch (2000) includes a good discussion of how this style relates to system\nquality attributes.\n6.3.3 Client–server architecture\nThe repository pattern is concerned with the static  structure"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are largely irrelevant to file system APIs in software engineering. They discuss topics like component-based software engineering, reviews, and client-server architecture, which are not directly related to file system APIs. Only Chunk 4 briefly mentions distributed software engineering, but it does not provide specific details about file system APIs. The chunks are also insufficient because they lack concrete examples or explanations of file system APIs, making it hard to generate a meaningful exam question. Finally, the chunks contain moderate noise, as they include discussions on other software engineering topics that are not directly relevant to the objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the two primary design issues that must be considered when engineering distributed systems, and briefly describe what each issue addresses?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about two primary design issues for distributed systems, which are explicitly stated in the source: transparency and the extent to which the distributed system should be transparent. This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a straightforward list, so clarity is 5. The difficulty is medium because it requires understanding the concept of transparency rather than simple recall, matching the requested difficulty. The question type is conceptual, asking for an explanation of design issues, which aligns with the requested type. The question does not reference the passage; it can stand alone, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The two primary design issues for distributed systems engineering are transparency and openness. Transparency concerns whether a distributed system should appear to users as a single entity or if they need to understand its distributed nature. Openness involves designing systems with standard protocols to promote interoperability versus using specialized protocols that limit flexibility. These issues arise because distributed systems require balancing ease of use against technical complexity.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.5,
+    "reasoning": "The answer correctly identifies transparency and openness as the two primary design issues for distributed systems. It accurately describes transparency as the extent of distributed appearance and openness as the choice between standard vs. specialized protocols. The answer is fully grounded in the source context, which discusses these topics directly. However, the language uses bullet points and informal terms like \"ease of use\" rather than precise academic prose, reducing its academic tone. Overall, the answer is mostly correct and grounded but lacks the formal academic style expected at university level.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_093412_f103d7",
+  "timestamp": "2026-06-10T09:34:12",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "GPU memory management for deep learning",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_60.pdf]\nGPUs), they have achieved impressive results in recent years in diﬃc ult tasks such as object\nrecognition, speech recognition, machine translation or game learn ing. This success is due to\nthe ability",
+      "[SEED from source_60.pdf]\n·st\n=Lt·st\nwhere\nLt:=[\n(B⊤\ntΦt+1Bt−Wt)−1BtΦt+1At]\n1Use the identity E[\nw⊤\ntΦt+1wt]\n= Tr(ΣtΦt+1) withwt∼N (0,Σt)\n211\nwhich is an impressive result: our optimal policy is linear inst. Given\na∗\ntwe can s",
+      "[SEED from source_52.pdf]\nmodel and set new standards for performance on the ImageNet\ndataset.6Deep learning has since begun a resurgence throughout6Paper: https:\n//papers.nips.cc/paper/2012/file/\nc399862d3b9d6b76c8436e924a68c",
+      "[NEIGHBOUR from source_68.pdf]\nHinge (1·(−1.4, 3.075, 0.1 )·(1, 0.75, 1 )) = 0\nwhich is now lower than the SVM loss before the update.\n4.4Multi-class Classification (Multinomial Regression)\nSo far, we have only seen problems where",
+      "[NEIGHBOUR from source_68.pdf]\nin the famous ImageNet challenge, each\nimage belongs to one of 1000 classes.conceptual framework is similar to logistic regression, except the\nmodel defines a nonzero probability for each label as fol"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant to GPU memory management for deep learning. They discuss general deep learning successes and multi-class classification, which are tangential. Only Chunk 5 mentions ImageNet, but it does not explain GPU memory. The chunks contain some useful information about deep learning, but they lack direct coverage of GPU-specific memory management techniques. Noise is moderate because some chunks include technical details that are not directly related to the objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how GPUs have contributed to the resurgence of deep learning in achieving impressive results across various tasks, and describe what key factor enables deep learning networks to perform effectively in these challenging applications.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about GPUs' contribution to deep learning and the key factor enabling effective performance. It can be fully answered using the source context, which discusses GPUs' role in achieving impressive results across tasks like object recognition and machine translation. The question is clear and unambiguous, asking for an explanation rather than a definition. It matches the medium difficulty level because it requires understanding the relationship between hardware and algorithmic improvements. The type is conceptual, asking for an explanation of the key factor. The question is self-contained, referring only to the source material without explicit references to the passage. Thus, all criteria score 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "GPUs have enabled rapid training of deep learning models, allowing researchers to achieve impressive results in tasks like image recognition, speech processing, and game playing. The key factor is that deep networks learn nonlinear mappings in high-dimensional spaces automatically, without manual preprocessing, and this end-to-end optimization leads to powerful performance across diverse datasets. Together, these hardware advancements and automatic learning methods have driven the resurgence of deep learning over the past decade.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies GPUs as enabling fast training and impressive results in deep learning. It accurately states that deep networks learn nonlinear mappings automatically, which is a key factor. However, it does not mention the specific tasks (object recognition, speech, etc.) listed in the source, nor does it reference the ImageNet challenge. The language is mostly academic but uses some bullet points instead of prose. The answer is grounded in the context but omits some details.",
+    "parse_status": "ok"
+  }
+}

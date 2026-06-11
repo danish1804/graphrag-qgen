@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_073941_f15a2c",
+  "timestamp": "2026-06-10T07:39:41",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Database security and access control",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\nand O’Neil [63]. Date’ s book [33], now in its sixth edition, is very popular in\nthe practitioners’ world, since it gives a simple description of manyimportant aspects. Ullman [ 88] oVers an integrate",
+      "[SEED from source_7.pdf]\ncoverage of database systems is provided by [O’Neil and O’Neil (2000)], [Ramakrish-\nnan and Gehrke (2002)], [Date (2003)], [Kifer et al. (2005)], [Garcia-Molina et al.\n(2008)], and [Elmasri and Navath",
+      "[NEIGHBOUR from source_49.pdf]\npages 16–25.\n[Knuth (1973)] D. E. Knuth, The Art of Computer Programming, Volume 3 , Addison Wesley,\nSorting and Searching (1973).\n[O’Neil and Quass (1997)] P. O’Neil and D. Quass, “Improved Query Per"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are mostly about database systems and related books, which are tangential to database security and access control. Only one chunk mentions security (O'Neil's book), but it is brief and does not provide specific concepts. There is insufficient detail to generate a good exam question. The chunks contain many references to other books and authors, which are distracting and not directly relevant to the objective. Noise score is low because the chunks are short and focused on references rather than content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following authors co-authored the work \"The Art of Computer Programming, Volume 3\" with D. E. Knuth?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about co-authors of a specific book, which can be answered directly from the source context. It is clear and unambiguous, requiring no outside knowledge. The difficulty is easy because it involves recalling a fact from the passage. The question type is recall, which matches the request. The question is self-contained and does not reference the context, making it a genuine exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The work \"The Art of Computer Programming, Volume 3\" was authored by D. E. Knuth alone, as no co-authors are listed for that specific volume.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer states that \"The Art of Computer Programming, Volume 3\" was authored by D. E. Knuth alone, which is correct based on the source context. It does not mention any co-authors, so it is fully grounded and complete. The answer is concise and uses proper academic tone, though it could be more precise by specifying the year (1973). However, the core information is accurate and directly supported by the passage.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_073249_2c99e1",
+  "timestamp": "2026-06-10T07:32:49",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Stored procedures and triggers",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_13.pdf]\nA trigger is procedural SQL code that is automatically invoked by the RDBMS upon the occurrence of a given data \nmanipulation event. It is useful to remember that:\n•\tA trigger is invoked before or aft",
+      "[SEED from source_13.pdf]\nProcedural Language SQL (PL/SQL) can be used to create triggers, stored procedures, and PL/SQL functions. A trigger is procedural SQL code that is automatically invoked by the DBMS upon the occurrence",
+      "[NEIGHBOUR from source_49.pdf]\n11.4.3 Document search 431\n11.4.4 Representation of spatial data 432\n11.5 Technological extensions for object-oriented databases 434\nContents  xiii\n11.5.1 Representation of data and identiﬁers 435\n11."
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.33,
+    "reasoning": "The chunks are directly relevant to the learning objective about stored procedures and triggers, as they both define triggers as procedural SQL code and mention PL/SQL for creating them. However, Chunk 3 is completely unrelated to the topic, so it provides no useful information. The chunks are sufficient because they cover the core concepts of triggers and their invocation, though they do not provide specific examples or details about stored procedures. There is moderate noise in the form of unrelated contents like the table of contents, which does not detract from the main topic but adds unnecessary clutter.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is a trigger and what is its primary function in a database system?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for a definition of a trigger and its primary function. The source context provides a clear definition: a trigger is procedural SQL code automatically invoked by the DBMS upon a data manipulation event. This is completely answerable from the context alone, so faithfulness is 5. The question is straightforward and unambiguous, so clarity is 5. The difficulty is easy because it requires only basic recall, matching the requested difficulty. The question type is recall, which exactly matches the request. The question does not reference the source context, so standalone quality is 5. All criteria are met perfectly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "A trigger is procedural SQL code that automatically executes in response to a specific data manipulation event, such as an insert, update, or delete. Its primary function is to enforce constraints, maintain data integrity, or perform complex operations like logging changes or updating related records, thereby supporting proper database operation and management.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 2
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies a trigger as procedural SQL code that automatically executes on a data manipulation event, which matches the source definition. It also states the primary function of enforcing constraints and maintaining data integrity, which is accurate. The answer is fully grounded because it does not introduce any unsupported ideas beyond the source material. However, the language is somewhat informal, using a colon instead of a period and omitting punctuation, which detracts from academic tone. Overall, the answer is mostly correct and grounded but lacks precision and formality.",
+    "parse_status": "ok"
+  }
+}

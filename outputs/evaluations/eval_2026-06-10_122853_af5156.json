@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_122853_af5156",
+  "timestamp": "2026-06-10T12:28:53",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Memory layout optimisation in software engineering",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ncase study’. Proc. 24th Int. Conf. on Software Eng . (ICSE 2002), Orland, Fla.: IEEE Computer Society,\n431–41.\nCroxford, M. and Sutton, J. (2006). ‘Breaking Throu gh the V and V Bottleneck’. Proc. 2nd",
+      "[SEED from source_22.pdf]\non COTS-based Software Systems ), Orlando, Fla:: Springer, 21–30.\nBalk, L. D. and Kedia, A. (2000). ‘PPT: A COTS Inte gration Case Study’. Proc. Int. Conf. on Software\nEng., Limerick, Ireland: ACM Pre",
+      "[SEED from source_22.pdf]\nGarmisch, Germany: Springer-Verlag. \nNuseibeh, B. (1997). ‘Ariane 5: Who Dunnit?’ IEEE Software , 14(3), 15–6.\nO’Leary, D. E. (2000). Enterprise Resource Planning Systems: Systems, Life  Cycle, Electr",
+      "[NEIGHBOUR from source_22.pdf]\nethics. (F. Bott, A. Coleman, J. Eaton and D. Rowla nd, 3rd edition, 2000, Taylor and Francis.)\nChapter 1IExercises 25\nIEEE Software, March/April 2002 . This is a special issue of the magazine devoted",
+      "[NEIGHBOUR from source_22.pdf]\nACM, 51(12), 29–31.\nDrobna, J., Noftz, D. and Raghu, R. (2004). ‘Piloti ng XP on Four Mission-Critical Projects’. IEEE\nSoftware, 21(6), 70–5.\nHighsmith, J. A. (2000). Adaptive Software Development: A"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks are mostly about software engineering case studies and conferences, with no direct mention of memory layout optimization. They are only indirectly related to the learning objective, so relevance is low. There is insufficient information to generate a specific exam question, as no detailed concepts or examples are provided. The chunks contain many conference titles and author names, which are distracting and do not contribute to understanding memory layout optimization. Noise is high because the content is largely irrelevant to the objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Based on the provided context, which appears to be bibliographic references and citations rather than substantive course material, I cannot generate a meaningful exam question that is answerable using only the given context.\n\nThe context shows:\n- Bibliographic entries with authors, titles, publication information, and page ranges\n- References to conferences and journals like IEEE Software, ICSE, and Eurospace\n- Technical terms like \"COTS-based Software Systems\" and \"brownfield development\"\n- Names of individuals involved in software engineering research\n\nHowever, there is no substantive content about memory layout optimization or any other specific software engineering topic that could be used to formulate a valid exam question.\n\nTo generate a valid exam question aligned with the stated learning objective (\"Memory layout optimisation in software",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The question asks about memory layout optimization, but the provided context contains only bibliographic references and technical terms related to software engineering, with no substantive content on memory layout. Therefore, it is impossible to answer the question solely from the given context, making it unanswerable. The question is also poorly phrased because it lacks a clear statement of what memory layout optimization means or how it relates to the references. It does not match the requested difficulty level of medium, as it is trivially unanswerable. The question type is unclear; it seems to ask for a definition or explanation, but the context provides no relevant information. Finally, the question explicitly references \"the context,\" so it fails to be standalone.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The provided context lists multiple references to software engineering conferences and journals, including IEEE Software and ICSE proceedings. These sources likely contain discussions of memory layout optimization techniques, as such topics are common in software engineering literature. However, without direct text from the source material, it is impossible to state specific details about memory layout optimization methods. Therefore, a reasonable exam question might ask students to describe how memory layout affects performance in COTS-based systems, referencing the conference proceedings as a primary source.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that the context contains references to memory layout optimization in COTS-based systems, which aligns with the learning objective. It suggests that the source material would discuss how memory layout affects performance, which is accurate. The answer is incomplete because it does not provide specific details about memory layout optimization methods, though it covers the general idea. The answer is grounded in the context, as it references the conference proceedings and journals mentioned. The tone is academic and uses prose, though it could be more precise. Overall, the answer is mostly correct and grounded but lacks completeness and precision.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_112857_ee7ede",
+  "timestamp": "2026-06-10T11:28:57",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Database query performance and memory hierarchy",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nholding the distinct tuples of R must be brought into and out of main memory \nfrequently.\n1See A ho, A. V ., J. E . H opcroft, an d  J. D. U llm an, D ata Stru ctu res and A lgorithm s,  \nAddison-W es",
+      "[SEED from source_49.pdf]\nthe n relations. In that table we put:\n1. The estimated size of the join of these relations. For this quantity we may \nuse the formula of Section 16.4.6.\n8See A ho, H opcroft an d  U llm an, D ata Str",
+      "[SEED from source_7.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[NEIGHBOUR from source_49.pdf]\nA lgorithm  3.7: Closure of a Set of Attributes.\nINPUT: A set of attributes {Ai,A 2, ... ,  An}  and a set of FD’s S.\nO U TPUT: The closure {Ai,A 2,... ,An}+.\n1. If necessary, split the FD’s of 5, so",
+      "[NEIGHBOUR from source_49.pdf]\nsummarized below.\nA lgorithm  3 .1 2 : Projecting a Set of Functional Dependencies.\nINPUT: A relation R and a second relation Ri computed by the projection \nRi = nL(R).  Also, a set of FD’ s 5 that ho"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are mostly about database query optimization and memory management, which directly relates to the learning objective. However, they do not cover the specific concepts of database query performance or memory hierarchy in detail. Chunk 1 mentions memory access but lacks concrete examples. Chunk 2 discusses join sizes but does not explain how memory affects performance. Chunk 3 is a table of chapter titles, not content. Chunk 4 and 5 are algorithms about functional dependencies, which are tangential. Overall, the chunks are partially relevant but insufficient for a comprehensive exam question.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "When processing a large join operation involving multiple relations, why is it necessary to frequently bring distinct tuples of R into and out of main memory, and what is the primary reason this approach becomes inefficient?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about the necessity of frequent tuple movement during joins, which is directly stated in the source: \"holding the distinct tuples of R must be brought into and out of main memory frequently.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a conceptual explanation of inefficiency, so clarity is 5. The difficulty is medium because it requires understanding the trade-off between memory access and processing, which is a conceptual rather than trivial recall. The question type is conceptual, matching the request, so type alignment is 5. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "When joining many relations, distinct tuples of R must be brought into and out of main memory frequently because the join operation requires comparing tuples across relations, which demands repeated I/O operations to fetch and store data. This approach becomes inefficient due to the high overhead of disk accesses, especially when the relations are large, as each tuple transfer incurs significant latency and bandwidth costs. Thus, the need for constant memory transfers directly contributes to the performance bottleneck of such joins.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that frequent memory transfers are necessary for joining relations, and explains inefficiency due to disk access overhead. It is grounded in the source material, which discusses the need for repeated I/O operations during joins. The language is precise and academic, using terms like \"distinct tuples\" and \"high overhead,\" though it could be more concise. Overall, the answer is mostly correct and grounded, but could be more complete by mentioning specific trade-offs or optimizations.",
+    "parse_status": "ok"
+  }
+}

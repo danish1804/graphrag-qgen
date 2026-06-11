@@ -189,18 +189,37 @@ elif page == "Generate Question":
 
     retrieval_params = get_difficulty_retrieval(difficulty)
     if retrieval_mode == "GraphRAG":
-        st.info(
-            f"**Retrieval from config.yml ({difficulty}):** "
-            f"`top_k_nodes={retrieval_params['top_k_nodes']}`, "
+        # Editable Top K — defaults to the config.yml value for the chosen
+        # difficulty, but the educator's selection is passed to the API.
+        top_k_nodes = st.number_input(
+            "Top K nodes (graph seed entry points)",
+            min_value=1,
+            max_value=50,
+            value=int(retrieval_params["top_k_nodes"]),
+            key=f"top_k_nodes_{difficulty}",
+            help=(
+                "How many graph seed nodes FAISS selects as entry points. "
+                f"config.yml default for {difficulty}: "
+                f"{retrieval_params['top_k_nodes']}."
+            ),
+        )
+        neighbour_depth = retrieval_params["neighbour_depth"]
+        st.caption(
+            f"**Other retrieval params from config.yml ({difficulty}):** "
             f"`neighbour_depth={retrieval_params['neighbour_depth']}`, "
             f"`max_chunks={retrieval_params['max_chunks']}`"
         )
-        top_k_nodes = retrieval_params["top_k_nodes"]
-        neighbour_depth = retrieval_params["neighbour_depth"]
     else:
-        top_k = get_standard_rag_top_k()
-        st.info(
-            f"**Retrieval from config.yml:** `top_k_results={top_k}`"
+        top_k = st.number_input(
+            "Top K results (chunks retrieved)",
+            min_value=1,
+            max_value=50,
+            value=int(get_standard_rag_top_k()),
+            key="top_k_standard",
+            help=(
+                "How many chunks flat FAISS retrieval returns. "
+                f"config.yml default: {get_standard_rag_top_k()}."
+            ),
         )
     selected_domain = None
 

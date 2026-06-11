@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_080209_1b4c9f",
+  "timestamp": "2026-06-10T08:02:09",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Processes and threads",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nthreads within multiple processes. In the example of Figure 4.4, three threads in twoprocesses are interleaved on the processor. Execution passes from one thread toanother either when the currently ru",
+      "[SEED from source_5.pdf]\nsources, R1 and R2. Suppose that each process needs access to both resources toperform part of its function. Then it is possible to have the following situation: theOS assigns R1 to P2, and R2 to P1.",
+      "[NEIGHBOUR from source_5.pdf]\n•Stack pointer: If there is user-visible stack\n2addressing, then there is a dedi-\ncated register that points to the top of the stack. This allows the use of instruc-tions that contain no address field"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 4,
+      "noise": 3
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks are directly relevant to the learning objective on processes and threads, as they discuss thread scheduling and resource allocation among processes. However, Chunk 3 is about stack pointers and does not contribute to the objective. The chunks provide sufficient information to generate a question on thread scheduling or resource allocation, but Chunk 3 adds noise. Overall, the chunks are mostly clean except for the irrelevant passage.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What happens when Process 1 is assigned Resource R1 and Process 2 is assigned Resource R2, where both processes require access to both resources to complete their functions?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about resource allocation when two processes each need both resources, which is directly stated in the source context. It can be answered using only the provided information, so faithfulness is high (5). The question is clear and unambiguous, asking about a specific scenario, so clarity is also high (5). The difficulty is easy because it requires recalling a straightforward concept, matching the requested difficulty (5). The question is a recall item, asking to state a fact, which aligns with the requested type (5). The question does not reference the passage explicitly, so standalone quality is high (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "When Process 1 is assigned Resource R1 and Process 2 is assigned Resource R2, both processes hold one resource but still need the other to proceed. Each process will block when it cannot acquire the second resource because it already holds the first. Neither process can release its held resource until it acquires the other, leading to a deadlock state where both are waiting indefinitely.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies that each process holds one resource and blocks for the other, leading to deadlock. It is grounded in the source context, which describes such a scenario. The language is precise and academic, using terms like 'block' and 'deadlock' appropriately. However, it does not explicitly mention the specific resources (R1 and R2) from the context, so completeness is slightly lower. Correctness is high because the core concept is accurate. Groundedness is perfect since the answer directly references the given example. Academic tone is excellent, though the structure could be more prose-like.",
+    "parse_status": "ok"
+  }
+}

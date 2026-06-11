@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_073403_865d86",
+  "timestamp": "2026-06-10T07:34:03",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Database recovery and logging",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\nof the logging and recovery technology.\n[2] is an earlier, more concise description of transaction-processing technol­\nogy. [7] is a recent treatment of recovery.\nTwo early surveys, [1] and [6] both r",
+      "[SEED from source_49.pdf]\nterdam, pp. 799-807.\n2. P. A. Bernstein, V. Hadzilacos, and N. Goodman, Concurrency Control  \nand Recovery in Database Systems,  Addison-Wesley, Reading MA, 1987.\n3. J. N. Gray, “Notes on database ope",
+      "[NEIGHBOUR from source_49.pdf]\ninformation about database research. Database vendor web sites (see the Tools section\nabove) provide details about their respective products.\nBibliography\n[Abadi et al. (2016)] D. Abadi, R. Agrawal, A"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly relevant to database recovery and logging, as they reference works by Bernstein, Gray, and others who have written on these topics. However, the first chunk is incomplete and lacks a clear connection to the objective, so it scores lower. The second chunk lists references but does not provide substantive content, reducing relevance. The third chunk is also incomplete and does not directly address recovery or logging. Overall, the chunks are partially relevant but lack sufficient detail to generate a good exam question. Noise is moderate because the references are somewhat scattered and not all directly related to the objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Which of the following references provides a comprehensive treatment of concurrency control and recovery in database systems, suitable for advanced study?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for a reference that provides a comprehensive treatment of concurrency control and recovery, which can be answered using the source context (Bernstein et al., 1987). The question is clear and unambiguous, asking for a specific book title. It is easy because it requires only recall of a single fact. The type is recall, which matches the request. The question does not reference the passage explicitly, so it is standalone. Overall, all criteria are met perfectly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "P. A. Bernstein, V. Hadzilacos, and N. Goodman's book \"Concurrency Control and Recovery in Database Systems\" offers a comprehensive treatment of the subject, including detailed descriptions of recovery algorithms and concurrency control techniques. This work is well-suited for advanced study and provides a thorough foundation for understanding these core database concepts.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies the book by Bernstein, Hadzilacos, and Goodman as providing a comprehensive treatment of concurrency control and recovery. It also notes that the book is well-suited for advanced study, which is accurate based on the source material. However, the answer does not explicitly state that the book is a comprehensive treatment of the subject, so it lacks some completeness. The answer is entirely grounded in the provided context, as no extraneous information is included. The language is academic and precise, though it uses a mix of prose and bullet points, which slightly reduces its academic tone. Overall, the answer is mostly correct and grounded but could be more precise in its completeness and tone.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_123706_cdd2cf",
+  "timestamp": "2026-06-10T12:37:06",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Technical debt in low level software systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nBanker, R. D., Datar, S. M., Kemerer, C. F. and Zwe ig, D. (1993). ‘Software Complexity and\nMaintenance Costs’. Comm. ACM , 36(11), 81–94.\nBoehm, B. W., Abts, C., Brown, A. W., Chulani, S., Clark, B.",
+      "[SEED from source_22.pdf]\ntype, finds the nearest suitable vehicle to be desp atched to the incident.\n17.10. It has been suggested that an independent certifica tion authority should be established.\nVendors would submit their",
+      "[SEED from source_22.pdf]\nfuture life cycle processes: COCOMO 2’. Annals of Software Engineering, 157–94.\nBoehm, B. and Royce, W. (1989). ‘Ada COCOMO and the  Ada Process Model’. Proc. 5th COCOMO\nUsers’ Group Meeting , Pittsbu",
+      "[NEIGHBOUR from source_22.pdf]\nWeb Browser E-mail System\nServer\nE-commerce\nSystemOrdering and\nInvoicing SystemAdaptor\nAdaptor E-mail SystemFigure 16.13 A COTS-\nintegrated procurement\nsystem\n16.4 ICOTS product reuse 447\nHowever, the",
+      "[NEIGHBOUR from source_22.pdf]\nket and economic circumstances may make it difficul t for them to deliver this\ncommitment. For example, a COTS system vendor may d ecide to discontinue a\nproduct because of limited demand, or they may"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are largely unrelated to technical debt in low-level software systems. Chunk 1 mentions software complexity and maintenance costs, which are tangential. Chunk 2 appears to be about emergency response vehicles, irrelevant. Chunk 3 discusses COCOMO models, which are about cost estimation, not technical debt. Chunk 4 shows a COTS integration diagram, unrelated. Chunk 5 talks about COTS product discontinuation, also irrelevant. Thus, relevance is very low.\nSufficiency is poor because none of the chunks contain any direct discussion of technical debt or its impact on low-level systems. There is no information about how technical debt affects maintenance or development practices.\nNoise is moderate because some chunks (e.g., Chunk 2) contain clear but irrelevant content, while others (e.g., Chunk 5) are mostly noise about product lifecycle decisions.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of establishing an independent certification authority for validating software components, and what are the potential advantages and disadvantages of implementing such an authority?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about the purpose and advantages/disadvantages of an independent certification authority, which is directly stated in the source: \"It has been suggested that an independent certification authority should be established.\" The passage does not provide specific advantages or disadvantages, so the question cannot be fully answered from the given context alone, making it 1 (requires outside knowledge). The question is clear and unambiguous, asking for a conceptual explanation, so clarity is 5. The difficulty is medium, matching the request, so difficulty alignment is 5. The question asks students to explain the concept, which is conceptual, so type alignment is 5. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "An independent certification authority validates software components to ensure trustworthiness, addressing security and reliability concerns. Advantages include increased customer confidence, reduced risk of vulnerabilities, and standardized quality assurance. Disadvantages include high administrative costs, potential delays in component adoption, and the challenge of maintaining up-to-date certifications as new threats emerge.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 3
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies the purpose of an independent certification authority (trustworthiness) and lists advantages (customer confidence, reduced risk, standardized quality) and disadvantages (high costs, delays, updating). However, it does not explicitly mention the authority's role in validating components, which is implied by the context but not directly stated. The answer is mostly grounded in the source, as it avoids unsupported claims but lacks direct references to the specific validation process. The tone is academic but uses bullet points, which is acceptable for a summary but not ideal for a full essay. Overall, the answer is largely correct and complete, but could be more precise and grounded.",
+    "parse_status": "ok"
+  }
+}

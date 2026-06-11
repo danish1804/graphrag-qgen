@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_110353_e9bc77",
+  "timestamp": "2026-06-10T11:03:53",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Buffer pool management in database systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\n1.1.5 Information In te g ra tio n ......................................................... 4\n1.2 Overview of a Database Management S y s te m ................................ 5\n1.2.1 Data-Definition",
+      "[SEED from source_49.pdf]\nand Buffer M anagem ent........................................................ 750\n15.7.4 Exercises for Section 1 5 .7 ..................................................... 751\n15.8 Algorithms Using",
+      "[SEED from source_36.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[NEIGHBOUR from source_14.pdf]\nC.4.3 Control structures 576\nC.4.4 Management of exceptions 578\nC.4.5 Procedures 580\nC.4.6 Packages 585\nBibliography 587\nIndex 593\nxvi Contents\n0Preface\nDatabases are essential ingredients of modern c",
+      "[NEIGHBOUR from source_14.pdf]\nKey features\nThis book provides a new and comprehensive treatment of databases,dealing with the complete syllabuses for both an introductory course and anadvanced course on databases. It o Vers a bala"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The chunks contain no direct references to buffer pool management or database systems, so they are completely unrelated to the learning objective. There is insufficient information to generate a meaningful exam question because no relevant concepts are present. The chunks are also noisy, as they include unrelated topics like tree structures and control structures that do not contribute to the objective. Thus, all scores are 1.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of buffer m anagem ent in the context of database systems?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about buffer management, which is mentioned in the source context under 'Data-Definition' and 'Buffer Management'. This is directly answerable from the text, so it is completely faithful (5). The question is clear and unambiguous, asking for the primary purpose, which is a straightforward recall (3). The difficulty is medium, matching the request (5). The question is conceptual, asking for an explanation rather than a definition, so it is a conceptual question (5). The question does not reference the passage explicitly, making it standalone (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Buffer management in database systems serves two main purposes: first, it improves performance by caching frequently accessed data in memory, reducing disk I/O; second, it ensures data consistency by maintaining a buffer that can be updated independently of the underlying storage, which helps in handling concurrent transactions efficiently. This approach balances speed against the risk of data loss during system failures, making buffer management a critical component for managing large datasets across multiple nodes in distributed environments.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.5,
+    "reasoning": "The answer correctly identifies buffer management's dual role in improving performance and ensuring consistency, which aligns with the source's emphasis on buffer management for concurrency. However, it adds unsupported details about distributed environments, which are not mentioned in the context. The answer is concise and avoids bullet points, maintaining academic tone. Overall, it is mostly correct and grounded but includes one unsupported detail.",
+    "parse_status": "ok"
+  }
+}

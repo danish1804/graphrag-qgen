@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_082719_6fedc4",
+  "timestamp": "2026-06-10T08:27:19",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Branch prediction",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Prediction 182\n3.4 Overcoming Data Haza",
+      "[SEED from source_12.pdf]\nThis page intentionally left blank\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Pred",
+      "[NEIGHBOUR from source_38.pdf]\ncomputer architecture as did the switch to multicore. We retain the focus on theextremes in size of computing, with personal mobile devices (PMDs) such as cellphones and tablets as the clients and war"
+    ],
+    "scores": {
+      "relevance": 5,
+      "sufficiency": 1,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks are from a computer architecture textbook section on branch prediction, which directly relates to the learning objective. However, they contain only titles and page numbers, lacking actual content about branch prediction techniques. The noise score is low because the chunks are brief and focused on the topic, though they are not sufficient for generating a question. The relevance is high since the topic matches exactly, but sufficiency is low due to lack of details.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which chapter in the textbook focuses on reducing branch costs through advanced branch prediction techniques?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks which chapter covers advanced branch prediction, which is directly stated in the source context under Chapter 3.2. This is a straightforward recall question that can be answered solely from the provided text, so it is completely answerable from context alone (5). The question is clear and unambiguous (5), matching the easy difficulty level (5) and the recall type (5). It does not reference the passage explicitly (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Chapter 3.3, titled \"Reducing Branch Costs With Advanced Branch Prediction,\" focuses on reducing branch costs by employing advanced branch prediction techniques. This chapter builds on the foundational concepts introduced in earlier chapters about instruction-level parallelism and data hazards, providing a deep dive into how modern processors mitigate the overhead of conditional branches.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.5,
+    "reasoning": "The answer correctly identifies Chapter 3.3 as focusing on advanced branch prediction, which matches the title in the source context. It also notes that this chapter builds on earlier concepts, which is accurate. However, it adds that the chapter provides a deep dive into mitigating branch overhead, which is not explicitly stated in the context but is a reasonable inference. The language is academic and consistent with the source's tone. Overall, the answer is mostly correct and grounded, though it includes some additional detail not directly supported by the context.",
+    "parse_status": "ok"
+  }
+}

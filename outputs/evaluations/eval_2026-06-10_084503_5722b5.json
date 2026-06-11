@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_084503_5722b5",
+  "timestamp": "2026-06-10T08:45:03",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Vector databases for embedding storage",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\nof a natural compression method. Let Ube the k-dimensional sub-\nspace spanned by the vectors, and identify kbasis vectors for U. For\neach of the Nvectors, find the kcoefficients of their representatio",
+      "[SEED from source_52.pdf]\ntation of the vectors, once we specify the kbasis vectors. Notice that\n(7.2)is the vector projection of⃗vonto the subspace Uspanned by the\nvectors ⃗u1,⃗u2, . . . ,⃗uk. Therefore, the approximation err",
+      "[SEED from source_52.pdf]\nsay a set of vectors ⃗v1,⃗v2, . . . ,⃗vN∈Rdhasrank kwith mean-squared\nerror ϵif there exist some basis vectors ⃗u1,⃗u2, . . . ,⃗uk∈RdandNvectors\nb⃗v1,b⃗v2, . . . ,b⃗vN∈span(⃗u1,⃗u2, . . . ,⃗uk)such th",
+      "[NEIGHBOUR from source_56.pdf]\nˆf(X) =ˆY. (6)\n1.5 Data Representation and Mathematical Notation\nIn previous section, we deﬁned refered to the ith pair in a labeled training set Das<\nx[i],y[i]>.\nWe will adopt the convention to use i",
+      "[NEIGHBOUR from source_56.pdf]\nsion as follows. The bag of words (BoW) representation of a piece of\ntext is a vector in RNwhere Nis the number of dictionary words.\nThe i-th coordinate is the number of times the i-th word appears in"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are primarily from a source discussing vector projections and low-rank approximations, which directly relates to the learning objective of vector databases for embedding storage. However, they focus on mathematical details rather than practical applications or specific database techniques. The chunks provide sufficient information to understand the concept of vector projections and low-rank approximation, but they lack concrete examples or explanations of how these methods are used in vector databases. There is moderate noise because some chunks contain irrelevant details about BoW representations and data notation, though most are relevant to the core topic.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "When compressing a set of N vectors in R^d using k basis vectors, what does the formula 1/N Σ_i ||v_i - b_v_i||²_2 ≤ ϵ represent in the context of vector compression?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about a compression error bound, which is directly stated in the source: \"the approximation error is at most ϵ\". This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a definition of the error bound, so clarity is 5. The difficulty is medium because it requires understanding the concept of approximation error, not just recall, but it is not a deep analysis. The question is a conceptual explanation, matching the requested type, so type alignment is 5. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "This formula represents the mean-squared error of approximating each of the N original vectors v_i in R^d by their projections b_v_i onto a k-dimensional subspace spanned by k basis vectors. The approximation error is measured as the squared distance between v_i and b_v_i, averaged over all vectors. This quantifies how well the original vectors can be represented using only k coefficients, with ϵ giving the upper bound on this average error.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer correctly identifies the formula as representing mean-squared error for vector compression, which is accurate. It covers the key points: the error is the squared distance between original and compressed vectors, averaged over all vectors, and ϵ bounds this average. The answer is grounded in the source context, as it directly references the concept of approximation error in vector compression. The language is precise and academic, using appropriate mathematical notation without bullet points. Overall, the answer is fully correct, complete, grounded, and written appropriately for university-level work.",
+    "parse_status": "ok"
+  }
+}

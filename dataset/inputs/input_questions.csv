@@ -1,232 +1,232 @@
 q_id,category,domain,difficulty,question_type,learning_objective,routing_method,top_k,seed_ratio,status,generated_at
-E-DE-001,easy_deep_learning,deep_learning,easy,recall,Convolutional neural networks,explicit,3,0.8,done,
-E-DE-002,easy_deep_learning,deep_learning,easy,recall,Dropout regularisation,explicit,3,0.8,done,
-E-DE-003,easy_deep_learning,deep_learning,easy,recall,Backpropagation and gradient descent,explicit,3,0.8,done,
-E-DE-004,easy_deep_learning,deep_learning,easy,recall,Recurrent neural networks and sequence modelling,explicit,3,0.8,done,
-E-DE-005,easy_deep_learning,deep_learning,easy,recall,Transformer architecture and attention mechanism,explicit,3,0.8,done,
-E-DE-006,easy_deep_learning,deep_learning,easy,recall,Batch normalisation,explicit,3,0.8,done,
-E-DE-007,easy_deep_learning,deep_learning,easy,recall,Activation functions in neural networks,explicit,3,0.8,done,
-E-DE-008,easy_deep_learning,deep_learning,easy,recall,Transfer learning and fine-tuning,explicit,3,0.8,done,
-E-DE-009,easy_deep_learning,deep_learning,easy,recall,Pooling layers and spatial downsampling,explicit,3,0.8,done,
-E-DE-010,easy_deep_learning,deep_learning,easy,recall,Loss functions and optimisation,explicit,3,0.8,done,
-E-DE-011,easy_deep_learning,deep_learning,easy,recall,Overfitting and regularisation techniques,explicit,3,0.8,done,
-E-DE-012,easy_deep_learning,deep_learning,easy,recall,Vanishing and exploding gradient problem,explicit,3,0.8,done,
-E-DE-013,easy_deep_learning,deep_learning,easy,recall,Autoencoders and representation learning,explicit,3,0.8,done,
-E-DE-014,easy_deep_learning,deep_learning,easy,recall,Generative adversarial networks,explicit,3,0.8,done,
-E-DE-015,easy_deep_learning,deep_learning,easy,recall,Neural network weight initialisation,explicit,3,0.8,done,
-E-DA-016,easy_database,database,easy,recall,Database normalisation,explicit,3,0.8,done,
-E-DA-017,easy_database,database,easy,recall,SQL joins — inner and outer,explicit,3,0.8,done,
-E-DA-018,easy_database,database,easy,recall,ACID properties in database transactions,explicit,3,0.8,done,
-E-DA-019,easy_database,database,easy,recall,Transaction management and concurrency,explicit,3,0.8,done,
-E-DA-020,easy_database,database,easy,recall,Indexing and query optimisation,explicit,3,0.8,done,
-E-DA-021,easy_database,database,easy,recall,Two phase locking and deadlock prevention,explicit,3,0.8,done,
-E-DA-022,easy_database,database,easy,recall,Entity relationship modelling,explicit,3,0.8,done,
-E-DA-023,easy_database,database,easy,recall,Relational algebra and calculus,explicit,3,0.8,done,
-E-DA-024,easy_database,database,easy,recall,Stored procedures and triggers,explicit,3,0.8,done,
-E-DA-025,easy_database,database,easy,recall,Database recovery and logging,explicit,3,0.8,done,
-E-DA-026,easy_database,database,easy,recall,NoSQL vs relational databases,explicit,3,0.8,done,
-E-DA-027,easy_database,database,easy,recall,B-tree and hash indexing,explicit,3,0.8,done,
-E-DA-028,easy_database,database,easy,recall,Query execution plans and optimiser,explicit,3,0.8,done,
-E-DA-029,easy_database,database,easy,recall,Database security and access control,explicit,3,0.8,done,
-E-DA-030,easy_database,database,easy,recall,Data warehousing and OLAP,explicit,3,0.8,done,
-E-SO-031,easy_software_engineering,software_engineering,easy,recall,Software development lifecycle models,explicit,3,0.8,done,
-E-SO-032,easy_software_engineering,software_engineering,easy,recall,Agile methodology and requirements management,explicit,3,0.8,done,
-E-SO-033,easy_software_engineering,software_engineering,easy,recall,Verification and validation in software testing,explicit,3,0.8,done,
-E-SO-034,easy_software_engineering,software_engineering,easy,recall,Unit testing and integration testing,explicit,3,0.8,done,
-E-SO-035,easy_software_engineering,software_engineering,easy,recall,Test driven development,explicit,3,0.8,done,
-E-SO-036,easy_software_engineering,software_engineering,easy,recall,Design patterns in object oriented programming,explicit,3,0.8,done,
-E-SO-037,easy_software_engineering,software_engineering,easy,recall,Software architecture and modularity,explicit,3,0.8,done,
-E-SO-038,easy_software_engineering,software_engineering,easy,recall,Version control and configuration management,explicit,3,0.8,done,
-E-SO-039,easy_software_engineering,software_engineering,easy,recall,Code review and static analysis,explicit,3,0.8,done,
-E-SO-040,easy_software_engineering,software_engineering,easy,recall,Risk management in software projects,explicit,3,0.8,done,
-E-SO-041,easy_software_engineering,software_engineering,easy,recall,Requirements engineering and specification,explicit,3,0.8,done,
-E-SO-042,easy_software_engineering,software_engineering,easy,recall,Software metrics and quality assurance,explicit,3,0.8,done,
-E-SO-043,easy_software_engineering,software_engineering,easy,recall,Refactoring and technical debt,explicit,3,0.8,done,
-E-SO-044,easy_software_engineering,software_engineering,easy,recall,Continuous integration and deployment,explicit,3,0.8,done,
-E-SO-045,easy_software_engineering,software_engineering,easy,recall,Safety critical software testing,explicit,3,0.8,done,
-E-OP-046,easy_operating_systems,operating_systems,easy,recall,Processes and threads,explicit,3,0.8,done,
-E-OP-047,easy_operating_systems,operating_systems,easy,recall,CPU scheduling algorithms,explicit,3,0.8,done,
-E-OP-048,easy_operating_systems,operating_systems,easy,recall,Virtual memory and paging,explicit,3,0.8,done,
-E-OP-049,easy_operating_systems,operating_systems,easy,recall,Deadlock detection and prevention,explicit,3,0.8,done,
-E-OP-050,easy_operating_systems,operating_systems,easy,recall,Banker algorithm and resource allocation,explicit,3,0.8,done,
-E-OP-051,easy_operating_systems,operating_systems,easy,recall,Memory management and segmentation,explicit,3,0.8,done,
-E-OP-052,easy_operating_systems,operating_systems,easy,recall,File systems and directory structures,explicit,3,0.8,done,
-E-OP-053,easy_operating_systems,operating_systems,easy,recall,Interprocess communication,explicit,3,0.8,done,
-E-OP-054,easy_operating_systems,operating_systems,easy,recall,Semaphores and mutual exclusion,explicit,3,0.8,done,
-E-OP-055,easy_operating_systems,operating_systems,easy,recall,Disk scheduling algorithms,explicit,3,0.8,done,
-E-OP-056,easy_operating_systems,operating_systems,easy,recall,Page replacement algorithms,explicit,3,0.8,done,
-E-OP-057,easy_operating_systems,operating_systems,easy,recall,System calls and kernel mode,explicit,3,0.8,done,
-E-OP-058,easy_operating_systems,operating_systems,easy,recall,Context switching and process states,explicit,3,0.8,done,
-E-OP-059,easy_operating_systems,operating_systems,easy,recall,Real time operating systems,explicit,3,0.8,done,
-E-OP-060,easy_operating_systems,operating_systems,easy,recall,Input output management,explicit,3,0.8,done,
-E-CO-061,easy_computer_architecture,computer_architecture,easy,recall,Instruction pipelining,explicit,3,0.8,done,
-E-CO-062,easy_computer_architecture,computer_architecture,easy,recall,Cache memory hierarchy,explicit,3,0.8,done,
-E-CO-063,easy_computer_architecture,computer_architecture,easy,recall,Pipeline hazards and resolution techniques,explicit,3,0.8,done,
-E-CO-064,easy_computer_architecture,computer_architecture,easy,recall,Memory hierarchy and locality,explicit,3,0.8,done,
-E-CO-065,easy_computer_architecture,computer_architecture,easy,recall,Instruction set architecture,explicit,3,0.8,done,
-E-CO-066,easy_computer_architecture,computer_architecture,easy,recall,Superscalar and out of order execution,explicit,3,0.8,done,
-E-CO-067,easy_computer_architecture,computer_architecture,easy,recall,Branch prediction,explicit,3,0.8,done,
-E-CO-068,easy_computer_architecture,computer_architecture,easy,recall,RISC vs CISC architecture,explicit,3,0.8,done,
-E-CO-069,easy_computer_architecture,computer_architecture,easy,recall,Virtual memory and address translation,explicit,3,0.8,done,
-E-CO-070,easy_computer_architecture,computer_architecture,easy,recall,Multicore processors and parallelism,explicit,3,0.8,done,
-E-CO-071,easy_computer_architecture,computer_architecture,easy,recall,Amdahl's law and performance limits,explicit,3,0.8,done,
-E-CO-072,easy_computer_architecture,computer_architecture,easy,recall,Direct memory access,explicit,3,0.8,done,
-E-CO-073,easy_computer_architecture,computer_architecture,easy,recall,Bus architecture and interconnects,explicit,3,0.8,done,
-E-CO-074,easy_computer_architecture,computer_architecture,easy,recall,Floating point representation,explicit,3,0.8,done,
-E-CO-075,easy_computer_architecture,computer_architecture,easy,recall,Assembly language and low level programming,explicit,3,0.8,done,
-M-DEDA-076,medium_deep_learning_database,deep_learning+database,medium,conceptual,Machine learning model storage and retrieval,auto,5,0.6,pending,
-M-DEDA-077,medium_deep_learning_database,deep_learning+database,medium,conceptual,Feature engineering and data preprocessing,auto,5,0.6,pending,
-M-DEDA-078,medium_deep_learning_database,deep_learning+database,medium,conceptual,Training data management at scale,auto,5,0.6,pending,
-M-DEDA-079,medium_deep_learning_database,deep_learning+database,medium,conceptual,Vector databases for embedding storage,auto,5,0.6,pending,
-M-DEDA-080,medium_deep_learning_database,deep_learning+database,medium,conceptual,Data versioning for machine learning pipelines,auto,5,0.6,pending,
-M-DEDA-081,medium_deep_learning_database,deep_learning+database,medium,conceptual,Query optimisation for training data retrieval,auto,5,0.6,pending,
-M-DEDA-082,medium_deep_learning_database,deep_learning+database,medium,conceptual,Database indexing for large scale datasets,auto,5,0.6,pending,
-M-DEDA-083,medium_deep_learning_database,deep_learning+database,medium,conceptual,Transaction management in ML feature stores,auto,5,0.6,pending,
-M-DEDA-084,medium_deep_learning_database,deep_learning+database,medium,conceptual,Schema design for machine learning metadata,auto,5,0.6,pending,
-M-DEDA-085,medium_deep_learning_database,deep_learning+database,medium,conceptual,Caching strategies for training data pipelines,auto,5,0.6,pending,
-M-DEDA-086,medium_deep_learning_database,deep_learning+database,medium,conceptual,Data normalisation for neural network inputs,auto,5,0.6,pending,
-M-DEDA-087,medium_deep_learning_database,deep_learning+database,medium,conceptual,Distributed storage for deep learning datasets,auto,5,0.6,pending,
-M-DEDA-088,medium_deep_learning_database,deep_learning+database,medium,conceptual,SQL vs NoSQL for machine learning applications,auto,5,0.6,pending,
-M-DEDA-089,medium_deep_learning_database,deep_learning+database,medium,conceptual,Database backup and recovery for model checkpoints,auto,5,0.6,pending,
-M-DEDA-090,medium_deep_learning_database,deep_learning+database,medium,conceptual,Concurrency control in data preprocessing pipelines,auto,5,0.6,pending,
-M-DESO-091,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,MLOps and model deployment pipelines,auto,5,0.6,pending,
-M-DESO-092,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Testing strategies for machine learning systems,auto,5,0.6,pending,
-M-DESO-093,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Version control for machine learning experiments,auto,5,0.6,pending,
-M-DESO-094,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Continuous integration for deep learning projects,auto,5,0.6,pending,
-M-DESO-095,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Software design patterns for neural network systems,auto,5,0.6,pending,
-M-DESO-096,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Code modularity in deep learning frameworks,auto,5,0.6,pending,
-M-DESO-097,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Debugging and validation of neural network training,auto,5,0.6,pending,
-M-DESO-098,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Requirements engineering for AI systems,auto,5,0.6,pending,
-M-DESO-099,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Technical debt in machine learning codebases,auto,5,0.6,pending,
-M-DESO-100,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Refactoring deep learning pipelines,auto,5,0.6,pending,
-M-DESO-101,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Agile development for machine learning projects,auto,5,0.6,pending,
-M-DESO-102,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Documentation standards for AI model code,auto,5,0.6,pending,
-M-DESO-103,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Risk management in machine learning deployments,auto,5,0.6,pending,
-M-DESO-104,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Software metrics for evaluating ML system quality,auto,5,0.6,pending,
-M-DESO-105,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Safety critical considerations in AI software,auto,5,0.6,pending,
-M-DEOP-106,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,GPU memory management for deep learning,auto,5,0.6,pending,
-M-DEOP-107,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Parallel processing in neural network training,auto,5,0.6,pending,
-M-DEOP-108,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Resource scheduling for machine learning workloads,auto,5,0.6,pending,
-M-DEOP-109,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Process management for distributed training jobs,auto,5,0.6,pending,
-M-DEOP-110,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Virtual memory constraints in large model training,auto,5,0.6,pending,
-M-DEOP-111,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,CPU and GPU synchronisation in deep learning,auto,5,0.6,pending,
-M-DEOP-112,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,File system optimisation for dataset loading,auto,5,0.6,pending,
-M-DEOP-113,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Thread management in data loading pipelines,auto,5,0.6,pending,
-M-DEOP-114,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Deadlock prevention in parallel training systems,auto,5,0.6,pending,
-M-DEOP-115,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Memory mapped files for large dataset access,auto,5,0.6,pending,
-M-DEOP-116,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,OS scheduling impact on neural network training,auto,5,0.6,pending,
-M-DEOP-117,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Inter-process communication in distributed training,auto,5,0.6,pending,
-M-DEOP-118,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,System calls used in deep learning frameworks,auto,5,0.6,pending,
-M-DEOP-119,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Context switching overhead in model training,auto,5,0.6,pending,
-M-DEOP-120,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Real time constraints in neural network inference,auto,5,0.6,pending,
-M-DECO-121,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Hardware acceleration for neural networks,auto,5,0.6,pending,
-M-DECO-122,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Memory bandwidth constraints in deep learning,auto,5,0.6,pending,
-M-DECO-123,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Parallelism in convolutional neural network computation,auto,5,0.6,pending,
-M-DECO-124,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Cache efficiency in matrix multiplication operations,auto,5,0.6,pending,
-M-DECO-125,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Instruction pipelining for neural network inference,auto,5,0.6,pending,
-M-DECO-126,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,SIMD instructions for deep learning operations,auto,5,0.6,pending,
-M-DECO-127,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Memory hierarchy optimisation for model training,auto,5,0.6,pending,
-M-DECO-128,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Branch prediction impact on neural network code,auto,5,0.6,pending,
-M-DECO-129,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Floating point precision in neural network training,auto,5,0.6,pending,
-M-DECO-130,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,GPU architecture and its suitability for deep learning,auto,5,0.6,pending,
-M-DECO-131,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Amdahl's law applied to neural network parallelisation,auto,5,0.6,pending,
-M-DECO-132,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,DMA transfers in deep learning data pipelines,auto,5,0.6,pending,
-M-DECO-133,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,RISC architecture advantages for inference workloads,auto,5,0.6,pending,
-M-DECO-134,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Out of order execution in neural network computations,auto,5,0.6,pending,
-M-DECO-135,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Power consumption considerations in AI hardware,auto,5,0.6,pending,
-M-DASO-136,medium_database_software_engineering,database+software_engineering,medium,conceptual,Object relational mapping and database abstraction,auto,5,0.6,pending,
-M-DASO-137,medium_database_software_engineering,database+software_engineering,medium,conceptual,Database driven application architecture,auto,5,0.6,pending,
-M-DASO-138,medium_database_software_engineering,database+software_engineering,medium,conceptual,Testing database dependent systems,auto,5,0.6,pending,
-M-DASO-139,medium_database_software_engineering,database+software_engineering,medium,conceptual,Database schema migration in agile projects,auto,5,0.6,pending,
-M-DASO-140,medium_database_software_engineering,database+software_engineering,medium,conceptual,Version control strategies for database schemas,auto,5,0.6,pending,
-M-DASO-141,medium_database_software_engineering,database+software_engineering,medium,conceptual,Design patterns for database access layers,auto,5,0.6,pending,
-M-DASO-142,medium_database_software_engineering,database+software_engineering,medium,conceptual,Requirements engineering for database systems,auto,5,0.6,pending,
-M-DASO-143,medium_database_software_engineering,database+software_engineering,medium,conceptual,Continuous integration with database testing,auto,5,0.6,pending,
-M-DASO-144,medium_database_software_engineering,database+software_engineering,medium,conceptual,Refactoring database interactions in legacy systems,auto,5,0.6,pending,
-M-DASO-145,medium_database_software_engineering,database+software_engineering,medium,conceptual,Software metrics for database application quality,auto,5,0.6,pending,
-M-DASO-146,medium_database_software_engineering,database+software_engineering,medium,conceptual,Risk management in database migration projects,auto,5,0.6,pending,
-M-DASO-147,medium_database_software_engineering,database+software_engineering,medium,conceptual,Transaction handling in object oriented applications,auto,5,0.6,pending,
-M-DASO-148,medium_database_software_engineering,database+software_engineering,medium,conceptual,Unit testing strategies for database operations,auto,5,0.6,pending,
-M-DASO-149,medium_database_software_engineering,database+software_engineering,medium,conceptual,Configuration management for database environments,auto,5,0.6,pending,
-M-DASO-150,medium_database_software_engineering,database+software_engineering,medium,conceptual,Code review practices for SQL and database code,auto,5,0.6,pending,
-M-DAOP-151,medium_database_operating_systems,database+operating_systems,medium,conceptual,Transaction management and process synchronisation,auto,5,0.6,pending,
-M-DAOP-152,medium_database_operating_systems,database+operating_systems,medium,conceptual,Deadlock prevention in database and OS contexts,auto,5,0.6,pending,
-M-DAOP-153,medium_database_operating_systems,database+operating_systems,medium,conceptual,File system and database storage management,auto,5,0.6,pending,
-M-DAOP-154,medium_database_operating_systems,database+operating_systems,medium,conceptual,Buffer pool management in database systems,auto,5,0.6,pending,
-M-DAOP-155,medium_database_operating_systems,database+operating_systems,medium,conceptual,OS level locking vs database level locking,auto,5,0.6,pending,
-M-DAOP-156,medium_database_operating_systems,database+operating_systems,medium,conceptual,Virtual memory impact on database performance,auto,5,0.6,pending,
-M-DAOP-157,medium_database_operating_systems,database+operating_systems,medium,conceptual,Process scheduling for database query execution,auto,5,0.6,pending,
-M-DAOP-158,medium_database_operating_systems,database+operating_systems,medium,conceptual,Semaphores in database concurrency control,auto,5,0.6,pending,
-M-DAOP-159,medium_database_operating_systems,database+operating_systems,medium,conceptual,File system choice for database storage,auto,5,0.6,pending,
-M-DAOP-160,medium_database_operating_systems,database+operating_systems,medium,conceptual,Memory management for database buffer pools,auto,5,0.6,pending,
-M-DAOP-161,medium_database_operating_systems,database+operating_systems,medium,conceptual,Inter-process communication in database servers,auto,5,0.6,pending,
-M-DAOP-162,medium_database_operating_systems,database+operating_systems,medium,conceptual,Page replacement algorithms in database systems,auto,5,0.6,pending,
-M-DAOP-163,medium_database_operating_systems,database+operating_systems,medium,conceptual,Disk scheduling impact on database I/O performance,auto,5,0.6,pending,
-M-DAOP-164,medium_database_operating_systems,database+operating_systems,medium,conceptual,System calls used in database management systems,auto,5,0.6,pending,
-M-DAOP-165,medium_database_operating_systems,database+operating_systems,medium,conceptual,Real time database systems and OS scheduling,auto,5,0.6,pending,
-M-DACO-166,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Database query performance and memory hierarchy,auto,5,0.6,pending,
-M-DACO-167,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Disk storage architecture and database indexing,auto,5,0.6,pending,
-M-DACO-168,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Cache efficiency in database systems,auto,5,0.6,pending,
-M-DACO-169,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,B-tree indexing and memory access patterns,auto,5,0.6,pending,
-M-DACO-170,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Instruction pipelining in database query engines,auto,5,0.6,pending,
-M-DACO-171,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,RISC architecture benefits for database workloads,auto,5,0.6,pending,
-M-DACO-172,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,DMA transfers in database I/O operations,auto,5,0.6,pending,
-M-DACO-173,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Multicore processors for parallel query execution,auto,5,0.6,pending,
-M-DACO-174,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Floating point arithmetic in database aggregations,auto,5,0.6,pending,
-M-DACO-175,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Bus architecture impact on database throughput,auto,5,0.6,pending,
-M-DACO-176,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Memory bandwidth and database join operations,auto,5,0.6,pending,
-M-DACO-177,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Cache coherence in shared memory database systems,auto,5,0.6,pending,
-M-DACO-178,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Out of order execution in database query processing,auto,5,0.6,pending,
-M-DACO-179,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Virtual memory and database buffer management,auto,5,0.6,pending,
-M-DACO-180,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Amdahl's law applied to parallel database queries,auto,5,0.6,pending,
-M-SOOP-181,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Concurrent programming and thread safety,auto,5,0.6,pending,
-M-SOOP-182,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,System software design and OS interfaces,auto,5,0.6,pending,
-M-SOOP-183,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Process management in software applications,auto,5,0.6,pending,
-M-SOOP-184,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Synchronisation mechanisms in concurrent software,auto,5,0.6,pending,
-M-SOOP-185,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Deadlock avoidance in multi-threaded applications,auto,5,0.6,pending,
-M-SOOP-186,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,File system APIs in software engineering,auto,5,0.6,pending,
-M-SOOP-187,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Memory management in application development,auto,5,0.6,pending,
-M-SOOP-188,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Inter-process communication in software design,auto,5,0.6,pending,
-M-SOOP-189,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Real time software development for OS environments,auto,5,0.6,pending,
-M-SOOP-190,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,System call design and software architecture,auto,5,0.6,pending,
-M-SOOP-191,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Testing concurrent and parallel software systems,auto,5,0.6,pending,
-M-SOOP-192,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Agile development for system software projects,auto,5,0.6,pending,
-M-SOOP-193,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Configuration management for OS dependent software,auto,5,0.6,pending,
-M-SOOP-194,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Risk management in concurrent system development,auto,5,0.6,pending,
-M-SOOP-195,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Performance engineering for OS interfacing code,auto,5,0.6,pending,
-M-SOCO-196,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Low level optimisation and compiler design,auto,5,0.6,pending,
-M-SOCO-197,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Embedded systems software development,auto,5,0.6,pending,
-M-SOCO-198,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Performance engineering and profiling,auto,5,0.6,pending,
-M-SOCO-199,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Software design for cache friendly data structures,auto,5,0.6,pending,
-M-SOCO-200,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Assembly language integration in software projects,auto,5,0.6,pending,
-M-SOCO-201,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Branch prediction impact on software performance,auto,5,0.6,pending,
-M-SOCO-202,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,RISC architecture considerations in software design,auto,5,0.6,pending,
-M-SOCO-203,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Memory layout optimisation in software engineering,auto,5,0.6,pending,
-M-SOCO-204,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Instruction set architecture and compiler design,auto,5,0.6,pending,
-M-SOCO-205,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Testing strategies for hardware software interfaces,auto,5,0.6,pending,
-M-SOCO-206,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Agile development for embedded systems,auto,5,0.6,pending,
-M-SOCO-207,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Requirements engineering for hardware constrained systems,auto,5,0.6,pending,
-M-SOCO-208,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Version control for firmware and embedded code,auto,5,0.6,pending,
-M-SOCO-209,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Technical debt in low level software systems,auto,5,0.6,pending,
-M-SOCO-210,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Code review for performance critical software,auto,5,0.6,pending,
-M-OPCO-211,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Virtual memory implementation and hardware support,auto,5,0.6,pending,
-M-OPCO-212,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Interrupt handling and processor architecture,auto,5,0.6,pending,
-M-OPCO-213,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Cache coherence in multiprocessor systems,auto,5,0.6,pending,
-M-OPCO-214,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,TLB management and address translation hardware,auto,5,0.6,pending,
-M-OPCO-215,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,DMA controller interaction with OS drivers,auto,5,0.6,pending,
-M-OPCO-216,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Instruction pipelining and OS context switching,auto,5,0.6,pending,
-M-OPCO-217,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Memory management unit design and OS support,auto,5,0.6,pending,
-M-OPCO-218,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Multicore scheduling and hardware thread management,auto,5,0.6,pending,
-M-OPCO-219,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Bus arbitration and OS I/O management,auto,5,0.6,pending,
-M-OPCO-220,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Floating point exceptions and OS signal handling,auto,5,0.6,pending,
-M-OPCO-221,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Branch prediction and OS kernel performance,auto,5,0.6,pending,
-M-OPCO-222,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,RISC architecture benefits for OS kernel design,auto,5,0.6,pending,
-M-OPCO-223,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Out of order execution and OS memory consistency,auto,5,0.6,pending,
-M-OPCO-224,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Hardware interrupts and OS interrupt service routines,auto,5,0.6,pending,
-M-OPCO-225,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Power management in OS and hardware co-design,auto,5,0.6,pending,
-H-MD-226,hard_multi_domain,auto,hard,application,Deadlock prevention across OS databases and distributed systems,auto,7,0.4,pending,
-H-MD-227,hard_multi_domain,auto,hard,application,Performance optimisation across hardware software and data layers,auto,7,0.4,pending,
-H-MD-228,hard_multi_domain,auto,hard,application,Memory management from hardware cache to virtual memory to database buffer,auto,7,0.4,pending,
+E-DE-001,easy_deep_learning,deep_learning,easy,recall,Convolutional neural networks,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-002,easy_deep_learning,deep_learning,easy,recall,Dropout regularisation,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-003,easy_deep_learning,deep_learning,easy,recall,Backpropagation and gradient descent,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-004,easy_deep_learning,deep_learning,easy,recall,Recurrent neural networks and sequence modelling,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-005,easy_deep_learning,deep_learning,easy,recall,Transformer architecture and attention mechanism,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-006,easy_deep_learning,deep_learning,easy,recall,Batch normalisation,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-007,easy_deep_learning,deep_learning,easy,recall,Activation functions in neural networks,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-008,easy_deep_learning,deep_learning,easy,recall,Transfer learning and fine-tuning,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-009,easy_deep_learning,deep_learning,easy,recall,Pooling layers and spatial downsampling,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-010,easy_deep_learning,deep_learning,easy,recall,Loss functions and optimisation,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-011,easy_deep_learning,deep_learning,easy,recall,Overfitting and regularisation techniques,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-012,easy_deep_learning,deep_learning,easy,recall,Vanishing and exploding gradient problem,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-013,easy_deep_learning,deep_learning,easy,recall,Autoencoders and representation learning,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-014,easy_deep_learning,deep_learning,easy,recall,Generative adversarial networks,explicit,3,0.8,done,2026-06-10 07:12
+E-DE-015,easy_deep_learning,deep_learning,easy,recall,Neural network weight initialisation,explicit,3,0.8,done,2026-06-10 07:12
+E-DA-016,easy_database,database,easy,recall,Database normalisation,explicit,3,0.8,done,2026-06-10 07:25
+E-DA-017,easy_database,database,easy,recall,SQL joins — inner and outer,explicit,3,0.8,done,2026-06-10 07:26
+E-DA-018,easy_database,database,easy,recall,ACID properties in database transactions,explicit,3,0.8,done,2026-06-10 07:27
+E-DA-019,easy_database,database,easy,recall,Transaction management and concurrency,explicit,3,0.8,done,2026-06-10 07:28
+E-DA-020,easy_database,database,easy,recall,Indexing and query optimisation,explicit,3,0.8,done,2026-06-10 07:29
+E-DA-021,easy_database,database,easy,recall,Two phase locking and deadlock prevention,explicit,3,0.8,done,2026-06-10 07:30
+E-DA-022,easy_database,database,easy,recall,Entity relationship modelling,explicit,3,0.8,done,2026-06-10 07:31
+E-DA-023,easy_database,database,easy,recall,Relational algebra and calculus,explicit,3,0.8,done,2026-06-10 07:32
+E-DA-024,easy_database,database,easy,recall,Stored procedures and triggers,explicit,3,0.8,done,2026-06-10 07:33
+E-DA-025,easy_database,database,easy,recall,Database recovery and logging,explicit,3,0.8,done,2026-06-10 07:34
+E-DA-026,easy_database,database,easy,recall,NoSQL vs relational databases,explicit,3,0.8,done,2026-06-10 07:35
+E-DA-027,easy_database,database,easy,recall,B-tree and hash indexing,explicit,3,0.8,done,2026-06-10 07:37
+E-DA-028,easy_database,database,easy,recall,Query execution plans and optimiser,explicit,3,0.8,done,2026-06-10 07:39
+E-DA-029,easy_database,database,easy,recall,Database security and access control,explicit,3,0.8,done,2026-06-10 07:40
+E-DA-030,easy_database,database,easy,recall,Data warehousing and OLAP,explicit,3,0.8,done,2026-06-10 07:41
+E-SO-031,easy_software_engineering,software_engineering,easy,recall,Software development lifecycle models,explicit,3,0.8,done,2026-06-10 07:42
+E-SO-032,easy_software_engineering,software_engineering,easy,recall,Agile methodology and requirements management,explicit,3,0.8,done,2026-06-10 07:46
+E-SO-033,easy_software_engineering,software_engineering,easy,recall,Verification and validation in software testing,explicit,3,0.8,done,2026-06-10 07:48
+E-SO-034,easy_software_engineering,software_engineering,easy,recall,Unit testing and integration testing,explicit,3,0.8,done,2026-06-10 07:49
+E-SO-035,easy_software_engineering,software_engineering,easy,recall,Test driven development,explicit,3,0.8,done,2026-06-10 07:50
+E-SO-036,easy_software_engineering,software_engineering,easy,recall,Design patterns in object oriented programming,explicit,3,0.8,done,2026-06-10 07:52
+E-SO-037,easy_software_engineering,software_engineering,easy,recall,Software architecture and modularity,explicit,3,0.8,done,2026-06-10 07:53
+E-SO-038,easy_software_engineering,software_engineering,easy,recall,Version control and configuration management,explicit,3,0.8,done,2026-06-10 07:54
+E-SO-039,easy_software_engineering,software_engineering,easy,recall,Code review and static analysis,explicit,3,0.8,done,2026-06-10 07:55
+E-SO-040,easy_software_engineering,software_engineering,easy,recall,Risk management in software projects,explicit,3,0.8,done,2026-06-10 07:56
+E-SO-041,easy_software_engineering,software_engineering,easy,recall,Requirements engineering and specification,explicit,3,0.8,done,2026-06-10 07:57
+E-SO-042,easy_software_engineering,software_engineering,easy,recall,Software metrics and quality assurance,explicit,3,0.8,done,2026-06-10 07:58
+E-SO-043,easy_software_engineering,software_engineering,easy,recall,Refactoring and technical debt,explicit,3,0.8,done,2026-06-10 07:59
+E-SO-044,easy_software_engineering,software_engineering,easy,recall,Continuous integration and deployment,explicit,3,0.8,done,2026-06-10 08:00
+E-SO-045,easy_software_engineering,software_engineering,easy,recall,Safety critical software testing,explicit,3,0.8,done,2026-06-10 08:01
+E-OP-046,easy_operating_systems,operating_systems,easy,recall,Processes and threads,explicit,3,0.8,done,2026-06-10 08:03
+E-OP-047,easy_operating_systems,operating_systems,easy,recall,CPU scheduling algorithms,explicit,3,0.8,done,2026-06-10 08:04
+E-OP-048,easy_operating_systems,operating_systems,easy,recall,Virtual memory and paging,explicit,3,0.8,done,2026-06-10 08:05
+E-OP-049,easy_operating_systems,operating_systems,easy,recall,Deadlock detection and prevention,explicit,3,0.8,done,2026-06-10 08:06
+E-OP-050,easy_operating_systems,operating_systems,easy,recall,Banker algorithm and resource allocation,explicit,3,0.8,done,2026-06-10 08:07
+E-OP-051,easy_operating_systems,operating_systems,easy,recall,Memory management and segmentation,explicit,3,0.8,done,2026-06-10 08:08
+E-OP-052,easy_operating_systems,operating_systems,easy,recall,File systems and directory structures,explicit,3,0.8,done,2026-06-10 08:09
+E-OP-053,easy_operating_systems,operating_systems,easy,recall,Interprocess communication,explicit,3,0.8,done,2026-06-10 08:11
+E-OP-054,easy_operating_systems,operating_systems,easy,recall,Semaphores and mutual exclusion,explicit,3,0.8,done,2026-06-10 08:13
+E-OP-055,easy_operating_systems,operating_systems,easy,recall,Disk scheduling algorithms,explicit,3,0.8,done,2026-06-10 08:14
+E-OP-056,easy_operating_systems,operating_systems,easy,recall,Page replacement algorithms,explicit,3,0.8,done,2026-06-10 08:15
+E-OP-057,easy_operating_systems,operating_systems,easy,recall,System calls and kernel mode,explicit,3,0.8,done,2026-06-10 08:16
+E-OP-058,easy_operating_systems,operating_systems,easy,recall,Context switching and process states,explicit,3,0.8,done,2026-06-10 08:17
+E-OP-059,easy_operating_systems,operating_systems,easy,recall,Real time operating systems,explicit,3,0.8,done,2026-06-10 08:18
+E-OP-060,easy_operating_systems,operating_systems,easy,recall,Input output management,explicit,3,0.8,done,2026-06-10 08:19
+E-CO-061,easy_computer_architecture,computer_architecture,easy,recall,Instruction pipelining,explicit,3,0.8,done,2026-06-10 08:21
+E-CO-062,easy_computer_architecture,computer_architecture,easy,recall,Cache memory hierarchy,explicit,3,0.8,done,2026-06-10 08:22
+E-CO-063,easy_computer_architecture,computer_architecture,easy,recall,Pipeline hazards and resolution techniques,explicit,3,0.8,done,2026-06-10 08:23
+E-CO-064,easy_computer_architecture,computer_architecture,easy,recall,Memory hierarchy and locality,explicit,3,0.8,done,2026-06-10 08:24
+E-CO-065,easy_computer_architecture,computer_architecture,easy,recall,Instruction set architecture,explicit,3,0.8,done,2026-06-10 08:25
+E-CO-066,easy_computer_architecture,computer_architecture,easy,recall,Superscalar and out of order execution,explicit,3,0.8,done,2026-06-10 08:27
+E-CO-067,easy_computer_architecture,computer_architecture,easy,recall,Branch prediction,explicit,3,0.8,done,2026-06-10 08:28
+E-CO-068,easy_computer_architecture,computer_architecture,easy,recall,RISC vs CISC architecture,explicit,3,0.8,done,2026-06-10 08:30
+E-CO-069,easy_computer_architecture,computer_architecture,easy,recall,Virtual memory and address translation,explicit,3,0.8,done,2026-06-10 08:31
+E-CO-070,easy_computer_architecture,computer_architecture,easy,recall,Multicore processors and parallelism,explicit,3,0.8,done,2026-06-10 08:32
+E-CO-071,easy_computer_architecture,computer_architecture,easy,recall,Amdahl's law and performance limits,explicit,3,0.8,done,2026-06-10 08:33
+E-CO-072,easy_computer_architecture,computer_architecture,easy,recall,Direct memory access,explicit,3,0.8,done,2026-06-10 08:35
+E-CO-073,easy_computer_architecture,computer_architecture,easy,recall,Bus architecture and interconnects,explicit,3,0.8,done,2026-06-10 08:36
+E-CO-074,easy_computer_architecture,computer_architecture,easy,recall,Floating point representation,explicit,3,0.8,done,2026-06-10 08:39
+E-CO-075,easy_computer_architecture,computer_architecture,easy,recall,Assembly language and low level programming,explicit,3,0.8,done,2026-06-10 08:40
+M-DEDA-076,medium_deep_learning_database,deep_learning+database,medium,conceptual,Machine learning model storage and retrieval,auto,5,0.6,done,2026-06-10 08:41
+M-DEDA-077,medium_deep_learning_database,deep_learning+database,medium,conceptual,Feature engineering and data preprocessing,auto,5,0.6,done,2026-06-10 08:43
+M-DEDA-078,medium_deep_learning_database,deep_learning+database,medium,conceptual,Training data management at scale,auto,5,0.6,done,2026-06-10 08:44
+M-DEDA-079,medium_deep_learning_database,deep_learning+database,medium,conceptual,Vector databases for embedding storage,auto,5,0.6,done,2026-06-10 08:46
+M-DEDA-080,medium_deep_learning_database,deep_learning+database,medium,conceptual,Data versioning for machine learning pipelines,auto,5,0.6,done,2026-06-10 08:49
+M-DEDA-081,medium_deep_learning_database,deep_learning+database,medium,conceptual,Query optimisation for training data retrieval,auto,5,0.6,done,2026-06-10 08:50
+M-DEDA-082,medium_deep_learning_database,deep_learning+database,medium,conceptual,Database indexing for large scale datasets,auto,5,0.6,done,2026-06-10 08:52
+M-DEDA-083,medium_deep_learning_database,deep_learning+database,medium,conceptual,Transaction management in ML feature stores,auto,5,0.6,done,2026-06-10 08:53
+M-DEDA-084,medium_deep_learning_database,deep_learning+database,medium,conceptual,Schema design for machine learning metadata,auto,5,0.6,done,2026-06-10 08:55
+M-DEDA-085,medium_deep_learning_database,deep_learning+database,medium,conceptual,Caching strategies for training data pipelines,auto,5,0.6,done,2026-06-10 08:57
+M-DEDA-086,medium_deep_learning_database,deep_learning+database,medium,conceptual,Data normalisation for neural network inputs,auto,5,0.6,done,2026-06-10 08:59
+M-DEDA-087,medium_deep_learning_database,deep_learning+database,medium,conceptual,Distributed storage for deep learning datasets,auto,5,0.6,done,2026-06-10 09:00
+M-DEDA-088,medium_deep_learning_database,deep_learning+database,medium,conceptual,SQL vs NoSQL for machine learning applications,auto,5,0.6,done,2026-06-10 09:02
+M-DEDA-089,medium_deep_learning_database,deep_learning+database,medium,conceptual,Database backup and recovery for model checkpoints,auto,5,0.6,done,2026-06-10 09:04
+M-DEDA-090,medium_deep_learning_database,deep_learning+database,medium,conceptual,Concurrency control in data preprocessing pipelines,auto,5,0.6,done,2026-06-10 09:06
+M-DESO-091,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,MLOps and model deployment pipelines,auto,5,0.6,done,2026-06-10 09:07
+M-DESO-092,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Testing strategies for machine learning systems,auto,5,0.6,done,2026-06-10 09:09
+M-DESO-093,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Version control for machine learning experiments,auto,5,0.6,done,2026-06-10 09:11
+M-DESO-094,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Continuous integration for deep learning projects,auto,5,0.6,done,2026-06-10 09:12
+M-DESO-095,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Software design patterns for neural network systems,auto,5,0.6,done,2026-06-10 09:14
+M-DESO-096,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Code modularity in deep learning frameworks,auto,5,0.6,done,2026-06-10 09:18
+M-DESO-097,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Debugging and validation of neural network training,auto,5,0.6,done,2026-06-10 09:19
+M-DESO-098,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Requirements engineering for AI systems,auto,5,0.6,done,2026-06-10 09:21
+M-DESO-099,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Technical debt in machine learning codebases,auto,5,0.6,done,2026-06-10 09:22
+M-DESO-100,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Refactoring deep learning pipelines,auto,5,0.6,done,2026-06-10 09:24
+M-DESO-101,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Agile development for machine learning projects,auto,5,0.6,done,2026-06-10 09:26
+M-DESO-102,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Documentation standards for AI model code,auto,5,0.6,done,2026-06-10 09:28
+M-DESO-103,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Risk management in machine learning deployments,auto,5,0.6,done,2026-06-10 09:30
+M-DESO-104,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Software metrics for evaluating ML system quality,auto,5,0.6,done,2026-06-10 09:31
+M-DESO-105,medium_deep_learning_software_engineering,deep_learning+software_engineering,medium,conceptual,Safety critical considerations in AI software,auto,5,0.6,done,2026-06-10 09:33
+M-DEOP-106,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,GPU memory management for deep learning,auto,5,0.6,done,2026-06-10 09:35
+M-DEOP-107,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Parallel processing in neural network training,auto,5,0.6,done,2026-06-10 09:37
+M-DEOP-108,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Resource scheduling for machine learning workloads,auto,5,0.6,done,2026-06-10 09:38
+M-DEOP-109,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Process management for distributed training jobs,auto,5,0.6,done,2026-06-10 09:40
+M-DEOP-110,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Virtual memory constraints in large model training,auto,5,0.6,done,2026-06-10 09:42
+M-DEOP-111,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,CPU and GPU synchronisation in deep learning,auto,5,0.6,done,2026-06-10 09:43
+M-DEOP-112,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,File system optimisation for dataset loading,auto,5,0.6,done,2026-06-10 09:45
+M-DEOP-113,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Thread management in data loading pipelines,auto,5,0.6,done,2026-06-10 09:47
+M-DEOP-114,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Deadlock prevention in parallel training systems,auto,5,0.6,done,2026-06-10 09:49
+M-DEOP-115,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Memory mapped files for large dataset access,auto,5,0.6,done,2026-06-10 09:50
+M-DEOP-116,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,OS scheduling impact on neural network training,auto,5,0.6,done,2026-06-10 09:52
+M-DEOP-117,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Inter-process communication in distributed training,auto,5,0.6,done,2026-06-10 09:54
+M-DEOP-118,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,System calls used in deep learning frameworks,auto,5,0.6,done,2026-06-10 09:55
+M-DEOP-119,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Context switching overhead in model training,auto,5,0.6,done,2026-06-10 09:57
+M-DEOP-120,medium_deep_learning_operating_systems,deep_learning+operating_systems,medium,conceptual,Real time constraints in neural network inference,auto,5,0.6,done,2026-06-10 09:59
+M-DECO-121,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Hardware acceleration for neural networks,auto,5,0.6,done,2026-06-10 10:01
+M-DECO-122,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Memory bandwidth constraints in deep learning,auto,5,0.6,done,2026-06-10 10:02
+M-DECO-123,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Parallelism in convolutional neural network computation,auto,5,0.6,done,2026-06-10 10:04
+M-DECO-124,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Cache efficiency in matrix multiplication operations,auto,5,0.6,done,2026-06-10 10:08
+M-DECO-125,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Instruction pipelining for neural network inference,auto,5,0.6,done,2026-06-10 10:09
+M-DECO-126,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,SIMD instructions for deep learning operations,auto,5,0.6,done,2026-06-10 10:11
+M-DECO-127,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Memory hierarchy optimisation for model training,auto,5,0.6,done,2026-06-10 10:13
+M-DECO-128,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Branch prediction impact on neural network code,auto,5,0.6,done,2026-06-10 10:14
+M-DECO-129,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Floating point precision in neural network training,auto,5,0.6,done,2026-06-10 10:16
+M-DECO-130,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,GPU architecture and its suitability for deep learning,auto,5,0.6,done,2026-06-10 10:17
+M-DECO-131,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Amdahl's law applied to neural network parallelisation,auto,5,0.6,done,2026-06-10 10:19
+M-DECO-132,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,DMA transfers in deep learning data pipelines,auto,5,0.6,done,2026-06-10 10:21
+M-DECO-133,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,RISC architecture advantages for inference workloads,auto,5,0.6,done,2026-06-10 10:23
+M-DECO-134,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Out of order execution in neural network computations,auto,5,0.6,done,2026-06-10 10:25
+M-DECO-135,medium_deep_learning_computer_architecture,deep_learning+computer_architecture,medium,conceptual,Power consumption considerations in AI hardware,auto,5,0.6,done,2026-06-10 10:26
+M-DASO-136,medium_database_software_engineering,database+software_engineering,medium,conceptual,Object relational mapping and database abstraction,auto,5,0.6,done,2026-06-10 10:27
+M-DASO-137,medium_database_software_engineering,database+software_engineering,medium,conceptual,Database driven application architecture,auto,5,0.6,done,2026-06-10 10:29
+M-DASO-138,medium_database_software_engineering,database+software_engineering,medium,conceptual,Testing database dependent systems,auto,5,0.6,done,2026-06-10 10:31
+M-DASO-139,medium_database_software_engineering,database+software_engineering,medium,conceptual,Database schema migration in agile projects,auto,5,0.6,done,2026-06-10 10:34
+M-DASO-140,medium_database_software_engineering,database+software_engineering,medium,conceptual,Version control strategies for database schemas,auto,5,0.6,done,2026-06-10 10:35
+M-DASO-141,medium_database_software_engineering,database+software_engineering,medium,conceptual,Design patterns for database access layers,auto,5,0.6,done,2026-06-10 10:37
+M-DASO-142,medium_database_software_engineering,database+software_engineering,medium,conceptual,Requirements engineering for database systems,auto,5,0.6,done,2026-06-10 10:39
+M-DASO-143,medium_database_software_engineering,database+software_engineering,medium,conceptual,Continuous integration with database testing,auto,5,0.6,done,2026-06-10 10:40
+M-DASO-144,medium_database_software_engineering,database+software_engineering,medium,conceptual,Refactoring database interactions in legacy systems,auto,5,0.6,done,2026-06-10 10:42
+M-DASO-145,medium_database_software_engineering,database+software_engineering,medium,conceptual,Software metrics for database application quality,auto,5,0.6,done,2026-06-10 10:44
+M-DASO-146,medium_database_software_engineering,database+software_engineering,medium,conceptual,Risk management in database migration projects,auto,5,0.6,done,2026-06-10 10:45
+M-DASO-147,medium_database_software_engineering,database+software_engineering,medium,conceptual,Transaction handling in object oriented applications,auto,5,0.6,done,2026-06-10 10:47
+M-DASO-148,medium_database_software_engineering,database+software_engineering,medium,conceptual,Unit testing strategies for database operations,auto,5,0.6,done,2026-06-10 10:55
+M-DASO-149,medium_database_software_engineering,database+software_engineering,medium,conceptual,Configuration management for database environments,auto,5,0.6,done,2026-06-10 10:56
+M-DASO-150,medium_database_software_engineering,database+software_engineering,medium,conceptual,Code review practices for SQL and database code,auto,5,0.6,done,2026-06-10 10:58
+M-DAOP-151,medium_database_operating_systems,database+operating_systems,medium,conceptual,Transaction management and process synchronisation,auto,5,0.6,done,2026-06-10 11:00
+M-DAOP-152,medium_database_operating_systems,database+operating_systems,medium,conceptual,Deadlock prevention in database and OS contexts,auto,5,0.6,done,2026-06-10 11:01
+M-DAOP-153,medium_database_operating_systems,database+operating_systems,medium,conceptual,File system and database storage management,auto,5,0.6,done,2026-06-10 11:03
+M-DAOP-154,medium_database_operating_systems,database+operating_systems,medium,conceptual,Buffer pool management in database systems,auto,5,0.6,done,2026-06-10 11:04
+M-DAOP-155,medium_database_operating_systems,database+operating_systems,medium,conceptual,OS level locking vs database level locking,auto,5,0.6,done,2026-06-10 11:06
+M-DAOP-156,medium_database_operating_systems,database+operating_systems,medium,conceptual,Virtual memory impact on database performance,auto,5,0.6,done,2026-06-10 11:08
+M-DAOP-157,medium_database_operating_systems,database+operating_systems,medium,conceptual,Process scheduling for database query execution,auto,5,0.6,done,2026-06-10 11:10
+M-DAOP-158,medium_database_operating_systems,database+operating_systems,medium,conceptual,Semaphores in database concurrency control,auto,5,0.6,done,2026-06-10 11:11
+M-DAOP-159,medium_database_operating_systems,database+operating_systems,medium,conceptual,File system choice for database storage,auto,5,0.6,done,2026-06-10 11:13
+M-DAOP-160,medium_database_operating_systems,database+operating_systems,medium,conceptual,Memory management for database buffer pools,auto,5,0.6,done,2026-06-10 11:15
+M-DAOP-161,medium_database_operating_systems,database+operating_systems,medium,conceptual,Inter-process communication in database servers,auto,5,0.6,done,2026-06-10 11:17
+M-DAOP-162,medium_database_operating_systems,database+operating_systems,medium,conceptual,Page replacement algorithms in database systems,auto,5,0.6,done,2026-06-10 11:18
+M-DAOP-163,medium_database_operating_systems,database+operating_systems,medium,conceptual,Disk scheduling impact on database I/O performance,auto,5,0.6,done,2026-06-10 11:25
+M-DAOP-164,medium_database_operating_systems,database+operating_systems,medium,conceptual,System calls used in database management systems,auto,5,0.6,done,2026-06-10 11:26
+M-DAOP-165,medium_database_operating_systems,database+operating_systems,medium,conceptual,Real time database systems and OS scheduling,auto,5,0.6,done,2026-06-10 11:28
+M-DACO-166,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Database query performance and memory hierarchy,auto,5,0.6,done,2026-06-10 11:30
+M-DACO-167,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Disk storage architecture and database indexing,auto,5,0.6,done,2026-06-10 11:31
+M-DACO-168,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Cache efficiency in database systems,auto,5,0.6,done,2026-06-10 11:33
+M-DACO-169,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,B-tree indexing and memory access patterns,auto,5,0.6,done,2026-06-10 11:35
+M-DACO-170,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Instruction pipelining in database query engines,auto,5,0.6,done,2026-06-10 11:36
+M-DACO-171,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,RISC architecture benefits for database workloads,auto,5,0.6,done,2026-06-10 11:38
+M-DACO-172,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,DMA transfers in database I/O operations,auto,5,0.6,done,2026-06-10 11:40
+M-DACO-173,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Multicore processors for parallel query execution,auto,5,0.6,done,2026-06-10 11:41
+M-DACO-174,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Floating point arithmetic in database aggregations,auto,5,0.6,done,2026-06-10 11:43
+M-DACO-175,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Bus architecture impact on database throughput,auto,5,0.6,done,2026-06-10 11:45
+M-DACO-176,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Memory bandwidth and database join operations,auto,5,0.6,done,2026-06-10 11:47
+M-DACO-177,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Cache coherence in shared memory database systems,auto,5,0.6,done,2026-06-10 11:48
+M-DACO-178,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Out of order execution in database query processing,auto,5,0.6,done,2026-06-10 11:52
+M-DACO-179,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Virtual memory and database buffer management,auto,5,0.6,done,2026-06-10 11:54
+M-DACO-180,medium_database_computer_architecture,database+computer_architecture,medium,conceptual,Amdahl's law applied to parallel database queries,auto,5,0.6,done,2026-06-10 11:56
+M-SOOP-181,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Concurrent programming and thread safety,auto,5,0.6,done,2026-06-10 11:57
+M-SOOP-182,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,System software design and OS interfaces,auto,5,0.6,done,2026-06-10 11:59
+M-SOOP-183,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Process management in software applications,auto,5,0.6,done,2026-06-10 12:00
+M-SOOP-184,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Synchronisation mechanisms in concurrent software,auto,5,0.6,done,2026-06-10 12:02
+M-SOOP-185,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Deadlock avoidance in multi-threaded applications,auto,5,0.6,done,2026-06-10 12:04
+M-SOOP-186,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,File system APIs in software engineering,auto,5,0.6,done,2026-06-10 12:05
+M-SOOP-187,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Memory management in application development,auto,5,0.6,done,2026-06-10 12:07
+M-SOOP-188,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Inter-process communication in software design,auto,5,0.6,done,2026-06-10 12:09
+M-SOOP-189,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Real time software development for OS environments,auto,5,0.6,done,2026-06-10 12:10
+M-SOOP-190,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,System call design and software architecture,auto,5,0.6,done,2026-06-10 12:12
+M-SOOP-191,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Testing concurrent and parallel software systems,auto,5,0.6,done,2026-06-10 12:13
+M-SOOP-192,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Agile development for system software projects,auto,5,0.6,done,2026-06-10 12:15
+M-SOOP-193,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Configuration management for OS dependent software,auto,5,0.6,done,2026-06-10 12:16
+M-SOOP-194,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Risk management in concurrent system development,auto,5,0.6,done,2026-06-10 12:18
+M-SOOP-195,medium_software_engineering_operating_systems,software_engineering+operating_systems,medium,conceptual,Performance engineering for OS interfacing code,auto,5,0.6,done,2026-06-10 12:20
+M-SOCO-196,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Low level optimisation and compiler design,auto,5,0.6,done,2026-06-10 12:21
+M-SOCO-197,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Embedded systems software development,auto,5,0.6,done,2026-06-10 12:23
+M-SOCO-198,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Performance engineering and profiling,auto,5,0.6,done,2026-06-10 12:24
+M-SOCO-199,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Software design for cache friendly data structures,auto,5,0.6,done,2026-06-10 12:25
+M-SOCO-200,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Assembly language integration in software projects,auto,5,0.6,done,2026-06-10 12:26
+M-SOCO-201,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Branch prediction impact on software performance,auto,5,0.6,done,2026-06-10 12:27
+M-SOCO-202,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,RISC architecture considerations in software design,auto,5,0.6,done,2026-06-10 12:28
+M-SOCO-203,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Memory layout optimisation in software engineering,auto,5,0.6,done,2026-06-10 12:30
+M-SOCO-204,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Instruction set architecture and compiler design,auto,5,0.6,done,2026-06-10 12:31
+M-SOCO-205,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Testing strategies for hardware software interfaces,auto,5,0.6,done,2026-06-10 12:32
+M-SOCO-206,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Agile development for embedded systems,auto,5,0.6,done,2026-06-10 12:33
+M-SOCO-207,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Requirements engineering for hardware constrained systems,auto,5,0.6,done,2026-06-10 12:35
+M-SOCO-208,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Version control for firmware and embedded code,auto,5,0.6,done,2026-06-10 12:36
+M-SOCO-209,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Technical debt in low level software systems,auto,5,0.6,done,2026-06-10 12:37
+M-SOCO-210,medium_software_engineering_computer_architecture,software_engineering+computer_architecture,medium,conceptual,Code review for performance critical software,auto,5,0.6,done,2026-06-10 12:39
+M-OPCO-211,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Virtual memory implementation and hardware support,auto,5,0.6,done,2026-06-10 12:40
+M-OPCO-212,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Interrupt handling and processor architecture,auto,5,0.6,done,2026-06-10 12:41
+M-OPCO-213,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Cache coherence in multiprocessor systems,auto,5,0.6,done,2026-06-10 12:42
+M-OPCO-214,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,TLB management and address translation hardware,auto,5,0.6,done,2026-06-10 12:43
+M-OPCO-215,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,DMA controller interaction with OS drivers,auto,5,0.6,done,2026-06-10 12:44
+M-OPCO-216,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Instruction pipelining and OS context switching,auto,5,0.6,done,2026-06-10 12:59
+M-OPCO-217,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Memory management unit design and OS support,auto,5,0.6,done,2026-06-10 13:00
+M-OPCO-218,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Multicore scheduling and hardware thread management,auto,5,0.6,done,2026-06-10 13:02
+M-OPCO-219,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Bus arbitration and OS I/O management,auto,5,0.6,done,2026-06-10 13:05
+M-OPCO-220,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Floating point exceptions and OS signal handling,auto,5,0.6,done,2026-06-10 13:06
+M-OPCO-221,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Branch prediction and OS kernel performance,auto,5,0.6,done,2026-06-10 13:08
+M-OPCO-222,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,RISC architecture benefits for OS kernel design,auto,5,0.6,done,2026-06-10 13:10
+M-OPCO-223,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Out of order execution and OS memory consistency,auto,5,0.6,done,2026-06-10 13:13
+M-OPCO-224,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Hardware interrupts and OS interrupt service routines,auto,5,0.6,done,2026-06-10 13:14
+M-OPCO-225,medium_operating_systems_computer_architecture,operating_systems+computer_architecture,medium,conceptual,Power management in OS and hardware co-design,auto,5,0.6,done,2026-06-10 13:17
+H-MD-226,hard_multi_domain,auto,hard,application,Deadlock prevention across OS databases and distributed systems,auto,7,0.4,done,2026-06-10 22:35
+H-MD-227,hard_multi_domain,auto,hard,application,Performance optimisation across hardware software and data layers,auto,7,0.4,done,2026-06-10 22:38
+H-MD-228,hard_multi_domain,auto,hard,application,Memory management from hardware cache to virtual memory to database buffer,auto,7,0.4,done,2026-06-10 22:42
 H-MD-229,hard_multi_domain,auto,hard,application,Concurrency control in operating systems databases and multi-threaded applications,auto,7,0.4,pending,
 H-MD-230,hard_multi_domain,auto,hard,application,System design integrating architecture OS and software engineering principles,auto,7,0.4,pending,
 H-MD-231,hard_multi_domain,auto,hard,application,Resource scheduling across CPU memory and database query execution,auto,7,0.4,pending,

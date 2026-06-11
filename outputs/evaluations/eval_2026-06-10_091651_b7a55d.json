@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_091651_b7a55d",
+  "timestamp": "2026-06-10T09:16:51",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Code modularity in deep learning frameworks",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\n9.3Implementation of Matrix Factorization 110\n5\nIII Deep Learning 113\n10 Introduction to Deep Learning 115\n10.1A Brief History 116\n10.2Anatomy of a Neural Network 116\n10.3Why Deep Learning? 119\n10.4Mu",
+      "[SEED from source_52.pdf]\n9.3Implementation of Matrix Factorization\nIn this section, we look more deeply into implementing matrix fac-\ntorization in an ML setting. As suggested in Definition 9.2.2, we can\nconsider the process",
+      "[SEED from source_52.pdf]\n11.4Backpropagation: The General Case 136\n11.5Feedforward Neural Network in Python Programming 142\n12 Convolutional Neural Network 145\n12.1Introduction to Convolution 145\n12.2Convolution in Computer V",
+      "[NEIGHBOUR from source_52.pdf]\n6.4Clustering in Programming 76\n7 Low-Dimensional Representation 81\n7.1Low-Dimensional Representation with Error 82\n7.2Application 1: Stylometry 84\n7.3Application 2: Eigenfaces 87\n8 n-Gram Language Mo",
+      "[NEIGHBOUR from source_52.pdf]\nunsupervised, deep learning, and reinforcement learning as a foun-\ndation for further study or independent work in ML, AI, and data\nscience. Topics include linear models for classification and regress"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about general machine learning topics like clustering, low-dimensional representation, and unsupervised learning, which are not directly related to code modularity in deep learning frameworks. Only Chunk 2 briefly mentions matrix factorization, but it does not explain how it relates to modularity. There is insufficient information to generate a meaningful exam question on the learning objective. The chunks contain some useful content but also include unrelated material, so they have moderate noise.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the relationship between backpropagation and the optimization process in matrix factorization when implementing machine learning algorithms?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 3.8,
+    "reasoning": "The question asks about the relationship between backpropagation and matrix factorization optimization, which is not directly stated in the source context. The passage discusses matrix factorization but does not mention backpropagation. Therefore, the question cannot be fully answered using only the provided context, so it scores 1 for faithfulness. The question is clear and unambiguous, asking for a conceptual relationship, so it scores 5 for clarity. The difficulty level is medium because it requires understanding the connection between two concepts, but the passage does not provide that link, making it slightly off target. The question is conceptual, matching the requested type, so it scores 5. The question is self-contained, referring only to the topic of matrix factorization, so it scores 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Backpropagation is used to compute gradients for optimization in matrix factorization, enabling efficient parameter updates similar to gradient descent. The general case of backpropagation applies broadly to neural networks, including those used for matrix factorization, ensuring scalable training. In practice, backpropagation is implemented in programming languages like Python, as seen in the feedforward neural network example. This iterative gradient calculation is fundamental for optimizing the loss function during matrix factorization tasks.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that backpropagation computes gradients for optimization in matrix factorization, which aligns with the source's discussion of gradient descent and optimization. It also notes that backpropagation is applied generally to neural networks, including those used for matrix factorization, and that it is implemented in Python, which is accurate. However, the answer could be more concise and less verbose, potentially losing some completeness. The answer is entirely grounded in the provided context without any hallucinations. The tone is academic but somewhat verbose, using prose rather than bullet points, which is acceptable but not ideal for a university setting.",
+    "parse_status": "ok"
+  }
+}

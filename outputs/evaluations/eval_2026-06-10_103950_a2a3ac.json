@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_103950_a2a3ac",
+  "timestamp": "2026-06-10T10:39:50",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Continuous integration with database testing",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\non software testing in which the author presents a set of experience-based guidelines on designing\ntests that are likely to be effective in discoverin g system faults. (J. A. Whittaker, Addison-Wesley",
+      "[SEED from source_22.pdf]\napplications. (M. Andrews and J. A. Whittaker, Addi son-Wesley, 2006.)\n‘Using static analysis to find bugs’. This paper de scribes Findbugs, a Java static analyzer that uses\nsimple techniques to find",
+      "[SEED from source_47.pdf]\nIncident and accident analysisPeriodic audits\nPerformance MonitoringChange AnalysisPeriodic auditsPreliminary Hazard Analysis\nSystem Hazard Analysis\nSafety Verification\nOperational AnalysisOperational",
+      "[NEIGHBOUR from source_21.pdf]\n14\n(b) Unit test each individual component\n(c) Integration (system) testing - combine components, test interfaces\namong components\n(d) Acceptance testing - use live data in client’s test environment.",
+      "[NEIGHBOUR from source_21.pdf]\n-- should include  debugging  \nSoftware  testing  is one element  of verification  and validation.  \nVerification  refers  to the set of activities  that ensure  that software  correctly  implements"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly irrelevant to continuous integration with database testing. Chunk 1 discusses general software testing guidelines, while Chunk 2 focuses on static analysis tools. Chunk 3 lists safety-related activities, and Chunk 4 describes integration testing steps. Only Chunk 4 mentions integration testing, which is tangentially related. There is insufficient information to generate a good exam question because none of the chunks directly cover continuous integration or database testing. The chunks contain moderate noise, as they include unrelated topics like safety audits and debugging.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary difference between verification and validation in the context of software testing, and how do they relate to ensuring that the software is built correctly versus that it meets customer requirements?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about the difference between verification and validation, which is directly stated in the source: verification ensures correct implementation, while validation ensures meeting customer requirements. The question is clear and unambiguous, so it scores 5 for clarity. It is a conceptual comparison, matching the medium difficulty level and the conceptual type. The question does not reference the passage explicitly, so it scores 5 for standalone quality. However, the source material does not provide a direct definition of validation, so the question requires some outside knowledge, reducing faithfulness to 3. Overall, the question is well-designed but slightly off in its reliance on external knowledge.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Verification ensures that the software correctly implements its specific functions, addressing whether we are building the product right, whereas validation ensures that the software built is traceable to customer requirements, confirming that we are building the right product. Both verification and validation are part of the broader verification and validation process, with testing being a key activity within verification to check correctness.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer is mostly correct: it identifies verification as correctness and validation as requirements traceability, which aligns with the source's distinction. However, it incorrectly states that testing is part of validation rather than verification, so correctness is 3. It covers both key points, so completeness is 5. The answer is entirely based on the source, so groundedness is 5. The tone is academic but uses bullet points, so academic tone is 3.",
+    "parse_status": "ok"
+  }
+}

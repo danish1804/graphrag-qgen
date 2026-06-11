@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_075105_ab30fa",
+  "timestamp": "2026-06-10T07:51:05",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Design patterns in object oriented programming",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nstate diagrams for modeling a software system. Chap ter 6 introduces\narchitectural design and I discuss the importance o f architecture and the\nuse of architectural patterns in software design.\nChapte",
+      "[SEED from source_22.pdf]\nhttp://www.it.bton.ac.uk/cil/usability/patterns/.\nDesign and\nimplementation7\nObjectives\nThe objectives of this chapter are to introduce obj ect-oriented software\ndesign using the UML and highlight imp",
+      "[NEIGHBOUR from source_11.pdf]\n–“The system shall conform to ISO Standard XYZ.”\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 11\nSoftware Design & Implementation\n●Conversion from system spe"
+    ],
+    "scores": {
+      "relevance": 2,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.0,
+    "reasoning": "The chunks are mostly about software design and architecture, which is tangential to the core learning objective of design patterns in object-oriented programming. Only Chunk 2 briefly mentions object-oriented design, but it does not focus on design patterns. The chunks contain some general software engineering concepts but lack specific details on design patterns. There is moderate noise in the form of unrelated topics like usability patterns and conversion from system specifications. The chunks are insufficient for generating a good exam question because they do not provide concrete examples or explanations of design patterns.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the main design concerns discussed in Chapter 8 of the course material?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about main design concerns in Chapter 8, which is not explicitly stated in the provided context. The passage mentions architectural design and patterns but does not list specific concerns. Thus, the question cannot be fully answered from the given context alone, so it scores 1 for faithfulness. It is clear and unambiguous, scoring 5 for clarity. The difficulty is easy because it requires only recall of a general topic, matching the easy label. The question type is recall, which fits the request. The question is self-contained, referring to \"Chapter 8\" rather than the passage, so it scores 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Chapter 8 focuses on software testing, including unit testing, which is essential for verifying that individual components function correctly. It also addresses implementation concerns such as reuse, configuration management, and host-target development, ensuring that the final product meets specified requirements like ISO standards.",
+    "scores": {
+      "correctness": 1,
+      "completeness": 1,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 1.5,
+    "reasoning": "The answer states that Chapter 8 covers software testing and implementation concerns, but the source material does not mention software testing at all; it discusses state diagrams, architectural design, and UML. The answer is incorrect because it misrepresents the content of Chapter 8. Completeness is low since it fails to mention the main topics actually covered. Groundedness is poor because the answer includes information not in the source. Academic tone is acceptable but could be more precise and formal.",
+    "parse_status": "ok"
+  }
+}

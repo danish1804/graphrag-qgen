@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_123214_f886cb",
+  "timestamp": "2026-06-10T12:32:14",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Testing strategies for hardware software interfaces",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nComputer ,21(5), 61–72.\nBudgen, D. (2003). Software Design (2nd Edition) . Harlow, UK.: Addison-Wesley.\nKrutchen, P . (2003). The Rational Unified Process—An Introduction (3rd E dition) . Reading, MA:",
+      "[SEED from source_22.pdf]\n(2004). ‘Agile Software Development in Large Organi zations’. IEEE Computer, 37(12), 26–34.\nMartin, J. (1981). Application Development Without Programmers. Englewood Cliffs, NJ: \nPrentice-Hall.\nMassol",
+      "[SEED from source_22.pdf]\nscenario testing’. Software Testing and Quality Engineering , 5(5), 16–22.\nLutz, R. R. (1993). ‘Analyzing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE’93, San Diego, Calif.:",
+      "[NEIGHBOUR from source_22.pdf]\n8(3), 231–74.\nKircher, M. and Jain, P . (2004). Pattern-Oriented Software Architecture Volume 3: Pa tterns for\nResource Management . New York: John Wiley & Sons.\nMassol, V. (2003). JUnit in Action . G",
+      "[NEIGHBOUR from source_47.pdf]\nones.\n(c) No editing in the first round(s), when ideas are being suggested.\nEditing happens after all ideas have been suggested.\n(d)Student Question: Is brainstorming always top-down then?\nInstructor"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to testing strategies for hardware-software interfaces. Only one chunk mentions testing (scenario testing), but it is about software testing rather than hardware-software interaction. The other chunks discuss software design, agile development, and patterns, which are tangential at best. Thus, relevance is low. Sufficiency is also low because none of the chunks provide specific testing methods or strategies for hardware-software interfaces. Noise is moderate to high, as many chunks contain general software topics that are not directly related to the objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context about software development methodologies and testing approaches, here is an exam question:\n\nExplain the difference between top-down and bottom-up brainstorming approaches in the context of cost-benefit analysis for software project planning, and identify which approach is more likely to be used by Intuitives versus Sensors according to the given information.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 3.8,
+    "reasoning": "The question asks about top-down vs bottom-up brainstorming in cost-benefit analysis, which is not directly covered in the source context. The passage discusses software development methodologies and testing, but does not mention brainstorming or cost-benefit analysis. Therefore, the question cannot be fully answered using only the provided context, so it scores 1 for faithfulness. The question is clear and unambiguous, scoring 5 for clarity. It asks for an explanation of two concepts and their application to personality types, which is a conceptual question, so it scores 5 for type alignment. The question is self-contained and does not reference the passage, so it scores 5 for standalone quality. Difficulty is medium because it requires understanding of both concepts and their relationship, but the passage does not provide enough detail to make it easy or hard. Thus, it scores 3 for difficulty alignment.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Top-down brainstorming involves starting with high-level ideas and refining them, while bottom-up brainstorming begins with specific details and builds up. Intuitives tend to prefer top-down approaches because they focus on big-picture concepts, whereas Sensors favor bottom-up methods that start with concrete data. Both approaches can be effective, but the choice depends on the individual's cognitive style. In cost-benefit analysis, these styles influence how project plans are developed and evaluated.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 3,
+      "groundedness": 1,
+      "academic_tone": 3
+    },
+    "overall": 2.5,
+    "reasoning": "The answer correctly identifies top-down and bottom-up brainstorming, and relates them to intuitive and sensor cognitive styles. However, it conflates top-down with brainstorming in general, which is not directly supported by the context. The explanation of cost-benefit analysis is not grounded in the provided sources. The language is academic but lacks precision, using vague terms like \"effective\" without evidence. Thus, correctness is 3, completeness is 3, groundedness is 1, and academic tone is 3.",
+    "parse_status": "ok"
+  }
+}

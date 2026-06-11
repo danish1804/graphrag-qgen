@@ -1,0 +1,78 @@
+{
+  "eval_id": "eval_2026-06-10_230708_ba3b7e",
+  "timestamp": "2026-06-10T23:07:08",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Concurrency control in operating systems databases and multi-threaded applications",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf domain=database]\nconcurrency control and ( see\nconcurrency control)\ndeﬁned, 1\ndesign of ( seedatabase\ndesign)\ndocument, 3\ndumping and, 930–931\ne ﬃ c i e n c yo f ,1 ,2 ,5 ,9\nembedded, 198, 962\nas ﬁle-processing system",
+      "[SEED from source_8.pdf domain=database]\nand, 71–79\ncombination of, 270–271\ncomposite attributes in, 250\nconcurrency control and ( see\nconcurrency control)\ncreation of, 24\ndata mining, 540–549\ndata warehousing, 523–525\ndeﬁned, 12\nentity-rela",
+      "[SEED from source_8.pdf domain=database]\nlocal, 1076\nlocks and ( seelocks)\nlogical, 12–13, 1223–1224\nperformance tuning of,\n1214–1218, 1223–1224\nphysical, 12, 13\nphysical-organization\nmodiﬁcation of, 25\nP + Q redundancy, 573, 574\nrecovery sy",
+      "[NEIGHBOUR from source_36.pdf domain=database]\n(transactions, concurrency control, reliability, recovery) ﬁrst on a single-server architecture and then on a multi-server architecture with emphasison distribution, replication and parallelism.\n•We e",
+      "[NEIGHBOUR from source_36.pdf domain=database]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati",
+      "[NEIGHBOUR from source_36.pdf domain=database]\nnumber of database servers dispersed in a distributed or parallelenvironment. Again, transactions, concurrency control and reliabilityrequirements due to data distribution are discussed; these notions",
+      "[NEIGHBOUR from source_36.pdf domain=database]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt",
+      "[SEED from source_46.pdf domain=software_engineering]\nDatabase handles low-level concurrency mechanisms\n¾e.g.  it may lock the rows touched, or detect conflicts at commit time\nTransactions are widely considered easier to program \n¾locking discipline and",
+      "[SEED from source_46.pdf domain=software_engineering]\nisolation, without acquiring or releasing locks\n¾active research on transactional memory is trying to bring the notion \nof transactions to the shared memory paradigm (like Java objects)\n© Robert Mille",
+      "[SEED from source_16.pdf domain=software_engineering]\nimmediately stored on disk\n¾Usually robust to program crashes and hardware reboots¾Usually robust to program crashes and hardware reboots\n¾Contrast with objects in the Java heap, which disappear on a",
+      "[NEIGHBOUR from source_21.pdf domain=software_engineering]\nConcurrency\n¾Databases provide an effective synchronization mechanism, transactions , ¾Databases provide an effective synchronization mechanism, transactions , \nthat allows safe concurrent updat es to",
+      "[NEIGHBOUR from source_21.pdf domain=software_engineering]\nWHERE songId = 1\nDelete rows\nDELETE FROM SongWHERE songName = “Girlfriend”\n© Robert Miller 2008songId songName duration\n1M r .  Brightside 4:17\n2 Somebody  Told Me 5:57\n3 Girlfriend 3:24\n12/5/2008\n6Co",
+      "[NEIGHBOUR from source_21.pdf domain=software_engineering]\n¾Atomicity – either the full effects of a transaction are recorded or no trace \nof it will be found\n¾Consistency – a transaction is recorded only if it preserves invariants\n•e.g.,  every AlbumTrack ro",
+      "[NEIGHBOUR from source_16.pdf domain=software_engineering]\n¾AVG\n¾COUNT\n¾MAX\n¾MIN© Robert Miller 2008Grouping\nGROUP BY computes aggreg ate functions on subsets \nof the tuples\n¾How long is each album?\nSELECT        albumName  SUM(duration)SELECT        albumNam",
+      "[SEED from source_5.pdf domain=operating_systems]\nthe key aspects of concurrency on a single system, with emphasis on issues ofmutual exclusion and deadlock.\nPart Three. Memory: Provides a comprehensive survey of techniques for\nmemory management, inc",
+      "[SEED from source_5.pdf domain=operating_systems]\n1.8 RECOMMENDED READING AND WEB SITES\n[STAL06] covers the topics of this chapter in detail. In addition, there are many othertexts on computer organization and architecture. Among the more worthwhile",
+      "[SEED from source_41.pdf domain=operating_systems]\nBlockLine\nnumber Tag Block\n(b) Main memory(a) Cache\nFigure 1.17 Cache/Main-Memory Structure\n32CHAPTER 1 / COMPUTER SYSTEM OVERVIEW\nWe have already dealt with the issue of cache size. It turns out that",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\n•Background\n•Processes\n•Memory\n•Scheduling\n•Input/output and files\n•Embedded systems\n•Security\n•Distributed systems\nThe book includes a number of pedagogic features, including the use of animation and",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nauxiliary memory. These are used to store program and data files and are usuallyvisible to the programmer only in terms of files and records, as opposed to individ-ual bytes or words.A hard disk is al",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\n2.1 Operating System Objectives and Functions 51\n2.2 The Evolution of Operating Systems 55\n2.3 Major Achievements 64\n2.4 Developments Leading to Modern Operating Systems 77\n2.5 Microsoft Windows Overv",
+      "[SEED from source_12.pdf domain=computer_architecture]\nA wide variety of synchronization primitives have been proposed for shared-memory multiprocessors. Mellor-Crummey and Scott [1991] provided an over-view of the issues as well as efficient implementati",
+      "[SEED from source_12.pdf domain=computer_architecture]\nthread-level parallelism into instruction-level parallelism via simultaneous mul-tithreading, ”ACM Trans. on Computer Systems 15:2 (August), 322 –354.\nLovett, T., and S. Thakkar [1988]. “The Symmetry",
+      "[SEED from source_12.pdf domain=computer_architecture]\n44–55.\nMead, C., Conway, L., 1980. Introduction to VLSI Systems. Addison-Wesley, Reading, MA.\nMellor-Crummey, J.M., Scott, M.L., 1991. Algorithms for scalable synchronization on\nshared-memory multipro",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\nprocessors, or multiprocessors. Instead of using parallelism to overlap individualinstructions, multiprocessing uses parallelism to allow multiple instruction streamsto be executed simultaneously on d",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\nClusters are collections of independent computers that are connected together usinglocal area networks (LANs) and switches. For workloads that did not requireintensive communication, clusters offered",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\nmultiprocessors, which all use shared-memory communication. The OpenMPconsortium (see www.openmp.org for description) has proposed a standardized\nprogramming interface for shared-memory multiprocessor",
+      "[NEIGHBOUR from source_6.pdf domain=computer_architecture]\nof 100,000 instructions and a para llel portion (parallelized 4 wa ys) of 100,000 instructions per \nthread that he is going to run on his 4-way multithreaded SMT processor. When running the \nserial po"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are mostly about concurrency control in databases and operating systems, which directly relates to the learning objective. However, they lack specific details on how concurrency control works in multi-threaded applications or databases. There is some noise, such as discussions on memory hierarchy and clustering, which are not directly relevant. The sufficiency score is low because the chunks do not provide enough concrete examples or explanations of concurrency control mechanisms.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "In a shared-memory multiprocessor system, explain how Mellor-Crummey and Scott's work on algorithms for scalable synchronization relates to the broader context of synchronization primitives in multiprocessor computing, and identify what specific synchronization problems their approach addresses in the context of shared-memory multiprocessors.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about Mellor-Crummey and Scott's work on scalable synchronization in shared-memory multiprocessors, which directly relates to the source material. It requires applying concepts from the passage to explain how their algorithms address synchronization problems in such systems. The question is clear and unambiguous, asking for an explanation rather than a simple recall. It is appropriately difficult because it demands synthesis of ideas from the text, making it a hard application question. The question is self-contained and does not reference the passage explicitly, though it assumes familiarity with the topic. Overall, it is a well-designed application question that fits the source material.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Mellor-Crummey and Scott's work on scalable synchronization algorithms directly addresses the core challenge of ensuring correct and efficient mutual exclusion in shared-memory multiprocessors, where multiple threads or processes contend for access to shared resources. Their contributions complement the broader set of synchronization primitives, such as locks and barriers, which are essential for building reliable concurrent programs. By providing efficient implementations of these primitives, they enable multiprocessor systems to scale to larger numbers of processors while maintaining correctness, thereby supporting the overall goal of achieving high performance through parallelism in shared-memory architectures.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies that Mellor-Crummey and Scott's work focuses on scalable synchronization algorithms for shared-memory multiprocessors, which directly addresses mutual exclusion and other synchronization problems in such systems. It also notes that their contributions complement other synchronization primitives like locks and barriers, which are essential for parallel programming. The answer is grounded in the source context, as it references Mellor-Crummey and Scott's work and acknowledges its role in the broader field of synchronization. The language is academic and precise, using appropriate terminology for a university-level response. However, the answer could be more detailed by explaining exactly which synchronization problems their approach addresses (e.g., false sharing, livelock), which would improve completeness. Overall, the answer is mostly correct and grounded, but could benefit from additional detail to achieve full marks.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_081158_f0c727",
+  "timestamp": "2026-06-10T08:11:58",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Semaphores and mutual exclusion",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nSemaphores Demonstrates the bounded-buffer consumer/producer problem using\nsemaphores\nProducer-consumer Illustrates the operation of a producer-consumer buffer\nReader-writer Illustrates the interactio",
+      "[SEED from source_5.pdf]\nChapter 6—Concurrency: Deadlock and Starvation\nBanker’s algorithm Illustrates operation of the Banker’s Algorithm\nSolaris RW lock Illustrates operation of Solaris RW Lock\nChapter 8—Virtual Memory\nPage",
+      "[NEIGHBOUR from source_5.pdf]\n1.1 BASIC ELEMENTS\nAt a top level, a computer consists of processor, memory, and I/O components, withone or more modules of each type. These components are interconnected in somefashion to achieve the"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly unrelated to semaphores and mutual exclusion. Chunk 1 mentions semaphores briefly but does not explain mutual exclusion. Chunk 2 discusses deadlock and virtual memory, which are not directly about semaphores. Chunk 3 is about computer architecture and has no content on semaphores. There is insufficient information to generate a good exam question because no chunk covers the core concepts. The chunks contain some technical terms but lack detailed explanations, so they have moderate noise. However, the overall relevance is very low due to the mismatch between the objective and the content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Which of the following demonstrates the bounded-buffer consumer/producer problem using semaphores?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks which passage demonstrates the bounded-buffer consumer/producer problem using semaphores. The source context explicitly mentions \"Semaphores Demonstrates the bounded-buffer consumer/producer problem using semaphores,\" so the answer is directly available from the passage. This is a straightforward recall question that can be answered without any outside knowledge, making it easy. The question is clear and unambiguous, asking for a specific passage title. It matches the requested difficulty level of easy because it requires only basic recognition. The question type is recall, which aligns with the request. The question does not reference the passage; it is self-contained and would appear as a genuine exam question. Overall, all criteria are met perfectly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The passage indicates that semaphores demonstrate the bounded-buffer consumer/producer problem using semaphores. This aligns with the key concept of illustrating the operation of a producer-consumer buffer, as described in the context.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies that semaphores demonstrate the bounded-buffer consumer/producer problem using semaphores, which is directly stated in the source context. It also notes that this illustrates the operation of a producer-consumer buffer, which is a key point. The answer is entirely grounded in the provided context without any hallucinations. The language is precise and academic, matching the university-level tone. However, it could be more concise by omitting the phrase \"as described in the context\" since the source already provides the information. Overall, the answer is very strong on correctness, completeness, and groundedness, but could slightly improve on academic tone by being more direct.",
+    "parse_status": "ok"
+  }
+}

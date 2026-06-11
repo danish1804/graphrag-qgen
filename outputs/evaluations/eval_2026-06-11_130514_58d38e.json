@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-11_130514_58d38e",
+  "timestamp": "2026-06-11T13:05:14",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "How a CNN works",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_68.pdf]\nTraining with Back- propagation\nTraining a CNN uses back -propagation and works the same as with an MLP:\nStep 1: Initialise all filters/weights with random values\nStep 2: Select a batch size, and feed",
+      "[NEIGHBOUR from source_64.pdf]\nthere we show that under certain conditions the hypothesis that minimizes E is also the most probable \nhypothesis in H given the training data.  \n \n2.3.2. Multi -layer Perceptron  \n \nMulti -layer Perc",
+      "[NEIGHBOUR from source_64.pdf]\nwhere weight matrix  at index  i represents the weights between layer  i and layer  i+1. intercepts_  is a list \nof bias vectors, where the vector at index  i represents the bias values added to layer"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 5,
+      "noise": 3
+    },
+    "overall": 3.67,
+    "reasoning": "The first chunk directly explains how a CNN trains using back-propagation, which is central to understanding how a CNN works. The second chunk is about probabilistic hypotheses and is unrelated to CNNs. The third chunk discusses weight matrices and biases, which are part of the CNN architecture but does not explain the training process. Thus, only the first chunk is highly relevant. The first chunk provides enough detail to generate a good exam question, so sufficiency is high. There is moderate noise because the second chunk is irrelevant, but the third chunk is mostly about the structure rather than the training process. So relevance is 3, sufficiency is 5, and noise is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how back-propagation is used in the training process of a CNN, and describe what happens during each step of the training procedure as described in the context.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about back-propagation in CNN training, which is directly stated in the source context. It can be fully answered using only the provided material, so faithfulness is 5. The question is clear and unambiguous, asking for an explanation of steps, so clarity is 5. The difficulty level is medium, matching the source's description of the process, so difficulty alignment is 5. The question asks for an explanation of steps, which is a conceptual task, so type alignment is 5. The question does not reference the context explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Back-propagation calculates gradients of the error with respect to all weights in the network after feed-forwarding training instances through the CNN. It computes the total error at the output layer, which is the sum over all four classes, using categorical cross-entropy. These gradients are then used to update the weights via gradient descent, allowing the network to minimize the error. This process iterates over batches of training data until convergence.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that back-propagation computes gradients for weight updates, uses categorical cross-entropy for error, and applies gradient descent. However, it does not mention the initial random weight initialization or the iterative batch processing, which are key steps. The answer is mostly grounded in the context but includes some unsupported details like the specific error function. The tone is academic but uses bullet points instead of prose, which is acceptable for this format.",
+    "parse_status": "ok"
+  }
+}

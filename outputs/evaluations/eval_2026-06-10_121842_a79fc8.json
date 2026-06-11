@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_121842_a79fc8",
+  "timestamp": "2026-06-10T12:18:42",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Performance engineering for OS interfacing code",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\noperating systems. Embedded systems far outnumber general-purpose computing sys-tems and present of number of unique OS challenges\n. The chapter includes a discus-\nsion of common principles plus cover",
+      "[SEED from source_5.pdf]\nFundamental to all of these areas, and fundamental to OS design, is concurrency.Concurrency encompasses a host of design issues, including communication amongprocesses, sharing of and competing for re",
+      "[SEED from source_5.pdf]\nprocess designated by a destination.A process receives information by executing the\nreceive primitive, indicating the source and the message.\nA number of design issues relating to message-passing syst",
+      "[NEIGHBOUR from source_41.pdf]\n12.8 UNIX File Management 580\n12.9 Linux File Management 587\n12.10 Windows Vista File System 591\n12.11 Summary 597\n12.12 Recommended Reading 597\n12.13 Key T erms, Review Questions, and Problems 598\nPA",
+      "[NEIGHBOUR from source_41.pdf]\nof the I/O function. Special attention is devoted to disk I/O, which is the key to\nsystem performance. Also provides an overview of file management.\nPart Six. Embedded Systems: Embedded systems far ou"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are largely irrelevant to performance engineering for OS interfacing code. Chunk 1 mentions embedded systems but does not discuss performance or OS interfaces. Chunk 2 discusses concurrency, which is tangential to the objective. Chunk 3 covers message passing, which might be related but lacks context. Chunk 4 and 5 are about file management and system organization, completely unrelated. Only a few words in Chunk 2 hint at OS design, but no concrete performance or interface concepts are present. Thus, relevance is low.\n\nSufficiency is also low because none of the chunks provide enough detail to generate a meaningful exam question. There is no discussion of performance metrics, interface design, or specific OS mechanisms that would be needed for such a question. Even the brief mention of concurrency in Chunk 2 is insufficient without context.\n\nNoise is moderate because while most chunks are clearly irrelevant, Chunk 3 has some potentially useful information about message passing, though it is not directly relevant. However, the overall mix of unrelated topics makes the noise level moderate rather than high.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the fundamental design issues that concurrency encompasses in operating system design, and how do they relate to the communication of messages between processes?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about fundamental design issues of concurrency, which are explicitly stated in the source: communication among processes and sharing of resources. It also asks about message-passing systems, which are directly referenced. The question is clear and unambiguous, asking for a conceptual explanation rather than a specific fact. It is medium difficulty because it requires understanding of core concepts but does not require deep analysis. The question is conceptual, matching the requested type. It is self-contained, as it does not reference the passage or context. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Concurrency encompasses a host of design issues, including communication among processes, resource sharing, synchronization, and processor time allocation. These issues arise when multiple processes execute simultaneously, requiring coordination through mechanisms like message passing and synchronization primitives. Specifically, a process can send a message to another by specifying the destination and content, while receiving messages involves executing a receive primitive that indicates the source and message data. Thus, concurrency fundamentally addresses how processes interact and coordinate their activities in an operating system.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies communication among processes, resource sharing, synchronization, and processor time allocation as concurrency issues, matching the source's description. It also accurately describes message-passing mechanisms, such as sending and receiving messages via primitives. However, it omits processor time allocation, which is a key concurrency issue. The answer is grounded in the source, using terms like 'concurrency' and 'message-passing' directly from the context. The language is academic and uses prose rather than bullet points, though it could be more precise. Overall, the answer is mostly correct and grounded but lacks completeness and could improve academic tone.",
+    "parse_status": "ok"
+  }
+}

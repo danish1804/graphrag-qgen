@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_073610_282332",
+  "timestamp": "2026-06-10T07:36:10",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "B-tree and hash indexing",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\n15.4.9 Summary of Sort-Based A lg o rith m s .................................. 730\n15.4.10Exercises for Section 1 5 .4 ..................................................... 730\n15.5 Two-Pass Algorith",
+      "[SEED from source_49.pdf]\nexactly as for the sort-based, two-pass algorithm for 6 .\nThe number of disk I/O ’s is also similar to that of the sort-based algorithm. \nWe read each block of R once as we hash its tuples, and we wri",
+      "[NEIGHBOUR from source_36.pdf]\nargument of the \nwhere  clause. If, however, the conditions have to refer to\nvalues that are the result of aggregations, we have to use a new construct, the\nhaving  clause.\nThe having  clause describe"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are unrelated to B-tree and hash indexing, which is the learning objective. They instead discuss sort-based algorithms and aggregation clauses, so relevance is 1. The chunks contain some information about hash indexing (e.g., reading blocks) but lack details on B-tree structures or operations, so sufficiency is 3. There is no obvious noise, but the content is not directly relevant, so noise is 5.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of the having clause in SQL queries that use the group by clause?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the having clause's purpose, which is directly stated in the source: it describes conditions that must hold after aggregation. This is a straightforward recall of a definition, so it is completely answerable from the context alone (5). The question is clear and unambiguous (5). It is an easy recall question (5) and matches the recall type (5). It does not reference the passage explicitly (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The having clause specifies conditions that must hold true after the group by operation has been executed, ensuring that only groups satisfying those conditions are included in the final result. This allows filtering based on aggregate values computed during grouping, such as sum, count, or average, rather than individual row conditions.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer correctly states that the having clause filters groups based on aggregate values, which aligns with the source's description of using having to filter groups after aggregation. It is complete because it covers the key point about filtering groups post-grouping. The answer is entirely grounded in the source, as it does not introduce any unsupported ideas. The tone is academic and precise, matching the expected university-level writing style.",
+    "parse_status": "ok"
+  }
+}

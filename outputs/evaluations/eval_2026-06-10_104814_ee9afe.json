@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_104814_ee9afe",
+  "timestamp": "2026-06-10T10:48:14",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Unit testing strategies for database operations",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_7.pdf]\nand O’Neil [63]. Date’ s book [33], now in its sixth edition, is very popular in\nthe practitioners’ world, since it gives a simple description of manyimportant aspects. Ullman [ 88] oVers an integrate",
+      "[SEED from source_7.pdf]\ncoverage of database systems is provided by [O’Neil and O’Neil (2000)], [Ramakrish-\nnan and Gehrke (2002)], [Date (2003)], [Kifer et al. (2005)], [Garcia-Molina et al.\n(2008)], and [Elmasri and Navath",
+      "[SEED from source_7.pdf]\n[Kifer et al. (2005)] M. Kifer, A. Bernstein, and P. Lewis, Database Systems: An Application\nOriented Approach, Complete Version , 2nd edition, Addison Wesley (2005).\n[O’Neil and O’Neil (2000)] P. O’N",
+      "[NEIGHBOUR from source_49.pdf]\npages 16–25.\n[Knuth (1973)] D. E. Knuth, The Art of Computer Programming, Volume 3 , Addison Wesley,\nSorting and Searching (1973).\n[O’Neil and Quass (1997)] P. O’Neil and D. Quass, “Improved Query Per",
+      "[NEIGHBOUR from source_49.pdf]\ntrol in main-memory databases. The ABA problem with latch-free data structures as\nwell as solutions for the problem are discussed in [Dechev et al. (2010)].\nBibliography\n[Bayer and Schkolnick (1977)]"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about database systems and related books, but none directly discuss unit testing strategies for database operations. They provide general references rather than specific coverage of testing methods. Therefore, relevance is low. While some chunks contain useful information about database systems, they lack details on unit testing, so sufficiency is also low. Noise is moderate because the chunks include relevant references but also contain unrelated material like sorting algorithms and latch-free data structures.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, I cannot generate a meaningful exam question because the context does not contain substantive content about unit testing strategies for database operations. The context appears to be a bibliography or reference list containing citations and bibliographic entries for database-related works, but it lacks actual explanatory content about database concepts or techniques.\n\nTo generate a valid exam question aligned with the stated learning objective, I would need context that actually explains unit testing strategies for database operations rather than just listing references.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.8,
+    "reasoning": "The question asks about unit testing strategies for database operations, but the provided context is a list of references and bibliographic entries, none of which discuss unit testing. Therefore, the question cannot be answered using only the source context, so faithfulness is 1. The question is clear and unambiguous, so clarity is 5. The difficulty level is medium, but the context lacks relevant content, making the question too easy for medium difficulty, so difficulty alignment is 1. The question asks for a conceptual explanation, but the context provides no such content, so type alignment is 1. The question explicitly references \"the context,\" so standalone quality is 1.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The provided context lists numerous references and bibliographic entries related to database systems and management, including works by O'Neil, Date, Ullman, and others. However, it does not contain any substantive explanation of unit testing strategies for database operations. Therefore, an appropriate exam question based solely on this context would require students to explain how unit testing can be applied to database queries or transactions, using examples from the listed works to illustrate relevant techniques.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies that the context provides a list of references without substantive content about unit testing. It accurately states that the context lacks the necessary explanation and instead contains bibliographic entries. The answer is grounded in the fact that the source is a reference list, so it avoids hallucinations. The tone is academic and appropriate for university-level writing. However, the answer could be more precise by explicitly stating that the context does not contain the required content, which would improve completeness.",
+    "parse_status": "ok"
+  }
+}

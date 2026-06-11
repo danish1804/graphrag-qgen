@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_075951_0d08b3",
+  "timestamp": "2026-06-10T07:59:51",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Continuous integration and deployment",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nAlthough straightforward in principle, many difficu lties can arise during deploy-\nment. The user environment may be different from th at anticipated by the system\ndevelopers and adapting the system t",
+      "[SEED from source_22.pdf]\nures, without correcting the errors in their system s. However, in some systems, failure\ncan lead to loss of life or significant economic or  reputational losses. These are known\nas ‘critical systems’",
+      "[NEIGHBOUR from source_21.pdf]\n2. Can the system  be implemented  using  the current  technology  and within  given  cost and schedule  \n3. Can the system  be integrated  with other  system  which  are already  in place.  \n \n \nREQU"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The first chunk discusses deployment difficulties, which is tangential to continuous integration and deployment. The second chunk mentions critical systems, which is also off-topic. The third chunk asks about implementation feasibility and integration, which are directly related to continuous integration and deployment. However, none of the chunks provide a clear definition or explanation of continuous integration and deployment itself. The noise score is moderate because the first two chunks contain some useful information but are mostly irrelevant to the objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are some of the difficulties that can arise during deployment when implementing a system?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about difficulties during deployment, which is directly stated in the source context. It does not require any outside knowledge beyond the passage, so it is completely answerable from context alone. The question is clear and unambiguous, asking for a recall of facts. It matches the easy difficulty level because it is a straightforward recall of a fact. The question is a recall question, which exactly matches the requested type. It is self-contained and does not reference the passage, making it a genuine standalone exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "During deployment, difficulties often stem from differences between the anticipated user environment and actual conditions, requiring extensive adaptation. Additionally, the existing data may need significant cleanup and may contain missing parts, complicating implementation. Interfaces to other systems may lack proper documentation, further complicating integration.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that deployment difficulties include adapting to unexpected user environments and dealing with incomplete or messy data. It also notes that interfaces to other systems may lack documentation, which is a valid point. However, it does not mention the critical systems example from the source, so completeness is slightly lacking. The answer is grounded in the provided context, as it avoids unsupported claims. The tone is academic and uses prose rather than bullet points, though the structure could be more coherent. Overall, the answer is mostly correct and grounded, but could be more comprehensive and polished.",
+    "parse_status": "ok"
+  }
+}

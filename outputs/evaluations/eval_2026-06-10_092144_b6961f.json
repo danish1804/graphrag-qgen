@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_092144_b6961f",
+  "timestamp": "2026-06-10T09:21:44",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Technical debt in machine learning codebases",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_52.pdf]\n16 Machine Learning and Ethics 207\n16.1Facebook’s Suicide Prevention 207\n16.2Racial Bias in Machine Learning 208\n16.3Conceptions of Fairness in Machine Learning 209\n16.4Limitations of the ML Paradigm",
+      "[SEED from source_52.pdf]\nThere are other formulations of fairness, but it is difficult to find a\ncombination of these notions that are compatible with each other. So\none way or another, we need to sacrifice some notions of “f",
+      "[SEED from source_52.pdf]\nas likely as whites to be labeled a\nhigher risk but not actually re-offend.\nConversely, whites are twice as likely as\nAfrican-Americans to be labeled lower\nrisk but go on to commit other crimes.\n16.3C",
+      "[NEIGHBOUR from source_51.pdf]\nSTAT 479: Machine Learning\nLecture Notes\nSebastian Raschka\nDepartment of Statistics\nUniversity of Wisconsin–Madison\nhttp://stat.wisc.edu/ ∼sraschka/teaching/stat479-fs2018/\nFall 2018\nContents\n1 L01: W",
+      "[NEIGHBOUR from source_51.pdf]\n1.7.2 Pedro Domingo’s 5 Tribes of Machine Learning . . . . . . . . . . . . . 11\n1.8 Components of Machine Learning Algorithms . . . . . . . . . . . . . . . . . . 12\n1.8.1 Training . . . . . . . . . ."
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to technical debt in machine learning codebases. They discuss ethics, racial bias, and fairness in ML, which are tangential but not directly about technical debt. The only relevant chunk is the first one, which lists topics including Facebook's suicide prevention and racial bias, but none explicitly mention technical debt. Therefore, relevance is low. Sufficiency is also low because no chunk provides concrete examples or definitions of technical debt. Noise is moderate since the ethics and fairness sections contain some useful information but are not directly about technical debt.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain why it is difficult to achieve all conceptions of fairness simultaneously in machine learning systems, and describe what trade-offs may be necessary when implementing fairness constraints in predictive models.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about trade-offs in achieving fairness, which is directly supported by the passage's discussion of conflicting fairness notions. It is clear and unambiguous, asking for an explanation rather than a definition. The difficulty is medium because it requires synthesizing concepts rather than simple recall. The question is conceptual, matching the requested type. It is self-contained, as no external reference is needed beyond the provided context. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Achieving all conceptions of fairness simultaneously is difficult because different fairness criteria often conflict with each other, such as disparate treatment versus disparate impact. For example, algorithms may prioritize accuracy over demographic parity, leading to biased predictions. When implementing fairness constraints, trade-offs must be made—reducing bias in one group may increase it in another. Thus, balancing fairness requires careful design choices and potentially sacrificing predictive performance to adhere to specific ethical standards.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 3
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that fairness criteria often conflict, explaining why simultaneous achievement is difficult. It also notes that trade-offs may be necessary, which is accurate. However, it does not explicitly reference the source material's discussion of conflicting fairness notions, so groundedness is slightly lower. The tone is academic but uses bullet points, reducing academic tone score. Overall, correctness and completeness are high, but groundedness and academic tone are slightly reduced due to minor omissions and formatting issues.",
+    "parse_status": "ok"
+  }
+}

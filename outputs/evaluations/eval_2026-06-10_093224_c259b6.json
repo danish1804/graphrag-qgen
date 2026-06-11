@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_093224_c259b6",
+  "timestamp": "2026-06-10T09:32:24",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Safety critical considerations in AI software",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_47.pdf]\nIncident and accident analysisPeriodic audits\nPerformance MonitoringChange AnalysisPeriodic auditsPreliminary Hazard Analysis\nSystem Hazard Analysis\nSafety Verification\nOperational AnalysisOperational",
+      "[SEED from source_47.pdf]\ncontrols over changes and maintenance activitiesUse system dynamics models?STPA − Step4c:  Consider how designed controls could degrade\nmanagement feedback channels to detect unsafe changesauditing pr",
+      "[SEED from source_22.pdf]\nP . (ed.). Amsterdam: Elsevier. 401–412.\nLutz, R. R. (1993). ‘Analysing Software Requirement s Errors in Safety-Critical Embedded Systems’.\nRE'93, San Diego, Calif: IEEE. \nMills, H. D., Dyer, M. and L",
+      "[NEIGHBOUR from source_22.pdf]\n(2004). ‘Agile Software Development in Large Organi zations’. IEEE Computer, 37(12), 26–34.\nMartin, J. (1981). Application Development Without Programmers. Englewood Cliffs, NJ: \nPrentice-Hall.\nMassol",
+      "[NEIGHBOUR from source_22.pdf]\nethics. (F. Bott, A. Coleman, J. Eaton and D. Rowla nd, 3rd edition, 2000, Taylor and Francis.)\nChapter 1IExercises 25\nIEEE Software, March/April 2002 . This is a special issue of the magazine devoted"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are mostly about safety verification and analysis methods, which directly relate to the learning objective of safety critical considerations in AI software. However, they lack specific details on how these methods apply to AI systems, so relevance is 3. The chunks provide some useful information on auditing and change management, but they also include unrelated topics like agile development and ethics, so sufficiency is 3. Noise is moderate because the chunks contain both relevant and irrelevant content, though the noise level is not high.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain the difference between top-down and bottom-up approaches in safety analysis, specifically in the context of how they relate to FMECA (Fault Tree Analysis) and STPA (System Theoretical Process Analysis) methodologies.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about top-down vs bottom-up approaches in safety analysis, which is not directly covered in the source context. The passage discusses FMECA and STPA, but does not explicitly compare their top-down or bottom-up nature. Therefore, the question cannot be fully answered using only the given context, so it scores 1 for faithfulness. The question is clear and unambiguous, scoring 5 for clarity. It asks for an explanation of two concepts, which aligns with the medium difficulty level and the conceptual question type, so it scores 5 for both difficulty and type alignment. The question is self-contained and does not reference the passage, scoring 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Top-down approaches begin with system-level hazards and analyze potential failures progressively, whereas bottom-up approaches start with component-level faults and trace them up to system-level impacts. FMECA is a bottom-up method that constructs fault trees to identify root causes, while STPA is a top-down approach that uses process models to identify unsafe states and transitions. Thus, FMECA focuses on detailed failure modes, while STPA provides a holistic view by considering operational processes.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly distinguishes top-down and bottom-up approaches, identifies FMECA as bottom-up and STPA as top-down, and explains their respective focus areas. However, it does not explicitly mention that FMECA starts with component faults and STPA with system-level hazards, which are key differences. The answer is mostly grounded but includes the phrase 'This is a special issue of the magazine devoted', which is not from the source context. The tone is academic but uses a list-like structure rather than full sentences, which is acceptable for this format.",
+    "parse_status": "ok"
+  }
+}

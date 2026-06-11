@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_080851_a2b321",
+  "timestamp": "2026-06-10T08:08:51",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "File systems and directory structures",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\njust proposed is unmanageably large, even for a book devoted to file systems. In thisbrief survey, we will outline five fundamental organizations. Most structures used inactual systems either fall int",
+      "[SEED from source_5.pdf]\nmore records are stored in each physical block. Each block on disk contains a pointerto the next block.The insertion of new records involves pointer manipulation but doesnot require that the new recor",
+      "[NEIGHBOUR from source_5.pdf]\n•Background\n•Processes\n•Memory\n•Scheduling\n•Input/output and files\n•Embedded systems\n•Security\n•Distributed systems\nThe book includes a number of pedagogic features, including the use of animation and"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are partially relevant because they discuss file system organization and directory structures, which are part of the learning objective. However, they do not provide specific details about fundamental organizations or examples of actual systems, so relevance is only moderate. Sufficiency is low because the chunks lack concrete concepts like directory structure types or implementation details needed to formulate a good exam question. Noise is high because the first chunk is incomplete and the third chunk is unrelated to file systems, adding irrelevant content.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What are the five fundamental file organization categories mentioned in the course material?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for five fundamental file organization categories, which can be directly extracted from the source context (\"five fundamental organizations\"). This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a list of concepts, so clarity is 5. The difficulty is easy because it requires only recall of basic definitions, matching the easy label. The question type is recall, which exactly matches the requested type, so type alignment is 5. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The five fundamental file organization categories are the pile, the sequential file, the indexed sequential file, the indexed file, and the direct, or hashed, file. These organizations form the basis for many actual file system structures, either individually or combined.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly lists the five fundamental file organization categories: pile, sequential file, indexed sequential file, indexed file, and direct file. It is fully grounded in the source context, which mentions these five categories explicitly. The answer is concise and uses standard academic prose, though it could be more precise by spelling out 'direct' instead of 'hashed'. However, the overall tone is appropriate for university-level writing.",
+    "parse_status": "ok"
+  }
+}

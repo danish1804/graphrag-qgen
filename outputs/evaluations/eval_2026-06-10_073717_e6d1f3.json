@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_073717_e6d1f3",
+  "timestamp": "2026-06-10T07:37:17",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Query execution plans and optimiser",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nindex and materialized view selection, parametric query optimization, and multiquery\noptimization.\nBibliography\n[Graefe (1995)] G. Graefe, “The Cascades Framework for Query Optimization”, Data Engi-\nn",
+      "[SEED from source_8.pdf]\nSystem”, In Proc. of the ACM SIGMOD Conf. on Management of Data (1990), pages 102–111.\n[Graefe (1993)] G. Graefe, “Query Evaluation Techniques for Large Databases”, ACM Com-\nputing Surveys , Volume 25",
+      "[NEIGHBOUR from source_49.pdf]\ndocuments, and eﬃciently computing ranked answers to keyword queries may be found\nin [Manning et al. (2008)].\nBibliography\n[Faerber et al. (2017)] F. Faerber, A. Kemper, P.-A. Larson, J. Levandoski, T"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are highly relevant to the learning objective on query execution plans and optimizers, as they discuss index and materialized view selection, parametric query optimization, and multiquery optimization. They also reference Graefe's work on query evaluation techniques, which directly relates to the topic. However, the chunks are insufficient because they lack specific details about how these concepts are applied in practice or how to design an exam question. The noise level is low, as the chunks focus on technical topics without extraneous content.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the relationship between the Volcano Optimizer Generator and the International Conference on Data Engineering, according to the cited work by Graefe and McKenna?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 3.4,
+    "reasoning": "The question asks about the relationship between the Volcano Optimizer Generator and the International Conference on Data Engineering, which is not mentioned in the provided context. The source material discusses query optimization techniques and conferences, but does not link the Volcano Optimizer Generator to any conference. Therefore, the question cannot be answered solely from the given context, making it unfaithful (1). It is also unclear what specific relationship is expected, so clarity is low (1). The difficulty is easy because it requires only basic recall, matching the requested level. The question type is recall, which fits the request. Finally, the question is self-contained and does not reference the passage, so standalone quality is high (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Graefe and McKenna published the Volcano Optimizer Generator in the Proceedings of the International Conference on Data Engineering in 1993. This work describes an automated approach to generating query optimizers, which is a key technique in database systems for improving query performance.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies that Graefe and McKenna published the Volcano Optimizer Generator at the International Conference on Data Engineering in 1993, which is accurate based on the source context. It also notes that this work describes an automated query optimizer, which is a reasonable inference from the title. The answer is concise and avoids unsupported claims, so it is grounded in the context. The language is formal and uses appropriate terms like 'automated' and 'query optimizer', fitting university-level writing. However, it could be more precise by specifying the exact conference name and year, and it does not mention the specific publication details (e.g., volume, pages) which are not strictly required but would improve completeness.",
+    "parse_status": "ok"
+  }
+}

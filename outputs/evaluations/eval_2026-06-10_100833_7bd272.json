@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_100833_7bd272",
+  "timestamp": "2026-06-10T10:08:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Instruction pipelining for neural network inference",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_65.pdf]\nRMIT Classification: TrustedRMIT Classification: Trusted\nSummaryPerceptronsProcessing & TrainingMultiple perceptrons for classificationMulti-Layer Perceptrons (MLP)Feed-Forward processingTraining via",
+      "[SEED from source_64.pdf]\nkernel_constraint= None , bias_constraint= None , **kwargs\n)\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 24 / 42\nOutline\n1Motivation\n22D Convolution in Traditional Computer Vision\n3Basic Convolut",
+      "[SEED from source_64.pdf]\nInvariance to Translation\nImage: Goodfellow, 2016\nWe would like our feature representations, not to change minimally when the input is shifted or\nrotated slightly.\nLecture 4 (Part 1) Deep Learning - C",
+      "[NEIGHBOUR from source_77.pdf]\n4\n4.3Support Vector Machines 53\n4.4Multi-class Classification (Multinomial Regression) 55\n4.5Regularization with SVM 55\n4.6Linear Classification in Python Programming 56\n5 Exploring “Data Science” via",
+      "[NEIGHBOUR from source_77.pdf]\nunsupervised, deep learning, and reinforcement learning as a foun-\ndation for further study or independent work in ML, AI, and data\nscience. Topics include linear models for classification and regress"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to instruction pipelining for neural network inference. Chunk 1 briefly mentions MLPs but does not discuss pipelining. Chunk 2 and 3 are about convolution and invariance, which are not directly related. Chunk 4 and 5 are about SVMs and unsupervised learning, also irrelevant. Thus, relevance is low at 1. There is insufficient information to generate a good exam question because none of the chunks cover the specific topic of pipelining in neural networks. Noise is moderate since some chunks contain relevant concepts (e.g., MLPs), but many are off-topic.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how invariance to translation is achieved in convolutional neural networks and why it is important for image processing tasks.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about invariance to translation in convolutional neural networks, which is directly covered in the source context. It is clear and unambiguous, asking for an explanation of how this property is achieved and why it matters. The difficulty level is medium because it requires understanding of convolutional layers and their role in image processing, but does not require advanced application. The question is conceptual, matching the requested type. It is self-contained, as it can be answered without reference to the passage. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Invariance to translation is achieved by applying a sliding window (or filter) across the input image, computing a weighted sum at each location, and then pooling the results to reduce sensitivity to small shifts. This allows the network to detect features regardless of their position, which is crucial for image processing where objects can appear at different locations. The pooling operation further reduces spatial variability, making the representation robust to translation.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly identifies that invariance to translation is achieved through sliding filters and pooling, and explains why this is important for image processing. However, it does not mention the specific role of convolutional layers or the use of kernels, which are key to achieving translation invariance. The answer is mostly grounded in the context but includes some unsupported details about sliding windows and pooling. The tone is academic but uses bullet points, which is acceptable for a summary but not for a full explanation. Overall, the answer is largely correct and complete but could be more precise and grounded.",
+    "parse_status": "ok"
+  }
+}

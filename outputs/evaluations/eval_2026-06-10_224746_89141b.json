@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_224746_89141b",
+  "timestamp": "2026-06-10T22:47:46",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Explain how convolutional neural networks use parameter sharing",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_66.pdf]\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 10 / 42\nApply Neural Networks to Images\nIn our ML model we would like to have these two properties.\nFeature extraction usually happens locally - sparse",
+      "[SEED from source_66.pdf]\nIn feature extraction the same operation is applied at different locations - parameter sharing.\np1 p2 p3 p4 p5h1 h2 h3 h4 h5\nFully Connectedp1 p2 p3 p4 p5h1 h2 h3 h4 h5\nSparse connected\nLecture 4 (Par",
+      "[SEED from source_66.pdf]\nFully Connected\np1 p2 p3 p4 p5h1 h2 h3 h4 h5\nSparse connected\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 12 / 42\nParameter Sharing\nFeature extraction usually happens locally - sparse connectivit",
+      "[NEIGHBOUR from source_50.pdf]\nUnsupervised midTraditional\nDeep Learning\nHandcrafted features are time consuming, brittle and not scalable in\npractice. DL learn underlying features directly from data.\nLecture 4 (Part 1) Deep Learni",
+      "[NEIGHBOUR from source_50.pdf]\napplied across different locations.\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 9 / 42\nSpacial Relationship\nNatural language Processing (NLP):\nImage: The Unreasonable Effectiveness of Recurrent N"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 2.67,
+    "reasoning": "The chunks are directly relevant to the learning objective because they discuss parameter sharing in convolutional neural networks, which is exactly what the objective asks to explain. However, the information is insufficient; while the concept of parameter sharing is mentioned, the explanation is incomplete and lacks details about how it applies to feature extraction. The chunks contain moderate noise, as they include unrelated material like unsupervised learning and natural language processing that does not contribute to the objective. Overall, the chunks are partially relevant and moderately sufficient, with some distracting content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how parameter sharing in convolutional neural networks enables feature extraction to occur locally while maintaining sparse connectivity across different locations in image processing tasks.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 3,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about parameter sharing in convolutional neural networks, which is directly covered in the source context. It requires explaining how local feature extraction and sparse connectivity are achieved through parameter sharing, so it is completely answerable from the context alone. The phrasing is clear and unambiguous, though slightly awkward (\"across different locations\"). The difficulty level is medium because it involves explaining a concept rather than recalling a fact. The question is conceptual, matching the requested type. It is self-contained, as it does not reference the passage explicitly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Parameter sharing allows the same weight parameters to be applied at every spatial location in the image, enabling feature extraction that is both local and consistent across positions. This means that each filter can detect a specific pattern regardless of where it appears, while the network remains computationally efficient by reusing the same weights. Consequently, the network achieves sparse connectivity because connections are limited to small regions, reducing the number of parameters needed for feature extraction.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly states that parameter sharing applies the same weights across all locations, enabling local feature extraction while maintaining sparse connectivity. It also notes that this reduces computational cost and makes the network efficient. However, it does not explicitly mention that the same filter is applied everywhere, which is a key aspect of parameter sharing. The answer is mostly grounded in the context but includes a minor omission. The tone is academic and prose-like, though it could be more precise. Overall, the answer is good but not perfect.",
+    "parse_status": "ok"
+  }
+}

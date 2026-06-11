@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_073033_9396b6",
+  "timestamp": "2026-06-10T07:30:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Entity relationship modelling",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\n5.6 Summary 231\nExercises 232\nFurther Reading 238\nPART TWO DATABASE DESIGN\nChapter 6 Database Design Using the E-R Model\n6.1 Overview of the Design Process 241\n6.2 The Entity-Relationship Model 244\n6.",
+      "[SEED from source_8.pdf]\nwe also deﬁne a foreign-key constraint on R, referencing the schema person .U n f o r t u -\nnately, with the second method, we do not have a single relation to which a foreign-key\n6.9 Entity-Relations",
+      "[NEIGHBOUR from source_49.pdf]\nbasic concepts: entity sets, relationship sets, and attributes. The E-Rmodel also has an\nassociated diagrammatic representation, the E-Rdiagram. As we saw brieﬂy in Section\n1.3.1, an E-Rdiagram can ex"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.33,
+    "reasoning": "The chunks are directly relevant to entity relationship modeling, as they discuss the E-R model and its components. However, they lack specific details about how to create or interpret E-R diagrams, which would be needed for a good exam question. The noise score is moderate because the chunks include summaries and exercises that are not essential for understanding the core concepts. Overall, the chunks are somewhat relevant and sufficient, but not fully so.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of creating a relation schema in the context of entity-relationship design?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the primary purpose of creating a relation schema, which is a fundamental concept in database design. This can be answered directly from the source material, so it is completely answerable from context alone (5). The question is clear and unambiguous, asking for a definition (5). It is an easy recall question, matching the requested difficulty (5). The question is a recall type, asking to state a fact (5). It does not reference the passage explicitly, making it standalone (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Creating a relation schema allows us to define a single relation that can be referenced by a foreign-key constraint, avoiding the issue where multiple relations would prevent such a constraint. This schema typically includes at least the primary-key attributes of the corresponding entity, enabling proper data integrity through relationships.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that a relation schema enables a single relation for foreign-key constraints, which avoids issues with multiple relations. It also notes that the schema includes primary-key attributes, which is accurate. However, it does not mention the E-R model's basic concepts (entity sets, relationship sets, attributes) or the E-R diagram, which are key to understanding the schema's definition. The answer is grounded in the source context but lacks detail about the E-R model's role. The tone is academic but uses some bullet points, which is acceptable for this format.",
+    "parse_status": "ok"
+  }
+}

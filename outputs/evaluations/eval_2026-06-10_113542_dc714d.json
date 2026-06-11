@@ -1,0 +1,49 @@
+{
+  "eval_id": "eval_2026-06-10_113542_dc714d",
+  "timestamp": "2026-06-10T11:35:42",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Instruction pipelining in database query engines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_49.pdf]\n16.7.3 Pipelining Versus M aterialization.........................................830\n16.7.4 Pipelining Unary O p eratio n s...............................................830\n16.7.5 Pipelining Binary",
+      "[SEED from source_49.pdf]\n830 CHAPTER 16. THE QUERY COMPILER\n• If there is no opportunity to use already-sorted relations or indexes, and \na multipass join is needed, then hashing is probably the best choice, be­\ncause the num",
+      "[SEED from source_49.pdf]\n758 CHAPTER 15. QUERY EXECUTION\n4. D. J. DeWitt, R. H. Katz, F. Olken, L. D. Shapiro, M. Stonebraker, and D. \nWood, “Implementation techniques for main-memory database systems,” \nP roc. ACM SIGMOD Int"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are from a database query execution chapter, so they are somewhat relevant to instruction pipelining in database query engines, but the title mentions pipelining only briefly. The material covers pipelining unary operations and binary operations, which are directly related to the objective. However, the second chunk discusses multipass joins and hashing, which are not explicitly about pipelining. The third chunk is about query execution in general, not specifically pipelining. Overall, the chunks are partially relevant because they touch on pipelining but lack a clear, focused discussion. They are sufficient for a basic question but not for a deep one, as key details are missing. There is moderate noise from unrelated topics like multipass joins and general query execution.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain the difference between pipelining and materialization in the context of physical query plan design, and identify which approach would be more suitable for processing a large relation in a single pass versus a multipass join scenario.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about pipelining vs materialization, which is directly covered in the source material. It is clear and unambiguous, asking for a comparison that can be answered from the text. The difficulty is medium because it requires explaining concepts rather than simple recall. The question type is conceptual, matching the request. It is standalone as it does not reference the passage explicitly. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Pipelining involves executing operations sequentially without intermediate storage, allowing results to flow directly from one operation to the next, whereas materialization stores intermediate results in temporary relations before proceeding. For a single-pass processing of a large relation, pipelining is preferable because it minimizes memory usage and reduces disk I/O by avoiding unnecessary storage. However, for multipass joins where sorting or indexing is required, materialization can be advantageous as it allows the entire relation to be sorted once and reused across multiple passes, potentially reducing overall execution time.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The answer correctly distinguishes pipelining from materialization, explaining that pipelining avoids intermediate storage while materialization stores results. It identifies pipelining as better for single-pass large relations due to reduced memory and I/O, and materialization as better for multipass joins with sorting. The explanation is accurate and consistent with the source context. The answer is complete, covering both scenarios and their respective advantages. It is entirely grounded in the provided material, with no unsupported claims. The language is academic and precise, using prose rather than bullet points. Thus, all criteria score 5.",
+    "parse_status": "ok"
+  }
+}

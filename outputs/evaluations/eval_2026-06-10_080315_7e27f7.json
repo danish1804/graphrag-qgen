@@ -1,0 +1,44 @@
+{
+  "eval_id": "eval_2026-06-10_080315_7e27f7",
+  "timestamp": "2026-06-10T08:03:15",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "CPU scheduling algorithms",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nSpringer-Verlag, 1993.\nLIU73 Liu, C., and Layland, J. “Scheduling Algorithms for Multiprogramming in a\nHard Real-time Environment.” Journal of the ACM, February 1973.\nLIU00 Liu, J. Real-Time Systems.",
+      "[SEED from source_5.pdf]\nRaton, FL: CRC Press, 2000.\nRAMA94 Ramamritham, K., and Stankovic, J. “Scheduling Algorithms and OperatingSystems Support for Real-Time Systems.” Proceedings of the IEEE, January\n1994.\nRASH88 Rashid,",
+      "[NEIGHBOUR from source_5.pdf]\n2.3 / MAJOR ACHIEVEMENTS 67\nWhat is needed to tackle these problems is a systematic way to monitor and\ncontrol the various programs executing on the processor. The concept of the\nprocess provides the"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are primarily about CPU scheduling algorithms, which directly relates to the learning objective. However, they are scattered across different sources and years, so the relevance is moderate (3) because they do not form a coherent sequence. The sufficiency score is low (1) because the chunks lack specific details like algorithm descriptions or performance metrics needed to formulate a good exam question. Noise is high (1) due to the mix of unrelated references and incomplete coverage.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Which book published by Prentice Hall covers real-time systems and was released in 2000?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks for a book title and publisher that matches the year 2000, which can be answered directly from the source context. However, the source does not contain any book published by Prentice Hall in 2000, so the question cannot be answered using only the given context. This violates faithfulness (1). The question is clear and unambiguous, so clarity is high (5). It is an easy recall question, matching the requested difficulty (5). The question type is recall, which aligns with the request (5). The question is self-contained and does not reference the source, so standalone quality is high (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The book \"Real-Time Systems\" by J. Liu was published by Prentice Hall in 2000. It focuses on real-time systems, which align with the scheduling algorithms discussed in the context.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer states that \"Real-Time Systems\" by J. Liu was published by Prentice Hall in 2000. However, the source context lists the book as being published by Springer-Verlag, not Prentice Hall. This is a factual error, so correctness is low. The answer covers the key point of the book title and year, making it somewhat complete, but it does not mention the author's name or the publisher's name, which are relevant details. The answer is entirely based on the source material, so groundedness is high. The language is academic prose, so academic tone is good.",
+    "parse_status": "failed"
+  }
+}

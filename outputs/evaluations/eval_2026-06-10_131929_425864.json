@@ -1,0 +1,60 @@
+{
+  "eval_id": "eval_2026-06-10_131929_425864",
+  "timestamp": "2026-06-10T13:19:29",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Deadlock prevention across OS databases and distributed systems",
+    "difficulty": "hard",
+    "question_type": "application"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf domain=database]\nconcurrency control and ( see\nconcurrency control)\ndeﬁned, 1\ndesign of ( seedatabase\ndesign)\ndocument, 3\ndumping and, 930–931\ne ﬃ c i e n c yo f ,1 ,2 ,5 ,9\nembedded, 198, 962\nas ﬁle-processing system",
+      "[SEED from source_8.pdf domain=database]\nand, 71–79\ncombination of, 270–271\ncomposite attributes in, 250\nconcurrency control and ( see\nconcurrency control)\ncreation of, 24\ndata mining, 540–549\ndata warehousing, 523–525\ndeﬁned, 12\nentity-rela",
+      "[SEED from source_8.pdf domain=database]\nlocal, 1076\nlocks and ( seelocks)\nlogical, 12–13, 1223–1224\nperformance tuning of,\n1214–1218, 1223–1224\nphysical, 12, 13\nphysical-organization\nmodiﬁcation of, 25\nP + Q redundancy, 573, 574\nrecovery sy",
+      "[NEIGHBOUR from source_36.pdf domain=database]\n(transactions, concurrency control, reliability, recovery) ﬁrst on a single-server architecture and then on a multi-server architecture with emphasison distribution, replication and parallelism.\n•We e",
+      "[NEIGHBOUR from source_36.pdf domain=database]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati",
+      "[NEIGHBOUR from source_36.pdf domain=database]\nnumber of database servers dispersed in a distributed or parallelenvironment. Again, transactions, concurrency control and reliabilityrequirements due to data distribution are discussed; these notions",
+      "[NEIGHBOUR from source_36.pdf domain=database]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt",
+      "[SEED from source_5.pdf domain=operating_systems]\nANDSTARVATION\n6.1 Principles of Deadlock\nReusable Resources\nConsumable ResourcesResource Allocation\nGraphs\nThe Conditions for \nDeadlock\n6.2 Deadlock Prevention\nMutual ExclusionHold and WaitNo Preempti",
+      "[SEED from source_5.pdf domain=operating_systems]\nSolution Using SemaphoresSolution Using a Monitor\n6.7 UNIX Concurrency Mechanisms\nPipesMessagesShared MemorySemaphoresSignals\n6.8 Linux Kernel ConcurrencyMechanisms\nAtomic OperationsSpinlocksSemaphore",
+      "[SEED from source_5.pdf domain=operating_systems]\nthe key aspects of concurrency on a single system, with emphasis on issues ofmutual exclusion and deadlock.\nPart Three. Memory: Provides a comprehensive survey of techniques for\nmemory management, inc",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\n•Background\n•Processes\n•Memory\n•Scheduling\n•Input/output and files\n•Embedded systems\n•Security\n•Distributed systems\nThe book includes a number of pedagogic features, including the use of animation and",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nauxiliary memory. These are used to store program and data files and are usuallyvisible to the programmer only in terms of files and records, as opposed to individ-ual bytes or words.A hard disk is al",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\n2.1 Operating System Objectives and Functions 51\n2.2 The Evolution of Operating Systems 55\n2.3 Major Achievements 64\n2.4 Developments Leading to Modern Operating Systems 77\n2.5 Microsoft Windows Overv"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are primarily from operating systems texts, which cover mutual exclusion, deadlock prevention, and concurrency mechanisms. However, none directly discuss deadlock prevention specifically across OS databases and distributed systems. The chunks are moderately relevant because they touch on related topics like concurrency and deadlock, but the focus is on general OS concepts rather than the specific learning objective. There is sufficient information to generate a question about deadlock prevention, but the coverage is limited to OS-level concepts. Noise is moderate; while most chunks are about OS topics, some are about unrelated subjects like memory hierarchy or processor registers.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how the conditions for deadlock (mutual exclusion, hold and wait, no preemption, circular wait) relate to the dining philosophers problem scenario, and describe what solution strategy would be necessary to prevent deadlock in that context.",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 3,
+      "difficulty_alignment": 3,
+      "type_alignment": 3,
+      "standalone_quality": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The question asks about the relationship between deadlock conditions and the dining philosophers problem, which is not directly stated in the source context. While the context mentions deadlock conditions, it does not provide a specific example like dining philosophers. Thus, the question requires knowledge beyond the given material, making it less than perfect for a purely contextual exam. The phrasing is clear but assumes familiarity with the dining philosophers problem, so clarity is slightly off. The difficulty is hard because it requires applying concepts to a new scenario, but the source does not explicitly link them. The type is application, which fits, though the question could be more precise by specifying the exact application. The question is self-contained except for the assumption of prior knowledge, so standalone quality is moderate.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "In the dining philosophers problem, five philosophers sit around a table each holding a fork, creating a situation where mutual exclusion prevents simultaneous use of two forks by one philosopher. Hold and wait occurs when each philosopher picks up one fork and waits for the other, causing circular wait among all five. No preemption cannot resolve this cycle, so deadlock ensues. To prevent deadlock, a solution could be to assign a global ordering (e.g., odd/even philosopher numbers) so that only one philosopher picks up a fork at a time, breaking the circular wait condition. Alternatively, resource allocation could be restricted to allow at most four philosophers to pick up a fork, preventing the hold and wait pattern.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 4,
+      "groundedness": 3,
+      "academic_tone": 1
+    },
+    "overall": 3.25,
+    "reasoning": "The answer correctly identifies the four conditions for deadlock and applies them to the dining philosophers problem, explaining mutual exclusion, hold and wait, no preemption, and circular wait. It also provides a solution (global ordering or restricted resource allocation) that addresses the deadlock. However, the language is informal and uses bullet points, which is not appropriate for a university-level answer. The answer is mostly grounded in the context but includes some unsupported details like the specific solution strategies. Overall, it covers the key points but lacks academic tone and completeness.",
+    "parse_status": "ok"
+  }
+}

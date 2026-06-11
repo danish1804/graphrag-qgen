@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_074959_03fcb6",
+  "timestamp": "2026-06-10T07:49:59",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Test driven development",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\ning during system development to the testing of sof tware releases. I also\ndiscuss the use of test-driven development—an appro ach pioneered in\nagile methods but which has wide applicability. Fin ally",
+      "[SEED from source_22.pdf]\n8.2 Test-driven development\nTest-driven development (TDD) is an approach to pro gram development in which\nyou interleave testing and code development (Beck, 2002; Jeffries and Melnik,\n2007). Essential",
+      "[NEIGHBOUR from source_11.pdf]\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 25\nIncremental Development\n●Also known as evolutionary development\n●Basis for many agile processes \n●Quickly dev"
+    ],
+    "scores": {
+      "relevance": 5,
+      "sufficiency": 5,
+      "noise": 4
+    },
+    "overall": 4.67,
+    "reasoning": "The chunks are directly relevant to test-driven development, as they explicitly discuss TDD and its role in software development. They provide sufficient information to define TDD and explain its approach, making them suitable for an exam question. However, Chunk 3 contains unrelated content about incremental development, introducing noise. The chunks are clean overall, with only one chunk having extraneous material.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does TDD stand for, and what does it involve?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for the definition of TDD and what it involves. The source defines TDD as \"an approach to program development in which you interleave testing and code development.\" This is directly answerable from the context, so faithfulness is 5. The question is clear and unambiguous, asking for a definition and a description, so clarity is 5. The difficulty is easy because it requires only recall of a basic concept, matching the easy label. The question type is recall, which exactly matches the request. The question is self-contained and does not reference the source, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "TDD stands for test-driven development. It involves interleaving testing and code development, where each increment of code is developed alongside a corresponding test, and the developer does not proceed to the next increment until the current code passes its test. This approach is used in agile methods and emphasizes rapid, incremental progress through continuous feedback loops.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly defines TDD as test-driven development and describes its core practice of interleaving testing and code development. It accurately cites sources and covers the key idea of continuous feedback loops. However, the passage does not mention the specific term 'test-driven development' or the concept of 'interleaving', so the answer is slightly incomplete. The answer is entirely grounded in the provided context, as no extraneous information is introduced. The language is precise and academic, though the use of bullet points may be less formal than prose. Overall, the answer is mostly correct and complete, but could be more thorough and stylistically consistent.",
+    "parse_status": "ok"
+  }
+}

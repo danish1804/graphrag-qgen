@@ -1,0 +1,50 @@
+{
+  "eval_id": "eval_2026-06-10_091336_dd2ab5",
+  "timestamp": "2026-06-10T09:13:36",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Software design patterns for neural network systems",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nBuschmann, F., Meunier, R., Rohnert, H. and Sommerl ad, P . (1996). Pattern-oriented Software\nArchitecture Volume 1: A System of Patterns. New Yo rk: John Wiley & Sons.\nChapter 6IExercises 175\nClement",
+      "[SEED from source_22.pdf]\nProwell, S. J., Trammell, C. J., Linger, R. C. and Poore, J. H. (1999). Cleanroom Software Engineering:\nTechnology and Process . Reading, Mass.: Addison-Wesley.\nWhittaker, J. W. (2002). How to Break S",
+      "[SEED from source_22.pdf]\nby static analysis methods’. Proc. IEEE Conf. on Dependable Systems and Networks  (DSN’2003) , \nSan Francisco, Calif.: IEEE Computer Society, 75–9.\nPfleeger, C. P . and Pfleeger, S. L. (2007). Securit",
+      "[NEIGHBOUR from source_22.pdf]\nrequired.\n6.3 Architectural patterns\nThe idea of patterns as a way of presenting, sharin g, and reusing knowledge about\nsoftware systems is now widely used. The trigger fo r this was the publication o",
+      "[NEIGHBOUR from source_22.pdf]\nCohn, M., 59, 80, 631, 647\nColeman, A., 24\nColeman, D., 247, 259\nCollins-Sussman, B., 204, 704\nColyer, A., 566, 567, 584, 589Connaughton, C., 678\nConradi, R., 729\nConstantinos, C., 586, 589\nCooling, J"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks are mostly about software architecture and patterns, but none specifically mention neural network design patterns. Chunk 4 briefly introduces architectural patterns, which could be tangential, while the rest are unrelated. Thus relevance is low. There is insufficient detail to generate a good exam question, so sufficiency is poor. Noise is moderate because some chunks contain technical terms but lack direct coverage of the objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Based on the given context, here is an exam question:\n\nAccording to the bibliography and reference materials cited in the course material, what is the significance of the book \"Cleanroom Software Engineering: Technology and Process\" by Prowell, Trammell, Linger, and Poore (1999) in the field of software engineering?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the significance of a specific book, which can be answered directly from the source context. It is clear and unambiguous, requiring no outside knowledge. The difficulty is medium because it involves explaining the book's role rather than simple recall. The question type is conceptual, asking for an explanation of significance. The question is self-contained and does not reference the context, making it a genuine exam question. Overall, all criteria are met with high scores.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The book \"Cleanroom Software Engineering: Technology and Process\" by Prowell, Trammell, Linger, and Poore (1999) is significant because it provides a comprehensive framework for reliable software development through systematic quality assurance techniques. This work addresses the importance of software evolution, which is essential for maintaining and updating software systems over time. It also emphasizes the role of architectural patterns in sharing and reusing design knowledge across projects, contributing to the broader practice of pattern-oriented software architecture.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies the book's title, authors, and year, and accurately states its focus on cleanroom software engineering and technology. However, it incorrectly attributes the emphasis on software evolution to the book when the source does not mention that specific topic. The answer is incomplete because it does not mention the book's contribution to architectural patterns, which is a key point from the context. The answer is grounded in the source material, as it cites the exact title and authors without adding unsupported information. The tone is academic but uses bullet points, which is acceptable for a short answer but not for a full essay.",
+    "parse_status": "failed"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_080643_fa1da6",
+  "timestamp": "2026-06-10T08:06:43",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Banker algorithm and resource allocation",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_43.pdf]\nrequest at most k instances of resource type Rj. \n❑Allocation : n × m matrix. If Allocation [i,j] = k, then process \nPi is currently allocated k instances of resource type Rj.\n❑Need : n × m matrix. If",
+      "[SEED from source_43.pdf]\nmust wait since resources are not available. \n❑STEP 3: Pretend to allocate requested resources to Pi by \nmodifying the state as follows: \n   Available := Available - Request (i);\n         Allocation (",
+      "[NEIGHBOUR from source_33.pdf]\n1.7 / I/O COMMUNICATION TECHNIQUES 35\nare in the module’s data register, the module signals an interrupt to the processor over\na control line. The module then waits until its data are requested by the"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 4,
+      "noise": 3
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks are directly relevant to the banker algorithm and resource allocation because they describe the need matrix, allocation matrix, and the steps of the banker algorithm. However, Chunk 3 appears to be unrelated to the topic, likely from a different section about I/O communication. The chunks provide sufficient information to generate a question about the banker algorithm, but Chunk 3 introduces irrelevant content. Overall, the chunks are moderately clean, with some noise from the unrelated passage.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What does the Need matrix represent in the Banker's algorithm, and how is it calculated?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the Need matrix, which is defined in the source as \"Need : n × m matrix. If Need [i,j] = k, then process Pi needs k more instances of resource type Rj.\" This is directly answerable from the context, so faithfulness is 5. The question is clear and unambiguous, asking for a definition, so clarity is 5. The difficulty is easy because it requires only recall of a basic concept, matching the easy label. The question type is recall, which exactly matches the requested type. The question is self-contained and does not reference the passage, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The Need matrix represents the additional number of instances of each resource type that each process requires to finish its task. It is computed as the difference between the maximum memory need and the current allocation for each process and resource type. Specifically, Need[i,j] equals Max[i,j] minus Allocation[i,j].",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.5,
+    "reasoning": "The answer correctly states that Need[i,j] equals Max[i,j] minus Allocation[i,j], which is consistent with the source context. It covers the key point about Need being the difference between maximum need and current allocation. The answer is entirely grounded in the provided context without any hallucinations. However, the language uses bullet points rather than prose, which is less academic for a university setting. Overall, the answer is mostly correct and grounded but lacks academic tone.",
+    "parse_status": "ok"
+  }
+}

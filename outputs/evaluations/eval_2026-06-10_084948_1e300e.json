@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_084948_1e300e",
+  "timestamp": "2026-06-10T08:49:48",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Query optimisation for training data retrieval",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_53.pdf]\nUNIT III:  \nEnsemble and Probabilistic Learning  \nModel Combination Schemes, Voting, Error -Correcting Output Codes, B agging: Random  Forest Trees, \nBoosting: Adaboost, Stacking . \nGaussian mixture m",
+      "[SEED from source_53.pdf]\nEfficient Distance Computations: the KD -Tree, Distance Measures.  \n \n3. Introduction:      \n \nEnsemble Learnin g \nEnsemble learning usually produces more accurate solutions than a single model would.",
+      "[SEED from source_53.pdf]\n59 \n  \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \nUnit III  \nEnsemble and Probabilistic Learning  \n \nEnsemble   Learning:  Model Combination Schemes, Voting, Error -Correcting",
+      "[NEIGHBOUR from source_53.pdf]\nDistance is applied through the concept of  neighbours and exemplars . Neighbours are points in \nproximity with respect to the distance measure expressed through exemplars. Exemplars are \neither  cent",
+      "[NEIGHBOUR from source_53.pdf]\ncorrection” predictions that can result in better predictive performance.  \n \nIn error -correcting output codes (ECOC), the main cla ssification task is defined in terms of a \nnumber of subtasks that"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are mostly about ensemble learning techniques like bagging, boosting, and ECOC, which are related to query optimization for training data retrieval. However, they do not directly explain how these methods improve retrieval efficiency or accuracy. The chunks are somewhat relevant but lack specific details on optimization. There is moderate noise because some passages discuss general machine learning concepts rather than retrieval-specific techniques. The sufficiency score is low because the chunks do not provide enough concrete information to generate a good exam question on query optimization.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of using centroids and medoids in the context of nearest neighbour smoothing, and how do they differ in their approach to finding representative points?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about centroids and medoids in nearest neighbour smoothing, which is not directly covered in the provided context. The passage discusses ensemble learning and ECOC, but does not mention these specific concepts. Thus, the question cannot be fully answered using only the source context, so it scores 1 for faithfulness. It is clear and unambiguous, scoring 5 for clarity. The difficulty level is medium, matching the request, so it scores 5 for difficulty alignment. The question asks for a comparison of two concepts, which is a conceptual explanation, so it scores 5 for type alignment. The question is self-contained and does not reference the passage, so it scores 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Centroids and medoids serve as representative points in nearest neighbour smoothing to approximate the underlying distribution of data. A centroid is typically computed as the arithmetic mean of all points, minimizing squared Euclidean distance to all others, whereas a medoid finds the most centrally located data point, which is more robust to outliers. Both approaches help smooth decision boundaries by generalizing local patterns, but medoids are less sensitive to extreme values, making them preferable when noise is present.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that centroids minimize squared Euclidean distance while medoids find the most central point, both used for smoothing. It also notes that medoids are more robust to outliers, which aligns with the source's emphasis on robustness. However, it incorrectly states that medoids are less sensitive to extreme values, when in fact they are more robust. The answer is mostly grounded but contains this factual error. The tone is academic but uses bullet points, which is acceptable for a short answer. Overall, the answer is largely correct and complete but has one factual error and uses a slightly informal structure.",
+    "parse_status": "ok"
+  }
+}

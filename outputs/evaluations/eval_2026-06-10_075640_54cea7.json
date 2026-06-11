@@ -1,0 +1,43 @@
+{
+  "eval_id": "eval_2026-06-10_075640_54cea7",
+  "timestamp": "2026-06-10T07:56:40",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Requirements engineering and specification",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nsoftware requirements;\nIunderstand how requirements may be organized in a s oftware\nrequirements document;\nIunderstand the principal requirements engineering a ctivities of\nelicitation, analysis and v",
+      "[SEED from source_22.pdf]\nTo illustrate how collected data can be interpreted  in different ways, consider the\nscenario below, which is concerned with the number of change requests made by\nusers of a system:\nA manager decides"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are directly relevant to the learning objective, covering software requirements, elicitation, and analysis activities. However, they lack specific details about how to generate exam questions or concrete examples, so sufficiency is moderate. Noise is low because the chunks focus on core concepts without extraneous material.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What are the two types of requirements mentioned in the context, and provide a brief definition for each?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for two types of requirements and their definitions, which are explicitly stated in the source: software requirements and requirements engineering activities. This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for specific terms and definitions, so clarity is 5. It is a recall question that matches the easy difficulty level, so difficulty alignment is 5. The question asks for definitions, which is a recall task, so type alignment is 5. The question does not reference the context, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Functional requirements specify what the system must do, such as processing customer orders, while non-functional requirements describe qualities like system performance or security. These two categories together cover all aspects of what a software system should achieve.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies functional and non-functional requirements, which are indeed the two types mentioned in the context. It provides brief definitions that align with standard terminology. However, it does not explicitly state that functional requirements specify behavior and non-functional requirements specify quality attributes, though this is implied. The answer is grounded in the source because it directly references the two types without adding unsupported information. The tone is academic and prose-like, avoiding bullet points. Overall, the answer is mostly correct and grounded, but could be more precise in defining non-functional requirements.",
+    "parse_status": "failed"
+  }
+}

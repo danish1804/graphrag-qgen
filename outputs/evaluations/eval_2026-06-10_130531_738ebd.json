@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_130531_738ebd",
+  "timestamp": "2026-06-10T13:05:31",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Floating point exceptions and OS signal handling",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nif(rs != “*”) {\nsp = rs;RESUME print;\n}else{\nRESUME read;if(rs == “*”) {\nsp = “↑”;RESUME print;\n}else{\nsp = “*”;RESUME print;sp = rs;RESUME print;\n}\n}RESUME read;\n}\n}\nvoidmain()\n{\ntally = 0;\nparbegin",
+      "[SEED from source_5.pdf]\n14.4. The point of this problem is to demonstrate the type of puzzles that must be solved inthe design of malicious code and therefore, the type of mindset that one wishing tocounter such attacks must",
+      "[SEED from source_5.pdf]\nFigure 16.10a shows the use of message passing to implement client/server\nfunctionality. A client process requires some service (e.g., read a file, print) and722 CHAPTER 16 / DISTRIBUTED PROCESSING, C"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks contain code snippets and a figure reference, but none directly explain floating point exceptions or OS signal handling. They are mostly unrelated to the learning objective, so relevance is low. There is insufficient information to generate a good exam question because key concepts are missing. The code snippets have some technical content but are not focused on the objective, so sufficiency is poor. The figure reference might be relevant if it explains distributed processing, but without context it adds noise. Noise score is moderate due to the presence of code snippets that are not directly about the objective.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Based on the provided context about distributed processing and client/server functionality, here is a conceptual exam question:\n\nExplain how message passing is used as a middleware mechanism to enable communication between client and server processes, and describe what role RPC stub programs play in this client/server implementation.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for an explanation of message passing and RPC stubs, which are directly covered in the source context. It is clear and unambiguous, asking for a conceptual explanation rather than a specific fact. The difficulty is medium because it requires understanding of concepts like message passing and RPC stubs, but not deep application. The question type is conceptual, matching the request. It is self-contained, as it does not reference the passage explicitly. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Message passing acts as middleware by facilitating communication between client and server processes through transport networks, enabling remote procedure calls. RPC stub programs serve as application-specific interfaces that allow clients to invoke server procedures transparently, while message-oriented middleware with message queues handles the messaging. This design abstracts underlying network details, providing a simple interface for inter-process cooperation.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 1,
+      "groundedness": 3,
+      "academic_tone": 5
+    },
+    "overall": 3.0,
+    "reasoning": "The answer correctly identifies message passing as middleware for client-server communication and mentions RPC stubs as application-specific interfaces. However, it incorrectly states that message queues handle messaging, which is not mentioned in the source. The answer is incomplete because it does not explain how RPC stubs work or why message passing is necessary. It is mostly grounded but includes unsupported information about message queues. The tone is academic but uses bullet points, which is acceptable for a university setting.",
+    "parse_status": "ok"
+  }
+}

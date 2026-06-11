@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_110219_7b6e10",
+  "timestamp": "2026-06-10T11:02:19",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "File system and database storage management",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_14.pdf]\ndata in a v ariety of ways \nfile-based system : an applic ation pr ogram designe d to manipula te da ta files \nExercises \n1. Discuss e ach o f the f ollowing terms: \n1. data \n2. field \n3. record \n4. f",
+      "[SEED from source_14.pdf]\n• Customer( Cust ID, CustN ame) \n• Order(OrderID, CustID , Date) \nA str ong, or iden tifying, r elationship e xists when the primar y key of the r elated en tity contains the primar y key \ncomponen t",
+      "[SEED from source_14.pdf]\nno repeating gr oups. \nTo normaliz e a r elation tha t contains a r epeating gr oup, r emo ve the r epeating gr oup and f orm t wo ne w relations. \nThe P K of the ne w relation is a c ombina tion o f",
+      "[NEIGHBOUR from source_14.pdf]\nChapter 14 D atabase U sers \nAdrienne W att 91 \nChapter 15 SQ L Structured Quer y Languag e \nAdrienne W att & N elson Eng 93 \nChapter 16 SQ L Data Manipula tion L anguag e \nAdrienne W att & N elson En",
+      "[NEIGHBOUR from source_14.pdf]\nGRO UP B Y  field( s) \nORDER B Y fields \nWe can use the SELECT  statemen t to g ener ate an emplo yee phone list fr om the Emplo yees table as f ollows: \nSELECT  FirstN ame, L astN ame, phone \nFROM Em"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks cover file-based systems and database relationships, which are directly related to the learning objective. However, they lack specific concepts like normalization steps or storage management techniques. The noise score is moderate because some chunks contain exercises or names without context. Overall, the chunks are partially relevant and somewhat sufficient, but not fully clean.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "In a normalized database design, what is the primary purpose of removing a repeating group from a relation, and how does this process relate to the concept of a primary key?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about removing a repeating group and relates it to primary keys, which is directly covered in the source context. It is clear and unambiguous, asking for a conceptual explanation. The difficulty is medium because it requires understanding normalization concepts rather than simple recall. The question is a conceptual explanation, matching the requested type. It is self-contained, as no external reference is needed. Overall, it is a well-designed exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Removing a repeating group from a relation normalizes it to first normal form, ensuring no repeating groups exist. This process involves creating a new relation with a composite primary key that combines attributes from the original relation and the newly formed relation, uniquely identifying each tuple. The primary key thus becomes a combination of attributes from both relations, guaranteeing uniqueness without redundancy.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly states that removing a repeating group normalizes to first normal form and creates a composite primary key combining attributes from both relations. It accurately describes the process of forming a new relation with a composite key. However, it does not explicitly mention that the primary key must be unique, which is implied by the definition of normalization. The answer is mostly grounded in the context but includes a minor omission (no explicit mention of uniqueness). The tone is academic and precise, using proper sentence structure and terminology.",
+    "parse_status": "ok"
+  }
+}

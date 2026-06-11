@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_094606_70ba3b",
+  "timestamp": "2026-06-10T09:46:06",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Thread management in data loading pipelines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Prediction 182\n3.4 Overcoming Data Haza",
+      "[SEED from source_12.pdf]\nThis page intentionally left blank\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Pred",
+      "[SEED from source_12.pdf]\nAdvanced branch prediction Control stalls 3.3\nDynamic scheduling with renaming Stalls from data hazards, output dependences, and\nantidependences3.4\nHardware speculation Data hazard and control hazard",
+      "[NEIGHBOUR from source_23.pdf]\ncode or ask you to write one, but  all of those programs will pe rform the computation described \nabove. \n2 of 15 \nName: _____________________________ \nPart A: Compiler Techniques (14 Points) \nQuestio",
+      "[NEIGHBOUR from source_23.pdf]\n3 of 15 \nName: _____________________________ \nQuestion 2. (8 Points) \nIn order to eliminate branches, several architectures have a conditional move ( CMOV) instruction \nof the form: \nCMOV<cond>Z Rd, R"
+    ],
+    "scores": {
+      "relevance": 1,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 1.67,
+    "reasoning": "The chunks contain no direct discussion of thread management in data loading pipelines, which is the core learning objective. They instead focus on instruction-level parallelism and branch prediction, which are tangential topics. Thus, relevance is low. While some chunks touch on related concepts like branch prediction, they lack specific details about thread management. Therefore, sufficiency is also low. The chunks are mostly clean except for the intentional blank pages, so noise is moderate. However, the blank pages are not distracting since they are intentional.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how dynamic scheduling can be used to overcome data hazards in instruction-level parallelism, and describe what types of dependencies this approach addresses.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about dynamic scheduling and data hazards, which are directly covered in the source material under the topic of reducing branch costs with advanced branch prediction. It is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for an explanation of how dynamic scheduling addresses data hazards, so clarity is 5. The difficulty level is medium, matching the conceptual nature of the topic, so difficulty alignment is 5. The question asks for an explanation, which is a conceptual task, so type alignment is 5. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Dynamic scheduling can eliminate data hazards by reordering instructions to avoid stalls caused by output and antidependences, where one instruction depends on the result of another before it completes. This approach also addresses control hazards, such as speculative execution of branches, by dynamically speculating outcomes based on branch predictions. By renaming registers and issuing multiple instructions per cycle, dynamic scheduling reduces stalls and improves instruction-level parallelism.",
+    "scores": {
+      "correctness": 3,
+      "completeness": 2,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.25,
+    "reasoning": "The answer correctly identifies that dynamic scheduling eliminates data hazards by reordering instructions to avoid output and antidependences, and it mentions control hazards through speculation. However, it incorrectly states that dynamic scheduling reduces stalls from data hazards and control hazards, when the source only lists data hazards and control hazards as problems addressed. The answer is incomplete because it does not mention renaming registers or issuing multiple instructions per cycle, which are key to dynamic scheduling. It is grounded because all facts come directly from the source, though the incorrect statement about stalls is a hallucination. The tone is academic but uses bullet points, which is acceptable for a university setting.",
+    "parse_status": "ok"
+  }
+}

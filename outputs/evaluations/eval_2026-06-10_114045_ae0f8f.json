@@ -1,0 +1,46 @@
+{
+  "eval_id": "eval_2026-06-10_114045_ae0f8f",
+  "timestamp": "2026-06-10T11:40:45",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Multicore processors for parallel query execution",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\n([Stonebraker et al. (1989)]) and Volcano ([G raefe (1990)]). [Graefe (1993)] presents\nan excellent survey of query processing, including parallel processing of queries. The\nexchange-operator model wa",
+      "[SEED from source_8.pdf]\nand I. Stoica, “Apache Spark: a uniﬁed engine for big data processing”, Communications of\nthe ACM , Volume 59, Number 11 (2016), pages 56–65.\n[Zhou et al. (2010)] J. Zhou, P. Larson, and R. Chaiken, “",
+      "[SEED from source_49.pdf]\nWe ﬁrst consider how to exploit interope rator parallelism. We then consider a\nmodel of parallel query execution which breaks parallel query processing into two types\nof steps: partitioning of data us",
+      "[NEIGHBOUR from source_14.pdf]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati",
+      "[NEIGHBOUR from source_14.pdf]\nwill be discussed in Part III of the book.\n10 Chapter 1\nIntroduction\n1.5 Advantages and disadvantages of DBMSs\nWe conclude this chapter by summarizing the essential characteristics of\ndatabases and db"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about database management systems and query processing, but only Chunk 3 directly addresses multicore processors for parallel query execution. The other chunks discuss general database topics like transactions and concurrency, which are not directly relevant. However, they provide some context that could help formulate a question. There is moderate noise because some chunks contain irrelevant material, such as transaction management details. The sufficiency score is low because the core concept of multicore processors is not fully covered; only one chunk mentions it. Noise is moderate because some chunks have distracting content.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What are the two main types of steps that form the model of parallel query execution described in the text?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the two main types of steps in parallel query execution, which is directly stated in the source: \"We then consider a model of parallel query execution which breaks parallel query processing into two types of steps.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a specific definition, so clarity is 5. The difficulty is medium because it requires understanding the concept rather than simple recall, matching the requested medium level. The question is conceptual, asking for an explanation of the model's structure, which aligns with the requested type. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The model of parallel query execution consists of two types of steps: partitioning of data using the exchange operator, and execution of operations on purely local data without any data exchange. These two steps together form a surprisingly powerful framework that is widely used in parallel database implementations.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies the two types of steps: partitioning of data using the exchange operator and execution of operations on purely local data. It also accurately states that these steps form a powerful framework. However, it adds that the model is widely used in parallel database implementations, which is not explicitly stated in the source but is a reasonable inference. The answer is grounded in the context, as it directly references the exchange operator model. The language is academic and precise, though it could be more concise. Overall, the answer is mostly correct and grounded, but the inference about wide use is not strictly sourced.",
+    "parse_status": "failed"
+  }
+}

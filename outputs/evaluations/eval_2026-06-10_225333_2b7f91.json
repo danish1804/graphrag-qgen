@@ -1,0 +1,73 @@
+{
+  "eval_id": "eval_2026-06-10_225333_2b7f91",
+  "timestamp": "2026-06-10T22:53:33",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Compare transaction isolation in database systems with process synchronisation in operating systems",
+    "difficulty": "hard",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_17.pdf domain=database]\ncorresponding to a parallel database system, or geographically distributed, in a dis-\ntributed database system. The system structure is similar in either case; the problems\nwith respect to transaction",
+      "[SEED from source_17.pdf domain=database]\nEditorial review has deemed that any suppressed content does not materially affect the overall learning experience. Cengage Learning reserves the right to remove additional content at any time if subs",
+      "[SEED from source_17.pdf domain=database]\nBased on the above operations, ANSI defined four levels of transaction isolation: Read Uncommitted, Read Committed, Repeatable Read, and Serializable. Table 10.15 shows the four ANSI transaction isola",
+      "[NEIGHBOUR from source_36.pdf domain=database]\n(transactions, concurrency control, reliability, recovery) ﬁrst on a single-server architecture and then on a multi-server architecture with emphasison distribution, replication and parallelism.\n•We e",
+      "[NEIGHBOUR from source_36.pdf domain=database]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati",
+      "[NEIGHBOUR from source_36.pdf domain=database]\nnumber of database servers dispersed in a distributed or parallelenvironment. Again, transactions, concurrency control and reliabilityrequirements due to data distribution are discussed; these notions",
+      "[NEIGHBOUR from source_36.pdf domain=database]\n8.5.3 Other normalization techniques 269\n8.6 Database design and normalization 270\n8.6.1 Veriﬁcation of normalization on entities 271\n8.6.2 Veriﬁcation of normalization on relationships 272\n8.6.3 Furt",
+      "[SEED from source_22.pdf domain=software_engineering]\nisolation, without acquiring or releasing locks\n¾active research on transactional memory is trying to bring the notion \nof transactions to the shared memory paradigm (like Java objects)\n© Robert Mille",
+      "[SEED from source_22.pdf domain=software_engineering]\nneering has contributed a great deal and I am convi nced that its contributions in the\n21st century will be even greater.\n1.1 IProfessional software development 5\nHistory of software engineering\nThe n",
+      "[SEED from source_46.pdf domain=software_engineering]\nDatabase handles low-level concurrency mechanisms\n¾e.g.  it may lock the rows touched, or detect conflicts at commit time\nTransactions are widely considered easier to program \n¾locking discipline and",
+      "[NEIGHBOUR from source_46.pdf domain=software_engineering]\n(Definitions from [Sommerville2011])\n●There is no ideal process.\n●One size does not fit all.\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 3\nFundamental Activ",
+      "[NEIGHBOUR from source_46.pdf domain=software_engineering]\n●Also involves testing & debugging\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 12\nSoftware Design & Implementation\nImage source (FU):  Sommerville, Software",
+      "[NEIGHBOUR from source_46.pdf domain=software_engineering]\nbut not nearly as often as operating systems crash or billing systems\nproduce bills for incorrect amounts.\n8\n2. Even when software is delivered fault-free, it is often late, over budget,\nand/or fails",
+      "[NEIGHBOUR from source_1.pdf domain=software_engineering]\nSoftware processes are complex and, like all intell ectual and creative processes,\nrely on people making decisions and judgments. Ther e is no ideal process and most\norganizations have developed their",
+      "[SEED from source_5.pdf domain=operating_systems]\nthe key aspects of concurrency on a single system, with emphasis on issues ofmutual exclusion and deadlock.\nPart Three. Memory: Provides a comprehensive survey of techniques for\nmemory management, inc",
+      "[SEED from source_5.pdf domain=operating_systems]\n1.8 RECOMMENDED READING AND WEB SITES\n[STAL06] covers the topics of this chapter in detail. In addition, there are many othertexts on computer organization and architecture. Among the more worthwhile",
+      "[SEED from source_41.pdf domain=operating_systems]\nBlockLine\nnumber Tag Block\n(b) Main memory(a) Cache\nFigure 1.17 Cache/Main-Memory Structure\n32CHAPTER 1 / COMPUTER SYSTEM OVERVIEW\nWe have already dealt with the issue of cache size. It turns out that",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\n•Background\n•Processes\n•Memory\n•Scheduling\n•Input/output and files\n•Embedded systems\n•Security\n•Distributed systems\nThe book includes a number of pedagogic features, including the use of animation and",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nauxiliary memory. These are used to store program and data files and are usuallyvisible to the programmer only in terms of files and records, as opposed to individ-ual bytes or words.A hard disk is al",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[NEIGHBOUR from source_5.pdf domain=operating_systems]\n2.1 Operating System Objectives and Functions 51\n2.2 The Evolution of Operating Systems 55\n2.3 Major Achievements 64\n2.4 Developments Leading to Modern Operating Systems 77\n2.5 Microsoft Windows Overv",
+      "[SEED from source_12.pdf domain=computer_architecture]\nA wide variety of synchronization primitives have been proposed for shared-memory multiprocessors. Mellor-Crummey and Scott [1991] provided an over-view of the issues as well as efficient implementati",
+      "[SEED from source_12.pdf domain=computer_architecture]\nthread-level parallelism into instruction-level parallelism via simultaneous mul-tithreading, ”ACM Trans. on Computer Systems 15:2 (August), 322 –354.\nLovett, T., and S. Thakkar [1988]. “The Symmetry",
+      "[SEED from source_12.pdf domain=computer_architecture]\n44–55.\nMead, C., Conway, L., 1980. Introduction to VLSI Systems. Addison-Wesley, Reading, MA.\nMellor-Crummey, J.M., Scott, M.L., 1991. Algorithms for scalable synchronization on\nshared-memory multipro",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\nprocessors, or multiprocessors. Instead of using parallelism to overlap individualinstructions, multiprocessing uses parallelism to allow multiple instruction streamsto be executed simultaneously on d",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\nClusters are collections of independent computers that are connected together usinglocal area networks (LANs) and switches. For workloads that did not requireintensive communication, clusters offered",
+      "[NEIGHBOUR from source_12.pdf domain=computer_architecture]\nmultiprocessors, which all use shared-memory communication. The OpenMPconsortium (see www.openmp.org for description) has proposed a standardized\nprogramming interface for shared-memory multiprocessor",
+      "[NEIGHBOUR from source_6.pdf domain=computer_architecture]\nof 100,000 instructions and a para llel portion (parallelized 4 wa ys) of 100,000 instructions per \nthread that he is going to run on his 4-way multithreaded SMT processor. When running the \nserial po"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 3
+    },
+    "overall": 3.0,
+    "reasoning": "The chunks are mostly about database transaction isolation, which is directly related to the learning objective. However, they do not mention process synchronization at all, so relevance is 3. The chunks provide definitions and examples of transaction isolation levels, which are sufficient to ask a question about them, but they lack any discussion of process synchronization, so sufficiency is also 3. There is some noise from irrelevant sections like software engineering history and computer architecture details, but most chunks are clean, so noise is 3.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "Explain how the concept of transaction isolation in database systems relates to the synchronization challenges faced in shared-memory multiprocessors, and describe why the approach of allowing programmers to focus solely on transactional operations rather than managing locks is beneficial for software development.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the relationship between transaction isolation and synchronization in shared-memory multiprocessors, which directly references the source material on transaction isolation and shared-memory multiprocessors. It is clear and unambiguous, asking for an explanation of how concepts relate. The difficulty is hard because it requires synthesizing ideas from different sources, not just recalling definitions. The type is conceptual, asking for an explanation rather than a simple definition. The question is self-contained, using terms like \"transaction isolation\" and \"shared-memory multiprocessors\" without referring to the passage. Thus, it meets all criteria.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Transaction isolation in database systems aims to ensure consistent results across concurrent transactions by controlling the order of access and updates, similar to how shared-memory multiprocessors must coordinate access to shared resources to prevent race conditions. In shared-memory systems, the complexity of managing locks manually becomes prohibitive as thread counts increase, leading to the notion of transactional memory, where the underlying hardware or software automatically handles locking and conflict detection. This abstraction allows programmers to focus on writing correct transactional code without worrying about low-level synchronization details, reducing errors and improving productivity, much like how database systems provide a higher-level interface for concurrency control.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies that transaction isolation in databases and shared-memory multiprocessors both aim to manage concurrency, and it accurately states that transactional memory provides an abstraction for programmers. However, it conflates the two concepts by suggesting that transactional memory is a direct solution for shared-memory systems, which is not entirely accurate since transactional memory is a programming model, not a hardware feature. The answer is incomplete because it does not explain how transactional memory reduces the need for manual locking, nor does it discuss the trade-offs. It is mostly grounded but includes the unsupported claim about transactional memory being a solution for shared-memory systems. The tone is academic but uses some informal language like \"much like\" instead of precise terminology.",
+    "parse_status": "failed"
+  }
+}

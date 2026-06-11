@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_100134_253696",
+  "timestamp": "2026-06-10T10:01:34",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Memory bandwidth constraints in deep learning",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_64.pdf]\nkernel_constraint= None , bias_constraint= None , **kwargs\n)\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 24 / 42\nOutline\n1Motivation\n22D Convolution in Traditional Computer Vision\n3Basic Convolut",
+      "[SEED from source_64.pdf]\nInvariance to Translation\nImage: Goodfellow, 2016\nWe would like our feature representations, not to change minimally when the input is shifted or\nrotated slightly.\nLecture 4 (Part 1) Deep Learning - C",
+      "[SEED from source_64.pdf]\nPooling\nImage: Goodfellow, 2016\nPooling help reduce redundant information and provide some level of invariance to\ntranslations.\nPooling can use simple mathematical functions like max, sum , etc. “max-",
+      "[NEIGHBOUR from source_50.pdf]\nw1\nw2w\n3w1\nw2w\n3w1\nw2w\n3\nShared weights\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 13 / 42\n1D Convolution\nBoth ideas, sparse connectivity &parameter sharing can be achieved with convolutions.\nCo",
+      "[NEIGHBOUR from source_50.pdf]\nStrided Convolutions\nImage: Goodfellow, 2016\nCan replace convolution + pooling with strided convolutions.\nLecture 4 (Part 1) Deep Learning - COSC2779/2972 33 / 42\nReceptive Field\nAssume 3 by 3 convolu"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly unrelated to memory bandwidth constraints in deep learning. They discuss convolutional layers, pooling, shared weights, and strided convolutions, which are general concepts in CNNs but do not directly address memory bandwidth issues. The only somewhat relevant chunk is the one mentioning strided convolutions, which could potentially relate to reducing computational load, but it is not clear how it connects to memory bandwidth. Therefore, relevance is low. Sufficiency is also low because none of the chunks provide specific information about memory bandwidth constraints. Noise is moderate since the chunks contain technical details that are somewhat relevant, but they are not focused on the learning objective.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how pooling operations contribute to invariance to translation in convolutional neural networks, and describe what mathematical function is commonly used for pooling.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about pooling's role in translation invariance, which is directly stated in the source: \"Pooling help reduce redundant information and provide some level of invariance to translations.\" The source also mentions common pooling functions like max. The question is clear and unambiguous, asking for a straightforward explanation. It matches medium difficulty because it requires understanding rather than rote recall. The question is conceptual, asking for an explanation. It is self-contained, not referring to the passage. Overall, it is a good exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Pooling operations reduce redundancy by extracting features from local regions of the input, making the representation invariant to small translations. This is because the same pooling function (commonly max-pooling) is applied across all spatial locations, so slight shifts in the input produce similar output patterns. By discarding some information through downsampling, pooling also helps focus on essential features, further promoting translation invariance.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly states that pooling reduces redundancy and promotes translation invariance by applying the same function (max-pooling) across all locations. It also mentions downsampling and focusing on essential features, which are accurate. However, it does not explicitly connect pooling to the concept of invariance to translation, so completeness is slightly lower. The answer is entirely based on the source material without adding unsupported information, so groundedness is high. The language is formal and uses prose rather than bullet points, so academic tone is good. Correctness is near-perfect, but completeness could be improved by emphasizing the role of pooling in invariance more directly.",
+    "parse_status": "ok"
+  }
+}

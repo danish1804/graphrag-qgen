@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_113405_e6b6cd",
+  "timestamp": "2026-06-10T11:34:05",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "B-tree indexing and memory access patterns",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_36.pdf]\nstorage structures, including ﬁle organization and buﬀer management. A variety of\ndata-access techniques are presented in Chapter 14. Multilevel index-based access\nis described, culminating in detaile",
+      "[SEED from source_36.pdf]\ndrop index <index-name >;\nMany database systems also provide a way to specify the type of index to be used,\nsuch as B+-tree or hash indices, which we study in Chapter 14. Some database systems\nalso pe",
+      "[SEED from source_36.pdf]\nregion of interest. Spatial-index structures , discussed in Section 14.10.1, are useful for\nsuch tasks. Spatial-index structures are multidimensional, dealing with two- and three-\ndimensional data, ra",
+      "[NEIGHBOUR from source_49.pdf]\n9.5.5 Tree structures 327\n9.6 Query optimization 332\n9.6.1 Relation proﬁles 333\n9.6.2 Internal representation of queries 336\n9.6.3 Cost-based optimization 339\n9.7 Physical database design 341\n9.7.1 De",
+      "[NEIGHBOUR from source_49.pdf]\nInformation Systems Databases 4\nInformation Systems Networks 4Information Systems Languages 3Electrical Engineering Databases 4Electrical Engineering Networks 4\n6Chapter 1\nIntroduction\nThe data models"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about file organization, buffer management, and query optimization, which are tangential to B-tree indexing and memory access patterns. Only Chunk 2 mentions B+-tree indices, but it does not explain how they work or their role in memory access. The other chunks discuss unrelated topics like spatial indexing and general database concepts. Thus, relevance is low. There is insufficient information to generate a good exam question because no detailed explanation of B-tree indexing or its impact on memory access is provided. Noise is moderate since some chunks contain useful information, but many are irrelevant.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the primary purpose of B+-tree indexing in the context of database storage structures, and how does it differ from other indexing approaches mentioned in the course material?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about B+-tree indexing, which is directly mentioned in the source context. It can be answered using only the provided material, so faithfulness is high (5). The question is clear and unambiguous, asking for a comparison, so clarity is good (5). The difficulty level is medium, matching the request, so alignment is perfect (5). The question asks for a conceptual explanation, which is exactly the requested type, so type alignment is 5. The question does not reference the passage explicitly, making it standalone (5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "B+-tree indexing is a fundamental tree-based indexing method that provides efficient access to large datasets by organizing records into a balanced tree structure. Unlike hash indices, which rely on direct mapping, B+-trees offer ordered traversal and support range queries. The course material covers various indexing techniques, including B+-trees, LSM trees, and spatial indices, each suited to different workloads. This highlights the importance of choosing appropriate index types based on query patterns and data characteristics.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 3,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies B+-tree indexing as a tree-based method for efficient access, distinguishing it from hash indices. It mentions that the course covers various indexing techniques, which aligns with the source material. However, the answer includes a phrase about LSM trees, which is not mentioned in the context, so groundedness is slightly lower. The tone is academic but uses a mix of prose and bullet points, reducing academic tone score. Overall, correctness and completeness are high, but groundedness and academic tone are slightly reduced due to the inclusion of LSM trees and mixed formatting.",
+    "parse_status": "ok"
+  }
+}

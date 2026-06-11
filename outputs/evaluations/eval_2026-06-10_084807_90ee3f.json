@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_084807_90ee3f",
+  "timestamp": "2026-06-10T08:48:07",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Data versioning for machine learning pipelines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_65.pdf]\n7.4.3 Backward functions for basic modules . . . . . . . . . . 105\n7.4.4 Back-propagation for MLPs . . . . . . . . . . . . . . . 107\n7.5 Vectorization over training examples . . . . . . . . . . . . .",
+      "[SEED from source_65.pdf]\n104\n𝑥...𝑀!𝐽...𝑀\"\n𝑢[!]𝑢[\"%!]𝜕𝐽𝜕𝐽ℬ[𝑀\",𝑢[\"%!]]𝜕𝐽𝜕𝑢!\"#𝑢[&]𝑀&𝑢[&%!]ℬ[𝑀&,𝑢[&%!]]𝜕𝐽𝜕𝑢$\"#𝜕𝐽𝜕𝑢$...\n𝜕𝐽𝜕𝑢#...\nForward passBackward passℬ[𝑀!,𝜃!]𝜕𝐽𝜕𝜃#ℬ[𝑀&,𝜃&]𝜕𝐽𝜕𝜃$ℬ[𝑀\",𝜃\"]𝜕𝐽𝜕𝜃!\nFigure 7.5: Back-propagation.\nRemark",
+      "[SEED from source_68.pdf]\nimportance).\nDefault Baseline Model : Identify the components of end- to-end pipeline including -\nBaseline Models, cost functions, optimization.\nMake incremental changes: Repeatedly make incremental",
+      "[NEIGHBOUR from source_65.pdf]\nBack-Propagation\n𝜕ℒ𝜕𝑧𝑧𝜕𝑧𝜕𝑥𝜕𝑧𝜕𝑦𝜕ℒ𝜕𝑥=𝜕ℒ𝜕𝑧×𝜕𝑧𝜕𝑥𝜕ℒ𝜕𝑦=𝜕ℒ𝜕𝑧×𝜕𝑧𝜕𝑦𝑥𝑦\nCOSC2673 | COSC2793Week 9: Neural Networks34\nRMIT Classification: TrustedRMIT Classification: Trusted\nBack-Propagation via the Chain Rule\n∑",
+      "[NEIGHBOUR from source_52.pdf]\n9.3Implementation of Matrix Factorization 110\n5\nIII Deep Learning 113\n10 Introduction to Deep Learning 115\n10.1A Brief History 116\n10.2Anatomy of a Neural Network 116\n10.3Why Deep Learning? 119\n10.4Mu"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 3,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks contain material on backpropagation and vectorized computation, which are foundational for understanding data versioning in machine learning pipelines. However, they do not explicitly discuss versioning or its role in pipelines. The noise score is low because the chunks are dense with mathematical notation and algorithms, though some sections like the baseline model description are tangential. The sufficiency score is moderate because while the backpropagation details are relevant, the lack of direct discussion on versioning reduces overall utility for exam questions.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is the primary purpose of breaking down a complex neural network into compositions of small modules when implementing back-propagation, and how does this relate to computational efficiency?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about the purpose of breaking down a network into small modules for back-propagation, which is directly covered in the passage discussing backward functions for basic modules and back-propagation for MLPs. It also relates to computational efficiency, which is a concept that can be explained based on the chain rule and vectorization. The question is clear and unambiguous, asking for an explanation rather than a definition. It is medium difficulty because it requires understanding the relationship between module composition and computational efficiency, not just recalling a definition. The question is self-contained and does not reference the passage explicitly. It is a conceptual question, matching the requested type.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The primary purpose of breaking down a complex neural network into compositions of small modules is to enable efficient computation of gradients via back-propagation. Each module's backward function can be computed efficiently, allowing the overall gradient to be calculated efficiently using the chain rule. This modular approach also facilitates incremental changes during training, as modifications to individual modules can be made without re-computing gradients from scratch. Thus, it balances computational efficiency with the flexibility to explore different architectures or hyperparameters.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that breaking down a network into small modules enables efficient gradient computation via back-propagation, which is grounded in the source material. It covers the key idea of modular composition and its benefit for computational efficiency. However, it does not explicitly mention the chain rule or the role of backward functions, which are essential for understanding back-propagation. The language is academic but uses bullet points, which is acceptable for a university setting. Overall, the answer is mostly correct and grounded but lacks some detail.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_112057_611750",
+  "timestamp": "2026-06-10T11:20:57",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Disk scheduling impact on database I/O performance",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\n2003.\nSCHW96 Schwaderer, W., and Wilson, A. Understanding I/O Subsystems. Milpitas, CA:\nAdaptec Press, 1996.\nSELT90 Seltzer, M.; Chen, P .; and Ousterhout, J.“Disk Scheduling Revisited.” Proceedings,",
+      "[SEED from source_5.pdf]\nPrentice Hall, 1986.\nLIVA90 Livadas, P . File Structures: Theory and Practice. Englewood Cliffs, NJ: Prentice\nHall, 1990.\nLOVE05 Love, R. Linux Kernel Development. Waltham, MA: Novell Press, 2005.\nNAG",
+      "[SEED from source_5.pdf]\nInternational Conference on System Science, January 1989.\nWHIT99 White, S. Anatomy of a Commercial-Grade Immune System. IBM Research\nWhite Paper, 1999.\nWIED87 Wiederhold, G. File Organization for Data",
+      "[NEIGHBOUR from source_5.pdf]\nis remarkably little material available on Windows internals. The book to read is[RUSS05]; its coverage stops with Windows Server 2003, but much of the content isvalid for Vista.\nBOVE06 Bovet, D., and",
+      "[NEIGHBOUR from source_5.pdf]\n5.9 / KEY TERMS, REVIEW QUESTIONS,AND PROBLEMS 251\nANDR83 Andrews, G., and Schneider, F. “Concepts and Notations for Concurrent Pro-\ngramming.” Computing Surveys, March 1983.\nAXFO88 Axford, T. Concurr"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks contain references to disk scheduling and I/O subsystems, which are directly related to the learning objective. However, none of them explicitly discuss the impact of disk scheduling on database I/O performance, so they are only partially relevant. There is insufficient information to generate a good exam question because no specific concepts or examples are provided. The chunks are clean, with no obvious noise, though the references are scattered across different sources without clear connections.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, which does not contain substantive technical details about disk scheduling or database performance, I cannot generate a meaningful exam question that would be answerable solely from this limited context.\n\nThe context appears to be bibliographic references and citations without actual explanatory content about disk scheduling, database design, or their relationships. To generate a valid exam question aligned with the stated learning objective, I would need actual course material content that explains the concepts and their interrelationships.\n\nIf you have additional course material content about disk scheduling, file organization, or database design, please provide that so I can generate an appropriate exam question.",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 1,
+      "difficulty_alignment": 1,
+      "type_alignment": 1,
+      "standalone_quality": 1
+    },
+    "overall": 1.0,
+    "reasoning": "The question asks about disk scheduling and file organization, but the provided context contains only bibliographic references without substantive explanations. Therefore, it is impossible to answer the question solely from the given context, making it unanswerable and thus not faithful. The question is also unclear because it lacks a specific focus or reference point within the context. It is too difficult to be medium, as it requires external knowledge. The question type is conceptual, but the lack of context makes it impossible to determine if it fits. Finally, the question explicitly references \"the context,\" so it fails the standalone quality criterion.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The context lists several books and papers on operating systems and file systems, but none directly addresses disk scheduling or database design. Since the material lacks substantive technical detail, it is not possible to formulate an exam question that tests understanding of those topics using only these references. Therefore, a suitable exam question would require additional course content to ensure students can demonstrate mastery of the relevant concepts.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that the context lacks substantive technical details about disk scheduling or database design, making it impossible to formulate a meaningful exam question. It also notes that the material is primarily bibliographic references rather than explanatory content. However, the answer could be more precise by explicitly stating that no exam question can be generated from this context alone, rather than suggesting one might exist. The tone is academic but the prose is somewhat informal, using bullet points and incomplete sentences. Overall, the answer is mostly correct and grounded, but could improve in completeness and academic tone.",
+    "parse_status": "ok"
+  }
+}

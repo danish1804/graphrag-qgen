@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_092712_1a8b8f",
+  "timestamp": "2026-06-10T09:27:12",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Documentation standards for AI model code",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nManual . Reading, Mass.: Addison-Wesley.Chapter 5IReferences 145\nRumbaugh, J., Jacobson, I. and Booch, G. (2004). The Unified Modeling Language Reference Manual,\n2nd ed . Boston: Addison-Wesley.\nSchmi",
+      "[SEED from source_22.pdf]\nIhave learned how systems can be developed by config uring and\ncomposing off-the-shelf application software system s.\nContents\n16.1 The reuse landscape\n16.2 Application frameworks\n16.3 Software produc",
+      "[SEED from source_22.pdf]\nBuschmann, F., Meunier, R., Rohnert, H. and Sommerl ad, P . (1996). Pattern-oriented Software\nArchitecture Volume 1: A System of Patterns. New Yo rk: John Wiley & Sons.\nChapter 6IExercises 175\nClement",
+      "[NEIGHBOUR from source_22.pdf]\nengineering should be used to develop a new system.  What factors should you take into\naccount when deciding whether or not to introduce t his new approach to software\ndevelopment?\nR E F E R E N C E S",
+      "[NEIGHBOUR from source_46.pdf]\npatterns\n16/01/21 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 23\nCreational patterns\n●Used to create other objects\n●Rules-of-thumb: \nhttp://www.vincehuston.org/dp/cr"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about software engineering and design patterns, which are tangential to documentation standards for AI model code. Only one chunk (Chunk 1) mentions the UML reference manual, which could be related if it discusses documentation practices, but it is not clear. The other chunks discuss reuse and frameworks, which are not directly about documentation. Thus, relevance is low. There is insufficient information to generate a good exam question because no specific documentation standards or guidelines are provided. Noise is moderate since the chunks contain useful references but also include distracting content like chapter listings and URLs.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Based on the provided context, here is an exam question:\n\nWhat are the key differences between the reuse strategies discussed in Chapters 16 and 18 of the course material, particularly regarding the approach to developing new systems versus the organizational patterns mentioned in the Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 23 reference?",
+    "scores": {
+      "faithfulness": 1,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.2,
+    "reasoning": "The question asks about key differences between reuse strategies in Chapters 16 and 18, which are not explicitly stated in the provided context. The passage mentions Chapter 16 but does not discuss Chapter 18 or specific reuse strategies. Therefore, the question cannot be fully answered using only the given context, so it scores 1 for faithfulness. The question is clear and unambiguous, scoring 5 for clarity. It asks for conceptual comparison, which aligns with the medium difficulty level, so it scores 5 for difficulty alignment. The question is clearly a conceptual comparison, matching the requested type, so it scores 5 for type alignment. The question does not reference the passage directly, so it scores 5 for standalone quality.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The key difference lies in the focus: Chapter 16 emphasizes reuse-based software engineering, where development processes prioritize reusing existing software components like application frameworks, software product lines, and COTS products. In contrast, the referenced material on organizational patterns (e.g., the Singleton pattern) describes creational patterns that address specific design problems, such as ensuring a single instance of a class. Thus, while reuse aims to leverage pre-built systems, patterns provide concrete solutions for object creation, illustrating distinct approaches to software development.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 4,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 4.0,
+    "reasoning": "The answer correctly identifies that Chapter 16 focuses on reuse-based software engineering, while the reference discusses creational patterns. It accurately contrasts the two approaches, though it could have more explicitly linked the Singleton pattern to creational patterns. The answer is grounded in the provided context, which mentions both chapters and the pattern reference. The tone is academic but uses some bullet points, which is acceptable for a short answer. Overall, the answer is mostly correct and grounded, with minor stylistic issues.",
+    "parse_status": "ok"
+  }
+}

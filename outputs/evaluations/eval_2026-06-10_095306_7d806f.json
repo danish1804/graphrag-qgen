@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_095306_7d806f",
+  "timestamp": "2026-06-10T09:53:06",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Inter-process communication in distributed training",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_67.pdf]\non the fundamental convergence results of the simple RL we’ve discussed.COSC2673 | COSC2793Week 7: Reinforcement Learning78",
+      "[SEED from source_62.pdf]\nDenote the followings:\n•lis the index of the traning example\n•ykis target output (label) of output unit k\n•oh,okare unit output (obtained by forward propagation) of output units h,k. Ifiis\ninput varia",
+      "[SEED from source_62.pdf]\nit often works well in practice.\nFinally, we note the two ways in which backpropagation can be implemented in practice: Batch\nmode and Incremental mode (also called Stochastic Gradient Descent ). Incr",
+      "[NEIGHBOUR from source_67.pdf]\nAdvanced RLThere are a huge range of different approaches and modification to of Reinforcement Learning:Dynamic State-space decomposition, such as parti-graphPartially observable states (hidden variab",
+      "[NEIGHBOUR from source_56.pdf]\nitems constitute design choices for the implementation of the learning program.  \n \n1.4.4 Choosing an approximation algorithm for the Target Function  \nGenerating training data — \nTo train our learnin"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are largely irrelevant to the learning objective about inter-process communication in distributed training. They instead discuss reinforcement learning, backpropagation, and approximation algorithms. The only somewhat relevant chunk is the one mentioning distributed training, but it is brief and does not provide details. Thus relevance is low. Sufficiency is also low because no chunk covers the core concept of inter-process communication in distributed training. Noise is moderate since most chunks contain technical material that is not directly related to the objective, though they are not entirely unrelated.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "What is the relationship between the choice of backpropagation mode (batch or stochastic gradient descent) and the initialization of weights when training neural networks?",
+    "scores": {
+      "faithfulness": 3,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about the relationship between backpropagation mode and weight initialization, which is not directly addressed in the source context. The passage discusses backpropagation modes and weight initialization separately, so the question requires combining concepts from different parts of the text. This makes it difficult to answer solely from the given context, reducing faithfulness to 3. The question is clear and unambiguous, so clarity is 5. It is a conceptual question asking for an explanation, matching the medium difficulty and conceptual type, so difficulty and type alignment are both 5. The question does not reference the passage explicitly, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "The choice of backpropagation mode—batch or stochastic gradient descent—affects how weights are updated during training. In batch mode, gradients are computed over the entire dataset before updating weights, requiring more memory but potentially converging faster. In stochastic gradient descent, updates occur after each training example, making computation faster and allowing for larger learning rates, though convergence may be slower. Both modes require initializing weights to small random values to break symmetry and ensure diverse exploration during learning.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 4
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly identifies that batch mode computes gradients over the entire dataset before updating weights, while stochastic gradient descent updates after each example. It also notes that both modes require initializing weights to small random values. However, it incorrectly states that batch mode requires more memory, which is not mentioned in the source. The answer is mostly grounded but includes a factual error about memory usage. The language is academic but uses bullet points, which is acceptable for a short answer. Overall, the answer is largely correct and complete, but contains a minor inaccuracy and uses a slightly informal structure.",
+    "parse_status": "ok"
+  }
+}

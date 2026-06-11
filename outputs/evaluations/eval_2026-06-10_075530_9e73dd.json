@@ -1,0 +1,53 @@
+{
+  "eval_id": "eval_2026-06-10_075530_9e73dd",
+  "timestamp": "2026-06-10T07:55:30",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Risk management in software projects",
+    "difficulty": "easy",
+    "question_type": "recall"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\nmanagement involves anticipating risks that might a ffect the project schedule or the\nquality of the software being developed, and then t aking action to avoid these risks\n596 Chapter 22IProject manag",
+      "[SEED from source_22.pdf]\nOuld, M. (1999). Managing Software Quality and Business Risk . Chichester: John Wiley & Sons.Chapter 22IReferences 617\nProject planning23\nObjectives\nThe objective of this chapter is to introduce proje",
+      "[NEIGHBOUR from source_46.pdf]\n(Definitions from [Sommerville2011])\n●There is no ideal process.\n●One size does not fit all.\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 3\nFundamental Activ"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 2,
+      "noise": 3
+    },
+    "overall": 2.67,
+    "reasoning": "The first chunk directly defines risk management in software projects, which aligns with the learning objective. The second chunk provides a reference and a brief introduction to the chapter, neither of which is directly relevant to the core concept. The third chunk offers definitions about software engineering processes, which are tangential and do not address risk management specifically. Thus, only the first chunk is highly relevant, while the other two are not. For sufficiency, the first chunk contains the essential definition, but it lacks examples or specific strategies for managing risks. The second and third chunks provide no additional relevant information. Noise is low because only the first chunk contains content related to the objective, so it has minimal noise. However, the other chunks contain irrelevant references and definitions, increasing noise slightly.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the three related categories of risk that management involves anticipating in software projects?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for three related categories of risk, which can be directly answered from the source context: schedule risks, quality risks, and business risks. This is a straightforward recall task, so it is completely answerable from the context alone (5/5). The question is clear and unambiguous (5/5). It matches the easy difficulty level because it requires only basic understanding (5/5). The question is a recall task, which exactly matches the requested type (5/5). The question does not reference the passage explicitly; it reads as a standalone exam question (5/5).",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Management anticipates three related categories of risk: risks that affect the project schedule, the quality of the software being developed, and the organization itself. These risks are distinct yet interconnected, influencing both the project's timeline and the final product's reliability. By identifying and addressing these categories, managers can mitigate potential threats to the project's success.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 4,
+      "academic_tone": 5
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies three categories of risk: schedule, quality, and organization. It also notes their interconnection, which is accurate. However, it adds \"the organization itself\" without evidence from the source, so groundedness is slightly reduced. The language is academic but uses a list rather than prose, which is acceptable for a short answer. Overall, correctness and completeness are high, groundedness is good but not perfect, and academic tone is appropriate.",
+    "parse_status": "ok"
+  }
+}

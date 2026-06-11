@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_131329_11ec01",
+  "timestamp": "2026-06-10T13:13:29",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Hardware interrupts and OS interrupt service routines",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_5.pdf]\nChapter 1 Computer System Overview 7\n1.1 Basic Elements 8\n1.2 Processor Registers 9\n1.3 Instruction Execution 12\n1.4 Interrupts 15\n1.5 The Memory Hierarchy 26\n1.6 Cache Memory 29\n1.7 I/O Communication",
+      "[SEED from source_5.pdf]\nIn processors with multiple types of interrupts, a set of interrupt registers\nmay be provided, with one pointer to each interrupt-handling routine. If a stack isused to implement certain functions (e.",
+      "[SEED from source_5.pdf]\nmemory to relieve the processor of the I/O task. In such a case, the processor grantsto an I/O module the authority to read from or write to memory, so that the I/O-memory transfer can occur without t",
+      "[NEIGHBOUR from source_41.pdf]\n1.1 BASIC ELEMENTS\nAt a top level, a computer consists of processor, memory, and I/O components, withone or more modules of each type. These components are interconnected in somefashion to achieve the",
+      "[NEIGHBOUR from source_41.pdf]\nment. The external environment consists of a variety of devices, includingsecondary memory devices (e. g., disks), communications equipment, andterminals.\n•System bus: Provides for communication among"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are mostly about general computer architecture and I/O, but only Chunk 2 mentions interrupts and interrupt service routines, which are directly related to the learning objective. However, it does not provide enough detail to generate a good exam question. Other chunks discuss basic computer elements and system buses, which are not directly about interrupts. There is moderate noise because some chunks contain irrelevant information like secondary memory devices and system buses. Overall, the chunks are partially relevant and insufficient for generating a good exam question, with moderate noise.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What role do interrupt registers play in processor-interrupt interactions, and how are they related to interrupt-handling routines?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about interrupt registers and their relationship to interrupt-handling routines, which is directly stated in the source: \"a set of interrupt registers may be provided, with one pointer to each interrupt-handling routine.\" This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a definition of the role of interrupt registers, so clarity is 5. The difficulty is medium because it requires understanding the concept rather than simple recall, matching the requested difficulty. The question is conceptual, asking for an explanation of the relationship, which aligns with the requested type. The question does not reference the passage explicitly, so standalone quality is 5. All criteria are met perfectly.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Interrupt registers serve as pointers to interrupt-handling routines, enabling the processor to efficiently locate and execute code that responds to specific interrupt events. Each interrupt type has its own register entry, allowing the processor to quickly access the corresponding routine when an interrupt occurs. This organization streamlines interrupt processing by providing a direct mapping between interrupt sources and their handling procedures.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 5
+    },
+    "overall": 4.25,
+    "reasoning": "The answer correctly states that interrupt registers point to interrupt-handling routines, which is accurate based on the source. It covers the key idea of using registers to store addresses of handlers, though it does not explicitly mention that each interrupt type has its own register. The answer is grounded in the source material, as no unsupported claims are made. The language is academic and precise, using proper terminology like 'registers' and 'interrupt-handling routines'. However, the answer could be more detailed by explaining how the registers are used during interrupt handling, which would improve completeness.",
+    "parse_status": "ok"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_111045_737676",
+  "timestamp": "2026-06-10T11:10:45",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Semaphores in database concurrency control",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_8.pdf]\nconcurrency control and ( see\nconcurrency control)\ndeﬁned, 1\ndesign of ( seedatabase\ndesign)\ndocument, 3\ndumping and, 930–931\ne ﬃ c i e n c yo f ,1 ,2 ,5 ,9\nembedded, 198, 962\nas ﬁle-processing system",
+      "[SEED from source_8.pdf]\nand, 71–79\ncombination of, 270–271\ncomposite attributes in, 250\nconcurrency control and ( see\nconcurrency control)\ncreation of, 24\ndata mining, 540–549\ndata warehousing, 523–525\ndeﬁned, 12\nentity-rela",
+      "[SEED from source_8.pdf]\nlocal, 1076\nlocks and ( seelocks)\nlogical, 12–13, 1223–1224\nperformance tuning of,\n1214–1218, 1223–1224\nphysical, 12, 13\nphysical-organization\nmodiﬁcation of, 25\nP + Q redundancy, 573, 574\nrecovery sy",
+      "[NEIGHBOUR from source_36.pdf]\n(transactions, concurrency control, reliability, recovery) ﬁrst on a single-server architecture and then on a multi-server architecture with emphasison distribution, replication and parallelism.\n•We e",
+      "[NEIGHBOUR from source_36.pdf]\nChapter 9 is focused on the technology required for operating a single\ndbms  server; it discusses transactions, concurrency control, bu Ver\nmanagement, reliability, access structures, query optimizati"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about concurrency control and locks, which are closely related to semaphores used in database concurrency. However, they do not explicitly mention semaphores or their role in concurrency control. The sufficiency score is low because the chunks lack specific details about how semaphores work or their implementation in databases. Noise is moderate as some chunks contain tangential topics like data mining or physical organization that are not directly relevant.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how the relationship between locks and concurrency control in databases relates to the broader concept of file-processing systems, and describe what happens when concurrent transactions attempt to modify the same data resource.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 3,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 4.6,
+    "reasoning": "The question asks about the relationship between locks and concurrency control in databases, which is directly covered in the source context under the topic of concurrency control. It also mentions file-processing systems, which are discussed in the same section. The question is clear and unambiguous, asking for an explanation rather than a definition. It is a conceptual question that requires understanding the interaction between locks and concurrency control, so it is medium difficulty. The question is self-contained and does not reference the passage, making it a genuine exam question. However, it is slightly ambiguous because the term \"file-processing systems\" is not clearly defined in the context, though this is minor.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Concurrent transactions may modify the same data resource simultaneously, leading to conflicts that require concurrency control mechanisms such as locks. In file-processing systems, locks are used to manage access to shared files, ensuring that only one transaction at a time can update a specific record. Similarly, in database systems, locks are applied to data items to prevent race conditions during concurrent updates. Without proper lock management, conflicting transactions could corrupt data integrity. Thus, locks are a core component of concurrency control, enabling safe multitransaction processing in both file-processing and database environments.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 3
+    },
+    "overall": 3.75,
+    "reasoning": "The answer correctly identifies that locks are used for concurrency control in both file-processing and database systems, and explains that without locks, concurrent updates could corrupt data. It also notes that locks prevent race conditions, which is accurate. However, the answer does not explicitly mention that locks are part of the broader concurrency control mechanisms, so completeness is slightly lower. The answer is entirely based on the source context, so groundedness is high. The language is formal and academic, though the use of bullet points in the generated answer is unconventional for a paragraph response, reducing academic tone. Overall, correctness and groundedness are strong, but completeness and academic tone are slightly weaker.",
+    "parse_status": "ok"
+  }
+}

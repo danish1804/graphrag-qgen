@@ -1,0 +1,55 @@
+{
+  "eval_id": "eval_2026-06-10_115929_fa9155",
+  "timestamp": "2026-06-10T11:59:29",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Process management in software applications",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_22.pdf]\na software process. A software process is a sequenc e of activities that leads to the\nproduction of a software product. There are four fu ndamental activities that are com-\nmon to all software process",
+      "[SEED from source_22.pdf]\nproduction.\nISoftware is not just a program or programs but also  includes documentation. Essential software\nproduct attributes are maintainability, dependabili ty, security, efficiency, and acceptabi",
+      "[SEED from source_22.pdf]\nin the software requirements and design;\nIunderstand how the Rational Unified Process integra tes good software\nengineering practice to create adaptable software p rocesses.\nContents\n2.1 Software proc",
+      "[NEIGHBOUR from source_47.pdf]\n(Definitions from [Sommerville2011])\n●There is no ideal process.\n●One size does not fit all.\n19/05/20 Software Engineering -  © 2015 Dr. Florian Echtler, Bauhaus-Universität Weimar 3\nFundamental Activ",
+      "[NEIGHBOUR from source_47.pdf]\n2. The Unified Process\n3. Iteration and Incrementation Within the Object-Oriented Paradigm\n32\n4. Requirements Workflow\n5. Analysis Workflow\n6. Design Workflow\n7. Implementation Workflow\n8. Test Workfl"
+    ],
+    "scores": {
+      "relevance": 3,
+      "sufficiency": 1,
+      "noise": 3
+    },
+    "overall": 2.33,
+    "reasoning": "The chunks are mostly about software processes and their attributes, which align with the learning objective. However, they lack specific details on process management steps or key activities. Chunk 1 defines a software process but does not mention management. Chunk 2 discusses product attributes but not management. Chunk 3 references the Rational Unified Process but does not explain its role in management. Chunk 4 mentions no ideal process but does not cover management. Chunk 5 lists workflows but does not describe management. Thus, the chunks are partially relevant but insufficient for a detailed exam question. They contain some useful information but are noisy with tangential material like iteration and workflow listings. Noise score is moderate because many chunks include extraneous definitions and lists.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What are the four fundamental activities that are common to all software processes as described in the course material?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks for four fundamental activities common to all software processes, which is directly stated in the source context. This is completely answerable from the context alone, so faithfulness is 5. The question is clear and unambiguous, asking for a specific list, so clarity is 5. The difficulty is medium because it requires understanding the concept rather than simple recall, matching the requested difficulty. The question is a conceptual one, asking for explanation, which aligns with the requested type. It is self-contained, not referring to any external context, so standalone quality is 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "All software processes include four fundamental activities: software specification, where customers and engineers define requirements and constraints; software development, which involves designing and programming; validation, ensuring the software meets specifications; and evolution, adapting the software over time. These activities form the core workflow across different process models, reflecting the need for flexibility and adaptability in software engineering.",
+    "scores": {
+      "correctness": 5,
+      "completeness": 5,
+      "groundedness": 5,
+      "academic_tone": 4
+    },
+    "overall": 4.75,
+    "reasoning": "The answer correctly identifies the four fundamental activities: specification, development, validation, and evolution. It is complete by covering all key points without omissions. The answer is entirely grounded in the source context, as it does not introduce any unsupported information. The language is precise and academic, using prose rather than bullet points, though it could be more concise. Overall, the answer is very strong on correctness, completeness, and groundedness, but could improve on academic tone by being slightly more succinct.",
+    "parse_status": "ok"
+  }
+}

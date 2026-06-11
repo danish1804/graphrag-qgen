@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_085804_5e1407",
+  "timestamp": "2026-06-10T08:58:04",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Data normalisation for neural network inputs",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_65.pdf]\n7.4.3 Backward functions for basic modules . . . . . . . . . . 105\n7.4.4 Back-propagation for MLPs . . . . . . . . . . . . . . . 107\n7.5 Vectorization over training examples . . . . . . . . . . . . .",
+      "[SEED from source_65.pdf]\n104\n𝑥...𝑀!𝐽...𝑀\"\n𝑢[!]𝑢[\"%!]𝜕𝐽𝜕𝐽ℬ[𝑀\",𝑢[\"%!]]𝜕𝐽𝜕𝑢!\"#𝑢[&]𝑀&𝑢[&%!]ℬ[𝑀&,𝑢[&%!]]𝜕𝐽𝜕𝑢$\"#𝜕𝐽𝜕𝑢$...\n𝜕𝐽𝜕𝑢#...\nForward passBackward passℬ[𝑀!,𝜃!]𝜕𝐽𝜕𝜃#ℬ[𝑀&,𝜃&]𝜕𝐽𝜕𝜃$ℬ[𝑀\",𝜃\"]𝜕𝐽𝜕𝜃!\nFigure 7.5: Back-propagation.\nRemark",
+      "[SEED from source_65.pdf]\nDimensionality ReductionA layer of an MLP does not need to have more perceptions than previous layers.A layer can instead have fewer nodesThis reduces the dimensionalityof the new feature spaceIt forc",
+      "[NEIGHBOUR from source_65.pdf]\nBack-Propagation\n𝜕ℒ𝜕𝑧𝑧𝜕𝑧𝜕𝑥𝜕𝑧𝜕𝑦𝜕ℒ𝜕𝑥=𝜕ℒ𝜕𝑧×𝜕𝑧𝜕𝑥𝜕ℒ𝜕𝑦=𝜕ℒ𝜕𝑧×𝜕𝑧𝜕𝑦𝑥𝑦\nCOSC2673 | COSC2793Week 9: Neural Networks34\nRMIT Classification: TrustedRMIT Classification: Trusted\nBack-Propagation via the Chain Rule\n∑",
+      "[NEIGHBOUR from source_52.pdf]\n9.3Implementation of Matrix Factorization 110\n5\nIII Deep Learning 113\n10 Introduction to Deep Learning 115\n10.1A Brief History 116\n10.2Anatomy of a Neural Network 116\n10.3Why Deep Learning? 119\n10.4Mu"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks contain no direct discussion of data normalization or neural network input processing. They focus on backpropagation and matrix operations, which are tangential to the learning objective. The only relevant chunk is the title of a section on vectorization, but it does not explain how to normalize data. Thus, relevance is low. Sufficient information is lacking because no explanation of normalization techniques exists. Noise is moderate since most chunks are about backpropagation and matrix calculus, which are somewhat related but not directly about normalization.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how back-propagation leverages the chain rule to compute gradients when updating weights in a multi-layer perceptron, and describe the relationship between the partial derivatives of the loss function with respect to intermediate variables and the final output.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about back-propagation and its use of the chain rule, which is directly covered in the passage. It is clear and unambiguous, asking for an explanation of how gradients are computed. The difficulty is medium because it requires understanding the chain rule and its application, but not deep analysis. The question is conceptual, matching the requested type. It is self-contained, as no external context is needed beyond the passage. Overall, it is a good exam question.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Back-propagation applies the chain rule to compute gradients by propagating errors backward through the network. Specifically, it computes ∂ℒ/∂θ for each parameter θ by multiplying the gradient of the loss with respect to the corresponding activation z (e.g., ∂ℒ/∂z) by the derivative of z with respect to θ (e.g., ∂z/∂θ). This allows efficient computation of gradients even in deep architectures, enabling weight updates via gradient descent. The key idea is that the gradient of the loss with respect to any variable is obtained by multiplying the gradient of the loss with respect to the next variable by the derivative of the next variable with respect to the current one, recursively.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 3,
+      "academic_tone": 4
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly states that back-propagation uses the chain rule to compute gradients by multiplying the gradient of the loss with respect to the next variable by the derivative of that variable with respect to the current one. It also explains that this allows efficient gradient computation for deep networks. However, it does not explicitly mention that the gradient of the loss with respect to the final output is used to update weights, which is a key point. The answer is mostly grounded in the source context but includes a few unsupported additions like the example with x and y. The tone is academic but uses bullet points, which is acceptable for a summary. Overall, the answer is good but could be improved by being more concise and omitting non-essential details.",
+    "parse_status": "ok"
+  }
+}

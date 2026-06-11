@@ -1,0 +1,50 @@
+{
+  "eval_id": "eval_2026-06-10_122649_c36c52",
+  "timestamp": "2026-06-10T12:26:49",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Branch prediction impact on software performance",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_12.pdf]\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Prediction 182\n3.4 Overcoming Data Haza",
+      "[SEED from source_12.pdf]\nThis page intentionally left blank\n3.1 Instruction-Level Parallelism: Concepts and Challenges 168\n3.2 Basic Compiler Techniques for Exposing ILP 176\n3.3 Reducing Branch Costs With Advanced Branch Pred",
+      "[SEED from source_12.pdf]\nLoop unrolling is a simple but useful method for increasing the size of straight-\nline code fragments that can be scheduled effectively. This transformation is useful\nin a variety of processors, from",
+      "[NEIGHBOUR from source_38.pdf]\ncomputer architecture as did the switch to multicore. We retain the focus on theextremes in size of computing, with personal mobile devices (PMDs) such as cellphones and tablets as the clients and war",
+      "[NEIGHBOUR from source_38.pdf]\nChapter 3 covers the exploitation of instruction-level parallelism in high-\nperformance processors, including superscalar execution, branch prediction\n(including the new tagged hybrid predictors), spe"
+    ],
+    "scores": {
+      "relevance": 4,
+      "sufficiency": 2,
+      "noise": 5
+    },
+    "overall": 3.67,
+    "reasoning": "The chunks are mostly about branch prediction and its impact on performance, which directly relates to the learning objective. However, they are cut off mid-sentence and contain many repeated titles and blank pages, making them difficult to extract coherent information. The noise score is low because the repeated titles and blank pages are not distracting, but the lack of full sentences reduces sufficiency. Overall, the chunks are somewhat relevant but insufficient for generating a good exam question due to incomplete content.",
+    "parse_status": "ok"
+  },
+  "question": {
+    "generated": "What is loop unrolling and what role does it play in increasing the effectiveness of scheduling in processors?",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about loop unrolling and its role in scheduling effectiveness. The source context defines loop unrolling as a method to increase straight-line code for better scheduling, which is directly answerable from the passage. The question is clear and unambiguous, asking for a definition and explanation. It matches medium difficulty because it requires understanding the concept rather than just recalling a term. The question is conceptual, asking for an explanation rather than a specific fact. It is self-contained, as no external reference is needed. Thus, all criteria score 5.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "Loop unrolling is a technique that increases the size of straight-line code fragments, thereby allowing more instructions to be scheduled together without encountering hazards. This approach is beneficial in both simple pipelines and complex processors, including multiple-issue superscalars and VLIWs. By reducing the number of branches and dependencies, unrolling improves instruction-level parallelism, which is a core topic in Chapter 3 on exploiting ILP.",
+    "scores": {},
+    "overall": null,
+    "reasoning": "The answer correctly identifies loop unrolling as a technique that increases straight-line code size for better scheduling, and it mentions its benefit in superscalar and VLIW processors. However, it incorrectly states that loop unrolling reduces branch costs, which is not mentioned in the source. The answer is incomplete because it does not explain how unrolling reduces dependencies or hazards. It is grounded in the context, as the passage discusses ILP and scheduling techniques. The tone is academic but uses a mix of prose and bullet points, which is acceptable for this format.",
+    "parse_status": "failed"
+  }
+}

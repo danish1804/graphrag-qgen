@@ -1,0 +1,51 @@
+{
+  "eval_id": "eval_2026-06-10_091834_0034ba",
+  "timestamp": "2026-06-10T09:18:34",
+  "generator_model": "Qwen/Qwen2.5-7B-Instruct",
+  "judge_model": "Qwen/Qwen2.5-3B-Instruct",
+  "prompt_version": "1.1.0",
+  "rubric_version": "1.0.0",
+  "input": {
+    "learning_objective": "Debugging and validation of neural network training",
+    "difficulty": "medium",
+    "question_type": "conceptual"
+  },
+  "retrieval": {
+    "chunks": [
+      "[SEED from source_65.pdf]\nRMIT Classification: TrustedRMIT Classification: Trusted\nSummaryPerceptronsProcessing & TrainingMultiple perceptrons for classificationMulti-Layer Perceptrons (MLP)Feed-Forward processingTraining via",
+      "[SEED from source_65.pdf]\n7.4.3 Backward functions for basic modules . . . . . . . . . . 105\n7.4.4 Back-propagation for MLPs . . . . . . . . . . . . . . . 107\n7.5 Vectorization over training examples . . . . . . . . . . . . .",
+      "[SEED from source_65.pdf]\n104\n𝑥...𝑀!𝐽...𝑀\"\n𝑢[!]𝑢[\"%!]𝜕𝐽𝜕𝐽ℬ[𝑀\",𝑢[\"%!]]𝜕𝐽𝜕𝑢!\"#𝑢[&]𝑀&𝑢[&%!]ℬ[𝑀&,𝑢[&%!]]𝜕𝐽𝜕𝑢$\"#𝜕𝐽𝜕𝑢$...\n𝜕𝐽𝜕𝑢#...\nForward passBackward passℬ[𝑀!,𝜃!]𝜕𝐽𝜕𝜃#ℬ[𝑀&,𝜃&]𝜕𝐽𝜕𝜃$ℬ[𝑀\",𝜃\"]𝜕𝐽𝜕𝜃!\nFigure 7.5: Back-propagation.\nRemark",
+      "[NEIGHBOUR from source_77.pdf]\n4\n4.3Support Vector Machines 53\n4.4Multi-class Classification (Multinomial Regression) 55\n4.5Regularization with SVM 55\n4.6Linear Classification in Python Programming 56\n5 Exploring “Data Science” via",
+      "[NEIGHBOUR from source_77.pdf]\nunsupervised, deep learning, and reinforcement learning as a foun-\ndation for further study or independent work in ML, AI, and data\nscience. Topics include linear models for classification and regress"
+    ],
+    "scores": {},
+    "overall": null,
+    "reasoning": "The chunks are mostly about backpropagation and MLP training, which directly relates to debugging and validation of neural network training. However, they lack explicit coverage of debugging techniques or validation strategies. The mathematical notation in Chunk 3 is dense but relevant to understanding the process. Chunk 4 covers other machine learning topics that are not directly about debugging, so it is partially relevant. Overall, the chunks are moderately relevant because they cover core concepts but miss specific debugging and validation methods. They are sufficient for generating a question on backpropagation but not on debugging. Noise is low because the chunks are focused on technical details without extraneous content.",
+    "parse_status": "failed"
+  },
+  "question": {
+    "generated": "Explain how back-propagation operates during the backward pass in a multi-layer perceptron, and describe what computational advantage is gained by breaking down a complex network into compositions of small modules.",
+    "scores": {
+      "faithfulness": 5,
+      "clarity": 5,
+      "difficulty_alignment": 5,
+      "type_alignment": 5,
+      "standalone_quality": 5
+    },
+    "overall": 5.0,
+    "reasoning": "The question asks about back-propagation during the backward pass, which is directly covered in the source material (Figure 7.5). It also mentions breaking down a network into small modules, which is explained in the passage. The question is clear and unambiguous, asking for an explanation rather than a definition. It is a conceptual question that requires understanding of the process, so it fits medium difficulty. The question is self-contained and does not reference the passage explicitly. Overall, it is a good match for the source material and the requested parameters.",
+    "parse_status": "ok"
+  },
+  "answer": {
+    "generated": "During the backward pass, each module computes its own gradient with respect to the loss, then passes this to upstream modules via the chain rule, allowing gradients to flow backward through the entire network. This breaks down the complex computation into smaller, efficiently implementable steps, reducing memory overhead and enabling efficient gradient updates. By treating the network as a composition of small modules, we gain computational efficiency and easier implementation of back-propagation.",
+    "scores": {
+      "correctness": 4,
+      "completeness": 3,
+      "groundedness": 5,
+      "academic_tone": 2
+    },
+    "overall": 3.5,
+    "reasoning": "The answer correctly describes how back-propagation computes gradients backward through modules using the chain rule, which is accurate based on the source material. It also explains the computational advantage of breaking the network into small modules, which is a standard explanation. The answer is entirely grounded in the provided context, as it does not introduce unsupported ideas. However, the language is somewhat informal, using bullet points and incomplete sentences, which detracts from academic tone. Overall, the answer is mostly correct and grounded but lacks completeness and academic polish.",
+    "parse_status": "ok"
+  }
+}
