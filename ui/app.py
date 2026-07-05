@@ -29,6 +29,7 @@ DEMO_OBJECTIVES = {
 }
 
 
+
 def _chunk_expander_label(name: str, chunk: dict) -> str:
     chunk_type = chunk.get("type", "chunk")
     domain = chunk.get("domain", "")
