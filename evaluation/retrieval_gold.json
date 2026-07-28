@@ -1,0 +1,43 @@
+{
+  "_comment": "GraphRAG 1.5 gold set for judge-independent retrieval evaluation. Per domain: query -> expected_entities (canonical concepts a good retrieval should surface). Both expected and retrieved entities are passed through normalize_entity before matching, so this stays valid across the alias re-index. SEED SET (~3/domain) - expand toward 20-30/domain per Bani's spec; refine expected_entities against harness output.",
+  "database": [
+    {"query": "Explain how an inner join combines rows from two tables in SQL",
+     "expected_entities": ["inner join", "join", "table", "row", "column"]},
+    {"query": "What are the ACID properties of a database transaction?",
+     "expected_entities": ["transaction", "atomicity", "consistency", "isolation", "durability"]},
+    {"query": "What is a primary key in a relational database?",
+     "expected_entities": ["primary key", "key", "relation", "attribute", "table"]}
+  ],
+  "deep_learning": [
+    {"query": "How does parameter sharing reduce the number of parameters in CNNs?",
+     "expected_entities": ["parameter sharing", "cnn", "convolution", "weight", "feature"]},
+    {"query": "What is backpropagation in a neural network?",
+     "expected_entities": ["backpropagation", "gradient", "neural network", "weight", "loss"]},
+    {"query": "Explain the role of pooling layers in a convolutional network",
+     "expected_entities": ["pooling", "layer", "feature map", "convolution"]}
+  ],
+  "software_engineering": [
+    {"query": "What is the difference between Agile and Waterfall methodologies?",
+     "expected_entities": ["agile", "waterfall", "software development", "requirement", "iteration"]},
+    {"query": "Explain black-box versus white-box testing",
+     "expected_entities": ["black box testing", "white box testing", "test case", "testing"]},
+    {"query": "What is a software design pattern?",
+     "expected_entities": ["design pattern", "pattern", "object", "class"]}
+  ],
+  "operating_systems": [
+    {"query": "How does paging translate a virtual address to a physical address?",
+     "expected_entities": ["paging", "virtual address", "physical address", "page table", "memory"]},
+    {"query": "Explain how semaphores prevent race conditions",
+     "expected_entities": ["semaphore", "race condition", "mutual exclusion", "process", "synchronization"]},
+    {"query": "What is virtual memory and demand paging?",
+     "expected_entities": ["virtual memory", "page", "memory", "demand paging"]}
+  ],
+  "computer_architecture": [
+    {"query": "How does pipelining improve CPU instruction throughput?",
+     "expected_entities": ["pipelining", "cpu", "instruction", "throughput", "stage"]},
+    {"query": "How does cache memory reduce average memory access time?",
+     "expected_entities": ["cache", "memory", "access time", "hit", "miss"]},
+    {"query": "Explain the memory hierarchy in a computer system",
+     "expected_entities": ["memory hierarchy", "cache", "register", "main memory"]}
+  ]
+}
