@@ -147,7 +147,8 @@ def mark_as_indexed(filename: str,
 
 
 def get_domain_files(domain:         str,
-                     indexed_only:   bool = True) -> list:
+                     indexed_only:   bool = True,
+                     include_duplicates: bool = False) -> list:
     """
     Get all files for a specific domain.
     Replaces hardcoded DOMAIN_MAP file lists.
@@ -156,6 +157,9 @@ def get_domain_files(domain:         str,
         domain:       domain name
         indexed_only: if True returns only indexed files
                       if False returns all registered files
+        include_duplicates: if False (default) skip files flagged as a
+                      duplicate_of another document — they add no new
+                      content and inflate the graph / cross-source edges.
     """
     registry = load_registry()
 
@@ -165,12 +169,14 @@ def get_domain_files(domain:         str,
 
     files = registry["domains"][domain]["files"]
 
-    if indexed_only:
-        return [
-            filename for filename, info in files.items()
-            if info["indexed"]
-        ]
-    return list(files.keys())
+    def _keep(info):
+        if indexed_only and not info.get("indexed"):
+            return False
+        if not include_duplicates and info.get("duplicate_of"):
+            return False
+        return True
+
+    return [filename for filename, info in files.items() if _keep(info)]
 
 
 def get_unindexed_files(domain: Optional[str] = None
