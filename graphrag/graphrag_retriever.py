@@ -39,7 +39,8 @@ def retrieve_graph_context(
         neighbour_depth: int = 1,
         max_context_chunks: int = 6,
         seed_ratio: float = 0.6,
-        rerank: bool = True
+        rerank: bool = True,
+        depth2_cap: int = 50
 ) -> dict:
     """
     GraphRAG retrieval — find seed nodes then traverse graph.
@@ -140,9 +141,21 @@ def retrieve_graph_context(
                         edge_data.get("weight", 1)
                     ))
 
-                    # Depth 2 traversal if requested
+                    # Depth 2 traversal if requested — sorted by edge
+                    # weight and capped (depth2_cap). Re-ranking already
+                    # handles relevance, so this cap is a compute /
+                    # robustness bound, not a quality lever. cap=50 keeps
+                    # quality parity with the uncapped pool on the tuning
+                    # query while shrinking it ~6x (741 -> 129).
+                    # Previously unbounded (Bani review, Problem B).
                     if neighbour_depth >= 2:
-                        for n2 in graph.neighbors(neighbour):
+                        n2_sorted = sorted(
+                            graph.neighbors(neighbour),
+                            key=lambda x: graph[neighbour][x].get(
+                                "weight", 1),
+                            reverse=True
+                        )
+                        for n2 in n2_sorted[:depth2_cap]:
                             if n2 not in visited:
                                 visited.add(n2)
                                 e2 = graph[neighbour][n2]
