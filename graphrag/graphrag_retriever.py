@@ -29,6 +29,18 @@ sys.path.append(os.path.dirname(os.path.dirname(__file__)))
 from utils.embedder import Embedder
 
 
+def _degree_discounted_weight(graph, src, nbr, penalty):
+    """Edge weight discounted by the neighbour's overall degree
+    (GraphRAG 1.2, TF-IDF style), so generic hub terms — very high
+    degree — stop dominating neighbour selection. penalty=0 reproduces
+    the raw edge-weight ranking; higher penalty favours specific,
+    lower-degree neighbours.
+    """
+    w = graph[src][nbr].get("weight", 1)
+    deg = max(graph.degree(nbr), 1)
+    return w / (deg ** penalty)
+
+
 def retrieve_graph_context(
         query: str,
         index,
@@ -40,7 +52,8 @@ def retrieve_graph_context(
         max_context_chunks: int = 6,
         seed_ratio: float = 0.6,
         rerank: bool = True,
-        depth2_cap: int = 50
+        depth2_cap: int = 50,
+        degree_penalty: float = 0.5
 ) -> dict:
     """
     GraphRAG retrieval — find seed nodes then traverse graph.
@@ -114,11 +127,12 @@ def retrieve_graph_context(
         if entity in graph:
             neighbours = list(graph.neighbors(entity))
 
-            # Sort neighbours by edge weight
-            # (higher weight = stronger relationship)
+            # Sort neighbours by degree-discounted edge weight so
+            # generic hub terms stop dominating (GraphRAG 1.2).
             neighbours_sorted = sorted(
                 neighbours,
-                key=lambda n: graph[entity][n].get("weight", 1),
+                key=lambda n: _degree_discounted_weight(
+                    graph, entity, n, degree_penalty),
                 reverse=True
             )
 
@@ -151,8 +165,8 @@ def retrieve_graph_context(
                     if neighbour_depth >= 2:
                         n2_sorted = sorted(
                             graph.neighbors(neighbour),
-                            key=lambda x: graph[neighbour][x].get(
-                                "weight", 1),
+                            key=lambda x: _degree_discounted_weight(
+                                graph, neighbour, x, degree_penalty),
                             reverse=True
                         )
                         for n2 in n2_sorted[:depth2_cap]:
