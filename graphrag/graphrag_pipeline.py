@@ -447,6 +447,19 @@ class GraphRAGPipeline:
         domains_used      = []
         all_chunk_pool    = []
 
+        # Score-weighted per-domain chunk budgets (GraphRAG 1.6):
+        # split the total budget in proportion to each domain's routing
+        # score, so a domain that barely clears the threshold doesn't get
+        # the same weight as the dominant one. Minimum 1 chunk / domain.
+        total_budget = chunks_per_domain * len(qualifying)
+        score_sum    = sum(qualifying.values()) or 1.0
+        domain_budgets = {
+            d: max(1, round(total_budget * s / score_sum))
+            for d, s in qualifying.items()
+        }
+        print(f"[MultiDomain] Score-weighted chunk budgets: "
+              f"{domain_budgets}")
+
         for domain in qualifying:
             print(f"[MultiDomain] Retrieving from: {domain}")
 
@@ -462,7 +475,7 @@ class GraphRAGPipeline:
                 embedder           = self.embedder,
                 top_k_nodes        = retrieval_params["top_k_nodes"],
                 neighbour_depth    = retrieval_params["neighbour_depth"],
-                max_context_chunks = retrieval_params["max_context_chunks"],
+                max_context_chunks = domain_budgets[domain],
                 seed_ratio         = retrieval_params["seed_ratio"],
             )
 
