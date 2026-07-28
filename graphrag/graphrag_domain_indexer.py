@@ -190,12 +190,14 @@ def build_domain_profiles(embedder) -> dict:
     profiles = {}
 
     for domain_name, config in DOMAIN_MAP.items():
-        # Combine description + all keywords into profile text
+        # Combine description + keywords into profile text.
+        # Filenames (source_6.pdf ...) carry no semantic signal and
+        # dilute the profile, which compresses routing margins (1.3),
+        # so they are intentionally excluded.
         keywords   = " ".join(config["keywords"])
         desc       = config["description"]
-        files_text = " ".join(config["files"])
 
-        profile_text = f"{desc}. {keywords}. {files_text}"
+        profile_text = f"{desc}. {keywords}"
 
         embedding = embedder.model.encode(
             [profile_text],

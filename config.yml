@@ -25,6 +25,15 @@ retrieval:
   neighbour_depth: 1       # GraphRAG — graph traversal depth
   max_context_chunks: 6    # Max chunks passed to LLM prompt
 
+# ── Domain Routing (GraphRAG 1.3) ──────────────────────────
+# When a query is auto-routed (no explicit domain), compare the top
+# two domain scores. If they are within margin_threshold, the query
+# is boundary-spanning, so fall back to multi-domain retrieval
+# regardless of difficulty. routing_confidence is always recorded in
+# response metadata so evaluators can see how decisive routing was.
+routing:
+  margin_threshold: 0.05   # top-2 gap below this = ambiguous -> multi-domain
+
 # ── Difficulty to Chunks Mapping ──────────────────────────
 # Map the number of chunks to be extracted from
 #         GraphRAG to the complexity of the question.

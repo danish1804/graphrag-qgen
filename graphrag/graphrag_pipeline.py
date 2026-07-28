@@ -294,6 +294,7 @@ class GraphRAGPipeline:
         # ── Domain selection logic ─────────────────────────────
         # Samar: "If user specifies domain → use it directly.
         #         If domain wrong/missing → fall back to router."
+        _routing_conf = None   # populated only when auto-routed (1.3)
 
         if domain and domain in DOMAIN_MAP:
             # User specified valid domain → use directly
@@ -311,10 +312,41 @@ class GraphRAGPipeline:
             )
 
         else:
-            # Easy/medium or domain not specified → best match
-            selected_domain = route_by_embedding(
-                learning_objective, self.embedder
+            # Easy/medium or no domain → best match, with a confidence
+            # margin check (GraphRAG 1.3). If the top two domains are
+            # within margin_threshold, the query is boundary-spanning,
+            # so fall back to multi-domain retrieval.
+            scores = route_by_embedding(
+                learning_objective, self.embedder, return_all_scores=True
             )
+            ranked = sorted(scores.items(), key=lambda kv: kv[1],
+                            reverse=True)
+            best_domain, best_score = ranked[0]
+            runner_up, runner_score = (ranked[1] if len(ranked) > 1
+                                       else (None, 0.0))
+            margin = round(best_score - runner_score, 3)
+            mt = cfg.get("routing", {}).get("margin_threshold", 0.05)
+            _routing_conf = {
+                "top": best_domain, "top_score": best_score,
+                "runner_up": runner_up, "runner_up_score": runner_score,
+                "margin": margin, "threshold": mt,
+                "ambiguous": margin < mt, "scores": scores,
+            }
+
+            if margin < mt and not force_single:
+                print(f"[GraphRAGPipeline] Ambiguous routing: "
+                      f"{best_domain}={best_score} vs "
+                      f"{runner_up}={runner_score} "
+                      f"(margin={margin} < {mt}) → multi-domain")
+                result = self.generate_with_multi_domain(
+                    learning_objective = learning_objective,
+                    difficulty         = difficulty,
+                    question_type      = question_type
+                )
+                result["metadata"]["routing_confidence"] = _routing_conf
+                return result
+
+            selected_domain = best_domain
 
         # Single domain retrieval (easy/medium/explicit domain)
         print(f"[GraphRAGPipeline] Routed to: {selected_domain}")
@@ -333,6 +365,7 @@ class GraphRAGPipeline:
 
         result["metadata"]["domain"]          = selected_domain
         result["metadata"]["domain_routed_to"] = selected_domain
+        result["metadata"]["routing_confidence"] = _routing_conf
         return result
 
 
