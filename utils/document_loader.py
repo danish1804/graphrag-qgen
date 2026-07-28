@@ -4,6 +4,7 @@
 # ============================================================
 
 import os
+import re
 from pathlib import Path
 from typing import List, Dict
 
@@ -16,6 +17,71 @@ try:
     from utils.config import cfg      # when imported by main_gr.py
 except ImportError:
     from config import cfg            # when run directly
+
+
+# ── Boilerplate / quality filter (chunk cleanup at ingestion) ──
+# Drops front-matter, TOC, copyright and reference-list chunks so
+# they never become graph nodes (the "According to Lutz (1993)..."
+# problem). Reference lists are caught by citation density, not just
+# the word "bibliography". Revived from the orphaned is_quality_chunk.
+NOISE_PATTERNS = [
+    r"all rights reserved",
+    r"copyright\b|©\s*\d{4}",
+    r"isbn[\s:\-]",
+    r"library of congress",
+    r"this page (intentionally )?(left|is) blank",
+    r"table of contents",
+    r"\bpreface\b",
+    r"acknowledge?ments?",
+    r"\bbibliography\b",
+    r"^\s*references\s*$",
+    r"creative commons|\bcc by\b",
+    r"cambridge university press|mcgraw[\s\-]?hill|pearson|wiley|"
+    r"springer|addison[\s\-]?wesley|prentice hall|morgan kaufmann|"
+    r"o'reilly|elsevier|kluwer",
+    r"^\s*chapter\s+\d+\s*$",
+]
+
+SIGNAL_KEYWORDS = [
+    "algorithm", "function", "system", "data", "process", "model",
+    "network", "memory", "database", "query", "design", "method",
+    "structure", "value", "define", "example", "compute", "operation",
+    "table", "class", "object", "layer", "protocol", "architecture",
+    "instruction", "cache", "transaction", "learning", "training",
+    "address", "schedule", "thread", "index", "key", "join",
+]
+
+_YEAR_CITE = re.compile(r"\(\s*(?:19|20)\d{2}[a-z]?\s*\)")
+
+
+def is_quality_chunk(text: str) -> bool:
+    """True if a chunk is worth indexing (not boilerplate, front-matter
+    or a reference list). Applied at ingestion so noise never becomes a
+    graph node."""
+    text_lower = text.lower().strip()
+
+    if len(text) < 200:                          # fragments / headers
+        return False
+    for pattern in NOISE_PATTERNS:               # copyright/TOC/preface
+        if re.search(pattern, text_lower):
+            return False
+    if len(_YEAR_CITE.findall(text)) >= 3:       # dense year citations
+        return False                             #  -> reference list
+    if text_lower.count("et al") >= 2:
+        return False
+    alpha_ratio = sum(c.isalpha() for c in text) / max(len(text), 1)
+    if alpha_ratio < 0.4:                        # number/symbol dumps
+        return False
+    words = text.split()
+    if len(words) < 10:
+        return False
+    cap_ratio = sum(1 for w in words if w.isupper() and len(w) > 1) \
+        / max(len(words), 1)
+    if cap_ratio > 0.4:                          # title page / all-caps
+        return False
+
+    has_signal = any(kw in text_lower for kw in SIGNAL_KEYWORDS)
+    return has_signal or len(text) > 400
 
 
 def load_pdf(file_path: str) -> str:
@@ -80,7 +146,8 @@ def chunk_text(text: str, chunk_size: int = 500,
     return chunks
 
 def load_and_chunk(file_path: str, chunk_size: int = None,
-                   chunk_overlap: int = None) -> Dict:
+                   chunk_overlap: int = None,
+                   filter_boilerplate: bool = True) -> Dict:
     """
     Full pipeline: load a document and return chunks with metadata.
 
@@ -106,6 +173,12 @@ def load_and_chunk(file_path: str, chunk_size: int = None,
     chunks = chunk_text(raw_text, chunk_size, chunk_overlap)
     print(f"  Created {len(chunks)} chunks "
           f"(size={chunk_size}, overlap={chunk_overlap})")
+
+    if filter_boilerplate:
+        kept = [c for c in chunks if is_quality_chunk(c)]
+        print(f"  Quality filter: kept {len(kept)}/{len(chunks)} "
+              f"({len(chunks) - len(kept)} boilerplate dropped)")
+        chunks = kept
 
     return {
         "file_name": path.name,
