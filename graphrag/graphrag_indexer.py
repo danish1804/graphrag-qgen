@@ -62,6 +62,46 @@ MIN_ENTITY_LEN   = 3
 MAX_ENTITY_LEN   = 60
 
 
+# ── Synonym / alias canonicalisation (GraphRAG 1.1) ──────────
+# Collapse abbreviation/expansion pairs to ONE canonical node so a
+# concept's co-occurrence signal isn't split across e.g. "sql" and
+# "structured query language". Keys are the normalised, de-hyphenated
+# expansion; values are the canonical abbreviation (kept >= 3 chars so
+# they survive is_valid_entity). Applied at the end of normalize_entity,
+# so the two-pass builder unions their chunks/edges automatically.
+# Global map is safe because graphs are built per-domain; extend as needed.
+ALIAS_MAP = {
+    # deep learning
+    "convolutional neural network":          "cnn",
+    "recurrent neural network":              "rnn",
+    "multilayer perceptron":                 "mlp",
+    "generative adversarial network":        "gan",
+    "long short term memory":                "lstm",
+    "rectified linear unit":                 "relu",
+    # database
+    "structured query language":             "sql",
+    "database management system":            "dbms",
+    "relational database management system": "rdbms",
+    "database administrator":                "dba",
+    "entity relationship diagram":           "erd",
+    # operating systems / computer architecture
+    "central processing unit":               "cpu",
+    "graphics processing unit":              "gpu",
+    "translation lookaside buffer":          "tlb",
+    "memory management unit":                "mmu",
+    "instruction set architecture":          "isa",
+    "inter process communication":           "ipc",
+    # software engineering
+    "object oriented programming":           "oop",
+    "application programming interface":     "api",
+    "test driven development":               "tdd",
+}
+
+# Canonical abbreviations, used to collapse their plurals ("cnns" ->
+# "cnn", "apis" -> "api") that the length-guarded singulariser skips.
+ABBREV_SET = set(ALIAS_MAP.values())
+
+
 # Step 1: Entity normalisation
 def normalize_entity(text: str) -> str:
     """
@@ -90,6 +130,12 @@ def normalize_entity(text: str) -> str:
     # Collapse multiple spaces
     text = re.sub(r"\s+", " ", text)
 
+    # Normalise hyphens to spaces: fixes line-break artifacts
+    # ("attribute-", "-join", "sql-") and lets hyphenated expansions
+    # ("long short-term memory") match the alias map below.
+    text = re.sub(r"[-–—]", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+
     # Simple singularisation - handles most IT terms
     if text.endswith("ies"):
         text = text[:-3] + "y"       # "trees" -> nope, "communities" -> "community"
@@ -100,7 +146,17 @@ def normalize_entity(text: str) -> str:
           and len(text) > 4):
         text = text[:-1]             # "networks" -> "network"
 
-    return text.strip()
+    text = text.strip()
+
+    # Collapse known abbreviation/expansion pairs to one canonical
+    # node (GraphRAG 1.1), e.g. "structured query language" -> "sql".
+    if text in ALIAS_MAP:
+        return ALIAS_MAP[text]
+    # Plural of a known abbreviation the length-guarded singulariser
+    # above misses, e.g. "cnns" -> "cnn", "apis" -> "api".
+    if text.endswith("s") and text[:-1] in ABBREV_SET:
+        return text[:-1]
+    return text
 
 def is_valid_entity(text: str) -> bool:
     """
