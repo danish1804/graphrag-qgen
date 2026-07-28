@@ -38,7 +38,8 @@ def retrieve_graph_context(
         top_k_nodes: int = 3,
         neighbour_depth: int = 1,
         max_context_chunks: int = 6,
-        seed_ratio: float = 0.6
+        seed_ratio: float = 0.6,
+        rerank: bool = True
 ) -> dict:
     """
     GraphRAG retrieval — find seed nodes then traverse graph.
@@ -206,6 +207,26 @@ def retrieve_graph_context(
                         if c.get("type") == "seed"]
     neighbour_chunks = [c for c in chunk_pool
                         if c.get("type") == "neighbour"]
+
+    # --- Query-time re-ranking (Bani review, Problem B / option 3) ---
+    # Order chunks by cosine similarity to the LIVE query instead of
+    # graph-insertion order, so off-topic neighbours are pushed below
+    # query-relevant chunks before the budget is applied. Preserves the
+    # seed vs neighbour split (seed_ratio) — we only re-order WITHIN each
+    # group. Set rerank=False to reproduce the old behaviour.
+    if rerank and chunk_pool:
+        chunk_embs = embedder.model.encode(
+            [c["text"] for c in chunk_pool],
+            normalize_embeddings=True,
+            batch_size=32
+        ).astype(np.float32)
+        qv = query_embedding[0]  # already L2-normalised
+        for c, emb in zip(chunk_pool, chunk_embs):
+            c["relevance"] = float(np.dot(emb, qv))  # cosine similarity
+        seed_chunks.sort(key=lambda c: c.get("relevance", 0.0),
+                         reverse=True)
+        neighbour_chunks.sort(key=lambda c: c.get("relevance", 0.0),
+                              reverse=True)
 
     # Calculate slot allocation from config seed_ratio
     seed_limit      = max(1, round(max_context_chunks * seed_ratio))
