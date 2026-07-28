@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 from typing import List, Dict
 
-from pypdf import PdfReader
+import pdfplumber
 from pptx import Presentation
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
@@ -19,13 +19,21 @@ except ImportError:
 
 
 def load_pdf(file_path: str) -> str:
-    """Extract raw text from a PDF file."""
-    reader = PdfReader(file_path)
+    """Extract raw text from a PDF file.
+
+    Uses pdfplumber (MIT) instead of pypdf. The pinned pypdf 4.3.1
+    mis-decoded kerning on these textbooks ("conne cts", "wi th",
+    "da ta type"), which polluted the graph and depressed retrieval
+    scores. pdfplumber extracts the same (non-scanned) PDFs cleanly.
+    PyMuPDF/fitz is equally clean but AGPL, so avoided for
+    commercial/IP reasons.
+    """
     text = ""
-    for page in reader.pages:
-        page_text = page.extract_text()
-        if page_text:
-            text += page_text + "\n"
+    with pdfplumber.open(file_path) as pdf:
+        for page in pdf.pages:
+            page_text = page.extract_text()
+            if page_text:
+                text += page_text + "\n"
     return text.strip()
 
 def load_pptx(file_path: str) -> str:

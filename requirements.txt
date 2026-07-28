@@ -87,6 +87,7 @@ pydantic_core==2.27.2
 Pygments==2.19.2
 pyparsing==3.3.2
 pypdf==4.3.1
+pdfplumber==0.11.9
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
 python-multipart==0.0.20
