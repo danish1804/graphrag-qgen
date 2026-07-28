@@ -32,10 +32,9 @@ BASE_DIR  = os.getenv(
 )
 INDEX_DIR = os.path.join(BASE_DIR, "indexes")
 
-# Bani's example was an SQL/join query -> use the database domain.
-# If your index file is named differently, change this to match
+# If index file is named differently, change this to match
 # (see the files in indexes/, e.g. graphrag_deep_Learning.*).
-DOMAIN = "graphrag_deep_Learning"
+DOMAIN  = "graphrag_database"
 
 # Hard params reproduce the 7-chunk, depth-2 scenario from the review.
 PARAMS = dict(
@@ -45,8 +44,7 @@ PARAMS = dict(
     seed_ratio=0.4,
 )
 
-QUERIES = ["How does parameter sharing reduce the number of parameters in CNNs?"]
-
+QUERIES = ["Explain how an inner join combines rows from two tables in SQL"]
 
 def show(tag, res):
     print(f"\n--- {tag} ---")
