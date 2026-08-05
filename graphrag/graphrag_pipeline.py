@@ -43,6 +43,7 @@ class GraphRAGPipeline:
         self._models_loaded = False
         self.judge_model      = None
         self.judge_tokenizer  = None
+        self.judge            = None    # pluggable Judge (task 21)
         self._judge_loaded    = False
 
     # ----------------------------------------------------------
@@ -78,25 +79,21 @@ class GraphRAGPipeline:
 
     def load_judge_model(self):
         """
-        Reuse generator model as judge.
-        Saves VRAM — runs on GPU.
+        Build the judge from config (task 21). The default backend
+        'reuse_generator' reuses the generator (self-bias); set
+        judge.backend to 'api' (independent endpoint) or 'local'
+        in config.yml to use an independent judge.
         """
         if self._judge_loaded:
             return
 
-        if self._models_loaded and self.model is not None:
-            print("[GraphRAGPipeline] Reusing Qwen 7B "
-                "as judge — GPU ready.")
-            self.judge_model     = self.model
-            self.judge_tokenizer = self.tokenizer
-            self._judge_loaded   = True
-            print("[GraphRAGPipeline] Judge ready on GPU.")
-        else:
-            from utils.judge import load_judge
-            self.judge_model, self.judge_tokenizer, device = \
-                load_judge()
-            self._judge_loaded = True
-            print(f"[GraphRAGPipeline] Judge ready on {device}.")
+        from utils.judge import build_judge
+        self.judge = build_judge(cfg, self.model, self.tokenizer)
+        # kept for backward compatibility with any direct references
+        self.judge_model     = getattr(self.judge, "model", None)
+        self.judge_tokenizer = getattr(self.judge, "tokenizer", None)
+        self._judge_loaded   = True
+        print(f"[GraphRAGPipeline] Judge ready: {self.judge.name}")
 
     # ----------------------------------------------------------
     # STAGE 2 — Ingest a document
@@ -575,8 +572,7 @@ class GraphRAGPipeline:
                     answer             = sample_answer,
                     difficulty         = difficulty,
                     question_type      = question_type,
-                    judge_model        = self.judge_model,
-                    judge_tokenizer    = self.judge_tokenizer,
+                    judge              = self.judge,
                     save               = True
                 )
 
@@ -782,8 +778,7 @@ class GraphRAGPipeline:
                     answer             = sample_answer,
                     difficulty         = difficulty,
                     question_type      = question_type,
-                    judge_model        = self.judge_model,
-                    judge_tokenizer    = self.judge_tokenizer,
+                    judge              = self.judge,
                     save               = True
                 )
 

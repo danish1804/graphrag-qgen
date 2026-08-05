@@ -44,27 +44,21 @@ def _has_scores(parsed: dict) -> bool:
             and any(isinstance(v, int) for v in parsed["scores"].values()))
 
 
-def _judge_and_parse(judge_model, judge_tokenizer, system_prompt,
-                     user_prompt, keys) -> dict:
+def _judge_and_parse(judge, system_prompt, user_prompt, keys) -> dict:
     """Run a judge rubric and parse its scores. The judge sometimes
     writes its reasoning but omits the SCORES JSON (seen most on the
     retrieval rubric), which yields an empty score set. If that happens,
     retry once forcing a JSON-only reply so we still get scores.
     """
     parsed = parse_judge_output(
-        run_judge(judge_model, judge_tokenizer, system_prompt, user_prompt),
-        keys,
-    )
+        judge.generate(system_prompt, user_prompt), keys)
     if _has_scores(parsed):
         return parsed
 
     template = "{" + ", ".join(f'"{k}": <1-5>' for k in keys) + "}"
     strict = (user_prompt + "\n\nOutput ONLY the scores as a single-line "
               "JSON object, nothing else, in exactly this form:\n" + template)
-    retry = parse_judge_output(
-        run_judge(judge_model, judge_tokenizer, system_prompt, strict),
-        keys,
-    )
+    retry = parse_judge_output(judge.generate(system_prompt, strict), keys)
     if _has_scores(retry):
         retry["parse_notes"] += " (recovered via JSON-only retry)"
         return retry
@@ -83,8 +77,9 @@ def evaluate_generation(
     question_type:      str = "conceptual",
     save:               bool = True,
     extra_metadata:     dict = None,
-    judge_model=None,          # ← NEW
-    judge_tokenizer=None,      # ← NEW
+    judge=None,                # pluggable Judge object (task 21)
+    judge_model=None,          # legacy: local model + tokenizer
+    judge_tokenizer=None,
 ) -> dict:
     """
     Run all three LLM-as-Judge evaluations on outputs produced
@@ -104,17 +99,25 @@ def evaluate_generation(
     started = datetime.now().isoformat(timespec="seconds")
     context = "\n\n".join(retrieved_chunks)
 
-    # Decide whether to manage judge lifecycle internally
-    owns_judge = (judge_model is None or judge_tokenizer is None)
-    if owns_judge:
-        judge_model, judge_tokenizer, _ = load_judge()
+    # Resolve the judge. Prefer an explicit Judge object; fall back to
+    # a (model, tokenizer) pair; otherwise build one from config and
+    # manage its lifecycle here.
+    from utils.judge import LocalJudge, build_judge
+    owns_judge = False
+    if judge is None:
+        if judge_model is not None and judge_tokenizer is not None:
+            judge = LocalJudge(judge_model, judge_tokenizer,
+                               name=cfg["judge"].get("judge_name", "local"))
+        else:
+            owns_judge = True
+            judge = build_judge(cfg)
 
     try:
         print(f"\n[Evaluator] JUDGING — {eval_id}")
 
         # 1. Retrieval quality
         retrieval_eval = _judge_and_parse(
-            judge_model, judge_tokenizer,
+            judge,
             RETRIEVAL_SYSTEM_PROMPT,
             build_retrieval_prompt(learning_objective, retrieved_chunks),
             RETRIEVAL_SCORE_KEYS,
@@ -124,7 +127,7 @@ def evaluate_generation(
 
         # 2. Question quality
         question_eval = _judge_and_parse(
-            judge_model, judge_tokenizer,
+            judge,
             QUESTION_SYSTEM_PROMPT,
             build_question_prompt(context, question, difficulty, question_type),
             QUESTION_SCORE_KEYS,
@@ -134,7 +137,7 @@ def evaluate_generation(
 
         # 3. Answer quality
         answer_eval = _judge_and_parse(
-            judge_model, judge_tokenizer,
+            judge,
             ANSWER_SYSTEM_PROMPT,
             build_answer_prompt(context, question, answer),
             ANSWER_SCORE_KEYS,
@@ -143,15 +146,16 @@ def evaluate_generation(
               f"(overall={answer_eval['overall']})")
 
     finally:
-        if owns_judge:
-            unload_model(judge_model, judge_tokenizer)
+        if owns_judge and getattr(judge, "model", None) is not None:
+            unload_model(judge.model, judge.tokenizer)
 
     # ---- Build record (same as before) ----
     record = {
         "eval_id":         eval_id,
         "timestamp":       started,
         "generator_model": cfg["model"]["llm_name"],
-        "judge_model":     cfg["judge"]["judge_name"],
+        "judge_model":     judge.name,
+        "judge_backend":   judge.backend,
         "prompt_version":  PROMPT_VERSION,
         "rubric_version":  RUBRIC_VERSION,
         "input": {

@@ -183,6 +183,16 @@ judge:
   eval_output_dir: "outputs/evaluations"
   score_threshold: 3.5      # below this -> regenerate
   max_regenerations: 2      # max retry attempts
+  # ── Judge backend (task 21) ──────────────────────────────
+  # reuse_generator : same model grades itself (self-bias; current default)
+  # local           : a separate local model (judge_name above)
+  # api             : independent OpenAI-compatible endpoint (recommended)
+  backend: reuse_generator
+  api:
+    base_url: ""              # OpenAI-compatible endpoint (Azure / vLLM / HPC)
+    model: "gpt-5-nano"       # independent, non-Qwen judge
+    api_key_env: "JUDGE_API_KEY"   # env var holding the API key
+    name: ""                  # optional label for provenance
 
 # ── API Server ─────────────────────────────────────────────
 server:

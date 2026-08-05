@@ -164,6 +164,108 @@ def run_judge(
 
 
 # ============================================================
+# Pluggable judge abstraction (task 21)
+# Decouples evaluation from the generator so an INDEPENDENT judge
+# (a separate local model, or an OpenAI-compatible API such as
+# Azure GPT-5-nano or an HPC-hosted vLLM endpoint) can be dropped in
+# via config, instead of the generator grading its own output.
+# ============================================================
+class Judge:
+    """Uniform judge interface: generate(system, user) -> raw text.
+    `name` is recorded in the evaluation provenance."""
+    def __init__(self, name: str, backend: str):
+        self.name = name
+        self.backend = backend
+
+    def generate(self, system_prompt: str, user_prompt: str) -> str:
+        raise NotImplementedError
+
+
+class LocalJudge(Judge):
+    """Judge backed by a local HuggingFace model + tokenizer."""
+    def __init__(self, model, tokenizer, name: str, backend: str = "local"):
+        super().__init__(name, backend)
+        self.model = model
+        self.tokenizer = tokenizer
+
+    def generate(self, system_prompt: str, user_prompt: str) -> str:
+        return run_judge(self.model, self.tokenizer,
+                         system_prompt, user_prompt)
+
+
+class APIJudge(Judge):
+    """Independent judge behind an OpenAI-compatible chat API
+    (Azure OpenAI, OpenAI, or a self-hosted vLLM/HPC endpoint).
+    Endpoint/model come from config.judge.api; the key from an env var."""
+    def __init__(self, model: str, base_url: str, api_key: str,
+                 name: str = None, temperature: float = 0.1,
+                 max_tokens: int = 512):
+        super().__init__(name or f"api:{model}", "api")
+        self.model = model
+        self.base_url = base_url
+        self.api_key = api_key
+        self.temperature = temperature
+        self.max_tokens = max_tokens
+        self._client = None
+
+    def _client_lazy(self):
+        if self._client is None:
+            from openai import OpenAI          # imported lazily
+            self._client = OpenAI(base_url=self.base_url or None,
+                                  api_key=self.api_key or "not-needed")
+        return self._client
+
+    def generate(self, system_prompt: str, user_prompt: str) -> str:
+        resp = self._client_lazy().chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user",   "content": user_prompt},
+            ],
+            temperature=self.temperature,
+            max_tokens=self.max_tokens,
+        )
+        return (resp.choices[0].message.content or "").strip()
+
+
+def build_judge(cfg, generator_model=None, generator_tokenizer=None) -> Judge:
+    """Construct the judge from config.judge.backend:
+        api              -> independent OpenAI-compatible endpoint
+        local            -> a separate local model (config judge_name)
+        reuse_generator  -> the generator itself (self-bias; dev only)
+    """
+    jcfg    = cfg.get("judge", {})
+    backend = jcfg.get("backend", "reuse_generator")
+
+    if backend == "api":
+        api = jcfg.get("api", {})
+        key = os.getenv(api.get("api_key_env", "JUDGE_API_KEY"), "")
+        print(f"[Judge] Backend=api  model={api.get('model')} (independent)")
+        return APIJudge(
+            model=api.get("model", "gpt-5-nano"),
+            base_url=api.get("base_url", ""),
+            api_key=key,
+            name=api.get("name") or f"api:{api.get('model','')}",
+            temperature=jcfg.get("temperature", 0.1),
+            max_tokens=jcfg.get("max_new_tokens", 512),
+        )
+
+    if backend == "local":
+        print("[Judge] Backend=local (separate model)")
+        model, tokenizer, _ = load_judge()
+        return LocalJudge(model, tokenizer,
+                          name=jcfg.get("judge_name", "local-judge"))
+
+    # default — reuse the generator (SAME model grades itself)
+    print("[Judge] Backend=reuse_generator — WARNING: self-bias, the "
+          "generator is grading its own output.")
+    gname = cfg.get("model", {}).get("llm_name", "generator")
+    return LocalJudge(generator_model, generator_tokenizer,
+                      name=f"{gname} (reused as judge)",
+                      backend="reuse_generator")
+
+
+# ============================================================
 # TEST — same as before
 # ============================================================
 if __name__ == "__main__":
