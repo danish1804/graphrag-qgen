@@ -39,6 +39,38 @@ from evaluation.storage import (
 )
 
 
+def _has_scores(parsed: dict) -> bool:
+    return (parsed["parse_status"] != "failed"
+            and any(isinstance(v, int) for v in parsed["scores"].values()))
+
+
+def _judge_and_parse(judge_model, judge_tokenizer, system_prompt,
+                     user_prompt, keys) -> dict:
+    """Run a judge rubric and parse its scores. The judge sometimes
+    writes its reasoning but omits the SCORES JSON (seen most on the
+    retrieval rubric), which yields an empty score set. If that happens,
+    retry once forcing a JSON-only reply so we still get scores.
+    """
+    parsed = parse_judge_output(
+        run_judge(judge_model, judge_tokenizer, system_prompt, user_prompt),
+        keys,
+    )
+    if _has_scores(parsed):
+        return parsed
+
+    template = "{" + ", ".join(f'"{k}": <1-5>' for k in keys) + "}"
+    strict = (user_prompt + "\n\nOutput ONLY the scores as a single-line "
+              "JSON object, nothing else, in exactly this form:\n" + template)
+    retry = parse_judge_output(
+        run_judge(judge_model, judge_tokenizer, system_prompt, strict),
+        keys,
+    )
+    if _has_scores(retry):
+        retry["parse_notes"] += " (recovered via JSON-only retry)"
+        return retry
+    return parsed
+
+
 # ============================================================
 # Public entrypoint — evaluate already-generated outputs
 # ============================================================
@@ -81,32 +113,32 @@ def evaluate_generation(
         print(f"\n[Evaluator] JUDGING — {eval_id}")
 
         # 1. Retrieval quality
-        raw = run_judge(
+        retrieval_eval = _judge_and_parse(
             judge_model, judge_tokenizer,
             RETRIEVAL_SYSTEM_PROMPT,
             build_retrieval_prompt(learning_objective, retrieved_chunks),
+            RETRIEVAL_SCORE_KEYS,
         )
-        retrieval_eval = parse_judge_output(raw, RETRIEVAL_SCORE_KEYS)
         print(f"[Evaluator] Retrieval: {retrieval_eval['scores']} "
               f"(overall={retrieval_eval['overall']})")
 
         # 2. Question quality
-        raw = run_judge(
+        question_eval = _judge_and_parse(
             judge_model, judge_tokenizer,
             QUESTION_SYSTEM_PROMPT,
             build_question_prompt(context, question, difficulty, question_type),
+            QUESTION_SCORE_KEYS,
         )
-        question_eval = parse_judge_output(raw, QUESTION_SCORE_KEYS)
         print(f"[Evaluator] Question:  {question_eval['scores']} "
               f"(overall={question_eval['overall']})")
 
         # 3. Answer quality
-        raw = run_judge(
+        answer_eval = _judge_and_parse(
             judge_model, judge_tokenizer,
             ANSWER_SYSTEM_PROMPT,
             build_answer_prompt(context, question, answer),
+            ANSWER_SCORE_KEYS,
         )
-        answer_eval = parse_judge_output(raw, ANSWER_SCORE_KEYS)
         print(f"[Evaluator] Answer:    {answer_eval['scores']} "
               f"(overall={answer_eval['overall']})")
 
