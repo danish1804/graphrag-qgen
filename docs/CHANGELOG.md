@@ -201,7 +201,7 @@ retrieval scored ~3.3 while the question/answer self-scored 5.0/5.0.
 | Item | Status |
 |---|---|
 | **Independent judge model** (Azure GPT-5-nano vs HPC-hosted) | plumbing done; pending team decision, then flip `judge.backend: api` |
-| **Entity-extraction quality** — junk concepts (section nums, author initials, split words, generic phrases) | logged; index-time, needs a re-index; strengthen `is_valid_entity` |
+| **Entity-extraction quality** — junk concepts | **implemented (task 22)** — rejects section-numbers/headings/initials + recovers soft-hyphen splits; ~690 junk nodes cleared on next re-index; cov@node impact pending measurement. Generic-phrase concepts + short surnames remain (deeper fix: prefer NER over noun-chunks) |
 | **1.2 community detection** (Louvain/Leiden) | deferred; optional given cov@text 0.91 |
 | **AI-solvability harness** (independent model answers question-only) | not built; judge-free; Samar-requested |
 | **Human calibration set** (validate any judge vs humans) | not built; none currently exists |
@@ -234,6 +234,11 @@ python graphrag/graphrag_domain_indexer.py --domain all
 
 *(append newest at top)*
 
+- **2026-08 — Entity quality (task 22):** hardened the indexer to reject
+  section-number/heading/citation-initial junk concepts and recover soft-hyphen
+  split words. Preview: **690 junk nodes** would be removed on re-index
+  (database 360, CA 149, OS 94, DL 58, SE 29). Expected to lift cov@node
+  (previously flat) — number pending the re-index + measurement.
 - **2026-08 — Evaluation & judge:** fixed retrieval-judge empty scores (JSON-only retry);
   made the judge pluggable/config-driven and fixed judge_model provenance; added the
   label-free retrieval health check; logged the entity-quality lever.

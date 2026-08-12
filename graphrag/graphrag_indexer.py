@@ -118,6 +118,12 @@ def normalize_entity(text: str) -> str:
     """
     text = text.lower().strip()
 
+    # Rejoin soft-hyphen line breaks and strip zero-width chars
+    # ("example" hyphenated across a line becomes one word), a PDF
+    # extraction artifact that was polluting graph concepts.
+    text = re.sub("­\\s*", "", text)                 # soft hyphen
+    text = re.sub("[​‌‍﻿]", "", text)  # zero-width
+
     # Remove possessives
     text = re.sub(r"'s$", "", text)
 
@@ -272,6 +278,19 @@ def is_valid_entity(text: str) -> bool:
     if re.search(r'\b\w{1,4}\s+\w{1,3}\b', text) and len(text.split()) == 2:
         if all(len(w) <= 4 for w in text.split()):
             return False
+
+    # ── Entity-quality hardening (task 22) ──────────────────
+    # Multi-level section numbers / numbered headings that slip past
+    # the single-dot rule above ("8.3.1 motivation", "section 14.1.3").
+    if re.match(r'^\d+(\.\d+)+', text):
+        return False
+    if re.match(r'^(section|chapter|figure|table|part|page|appendix)'
+                r'\s+\d+(\.\d+)*', text, re.IGNORECASE):
+        return False
+    # Author-initial fragments from citations ("j. h", "a b").
+    _toks = [t for t in re.split(r'[.\s]+', text) if t]
+    if len(_toks) >= 2 and all(len(t) == 1 and t.isalpha() for t in _toks):
+        return False
     
     return True
     
