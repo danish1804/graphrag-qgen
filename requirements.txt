@@ -130,6 +130,11 @@ tzdata==2025.3
 uritemplate==4.2.0
 urllib3==2.6.3
 uvicorn==0.34.0
+# openai SDK — used only by utils.judge.APIJudge to reach an
+# OpenAI-compatible endpoint (Anthropic's compat layer, Azure, or a
+# self-hosted vLLM server). Imported lazily, so it is not needed unless
+# judge.backend is set to 'api'.
+openai>=1.40.0
 wasabi==1.1.3
 weasel==1.0.0
 wrapt==2.1.2

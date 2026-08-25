@@ -47,6 +47,9 @@ def main():
                     help="score only the first N (0 = all)")
     ap.add_argument("--skip-answer", action="store_true",
                     help="score questions only, halving API calls")
+    ap.add_argument("--retry-failed", action="store_true",
+                    help="re-score ONLY items whose previous parse failed, "
+                         "instead of the whole corpus")
     args = ap.parse_args()
     out = args.out or args.corpus
 
@@ -75,7 +78,36 @@ def main():
 
     payload = json.load(open(args.corpus, encoding="utf-8"))
     qs = payload.get("questions", [])
-    todo = qs[:args.limit] if args.limit else qs
+    if args.retry_failed:
+        todo = [q for q in qs
+                if (q.get("independent_judge") or {}).get("question_overall")
+                is None]
+        if not todo:
+            print("no failed items to retry.")
+            return
+    else:
+        todo = qs[:args.limit] if args.limit else qs
+
+
+    # JSON-only retry. The judge sometimes writes its reasoning and omits
+    # the SCORES block entirely, which parses to nothing - 6 of 60 on the
+    # first full run. The same failure was fixed in evaluation/evaluator.py
+    # with a forcing prompt; this mirrors it.
+    JSON_ONLY = ("\n\nIMPORTANT: Respond with ONLY the SCORES JSON block. "
+                 "No reasoning, no preamble, no commentary. Output exactly:\n"
+                 "SCORES: {\"key\": n, ...}")
+
+    def judged(system, user, keys, parse):
+        raw = judge.generate(system, user)
+        out = parse(raw, keys)
+        if not out.get("scores") or out.get("parse_status") == "failed":
+            raw = judge.generate(system, user + JSON_ONLY)
+            retry = parse(raw, keys)
+            if retry.get("scores"):
+                retry["parse_status"] = (retry.get("parse_status") or "ok")
+                retry["retried"] = True
+                return retry
+        return out
 
     judge = build_judge(cfg)
     print(f"judge: {judge.name!r}  backend={judge.backend!r}")
@@ -93,12 +125,12 @@ def main():
             context = "(retrieval context unavailable for this item)"
 
         try:
-            raw = judge.generate(
+            parsed = judged(
                 QUESTION_SYSTEM_PROMPT,
                 build_question_prompt(context, q.get("question", ""),
                                       q.get("difficulty", "medium"),
-                                      q.get("question_type", "conceptual")))
-            parsed = parse_judge_output(raw, QUESTION_SCORE_KEYS)
+                                      q.get("question_type", "conceptual")),
+                QUESTION_SCORE_KEYS, parse_judge_output)
             entry = {
                 "question_overall": parsed.get("overall"),
                 "question_scores": parsed.get("scores"),
@@ -106,11 +138,11 @@ def main():
             }
 
             if not args.skip_answer and q.get("sample_answer"):
-                raw_a = judge.generate(
+                pa = judged(
                     ANSWER_SYSTEM_PROMPT,
                     build_answer_prompt(context, q.get("question", ""),
-                                        q.get("sample_answer", "")))
-                pa = parse_judge_output(raw_a, ANSWER_SCORE_KEYS)
+                                        q.get("sample_answer", "")),
+                    ANSWER_SCORE_KEYS, parse_judge_output)
                 entry["answer_overall"] = pa.get("overall")
                 entry["answer_scores"] = pa.get("scores")
 

@@ -187,7 +187,7 @@ judge:
   # reuse_generator : same model grades itself (self-bias; current default)
   # local           : a separate local model (judge_name above)
   # api             : independent OpenAI-compatible endpoint (recommended)
-  backend: reuse_generator
+  backend: api
   # ── Independent judge endpoints ──────────────────────────
   # Set backend: api and fill ONE of the presets below.
   # The judge must NOT be Qwen - that is the whole point.
@@ -209,11 +209,17 @@ judge:
   #   model:    "meta-llama/Llama-3.1-8B-Instruct"
   #   api_version: ""
   api:
-    base_url: ""              # OpenAI-compatible endpoint
-    model: "anthropic/claude-3.5-haiku"
+    # Anthropic direct, via their OpenAI-SDK compatibility endpoint.
+    # Chosen over OpenRouter because it puts one fewer party in front of
+    # corpus-derived content, which is the binding NDA constraint.
+    # Trailing slash matters.
+    base_url: "https://api.anthropic.com/v1/"
+    # Current Haiku. The older "claude-3-5-haiku-20241022" now returns
+    # 404 not_found_error - that generation has been superseded.
+    model: "claude-haiku-4-5-20251001"
     api_key_env: "JUDGE_API_KEY"   # env var holding the API key
     api_version: ""           # set ONLY for Azure OpenAI
-    name: ""                  # optional label for provenance
+    name: "claude-haiku-4.5 (direct)"   # recorded in eval provenance
 
 # ── API Server ─────────────────────────────────────────────
 server:

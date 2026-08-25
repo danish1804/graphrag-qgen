@@ -238,6 +238,7 @@ retrieval scored ~3.3 while the question/answer self-scored 5.0/5.0.
 |---|---|
 | **Independent judge model** (Azure GPT-5-nano vs HPC-hosted) | plumbing done; pending team decision, then flip `judge.backend: api` |
 | **Entity-extraction quality** — junk concepts | **implemented (task 22)** — rejects section-numbers/headings/initials + recovers soft-hyphen splits; ~690 junk nodes cleared on next re-index; cov@node impact pending measurement. Generic-phrase concepts + short surnames remain (deeper fix: prefer NER over noun-chunks) |
+| **Multi-domain context reconstruction** | **deferred by decision (25 Aug)**. 4 of 60 corpus items have no retrieval context, so their faithfulness scored 1/5 against an empty string and their overall is depressed (~0.8 pts). Not a design constraint — `generate_with_multi_domain` is fully deterministic and replayable — but reimplementing the merge risks a context that differs from the one actually used, which would be silently wrong. Exclude these 4 from faithfulness/overall comparisons; their clarity, difficulty and type scores remain valid. Cause is fixed forward: the generator now stores `retrieved_chunks` at generation time |
 | **1.2 community detection** (Louvain/Leiden) | deferred; optional given cov@text 0.91 |
 | **AI-solvability harness** (independent model answers question-only) | not built; judge-free; Samar-requested |
 | **Human calibration set** (validate any judge vs humans) | not built; none currently exists |
@@ -270,6 +271,116 @@ python graphrag/graphrag_domain_indexer.py --domain all
 
 *(append newest at top)*
 
+- **2026-08-25 — Independent judge live + flaw-detection finding (task 33):**
+
+  **The self-bias is fixed and measurable.** `judge.backend: api` now points at
+  `claude-haiku-4-5-20251001` through Anthropic's OpenAI-compatibility endpoint. Chosen
+  over OpenRouter because it puts one fewer party in front of corpus-derived content,
+  which is the binding NDA constraint. Scored all 60 corpus questions (12 min, ~$0.30).
+
+  | Judge | question_overall distribution |
+  |---|---|
+  | Qwen 2.5 7B (self, `reuse_generator`) | 5.0 on essentially every item |
+  | Claude Haiku 4.5 (independent) | **min 2.20, median 4.40, max 5.00** |
+
+  A real distribution replaces a flat one. This is our own evidence for the self-bias
+  problem, not a citation.
+
+  ---
+
+  **FINDING — rule-based and LLM flaw detection are complementary, not redundant.**
+
+  We now have two independent ways to detect a question that refers to material the
+  student cannot see: deterministic regex rules (`scripts/inspect_corpus.py`) and the
+  LLM judge. They disagree **in both directions**.
+
+  | Question | Rules | Judge |
+  |---|---|---|
+  | Q004 *"What does **Chapter 15 of the course material** focus on regarding query processing?"* | caught | **missed** — scored 4.6/5 |
+  | Q047 *"...according to **the course material**..."* | caught | **missed** — scored 5.0/5 |
+  | Q021 *"What are the two main types of testing **mentioned in the context**...?"* | **missed** | caught — scored 2.2, lowest in corpus |
+
+  **Aggregate: flagged items averaged 4.25, clean items 4.28 (n=4 / n=50).**
+  Statistically indistinguishable — the judge showed **no ability to detect
+  self-containment as a category**. It marked Q021 down for vagueness, not because it
+  recognised the flaw class.
+
+  **Why the judge misses these.** The judge is shown the retrieval context, and those
+  chunks genuinely do discuss the referenced chapter. From the judge's position the
+  question looks faithful to its source. What it fails to adopt is the *student's*
+  position, where no chapter 15 is available. The flaw is invisible to a grader who can
+  see the source material.
+
+  **Why the rules miss others.** Rules have perfect recall on patterns enumerated in
+  advance and zero recall on anything else. "mentioned in the context" simply was not in
+  the pattern list.
+
+  **This independently reproduces Moore et al. (2023)**, who found rule-based detection
+  caught **91%** of human-annotated item-writing flaws against GPT-4's **79%** on 200
+  questions across four subjects (*Assessing the quality of multiple-choice questions
+  using GPT-4 and rule-based methods*, EC-TEL 2023,
+  <https://arxiv.org/abs/2307.08161>). Our result arrives at the same conclusion from
+  our own corpus and adds the reverse case they do not emphasise: the LLM catches
+  semantic context-dependence that rules cannot express.
+
+  **Consequence for the pipeline:** keep BOTH stages. Deterministic rules for structural
+  flaws (cheap, auditable, exhaustive on known patterns); LLM judge for semantic quality
+  (generalises to the unanticipated). This confirms the design already recorded in
+  `EVALUATION_ROADMAP.md` §4.2 — now on evidence rather than on citation alone.
+  The feedback loop is cheap: when the judge finds a flaw class the rules missed, encode
+  it as a rule. "mentioned in the context" has been added, verified not to false-positive
+  on legitimate uses such as "context switch overhead".
+
+  ---
+
+  **Final scored distribution (all 60):** min 2.2, median 4.3, mean 4.24, max 5.0,
+  SD 0.59. Buckets: 2 items below 3.0, 12 in the 3s, 27 at 4.0–4.4, 8 at 4.5–4.9,
+  11 at 5.0. Answer scores: 57/60, mean 4.05.
+
+  **Parse failures.** 6 of 60 items (10%) initially returned no scores because the judge
+  wrote its reasoning and omitted the SCORES block. Added the JSON-only forcing retry to
+  `judge_corpus.py` (mirroring the fix in `evaluation/evaluator.py`) plus `--retry-failed`
+  to re-score only affected items. All 6 recovered.
+  *Correction to the obvious inference:* the `retried` flag shows the JSON-only path was
+  **never exercised** — the second attempt succeeded on its first call. So these failures
+  are **stochastic**, not a systematic prompt defect; the judge occasionally runs long and
+  drops the block. The retry remains as insurance but is not what recovered them.
+
+  **Confound to note before quoting per-domain means.** multi_domain scores lowest (3.55,
+  n=4), but those are precisely the 4 items whose retrieval context could not be
+  reconstructed — the judge was shown *"(retrieval context unavailable)"* and scored
+  faithfulness against nothing. Their score reflects missing context, not question
+  quality. Excluding them the domain range is 4.07–4.40 (deep_learning 4.07,
+  software_engineering 4.20, operating_systems 4.30, database 4.36,
+  computer_architecture 4.40), which is tight enough that no domain stands out as weak
+  on question quality.
+
+- **2026-08-25 — Routing accuracy measured (task 32):** ran
+  `scripts/test_routing_accuracy.py` over all 75 single-domain learning outcomes.
+  **Top-1 accuracy 90.7% (68/75)**; 17.3% fall below the 0.05 margin and are forced to
+  multi-domain; median margin 0.114.
+  **This corrects an earlier over-generalisation.** The 50% domain drift seen while
+  generating the corpus was mostly the `difficulty.hard.multi_domain` rule firing *by
+  design*, not mass misrouting. The router is largely sound.
+  **The failure is confined to one domain:** deep_learning 100%, software_engineering
+  100%, database 93%, computer_architecture 93%, **operating_systems 67% correct with
+  53% ambiguous**. Five of the seven misroutes are OS topics absorbed by database
+  (deadlock detection, banker's algorithm, file systems, page replacement) or by
+  deep_learning (memory management), several on margins under 0.02.
+  **Diagnosis from the raw scores:** every other domain scores 0.63–0.78 on its own
+  topics; operating_systems reaches only 0.55–0.62. Its keyword list is dominated by
+  terms generic across computer science (memory, cache, buffer, disk, page, process,
+  thread, socket), so its profile centroid sits in shared "systems" space beside
+  database and architecture. Deep learning, with distinctive vocabulary, routes
+  perfectly.
+  **Two of the seven are arguably label errors rather than routing errors** ("Two phase
+  locking and deadlock prevention" is filed under database but spans both; floating
+  point spans architecture and deep learning), so true accuracy is nearer 93%.
+  **Planned fix (post-demo, config only):** enrich the operating_systems profile with
+  distinctive terms (banker's algorithm, page replacement, LRU, context switch, kernel
+  mode, critical section, mutual exclusion, TLB, inode) and remove "deadlock" from the
+  database keyword list. Deliberately NOT changed before 1 September — integration is
+  being designed against current behaviour.
 - **2026-08-23 — Independent judge wiring + missing retrieval context (task 31):**
   **Gap found before it mattered:** the corpus did not store `retrieved_chunks`, and the
   question rubric needs that context to judge faithfulness and groundedness — the very

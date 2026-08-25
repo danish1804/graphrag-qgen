@@ -195,6 +195,24 @@ four subjects, a rule-based method detected **91%** of human-annotated item-writ
 versus GPT-4's **79%** [S, Moore et al., 2023]. Rules are cheaper, auditable, and better.
 Reserve the LLM for genuinely semantic judgements.
 
+> **CONFIRMED ON OUR OWN DATA (25 Aug 2026).** Running both methods over the 60-item
+> corpus reproduced this independently. The LLM judge scored dangling-reference items at
+> **4.25** and clean items at **4.28** — no discrimination whatsoever on self-containment
+> as a category. It rated *"What does Chapter 15 of the course material focus on?"* at
+> 4.6/5, because the judge is shown the retrieval context and the question does look
+> faithful to it; the flaw is only visible from the student's position, which the judge
+> does not occupy.
+>
+> **The reverse also holds, which Moore et al. do not emphasise.** The judge caught
+> *"...the two main types of testing mentioned in the context..."* at 2.2 (lowest in the
+> corpus) while our rules missed it, because that phrasing was not in the pattern list.
+> Rules have perfect recall on enumerated patterns and zero on everything else; the judge
+> generalises but overlooks what is plainly in the text.
+>
+> **Therefore: run both stages, and treat the pairing as a feedback loop.** When the judge
+> surfaces a flaw class the rules missed, encode it as a rule — thereafter it is detected
+> for free. See CHANGELOG, 2026-08-25.
+
 Checks to implement (from Haladyna's 31 validated guidelines [S, Haladyna et al., 2002]):
 negation in the stem, "all/none of the above", implausible or non-functioning distractors,
 heterogeneous option lengths (longest-option cue), grammatical cueing, absolute terms

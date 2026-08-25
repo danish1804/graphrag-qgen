@@ -52,6 +52,14 @@ DANGLING_PATTERNS = [
      r'(code\s*snippet|snippet|code|program|listing|pseudocode)\b',
      "refers to unseen code"),
     (r'\b(the\s+)?course\s+material\b', "refers to 'the course material'"),
+    # Found by the independent judge, not by these rules: it scored
+    # "...the two main types of testing mentioned in the context..." at
+    # 2.2, the lowest in the corpus, while the rules passed it. The two
+    # methods catch different flaw classes and are worth running together.
+    (r'\b(mentioned|described|discussed|listed|shown|stated|referred\s+to)\s+'
+     r'in\s+the\s+(context|material|source|content)\b',
+     "refers to unseen context"),
+    (r'\bin\s+the\s+(given|provided|above)\s+context\b', "unseen context"),
     (r'\baccording\s+to\s+the\s+(course|material|textbook|book|notes|lecture)\b',
      "according to the textbook/notes"),
     (r'\bwhat\s+does\s+(chapter|section|unit|module)\s', "question about the book"),

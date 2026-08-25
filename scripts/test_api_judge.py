@@ -22,18 +22,38 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from utils.config import cfg
-from utils.judge import build_judge
-from evaluation.rubrics import (
-    RETRIEVAL_SYSTEM_PROMPT, build_retrieval_prompt, RETRIEVAL_SCORE_KEYS)
-from evaluation.storage import parse_judge_output
+# utils.judge and evaluation.* are imported inside main(), AFTER the
+# config guards, so a misconfiguration reports in a second instead of
+# waiting for torch and transformers to load first.
 
 
 def main():
     backend = cfg.get("judge", {}).get("backend")
     print(f"configured judge.backend = {backend!r}")
     if backend != "api":
-        print("NOTE: set 'judge.backend: api' in config.yml to test the "
-              "external judge (currently it will build the local backend).")
+        # Previously this only warned and then crashed inside
+        # run_judge with 'NoneType has no attribute apply_chat_template',
+        # because reuse_generator expects a Qwen model this script never
+        # loads. Fail clearly instead.
+        sys.exit("[!] This script tests the EXTERNAL judge, but "
+                 f"judge.backend is {backend!r}.\n"
+                 "    Set 'judge.backend: api' in config.yml, fill in "
+                 "judge.api.base_url, and set the API key env var.")
+    api = cfg["judge"]["api"]
+    if not api.get("base_url"):
+        sys.exit("[!] judge.api.base_url is empty - fill in one of the "
+                 "presets in config.yml.")
+    key_env = api.get("api_key_env", "JUDGE_API_KEY")
+    if not os.getenv(key_env):
+        sys.exit(f"[!] environment variable {key_env} is not set.\n"
+                 f"    Windows:  set {key_env}=your-key-here")
+    print(f"endpoint = {api['base_url']}   model = {api['model']}")
+
+    from utils.judge import build_judge
+    from evaluation.rubrics import (
+        RETRIEVAL_SYSTEM_PROMPT, build_retrieval_prompt,
+        RETRIEVAL_SCORE_KEYS)
+    from evaluation.storage import parse_judge_output
 
     judge = build_judge(cfg)
     print(f"judge name = {judge.name!r} | backend = {judge.backend!r}")
