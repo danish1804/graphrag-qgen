@@ -58,3 +58,27 @@ finetune_data/vocab.json
 finetune_data/bulk_cache.jsonl
 finetune_data/question_lora/
 *.safetensors
+outputs/evaluations/
+*.zip
+
+# Personal notes / deliverables — never push to shared repo
+_notes/
+
+# Word / Excel lock files (created while a document is open)
+~$*
+
+# Stray adapter archives that have no extension, so *.zip misses them
+ziyr4iwB
+
+# Smoke-test scratch output
+outputs/_smoke.json
+
+# ── NDA: corpus-derived content ─────────────────────────────
+# Generated questions are derived from the client corpus and must not
+# reach the personal `origin` remote. Both remotes share a branch, so a
+# push sends every commit on it — the only safe control is to keep this
+# content out of the branch entirely. Deliver it to EdGenAI by email or
+# through a branch pushed solely to `industry`.
+outputs/question_corpus.json
+outputs/question_corpus.xlsx
+docs/human_evaluation_ROUND1.xlsx
