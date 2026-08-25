@@ -103,6 +103,36 @@ ABBREV_SET = set(ALIAS_MAP.values())
 
 
 # Step 1: Entity normalisation
+# ── Technical numeric concepts (task 24) ────────────────────
+# Several long-standing filters reject anything beginning with a digit.
+# They were written for deep-learning slide artifacts ("2d convolution",
+# "1motivation") but silently removed a whole class of real IT concepts
+# from every graph: normalisation forms, bit widths, processor families,
+# and n-phase/n-tier architecture names. This allowlist re-admits them.
+TECHNICAL_NUMERIC = [
+    r'^\d+\s*nf$',                       # 1nf, 2nf, 3nf, 4nf, 5nf, 6nf
+    r'^\d+\s*(gl|fa|des|d\s*array)$',    # 4gl, 2fa, 3des
+    r'^\d+[\s-]*bit\b',                  # 32 bit, 64-bit, 128 bit key
+    r'^\d+[\s-]*byte\b',
+    r'^\d+[\s-]*(phase|tier|way|stage|level|pass|layer|core|address)\b',
+    r'^\d{3,5}\s+\w',                    # "8086 processor", "80386 cpu"
+    r'^\d+[\s-]*(kb|mb|gb|tb|hz|khz|mhz|ghz)\b',
+]
+# Deliberately NOT included: bare processor numbers such as "80386" or
+# "68000" on their own. A bare 3-5 digit token is indistinguishable from
+# a page or line number, and admitting it would reintroduce exactly the
+# noise these filters exist to remove. Such terms are still captured in
+# their qualified form ("80386 processor", "intel 80386").
+_TECHNICAL_NUMERIC_RE = [re.compile(p, re.IGNORECASE) for p in TECHNICAL_NUMERIC]
+
+
+def _is_technical_numeric(text: str) -> bool:
+    """True when a numeric-prefixed string is a genuine IT concept
+    rather than a slide-outline or figure-numbering artifact."""
+    t = text.lower().strip()
+    return any(p.match(t) for p in _TECHNICAL_NUMERIC_RE)
+
+
 def normalize_entity(text: str) -> str:
     """
     Normalise entity text for heuristic entity resolution.
@@ -181,9 +211,14 @@ def is_valid_entity(text: str) -> bool:
     if re.match(r"^\d+(\.\d+)?$", text):
         return False
 
+    # Genuine numeric-prefixed IT concepts (2nf, 32 bit, 8086 processor)
+    # bypass the digit-based artifact rules below, which would otherwise
+    # reject every entity that begins with a digit. See task 24.
+    _technical = _is_technical_numeric(text)
+
     # Reject if more than 40% digits (page refs, equation labels)
     digit_ratio = sum(c.isdigit() for c in text) / len(text)
-    if digit_ratio > 0.4:
+    if digit_ratio > 0.4 and not _technical:
         return False
 
     # Reject typical academic PDF artifacts
@@ -200,7 +235,7 @@ def is_valid_entity(text: str) -> bool:
         r"^[a-z]\d+[a-z]?\d*$",      # "w11", "h2", "p3"
         r"^\d+[a-z]+\d*$",            # "2d", "3x3"
     ]
-    for pattern in artifact_patterns:
+    for pattern in artifact_patterns if not _technical else []:
         if re.match(pattern, text, re.IGNORECASE):
             return False
 
@@ -211,7 +246,18 @@ def is_valid_entity(text: str) -> bool:
 
     # Reject strings starting with numbers followed by letters
     # Catches "22d", "1motivation", "3basic"
-    if re.match(r'^\d+[a-z]', text, re.IGNORECASE):
+    #
+    # EXCEPTION (task 24): a large class of genuine IT concepts is
+    # numeric-prefixed - normalisation forms (2nf, 3nf, bcnf), bit
+    # widths (32 bit, 64-bit), processor families (8086, 80386),
+    # protocol/architecture names (3 tier, 2 phase commit, 5 stage
+    # pipeline). Both this rule and the `^\d+[a-z\s]` rule below were
+    # written for deep-learning slide artifacts ("2d convolution",
+    # "1motivation") and silently removed every one of those concepts
+    # from all five graphs. See TECHNICAL_NUMERIC above.
+    if _is_technical_numeric(text):
+        pass                      # keep - genuine numeric-prefixed concept
+    elif re.match(r'^\d+[a-z]', text, re.IGNORECASE):
         return False
 
     # Reject very generic single words that aren't IT concepts
@@ -232,11 +278,11 @@ def is_valid_entity(text: str) -> bool:
     if text in generic_words:
         return False
 
-    # Reject if contains " - " (slide artifact like "locally - sparse")
-    # We keep the individual parts but not the joined form
-    # Actually keep "locally - sparse connectivity" as it's meaningful
-    # Just reject slide outline patterns: "1motivation", "2d convolution"
-    if re.match(r'^\d+[a-z\s]', text):
+    # Reject slide outline patterns: "1motivation", "2d convolution".
+    # Same technical-numeric exception as above (task 24) - without it
+    # this rule rejects every entity that merely begins with a digit,
+    # including "32 bit", "8086 processor", "3 tier architecture".
+    if not _is_technical_numeric(text) and re.match(r'^\d+[a-z\s]', text):
         return False
 
     # Reject diagram node labels — repeated single letters with numbers
@@ -275,7 +321,10 @@ def is_valid_entity(text: str) -> bool:
     # Reject words with spaces inserted mid-token
     # Catches "becaus e", "your s ystem", "sys- tem"
     # Pattern: short word fragment + space + short fragment
-    if re.search(r'\b\w{1,4}\s+\w{1,3}\b', text) and len(text.split()) == 2:
+    # ("32 bit" and "raid 5" are exempted - see _is_technical_numeric)
+    if (not _is_technical_numeric(text)
+            and re.search(r'\b\w{1,4}\s+\w{1,3}\b', text)
+            and len(text.split()) == 2):
         if all(len(w) <= 4 for w in text.split()):
             return False
 
@@ -284,8 +333,15 @@ def is_valid_entity(text: str) -> bool:
     # the single-dot rule above ("8.3.1 motivation", "section 14.1.3").
     if re.match(r'^\d+(\.\d+)+', text):
         return False
+    # Numbered or lettered cross-references: "section 14.1", "table 5",
+    # "figure a.3", "section g.6", "appendix m historical perspective".
+    # The label must be followed by a number, a single-letter index, or
+    # a roman numeral, so real concepts that merely start with one of
+    # these words ("page fault rate", "table schema") are unaffected.
     if re.match(r'^(section|chapter|figure|table|part|page|appendix)'
-                r'\s+\d+(\.\d+)*', text, re.IGNORECASE):
+                r'\s+(\d+(\.\d+)*|[a-z]\.?\d|[a-z]\s+[a-z]{4,}|'
+                r'(one|two|three|four|five|six|seven|eight|nine|ten)\b)',
+                text, re.IGNORECASE):
         return False
     # Author-initial fragments from citations ("j. h", "a b").
     _toks = [t for t in re.split(r'[.\s]+', text) if t]
