@@ -13,10 +13,46 @@
 
 | Metric | Before | After | Notes |
 |---|---|---|---|
-| Retrieval **content coverage** (cov@text, judge-free) | **0.81** | **0.91** | primary result; measured on the 1.5 gold set |
+| Retrieval **content coverage** (cov@text, judge-free) | **0.81** | **0.91** | measured on the 1.5 gold set with the *original* matcher |
 | Retrieval **node coverage** (cov@node) | 0.51 | 0.51 | flat — graphs got leaner after cleanup (see §5) |
 | Mean chunk relevance | ~0.75 | ~0.75 | retrieved text stays on-topic |
 | Database graph **cross-source edges** | 289,405 | **32,508** | ~90% was a duplicate document inflating the count |
+
+### Current measured state (2026-08-20, post entity fixes + corrected matcher)
+
+⚠️ **Do not compare the cov@text figures below against the 0.81 → 0.91 row above.**
+Those were measured with a hyphen-blind text matcher that reported false misses on
+hyphenated compounds. The 0.81 → 0.91 pair is internally valid (same matcher both
+sides); the numbers below use the corrected matcher and are a different ruler. A clean
+apples-to-apples restatement would require re-running the pre-batch index in
+`indexes/_backup_prebatch` with the current matcher — not yet done.
+
+| Domain | cov@node | cov@text | mean_rel | hit@k | p@k | mrr | ndcg |
+|---|---|---|---|---|---|---|---|
+| database | **0.80** | **1.00** | 0.763 | 1.00 | 0.81 | 1.00 | 0.98 |
+| deep_learning | 0.50 | **1.00** | 0.749 | 1.00 | 0.81 | 1.00 | 1.00 |
+| software_engineering | 0.38 | **1.00** | 0.719 | 1.00 | **0.48** | **0.83** | 0.86 |
+| operating_systems | 0.48 | 0.92 | 0.750 | 1.00 | **0.90** | 1.00 | 0.99 |
+| computer_architecture | 0.57 | **0.78** | 0.777 | 1.00 | 0.71 | 1.00 | 0.97 |
+| **OVERALL** | **0.55** | **0.94** | 0.752 | 1.00 | 0.74 | 0.97 | 0.96 |
+
+Graph sizes after the entity fixes (tasks 22 + 24): database 20,518 nodes,
+computer_architecture 8,716, operating_systems 7,318, software_engineering 6,824,
+deep_learning 4,259 — a net **+1,040 nodes**, the technical-numeric additions
+outweighing the junk removals.
+
+**Reading this table:**
+
+- **cov@node (0.55) is now the bottleneck**, not cov@text (0.94). The right content
+  reaches the prompt; it is the graph representation that lags.
+- **software_engineering**: perfect cov@text but the worst p@k (0.48) and the only
+  sub-1.00 mrr (0.83). The concepts are retrieved but heavily diluted with noise —
+  a precision problem, not a coverage problem.
+- **computer_architecture**: the only real *coverage* gap (cov@text 0.78). Genuine
+  misses are "throughput" and "stage" (pipelining) and "register" (memory hierarchy).
+- **operating_systems** has the cleanest retrieval of any domain (p@k 0.90).
+- **hit@k is 1.00 everywhere and carries no signal** at k=7 on this gold set. Report
+  p@k and mrr instead; keep hit@k only as a floor check.
 
 Headline: retrieval **content quality improved measurably (81 → 91%)** and the graph
 statistics are now **honest** (the duplicate that fabricated most cross-source edges is
@@ -234,6 +270,163 @@ python graphrag/graphrag_domain_indexer.py --domain all
 
 *(append newest at top)*
 
+- **2026-08-23 — Independent judge wiring + missing retrieval context (task 31):**
+  **Gap found before it mattered:** the corpus did not store `retrieved_chunks`, and the
+  question rubric needs that context to judge faithfulness and groundedness — the very
+  dimension we most want to compare against the human raters. Regenerating would have
+  been the obvious fix and the wrong one, since generation samples at temperature 0.7 and
+  the new questions would no longer match the rater workbook. Retrieval is deterministic,
+  so `scripts/attach_context.py` reconstructs the context for the existing corpus without
+  altering a single question (multi-domain items excepted — their merge path cannot be
+  faithfully replayed, reported rather than hidden). `build_question_corpus.py` now stores
+  the context for future runs.
+  Added `scripts/judge_corpus.py`: scores the **frozen** corpus with the independent
+  judge, writing to `independent_judge`. `build_eval_sheet.py` prefers those scores over
+  anything the generation pipeline produced. Fail-fast guards refuse to run under
+  `reuse_generator`, with an empty `base_url`, or without the API key set — verified.
+  **One variable at a time:** the existing 1–5 rubrics are used unchanged. The roadmap
+  prefers 1–10, but changing scale and judge model together would confound them — any
+  score shift could be either cause. Swap the model, measure, then revisit the scale.
+  `config.yml` now carries presets for OpenRouter, Azure OpenAI and self-hosted vLLM.
+- **2026-08-23 — Blinding leak fixed + full-corpus Excel export (task 30):**
+  **The rater workbook was showing the system's intended difficulty.** The Questions
+  tab carried a `difficulty_target` column while raters were being asked to judge
+  difficulty independently — the exact anchoring the hidden `System_Key` tab exists to
+  prevent. Removed from the Questions tab; `system_difficulty` is now written into
+  System_Key as a literal rather than as a formula referencing the visible sheet.
+  Third defect found in this workbook by inspecting the artefact rather than trusting
+  the build. Added `scripts/corpus_to_excel.py`, an **internal** Excel view of the full
+  corpus (answers, intended difficulty, pair ids, routing provenance, judge scores,
+  self-containment flag) with a red warning on the Summary sheet — this file must never
+  be sent to raters.
+- **2026-08-23 — Two workbook defects fixed before distribution (task 29):**
+  **(1) Broken join.** `build_eval_sheet.py` re-shuffled the corpus and assigned fresh
+  sequential ids, so workbook Q001 was a different question from corpus Q001 — **0 of
+  60 ids matched**. Rater scores could not have been joined back to the corpus, and
+  therefore never compared against judge scores: the calibration analysis would have
+  been impossible after the labelling effort was already spent. The corpus is already
+  shuffled by the generator, so the sheet now preserves corpus ids and order. Verified
+  **60/60 match**. **(2) Pre-filled example row.** The template ships one worked
+  example so the expected format is clear; the builder did not clear it, so Rater_1
+  opened the live sheet with Q001 already scored (`medium, 4, 5, 4, 4`) — confusing and
+  anchoring. Rater tabs are now cleared on build. Both found by inspecting the artefact
+  rather than trusting that it built correctly.
+- **2026-08-23 — Golden corpus generated (60 items) + routing finding (task 28):**
+  First full corpus generated with the judge disabled. **Routing drift forced a design
+  change.** With auto-routing, 30 of 60 items (50%) left their requested domain and
+  the realised distribution was operating_systems **4** and computer_architecture **1**
+  against a plan of 16 and 7 — the two focus domains gutted, and per-domain reporting
+  impossible. Root cause: each domain profile is a *single* embedded string of a
+  description plus ~30 keywords, producing a diluted centroid; all five domain scores
+  cluster in 0.4–0.7 with margins of 0.02–0.05, so `routing.margin_threshold: 0.05`
+  fires constantly. Overlapping keywords make it worse ("deadlock" and "b-tree" sit in
+  the *database* list, pulling OS topics across). Observed misroutes include "Banker
+  algorithm" → database, "Page replacement algorithms" → database, "File systems and
+  directory structures" → database, "Memory management and segmentation" →
+  deep_learning. Added `scripts/test_routing_accuracy.py` to quantify this against the
+  labelled LO bank. **Fix applied to the corpus, not the router:** `--force-domain`
+  pins single-domain items (multi-domain items still auto-route), because the corpus
+  measures *question* quality and routing is now measured separately. Routing drift
+  fell 50% → **7%** and the realised distribution matched the plan exactly (database 16,
+  operating_systems 16, computer_architecture 7). **The router itself is deliberately
+  unchanged** — Samar is designing integration against current behaviour and changing
+  it days before 1 September is not worth the risk. Deferred to post-demo; the likely
+  fix is scoring per keyword and taking the max rather than embedding one centroid.
+  **Corpus quality:** 60 questions, 0 failures, no duplicates, length 68–1179 chars.
+  **8% (5/60) are not self-contained** — two cite chapter/section numbers, three say
+  "the course material". Worst case is Q004, *"What does Chapter 15 of the course
+  material focus on regarding query processing?"*, which asks about the textbook rather
+  than the subject. All are left in deliberately, per the range-restriction argument.
+- **2026-08-23 — Corpus inspection + dangling-reference detector (task 27):**
+  `scripts/inspect_corpus.py` prints each generated question with its routing
+  provenance and flags **non-self-contained questions** using deterministic rules
+  (figure/table/section references, "as shown above", "refer to the passage").
+  Found immediately in a 4-item smoke test: one question asked the student to
+  "describe how it relates to the addressing concerns shown in **Figure 2.10**" —
+  unanswerable, since the student cannot see the figure. The generator had copied a
+  cross-reference out of the source chunk. Rules rather than an LLM, per Moore et al.
+  (EC-TEL 2023), where rule-based detection caught 91% of item-writing flaws against
+  GPT-4's 79%. **The detector measures, it does not filter:** flawed items must remain
+  in the calibration corpus or the judge's ability to detect flaws cannot be assessed.
+  Also reports **routing drift** — the smoke test had 2 of 4 items auto-route away
+  from their requested domain, so realised per-domain counts differ from the sampling
+  plan. Open item: `routing.margin_threshold` (0.05) sent "Context switching and
+  process states" to multi-domain on a 0.046 margin, pulling in database and computer
+  architecture context for a clean OS topic. Question quality was unaffected in that
+  instance; monitor across the full corpus before changing the threshold.
+- **2026-08-20 — Question corpus generator (task 26):** `scripts/build_question_corpus.py`
+  builds the golden-corpus question set; `scripts/build_eval_sheet.py` now accepts
+  `--corpus`. Three deliberate design decisions, each with a reason:
+  **(1) The judge is OFF by default.** The pipeline normally regenerates any question
+  scoring below `judge.score_threshold`. For a calibration corpus that is wrong: if the
+  judge filters out its own low-scoring questions before humans see them, the human
+  labels cover only questions the judge already liked, so the judge's ability to detect
+  *bad* questions can never be measured. That is range restriction and it inflates any
+  judge-human agreement statistic. Judge scores are instead computed afterwards over the
+  fixed corpus, which also means changing judge later does not invalidate a single label.
+  **(2) Difficulty and question_type are assigned by the script, not read from the LO
+  bank.** In `dataset/inputs/input_questions.csv` the two are perfectly confounded —
+  every `easy` is `recall`, every `medium` is `conceptual`, every `hard` is
+  `application` — so a rater marking difficulty could equally be responding to question
+  format, making the difficulty analysis uninterpretable. The script now crosses them:
+  all 12 difficulty x type cells are populated with 4–7 items each. This also fixes a
+  latent crash: 15 rows carry `difficulty='case_study'`, which is not a valid difficulty
+  and would raise `KeyError` in the pipeline.
+  **(3) Matched pairs.** `--pairs N` regenerates N learning outcomes at the opposite
+  difficulty, giving a within-item control on whether the difficulty setting changes the
+  output at all — evidence a between-item comparison cannot provide. Recorded as
+  `pair_id` in the corpus JSON.
+  Default selection (60 items): database 16, operating_systems 16, computer_architecture 7,
+  software_engineering 8, deep_learning 5, multi_domain 8; easy 24 / medium 16 / hard 20.
+  Seeded (42) and shuffled so raters cannot infer grouping.
+- **2026-08-20 — Metric corrections found by running the harness (task 25b):** two
+  defects in the new metrics, both found and fixed before any number was reported
+  externally. **(1) Saturated rank metrics.** The first relevance proxy counted a
+  chunk as relevant if it contained *any* gold concept; since gold sets include
+  common words ("table", "row", "memory"), nearly every chunk qualified and hit@k,
+  mrr and ndcg all pinned at 1.00 — measuring nothing. Now a chunk must contain an
+  anchor (multi-word) concept or ≥2 distinct concepts; p@k moved 0.97 → 0.74 and
+  gained a real range (0.14–1.00). Gold items may now carry an optional
+  `anchor_entities` field. **(2) Hyphen-blind text matching.** `_in_text` normalised
+  whitespace but not hyphenation, so "white-box testing" in the source never matched
+  "white box testing" in the gold set. This produced false misses on every hyphenated
+  compound and understated software_engineering in particular: after the fix its
+  cov@text went 0.92 → **1.00** and p@k 0.38 → 0.48; overall cov@text 0.92 → 0.94.
+  *Consequence for reporting:* the earlier 0.81 → 0.91 pair was measured with the
+  hyphen-blind matcher, so current figures are not directly comparable to it. See the
+  warning above the current-state table in §1.
+- **2026-08 — Rank/set retrieval metrics (task 25):** added **hit@k, p@k, mrr and
+  ndcg@k** to `evaluation/retrieval_eval.py` alongside the existing cov@node /
+  cov@text / mean_rel, addressing Bani's request for hit rate and NDCG. Relevance
+  is a documented **proxy** (a chunk counts as relevant if it contains at least one
+  expected gold concept) because we hold no per-chunk qrels, so the figures are
+  directional and not comparable with published IR benchmarks. **cov@text remains
+  the headline** — it is already concept-level recall into the prompt; true
+  chunk-level Recall@k would require full qrels. **ndcg@k is secondary only**: our
+  labels are binary and all k chunks are concatenated into a single prompt, so its
+  log position discount is mis-specified (BEIR's stated rationale for nDCG is graded
+  judgements, which we do not have). p@k is the decision-relevant addition, since
+  near-miss distractors measurably degrade generation (Cuconasu et al., SIGIR 2024).
+  Metric maths verified against hand-computed cases.
+- **2026-08 — Numeric-prefixed technical concepts (task 24):** two long-standing
+  filters (`^\d+[a-z]`, `^\d+[a-z\s]`) plus the 40%-digit-ratio rule and the
+  `^\d+[a-z]+\d*$` artifact pattern were rejecting **every entity beginning with a
+  digit**. They were written for deep-learning slide artifacts ("2d convolution",
+  "1motivation") but also removed an entire class of genuine IT concepts from all
+  five graphs: normalisation forms (**1nf–4nf**), bit widths ("32 bit",
+  "128 bit key"), processor families ("8086 processor") and n-phase/n-tier/n-stage
+  architecture terms. Added a `TECHNICAL_NUMERIC` allowlist and `_is_technical_numeric()`
+  guard; also tightened the cross-reference rule so lettered references
+  ("figure a.3", "section g.6", "appendix m …") are now caught, which previously
+  slipped through. Bare processor numbers ("80386") remain rejected by design —
+  indistinguishable from page numbers. Test: `scripts/test_technical_numeric.py`
+  (45 cases, all passing); no regression on the task-22 artifact cases.
+  **Effect unmeasured until re-index** — expected to help database (normalisation
+  forms) and computer architecture (bit widths) most, deep_learning least.
+  *Process note:* first reported as a regression in the task-22 regex. That was
+  wrong — the task-22 pattern was correct and I had mis-transcribed it from a
+  grep display that stripped the escaped dot. The real defect was in older,
+  unrelated rules. Corrected before any change was made on that basis.
 - **2026-08 — Entity quality (task 22):** hardened the indexer to reject
   section-number/heading/citation-initial junk concepts and recover soft-hyphen
   split words. Preview: **690 junk nodes** would be removed on re-index
