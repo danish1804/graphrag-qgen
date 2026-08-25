@@ -18,6 +18,37 @@
 | Mean chunk relevance | ~0.75 | ~0.75 | retrieved text stays on-topic |
 | Database graph **cross-source edges** | 289,405 | **32,508** | ~90% was a duplicate document inflating the count |
 
+### Like-for-like before/after (2026-08-25) — single ruler, both sides
+
+Run by scoring the archived pre-batch indexes (`indexes/_backup_prebatch`) with the
+**current** harness via `retrieval_eval.py --index-dir`. Same gold set, same metrics,
+same text matcher; only the indexes differ. This supersedes the earlier 0.81 → 0.91
+figure, which was measured with the older hyphen-blind matcher and is therefore not
+comparable to anything measured since.
+
+| Metric | Before | After | Change |
+|---|---|---|---|
+| **cov@text** (content coverage) | **0.82** | **0.94** | **+0.12** |
+| cov@node (graph coverage) | 0.51 | 0.55 | +0.04 |
+| mean_rel | 0.751 | 0.752 | flat |
+| hit@k | 0.93 | 1.00 | +0.07 |
+| mrr | 0.93 | 0.97 | +0.04 |
+| ndcg | 0.91 | 0.96 | +0.05 |
+| **p@k** (precision) | **0.79** | **0.74** | **−0.05** |
+
+**Largest win — computer architecture.** On the old index the pipelining query failed
+outright: cov@text 0.20, hit@k 0, mrr 0, ndcg 0, with "pipelining", "cpu", "throughput"
+and "stage" all absent from the retrieved text. It now returns usable context (0.60), and
+the domain went 0.57 → 0.78. Separately, "inner join" was missing from retrieval for the
+inner-join query on the old index and is now present.
+
+**Regression — software engineering precision.** p@k 0.71 → **0.48**, mrr 1.00 → 0.83,
+cov@node 0.47 → 0.38, while its cov@text rose 0.85 → 1.00. The domain now finds all the
+right content but surrounds it with more noise. This is the SE precision problem noted in
+the current-state table, and the comparison confirms it is an effect of these changes
+rather than pre-existing. Investigate before the fine-tuning phase, since noisier context
+degrades generation (Cuconasu et al., SIGIR 2024).
+
 ### Current measured state (2026-08-20, post entity fixes + corrected matcher)
 
 ⚠️ **Do not compare the cov@text figures below against the 0.81 → 0.91 row above.**

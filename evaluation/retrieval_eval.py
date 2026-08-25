@@ -175,16 +175,27 @@ def ndcg_at_k(rel):
     return dcg / idcg if idcg > 0 else 0.0
 
 
-def evaluate(gold_path=GOLD_PATH):
+def evaluate(gold_path=GOLD_PATH, index_dir=None):
+    """Score retrieval against the gold set.
+
+    `index_dir` lets the SAME harness run against a different set of
+    indexes - e.g. indexes/_backup_prebatch - so a before/after
+    comparison uses one ruler on both sides. Comparing a number measured
+    with an older harness against one measured with the current harness
+    is not a valid comparison, however tempting.
+    """
     gold = json.load(open(gold_path, encoding="utf-8"))
     print("Loading embedder...")
     embedder = Embedder()
+    if index_dir:
+        print(f"INDEX DIR OVERRIDE: {index_dir}")
 
     per_domain = {}
     for domain, items in gold.items():
         if domain.startswith("_"):
             continue
-        index, graph, nodes = load_domain_graph(domain)
+        index, graph, nodes = (load_domain_graph(domain, index_dir=index_dir)
+                               if index_dir else load_domain_graph(domain))
         rows = []
         print(f"\n===== {domain} =====")
         for it in items:
@@ -257,4 +268,12 @@ def evaluate(gold_path=GOLD_PATH):
 
 
 if __name__ == "__main__":
-    evaluate()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--index-dir", default=None,
+                    help="evaluate a different index set, e.g. "
+                         "indexes/_backup_prebatch, for a like-for-like "
+                         "before/after on the current metrics")
+    ap.add_argument("--gold", default=GOLD_PATH)
+    a = ap.parse_args()
+    evaluate(gold_path=a.gold, index_dir=a.index_dir)
