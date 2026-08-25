@@ -188,10 +188,31 @@ judge:
   # local           : a separate local model (judge_name above)
   # api             : independent OpenAI-compatible endpoint (recommended)
   backend: reuse_generator
+  # ── Independent judge endpoints ──────────────────────────
+  # Set backend: api and fill ONE of the presets below.
+  # The judge must NOT be Qwen - that is the whole point.
+  #
+  # OpenRouter (recommended: one key, many models, no code change)
+  #   base_url: "https://openrouter.ai/api/v1"
+  #   model:    "anthropic/claude-3.5-haiku"   (or openai/gpt-4o-mini)
+  #   api_version: ""
+  #   NOTE: in OpenRouter's privacy settings, disable providers that
+  #   train on prompts before sending anything corpus-derived.
+  #
+  # Azure OpenAI (sponsorship-covered)
+  #   base_url: "https://<resource>.openai.azure.com"
+  #   model:    "gpt-5-nano"          (your DEPLOYMENT name)
+  #   api_version: "2024-10-21"       (required for Azure)
+  #
+  # Self-hosted vLLM on HPC (no data leaves the institution)
+  #   base_url: "http://<host>:8000/v1"
+  #   model:    "meta-llama/Llama-3.1-8B-Instruct"
+  #   api_version: ""
   api:
-    base_url: ""              # OpenAI-compatible endpoint (Azure / vLLM / HPC)
-    model: "gpt-5-nano"       # independent, non-Qwen judge
+    base_url: ""              # OpenAI-compatible endpoint
+    model: "anthropic/claude-3.5-haiku"
     api_key_env: "JUDGE_API_KEY"   # env var holding the API key
+    api_version: ""           # set ONLY for Azure OpenAI
     name: ""                  # optional label for provenance
 
 # ── API Server ─────────────────────────────────────────────
