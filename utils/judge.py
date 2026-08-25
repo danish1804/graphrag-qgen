@@ -199,32 +199,45 @@ class APIJudge(Judge):
     Endpoint/model come from config.judge.api; the key from an env var."""
     def __init__(self, model: str, base_url: str, api_key: str,
                  name: str = None, temperature: float = 0.1,
-                 max_tokens: int = 512):
+                 max_tokens: int = 512, api_version: str = None):
         super().__init__(name or f"api:{model}", "api")
         self.model = model
         self.base_url = base_url
         self.api_key = api_key
         self.temperature = temperature
         self.max_tokens = max_tokens
+        self.api_version = api_version     # set -> Azure OpenAI
         self._client = None
 
     def _client_lazy(self):
         if self._client is None:
-            from openai import OpenAI          # imported lazily
-            self._client = OpenAI(base_url=self.base_url or None,
-                                  api_key=self.api_key or "not-needed")
+            if self.api_version:           # Azure OpenAI endpoint
+                from openai import AzureOpenAI
+                self._client = AzureOpenAI(
+                    azure_endpoint=self.base_url,
+                    api_key=self.api_key,
+                    api_version=self.api_version,
+                )
+            else:                          # OpenAI / Anthropic-compat / vLLM
+                from openai import OpenAI
+                self._client = OpenAI(base_url=self.base_url or None,
+                                      api_key=self.api_key or "not-needed")
         return self._client
 
     def generate(self, system_prompt: str, user_prompt: str) -> str:
-        resp = self._client_lazy().chat.completions.create(
-            model=self.model,
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user",   "content": user_prompt},
-            ],
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
-        )
+        client = self._client_lazy()
+        messages = [
+            {"role": "system", "content": system_prompt},
+            {"role": "user",   "content": user_prompt},
+        ]
+        try:
+            resp = client.chat.completions.create(
+                model=self.model, messages=messages,
+                temperature=self.temperature, max_tokens=self.max_tokens)
+        except Exception:
+            # Some newer models reject temperature/max_tokens; retry minimal.
+            resp = client.chat.completions.create(
+                model=self.model, messages=messages)
         return (resp.choices[0].message.content or "").strip()
 
 
@@ -248,6 +261,7 @@ def build_judge(cfg, generator_model=None, generator_tokenizer=None) -> Judge:
             name=api.get("name") or f"api:{api.get('model','')}",
             temperature=jcfg.get("temperature", 0.1),
             max_tokens=jcfg.get("max_new_tokens", 512),
+            api_version=api.get("api_version") or None,
         )
 
     if backend == "local":
