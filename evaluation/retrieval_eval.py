@@ -152,9 +152,30 @@ def hit_at_k(rel):
     return 1.0 if any(rel) else 0.0
 
 
-def precision_at_k(rel):
-    """Fraction of retrieved chunks that are relevant."""
-    return sum(rel) / len(rel) if rel else 0.0
+def precision_at_k(rel, k=None):
+    """Fraction of the top-k retrieved chunks that are relevant.
+
+    k=None uses the whole pool (the original behaviour).
+
+    Returns None when the pool holds fewer than k chunks. Computing
+    P@10 over a 7-chunk pool by dividing by 7 would silently report a
+    different quantity under the same name; computing it by dividing by
+    10 would penalise the system for chunks it was never asked to
+    retrieve. Neither is honest, so report nothing.
+    """
+    if not rel:
+        return 0.0 if k is None else None
+    if k is None:
+        return sum(rel) / len(rel)
+    if len(rel) < k:
+        return None
+    return sum(rel[:k]) / k
+
+
+# Cutoffs for the precision curve. The point of the curve is to separate
+# "the right material is at the top" from "noise accumulates further
+# down" - a single pooled p@k cannot distinguish those.
+P_AT_K_CUTOFFS = (1, 3, 5, 10)
 
 
 def mrr(rel):
@@ -228,11 +249,18 @@ def evaluate(gold_path=GOLD_PATH, index_dir=None):
             rr = mrr(rel)
             ndcg = ndcg_at_k(rel)
 
-            rows.append((cov_node, cov_text, mrel, hit, prec, rr, ndcg))
+            pk = {c: precision_at_k(rel, c) for c in P_AT_K_CUTOFFS}
+
+            rows.append((cov_node, cov_text, mrel, hit, prec, rr, ndcg,
+                         pk, len(rel)))
             print(f"  {q[:52]:54} cov@node={cov_node:.2f} "
                   f"cov@text={cov_text:.2f} mean_rel={mrel}")
             print(f"  {'':54} hit@k={hit:.0f}    "
                   f"p@k={prec:.2f}      mrr={rr:.2f}   ndcg={ndcg:.2f}")
+            pk_s = "  ".join(
+                f"p@{c}=" + ("  n/a" if pk[c] is None else f"{pk[c]:.2f}")
+                for c in P_AT_K_CUTOFFS)
+            print(f"  {'':54} {pk_s}   (pool={len(rel)})")
             if missed:
                 print(f"      not in retrieved text: {missed}")
         per_domain[domain] = rows
@@ -245,18 +273,60 @@ def evaluate(gold_path=GOLD_PATH, index_dir=None):
     print(hdr)
     print("-" * 96)
     agg = {i: [] for i in range(7)}
+    pk_agg = {c: [] for c in P_AT_K_CUTOFFS}
+    pk_dom = {}
     for domain, rows in per_domain.items():
         vals = []
         for i in range(7):
             xs = [r[i] for r in rows if r[i] is not None]
             vals.append(mean(xs) if xs else 0)
             agg[i] += xs
+        pk_dom[domain] = {}
+        for c in P_AT_K_CUTOFFS:
+            xs = [r[7][c] for r in rows if r[7].get(c) is not None]
+            pk_dom[domain][c] = mean(xs) if xs else None
+            pk_agg[c] += xs
         print(f"  {domain:24}{vals[0]:>10.2f}{vals[1]:>10.2f}{vals[2]:>10.3f}"
               f"{vals[3]:>8.2f}{vals[4]:>8.2f}{vals[5]:>8.2f}{vals[6]:>8.2f}")
     print("-" * 96)
     o = [mean(agg[i]) if agg[i] else 0 for i in range(7)]
     print(f"  {'OVERALL':24}{o[0]:>10.2f}{o[1]:>10.2f}{o[2]:>10.3f}"
           f"{o[3]:>8.2f}{o[4]:>8.2f}{o[5]:>8.2f}{o[6]:>8.2f}")
+
+    # ── Precision curve ─────────────────────────────────────
+    pools = [r[8] for rows in per_domain.values() for r in rows]
+    print()
+    print("=" * 96)
+    print(f"PRECISION AT CUTOFFS   (retrieved pool size: min {min(pools)}, "
+          f"max {max(pools)}, k requested = {PARAMS['max_context_chunks']})")
+    print("=" * 96)
+    hdr = f"  {'domain':24}" + "".join(f"{'p@'+str(c):>9}"
+                                       for c in P_AT_K_CUTOFFS)
+    print(hdr)
+    print("-" * 96)
+    for domain in per_domain:
+        line = f"  {domain:24}"
+        for c in P_AT_K_CUTOFFS:
+            v = pk_dom[domain][c]
+            line += f"{'n/a':>9}" if v is None else f"{v:>9.2f}"
+        print(line)
+    print("-" * 96)
+    line = f"  {'OVERALL':24}"
+    for c in P_AT_K_CUTOFFS:
+        xs = pk_agg[c]
+        line += f"{mean(xs):>9.2f}" if xs else f"{'n/a':>9}"
+    print(line)
+    print()
+    print("  Reading the curve: if p@1 and p@3 are high but p@5/p@10 fall, the")
+    print("  retriever is ranking correctly and diluting further down - the fix")
+    print("  is a smaller k, not better retrieval. If p@1 is already low, the")
+    print("  ranking itself is wrong.")
+    if any(pk_agg[c] == [] for c in P_AT_K_CUTOFFS):
+        print(f"\n  n/a means the pool never reached that cutoff. k is currently")
+        print(f"  {PARAMS['max_context_chunks']}, so deeper cutoffs are undefined. To")
+        print("  measure dilution beyond k, re-run with --max-chunks 10 (this")
+        print("  retrieves deeper than production and is a DIAGNOSTIC, not a")
+        print("  measurement of the deployed configuration).")
     print()
     print("  cov@text is the headline metric: concept-level recall into the prompt.")
     print("  hit@k / p@k / mrr / ndcg use a PROXY relevance label (chunk contains")
@@ -275,5 +345,15 @@ if __name__ == "__main__":
                          "indexes/_backup_prebatch, for a like-for-like "
                          "before/after on the current metrics")
     ap.add_argument("--gold", default=GOLD_PATH)
+    ap.add_argument("--max-chunks", type=int, default=None,
+                    help="override max_context_chunks. Production uses 3/5/7 "
+                         "by difficulty and this harness defaults to 7. Set "
+                         "10 to measure whether precision decays past the "
+                         "production cutoff - a DIAGNOSTIC, not the deployed "
+                         "configuration.")
     a = ap.parse_args()
+    if a.max_chunks:
+        PARAMS["max_context_chunks"] = a.max_chunks
+        print(f"[!] max_context_chunks overridden to {a.max_chunks} "
+              f"(diagnostic run, not the production setting)")
     evaluate(gold_path=a.gold, index_dir=a.index_dir)

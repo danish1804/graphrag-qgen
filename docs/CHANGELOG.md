@@ -18,6 +18,46 @@
 | Mean chunk relevance | ~0.75 | ~0.75 | retrieved text stays on-topic |
 | Database graph **cross-source edges** | 289,405 | **32,508** | ~90% was a duplicate document inflating the count |
 
+### Precision-at-cutoff and the k sweep (2026-08-26)
+
+Requested by Bani: measure P@1/@3/@5/@10 to separate "right information near the top"
+from "noise further down". Added multi-cutoff precision plus a `--max-chunks` override to
+`retrieval_eval.py`.
+
+**First, the k question.** The benchmark runs **k = 7** (hard-difficulty settings).
+Production varies by difficulty: **easy 3, medium 5, hard 7**. P@10 is undefined at k=7 —
+dividing by 7 and calling it P@10 measures something else, dividing by 10 penalises the
+system for chunks it was never asked to retrieve. The `--max-chunks 10` diagnostic
+retrieves deeper than production so the cutoff becomes computable.
+
+| k | cov@text | p@k | p@1 | p@3 | p@5 | p@10 | mean_rel |
+|---|---|---|---|---|---|---|---|
+| 3 | 0.86 | 0.80 | 0.93 | 0.80 | — | — | 0.762 |
+| 5 | 0.92 | 0.79 | 0.93 | 0.89 | 0.79 | — | 0.758 |
+| **7 (current)** | **0.94** | 0.74 | 0.93 | 0.89 | 0.84 | — | 0.752 |
+| 10 | 0.94 | 0.73 | 0.93 | 0.89 | 0.84 | 0.73 | 0.742 |
+
+**Findings:**
+
+1. **Coverage plateaus at k=7.** k=10 adds zero coverage (0.94 → 0.94) while precision
+   and mean relevance both fall. The extra chunks are pure noise.
+2. **p@1 = 0.93 at every k** — the top-ranked chunk is relevant in 14 of 15 queries
+   regardless of depth. Ranking is sound; dilution occurs below rank 3.
+3. **k=5 may be the better operating point:** 0.92 coverage (98% of maximum) at 0.79
+   precision. k=7 buys +0.02 coverage for −0.05 precision, a poor trade given that
+   non-answer-bearing chunks degrade generation (Cuconasu et al., SIGIR 2024).
+4. **A single global k looks wrong.** software_engineering collapses at k=3 (cov@text
+   0.67, p@3 0.44) while database and operating_systems hold at 1.00 and 0.92. Optimal
+   depth appears domain-dependent.
+5. **cov@node is 0.55 at every k**, as expected: node coverage depends on `top_k_nodes`
+   (fixed at 5), not chunk count. Confirms the node gap is an extraction problem, not a
+   retrieval-depth one.
+
+**Caveats.** Changing k also changes the seed/neighbour allocation (k=5 → 2+3, k=7 → 3+4),
+so this is not pure truncation and p@5 differs between the k=5 and k=7 runs. And with 15
+gold queries the 0.92/0.94 gap is one or two concepts — directional, not decisive. Expand
+the gold set before acting on it.
+
 ### Like-for-like before/after (2026-08-25) — single ruler, both sides
 
 Run by scoring the archived pre-batch indexes (`indexes/_backup_prebatch`) with the
@@ -269,6 +309,7 @@ retrieval scored ~3.3 while the question/answer self-scored 5.0/5.0.
 |---|---|
 | **Independent judge model** (Azure GPT-5-nano vs HPC-hosted) | plumbing done; pending team decision, then flip `judge.backend: api` |
 | **Entity-extraction quality** — junk concepts | **implemented (task 22)** — rejects section-numbers/headings/initials + recovers soft-hyphen splits; ~690 junk nodes cleared on next re-index; cov@node impact pending measurement. Generic-phrase concepts + short surnames remain (deeper fix: prefer NER over noun-chunks) |
+| **Learning-outcome exam generation (full design)** | **Researched and parked (25 Aug)** — see `docs/LEARNING_OUTCOMES_DESIGN.md`. Larger than a feature: outcome data model (CASE-aligned), batch endpoint, exam blueprint / table of specifications, coverage reporting, cross-outcome duplicate detection. Notable market finding: **no surveyed platform accepts a list of outcomes and returns a blueprint-conforming exam** — generation and assembly tools are split, joined by a human tagging step. For 1 Sept ship only the minimum (outcome model with explicit `level`, batch endpoint, per-question tagging, coverage report); full ATA optimisation deliberately out of scope since we generate on demand rather than select from a bank |
 | **Multi-domain context reconstruction** | **deferred by decision (25 Aug)**. 4 of 60 corpus items have no retrieval context, so their faithfulness scored 1/5 against an empty string and their overall is depressed (~0.8 pts). Not a design constraint — `generate_with_multi_domain` is fully deterministic and replayable — but reimplementing the merge risks a context that differs from the one actually used, which would be silently wrong. Exclude these 4 from faithfulness/overall comparisons; their clarity, difficulty and type scores remain valid. Cause is fixed forward: the generator now stores `retrieved_chunks` at generation time |
 | **1.2 community detection** (Louvain/Leiden) | deferred; optional given cov@text 0.91 |
 | **AI-solvability harness** (independent model answers question-only) | not built; judge-free; Samar-requested |
@@ -301,6 +342,98 @@ python graphrag/graphrag_domain_indexer.py --domain all
 ## Changelog by date
 
 *(append newest at top)*
+
+- **2026-09-17 — Bloom's taxonomy wired into generation, and a baseline (task 34):**
+
+  **The finding that prompted this: `bloom_level` was a dead config field.** It has sat in
+  `config.yml` against every question type since the original build (recall 1, conceptual 2,
+  application 3, case_study 4) and **no Python file ever read it**. The generation prompt
+  said only `Question type: conceptual`; cognitive level was asserted in configuration and
+  never acted on. This is what Samar was asking about.
+
+  **Now wired.** New `utils/bloom.py` turns the configured level into a prompt instruction
+  naming the level, its cognitive demand, and preferred verbs. For level 3 and above it
+  also **prohibits lower-order verbs** — that clause is what bites, because a request for
+  "Apply" is otherwise commonly answered with "Define X", a definition being far easier to
+  produce from retrieved context than an application.
+
+  **BASELINE (measured on the 60-question corpus generated 23 Aug, BEFORE the wiring):**
+
+  | | |
+  |---|---|
+  | Classified by verb | 59/60 |
+  | Exact level match | **34%** (indicative only) |
+  | Coarse band match (lower vs higher order) | **58%** (the reportable figure) |
+  | **Below requested level** | **30 of 59 (51%)** |
+  | Above requested level | 9 |
+
+  | question_type | asked | achieved distribution |
+  |---|---|---|
+  | application | L3 | **L2:12**, L3:3, L6:1 |
+  | case_study | L4 | **L2:9**, L3:3, L6:2 |
+  | conceptual | L2 | L1:6, L2:5, L6:2 |
+  | recall | L1 | L1:12, L2:2, L3:2 |
+
+  **The system systematically collapses toward "Explain".** Whatever level is requested,
+  the dominant output is level 2 Understand — 12 of 16 application questions and 9 of 14
+  case studies landed there. Only recall, which is the floor, is reliably hit. This is a
+  quantified statement of the problem the wiring is meant to fix, and it is a *pre*-change
+  baseline, so the comparison will be valid.
+
+  **Measurement is rule-based, per the project standing decision** (rules beat GPT-4 on
+  structural checks, 91% vs 79%). `classify_by_verb()` scans highest level first, so the
+  highest cognitive demand present governs; for case studies it reads the QUESTION line and
+  ignores the scenario.
+
+  **Two classifier defects found and fixed while producing the baseline.** Bare `when` /
+  `who` / `where` were matching mid-sentence, so *"When a virtual machine executes an
+  interrupt, why must the VMM take control?"* classified as level 1 on the subordinate
+  clause instead of level 2 on `why must`. And `what are` / `what does` were missing
+  entirely, leaving 5 genuine recall questions unclassified. Interrogatives now only count
+  in clause-initial position, checked at the start of each comma-separated clause.
+  Classification coverage went 55/60 → 59/60.
+
+  **Honesty caveat carried in the code and the script output:** verb classification is a
+  coarse proxy. Human agreement on Bloom level is only Cohen's kappa 0.12–0.60, and GPT-4
+  agreed with teacher classification at 65–69% with roughly half its "Analysing" labels
+  rated "Evaluating". Report the coarse lower/higher-order band; treat exact-level match as
+  indicative. Tests: `scripts/test_bloom.py`; measurement:
+  `scripts/measure_bloom_alignment.py`.
+
+  **Post-wiring comparison — now done (2026-09-24).** Regenerated the same 60 learning
+  outcomes with the instruction active (`outputs/bloom_after.json`, same seed) and measured
+  both corpora with the same classifier. One ruler, both sides; only the prompt differs.
+
+  | | Before | After |
+  |---|---|---|
+  | **Below requested level** | **51%** (30/59) | **30%** (17/57) |
+  | At or above target | 49% | **70%** |
+  | Exact level match | 34% | **53%** |
+  | Coarse band match | 58% | **67%** |
+
+  | Asked | Before | After |
+  |---|---|---|
+  | **case_study (L4)** | L2:9, L3:3, L6:2 — **0 of 14 on target** | L2:3, L3:2, **L4:8**, L6:1 — **8 of 14 on target** |
+  | **conceptual (L2)** | L1:6, L2:5, L6:2 — 38% | **L2:11**, L3:1, L6:1 — **85%**, L1 drift eliminated |
+  | recall (L1) | L1:12 of 16 | L1:11 of 16 — flat, already at the floor |
+  | **application (L3)** | L2:12, L3:3, L6:1 — 3 of 16 | L1:1, **L2:11**, L4:1, L6:1 — **0 of 14** |
+
+  **The instruction works, but not uniformly.** Case study never once reached level 4 in the
+  baseline and now does so in 8 of 14. Conceptual questions stopped sliding into recall
+  entirely. Below-target roughly halved overall.
+
+  **Application did not improve and arguably regressed** (3 of 16 → 0 of 14), still
+  collapsing to level 2 despite the explicit prohibition on lower-order verbs.
+  *Hypothesis, untested:* "Apply" requires the question to demand a procedure or
+  computation, and textbook prose rarely supplies the worked setup to build one from —
+  "compare X and Y" is easy to write from two co-occurring concepts, "calculate Z" is not.
+  If correct, the fix is not prompt wording but conditioning application questions on chunks
+  containing worked examples. Recorded as a hypothesis, not a finding.
+
+  **Caveat:** verb classification remains a coarse proxy (human agreement on Bloom level is
+  κ 0.12–0.60). The coarse band figure, 58% → 67%, is the defensible one; exact-level match
+  is indicative. Classification coverage differs slightly between runs (59/60 before,
+  57/60 after), so per-type n varies by one or two.
 
 - **2026-08-25 — Independent judge live + flaw-detection finding (task 33):**
 
