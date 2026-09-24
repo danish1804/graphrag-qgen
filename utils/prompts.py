@@ -12,6 +12,7 @@ except ImportError:
     from config import cfg
 
 from utils.question_type_prompts import instructions_for_question_type
+from utils.bloom import bloom_block
 
 PROMPT_VERSION = cfg.get("prompts", {}).get("version", "1.1.0")
 
@@ -51,12 +52,17 @@ def build_question_messages(
     question_type: str,
 ) -> list[dict[str, str]]:
     type_block = instructions_for_question_type(question_type)
+    # Bloom level comes from config.yml question_types.<type>.bloom_level.
+    # Empty string when the type has no configured level, so the prompt
+    # shape is unchanged for unconfigured types.
+    bloom = bloom_block(question_type)
+    bloom_section = f"\n{bloom}\n" if bloom else ""
     user_prompt = f"""Context from course material:
 {context}
 
 Learning objective: {learning_objective}
 Difficulty: {difficulty}
-
+{bloom_section}
 {type_block}"""
     return [
         {"role": "system", "content": QUESTION_SYSTEM_PROMPT},
