@@ -343,6 +343,169 @@ python graphrag/graphrag_domain_indexer.py --domain all
 
 *(append newest at top)*
 
+- **2026-09-25 — FAISS full run and routing calibration, measured on the maintainer's machine:**
+
+  **FAISS, `measure_scalability.py --synthetic 200` (k=3, noise 0.6, seed 42):**
+
+  | domain | recall@3 at nprobe 16 | top-1 differs from exact | exact ms/query |
+  |---|---|---|---|
+  | database | 0.718 | 55/200 (27.5%) | 0.806 |
+  | deep_learning | 0.820 | 33/200 (16.5%) | 0.113 |
+  | software_engineering | 0.772 | 40/200 (20.0%) | 0.168 |
+  | operating_systems | 0.747 | 53/200 (26.5%) | 0.188 |
+  | computer_architecture | **0.703** | **57/200 (28.5%)** | 0.282 |
+
+  Mean recall@3 **0.752**, consistent with the 24 Sep sandbox preview (0.67–0.77). Exact
+  search is under 1 ms on every graph. **Correction to the 24 Sep entry:** I wrote that no
+  nprobe setting is both accurate and faster than exact. On this machine that holds for four
+  domains, but database at nprobe 64 reaches 0.967 recall at 1.1× exact speed — break-even,
+  not slower. The accurate statement is that no setting is *meaningfully* faster while
+  accurate. Timings below 0.1 ms are also noisy (database nprobe 2 ran faster than nprobe 1),
+  so the speed column should be read as order-of-magnitude. The recommendation stands.
+
+  **Routing calibration, `domain_distribution.py --calibrate` (75 labelled outcomes):**
+
+  | method | NLL | ECE | mean confidence | mean entropy |
+  |---|---|---|---|---|
+  | proportional (current 1.6) | 1.396 | 0.656 | 25.1% | 0.993 |
+  | softmax T=1 | 1.489 | 0.680 | 22.7% | 0.998 |
+  | **softmax T=0.0247** | **0.278** | **0.089** | **91.3%** | 0.173 |
+
+  Routing accuracy **90.7%**, which independently reproduces the `test_routing_accuracy.py`
+  figure — a useful consistency check between the two scripts. The current proportional
+  weighting reports 25% confidence for a router that is right 91% of the time.
+
+  **Out-of-sample check:** T was fitted and scored on the same 75 items, so in-sample ECE is
+  optimistic. Leave-one-out refitting gives ECE **0.059**, so calibration holds on held-out
+  items. With 75 items in 10 bins ECE is itself noisy; treat both as "well calibrated", not as
+  precise values.
+
+  **Calibrated confidence identifies the misroutes.** Mean confidence is 0.94 on correct
+  routes and 0.62 on the 7 misroutes (5 of them operating_systems). A threshold of 0.8 flags
+  12 of 75 queries and catches **all 7** misroutes, with 5 false alarms. Caveat: 7 errors,
+  threshold chosen on the same data. A candidate for the open-set / low-confidence fallback
+  proposed on 24 Sep — validate on fresh outcomes before adopting.
+
+- **2026-09-24 — Groundedness is currently unmeasurable, and the rater workbook asks for it anyway:**
+
+  **Prompted by a supervisor question** on whether the generator is restricted to retrieved
+  context or can draw on parametric knowledge. The prompt does constrain it — `QUESTION_SYSTEM_PROMPT`
+  says the question "MUST be answerable using ONLY the provided context" and "Do NOT introduce
+  concepts not present in the context". But that is an instruction, not an enforced property,
+  and we have never measured compliance.
+
+  **Attempting to measure it surfaced three defects.**
+
+  1. **The context the model actually saw is not persisted.** `build_question_corpus.py`
+     writes `md.get("context")`, and the comment directly above that line states the
+     requirement plainly: *"The retrieval context MUST be stored... Without this the corpus
+     cannot support post-hoc judging at all."* Measured state of the two corpora:
+
+     | corpus | context field | chunks | usable for groundedness |
+     |---|---|---|---|
+     | `question_corpus.json` (60, out for labelling) | `context_source: "reconstructed"` ×56, absent ×4 | full | **No** — replayed retrieval, may differ from what was used |
+     | `bloom_after.json` (60) | **empty, 60 of 60** | truncated at 200 chars (498 of 590 at the cap) | **No** |
+
+  2. **`ANSWER_SYSTEM_PROMPT` contradicts the groundedness instruction.** It says *"Write as
+     if answering from knowledge directly"* while the user prompt in the same call says *"Base
+     your answer only on the provided context"*. The intent is stylistic — suppress "according
+     to the context" — but as written it invites parametric recall, and it sits in the system
+     prompt. Needs rewording to target the style without licensing the behaviour.
+
+  3. **`human_evaluation_ROUND1.xlsx` asks raters to score `groundedness`** while the Questions
+     tab supplies only `question_id, domain, question_type, learning_outcome, question_text`.
+     Raters cannot see the source material. That column would capture perceived plausibility,
+     and nothing would distinguish it from genuine grounding. This is the fourth defect found
+     in this workbook before distribution. Labelling has not started, so it is fixable: either
+     add the source passages or drop the column for round 1.
+
+  **Process note — a wrong number I nearly reported.** A first pass measured lexical
+  groundedness at **0.477** mean content-word coverage, which looked alarming. It was a
+  morphology artefact: the matcher failed on "objects" vs "object", "executes" vs "execute".
+  With stemming it moved to 0.534 — and by then the `reconstructed` flag showed neither figure
+  measures anything real, because the comparison text is not what the model saw. **Neither
+  number should be quoted.** Recorded here because the failure mode is instructive: the
+  measurement looked like a finding about the system and was a finding about the measurement.
+
+  **No code changed yet.** Persisting the full generation-time context is small; the workbook
+  decision is needed before labelling starts. Groundedness checking must use a model other
+  than the generator, per the standing decision on answerability.
+
+- **2026-09-24 — Approximate FAISS search is costing us far more than it buys (task 36):**
+
+  **The gap this closes.** `build_graphrag_index()` switches from exact `IndexFlatIP` to
+  approximate `IndexIVFFlat` above 1,000 nodes, with `n_clusters = min(√n, 128)` and
+  `nprobe = min(n_clusters, 16)`. Every domain graph is above that threshold, so **every
+  retrieval in the system has always used approximate search** — and the accuracy cost was
+  never measured. Flaw register item **B2**.
+
+  **New `scripts/measure_scalability.py`.** Recovers the stored vectors from the production
+  index itself (`make_direct_map` + `reconstruct_n`) and builds an exact index over the
+  *same bytes*, so the comparison isolates the approximation. This matters: the indexer
+  embeds `f"{node}: {first_two_chunks}"[:500]`, not the bare node name, so re-embedding by
+  hand is easy to get subtly wrong. Verified on all five graphs — reconstruction succeeds,
+  all 47,635 vectors unit-norm, no zero rows.
+
+  **Index shapes (measured, not assumed):**
+
+  | domain | nodes | n_clusters | nprobe |
+  |---|---|---|---|
+  | database | 20,518 | 128 | 16 |
+  | computer_architecture | 8,716 | 93 | 16 |
+  | operating_systems | 7,318 | 85 | 16 |
+  | software_engineering | 6,824 | 82 | 16 |
+  | deep_learning | 4,259 | 65 | 16 |
+
+  **Recall@3 of approximate vs exact, at production `nprobe=16`:**
+
+  | domain | noise 0.0 | noise 0.3 | noise 0.6 |
+  |---|---|---|---|
+  | database | 0.992 | 0.748 | **0.672** |
+  | deep_learning | 0.998 | 0.847 | **0.772** |
+  | software_engineering | 0.995 | 0.797 | **0.752** |
+  | operating_systems | 1.000 | 0.803 | **0.772** |
+  | computer_architecture | 0.993 | 0.762 | **0.745** |
+
+  **nprobe sweep, database graph (200 synthetic queries, noise 0.6):**
+
+  | nprobe | recall@3 | ms/query | vs exact |
+  |---|---|---|---|
+  | 1 | 0.150 | 0.022 | 24.9× faster |
+  | 4 | 0.365 | 0.059 | 9.4× |
+  | 8 | 0.515 | 0.113 | 4.9× |
+  | **16 (production)** | **0.707** | 0.243 | 2.3× |
+  | 32 | 0.870 | 0.486 | 1.1× |
+  | 64 | 0.962 | 1.010 | **0.5× — slower than exact** |
+  | 128 | 1.000 | 2.049 | 0.3× |
+
+  **Exact search on the largest graph costs 0.550 ms/query.**
+
+  **The conclusion, and it does not depend on the synthetic queries.** There is no `nprobe`
+  setting on these graphs that is both accurate and faster than exact search. Recall only
+  reaches 0.96 at `nprobe=64`, and at `nprobe=64` IVF is already **half the speed** of
+  brute force — it is scanning half the index plus paying quantiser overhead on top. The
+  approximation currently buys about **0.3 ms per query** and costs roughly **30% of the
+  seed nodes**. Against a pipeline where embedding the query alone is ~10–20 ms and
+  generation is measured in seconds, 0.55 ms is not a cost worth optimising.
+
+  **Why this is worse than a recall number suggests.** Seed nodes are *ranked*, and the
+  first one anchors graph traversal. A different top-1 changes the entire neighbourhood
+  that gets expanded, so the error does not stay inside retrieval — it propagates into
+  which chunks are even candidates. This plausibly contributes to **A1** (cov@node 0.55)
+  and **A2** (SE p@1 0.67), though that link is a hypothesis, not yet measured.
+
+  **Status of these numbers — read this before quoting them.** The queries here are
+  *synthetic*: real node vectors with Gaussian noise added, then renormalised. They are not
+  real questions. This was done because the gold set has only 15 queries, where a single
+  query moves recall by 0.067. The noise levels are arbitrary and the absolute recall
+  figures should be treated as indicative. What is *not* sensitive to that choice is the
+  shape of the nprobe/latency curve and the exact-search timing, and those alone carry the
+  conclusion. **Re-run with `--synthetic 0` once the gold set is expanded, and report both.**
+
+  **Not yet changed.** No code has been switched to exact search. That is a config and
+  indexer change requiring a re-index, and per project convention the benchmark must be
+  regenerated alongside it. Proposed for Phase 1.
+
 - **2026-09-17 — Bloom's taxonomy wired into generation, and a baseline (task 34):**
 
   **The finding that prompted this: `bloom_level` was a dead config field.** It has sat in

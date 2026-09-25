@@ -9,6 +9,74 @@ reference; this document is the execution plan.
 
 ---
 
+## 0. Current sprint — week of 25 September
+
+*Added after the 24 September meeting, which generated six new requests while Phase 5
+remained blocked. This section is the ordered answer to "what now". Everything below is
+unchanged.*
+
+### Today, before the long weekend — 45 minutes
+
+| # | Task | Why it is first |
+|---|---|---|
+| 1 | **Verify `danish1804/graphrag-qgen` is private** | 82 client corpus PDFs are tracked and the branch is pushed to both remotes. If it is public this is an NDA breach and nothing else matters until it is fixed |
+| 2 | Create `feature/distribution-metrics`, commit today's work | Told not to extend `feature/retrieval-ranking` further |
+| 3 | Send the graph stats + structure doc to Bani | He was asked to review it and cannot start without it |
+| 4 | **Decide the workbook `groundedness` column, reissue, attach a date** | The only item blocking Phase 5. Five weeks, 0 of 60 |
+
+### Decision needed on item 4 — do not skip this
+
+The `groundedness` column cannot be rated without source material. Two options:
+
+- **Add source passages to the Questions tab.** Honest, but the reconstructed context may
+  not be what the model saw, so raters would be judging against the wrong evidence.
+- **Drop the column for round 1.** Loses a dimension, keeps the other four sound.
+
+**Recommendation: drop it.** Rating against a context that may be wrong is worse than not
+rating it, and the four remaining dimensions still support the alt-test.
+
+### A related point worth stating explicitly
+
+The 60-question corpus was generated **25 August, before the Bloom wiring**. It therefore
+already describes a generation path we have changed. That does *not* invalidate it for its
+actual purpose — judge calibration needs human labels on the same items the judge scored,
+and the judge scored these. **Re-frame it in the instructions as a judge-calibration set,
+not a snapshot of current system quality.** That removes the temptation to regenerate it and
+restart the five-week wait.
+
+### Next week — cheap, high-value, unblocked
+
+| # | Task | Effort | Addresses |
+|---|---|---|---|
+| 5 | Check how many missed gold concepts land on **isolated nodes** | 1 hr | Confirms or kills the leading hypothesis for A1 (cov@node 0.55) |
+| 6 | **Persist the full generation-time context** in the corpus builder | 1 hr | Groundedness is permanently unmeasurable until this exists |
+| 7 | Reword `ANSWER_SYSTEM_PROMPT` to stop inviting parametric recall | 15 min | Direct contradiction with the user prompt in the same call |
+| 8 | Entity rules: character doubling, author names, figure fragments | 2 hr | `rrmmiitt ccllaassssiiffiiccaattiioonn` is the top hub in deep_learning |
+
+Items 5 and 8 both attack graph construction, which is where the evidence now points and
+which none of the 24 September requests touched.
+
+### Held until labelling resolves
+
+**Do not re-index or switch FAISS to exact search yet.** Both change retrieval, and the
+sequencing constraint in the risk section applies: either labelling completes first, or
+Phase 2 waits. The FAISS finding is measured and recorded; acting on it can wait a week.
+
+### The six new requests from 24 September — parked, with an order
+
+Recorded so they are decisions rather than drift. None start before items 1–8.
+
+| Request | Verdict | When |
+|---|---|---|
+| Calibrated domain probability | Script written, needs the `--calibrate` run | Phase 1 |
+| Domain spread / vMF concentration | **Measured. All five domains are equally broad** (R 0.73–0.76) — little to exploit at domain level | Done; report only |
+| Node-level breadth → question depth control | The version of Samar's idea with teeth, and it feeds the unsolved application-Bloom problem | Phase 3 |
+| KL divergence | Needs two distributions. Fits generated-mix vs blueprint, or retrieved vs predicted. Prefer JSD | Phase 4 |
+| Embedding model swap | **86.4% held-out domain separation says this is not the bottleneck.** A/B against the expanded gold set, never a blind swap | Phase 2, conditional |
+| Diversity, 3–4 questions per query | Already designed | Phase 3 |
+
+---
+
 ## 1. Where we actually are
 
 **Measured and working:**

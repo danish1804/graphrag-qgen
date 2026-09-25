@@ -82,3 +82,13 @@ outputs/_smoke.json
 outputs/question_corpus.json
 outputs/question_corpus.xlsx
 docs/human_evaluation_ROUND1.xlsx
+# Bloom baseline/after corpora — same content class as the above. These
+# carry 60 and 20 generated questions plus verbatim `retrieved_chunks`
+# lifted from the client PDFs, so they fall under the same rule and were
+# missing from it.
+outputs/bloom_after.json
+outputs/bloom_test.json
+# Catch future corpora by shape rather than by name, so the next one is
+# covered before anyone remembers to add it.
+outputs/*corpus*.json
+outputs/*questions*.json

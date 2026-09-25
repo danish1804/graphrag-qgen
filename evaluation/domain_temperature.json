@@ -1,0 +1,12 @@
+{
+  "temperature": 0.024672013526682975,
+  "domains": [
+    "deep_learning",
+    "database",
+    "software_engineering",
+    "operating_systems",
+    "computer_architecture"
+  ],
+  "n_calibration": 75,
+  "method": "NLL minimisation, Guo et al. ICML 2017"
+}
