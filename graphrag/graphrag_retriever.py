@@ -41,6 +41,35 @@ def _degree_discounted_weight(graph, src, nbr, penalty):
     return w / (deg ** penalty)
 
 
+def _npmi_logcount_weight(graph, src, nbr):
+    """NPMI(src, nbr) * log(1 + co-occurrence count) (task 8).
+
+    NPMI alone favours rare pairs (rare-fragment neighbours), raw counts
+    favour generic hubs; the log-count factor balances the two. Needs
+    node doc_freq and graph.graph["total_chunks"]; falls back to the
+    degree discount when either is missing.
+    """
+    import math
+    n = graph.graph.get("total_chunks")
+    c = graph[src][nbr].get("weight", 1)
+    dx = graph.nodes[src].get("doc_freq")
+    dy = graph.nodes[nbr].get("doc_freq")
+    if not n or not dx or not dy:
+        return _degree_discounted_weight(graph, src, nbr, 0.5)
+    px, py = dx / n, dy / n
+    pxy = min(c / n, px, py)
+    if pxy >= 1:
+        return math.log(1 + c)
+    npmi = math.log(pxy / (px * py)) / (-math.log(pxy))
+    return npmi * math.log(1 + c)
+
+
+def _neighbour_score(graph, src, nbr, penalty, weighting):
+    if weighting == "npmi_logcount":
+        return _npmi_logcount_weight(graph, src, nbr)
+    return _degree_discounted_weight(graph, src, nbr, penalty)
+
+
 def retrieve_graph_context(
         query: str,
         index,
@@ -53,7 +82,8 @@ def retrieve_graph_context(
         seed_ratio: float = 0.6,
         rerank: bool = True,
         depth2_cap: int = 50,
-        degree_penalty: float = 0.5
+        degree_penalty: float = 0.5,
+        neighbour_weighting: str = None
 ) -> dict:
     """
     GraphRAG retrieval — find seed nodes then traverse graph.
@@ -83,6 +113,11 @@ def retrieve_graph_context(
           relationships — list of (entity1, entity2, weight) tuples
           sources       — source documents contributing context
     """
+    if neighbour_weighting is None:
+        from utils.config import cfg as _cfg
+        neighbour_weighting = (_cfg.get("retrieval") or {}).get(
+            "neighbour_weighting", "degree_discount")
+
     # Step 1: Embed query
     query_embedding = embedder.model.encode(
         [query],
@@ -131,8 +166,8 @@ def retrieve_graph_context(
             # generic hub terms stop dominating (GraphRAG 1.2).
             neighbours_sorted = sorted(
                 neighbours,
-                key=lambda n: _degree_discounted_weight(
-                    graph, entity, n, degree_penalty),
+                key=lambda n: _neighbour_score(
+                    graph, entity, n, degree_penalty, neighbour_weighting),
                 reverse=True
             )
 
@@ -165,8 +200,9 @@ def retrieve_graph_context(
                     if neighbour_depth >= 2:
                         n2_sorted = sorted(
                             graph.neighbors(neighbour),
-                            key=lambda x: _degree_discounted_weight(
-                                graph, neighbour, x, degree_penalty),
+                            key=lambda x: _neighbour_score(
+                                graph, neighbour, x, degree_penalty,
+                                neighbour_weighting),
                             reverse=True
                         )
                         for n2 in n2_sorted[:depth2_cap]:

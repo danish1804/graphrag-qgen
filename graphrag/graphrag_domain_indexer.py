@@ -497,7 +497,23 @@ if __name__ == "__main__":
         default="deep_learning",
         help="Which domain to build"
     )
+    parser.add_argument(
+        "--index-dir", default=INDEX_DIR,
+        help="Where to write the index. Use a separate folder for "
+             "experimental variants, e.g. indexes_variants/v2, so the "
+             "production indexes are never overwritten.")
+    parser.add_argument(
+        "--profile", default=None,
+        help="Entity extraction profile from config.yml entity_filter."
+             "profiles (v1 = production, v2 = task-7 fixes).")
     args = parser.parse_args()
+    if args.profile:
+        from graphrag.graphrag_indexer import set_entity_profile
+        set_entity_profile(args.profile)
+    os.makedirs(args.index_dir, exist_ok=True)
+    if os.path.abspath(args.index_dir) == os.path.abspath(INDEX_DIR) and args.profile not in (None, "v1"):
+        raise SystemExit("Refusing to write a non-production profile into the "
+                         "production index folder. Pass --index-dir.")
 
     print("=" * 60)
     print("DOMAIN-SPECIFIC GRAPHRAG INDEXER")
@@ -516,7 +532,7 @@ if __name__ == "__main__":
                       f"{result['graph_nodes']} nodes, "
                       f"{result['graph_edges']} edges")
     else:
-        summary = build_domain_graph(args.domain)
+        summary = build_domain_graph(args.domain, index_dir=args.index_dir)
         print(f"\nDomain graph built: {args.domain}")
         print(f"Nodes: {summary['graph_nodes']}")
         print(f"Edges: {summary['graph_edges']}")

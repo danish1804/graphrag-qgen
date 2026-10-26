@@ -92,3 +92,8 @@ outputs/bloom_test.json
 # covered before anyone remembers to add it.
 outputs/*corpus*.json
 outputs/*questions*.json
+# Gold concept and relation lists extracted from the client textbooks'
+# back-of-book indexes, plus edge annotation sheets. Corpus-derived.
+evaluation/gold_index/
+# Experimental graph variants (contain chunk text).
+indexes_variants/

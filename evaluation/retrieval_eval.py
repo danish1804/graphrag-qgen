@@ -33,6 +33,7 @@ if _ROOT not in sys.path:
 
 from graphrag.graphrag_indexer import normalize_entity
 from graphrag.graphrag_domain_indexer import load_domain_graph
+INDEX_DIR_DEFAULT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "indexes")
 from graphrag.graphrag_retriever import retrieve_graph_context
 from utils.embedder import Embedder
 
@@ -196,7 +197,7 @@ def ndcg_at_k(rel):
     return dcg / idcg if idcg > 0 else 0.0
 
 
-def evaluate(gold_path=GOLD_PATH, index_dir=None):
+def evaluate(gold_path=GOLD_PATH, index_dir=None, domains=None):
     """Score retrieval against the gold set.
 
     `index_dir` lets the SAME harness run against a different set of
@@ -215,6 +216,18 @@ def evaluate(gold_path=GOLD_PATH, index_dir=None):
     for domain, items in gold.items():
         if domain.startswith("_"):
             continue
+        if domains and domain not in domains:
+            continue
+        # Normalise gold concepts with the entity profile the graph was
+        # built with (task 7); older indexes have no field and are v1.
+        from graphrag.graphrag_indexer import set_entity_profile
+        _meta = os.path.join(index_dir or INDEX_DIR_DEFAULT,
+                             f"graphrag_{domain}_meta.json")
+        _profile = "v1"
+        if os.path.exists(_meta):
+            _profile = json.load(open(_meta, encoding="utf-8")).get("entity_profile", "v1")
+        set_entity_profile(_profile)
+        print(f"[profile] {domain}: {_profile}")
         index, graph, nodes = (load_domain_graph(domain, index_dir=index_dir)
                                if index_dir else load_domain_graph(domain))
         rows = []
@@ -345,6 +358,12 @@ if __name__ == "__main__":
                          "indexes/_backup_prebatch, for a like-for-like "
                          "before/after on the current metrics")
     ap.add_argument("--gold", default=GOLD_PATH)
+    ap.add_argument("--neighbour-weighting", default=None,
+                    choices=["degree_discount", "npmi_logcount"],
+                    help="override retrieval.neighbour_weighting for this run")
+    ap.add_argument("--domains", default=None,
+                    help="comma-separated subset, e.g. operating_systems,database "
+                         "(needed for variant folders that hold only some domains)")
     ap.add_argument("--max-chunks", type=int, default=None,
                     help="override max_context_chunks. Production uses 3/5/7 "
                          "by difficulty and this harness defaults to 7. Set "
@@ -352,8 +371,12 @@ if __name__ == "__main__":
                          "production cutoff - a DIAGNOSTIC, not the deployed "
                          "configuration.")
     a = ap.parse_args()
+    if a.neighbour_weighting:
+        PARAMS["neighbour_weighting"] = a.neighbour_weighting
+        print(f"[!] neighbour_weighting = {a.neighbour_weighting}")
     if a.max_chunks:
         PARAMS["max_context_chunks"] = a.max_chunks
         print(f"[!] max_context_chunks overridden to {a.max_chunks} "
               f"(diagnostic run, not the production setting)")
-    evaluate(gold_path=a.gold, index_dir=a.index_dir)
+    evaluate(gold_path=a.gold, index_dir=a.index_dir,
+             domains=a.domains.split(",") if a.domains else None)

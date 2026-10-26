@@ -343,6 +343,378 @@ python graphrag/graphrag_domain_indexer.py --domain all
 
 *(append newest at top)*
 
+- **2026-10-26 — v3 measured; v1 → v2 → v3 comparison (OS and DB), run by Danish:**
+
+  **Graph quality against the textbook indexes** (`graph_quality_report.py`):
+
+  | Measure | OS v1 | OS v2 | **OS v3** | DB v1 | DB v2 | **DB v3** |
+  |---|---|---|---|---|---|---|
+  | Nodes | 7,318 | 7,063 | 6,161 | 20,518 | 19,389 | 16,376 |
+  | Edges | 26,776 | 29,926 | 31,629 | 101,949 | 105,636 | 108,607 |
+  | **Index relations directly connected** | 17.8% | 20.0% | **21.4%** | 13.8% | 14.3% | **16.0%** |
+  | Index relations within 2 hops | 41.6% | 46.5% | 48.9% | 39.0% | 42.1% | 44.1% |
+  | Directly connected, of representable | 32.3% | 34.4% | 36.0% | 25.6% | 25.8% | 28.8% |
+  | Index concepts found | 52.6% | 52.8% | 53.3% | 54.4% | 54.8% | 55.8% |
+  | **Isolated nodes** | 28.4% | 25.2% | **20.9%** | 29.3% | 27.3% | **23.4%** |
+  | Largest component | 69.4% | 73.0% | 77.6% | 68.6% | 71.2% | 75.1% |
+  | Numeric-only nodes | 19 | 0 | 0 | 433 | 0 | 0 |
+
+  Every measure improves monotonically from v1 to v3 in both subjects. v1 → v3: direct
+  relation recall +3.6 points OS (+20% relative), +2.2 points DB (+16%); isolated nodes −7.5
+  and −5.9 points. The 1NF/2NF/3NF regression is fixed (absent from the v3 missing list).
+  Strip-and-merge removed 902 OS and 3,013 DB fragment nodes relative to v2.
+
+  **Downstream retrieval** (`retrieval_eval.py`, 6 gold queries, 3 per domain):
+
+  | Graph + weighting | DB cov@node | OS cov@node | Overall cov@node | Overall cov@text | Overall p@k |
+  |---|---|---|---|---|---|
+  | v1 + degree discount (production) | 0.80 | 0.48 | 0.64 | 0.96 | 0.86 |
+  | v2 + degree discount | 0.87 | 0.55 | 0.71 | 0.96 | 0.88 |
+  | v2 + npmi_logcount | 0.80 | 0.70 | 0.75 | 0.97 | 0.86 |
+  | v3 + degree discount | 0.80 | 0.63 | 0.72 | 0.96 | 0.88 |
+  | **v3 + npmi_logcount** | 0.80 | **0.77** | **0.78** | 0.96 | 0.86 |
+
+  **Reading.**
+  - The best downstream configuration is v3 + NPMI weighting, with OS node coverage 0.48 →
+    0.77. But **the downstream benchmark cannot separate these variants with confidence.** At
+    3 queries per domain a single concept moves a domain score by 0.07–0.20, cov@text is at a
+    ceiling (0.96 throughout), and changes are not monotonic at query level (DB inner join
+    cov@node 0.80 in v2, 0.60 in v3; v2 + NPMI dropped "inner join" from the text but was the
+    only run that retrieved "demand paging" text).
+  - **The intrinsic textbook-index measure is the stronger evidence here**: it is evaluated
+    over 1,212 (OS) and 1,640 (DB) expert relations, not 6 queries, and it moves in one
+    direction.
+  - **Proposed fix for the benchmark size:** turn the index into retrieval queries. Each index
+    head with sub-entries ("Deadlock": avoidance, detection, prevention, ...) becomes a query
+    ("Explain deadlock") whose expected concepts are its sub-entries. That yields hundreds of
+    queries per subject from an expert source not used to build the graph. Replaces the
+    15-query bottleneck (flaw register A9).
+
+  **Recommendation.** Adopt v3 extraction for the next re-index (clear intrinsic gains, no
+  downstream loss). Keep npmi_logcount as the leading candidate, pending the larger
+  index-derived benchmark. Production unchanged until then and until labelling resolves.
+  "demand paging" is still missing (parser limit; v4 glossary-vocabulary candidate).
+
+- **2026-10-13 — Profile v3 and a configurable neighbour weighting (task 8, code):**
+
+  **v3 = v2 plus three fixes found while measuring v2:**
+  1. Number-label entities that pass the technical-numeric allowlist are kept (fixes the v2
+     loss of 1NF/2NF/3NF).
+  2. Leading determiners, possessives and quantifiers are stripped ("its variable" →
+     "variable", "each signal" → "signal"), so fragments merge into their concept. Words that
+     change meaning are deliberately kept: "no" (no preemption), ordinals (first fit),
+     "more"/"most" (most significant bit). Number words are stripped only when not followed by
+     phase, tier, way, level and similar ("two phase commit" → 2pc, "three tier architecture"
+     kept).
+  3. "number", "size", "step", "case", "approach" removed again as non-concepts.
+
+  **New `retrieval.neighbour_weighting`** (`degree_discount` = current, default;
+  `npmi_logcount` = NPMI × log(1 + count)). `load_graphrag_index` now stores
+  `total_chunks` on the graph, which NPMI needs; missing data falls back to the degree
+  discount. `retrieval_eval.py --neighbour-weighting` overrides it per run.
+
+  **Verification:** `scripts/test_entity_profile.py` 47/47 pass (13 new v3 cases, 2 retriever
+  weighting cases). Regression on production nodes: v1 rejects 0, v2 rejects 1,003, both
+  unchanged by this edit. Production stays on v1 and degree_discount.
+
+  **Deferred (v4 candidate):** known-term vocabulary from textbook glossaries (not indexes, to
+  avoid circular evaluation) for terms the parser misses, such as "demand paging".
+
+- **2026-10-13 — Downstream retrieval, v1 vs v2 (OS and DB):**
+
+  `retrieval_eval.py --domains operating_systems,database` on `indexes/` (v1) and
+  `indexes_variants/v2`, run by Danish. 6 gold queries (3 per domain), hard settings.
+
+  | | DB v1 | DB v2 | OS v1 | OS v2 | Overall v1 | Overall v2 |
+  |---|---|---|---|---|---|---|
+  | cov@node | 0.80 | **0.87** | 0.48 | **0.55** | 0.64 | **0.71** |
+  | cov@text | 1.00 | 1.00 | 0.92 | 0.92 | 0.96 | 0.96 |
+  | p@k | 0.81 | 0.81 | 0.90 | **0.95** | 0.86 | 0.88 |
+  | mean_rel | 0.763 | 0.760 | 0.750 | 0.750 | 0.757 | 0.755 |
+
+  **No downstream harm, small gains in node coverage.** Caveat: 3 queries per domain, so each
+  change is one or two concepts (inner join query 0.60→0.80; semaphores 0.40→0.60).
+  Directional only.
+
+  **"demand paging" is missed by both versions** and is the only uncovered OS gold concept. It
+  occurs 10 times in the OS sources (including the Stallings glossary) but never becomes a
+  node: a parser limitation of `en_core_web_sm` (likely tagging "demand" as a verb), not a
+  filter rule. Candidate fix: a known-term vocabulary (PhraseMatcher) built from the textbook
+  **glossaries**. The vocabulary must not come from the back-of-book **index**, which is the
+  evaluation gold, or the evaluation becomes circular.
+
+- **2026-10-13 — Neighbour ranking measured against the textbook relations; a v2 regression
+  (task 8, first results):**
+
+  **Regression in v2: 1NF, 2NF and 3NF are no longer nodes** (v1 had 1nf–4nf; v2 has only
+  4nf; bcnf in both). Cause: spaCy labels "3NF" as an ORDINAL/CARDINAL entity, and v2 drops
+  those labels to remove "three"/"four". The drop must exempt strings that pass the technical-
+  numeric allowlist. Found by Danish from the report's missing-concept list. v2 stays frozen
+  as recorded; the fix goes into the next profile.
+
+  **New measure: what retrieval actually expands to.** Edge weighting does not change which
+  edges exist, so edge-presence metrics cannot see it. For every concept with index relations
+  among its neighbours (OS 169, DB 199), take its top-5 neighbours under each weighting and
+  report: recall@5 of the index relations, generic-word share, and rare-fragment share
+  (neighbours with degree <= 2). v2 graphs, gold normalised with v2.
+
+  | Weighting | OS recall@5 | OS generic | OS rare-fragment | DB recall@5 | DB generic | DB rare-fragment |
+  |---|---|---|---|---|---|---|
+  | raw count | 0.496 | 0.300 | 0.010 | 0.395 | 0.170 | 0.009 |
+  | **count / deg^0.5 (current)** | **0.280** | 0.049 | **0.320** | **0.230** | 0.020 | **0.305** |
+  | count / deg^0.25 | 0.373 | 0.141 | 0.111 | 0.332 | 0.086 | 0.062 |
+  | **NPMI x log(1+count)** | **0.341** | **0.046** | **0.085** | **0.300** | 0.027 | **0.052** |
+
+  **Findings.**
+  1. **The current retrieval weighting is dominated.** NPMI x log(count) beats it on recall@5
+     (+0.06 to +0.07) and cuts rare fragments about fourfold to sixfold, with essentially the
+     same generic share, in both subjects.
+  2. **Why the current discount fails:** it removes generic hubs but promotes rare noun-phrase
+     fragments. Examples among top-5 neighbours: "its variable", "my availability", "each
+     signal", "thread b1", "creasing order", "boundary user", "notemptyqueue".
+  3. **Raw counts score highest on recall@5 but 17–30% of their top 5 are generic words**
+     ("process", "time", "data"). Gold partners are mid-frequency (median degree 44 vs 2 for
+     all nodes; only 3.7% are generic words), so recall@5 alone rewards frequency; it must be
+     read alongside the generic and fragment shares. No single weighting wins on all three.
+  4. **Fragments come from determiner- and pronoun-led noun chunks** ("its ...", "each ...",
+     "two ..."), which the normaliser does not strip (it strips only the/a/an). A simulation
+     that strips them and merges the node into its head phrase (approximate: weights summed)
+     merges 1,443 OS and 4,582 DB nodes and lowers rare-fragment share under the current
+     weighting (OS 0.32 to 0.24, DB 0.31 to 0.24), with relation recall unchanged.
+
+  **Status:** measured on the v2 graphs (deterministic); the strip-and-merge result is a
+  simulation, to be confirmed by a rebuild. Index gold relations include some compositional
+  phrases ("class → priority" from "priority class"), which adds noise to recall@5.
+
+- **2026-10-13 — v2 measured on operating systems and databases (task 7 result):**
+
+  Built with `graphrag_domain_indexer.py --profile v2 --index-dir indexes_variants/v2`
+  (production untouched). Scored with `graph_quality_report.py`, gold normalised with each
+  graph's own profile.
+
+  | Measure | OS v1 | OS v2 | DB v1 | DB v2 |
+  |---|---|---|---|---|
+  | Nodes | 7,318 | 7,063 | 20,518 | 19,389 |
+  | Edges | 26,776 | 29,926 | 101,949 | 105,636 |
+  | **Index relations directly connected** | 17.8% | **20.0%** | 13.8% | **14.3%** |
+  | Index relations within 2 hops | 41.6% | 46.5% | 39.0% | 42.1% |
+  | Index concepts found | 52.6% | 52.8% | 54.4% | 54.8% |
+  | Isolated nodes | 28.4% | 25.2% | 29.3% | 27.3% |
+  | Largest component | 69.4% | 73.0% | 68.6% | 71.2% |
+  | Numeric-only nodes | 19 | 0 | 433 | 0 |
+  | Max degree | 601 | **1,584** | 2,035 | **2,702** |
+
+  **Reading.**
+  - Junk removal works (numeric nodes to zero) and connectivity improves in both subjects.
+  - **The relation gap is barely touched.** Fewer than 1 in 5 expert-asserted relations is a
+    direct edge in either subject after v2. Extraction cleanup is not the main lever; edge
+    construction is (task 8), consistent with the literature review.
+  - **Concept recall is flat by construction of the metric.** OS diff: v2 gained 5 index
+    concepts (process, data, networks, functions, zombies) and lost 4 marginal ones (batch
+    systems, clock interrupt, Peterson's algorithm, superclasses; degree 0–2 in v1, now under
+    the minimum-frequency threshold after dropped NER occurrences). Every index term counts
+    equally, so restoring "process" counts the same as losing "superclasses".
+  - **Use 1-hop relation recall as the headline, not 2-hop.** The restored core words become
+    the largest hubs (OS "process" degree 1,584; next "system", "number", "data", "time"), and
+    hubs shorten paths, so 2-hop recall partly rewards hub growth rather than meaningful edges.
+  - "number" and "time" are arguably non-concepts that v2 now keeps; v2 is frozen for this
+    comparison and they are deferred to the task-8 variant.
+
+  **Status:** measured, deterministic builds, one run each. Downstream retrieval on the v2
+  graphs not yet measured (`retrieval_eval.py --index-dir indexes_variants/v2
+  --domains operating_systems,database`, which now supports a domain subset and reads each
+  graph's entity profile).
+
+- **2026-10-13 — Entity extraction profiles: v1 (production) and v2 (fixes) (task 7):**
+
+  Extraction rules are now selected by a profile in `config.yml` (`entity_filter`), stored
+  in each `*_meta.json`, and switchable per build (`--profile`) or per process
+  (`GRAPHRAG_ENTITY_PROFILE`). **v1 reproduces the 20 Aug indexes exactly** and stays the
+  active profile; v2 is built into `indexes_variants/v2` only. The domain indexer refuses to
+  write a non-v1 profile into `indexes/`.
+
+  **Defects v2 fixes, all found via the textbook-index report:**
+  1. **Singulariser deleted every concept ending in "analysis".** "analysis" became "analysi",
+     which a separate rule rejects as an over-singularised plural. No node ending in
+     "analysis" exists in any of the five graphs. The same rule produced "statu" (status) in
+     four domains and "databas". v2 singularises only the head noun and keeps -sis, -us, -ss,
+     -ics endings.
+  2. **Generic-word blacklist deleted core concepts:** process, network, function, data, set,
+     type. v2 keeps them (genericness to be handled by edge weighting, task 8) and still
+     removes true non-concepts (example, result, first, ...).
+  3. **Numeric NER labels and person names** (CARDINAL "three"/"four", PERSON lecturer names)
+     dropped in v2.
+  4. **Page ranges admitted as concepts** by the task-24 pattern `^\d{3,5}\s+\w`; v2 requires a
+     processor-family word after the number.
+  5. **Numeric protocol abbreviations rejected** (2PC, 3PC, 2PL); v2 admits them and adds 13
+     alias mappings (two phase commit → 2pc, MVCC, WAL, OLAP, OLTP, DMA, PCB, FCFS, ...).
+  6. **Character-doubled PDF artefacts** ("rrmmiitt ...", deep_learning's #1 hub) rejected in v2.
+
+  **Verification.** `scripts/test_entity_profile.py`: 32/32 pass (11 v1 legacy behaviours
+  preserved, 21 v2 fixes). Regression on real data: every node of all five current graphs
+  passes v1 (0 changes). Applied to the same nodes, v2 rejects 1,003 junk nodes (DB 618,
+  SE 201, CA 135, OS 35, DL 14), before the concepts v1 wrongly deleted are added back on
+  rebuild. Effect on concept and relation recall: pending the v2 rebuild of OS and DB.
+
+- **2026-10-12 — Graph-quality measurement against textbook indexes (task 6, baseline):**
+
+  New `scripts/graph_quality_report.py`. Answers Samar's "how do we know a graph is better"
+  with references that are expert-made and independent of us: the back-of-book indexes of the
+  pilot textbooks. Index **main entries** give a gold concept list; **head → sub-entry** pairs
+  give a gold list of expert-asserted relations; **"see" cross-references** give synonym pairs.
+  Gold lists go to `evaluation/gold_index/` (git-ignored, corpus-derived). The script also
+  writes a 150-edge stratified sample sheet per domain for two-annotator edge precision.
+
+  **Gold sources, chosen by measured parse quality** (my spot-check of 20 concepts and 15
+  relations per book): Stallings (OS) ~19/20 and ~14/15 clean; Silberschatz (DB) ~19/20 and
+  ~13/15; Garcia-Molina (DB) ~17/20 concepts, no sub-entry structure parsed, concepts only;
+  Elmasri (DB) ~8/20 and ~5/15, **excluded**; xv6 book excluded (index of code symbols).
+  The parser detects columns and indent levels per page; ligatures, inverted entries and author
+  index lines are handled. Parse noise remains, so all recalls below are approximate.
+
+  **Baseline, current indexes (built 20 Aug):**
+
+  | Measure | Operating systems | Databases |
+  |---|---|---|
+  | Index concepts (gold) | 580 | 2,469 |
+  | **Concept recall** (gold concept exists as a node) | **52.6%** | **54.4%** |
+  | Index relations (gold) | 1,212 | 1,640 |
+  | Both concepts are nodes | 668 (55%) | 883 (54%) |
+  | **Relation recall, directly connected** | **17.8%** | **13.8%** |
+  | Relation recall, within 2 hops | 41.6% | 39.0% |
+  | Directly connected, of representable pairs | 32.3% | 25.6% |
+  | Synonym pairs merged into one node | 0 of 16 | 4 of 103 |
+  | Isolated nodes | 28.4% | 29.3% |
+  | Hub concentration (top 1% of nodes' share of edge ends) | 30.9% | 39.1% |
+  | Numeric-only nodes | 19 | 433 |
+
+  **What it shows.** About half of the textbooks' own index concepts are not graph nodes, and
+  fewer than 1 in 5 expert-asserted relations is a direct edge. Specific causes found:
+  - **The generic-word blacklist deletes core concepts.** `is_valid_entity` rejects "process",
+    "network", "function", "type", "set", "data". It was written for deep-learning slides;
+    "process" is the central concept of operating systems and is not a node.
+  - **Abbreviations with digits are rejected:** 2PC, 2PL, 3PC, J2EE (the full forms "two phase
+    commit" / "two phase locking" exist, but the index's abbreviation entries do not match).
+  - **Genuine gaps:** "demand paging", "journaling", "boot block", "multiversion concurrency
+    control" are absent from their graphs.
+  - **Synonyms are almost never merged** (4 of 119 index "see" pairs), so the static alias map
+    covers very little.
+  - The singulariser bug also affects matching ("zombies" → "zomby").
+
+  **Status:** measured, single run, deterministic. Recall figures are approximate because of
+  residual parse noise in the gold lists. Edge precision is pending human annotation of the
+  sample sheets.
+
+- **2026-10-12 — Two corrections to 2026-10-08 claims:**
+
+  1. **The Mahalanobis gain is not explained by domain labels.** On 2026-10-08 I attributed it to
+     the within-domain covariance turning nearest-centroid into an LDA-like supervised classifier.
+     Re-run with covariance estimated from all vectors *without* labels (Ledoit-Wolf, 3 random
+     splits, 1,000 train / 1,000 test per domain): cosine 86.0% (sd 0.3), Mahalanobis with
+     within-domain covariance 92.8% (sd 0.3), **Mahalanobis with label-free total covariance
+     92.8% (sd 0.3)**. The gain comes from the correlation structure of the embedding space, as
+     Arun suggested. The 10-NN loss (84.6%) was measured with within-domain covariance only;
+     label-free covariance is untested for 10-NN.
+  2. **"Deadlock's strongest neighbours include three, four, time, problem" was raw edge weight,
+     not what retrieval selects.** Retrieval ranks neighbours by weight / sqrt(degree). Under that
+     ranking those four fall to positions 74–108. Retrieval's actual top 5 for deadlock:
+     avoidance, prevention, one resource, starvation, dead lock. The discount over-corrects towards
+     rare, low-degree fragments: "dead lock" (spelling variant of deadlock, degree 1) and "releas"
+     (singulariser bug, degree 1) score 2.00 alongside real concepts. So raw counts favour generic
+     hubs and the square-root discount favours rare fragments; edge weighting needs a principled
+     fix (NPMI with a minimum count, plus entity cleanup), not a heavier or lighter discount.
+
+- **2026-10-08 — Distance metrics other than cosine (Arun's suggestion), screening test:**
+
+  New `scripts/compare_distance_metrics.py`. Proxy task: 1,000 held-out node vectors per
+  domain (5,000 total), classify which domain graph each came from, using 1,000 training nodes
+  per domain. Nearest centroid approximates routing; 10-nearest-neighbour approximates seed
+  search. Mahalanobis uses a Ledoit-Wolf shrinkage estimate (shrinkage 0.038) of the pooled
+  within-domain covariance.
+
+  | Metric | Nearest centroid | 10-NN |
+  |---|---|---|
+  | Cosine (current) | 85.9% | 92.1% |
+  | Euclidean | 85.9% | 92.1% |
+  | Manhattan | 85.7% | 92.2% |
+  | Mahalanobis | **92.4%** | **84.6%** |
+
+  - **Euclidean is identical to cosine** on unit vectors, as expected (||a-b||^2 = 2 - 2cos).
+  - **Manhattan makes no difference.**
+  - **Mahalanobis helps the centroid task and hurts the neighbour task.** With a within-domain
+    covariance, nearest-centroid Mahalanobis is effectively linear discriminant analysis, a
+    classifier that uses the domain labels; that explains the gain. Whitening distorts local
+    neighbourhoods, which explains the loss. Consistent with the 24 Sep finding that removing
+    principal components reduced separability.
+  - **Implication:** worth testing Mahalanobis/LDA for routing on the 75 labelled outcomes
+    (OS is the weak domain). Not worth applying to seed search. Status: synthetic proxy, single
+    split, seed 0; not yet confirmed on real queries.
+
+- **2026-10-07 — Full repository audit for paper preparation; corrections to earlier claims:**
+
+  Prompted by Bani's request for a complete pipeline description and results compilation.
+  Deliverable: `_notes/QG_Pipeline_Results_and_Experiment_Plan_v1.docx` (git-ignored; contains
+  corpus-derived statistics). Fact-checked independently against code and docs: about 230
+  claims, 19 discrepancies, all corrected before sending. The audit also found that several
+  earlier entries in this log are wrong or overstated. Recorded here rather than silently edited:
+
+  1. **Bloom before/after (2026-09-17 entry) did not change only the prompt.** The baseline
+     corpus used `force_domain: true`, the after run `false`; multi-domain items went from 4 to
+     29 of 60, so retrieval contexts differ. Model sampling was unseeded (seed 42 controls item
+     selection only). The direction of the result stands; attribution to the prompt does not.
+  2. **Rules vs judge, "flagged 4.25 vs clean 4.28" (2026-08-25) cannot be reproduced** from the
+     stored corpus. Recomputed with the original rules: 4.12 (n=5) vs 4.25 (n=55). The
+     qualitative conclusion (judge barely separates them) holds.
+  3. **`dataset/outputs/comparison_report.md` is invalid:** both sides are the BASE_MODEL file.
+     Recomputed from the correct files (207 pairs, self-judged): question score 4.72 vs 4.78,
+     Wilcoxon p = 0.33. There is no valid evidence yet that the question LoRA helps.
+  4. **Question-LoRA eval leakage:** all 71 eval contexts also occur in the training set, so the
+     eval loss of 0.125 is not held-out.
+  5. **The independent judge (Claude Haiku 4.5) is the same model that generated the
+     question-LoRA training data.** Unrecorded threat to any fine-tuning comparison.
+  6. **Judge implementation differs from the standing decisions** (1–5 scale, several
+     dimensions per call, reasoning step, no reference answer). Recorded in 2026-08-23 as a
+     deliberate deferral; still not done.
+  7. **Document de-duplication uses SHA-256**, not MD5/SHA-1; graph nodes are merged by
+     normalised string, not hashing.
+  8. **New extraction defects:** the singulariser maps `databases` to `databas` (a separate
+     node, frequency 352); the technical-numeric pattern `^\d{3,5}\s+\w` admits page ranges.
+  9. **Not reproducible from committed code:** graph structure (isolated nodes), vMF spread,
+     86.4% separability and the leave-one-out ECE were computed ad hoc. Scripts still to be
+     committed.
+  10. **No quantitative standard-RAG vs GraphRAG comparison exists**;
+      `scripts/compare_rag_vs_graphrag.py` only prints example questions.
+
+- **2026-09-25 — Rater workbook reissued for round 1 (`human_evaluation_ROUND1.xlsx`):**
+
+  **Correction to the 24 Sep groundedness entry.** I described the `groundedness` column as
+  unratable because raters cannot see the source passages. Reading its definition again, it
+  asks whether the question is *"answerable from the subject material, without inventing
+  facts"*, which a subject expert can judge from their own knowledge. The column was
+  **mislabelled, not meaningless**: it measures factual soundness, not grounding in the
+  retrieved context. Renamed to `factual_soundness` with a rewritten definition, rather than
+  dropped. **Consequence for analysis:** it must not be compared with the judge's
+  context-based groundedness score as if the two measure the same thing.
+
+  **Column kept in place, not deleted.** Agreement `mean_quality` averages `Rater_x!C:F`;
+  deleting column D would have shifted that range without warning. Formulas before/after:
+  851/851, 0 changed.
+
+  **Scope: 30 questions, all three raters.** Correction to the "20 each" proposal I gave
+  earlier. Twenty *different* items per rater breaks the Fleiss calculation (it needs three
+  ratings per item), and the *same* twenty falls short of the alt-test floor of 30. Thirty
+  shared items satisfies both, at roughly 45 minutes per rater. Selection is stratified by
+  domain and type (OS 8, DB 7, SE 6, CA 4, DL 3, multi 2; application 9, recall 8,
+  conceptual 7, case study 6), flagged in a new `rate_in_round_1` column. Rows not in the round
+  are greyed on each rater tab.
+
+  **Framing:** the instructions now call this a judge-calibration set generated on 25 August,
+  not a snapshot of current system quality.
+
+  **Verified** by filling a copy with random ratings and recalculating in LibreOffice: 30
+  items counted as complete, Fleiss κ 0.06, which is what chance should give. Original kept at
+  `_notes/human_evaluation_ROUND1_backup_2026-09-25.xlsx`.
+
 - **2026-09-25 — FAISS full run and routing calibration, measured on the maintainer's machine:**
 
   **FAISS, `measure_scalability.py --synthetic 200` (k=3, noise 0.6, seed 42):**

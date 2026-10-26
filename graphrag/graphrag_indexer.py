@@ -101,6 +101,107 @@ ALIAS_MAP = {
 # "cnn", "apis" -> "api") that the length-guarded singulariser skips.
 ABBREV_SET = set(ALIAS_MAP.values())
 
+# Extra aliases enabled by the v2 entity profile. Found by the graph-
+# quality report: textbook indexes list these abbreviations as concepts,
+# and the v1 digit rules rejected the numeric ones outright.
+EXTRA_ALIASES_V2 = {
+    "two phase commit":                  "2pc",
+    "two phase commit protocol":         "2pc",
+    "three phase commit":                "3pc",
+    "two phase locking":                 "2pl",
+    "two phase locking protocol":        "2pl",
+    "multiversion concurrency control":  "mvcc",
+    "write ahead logging":               "wal",
+    "write ahead log":                   "wal",
+    "online analytical processing":      "olap",
+    "online transaction processing":     "oltp",
+    "direct memory access":              "dma",
+    "process control block":             "pcb",
+    "first come first served":           "fcfs",
+}
+
+
+# ── Entity extraction profile (task 7) ──────────────────────
+# Read lazily on every call so a build can switch profile via the
+# GRAPHRAG_ENTITY_PROFILE env var or set_entity_profile() without
+# re-importing. v1 = behaviour of the 20 Aug 2026 indexes.
+_V1_PROFILE = {
+    "singulariser": "legacy", "drop_ner_labels": [],
+    "remove_generic_concepts": True, "strict_page_ranges": False,
+    "digit_abbreviations": False, "reject_doubled_chars": False,
+    "extra_aliases": False,
+    # added for v3; defaults keep v1 and v2 exactly as built
+    "keep_technical_numeric_entities": False,
+    "strip_leading_determiners": False,
+    "extra_non_concepts": [],
+}
+
+# v3: leading determiners, possessives and quantifiers that spaCy noun
+# chunks keep ("its variable", "each signal", "my availability"). Under
+# the degree discount these rare fragments became the top neighbours.
+# Deliberately NOT stripped (they change meaning): "no" (no preemption),
+# ordinals (first fit), "more"/"most" (most significant bit).
+_LEADING_DET_RE = re.compile(
+    r"^((its|their|his|her|my|our|your|each|every|this|these|that|those|"
+    r"some|any|all|both|such|other|another|many|several|few|same|"
+    r"different|following|given|various|certain|corresponding|"
+    r"particular|specific|own)\s+)+")
+# Number words are stripped only when not part of a named concept
+# ("two phase commit", "three tier architecture", "two way merge").
+_LEADING_NUM_RE = re.compile(
+    r"^(one|two|three|four|five|six|seven|eight|nine|ten)\s+"
+    r"(?!(phase|tier|way|level|stage|state|pass|address|bit|byte|core|"
+    r"dimensional|valued|step)\b)")
+
+
+def _strip_leading_determiners(text: str) -> str:
+    out = _LEADING_DET_RE.sub("", text)
+    out = _LEADING_NUM_RE.sub("", out)
+    return out.strip() or text
+
+
+def active_entity_profile_name() -> str:
+    return (os.getenv("GRAPHRAG_ENTITY_PROFILE")
+            or (cfg.get("entity_filter") or {}).get("active_profile", "v1"))
+
+
+def entity_profile() -> dict:
+    name = active_entity_profile_name()
+    profiles = (cfg.get("entity_filter") or {}).get("profiles") or {}
+    prof = dict(_V1_PROFILE)
+    prof.update(profiles.get(name, {}))
+    return prof
+
+
+def set_entity_profile(name: str) -> None:
+    """Switch profile for this process (used by evaluation scripts so
+    gold terms are normalised the same way the graph was built)."""
+    os.environ["GRAPHRAG_ENTITY_PROFILE"] = name
+
+
+def _singularise_v2(text: str) -> str:
+    """Plural reduction that does not mangle -sis/-us/-ss words.
+
+    v1 turned "analysis" into "analysi" (then rejected it as a broken
+    plural), "status" into "statu" and "databases" into "databas".
+    """
+    words = text.split(" ")
+    w = words[-1]                      # only the head noun (last word)
+    keep_endings = ("ss", "us", "is", "ics", "sis", "xis", "ous")
+    ie_words = {"zombies", "cookies", "movies", "ties", "lies", "pies"}
+    if len(w) <= 3 or w.endswith(keep_endings):
+        pass
+    elif w in ie_words:
+        w = w[:-1]
+    elif w.endswith("ies"):
+        w = w[:-3] + "y"               # "queries" -> "query"
+    elif w.endswith(("sses", "shes", "ches", "xes", "zzes")):
+        w = w[:-2]                     # "processes" -> "process", "indexes"
+    elif w.endswith("s"):
+        w = w[:-1]                     # "databases" -> "database"
+    words[-1] = w
+    return " ".join(words)
+
 
 # Step 1: Entity normalisation
 # ── Technical numeric concepts (task 24) ────────────────────
@@ -125,12 +226,40 @@ TECHNICAL_NUMERIC = [
 # their qualified form ("80386 processor", "intel 80386").
 _TECHNICAL_NUMERIC_RE = [re.compile(p, re.IGNORECASE) for p in TECHNICAL_NUMERIC]
 
+# v2 (task 7): `^\d{3,5}\s+\w` above also admits page ranges and page-
+# prefixed fragments ("376 382", "380 two phase"); v2 requires a
+# processor-family word after the number. v2 also admits numeric
+# protocol abbreviations (2pc, 3pc, 2pl) that textbook indexes list.
+_TECHNICAL_NUMERIC_V2_RE = [
+    re.compile(p, re.IGNORECASE) for p in TECHNICAL_NUMERIC
+    if p != r'^\d{3,5}\s+\w'
+] + [
+    re.compile(r'^\d{3,5}\s+(processor|microprocessor|cpu|chip|family|'
+               r'series|architecture|instruction set)s?\b', re.IGNORECASE),
+]
+_DIGIT_ABBREV_RE = re.compile(r'^\d\s*(pc|pl)$', re.IGNORECASE)
+
 
 def _is_technical_numeric(text: str) -> bool:
     """True when a numeric-prefixed string is a genuine IT concept
     rather than a slide-outline or figure-numbering artifact."""
     t = text.lower().strip()
-    return any(p.match(t) for p in _TECHNICAL_NUMERIC_RE)
+    prof = entity_profile()
+    pats = _TECHNICAL_NUMERIC_V2_RE if prof["strict_page_ranges"] else _TECHNICAL_NUMERIC_RE
+    if prof["digit_abbreviations"] and _DIGIT_ABBREV_RE.match(t):
+        return True
+    return any(p.match(t) for p in pats)
+
+
+def _is_doubled_char_artifact(text: str) -> bool:
+    """PDF bold/overlay text extracted twice per glyph, e.g.
+    "rrmmiitt ccllaassssiiffiiccaattiioonn" (deep_learning's #1 hub)."""
+    letters = text.replace(" ", "")
+    if len(letters) < 8:
+        return False
+    pairs = sum(1 for i in range(0, len(letters) - 1, 2)
+                if letters[i] == letters[i + 1])
+    return pairs / (len(letters) // 2) >= 0.8
 
 
 def normalize_entity(text: str) -> str:
@@ -160,6 +289,10 @@ def normalize_entity(text: str) -> str:
     # Remove leading articles
     text = re.sub(r"^(the|a|an)\s+", "", text)
 
+    # v3: also strip leading determiners/possessives/quantifiers
+    if entity_profile().get("strip_leading_determiners"):
+        text = _strip_leading_determiners(text)
+
     # Strip trailing punctuation
     text = text.strip(".,;:!?\"'()")
 
@@ -172,8 +305,12 @@ def normalize_entity(text: str) -> str:
     text = re.sub(r"[-–—]", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
 
-    # Simple singularisation - handles most IT terms
-    if text.endswith("ies"):
+    prof = entity_profile()
+
+    if prof["singulariser"] == "v2":
+        text = _singularise_v2(text)
+    # Simple singularisation - handles most IT terms (v1, legacy)
+    elif text.endswith("ies"):
         text = text[:-3] + "y"       # "trees" -> nope, "communities" -> "community"
     elif text.endswith("ses"):
         text = text[:-2]             # "processes" -> "process"
@@ -186,6 +323,8 @@ def normalize_entity(text: str) -> str:
 
     # Collapse known abbreviation/expansion pairs to one canonical
     # node (GraphRAG 1.1), e.g. "structured query language" -> "sql".
+    if prof["extra_aliases"] and text in EXTRA_ALIASES_V2:
+        return EXTRA_ALIASES_V2[text]
     if text in ALIAS_MAP:
         return ALIAS_MAP[text]
     # Plural of a known abbreviation the length-guarded singulariser
@@ -260,13 +399,14 @@ def is_valid_entity(text: str) -> bool:
     elif re.match(r'^\d+[a-z]', text, re.IGNORECASE):
         return False
 
-    # Reject very generic single words that aren't IT concepts
-    generic_words = {
-        "zero", "one", "two", "data", "input", "output",
-        "layer", "lets", "example", "result", "value",
-        "weight", "image", "network", "model", "function",
-        "method", "approach", "system", "process", "step",
-        "type", "size", "number", "set", "list", "case",
+    # Reject very generic single words that aren't IT concepts.
+    # Split in task 7: the second set holds words that ARE core concepts
+    # in some subjects ("process" is the central concept of operating
+    # systems; "set", "type", "data" in databases). v1 deletes them; v2
+    # keeps them and leaves genericness to edge weighting instead.
+    prof = entity_profile()
+    non_concept_words = {
+        "zero", "one", "two", "lets", "example", "result",
         "way", "use", "note", "left", "right", "true", "false",
         "none", "same", "different", "new", "good", "large",
         "small", "high", "low", "next", "first", "last",
@@ -275,7 +415,17 @@ def is_valid_entity(text: str) -> bool:
         "morgan kaufmann", "prentice hall", "mit press",
         "academic publisher", "academic press",
     }
-    if text in generic_words:
+    generic_concept_words = {
+        "data", "input", "output", "layer", "value", "weight",
+        "image", "network", "model", "function", "method",
+        "approach", "system", "process", "step", "type", "size",
+        "number", "set", "list", "case",
+    }
+    if text in non_concept_words or text in set(prof.get("extra_non_concepts") or []):
+        return False
+    if prof["remove_generic_concepts"] and text in generic_concept_words:
+        return False
+    if prof["reject_doubled_chars"] and _is_doubled_char_artifact(text):
         return False
 
     # Reject slide outline patterns: "1motivation", "2d convolution".
@@ -386,9 +536,19 @@ def extract_raw_entities(chunk: str, nlp) -> list:
     doc = nlp(cleaned)
     candidates = set()
 
-    # Named entities from spaCy NER
+    # Named entities from spaCy NER. v2 drops numeric and person labels:
+    # CARDINAL produced "three"/"four" as deadlock's strongest neighbours
+    # ("four conditions for deadlock"), PERSON produced lecturer-name hubs.
+    _prof = entity_profile()
+    drop_labels = set(_prof["drop_ner_labels"])
     for ent in doc.ents:
         norm = normalize_entity(ent.text)
+        if ent.label_ in drop_labels:
+            # v3: spaCy labels "3NF" as ORDINAL; keep genuine technical
+            # numerics even when their label is dropped.
+            if not (_prof.get("keep_technical_numeric_entities")
+                    and _is_technical_numeric(norm)):
+                continue
         if is_valid_entity(norm):
             candidates.add(norm)
 
@@ -708,6 +868,7 @@ def build_graphrag_index(
             "cross_source_edges":  cross_source,
             "total_chunks":        len(chunks),
             "unique_sources":      list(set(sources)),
+            "entity_profile":      active_entity_profile_name(),
         }, f, ensure_ascii=False, indent=2)
     print(f"Metadata saved    : {meta_path}")
 
@@ -1055,6 +1216,9 @@ def load_graphrag_index(
 
     with open(meta_path, "r", encoding="utf-8") as f:
         meta = json.load(f)
+
+    # Needed by the npmi_logcount neighbour weighting (task 8).
+    graph.graph["total_chunks"] = meta.get("total_chunks")
 
     if hasattr(index, "nprobe"):
         index.nprobe = 16

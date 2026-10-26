@@ -24,6 +24,14 @@ retrieval:
   top_k_nodes: 3           # GraphRAG — top K seed nodes
   neighbour_depth: 1       # GraphRAG — graph traversal depth
   max_context_chunks: 6    # Max chunks passed to LLM prompt
+  # How a seed's neighbours are ranked for expansion (task 8).
+  #   degree_discount : edge weight / degree^0.5   (current production)
+  #   npmi_logcount   : NPMI(x,y) * log(1 + co-occurrence count)
+  # Measured against the textbook-index relations, npmi_logcount gave
+  # higher recall@5 and ~4-6x fewer rare-fragment neighbours (CHANGELOG
+  # 2026-10-13). Production stays on degree_discount until confirmed
+  # downstream.
+  neighbour_weighting: degree_discount
 
 # ── Domain Routing (GraphRAG 1.3) ──────────────────────────
 # When a query is auto-routed (no explicit domain), compare the top
@@ -151,6 +159,44 @@ graph:
     description: "Controls graph density — higher min_edge_weight
                   = sparser graph = only strong concept links.
                   Set to 0 = no edges = degrades to standard RAG"
+
+# ── Entity extraction profiles (task 7, 2026-10) ───────────
+# v1 reproduces the indexes built on 20 Aug 2026 exactly (production).
+# v2 applies the fixes found by the graph-quality report against the
+# textbook indexes (docs/CHANGELOG.md, 2026-10-12/13). Select a profile
+# per build with the env var GRAPHRAG_ENTITY_PROFILE or the indexer's
+# --profile flag; the profile used is stored in each *_meta.json so the
+# evaluation scripts normalise gold terms the same way the graph did.
+entity_filter:
+  active_profile: v1
+  profiles:
+    v1:
+      singulariser: legacy             # "analysis"->"analysi"(rejected), "databases"->"databas"
+      drop_ner_labels: []
+      remove_generic_concepts: true    # drops process, network, data, set, type, ...
+      strict_page_ranges: false        # "376 382" admitted as a concept
+      digit_abbreviations: false       # 2pc, 2pl, 3pc rejected
+      reject_doubled_chars: false      # "rrmmiitt ..." admitted
+      extra_aliases: false
+    v2:
+      singulariser: v2                 # keeps -sis/-us/-ss words; databases->database
+      drop_ner_labels: [CARDINAL, ORDINAL, QUANTITY, PERCENT, MONEY, DATE, TIME, PERSON]
+      remove_generic_concepts: false   # genericness handled by weighting, not deletion
+      strict_page_ranges: true         # numeric prefix only before processor/cpu/chip/...
+      digit_abbreviations: true
+      reject_doubled_chars: true
+      extra_aliases: true              # two phase commit -> 2pc, etc.
+    v3:                                # v2 + fixes found while measuring v2
+      singulariser: v2
+      drop_ner_labels: [CARDINAL, ORDINAL, QUANTITY, PERCENT, MONEY, DATE, TIME, PERSON]
+      keep_technical_numeric_entities: true   # v2 dropped "3NF" as an ORDINAL
+      strip_leading_determiners: true  # "its variable" -> "variable", "each signal" -> "signal"
+      remove_generic_concepts: false
+      extra_non_concepts: [number, size, step, case, approach]
+      strict_page_ranges: true
+      digit_abbreviations: true
+      reject_doubled_chars: true
+      extra_aliases: true
 
 
 # ── Model Configuration ────────────────────────────────────
